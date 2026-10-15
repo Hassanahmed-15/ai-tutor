@@ -37,9 +37,9 @@ export type NarrationHandle = {
   setRate: (rate: number) => void;
 };
 
-/** The slowest speed offered. Below this, time-stretched speech stops sounding like speech. */
-export const MIN_NARRATION_RATE = 0.25;
-export const MAX_NARRATION_RATE = 2;
+/** The speeds offered (lib/playbackPrefs.ts): 0.5x to 1.5x. Beyond these, time-stretched speech stops sounding like speech. */
+export const MIN_NARRATION_RATE = 0.5;
+export const MAX_NARRATION_RATE = 1.5;
 const clampRate = (rate: number) =>
   Number.isFinite(rate) ? Math.min(MAX_NARRATION_RATE, Math.max(MIN_NARRATION_RATE, rate)) : 1;
 
@@ -98,6 +98,40 @@ export interface NarrationCallbacks {
    * paused while the interjection plays, so the two never overlap.
    */
   preserveActive?: boolean;
+  /**
+   * What happens when a part's FIRST clip cannot be synthesised (a slow or failed /api/tts call).
+   * "browser" (the default): the whole part is read by the browser's own speech engine — a
+   * different voice, with no lip sync. "silent": Aria's voice is kept — that sentence passes as a
+   * timed gap and the rest of the part plays as its clips arrive; only when the next clip fails too
+   * (an outage, not a hiccup) does it fall back to the browser voice. The normal lecture uses
+   * "silent": after a pause or a stall her voice used to change for a whole part (2026-10-14).
+   */
+  voiceFallback?: "browser" | "silent";
+}
+
+/*
+ * ONE AUDIO CONTEXT FOR EVERY NARRATION.
+ *
+ * Each narration used to build its own context after its first clip downloaded — outside any
+ * click — and when the browser held that new context suspended for 1.2 s, the clip played without
+ * the volume boost and without the mouth analyser: after a pause that restarted the part, Aria
+ * sounded quieter and her mouth stopped (2026-10-14). The context is now made once, resumed inside
+ * the Play click (unlockAudio) and on every later interaction (lib/voice/audioOutput.ts), and each
+ * narration only adds and removes its own nodes on it.
+ */
+let sharedNarrationContext: AudioContext | null = null;
+function narrationContext(): AudioContext | null {
+  if (typeof window === "undefined") return null;
+  if (sharedNarrationContext && (sharedNarrationContext.state as string) !== "closed") return sharedNarrationContext;
+  const Ctor = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  if (!Ctor) return null;
+  try {
+    sharedNarrationContext = new Ctor();
+    registerAudioContext(sharedNarrationContext);
+  } catch {
+    sharedNarrationContext = null;
+  }
+  return sharedNarrationContext;
 }
 
 let voicesReadyPromise: Promise<SpeechSynthesisVoice[]> | null = null;
@@ -168,7 +202,9 @@ function pickTeacherVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice 
 /** One-time "unlock" for the browser's autoplay gate — call this directly inside a click handler. */
 export function unlockAudio() {
   if (typeof window === "undefined") return;
-  // Inside the click: the one moment every browser lets a suspended audio context start.
+  // Inside the click: the one moment every browser lets a suspended audio context start — so the
+  // narration context is made (or woken) here, and every narration after it plays through it.
+  narrationContext();
   resumeAllAudio();
   if ("speechSynthesis" in window) {
     // A zero-length utterance still counts as "spoken" for the autoplay gate in most browsers.
@@ -211,6 +247,30 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
   const lips: { stop: (() => void) | null } = { stop: null };
   /** Wakes the loop awaiting the current clip, so cancel() never leaves it waiting forever. */
   let clipWaiter: (() => void) | null = null;
+  /** This narration's own nodes on the shared context, removed when it ends (the context stays). */
+  let graphNodes: AudioNode[] = [];
+  const disconnectGraph = () => {
+    for (const node of graphNodes) {
+      try {
+        node.disconnect();
+      } catch {
+        /* already disconnected */
+      }
+    }
+    graphNodes = [];
+  };
+  /** Silences this narration's element for good: a clip that started late can never sound after the end. */
+  const silenceElement = () => {
+    if (!audio) return;
+    audio.onended = null;
+    audio.onerror = null;
+    audio.pause();
+    audio.removeAttribute("src");
+  };
+  /** Re-attaches the CURRENT sentence's lips (set while a clip plays); used after a resume. */
+  let armLips: (() => void) | null = null;
+  /** True once the part is being read by the browser's speech engine instead of cloud clips. */
+  let browserMode = false;
   const clearCues = () => {
     cueTimers.forEach((timer) => clearTimeout(timer));
     cueTimers = [];
@@ -225,16 +285,15 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     activeNarrationCancelers.delete(cancel);
     clipWaiter?.();
     clipWaiter = null;
-    if (audio) {
-      audio.pause();
-      audio = null;
-    }
+    silenceElement();
+    audio = null;
     stopProgressLoop();
     lips.stop?.();
     lips.stop = null;
+    armLips = null;
     detachMouthAnalyser(mouthToken);
     mouthToken = undefined;
-    void audioContext?.close();
+    disconnectGraph();
     audioContext = null;
     clearCues();
     if (objectUrl) {
@@ -271,7 +330,16 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
      * have repeated the sentence just finished. The loop's own paused-aware sleep carries on instead.
      */
     if (audio && clipActive) {
-      void audio.play().then(() => resumeProgressLoop?.()).catch(() => callbacks.onBlocked());
+      void audio.play().then(() => {
+        resumeProgressLoop?.();
+        // Her lips for the sentence she is back in — an interjection made while she was paused
+        // (a chat answer, a board line) may have taken the mouth and left it closed.
+        armLips?.();
+      }).catch((err) => {
+        // A second pause landing before play() settled is not a blocked autoplay.
+        if (err instanceof DOMException && err.name === "AbortError") return;
+        callbacks.onBlocked();
+      });
     } else {
       resumeProgressLoop?.();
     }
@@ -285,6 +353,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
 
   const browserFallback = async () => {
     if (cancelled) return;
+    browserMode = true;
 
     const sentences = splitNarrationSentences(text);
     if (sentences.length === 0) {
@@ -320,10 +389,28 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         return;
       }
       if (cursor >= sentences.length) {
-        activeNarrationCancelers.delete(cancel);
         stopProgressLoop();
         callbacks.onProgress?.(1, estimatedMs, estimatedMs);
-        callbacks.onEnd();
+        /*
+         * THE QUEUE IS DRAINED BEFORE THIS NARRATION LETS GO. The clock can run ahead of the speech
+         * engine (numbers, formulas, a slow network voice), and this narration used to unregister
+         * itself on the clock's end with sentences still queued — so after the last part nothing
+         * could cancel them and Aria kept talking on the "Lecture complete" screen (2026-10-14).
+         * It stays cancellable until the engine is quiet (bounded at 12 s), then ends.
+         */
+        const drainedBy = performance.now() + 12_000;
+        const waitForQuiet = () => {
+          if (cancelled) return;
+          const speaking = hasSpeech && (window.speechSynthesis.speaking || window.speechSynthesis.pending);
+          if ((speaking || paused) && performance.now() < drainedBy) {
+            cueTimers.push(setTimeout(waitForQuiet, 150));
+            return;
+          }
+          if (hasSpeech) window.speechSynthesis.cancel();
+          activeNarrationCancelers.delete(cancel);
+          callbacks.onEnd();
+        };
+        waitForQuiet();
         return;
       }
       const sentenceIndex = cursor;
@@ -356,7 +443,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       // Advance on an estimated speaking duration so paced visuals feel right whether or
       // not audio actually plays. ~85ms/char ≈ a clear narration rate (~12 chars/sec),
       // floored so very short sentences still get a readable beat, plus a brief pause.
-      // The real rate, not a clamped one: at 0.25x a 0.5x floor advanced the board twice as fast as
+      // The real rate, not a clamped one: at 0.5x a 1x floor advanced the board twice as fast as
       // the voice. The gap scales too, or slow speech would still be followed by a brisk pause.
       const spokenMs = Math.max(2200, sentence.length * 85) / rate;
       setTimeout(cueNext, spokenMs + 240 / rate);
@@ -477,13 +564,19 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     };
     pump();
 
-    // Nothing has played yet, so a first clip that cannot be synthesised falls back exactly as the
-    // single-clip path did.
+    // Nothing has played yet. A first clip that cannot be synthesised hands the part to the browser's
+    // voice — unless the caller keeps Aria's voice ("silent"): then only an outage (the next clip
+    // failing as well) does, and a single failed clip is a timed gap like any other.
     const firstClip = await clipPromises[0];
     if (cancelled) return;
     if (!firstClip) {
-      void browserFallback();
-      return;
+      const keepVoice = callbacks.voiceFallback === "silent" && sentences.length > 1 && Boolean(await clipPromises[1]);
+      if (cancelled) return;
+      if (!keepVoice) {
+        void browserFallback();
+        return;
+      }
+      traceNarration("first-clip-failed-kept-voice", { sentences: sentences.length });
     }
 
     /*
@@ -496,31 +589,31 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     audio = new Audio();
     audio.preload = "auto";
     try {
-      const AudioContextCtor =
-        window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-      const candidate = AudioContextCtor ? new AudioContextCtor() : null;
-      if (candidate) registerAudioContext(candidate);
       /*
        * ROUTED THROUGH WEB AUDIO ONLY WHEN IT CAN SOUND. Routing the element into a context makes
-       * the context its ONLY way out — and this context is made after a download, outside any click,
-       * so a browser may hold it suspended: the clip then "plays" in silence while the lecture says
-       * Aria is speaking, or `resume()` never settles at all. When it is not running within a moment,
-       * the element plays on its own (no volume boost, no mouth animation), which is always audible.
+       * the context its ONLY way out, and a browser may hold a context suspended: the clip then
+       * "plays" in silence while the lecture says Aria is speaking. The shared narration context
+       * (narrationContext) is woken inside the Play click, so it is normally running already; when it
+       * is not running within a moment, the element plays on its own (no volume boost, no mouth
+       * animation), which is always audible.
        */
-      if (candidate && !(await ensureRunning(candidate, 1_200))) {
-        void candidate.close().catch(() => {});
-      } else if (candidate) {
-        audioContext = candidate;
+      const shared = narrationContext();
+      if (shared && (await ensureRunning(shared, 1_200))) {
+        audioContext = shared;
         const source = audioContext.createMediaElementSource(audio);
+        graphNodes.push(source);
         let tail: AudioNode = source;
         if (CLOUD_TTS_GAIN > 1) {
           const gain = audioContext.createGain();
           gain.gain.value = CLOUD_TTS_GAIN;
           source.connect(gain);
+          graphNodes.push(gain);
           tail = gain;
         }
         tail.connect(audioContext.destination);
         mouthToken = attachMouthAnalyser(audioContext, tail);
+      } else {
+        traceNarration("unrouted", { state: shared?.state ?? "none" });
       }
     } catch {
       // If Web Audio routing fails, the plain media element still plays at normal volume.
@@ -587,7 +680,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       audio.src = objectUrl;
       audio.defaultPlaybackRate = rate;
       audio.playbackRate = rate;
-      // Tempo without pitch: 2x must not become a chipmunk, nor 0.25x a slowed tape. Browsers default
+      // Tempo without pitch: 1.5x must not become a chipmunk, nor 0.5x a slowed tape. Browsers default
       // to this already; setting it makes the choice explicit rather than inherited.
       audio.preservesPitch = true;
       (audio as HTMLAudioElement & { webkitPreservesPitch?: boolean }).webkitPreservesPitch = true;
@@ -598,22 +691,43 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       // A browser can suspend the output between clips; the element would then play in silence.
       // Bounded: a resume the browser refuses must not hold the lecture (see lib/voice/audioOutput).
       if (audioContext && audioContext.state !== "running") await ensureRunning(audioContext, 1_200);
+      // A pause that landed DURING that wait: the sentence waits for the resume instead of playing
+      // through the pause.
+      if (paused) await sleep(1);
+      if (cancelled) return;
 
-      try {
-        await audio.play();
-      } catch (err) {
-        // DOMException "NotAllowedError" = autoplay-blocked, not a server/network problem.
-        if (err instanceof DOMException && err.name === "NotAllowedError") {
-          activeNarrationCancelers.delete(cancel);
-          callbacks.onBlocked();
-          return;
+      /*
+       * PLAYED, OR WAITED FOR — NEVER SKIPPED BY A PAUSE. A pause while play() is pending rejects it
+       * with AbortError, and that used to be treated as a failed clip: the sentence was passed over
+       * in silence and never spoken (2026-10-14). An abort or a pause now waits for the resume and
+       * plays the SAME sentence; only a real failure (or three) is a timed gap.
+       */
+      let played = false;
+      for (let attempt = 0; attempt < 3 && !played; attempt += 1) {
+        try {
+          await audio.play();
+          played = true;
+        } catch (err) {
+          // DOMException "NotAllowedError" = autoplay-blocked, not a server/network problem.
+          if (err instanceof DOMException && err.name === "NotAllowedError") {
+            activeNarrationCancelers.delete(cancel);
+            callbacks.onBlocked();
+            return;
+          }
+          if (cancelled) return;
+          const aborted = err instanceof DOMException && err.name === "AbortError";
+          if (!aborted && !paused) break;
+          await sleep(1);
+          if (cancelled) return;
         }
+      }
+      if (cancelled) return;
+      if (!played) {
         if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
         await sleep(estimatedSentenceMs(i));
         elapsedBeforeMs += estimatedSentenceMs(i);
         continue;
       }
-      if (cancelled) return;
       clipActive = true;
 
       // Her lips for this sentence: its prepared track, read at the element's time less the output
@@ -627,11 +741,14 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
           const latency = ctx ? (ctx.outputLatency || 0) + (ctx.baseLatency || 0) : 0.03;
           return Math.max(0, el.currentTime - latency * (el.playbackRate || 1));
         };
-        void trackFor(sentence, blob).then((track) => {
-          if (!track || cancelled || audio !== el || el.ended || !clipActive) return;
-          lips.stop?.();
-          lips.stop = startClipLipSync(track, clock);
-        });
+        armLips = () => {
+          void trackFor(sentence, blob).then((track) => {
+            if (!track || cancelled || audio !== el || el.ended || !clipActive) return;
+            lips.stop?.();
+            lips.stop = startClipLipSync(track, clock);
+          });
+        };
+        armLips();
       }
 
       // THE SYNC POINT: the teacher has just started saying sentence i, so the board moves now.
@@ -696,10 +813,13 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         audio!.onerror = done;
       });
       clipActive = false;
+      armLips = null;
       stopProgressLoop();
       lips.stop?.();
       lips.stop = null;
       if (cancelled) return;
+      // A clip given up on (stalled) must not start sounding later, over the next sentence.
+      if (!audio.ended) audio.pause();
 
       elapsedBeforeMs += (Number.isFinite(audio.duration) ? audio.duration : 0) * 1000;
       callbacks.onProgress?.(sentenceAlignedProgress(weights, clipIndex, 1), elapsedBeforeMs, estimatedTotalMs);
@@ -716,18 +836,29 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     }
     detachMouthAnalyser(mouthToken);
     mouthToken = undefined;
-    void audioContext?.close();
+    // The narration is over: its element is silenced for good and its nodes leave the shared context.
+    silenceElement();
+    disconnectGraph();
     audioContext = null;
     callbacks.onProgress?.(1, elapsedBeforeMs, elapsedBeforeMs);
     callbacks.onEnd();
   })();
 
   const setRate = (next: number) => {
+    const before = rate;
     rate = clampRate(next);
     // The clip that is playing now changes speed immediately; the ones after it are set as they load.
     if (audio) {
       audio.defaultPlaybackRate = rate;
       audio.playbackRate = rate;
+    }
+    /*
+     * The browser's speech engine cannot re-time an utterance already queued, so its queue kept
+     * speaking at the old speed for a few sentences. On a real change the queue is dropped; the
+     * timeline speaks the next sentence at the new speed.
+     */
+    if (browserMode && rate !== before && typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
     }
   };
 

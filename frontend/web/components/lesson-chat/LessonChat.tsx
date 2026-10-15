@@ -119,6 +119,11 @@ export function useLessonChat(opts: {
   onExplanationClosed?: () => void;
   /** Surface autoplay-blocked so the player can show its banner. */
   onVoiceBlocked?: () => void;
+  /**
+   * The lecture's playback speed, so a spoken answer is not suddenly at 1x when the student chose
+   * 0.5x or 1.5x. Optional — a player that passes none answers at normal speed, as before.
+   */
+  rate?: number;
 }): LessonChatState {
   const [chat, setChat] = useState<ChatTurn[]>([]);
   const [explaining, setExplaining] = useState(false);
@@ -147,6 +152,20 @@ export function useLessonChat(opts: {
    */
   const pendingVisualRef = useRef<{ question: string; what: string } | null>(null);
   const answerVisualOfferRef = useRef<(accept: boolean) => void>(() => {});
+  /*
+   * NOTHING IS SAID AFTER THE PANEL IS GONE. An answer whose fetch was still in flight when the
+   * lecture ended used to be spoken anyway — on the "Lecture complete" screen (2026-10-14). The panel
+   * going away also stops an answer that is mid-sentence.
+   */
+  const aliveRef = useRef(true);
+  useEffect(() => {
+    aliveRef.current = true;
+    return () => {
+      aliveRef.current = false;
+      cancelRef.current?.cancel();
+      cancelRef.current = null;
+    };
+  }, []);
 
   const stopNarration = useCallback(() => {
     cancelRef.current?.cancel();
@@ -199,8 +218,10 @@ export function useLessonChat(opts: {
   /** Speak an answer. `onDone` runs when she has finished and nothing is waiting on the student. */
   const narrate = useCallback(
     (script: string, onDone?: () => void) => {
+      if (!aliveRef.current) return;
       setNarrating(true);
       const handle = playNarration(script, {
+        rate: opts.rate,
         onStart: () => {},
         onSentenceStart: (si, _s, st) => setDrawProgress(st > 1 ? Math.min(1, (si + 1) / st) : 1),
         onEnd: () => {
