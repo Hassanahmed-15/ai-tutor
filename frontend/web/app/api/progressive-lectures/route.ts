@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { currentUser } from "@/lib/auth";
+import { lessonCaller } from "@/lib/auth";
 import { blobStorageConfigured } from "@/lib/blobStorage";
 import { databaseConfigured } from "@/lib/db/cosmos";
 import { normalizeLectureMode, normalizeLectureSourceType } from "@/lib/lectureArchive";
@@ -18,7 +18,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
-  const auth = await currentUser();
+  const auth = await lessonCaller();
   if (!auth) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
   if (!databaseConfigured() || !blobStorageConfigured()) {
     return NextResponse.json({ error: "Lecture history storage is not configured." }, { status: 503 });

@@ -2938,19 +2938,26 @@ type BuildCost =
           signal: controller.signal,
         });
         const started = await progressive.json().catch(() => ({}));
-        if (!progressive.ok || typeof started.sessionId !== "string") {
+        if (progressive.ok && typeof started.sessionId === "string") {
+          setBuiltTopic(trimmed);
+          setProgressiveComplete(false);
+          setProgressiveSessionId(started.sessionId);
+          // The worker files its spend under the lecture's id; the badge reads both tags.
+          addSpendTag(started.sessionId);
+          setBuildStatus("Preparing your opening beats");
+          return;
+        }
+        /*
+         * No account, or no place to store lecture history. Both used to stop the lesson with
+         * "Authentication required." A local guest can still be taught by the in-process builder.
+         * A real failure (bad request, the worker crashing) is still shown.
+         */
+        if (progressive.status !== 401 && progressive.status !== 503) {
           throw new Error(started.error || "Could not start progressive lecture generation.");
         }
-        setBuiltTopic(trimmed);
-        setProgressiveComplete(false);
-        setProgressiveSessionId(started.sessionId);
-        // The worker files its spend under the lecture's id; the badge reads both tags.
-        addSpendTag(started.sessionId);
-        setBuildStatus("Preparing your opening beats");
-        return;
       }
 
-      const res = await fetch("/api/generate-lecture-debug", {
+      const res = await fetch(useFixture ? "/api/generate-lecture-debug" : "/api/generate-lecture", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

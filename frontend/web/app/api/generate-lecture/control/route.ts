@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { cancelJob, getJob, pauseJob, resumeJob } from "@/lib/lectureJobs";
-import { currentUser } from "@/lib/auth";
+import { lessonCaller } from "@/lib/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
-  const session = await currentUser();
+  const session = await lessonCaller();
   if (!session) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
 
   const body = await request.json().catch(() => ({}));
