@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getJob, readPersistedJob, replicaHint } from "@/lib/lectureJobs";
-import { currentUser } from "@/lib/auth";
+import { lessonCaller } from "@/lib/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic";
  * is unchanged — it just arrives via a different door.
  */
 export async function GET(request: Request) {
-  const session = await currentUser();
+  const session = await lessonCaller();
   if (!session) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
 
   const id = new URL(request.url).searchParams.get("id") ?? "";

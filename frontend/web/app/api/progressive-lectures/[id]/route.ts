@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { currentUser } from "@/lib/auth";
+import { lessonCaller } from "@/lib/auth";
 import { progressiveSnapshot } from "@/lib/progressiveLectureStore";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(_request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const auth = await currentUser();
+  const auth = await lessonCaller();
   if (!auth) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
   const { id } = await params;
   const snapshot = await progressiveSnapshot(auth.userId, id).catch(() => null);

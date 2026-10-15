@@ -171,6 +171,24 @@ export async function clearAuthCookies(): Promise<void> {
  * Tries the access token first (signature only, no query). If it has expired, silently rotates the
  * refresh token so a 15-minute access window never interrupts a lesson mid-flight.
  */
+/**
+ * Who a lesson may be built for.
+ *
+ * A signed-in student always wins. On localhost (`next dev`) there is often no account at all —
+ * the page is usable, then "Start" used to die with "Authentication required." because the build
+ * routes refused a missing session. A single local guest stands in there, the same way the lesson
+ * canvas does. Production stays signed-in only: an open deployment must not spend the model key
+ * for anonymous traffic.
+ */
+const LOCAL_GUEST = { userId: "local-dev", email: "local-dev@localhost" };
+
+export async function lessonCaller(): Promise<{ userId: string; email: string } | null> {
+  const signedIn = await currentUser();
+  if (signedIn) return signedIn;
+  if (process.env.NODE_ENV !== "production") return LOCAL_GUEST;
+  return null;
+}
+
 export async function currentUser(): Promise<{ userId: string; email: string } | null> {
   const jar = await cookies();
   const access = jar.get(ACCESS_COOKIE)?.value;
