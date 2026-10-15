@@ -1,18 +1,22 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { allCurricula, allStudyLevels, countryName, countryOptions, curriculaFor, matchCountry, studyLevelOptions, subjectOptions, type EduOption } from "@/lib/education";
+import { allStudyLevels, countryName, countryOptions, matchCountry, studyLevelOptions, subjectOptions, type EduOption, type LevelOption } from "@/lib/education";
 import { OptionPicker, QuickChips } from "./OptionPicker";
 
 /**
- * THE LEARNER PROFILE'S BASICS — country, study level, subjects, curriculum/exam/track — used by
- * onboarding screen 1 and by settings, so the two cannot drift apart.
+ * THE LEARNER PROFILE'S BASICS — country, study level or exam, subjects — used by onboarding screen 1
+ * and by settings, so the two cannot drift apart.
  *
- * Every list is CONTEXTUAL (lib/education.ts): the country gives the local level names and puts its
- * own subjects first; the subjects shape the levels (medical school for medicine); and the country
- * + level + subjects pick which curricula are suggested (USMLE only with medicine, SAT only around
- * high school). Nothing is a hard filter: every picker searches the whole catalogue,
- * asks Aria when that runs dry, and accepts the student's own entry.
+ * Every list is CONTEXTUAL (lib/education.ts): the country gives the local level names, boards and
+ * entry tests and puts its own subjects first; the subjects shape the levels (medical school for
+ * medicine). Nothing is a hard filter: every picker searches the whole catalogue, asks Aria when that
+ * runs dry, and accepts the student's own entry.
+ *
+ * Study level is the ONE place a student says what they are studying for (owner's direction,
+ * 2026-10-15): it lists the exams themselves (MDCAT, O Level, IGCSE, AS & A Level, FSc…), and that
+ * exam is the syllabus Aria teaches and searches. The old "Curriculum, exam or study track" field is
+ * gone; `curricula` is only carried through so a save does not erase what an older profile holds.
  */
 export type LearnerFieldsValue = {
   country: string | null;
@@ -41,14 +45,16 @@ export function LearnerProfileFields({
     const seen = new Set(localLevels.map((l) => l.id));
     return [...localLevels, ...allStudyLevels().filter((l) => !seen.has(l.id))];
   }, [localLevels]);
-  const suggestedCurricula = useMemo(
-    () => curriculaFor({ country: value.country, level: value.studyLevel, subjects: value.subjects }),
-    [value.country, value.studyLevel, value.subjects],
-  );
-  const curriculumOptions = useMemo(() => {
-    const seen = new Set(suggestedCurricula.map((c) => c.id));
-    return [...suggestedCurricula, ...allCurricula().filter((c) => !seen.has(c.id))];
-  }, [suggestedCurricula]);
+  // The chips, in their groups ("School", "Pakistan boards", "Cambridge", "Entry tests", …), in the
+  // order the country lists them.
+  const levelGroups = useMemo(() => {
+    const groups = new Map<string, LevelOption[]>();
+    for (const level of localLevels) {
+      const name = level.group ?? "Other";
+      groups.set(name, [...(groups.get(name) ?? []), level]);
+    }
+    return [...groups.entries()];
+  }, [localLevels]);
   const context = { country: value.country, level: value.studyLevel, subjects: value.subjects };
 
   const countryValue = value.country ? [{ id: value.country, label: countryName(value.country) }] : [];
@@ -88,25 +94,30 @@ export function LearnerProfileFields({
 
       <div>
         <OptionPicker
-          label="Study level"
+          label="Study level or exam"
           required
-          hint="Pick the closest, or search and add your own."
+          hint="What you're studying for — Aria teaches and searches that syllabus. Pick one, or search and add your own."
           options={levelOptions}
           value={value.studyLevel ? [value.studyLevel] : []}
           onChange={(next) => set({ studyLevel: next[0] ?? null })}
           multiple={false}
-          placeholder="Search levels, or type your own"
+          placeholder="e.g. O Level, MDCAT, FSc, Undergraduate…"
           suggestKind="level"
           suggestContext={context}
           inputId="learner-level"
         />
-        <div className="mt-2">
-          <QuickChips
-            label="Common study levels"
-            options={localLevels}
-            value={value.studyLevel ? [value.studyLevel] : []}
-            onToggle={(o) => set({ studyLevel: value.studyLevel?.id === o.id ? null : o })}
-          />
+        <div className="mt-3 space-y-2">
+          {levelGroups.map(([group, options]) => (
+            <div key={group}>
+              <div className="mb-1 text-[0.72rem] font-medium uppercase tracking-wide" style={{ color: "var(--hud-text-dim)" }}>{group}</div>
+              <QuickChips
+                label={group}
+                options={options.map(({ id, label }) => ({ id, label }))}
+                value={value.studyLevel ? [value.studyLevel] : []}
+                onToggle={(o) => set({ studyLevel: value.studyLevel?.id === o.id ? null : o })}
+              />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -123,29 +134,6 @@ export function LearnerProfileFields({
         suggestContext={context}
         inputId="learner-subjects"
       />
-
-      <div>
-        <OptionPicker
-          label="Curriculum, exam or study track"
-          hint={suggestedCurricula.length ? "Suggested for your country, level and subjects — or search and add your own." : "Search, or add your own."}
-          options={curriculumOptions}
-          value={value.curricula}
-          onChange={(curricula) => set({ curricula })}
-          multiple
-          placeholder="e.g. A-Level, IB, SAT, MDCAT…"
-          suggestKind="curriculum"
-          suggestContext={context}
-          inputId="learner-curricula"
-        />
-        <div className="mt-2">
-          <QuickChips
-            label="Suggested curricula, exams and tracks"
-            options={suggestedCurricula.slice(0, 8)}
-            value={value.curricula}
-            onToggle={(o) => set({ curricula: value.curricula.some((c) => c.id === o.id) ? value.curricula.filter((c) => c.id !== o.id) : [...value.curricula, o] })}
-          />
-        </div>
-      </div>
     </div>
   );
 }

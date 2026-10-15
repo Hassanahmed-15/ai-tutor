@@ -658,7 +658,7 @@ function streamOutline(
           pack = await research.find().catch(() => null);
           if (pack) {
             content = research.contentFor(pack);
-            send({ type: "thought", text: `I read ${pack.sources.length} source${pack.sources.length === 1 ? "" : "s"}${pack.curriculum ? `, including what the ${pack.curriculum} syllabus expects` : ""}, and I'll teach from them.` });
+            send({ type: "thought", text: `I read ${pack.sources.length} source${pack.sources.length === 1 ? "" : "s"}${pack.curriculum ? `, including what the ${pack.curriculum.replace(/\s+syllabus$/i, "")} syllabus expects` : ""}, and I'll teach from them.` });
           }
         }
         const completion = await client.chat.completions.create({

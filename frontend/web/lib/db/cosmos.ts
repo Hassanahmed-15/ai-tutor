@@ -105,15 +105,15 @@ export type LearnerBasics = {
   countrySource: "ip" | "language" | "user" | null;
   studyLevel: LearnerOption | null;
   subjects: LearnerOption[];
-  /** Curricula, exams or study tracks. */
+  /** Curricula, exams or study tracks. Stored from before 2026-10-15, no longer read: effectiveLearner derives it from the Study level. */
   curricula: LearnerOption[];
   /**
    * Per-subject study level where it differs from `studyLevel` (keyed by subject id). Set in
-   * settings, and LEARNED from lessons — "A-level physics" in a request (lib/learnerBasics.ts
-   * learnSubjectContext). A choice the student made is never overwritten by a learned one.
+   * settings until 2026-10-15, and learned from lessons until then. No longer shown or read: Study
+   * level is the one source (lib/learnerBasics.ts effectiveLearner). Kept so old data is not lost.
    */
   subjectLevels?: Record<string, LearnerOption>;
-  /** Per-subject curricula/exams/tracks where they differ from `curricula` — set and learned the same way. */
+  /** Per-subject curricula/exams/tracks — stored from before 2026-10-15, no longer read. */
   subjectCurricula?: Record<string, LearnerOption[]>;
   /**
    * How they like to learn — the "How do you like to learn?" screen (lib/learningPreferences.ts),

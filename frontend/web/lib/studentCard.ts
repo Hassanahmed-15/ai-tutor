@@ -1,5 +1,6 @@
 import { countryName, levelBand, subjectForTopic, SUBJECTS, type EduOption, type LevelBand } from "./education";
 import type { AccessibilityProfile, LearnerBasics } from "./db/cosmos";
+import { effectiveLearner } from "./learnerBasics";
 import type { LearningPreferences } from "./learningPreferences";
 
 /**
@@ -24,6 +25,8 @@ import type { LearningPreferences } from "./learningPreferences";
 export type StudentCard = {
   /** "Grade 8" — the level as the student named it. */
   level: string | null;
+  /** The Study level's catalogue id ("mdcat", "o-level"), which names its exam (lib/education.ts examForLevel). */
+  levelId: string | null;
   /** The reading grade the language is written for (US grade scale, 1-16+). */
   readingGrade: number;
   band: LevelBand | null;
@@ -69,6 +72,8 @@ export function buildStudentCard(
   support: { simplerLanguage?: boolean | null; slowerPace?: boolean | null; accessibility?: AccessibilityProfile | null } | null = null,
 ): StudentCard | null {
   if (!basics) return null;
+  // Study level is the one source: its exam is the curriculum; per-subject levels are not read.
+  basics = effectiveLearner(basics);
   const mine = subjectForTopic(topic, basics.subjects);
   const general = mine ?? subjectForTopic(topic, SUBJECTS.map((s) => ({ id: s.id, label: s.label })));
   const subjectLevel = mine ? basics.subjectLevels?.[mine.id] ?? null : null;
@@ -86,6 +91,7 @@ export function buildStudentCard(
   const nudge = lean >= 2 ? -1 : lean <= -2 ? 1 : 0;
   return {
     level: level?.label ?? null,
+    levelId: level?.id ?? null,
     readingGrade: Math.max(2, (base ?? 9) + nudge),
     band: levelBand(level),
     country: basics.country ? countryName(basics.country) || basics.country : null,
