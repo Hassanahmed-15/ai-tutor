@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { currentUser } from "@/lib/auth";
+import { lessonCaller } from "@/lib/auth";
 import { createOpenAI } from "@/lib/openaiClient";
 import { curriculumLessons } from "@/lib/db/cosmos";
 import type { CurriculumLessonRequest } from "@/lib/curriculum/lessonSpec";
@@ -47,7 +47,7 @@ type Verification = {
 };
 
 export async function POST(req: Request) {
-  if (!(await currentUser())) return NextResponse.json({ error: "Sign in." }, { status: 401 });
+  if (!(await lessonCaller())) return NextResponse.json({ error: "Sign in." }, { status: 401 });
   const body = (await req.json().catch(() => ({}))) as { request?: CurriculumLessonRequest; boards?: Array<{ title?: string; script?: string; visual?: string }> };
   if (!body.request || !Array.isArray(body.boards) || !body.boards.length) return NextResponse.json({ error: "request and boards are required" }, { status: 400 });
 
