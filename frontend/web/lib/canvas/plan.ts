@@ -64,6 +64,23 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
   return { title: typeof r.title === "string" && r.title.trim() ? r.title.trim().slice(0, 80) : beats[0].title, beats };
 }
 
+/**
+ * A refresher board only when the student's knowledge offered one (lib/canvas/lessonRequest.ts
+ * canvasRefresherAllowed, after lib/knowledge/planning.ts kept only what relates to this lecture).
+ * The planner may not invent its own: an unoffered refresher is taught as an ordinary board.
+ */
+export function withRefresherOnlyIfOffered<P extends { beats: CanvasPlanBeat[] }>(plan: P, offered: boolean): P {
+  if (offered || !plan.beats.some((b) => b.refresher)) return plan;
+  return {
+    ...plan,
+    beats: plan.beats.map((beat) => {
+      const plain = { ...beat };
+      delete plain.refresher;
+      return plain;
+    }),
+  };
+}
+
 /** A document lesson's "source" on a board: real page numbers, a listing number, a line range. */
 function planSource(raw: unknown): { source?: CanvasPlanBeat["source"] } {
   if (!raw || typeof raw !== "object") return {};

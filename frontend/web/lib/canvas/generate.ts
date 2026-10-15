@@ -8,7 +8,7 @@ import { drawIllustration, locateParts, pictureSubject, verifyParts } from "../i
 import { layoutPanel } from "./layout";
 import { recapTour, unifyConceptColours } from "./lessonPasses";
 import { CANVAS_PLAN_PROMPT, CANVAS_SPEC_PROMPT } from "./prompts";
-import { canvasSentences, validatePlan } from "./plan";
+import { canvasSentences, validatePlan, withRefresherOnlyIfOffered } from "./plan";
 import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat } from "./types";
 import { slug, validateCanvasSpec } from "./validate";
 import { saveCanvasImage, saveCanvasLecture, type CanvasLecture } from "./store";
@@ -269,7 +269,9 @@ export async function generateCanvasLecture(topic: string, userId: string, onPro
   for (let attempt = 1; attempt <= 2 && !plan && clock.left() > 110_000; attempt++) {
     const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, `Topic: ${topic}`, 9000), Math.min(85_000, clock.left() - 100_000), "plan");
     costUsd += c;
-    plan = validatePlan(json);
+    const valid = validatePlan(json);
+    // No student knowledge here, so no refresher was offered (lib/canvas/plan.ts).
+    plan = valid && withRefresherOnlyIfOffered(valid, false);
   }
   if (!plan) throw new Error("the lesson plan could not be made");
   log.push(`plan: ${plan.beats.map((b) => `${b.id}=${b.stage}${b.inside ? `(inside ${b.inside.beat}.${b.inside.object})` : ""}${b.interaction ? `[${b.interaction}]` : ""}`).join(" ")} in ${Math.round((Date.now() - started) / 1000)}s`);

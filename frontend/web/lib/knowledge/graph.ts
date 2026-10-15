@@ -271,6 +271,58 @@ export type PlanningKnowledge = {
 };
 
 /**
+ * Words that name no concept on their own: grammar, and the filler of lecture titles ("Volcano
+ * Eruptions In Depth", "Recursion Basics"). Alone, "depth" found TREE DEPTH in the shared graph and
+ * a volcano lecture opened with a binary-search-tree refresher (2026-10-15). Inside a longer run
+ * they still count: "depth first search" is a concept.
+ */
+export const NOT_A_CONCEPT = new Set([
+  "the", "and", "for", "with", "how", "what", "why", "when", "where", "which", "who", "into", "from", "about", "does", "work", "are", "its", "their", "this", "that", "between",
+  "versus",
+  "depth", "basic", "basics", "introduction", "intro", "overview", "explained", "explain", "advanced", "beginner", "part", "lesson", "lecture", "chapter", "unit", "topic", "guide", "summary", "revision", "note", "notes", "simple", "complete", "full", "detail", "detailed", "understanding", "deep", "dive", "type", "types", "use", "uses",
+]);
+
+/** The keys a piece of text might name: every 1-3 word run, except a lone word that names nothing. */
+export function conceptKeysInText(text: string): string[] {
+  const words = canonicalKey(text).split(" ").filter((w) => w.length > 1);
+  const keys = new Set<string>();
+  for (let n = 1; n <= 3; n++) {
+    for (let i = 0; i + n <= words.length; i++) {
+      const key = canonicalKey(words.slice(i, i + n).join(" "));
+      if (key.length > 2 && !(n === 1 && NOT_A_CONCEPT.has(key))) keys.add(key);
+    }
+  }
+  return [...keys];
+}
+
+/**
+ * How close an earlier concept must be to THIS lecture (cosine of text-embedding-3-small, 512 dims:
+ * the lecture's topic and outline titles against the concept's label and summary) before the planner
+ * hears about it. Measured 2026-10-15: BST↔AVL trees 0.455, ATP↔respiration 0.444, vectors↔projectile
+ * motion 0.371, photosynthesis↔respiration 0.326 — but vectors↔volcanoes 0.266, tree depth↔volcanoes
+ * 0.136, BST↔volcanoes -0.024. A related refresher missed costs nothing; an unrelated one confuses.
+ */
+export const LESSON_RELEVANCE = 0.3;
+
+/**
+ * THE REFRESHER AND THE "REMEMBER…?" LINKS MUST BELONG TO THIS LECTURE. A shaky prerequisite is kept
+ * only when both it and the concept it is needed for are close to the lecture; an earlier concept
+ * only when it is. `score` holds each key's closeness; a key with no score is not kept.
+ */
+export function onlyRelated<S extends { key: string; for: string }, E extends { key: string }>(
+  shaky: S[],
+  earlier: E[],
+  score: Map<string, number>,
+  threshold = LESSON_RELEVANCE,
+): { shaky: S[]; earlier: E[]; dropped: string[] } {
+  const close = (key: string) => (score.get(key) ?? -1) >= threshold;
+  const dropped = new Set<string>();
+  const keptShaky = shaky.filter((s) => (close(s.key) && close(s.for)) || (dropped.add(s.key), false));
+  const keptEarlier = earlier.filter((e) => close(e.key) || (dropped.add(e.key), false));
+  return { shaky: keptShaky, earlier: keptEarlier, dropped: [...dropped] };
+}
+
+/**
  * The prerequisites of some concepts that the student is shaky on (or has never met), most trusted
  * link first. `mastery` is undefined for a concept the student has never been taught.
  */

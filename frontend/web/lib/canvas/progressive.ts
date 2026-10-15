@@ -3,6 +3,7 @@ import "server-only";
 import type { Beat } from "../lessonContent";
 import type { ProgressiveBeatPlan, ProgressiveLectureInput } from "../progressiveLectureTypes";
 import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, validatePlan, type Clock } from "./generate";
+import { withRefresherOnlyIfOffered } from "./plan";
 import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
 import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
@@ -67,7 +68,9 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
     try {
       const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, attempt > 1 && lastError ? `${request}\n\nYour previous plan could not be used: ${lastError}` : request, fromDocument ? 16_000 : 9000), fromDocument ? 180_000 : 120_000, "canvas plan");
       costUsd += c;
-      let plan = validatePlan(json);
+      const valid = validatePlan(json);
+      // Only a refresher the student's knowledge offered — the planner may not add its own (lib/canvas/plan.ts).
+      let plan = valid && withRefresherOnlyIfOffered(valid, canvasRefresherAllowed(input, knowledge));
       if (plan && allowed > 0 && plan.beats.length > allowed) {
         lastError = `it had ${plan.beats.length} boards; the outline has exactly ${outlined}${allowed > outlined ? ` (at most ${allowed} with the extra boards allowed)` : ""}`;
         if (attempt < maxAttempts) continue;
