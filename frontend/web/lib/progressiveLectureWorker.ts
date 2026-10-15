@@ -344,11 +344,6 @@ async function generateCanvasBoard(
     const strictDoc = strictDocumentOf(input);
     const video = videoDocumentOf(input);
     const strictSource = strictDoc ? { mode: "strict" as const, doc: strictDoc } : video ? { mode: "video" as const, doc: video } : null;
-<<<<<<< HEAD
-    // Taught from web research (lib/webResearch.ts): each slide cites the pages it drew on.
-    const webSources = !document && !strictSource ? input.webSources ?? null : null;
-    const written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources });
-=======
     let written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource });
     // A board that fell back to the plain backup is written once more instead of shipped as
     // "ready" (audit 2026-10-15) — only from the third board on, which is written while the
@@ -360,7 +355,6 @@ async function generateCanvasBoard(
         written = again.fallback ? { ...written, costUsd: written.costUsd + again.costUsd } : { ...again, costUsd: written.costUsd + again.costUsd, log: [...written.log, ...again.log] };
       }
     }
->>>>>>> d67c707b (courses added)
     beat = written.beat;
     costUsd = written.costUsd;
     fallbackUsed = written.fallback;

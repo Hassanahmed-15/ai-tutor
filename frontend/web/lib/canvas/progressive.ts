@@ -16,13 +16,9 @@ import { CANVAS_PLAN_PROMPT } from "./prompts";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 import type { PlanningKnowledge } from "../knowledge/graph";
 import { slug } from "./validate";
-<<<<<<< HEAD
-import { sourcesForText, type SourcePack } from "../webSources";
-=======
 import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
 import { findLibraryFigure } from "../figures/library";
 import { teachingCycleIssues } from "./predict";
->>>>>>> d67c707b (courses added)
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -236,8 +232,6 @@ export async function writeCanvasBoard(args: {
    * passages, and its Beat carries their ids so the PDF panel boxes what is being said.
    */
   strictSource?: { mode: "strict" | "video"; doc: SuprnotesLessonInput } | null;
-  /** What Aria read up on (lib/webResearch.ts): the board's Beat cites the pages its material came from. */
-  webSources?: SourcePack | null;
 }): Promise<{ beat: Beat; costUsd: number; fallback: boolean; log: string[] }> {
   const { plan, index, sessionId } = args;
   const beat = plan[index];
@@ -312,16 +306,7 @@ export async function writeCanvasBoard(args: {
     const sentenceBlocks = followCode ?? beat.sentenceBlocks;
     if (sentenceBlocks?.length) written.sentenceBlockIds = sentenceBlocks;
   }
-<<<<<<< HEAD
-  // The links at the foot of the slide: the pages behind what this board actually says.
-  if (args.webSources) {
-    const cited = sourcesForText(args.webSources, `${beat.title} ${beat.brief ?? ""} ${beat.script}`);
-    if (cited.length) written.sources = cited.map(({ title, url, site }) => ({ title, url, site }));
-  }
-  return { beat: written, costUsd: made.costUsd + pictured.costUsd, fallback: made.attempts < 0, log };
-=======
   return { beat: written, costUsd: made.costUsd + pictured.costUsd, fallback: made.attempts < 0 || Boolean(spec.visualFallback), log };
->>>>>>> d67c707b (courses added)
 }
 
 /**
