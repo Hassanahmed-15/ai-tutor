@@ -1,7 +1,7 @@
 import { CANVAS_STAGES, type CanvasPlanBeat, type CanvasStage } from "./types";
 import { slug } from "./validate";
-import { predictionIndex } from "./predict";
 import { withoutSourceTags } from "../webSources";
+import { withoutOldTransferPrompt } from "./oldTransferPrompt";
 
 /**
  * A canvas lecture's PLAN, as the model wrote it, made safe — pure, so it is unit-tested
@@ -15,44 +15,15 @@ export function canvasSentences(script: string): string[] {
 }
 
 /**
- * Phase 4 is deliberately local: it adds no model call. The cycle is anchored on the script's own
- * prediction sentence (lib/canvas/predict.ts): the quiz asks it, the next sentence reveals it, the
- * last sentence transfers. A script with no prediction gets no cycle (its quiz is an end check). An
- * explicitly requested try/draw interaction is preserved: manipulating or drawing is the skill.
+ * NO PREDICTION, NO QUIZ (owner's direction, 2026-10-16: remove "Predict it" from every lecture —
+ * typed, PDF and video). A board keeps only a task the plan asked for because doing it IS the skill:
+ * a "try" slider or a "draw". Anything else — a "quiz", or nothing — is no interaction and no
+ * predict/reveal cycle, so the lecture never stops for an answer.
  */
-export function teachingCycle(script: string, interaction: CanvasPlanBeat["interaction"], overview: boolean): { interaction: CanvasPlanBeat["interaction"]; cycle?: CanvasPlanBeat["teachingCycle"] } {
-  const sentences = canvasSentences(script);
-  const count = sentences.length;
-  if (overview || count < 2) return { interaction, cycle: undefined };
-  const predict = predictionIndex(sentences);
-  if (predict < 0 || predict >= count - 1) return { interaction: interaction ?? "quiz", cycle: undefined };
-  return {
-    interaction: interaction ?? "quiz",
-    cycle: { teach: 0, predict, reveal: predict + 1, transfer: count - 1 },
-  };
-}
-
-/**
- * A model occasionally ends a sound teaching cycle by restating its answer. Repair that local
- * omission deterministically instead of making a student wait through a second full plan call or
- * receiving a build error. The extra sentence is a new situation, never a recap of the reveal.
- */
-export function addTransferPrompt(script: string, title: string, interaction: CanvasPlanBeat["interaction"], overview: boolean): string {
-  if (overview || interaction === "try" || interaction === "draw") return script;
-  // The planner sometimes writes “Predict what happens.” as a statement. It is still an explicit
-  // prediction, but the player must pause on a question; make that punctuation unambiguous.
-  const normalized = script.replace(/(\bpredict\b[^.!?]*)([.!])(?=\s|$)/i, "$1?");
-  const sentences = canvasSentences(normalized);
-  const predict = predictionIndex(sentences);
-  if (predict < 0 || predict >= sentences.length - 1) return normalized;
-  const last = sentences.at(-1) ?? "";
-  const concrete = /\b(apply|use|new|another|different|case|example|situation|scenario|suppose|imagine|given|calculate|if|when|now try|exam|state|find|show|illustrate|sketch|work out|determine|write|solve|explain)\b/i;
-  if (concrete.test(last)) return normalized;
-  // Cue words are English: a lesson in Urdu or Arabic keeps its own ending rather than an English sentence.
-  if (!/[A-Za-z]{3}/.test(last)) return normalized;
-  // ("Now apply the same reasoning to a new the two square roots example" read badly; audit 2026-10-17.)
-  void title;
-  return `${normalized.replace(/\s+$/, "")} Now try the same reasoning on a new example of your own, and explain what changes.`;
+export function teachingCycle(_script: string, interaction: CanvasPlanBeat["interaction"], _overview: boolean): { interaction: CanvasPlanBeat["interaction"]; cycle?: CanvasPlanBeat["teachingCycle"] } {
+  void _script;
+  void _overview;
+  return { interaction: interaction === "try" || interaction === "draw" ? interaction : null, cycle: undefined };
 }
 
 export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBeat[] } | null {
@@ -74,7 +45,7 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
     const earlier = inside ? beats.find((p) => p.id === String(inside.beat)) : undefined;
     const insideObject = inside ? slug(inside.object, "") : "";
     const overview = b.overview === true;
-    script = addTransferPrompt(script, title, b.interaction === "try" || b.interaction === "draw" || b.interaction === "quiz" ? b.interaction : null, overview);
+    script = withoutOldTransferPrompt(script);
     const cycle = teachingCycle(script, b.interaction === "try" || b.interaction === "draw" || b.interaction === "quiz" ? b.interaction : null, overview);
     beats.push({
       id,
@@ -97,8 +68,6 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
   });
   // One board is a complete lesson when one board answers the request: there is no floor.
   if (beats.length < 1) return null;
-  // Repeated prediction checks are intentional: each board completes its own
-  // teach → predict → reveal → transfer cycle. Keep the interaction the planner selected.
   // The camera's pull-back over the whole lesson is for a final board that genuinely brings a longer
   // lesson together — never forced onto whatever board happens to be last.
   beats.forEach((beat, i) => (beat.overview = beat.overview && i === beats.length - 1 && beats.length >= 4));

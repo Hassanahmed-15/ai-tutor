@@ -79,7 +79,7 @@ export type CanvasKnowledge = {
 const ARIA = ARIA_INK;
 const STUDENT = "#2563eb";
 
-export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, knowledge, onTaskResult, completed = false, taskDone = false }: Props) {
+export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, onTaskResult, completed = false, taskDone = false }: Props) {
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -87,7 +87,6 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const [mode, setMode] = useState<"follow" | "free" | "overview">("follow");
   const [biologyExplore, setBiologyExplore] = useState(false);
   const [moleculeRotation, setMoleculeRotation] = useState(0);
-  const [revealedPredictions, setRevealedPredictions] = useState<Record<string, boolean>>({});
 
   /**
    * THE BOARD IS MADE OF THE APP'S MATERIAL: paper when the app is light, chalk when it is dark
@@ -168,7 +167,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   }, []);
 
 
-  const interaction = current?.spec.interaction;
+  // No "Predict it" (owner's direction, 2026-10-16): a quiz in a lesson saved before is never shown
+  // or waited for — the board plays straight through. Try and draw tasks are unchanged.
+  const interaction = current?.spec.interaction?.kind === "quiz" ? undefined : current?.spec.interaction;
   const taskOpen = Boolean(interaction) && currentIndex >= 0 && (waitingForStudent || (finished && !taskDone));
   const drawing = taskOpen && interaction?.kind === "draw";
 
@@ -196,17 +197,6 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
   /** Tasks already reported as evidence: only a first try says what the student knew. */
   const reported = useRef(new Set<string>());
-  /** Per-board knowledge is kept for prerequisite hints, without placing status badges on diagrams. */
-  const boardConcepts = useMemo(() => ({ byBoard: panels.map((_, i) => knowledge?.beats.find((b) => b.sequence === i)) }), [panels, knowledge]);
-  /** After a wrong prediction: the prerequisite this board's ideas build on that the student is shaky on. */
-  const quizHint = useMemo(() => {
-    const keys = boardConcepts.byBoard[shownIndex]?.concepts ?? [];
-    for (const key of keys) {
-      const gap = knowledge?.concepts[key]?.gaps?.[0];
-      if (gap) return `This builds on ${gap.label} — ask Aria for a quick refresher.`;
-    }
-    return undefined;
-  }, [boardConcepts, knowledge, shownIndex]);
 
   /* ── the camera ───────────────────────────────────────────────────────────────────────── */
 
@@ -522,7 +512,6 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 focusId={live ? focusId : reactionPoint?.key === panel.key ? reactionPoint.target : undefined}
                 carryFrom={carryFrom[panel.key] ?? EMPTY_RECTS}
                 reducedMotion={reducedMotion}
-                concealStage={live && panel.spec.stage.kind === "molecule" && panel.spec.interaction?.kind === "quiz" && !revealedPredictions[panel.key]}
               />
               <Corrections layout={layouts[i]} check={corrections[panel.key]} />
               <Strokes strokes={strokes[panel.key] ?? []} live={live && drawing ? liveStroke : null} />
@@ -665,26 +654,6 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
             onTellAria(`The student finished trying the sliders (${interaction.controls.map((c) => `${c.label} = ${values[c.var]}`).join(", ")}) and continued the lesson.`);
             onContinue();
           }}
-        />
-      )}
-      {taskOpen && interaction?.kind === "quiz" && current && (
-        <QuizCard
-          key={current.key}
-          question={interaction.question}
-          options={interaction.options}
-          hint={quizHint}
-          onAnswer={(i) => {
-            const o = interaction.options[i];
-            setRevealedPredictions((previous) => ({ ...previous, [current.key]: true }));
-            if (!reported.current.has(`quiz:${current.key}`)) {
-              reported.current.add(`quiz:${current.key}`);
-              onTaskResult?.("quiz", o.correct, interaction.options.length);
-            }
-            if (o.correct) setCelebration(Date.now());
-            onSpeak(o.feedback);
-            onTellAria(`Asked "${interaction.question}", the student chose "${o.text}" (${o.correct ? "correct" : "not correct"}). You told them: "${o.feedback}"`);
-          }}
-          onContinue={onContinue}
         />
       )}
       {(exploring || biologyExplore) && !taskOpen && current?.spec.stage.kind === "illustration" && current.spec.stage.parts.some((p) => p.say) && (
@@ -1056,49 +1025,6 @@ function Hotspots({ layout, spec, onTap }: { layout: PanelLayout; spec: CanvasBo
   );
 }
 
-function QuizCard({ question, options, onAnswer, onContinue, hint }: { question: string; options: Array<{ text: string; correct: boolean; feedback: string }>; onAnswer: (i: number) => void; onContinue: () => void; hint?: string }) {
-  const [picked, setPicked] = useState<number[]>([]);
-  const last = picked[picked.length - 1];
-  const solved = picked.some((i) => options[i].correct);
-  return (
-    <div className="absolute right-4 top-1/2 z-20 w-[min(340px,calc(100%-2rem))] -translate-y-1/2 rounded-2xl border border-violet-300/25 bg-[#100e16]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
-      <p className="flex items-center gap-1.5 text-[0.68rem] font-black uppercase tracking-[0.18em] text-violet-300/90">
-        <Sparkles size={12} /> Predict it
-      </p>
-      <p className="mt-1.5 text-sm font-semibold leading-snug text-white/90">{question}</p>
-      <div className="mt-3 space-y-2">
-        {options.map((o, i) => {
-          const chosen = picked.includes(i);
-          return (
-            <button
-              key={i}
-              disabled={solved}
-              onClick={() => {
-                setPicked((p) => (p.includes(i) ? p : [...p, i]));
-                onAnswer(i);
-              }}
-              className={`w-full rounded-xl border px-3 py-2 text-left text-sm font-semibold transition ${
-                chosen ? (o.correct ? "border-emerald-300/60 bg-emerald-400/15 text-emerald-50" : "border-rose-300/50 bg-rose-400/10 text-rose-100/80 line-through decoration-rose-300/60") : "border-white/12 bg-white/[0.04] text-white/85 hover:border-violet-300/50 hover:bg-white/[0.08]"
-              } disabled:cursor-default`}
-            >
-              {o.text}
-            </button>
-          );
-        })}
-      </div>
-      {last !== undefined && (
-        <p className={`mt-2.5 rounded-lg px-2.5 py-2 text-xs font-semibold leading-relaxed ${options[last].correct ? "bg-emerald-400/15 text-emerald-100" : "bg-rose-400/15 text-rose-100"}`}>{options[last].feedback}</p>
-      )}
-      {/* A wrong prediction often comes from a gap underneath it: the knowledge graph names it. */}
-      {last !== undefined && !options[last].correct && hint && (
-        <p className="mt-2 rounded-lg border border-amber-300/25 bg-amber-300/10 px-2.5 py-1.5 text-[11px] font-semibold leading-relaxed text-amber-100">{hint}</p>
-      )}
-      <button onClick={onContinue} disabled={!picked.length} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-violet-400 px-3 py-2 text-sm font-black text-black hover:bg-violet-300 disabled:opacity-40">
-        <Play size={14} /> {solved ? "Continue the lesson" : picked.length ? "Continue anyway" : "Choose an answer"}
-      </button>
-    </div>
-  );
-}
 
 /** The whole lesson in the corner: every board so far, where Aria is, and a click to fly anywhere. */
 function MiniMap({ panels, themes, worldRects, shownIndex, reachedIndex, visitIndex, onPick }: { panels: CanvasPanelInput[]; themes: BoardTheme[]; worldRects: Rect[]; shownIndex: number; reachedIndex: number; visitIndex: number; onPick: (i: number) => void }) {

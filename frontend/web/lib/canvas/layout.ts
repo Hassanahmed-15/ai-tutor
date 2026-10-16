@@ -507,7 +507,9 @@ function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
     // pen frames what it names; the anchor is a leader's end on the part's EDGE, and a box round it
     // sat beside the words (2026-10-16). A part with nothing drawn keeps the anchor.
     const bodies = partBodies(drawing, textWidth);
-    const pad = 6;
+    // The pen's own outline (components/canvas/LessonCanvas.tsx Pen) adds 7 more: a card is framed
+    // close round its border, not loosely (a timeline card's box sat ~20 px off it).
+    const pad = 2;
     for (const p of shown) {
       const b = bodies.get(p.id);
       if (b) add(p.id, { x: rect.x + b.x * scale - pad, y: rect.y + b.y * scale - pad, w: b.w * scale + pad * 2, h: b.h * scale + pad * 2 }, p.s);

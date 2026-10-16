@@ -24,7 +24,6 @@ import { createOpenAI } from "../openaiClient";
 import { visualContractIssues } from "../curriculum/visualContract";
 import { applyLessonVisualPolicy } from "./visualPolicy";
 import { auditBoardForRelease } from "./releaseAudit";
-import { teachingCycleIssues } from "./predict";
 
 export type { CanvasLecture };
 
@@ -125,9 +124,6 @@ function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanB
       : beat.interaction
         ? `"interaction": a "${beat.interaction}" interaction is REQUIRED on this board.`
         : `"interaction": null.`,
-    ...(beat.teachingCycle ? [
-      `PREDICT-THEN-REVEAL: the lecture pauses after sentence [${beat.teachingCycle.predict}] and shows the quiz. Its "question" MUST ask exactly what [${beat.teachingCycle.predict}] asks — same situation, same numbers, same direction of change: "${sentences[beat.teachingCycle.predict]}". The correct option gives, in a few words (at most 80 characters), the answer [${beat.teachingCycle.reveal}] then states: "${sentences[beat.teachingCycle.reveal]}" — a short answer, never that whole sentence. Nothing on the board may show that answer before sentence ${beat.teachingCycle.reveal}.`,
-    ] : []),
     `"overview": ${beat.overview}.`,
     ...(CHANGE_OF_STATE.test(`${beat.title} ${beat.brief} ${beat.script}`) && (beat.stage === "flow" || beat.stage === "scene")
       ? [`This board is about something TURNING INTO something else: the element that changes MUST carry "becomes" on the sentence where it changes.`]
@@ -234,6 +230,8 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           continue;
         }
       }
+      // No quiz on any board (owner's direction, 2026-10-16: no "Predict it"), even one the board model adds.
+      if (spec.interaction?.kind === "quiz") delete spec.interaction;
       if (beat.interaction && spec.interaction?.kind !== beat.interaction) {
         lastError = `the board must carry a "${beat.interaction}" interaction`;
         continue;
@@ -429,13 +427,6 @@ export async function generateCanvasLecture(topic: string, userId: string, onPro
     const valid = validatePlan(json);
     // No student knowledge here, so no refresher was offered (lib/canvas/plan.ts).
     plan = valid && withRefresherOnlyIfOffered(valid, false);
-    if (plan) {
-      const problems = plan.beats.flatMap((beat) => teachingCycleIssues(beat).map((issue) => `${beat.title}: ${issue}`));
-      if (problems.length) {
-        log.push(`plan attempt ${attempt} rejected: ${problems.slice(0, 6).join("; ")}`);
-        plan = null;
-      }
-    }
   }
   if (!plan) throw new Error("the lesson plan could not be made");
   const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: "prompt", findAsset: findLibraryFigure });

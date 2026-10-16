@@ -164,7 +164,7 @@ const ABSTRACTION_LINE: Record<TeachingPolicy["abstraction"], string> = {
 
 const GUIDANCE_LINE: Record<Guidance, string> = {
   worked: "Show a fully worked example before the general rule, saying every step out loud.",
-  faded: "Work the first steps of an example, then let them predict the last one before you show it.",
+  faded: "Work the first steps of an example slowly, then show the last one, saying why it follows.",
   independent: "Do not walk through basics they have; state the idea, then spend the time on why it works, edge cases and where it breaks.",
 };
 
@@ -226,7 +226,7 @@ function pacingLine(p: TeachingPolicy): string {
 function questionsLine(p: TeachingPolicy): string {
   if (p.band === "early" || p.band === "primary") return 'Questions are friendly and concrete: "what do you think happens if…?", with an everyday answer.';
   if (p.goal === "exams") return "Questions sound like their exam's: recall a fact, explain why, apply it to a short case.";
-  if (p.guidance === "independent") return "Questions ask them to apply the idea to a new case or predict where it breaks.";
+  if (p.guidance === "independent") return "Examples apply the idea to a new case, or show where it breaks.";
   return "Questions mix remembering, explaining why, and applying it to a small case.";
 }
 
@@ -266,7 +266,7 @@ export function policyForCanvasPlan(p: TeachingPolicy): string {
   const boards: string[] = [];
   if (p.visuals.lead === "pictures") boards.push("Lean on pictures: where an idea has something to see — a thing, a process, a change — choose a stage that shows it (illustration, flow, scene, graph) rather than a wordy one. Still choose by content.");
   if (p.visuals.keyNotes) boards.push("Each board's brief asks for its key point written as a short note they can keep.");
-  if (p.practice === "often") boards.push("They like to practise: a lesson of three or more boards carries a quiz (a prediction) and, where a quantity can vary, a try.");
+  if (p.practice === "often") boards.push("They like to practise: where a quantity can vary, a board carries a try.");
   if (p.practice === "light") boards.push("Keep interaction light: only where it genuinely helps.");
   return [policyForWriter(p), boards.length ? `THE BOARDS: ${boards.join(" ")}` : ""].filter(Boolean).join("\n");
 }

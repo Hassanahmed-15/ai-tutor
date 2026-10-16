@@ -20,7 +20,6 @@ import { slug } from "./validate";
 import { sourcesForText, type SourcePack } from "../webSources";
 import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
 import { findLibraryFigure } from "../figures/library";
-import { teachingCycleIssues } from "./predict";
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -75,17 +74,6 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
       const valid = validatePlan(json);
       // Only a refresher the student's knowledge offered — the planner may not add its own (lib/canvas/plan.ts).
       let plan = valid && withRefresherOnlyIfOffered(valid, canvasRefresherAllowed(input, knowledge));
-      // Typed, course and reference lessons must genuinely teach, pause for a prediction, reveal,
-      // then transfer. Strict/video lessons may omit a new transfer case when their source does.
-      const cycleProblems = plan && !sourceMode
-        ? plan.beats.flatMap((beat) => teachingCycleIssues(beat).map((issue) => `${beat.title}: ${issue}`))
-        : [];
-      if (cycleProblems.length) {
-        lastError = `teach–predict–reveal–transfer contract failed: ${cycleProblems.slice(0, 6).join("; ")}`;
-        if (attempt < maxAttempts) { console.log(`[canvas] plan sent back: ${lastError}`); continue; }
-        // A board with a weak prediction still teaches; no lecture at all teaches nothing.
-        console.warn(`[canvas] plan kept with a weak teaching cycle: ${lastError}`);
-      }
       if (plan && allowed > 0 && plan.beats.length > allowed) {
         lastError = `it had ${plan.beats.length} boards; the outline has exactly ${outlined}${allowed > outlined ? ` (at most ${allowed} with the extra boards allowed)` : ""}`;
         if (attempt < maxAttempts) continue;

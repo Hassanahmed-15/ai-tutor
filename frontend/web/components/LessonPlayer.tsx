@@ -4943,7 +4943,13 @@ function isCanvasBeat(b: Beat | undefined): boolean {
 function canvasPanelsOf(beats: Beat[]): CanvasPanelInput[] {
   return beats.flatMap((b) => {
     const op = b.draw?.ops.find((o) => (o as { kind: string }).kind === "canvasBoard") as { spec?: CanvasBoardSpec } | undefined;
-    return op?.spec ? [{ key: b.id, spec: op.spec }] : [];
+    if (!op?.spec) return [];
+    // NO "PREDICT IT" (owner's direction, 2026-10-16): a quiz saved on a board before then is not
+    // shown and nothing holds for it — the card, the pause at the question and the board's
+    // concealed answer all hang off the interaction. A try or draw task stays.
+    const { interaction, ...rest } = op.spec;
+    const spec: CanvasBoardSpec = interaction && interaction.kind !== "quiz" ? { ...rest, interaction } : rest;
+    return [{ key: b.id, spec }];
   });
 }
 

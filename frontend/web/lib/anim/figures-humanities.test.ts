@@ -8,7 +8,7 @@ import { evaluationScale, parseArgument, judgementPosition, tiltFor } from "../f
 import { conceptTable, tableData, layoutTable, highlightCell } from "../figures/components/conceptTable";
 import { measure, wrap } from "../figures/components/humanitiesKit";
 import { validateCanvasSpec } from "../canvas/validate";
-import { layoutPanel } from "../canvas/layout";
+import { layoutPanel, textWidth } from "../canvas/layout";
 
 const COMPONENTS: FigureComponent[] = [timeline, causeConsequence, sourceCard, evaluationScale, conceptTable];
 
@@ -234,11 +234,27 @@ test("Aria's pen frames the part it names on a self-labelled figure, not a corne
   const heading = figure.drawing.shapes.find((sh): sh is Extract<FigureShape, { t: "text" }> => sh.t === "text" && sh.text === "Decisions and results")!;
   const target = layout.targets.consequences;
   assert.ok(inside(target, onBoard(heading.x, heading.y - heading.size * 0.35)), "the box is on the heading's words");
-  assert.ok(target.w >= measure("Decisions and results", heading.size) * figure.scale * 0.9, "and as wide as them");
+  assert.ok(target.w >= textWidth("Decisions and results", heading.size) * figure.scale, "and as wide as them, measured as the board draws them");
   assert.ok(target.h < heading.size * figure.scale * 3, "one line tall: the Short-term subheading is not part of it");
   // A card's box is on its card — not stretched along its arrow to the event.
   const event = layout.targets.event;
   const cause = layout.targets["cause-1"];
   assert.ok(cause.x + cause.w < event.x, "the cause's box stops before the event card");
   assert.ok(inside(cause, { x: cause.x + cause.w / 2, y: cause.y + cause.h / 2 }) && cause.w > 60, "and frames the whole card");
+});
+
+test("the pen's box is the card as drawn: rounded corners do not grow it by their radius", async () => {
+  const { partBodies, partBounds } = await import("../figures/bounds");
+  // A timeline card of "Imperial Rivalry" (2026-10-16): x 95.2–243.2, y 221.9–327.8, corners r 9.
+  const card = "M104.2 221.9 H234.2 A9 9 0 0 1 243.2 230.9 V318.8 A9 9 0 0 1 234.2 327.8 H104.2 A9 9 0 0 1 95.2 318.8 V230.9 A9 9 0 0 1 104.2 221.9 Z";
+  const ring = "M40 100 A30 30 0 1 0 100 100 A30 30 0 1 0 40 100 Z";
+  const drawing: FigureDrawing = { w: 300, h: 340, parts: [], shapes: [{ t: "path", d: card, fill: "none", stroke: "#000", part: "card" }, { t: "path", d: ring, fill: "none", stroke: "#000", part: "ring" }] };
+  const b = partBodies(drawing).get("card")!;
+  const near = (a: number, e: number) => Math.abs(a - e) < 0.5;
+  assert.ok(near(b.x, 95.2) && near(b.y, 221.9) && near(b.x + b.w, 243.2) && near(b.y + b.h, 327.8), `card body ${JSON.stringify(b)}`);
+  const r = partBodies(drawing).get("ring")!;
+  assert.ok(near(r.x, 40) && near(r.w, 60) && near(r.y, 70) && near(r.h, 60), `a ring drawn as two arcs keeps its height: ${JSON.stringify(r)}`);
+  // Obstacles still over-cover, so a leader never clips a card.
+  const o = partBounds(drawing).get("card")!;
+  assert.ok(o.x <= 95.2 - 8 && o.x + o.w >= 243.2 + 8);
 });
