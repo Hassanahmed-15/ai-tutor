@@ -25,7 +25,7 @@ export type InstructionalTaskDecision = {
   task: InstructionalTask;
   stage: CanvasStage;
   /** A renderer whose geometry and label anchors are owned by code, not by the model. */
-  figure?: "inferenceDistribution" | "photosynthesisExperiment" | "standingWave" | "wave";
+  figure?: "inferenceDistribution" | "photosynthesisExperiment" | "standingWave" | "wave" | "heart" | "sequences" | "sectorArc" | "geneticTech" | "oxygenDebt" | "electromagnetism" | "coordinateGrid" | "enzymeAction" | "cellDivision";
   requiredParts?: string[];
   reason: string;
 };
@@ -61,6 +61,34 @@ export function classifyInstructionalTask(beat: Pick<CanvasPlanBeat, "title" | "
       reason: "Wave features are spatial definitions: students must see crests, troughs, wavelength and amplitude attached to one wave.",
     };
   }
+  if (/\boxygen debt\b|\bEPOC\b|\boxygen (uptake|consumption) (during|after) (exercise|recovery)\b/.test(text)) {
+    return { task: "graph-interpretation", stage: "figure", figure: "oxygenDebt", requiredParts: ["resting", "exercise", "debt"], reason: "Oxygen debt is the shaded area between recovery uptake and the resting rate." };
+  }
+  // "heart rate" is circulation, not a chamber-labelling outcome. Oxygen-debt boards are classified above.
+  if (/\bheart\b(?!\s+rate)/i.test(text) && /\b(chambers?|atria|atrium|ventricle|aorta|valve|septum|cardiac|label|structure|diagram)\b/i.test(text)) {
+    return { task: "physical-structure", stage: "figure", figure: "heart", requiredParts: ["right-atrium", "left-ventricle", "aorta"], reason: "A heart-structure outcome needs the chambers and a named vessel labelled on one diagram." };
+  }
+  if (/\btransformers?\b|\bturns ratio\b|\bstep[- ](up|down) transformers?\b/.test(text)) {
+    return { task: "physical-structure", stage: "figure", figure: "electromagnetism", requiredParts: ["primary-coil", "secondary-coil", "core"], reason: "A transformer board must show primary and secondary coils on a shared core, not a solenoid." };
+  }
+  if (/\b(arithmetic|geometric) sequences?\b|\bnth[- ]terms?\b|\bcommon (difference|ratio)\b|\bsequences?\b(?=[\s\S]{0,80}\b(term|nth|position-to-term)\b)/.test(text)) {
+    return { task: "calculation", stage: "figure", figure: "sequences", requiredParts: ["first-term", "nth-term", "step"], reason: "A sequence board must show terms and the nth-term formula computed from a and d or r." };
+  }
+  if (/\b(arc length|area of (a |the )?sector|arcs? and sectors?|circles?, arcs and sectors)\b/.test(text)) {
+    return { task: "calculation", stage: "figure", figure: "sectorArc", requiredParts: ["radius", "sector", "arc", "angle"], reason: "Arc length and sector area are read off one labelled circle with θ at the centre." };
+  }
+  if (/\b(genetic technolog\w*|recombinant DNA|restriction enzymes?|plasmids?|PCR|polymerase chain reaction)\b/.test(text)) {
+    return { task: "process", stage: "figure", figure: "geneticTech", requiredParts: ["plasmid", "restriction-site", "insert"], reason: "Genetic technology is a process whose parts (plasmid, cut, insert, or PCR steps) must sit on one figure." };
+  }
+  if (/\b(translation|reflection|rotation|enlargement)s?\b(?=[\s\S]{0,80}\b(shape|triangle|object|image|grid|vector)\b)|\b(geometric |combined |single )?transformations?\b(?=[\s\S]{0,80}\b(shape|triangle|polygon|object|image|column vector|mirror line|scale factor)\b)/.test(text) && !/\bcomplet\w* the square|discriminant|vertex|quadratic|integral|derivative\b/i.test(text)) {
+    return { task: "graph-interpretation", stage: "figure", figure: "coordinateGrid", requiredParts: ["object", "image"], reason: "A transformation is the object and its computed image on a coordinate grid." };
+  }
+  if (/\bmode of action of enzymes\b|\benzyme action\b|\benzymes?\b(?=[\s\S]{0,200}\b(active site|substrate|lock[- ]and[- ]key|induced[- ]fit|denatur)\b)|\block[- ]and[- ]key\b|\binduced[- ]fit\b/.test(text)) {
+    return { task: "process", stage: "figure", figure: "enzymeAction", requiredParts: ["enzyme", "active-site", "substrate"], reason: "Enzyme action is the shape of the active site relative to the substrate." };
+  }
+  if (/\b(mitosis|meiosis|cell division|(pro|meta|ana|telo)phase)\b/.test(text)) {
+    return { task: "process", stage: "figure", figure: "cellDivision", requiredParts: ["chromosome", "daughter-cells"], reason: "Nuclear division is a sequence of chromosome arrangements, not a generic cycle of icons." };
+  }
   const experimentalVerb = /\b(investigat\w*|experiment\w*|practical|method|apparatus|set[- ]?up|measure|control(?:led)? variables?|independent variable|dependent variable|fair test|repeat(?:ed)? readings?)\b/i;
   if (experimentalVerb.test(text) && (/\bphotosynth\w*|pondweed|elodea|oxygen bubbles?|light intensity|destarch\w*/i.test(text) || (/\bstarch test|iodine\b/i.test(text) && /\bleaf|leaves|variegated\b/i.test(text) && !/\b(amylase|enzyme)\b/i.test(text)))) {
     return {
@@ -75,7 +103,7 @@ export function classifyInstructionalTask(beat: Pick<CanvasPlanBeat, "title" | "
   if (/\b(graph|plot|gradient|slope|trend|correlation|relationship between|rate against|interpolat|extrapolat)\b/i.test(text)) return { task: "graph-interpretation", stage: "graph", reason: "The outcome requires a quantitative graph or interpretation." };
   if (/\b(conservation of (?:mass|matter)|atom count|balanced (?:chemical )?equation|reactants?\b.*\bproducts?\b(?=[\s\S]*\b(atoms?|conserv\w*|balanc\w*|mass)\b))/i.test(text)) return { task: "matter-tracking", stage: "atom-map", reason: "The outcome tracks conserved atoms from reactants to products." };
   if (/\b(compare|difference|similarit|distinguish|versus|advantages?|disadvantages?|strengths?|limitations?)\b/i.test(text)) return { task: "comparison", stage: "compare", reason: "The outcome requires distinctions to be visible side by side." };
-  if (/\b(process|cycle|sequence|pathway|steps?|cause and effect|flow)\b/i.test(text)) return { task: "process", stage: "flow", reason: "The outcome requires an ordered or causal relationship." };
+  if (/\b(process|cycle|pathway|steps?|cause and effect|flow)\b|\bsequence of\b/i.test(text)) return { task: "process", stage: "flow", reason: "The outcome requires an ordered or causal relationship." };
   if (/\b(cell|organelle|organ|anatom|heart|lung|kidney|leaf|root|stem|flower|apparatus|circuit|cross[- ]section|internal structure)\b/i.test(text) && /\b(label|identify|structure|parts?|inside|diagram)\b/i.test(text)) return { task: "physical-structure", stage: "illustration", reason: "The outcome requires identifiable physical parts." };
   return { task: "concept", stage: "scene", reason: "A clear relationship board is sufficient for this conceptual outcome." };
 }

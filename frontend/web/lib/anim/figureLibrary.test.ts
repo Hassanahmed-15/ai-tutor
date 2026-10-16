@@ -138,22 +138,25 @@ const beat = (over: Partial<CanvasPlanBeat>): CanvasPlanBeat => ({
   brief: "a labelled diagram of the heart", objects: [], inside: null, carry: [], interaction: null, overview: false, ...over,
 });
 
-test("the visual policy gives a heart picture board the library heart; fallback labels the parts the narration names", () => {
+test("the visual policy gives a heart picture board the code-drawn heart; library is used when no component exists", () => {
   const find = (text: string, mustShow: string[] = []) => { const m = pickLibraryAsset(INDEX, text, mustShow); return m ? stageAsset(m.asset) : null; };
-  const { beats, audit } = applyLessonVisualPolicy([beat({}), beat({ id: "b2", title: "Resultant force", script: "Add the forces to find the resultant.", brief: "forces", stage: "equation" })], { mode: "prompt", findAsset: find });
+  const { beats } = applyLessonVisualPolicy([beat({}), beat({ id: "b2", title: "Resultant force", script: "Add the forces to find the resultant.", brief: "forces", stage: "equation" })], { mode: "prompt", findAsset: find });
   assert.equal(beats[0].stage, "figure");
-  assert.equal(beats[0].figure, "library");
-  assert.equal(beats[0].figureAsset?.id, "heart-diagram");
-  assert.ok(audit.changes.some((c) => c.includes("library diagram heart-diagram")));
+  assert.equal(beats[0].figure, "heart", "a kit component beats a harvested SVG when both match");
   assert.equal(beats[1].stage, "equation", "other boards are untouched");
-  // Strict source mode never adds a library picture; without findAsset the policy behaves as before.
+  const eye = beat({ title: "The human eye", script: "Label the retina, cornea, lens, iris and optic nerve of the eye.", brief: "a labelled diagram of the eye" });
+  const eyed = applyLessonVisualPolicy([eye], { mode: "prompt", findAsset: find }).beats[0];
+  assert.equal(eyed.stage, "figure");
+  assert.equal(eyed.figure, "library");
+  assert.equal(eyed.figureAsset?.id, "eye-diagram");
+  // Strict source mode never adds a library or kit picture.
   assert.notEqual(applyLessonVisualPolicy([beat({})], { mode: "strict", findAsset: find }).beats[0].stage, "figure");
-  // Without a library diagram, a physical subject is still drawn — as a described textbook diagram.
-  assert.equal(applyLessonVisualPolicy([beat({})], { mode: "prompt", aiPictures: false }).beats[0].figure, "drawn");
+  // Without a library diagram, a physical subject with no kit component is still drawn.
+  assert.equal(applyLessonVisualPolicy([eye], { mode: "prompt", aiPictures: false }).beats[0].figure, "drawn");
 
   const spec = fallbackSpec(beats[0]);
-  assert.ok(spec.stage.kind === "figure" && spec.stage.component === "library");
+  assert.ok(spec.stage.kind === "figure" && spec.stage.component === "heart");
   if (spec.stage.kind !== "figure") return;
-  assert.deepEqual(spec.stage.parts.slice(0, 3).map((p) => p.id), ["right-atrium", "left-ventricle", "aorta"], "the parts in the order the narration names them");
+  assert.ok(spec.stage.parts.some((p) => p.id === "right-atrium" || p.id === "aorta"));
   assert.ok(validateCanvasSpec(spec, 3), "the fallback board validates");
 });

@@ -13,7 +13,7 @@ export type VisualPolicyAudit = {
   changes: string[];
 };
 
-export const PHYSICAL = /\b(cell|organelle|organ|anatom|heart|lung|kidney|leaf|root|stem|flower|plant part|animal|skeleton|muscle|apparatus|equipment|machine|engine|circuit|battery|magnet|rock layer|volcano|landform|weather system|planet|telescope|microscope|cross[- ]section|cutaway|internal structure|burette|pipette|conical flask|beaker|test[- ]tube|bunsen|thermometer|measuring cylinder|condenser|filter funnel|evaporating basin|cuvette|colorimeter|gas syringe|delivery tube|electrode|building|monument|mosque|ka[ʿ'’]?ba|kaaba|temple|church|cathedral|castle|fort|pyramid|palace|tomb|artefact|artifact|statue|ship|landscape|river|mountain|coastline|glacier|desert)(?:e?s)?\b/i;
+export const PHYSICAL = /\b(cell|organelle|organ|anatom|heart(?!\s+rate)|lung|kidney|leaf|root|stem|flower|plant part|animal|skeleton|muscle|eye|ear|brain|neuron|alveol\w*|nephron|apparatus|equipment|machine|engine|circuit|battery|magnet|rock layer|volcano|landform|weather system|planet|telescope|microscope|cross[- ]section|cutaway|internal structure|burette|pipette|conical flask|beaker|test[- ]tube|bunsen|thermometer|measuring cylinder|condenser|filter funnel|evaporating basin|cuvette|colorimeter|gas syringe|delivery tube|electrode|building|monument|mosque|ka[ʿ'’]?ba|kaaba|temple|church|cathedral|castle|fort|pyramid|palace|tomb|artefact|artifact|statue|ship|landscape|river|mountain|coastline|glacier|desert)(?:e?s)?\b/i;
 const STRUCTURAL = /\b(label|identify|part|structure|inside|cross[- ]section|cutaway|anatomy|location)\b/i;
 const NON_PICTURE = /\b(equation|formula|calculate|solve|graph|plot|gradient|slope|code|program|algorithm|loop|variable|molecule|molecular|vsepr|bond angle|lone pair|atom count|balanced equation)\b/i;
 
@@ -70,6 +70,14 @@ export function isFreeBodyBeat(beat: CanvasPlanBeat): boolean {
 /** The ids the wired-cell renderer recognises (lib/canvas/prompts.ts asks for them too). */
 export const ELECTROLYTIC_CELL_OBJECTS = ["power-supply", "electrolyte", "anode", "cathode"];
 
+/** Required ids first, so aorta is labelled even when the heart kit has more than six parts. */
+export function labelledFigureParts(component: { parts: Array<{ id: string }> }, required: string[] = []): string[] {
+  const have = new Set(component.parts.map((p) => p.id));
+  const need = required.filter((id) => have.has(id) && !/\s/.test(id));
+  const rest = component.parts.map((p) => p.id).filter((id) => !need.includes(id));
+  return [...need, ...rest].slice(0, 6);
+}
+
 function firstRequiredStage(beat: CanvasPlanBeat): CanvasStage | null {
   const stages = beat.requiredVisual?.stages ?? [];
   return stages.find((stage): stage is CanvasStage => ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure"].includes(stage)) ?? null;
@@ -89,7 +97,7 @@ function meaningful(stage: CanvasStage, apparatus = false): boolean {
  * separate syllabus contracts explicitly require labelled physical structures. The remaining
  * visual load is carried by deterministic renderers: flows, graphs, equations, molecules and code.
  */
-const GRAPH_LIKE = new Set(["supplyDemand", "ppf", "adAs", "costRevenue", "scatterPlot", "histogram", "boxPlot", "cumulativeFrequency", "barChart", "pieChart", "inferenceDistribution", "motionGraph", "rateGraph", "decayCurve", "energyProfile", "functionGraph", "riemannSum", "slopeField", "coordinateGrid", "numberLine", "unitCircle", "argand", "punnettSquare", "probabilityTree", "venn", "sankey", "ecologicalPyramid"]);
+const GRAPH_LIKE = new Set(["supplyDemand", "ppf", "adAs", "costRevenue", "scatterPlot", "histogram", "boxPlot", "cumulativeFrequency", "barChart", "pieChart", "inferenceDistribution", "motionGraph", "rateGraph", "decayCurve", "energyProfile", "functionGraph", "riemannSum", "slopeField", "coordinateGrid", "numberLine", "unitCircle", "argand", "punnettSquare", "probabilityTree", "venn", "sankey", "ecologicalPyramid", "sequences", "oxygenDebt", "sectorArc"]);
 const HUMANITIES = new Set(["timeline", "causeConsequence", "sourceCard", "evaluationScale", "conceptTable", "circularFlow"]);
 
 export function applyLessonVisualPolicy(
@@ -158,8 +166,9 @@ export function applyLessonVisualPolicy(
 
   // A board whose subject a code-drawn component draws exactly (lib/figures) becomes a figure board:
   // the titration audited at 3/10 as gear icons on a flow chart is drawn as the apparatus itself.
+  // Strict source mode teaches only what the student's pages show, so it never swaps in a stock diagram.
   for (const beat of beats) {
-    if (beat.refresher) continue;
+    if (options.mode === "strict" || beat.refresher) continue;
     const decision = classifyInstructionalTask(beat);
     const semantic = decision.figure ? figureComponent(decision.figure) : undefined;
     // A semantic decision may replace a generic graph/flow because the figure is a stricter form of
@@ -183,7 +192,7 @@ export function applyLessonVisualPolicy(
     changes.push(`${beat.id}: ${beat.stage} → figure (${component.name}, drawn by code)`);
     beat.stage = "figure";
     beat.figure = component.name;
-    beat.objects = component.parts.slice(0, 6).map((p) => p.id);
+    beat.objects = labelledFigureParts(component, [...(decision.requiredParts ?? []), ...(beat.requiredVisual?.mustShow ?? [])]);
     if (beat.requiredVisual) {
       beat.requiredVisual.stages = ["figure"];
       if (decision.requiredParts?.length) beat.requiredVisual.mustShow = [...new Set([...beat.requiredVisual.mustShow, ...decision.requiredParts])];
@@ -250,7 +259,8 @@ export function applyLessonVisualPolicy(
     for (const beat of beats) {
       if (beat.stage !== "illustration") continue;
       const replacement = nativeStageFor(beat);
-      beat.stage = replacement === "scene" ? "scene" : replacement;
+      // A kit figure would invent a diagram the source page did not supply.
+      beat.stage = replacement === "scene" || replacement === "figure" || replacement === "illustration" ? "scene" : replacement;
       if (beat.requiredVisual?.stages.includes("illustration")) beat.requiredVisual.stages = [beat.stage];
       changes.push(`${beat.id}: illustration → ${beat.stage} (strict source mode)`);
     }
@@ -319,8 +329,9 @@ export function applyLessonVisualPolicy(
   }
 
   // Replace generic card-like scenes when the content clearly names a purpose-built renderer.
+  // Strict source mode keeps the scene: a kit figure would invent a diagram the page did not show.
   for (const beat of beats) {
-    if (beat.stage !== "scene" || apparatus.has(beat.id)) continue;
+    if (options.mode === "strict" || beat.stage !== "scene" || apparatus.has(beat.id)) continue;
     const routed = nativeStageFor(beat);
     if (routed === "scene") continue;
     if (beat.requiredVisual?.stages.length && !beat.requiredVisual.stages.includes(routed)) continue;
@@ -341,7 +352,7 @@ export function applyLessonVisualPolicy(
     const choose: Array<[CanvasPlanBeat | undefined, string]> = [
       [pick((beat) => years(beat) >= 2), "timeline"],
       [pick((beat) => /\b(led to|leading to|caused?|causes|resulted in|consequences?|effects? of|sparked|triggered|why did)\b/i.test(boardText(beat))), "causeConsequence"],
-      [pick((beat) => /\b(evaluat\w*|assess\w*|to what extent|how far|judge\w*|argue\w*|for and against|advantages and disadvantages|strengths and (weaknesses|limitations))\b/i.test(boardText(beat))), "evaluationScale"],
+      [pick((beat) => /\b(evaluat\w*|assess\w*|to what extent|how far|judge\w*|argue\w*|for and against|advantages and disadvantages|strengths and (weaknesses|limitations))\b/i.test(boardText(beat)) && !/\b(integral|integrat|derivative|differentiat|limit|algebra|quadratic|complet\w* the square)\b/i.test(boardText(beat))), "evaluationScale"],
       [pick((beat) => /\b(source|speech|letter|diary|cartoon|extract|document|propaganda|poster|account by)\b/i.test(boardText(beat))), "sourceCard"],
       [pick((beat) => PHYSICAL.test(boardText(beat)) && !NON_PICTURE.test(boardText(beat))), "drawn"],
       [candidates.find((beat) => beat.stage === "compare"), "conceptTable"],
@@ -378,7 +389,7 @@ export function applyLessonVisualPolicy(
       if (years >= 2) return "timeline";
       const component = figureForBoard(beat);
       if (component && !HUMANITIES.has(component.name)) return component.name;
-      if (/\b(advantages?|disadvantages?|benefits? and (drawbacks?|costs?)|pros and cons|strengths?|weakness(es)?|limitations?|for and against|evaluat\w*|to what extent|how far|weigh\w*|benefits? (and|versus|vs\.?|against) (risks?|concerns?|harms?|costs?)|(risks?|costs?|harms?) (and|versus|against) benefits?|ethical (concerns?|choices?|dilemmas?)|(is|be) (it |this )?(ethically )?acceptable)\b/i.test(text)) return "evaluationScale";
+      if (/\b(advantages?|disadvantages?|benefits? and (drawbacks?|costs?)|pros and cons|strengths?|weakness(es)?|limitations?|for and against|evaluat\w*|to what extent|how far|weigh\w*|benefits? (and|versus|vs\.?|against) (risks?|concerns?|harms?|costs?)|(risks?|costs?|harms?) (and|versus|against) benefits?|ethical (concerns?|choices?|dilemmas?)|(is|be) (it |this )?(ethically )?acceptable)\b/i.test(text) && !/\b(integral|integrat|derivative|differentiat|limit|algebra|quadratic|complet\w* the square)\b/i.test(text)) return "evaluationScale";
       if (/\b(speech|letter|diary|cartoon|extract|propaganda|poster|account by|primary source|hadith|verse|surah)\b/i.test(text)) return "sourceCard";
       if (/\b(led to|leading to|causes?d?|resulted in|consequences?|effects? of|sparked|triggered|why did|because of)\b/i.test(text) && beat.stage !== "compare") return "causeConsequence";
       // A program's "memory cell" or a formula's "variable" is not a thing to draw.

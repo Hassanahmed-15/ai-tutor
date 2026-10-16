@@ -1,6 +1,28 @@
 import type { CanvasBoardSpec, StageSpec } from "../canvas/types";
+import { figureComponent } from "../figures/registry";
 
 export type VisualContract = { stages: string[]; mustShow: string[] };
+
+/** Syllabus prose ("formula", "operators") is not a figure part id. */
+const CURRICULUM_PROSE = /^(formula|operators|bonds|geometry|atoms|worked|answer|curve|axes)$/i;
+
+export function isCurriculumProseMustShow(need: string): boolean {
+  return /\s/.test(need) || CURRICULUM_PROSE.test(need);
+}
+
+/** mustShow tokens that are actually parts of this figure, not leftover equation-contract words. */
+export function figurePartObligations(spec: CanvasBoardSpec, mustShow: string[]): string[] {
+  if (spec.stage.kind !== "figure") return [];
+  const stage = spec.stage;
+  const catalog = (stage.component === "library" && stage.asset
+    ? stage.asset.parts
+    : figureComponent(stage.component)?.parts ?? stage.parts).map((p) => p.id.toLowerCase());
+  return mustShow.filter((need) => {
+    if (isCurriculumProseMustShow(need)) return false;
+    const key = need.toLowerCase().replace(/_/g, "-");
+    return catalog.some((id) => id === key || id.includes(key) || key.includes(id));
+  });
+}
 
 /** Structural checks only: these prevent empty/decorative boards, not subjective design choices. */
 export function visualContractIssues(spec: CanvasBoardSpec, contract: VisualContract): string[] {
@@ -40,6 +62,13 @@ export function visualContractIssues(spec: CanvasBoardSpec, contract: VisualCont
       break;
     case "figure":
       if (stage.parts.length < 2) issues.push("figure needs at least two labelled parts");
+      {
+        const ids = new Set(stage.parts.map((p) => p.id.toLowerCase()));
+        for (const need of figurePartObligations(spec, contract.mustShow)) {
+          const key = need.toLowerCase().replace(/_/g, "-");
+          if (![...ids].some((id) => id.includes(key) || key.includes(id))) issues.push(`figure is missing required part "${need}"`);
+        }
+      }
       break;
     case "scene":
       if (stage.items.length < 2) issues.push("scene needs more than one visible relationship item");

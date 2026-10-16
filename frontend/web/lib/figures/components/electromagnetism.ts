@@ -17,9 +17,9 @@ import { INK, arrowTo, ray, show } from "./physicsKit2";
 type Device = "solenoid" | "dc-motor" | "ac-generator" | "transformer" | "relay" | "electric-bell";
 const N_INK: Ink = INK.red, S_INK: Ink = INK.blue;
 
-function deviceOf(v: unknown): Device {
-  const s = String(v ?? "").toLowerCase();
-  if (/transform/.test(s)) return "transformer";
+function deviceOf(params: FigureParams, named?: unknown): Device {
+  const s = `${named ?? ""} ${params.device ?? ""} ${params.type ?? ""} ${params.kind ?? ""}`.toLowerCase();
+  if (/transform/.test(s) || params.np != null || params.ns != null || params.vp != null || params.turnsRatio != null) return "transformer";
   if (/generat|dynamo|alternat/.test(s)) return "ac-generator";
   if (/motor/.test(s)) return "dc-motor";
   if (/relay/.test(s)) return "relay";
@@ -433,7 +433,7 @@ export const electromagnetism: FigureComponent = {
     { id: "gong", name: "Gong" },
   ],
   build(params: FigureParams) {
-    const device = deviceOf(params.device ?? params.type);
+    const device = deviceOf(params, params.device ?? params.type);
     const sk = new Sketch();
     if (device === "dc-motor") rotor(sk, params, false);
     else if (device === "ac-generator") rotor(sk, params, true);
