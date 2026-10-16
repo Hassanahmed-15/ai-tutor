@@ -9,7 +9,8 @@
  * A panel is 1000 x 560: heading across the top, a notes column on the left, the stage on the right.
  */
 
-import { PANEL_H, PANEL_W, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type CompareStage, type EquationStage, type FlowStage, type GraphStage, type IllustrationStage, type SceneStage } from "./types";
+import { layoutStructure, runStructure, type DsFrame, type DsLayout } from "./structure";
+import { PANEL_H, PANEL_W, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type CompareStage, type DsKind, type DsOp, type DsStart, type EquationStage, type FlowStage, type GraphStage, type IllustrationStage, type SceneStage, type StructureStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Pt = { x: number; y: number };
@@ -32,7 +33,9 @@ export type Mark =
   | { type: "code"; id: string; rect: Rect; lines: string[]; language: string; size: number; lineH: number; gutter: number; steps: CodeStage["steps"]; reveal: "build" | "all"; groups: Array<{ from: number; to: number; label: string; s: number; x: number }>; edits: NonNullable<CodeStage["edits"]>; s: number }
   | { type: "state"; id: string; rect: Rect; steps: CodeStage["steps"]; s: number }
   | { type: "trace"; id: string; rect: Rect; vars: string[]; rows: Array<{ s: number; values: string[] }>; size: number; s: number }
-  | { type: "output"; id: string; rect: Rect; text: string; size: number; s: number };
+  | { type: "output"; id: string; rect: Rect; text: string; size: number; s: number }
+  /** A data structure, one frame per step (lib/canvas/structure.ts): the renderer glides between them. */
+  | { type: "structure"; id: string; rect: Rect; kind: DsKind; directed: boolean; frames: DsFrame[]; layout: DsLayout; captions: Array<{ s: number; text: string }>; captionY: number; s: number };
 
 export type PanelLayout = {
   marks: Mark[];
@@ -103,7 +106,9 @@ const overlaps = (a: Rect, b: Rect, pad = 0) =>
 export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   const marks: Mark[] = [];
   const targets: PanelLayout["targets"] = {};
-  const hasNotes = spec.notes.length > 0;
+  // Code beside its data structure needs the whole width: that board writes no notes column.
+  const split = spec.stage.kind === "code" && Boolean(spec.stage.structure);
+  const hasNotes = spec.notes.length > 0 && !split;
   const stage = hasNotes ? STAGE : STAGE_WIDE;
 
   const headingSize = textWidth(spec.heading, HEADING_SIZE) > PANEL_W - 110 ? 28 : HEADING_SIZE;
@@ -112,7 +117,7 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   targets.heading = { x: 48, y: 66 - headingSize, w: Math.min(PANEL_W - 96, textWidth(spec.heading, headingSize)), h: headingSize * 1.25, s: 0 };
 
   let y = 140;
-  spec.notes.slice(0, 4).forEach((note) => {
+  (hasNotes ? spec.notes.slice(0, 4) : []).forEach((note) => {
     const lines = wrap(note.text, NOTE_SIZE, NOTES_W - 26, 2);
     marks.push({ type: "note", id: note.id, lines, x: NOTES_X + 24, y, size: NOTE_SIZE, s: note.s, bullet: { x: NOTES_X + 7, y: y - NOTE_SIZE * 0.34 } });
     const h = lines.length * NOTE_SIZE * 1.28;
@@ -145,6 +150,9 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
     case "code":
       layoutCode(spec.stage, stage, marks, add);
       break;
+    case "structure":
+      layoutStructureStage(spec.stage, stage, marks, add);
+      break;
   }
   targets.stage = { ...stage, s: 0 };
   targets.board = { x: 0, y: 0, w: PANEL_W, h: PANEL_H, s: 0 };
@@ -161,7 +169,19 @@ const MONO = 0.6;
  * side, the trace table and the output when the board has them. Every line is a target, so Aria's
  * pen can point at it and the camera can zoom to it.
  */
-function layoutCode(st: CodeStage, area: Rect, marks: Mark[], add: Add) {
+function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
+  let st = stage;
+  let area = fullArea;
+  if (stage.structure) {
+    // The code on the left, as wide as its longest line needs at a readable size (40-58% of the
+    // board); the structure it changes on the right. The trace table and the subgoal labels give
+    // way: the structure shows what the trace would, and the labels would crowd the code.
+    const longest = Math.max(8, ...stage.lines.map((l) => l.length));
+    const codeW = Math.round(Math.max(fullArea.w * 0.4, Math.min(fullArea.w * 0.58, 38 + longest * MONO * 15 + 48)));
+    layoutStructureMark(stage.structure, stage.steps, { x: fullArea.x + codeW + 18, y: fullArea.y, w: fullArea.w - codeW - 18, h: fullArea.h }, marks, add, []);
+    area = { ...fullArea, w: codeW };
+    st = { ...stage, trace: undefined, groups: undefined };
+  }
   const rowH = 24;
   // The bottom row: the Variables panel, the trace, the output — whichever the board has, packed left
   // to right. Short of room, the trace goes first (the live Variables panel says more).
@@ -227,6 +247,35 @@ function layoutCode(st: CodeStage, area: Rect, marks: Mark[], add: Add) {
     }
     x += p.w + 16;
   }
+}
+
+/* ── data structures ──────────────────────────────────────────────────────────────────────── */
+
+/** A structure board: the structure across the stage, each step's note written under it. */
+function layoutStructureStage(st: StructureStage, area: Rect, marks: Mark[], add: Add) {
+  const captions = st.steps.filter((p) => p.note).map((p) => ({ s: p.s, text: p.note! }));
+  layoutStructureMark(st.structure, st.steps, area, marks, add, captions);
+}
+
+function layoutStructureMark(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>, area: Rect, marks: Mark[], add: Add, captions: Array<{ s: number; text: string }>) {
+  // Frames up to the first operation that could not be done: the board is checked before it is kept
+  // (lib/canvas/generate.ts), so this only guards a board that slipped through.
+  const { frames } = runStructure(start, steps);
+  const captionRoom = captions.length ? 44 : 0;
+  const inner = { x: area.x, y: area.y, w: area.w, h: area.h - captionRoom };
+  const layout = layoutStructure(start, frames, inner);
+  const s = frames[0]?.s ?? 0;
+  marks.push({ type: "structure", id: "structure", rect: area, kind: start.kind, directed: start.kind === "list" || start.variant === "directed", frames, layout, captions, captionY: area.y + area.h - 12, s });
+  add("structure", area, s);
+  // Each node is a target where it first appears, so the pen can point at it.
+  const seen = new Set<string>();
+  layout.frames.forEach((lf) => {
+    for (const [id, at] of Object.entries(lf.place)) {
+      if (seen.has(id)) continue;
+      seen.add(id);
+      add(`ds-${id}`, { x: at.x - layout.w / 2, y: at.y - layout.h / 2, w: layout.w, h: layout.h }, lf.s);
+    }
+  });
 }
 
 /* ── flow ─────────────────────────────────────────────────────────────────────────────────── */

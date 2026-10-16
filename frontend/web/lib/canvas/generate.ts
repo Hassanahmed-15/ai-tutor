@@ -11,6 +11,7 @@ import { CANVAS_PLAN_PROMPT, CANVAS_SPEC_PROMPT } from "./prompts";
 import { canvasSentences, validatePlan, withRefresherOnlyIfOffered } from "./plan";
 import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat } from "./types";
 import { slug, validateCanvasSpec } from "./validate";
+import { boardStructureProblem, isDataStructureTopic, withoutStructure } from "./structure";
 import { saveCanvasImage, saveCanvasLecture, type CanvasLecture } from "./store";
 import { createOpenAI } from "../openaiClient";
 
@@ -119,13 +120,24 @@ function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanB
 
 export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = []): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
   const sentences = canvasSentences(beat.script);
+  // A code board in a data-structures lesson draws the structure beside the code (lib/canvas/structure.ts).
+  const needsStructure = beat.stage === "structure" || (beat.stage === "code" && isDataStructureTopic(`${topic} ${beat.title} ${beat.brief}`));
+  const asked = needsStructure && beat.stage === "code"
+    ? [
+        ...extra,
+        `This board runs an operation on a DATA STRUCTURE: draw it in "structure" beside the code (pseudocode unless a language was asked for), and give every step the "ops" its lines perform, so the structure changes as each line is read. The stage looks like this (fill it with THIS board's structure and values):`,
+        `{"kind": "code", "language": "pseudocode", "reveal": "all", "lines": ["...", "..."], "structure": {"kind": "tree", "variant": "bst", "nodes": [{"id": "n50", "value": "50"}, {"id": "n30", "value": "30"}], "edges": [{"from": "n50", "to": "n30", "side": "left"}], "pointers": [{"name": "root", "to": "n50"}]}, "steps": [{"s": 0, "lines": [1], "ops": [{"op": "point", "name": "curr", "to": "n50"}]}, {"s": 1, "lines": [2, 3], "note": "30 < 50: go left", "ops": [{"op": "mark", "id": "n50", "as": "compare"}, {"op": "point", "name": "curr", "to": "n30"}]}]}`,
+      ]
+    : extra;
   let costUsd = 0;
   let lastError: string | undefined;
+  // The code alone, kept when its structure could not be made right: plainer, never wrong.
+  let plainCode: CanvasBoardSpec | null = null;
   for (let attempt = 1; attempt <= 3; attempt++) {
     // A retry is optional work: with too little time left the board falls back instead.
     if (attempt > 1 && clock.left() < 75_000) break;
     try {
-      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, lastError, extra), 6000), Math.min(45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
+      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, lastError, asked), needsStructure ? 9000 : 6000), Math.min(needsStructure ? 60_000 : 45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
       costUsd += c;
       const raw = json as Record<string, unknown>;
       // The plan decides the stage; a model that drifted to another one is corrected, not trusted.
@@ -146,11 +158,22 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         lastError = `the "try" interaction needs 3 to 5 reactions whose "when" conditions use only the slider variables (${spec.interaction.controls.map((c) => c.var).join(", ")})`;
         continue;
       }
+      const structureProblem = boardStructureProblem(spec, needsStructure);
+      if (structureProblem) {
+        plainCode = withoutStructure(spec) ?? plainCode;
+        lastError = structureProblem;
+        console.warn(`[canvas] board ${beat.id}: ${structureProblem}`);
+        continue;
+      }
       return { spec, costUsd, attempts: attempt };
     } catch (error) {
       costUsd += (error as { costUsd?: number }).costUsd ?? 0;
       lastError = (error as Error).message;
     }
+  }
+  if (plainCode) {
+    console.warn(`[canvas] board ${beat.id}: kept as code without its structure`);
+    return { spec: plainCode, costUsd, attempts: 3 };
   }
   return { spec: fallbackSpec(beat), costUsd, attempts: -1 };
 }

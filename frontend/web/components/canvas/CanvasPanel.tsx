@@ -1,9 +1,10 @@
 "use client";
 
-import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef } from "react";
+import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
 import { graphPoint, INK, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
+import { edgeCurve } from "@/lib/canvas/structure";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
 import { IconGlyph } from "./icons";
@@ -367,6 +368,8 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
       return <CodeView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
     case "trace":
       return <TraceView mark={mark} shownThrough={shownThrough} />;
+    case "structure":
+      return <StructureView mark={mark} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} />;
     case "state":
       return <StateView mark={mark} shownThrough={shownThrough} />;
     case "output":
@@ -382,6 +385,160 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
         </g>
       );
   }
+}
+
+/* ── data structures: the tree, list or array itself, changing as the code runs ───────────── */
+
+const DS_LOOK: Record<string, { fill: string; stroke: string }> = {
+  none: { fill: "#ffffff", stroke: "#0f766e" },
+  visit: { fill: "#dbeafe", stroke: "#2563eb" },
+  compare: { fill: "#fef3c7", stroke: "#d97706" },
+  found: { fill: "#bbf7d0", stroke: "#15803d" },
+  done: { fill: "#e5e7eb", stroke: "#64748b" },
+  remove: { fill: "#fee2e2", stroke: "#be123c" },
+};
+const POINTER_INK = "#7c3aed";
+const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+/**
+ * One frame per step (lib/canvas/structure.ts). When the narration reaches a new step, every node
+ * glides from where it was to where it now sits, a link that is new inks itself in, a removed node is
+ * crossed out and fades, and a changed value flashes — so the student watches the line of code that
+ * was just read do its work on the structure.
+ */
+function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: Extract<Mark, { type: "structure" }>; shownThrough: number; focusId?: string; reducedMotion: boolean }) {
+  const index = mark.frames.reduce((best, f, i) => (f.s <= shownThrough ? i : best), 0);
+  const [glide, setGlide] = useState({ from: index, to: index, t: 1 });
+  useEffect(() => {
+    if (index === glide.to || reducedMotion) return;
+    const from = glide.to;
+    let raf = 0;
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - t0) / 750);
+      setGlide({ from, to: index, t });
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // Runs only when the step changes; `glide.to` is where the last glide ended.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, reducedMotion]);
+  // Reduced motion: the step as it is now, without moving.
+  const shown = reducedMotion ? { from: index, to: index, t: 1 } : glide;
+
+  const { layout } = mark;
+  const before = layout.frames[shown.from] ?? layout.frames[0];
+  const after = layout.frames[shown.to] ?? layout.frames[0];
+  const frame = mark.frames[shown.to] ?? mark.frames[0];
+  const gone = (mark.frames[shown.from]?.nodes ?? []).filter((n) => !frame.nodes.some((m) => m.id === n.id));
+  const e = easeInOut(shown.t);
+  const lerp = (a: Pt | undefined, b: Pt | undefined): Pt | undefined => (a && b ? { x: a.x + (b.x - a.x) * e, y: a.y + (b.y - a.y) * e } : b ?? a);
+  const at = (id: string) => lerp(before.place[id], after.place[id]);
+  const caption = mark.captions.filter((c) => c.s <= shownThrough).at(-1);
+
+  const nodeShape = (id: string, p: Pt, look: { fill: string; stroke: string }) => {
+    if (layout.shape === "circle") return <path d={roughEllipse(`ds-${id}`, p.x, p.y, layout.r, layout.r)} fill={look.fill} stroke={look.stroke} strokeWidth={2.6} />;
+    const x = p.x - layout.w / 2;
+    const y = p.y - layout.h / 2;
+    return (
+      <g>
+        <path d={roughRect(`ds-${id}`, x, y, layout.w, layout.h, layout.shape === "box" ? 8 : 4)} fill={look.fill} stroke={look.stroke} strokeWidth={2.4} />
+        {/* A linked-list node: its value, and the box its next pointer leaves from. */}
+        {layout.shape === "box" && <line x1={x + layout.w * 0.68} y1={y + 4} x2={x + layout.w * 0.68} y2={y + layout.h - 4} stroke={look.stroke} strokeWidth={1.6} opacity={0.7} />}
+      </g>
+    );
+  };
+  const valueX = (p: Pt) => (layout.shape === "box" ? p.x - layout.w * 0.16 : p.x);
+
+  return (
+    <g>
+      {/* Links first, under the nodes. A link that is new on this step draws itself in. */}
+      {frame.edges.map((edge) => {
+        const a = at(edge.from);
+        const b = at(edge.to);
+        if (!a || !b) return null;
+        const { p0, c, p1 } = edgeCurve(layout, layout.shape === "box" ? { x: a.x + layout.w * 0.34, y: a.y } : a, b);
+        const points = quadPoints(p0, c, p1, 14);
+        return (
+          <g key={`${edge.from}>${edge.to}`}>
+            <Ink points={points} width={3.6} color={INK} opacity={0.85} />
+            {mark.directed && <g className="cv-in cv-late">{arrowHead(p1, bezier(p0, c, p1, 0.82), 12, 3.4).map((d, i) => <path key={i} d={d} fill={INK} opacity={0.85} />)}</g>}
+            {edge.label && <text x={c.x} y={c.y - 8} textAnchor="middle" fontSize={14} fontWeight={700} fill={MUTED}>{edge.label}</text>}
+          </g>
+        );
+      })}
+      {/* A list's last node points at nothing: written as null, the way it is taught. */}
+      {mark.kind === "list" && frame.nodes.filter((n) => !frame.edges.some((ed) => ed.from === n.id)).map((n) => {
+        const p = at(n.id);
+        return p ? <text key={`null-${n.id}`} x={p.x + layout.w * 0.34} y={p.y + 5} textAnchor="middle" fontSize={17} fontWeight={800} fill="#475569">∅</text> : null;
+      })}
+      {frame.nodes.map((n) => {
+        const p = at(n.id);
+        if (!p) return null;
+        const state = frame.marks[n.id] ?? "none";
+        const look = DS_LOOK[state] ?? DS_LOOK.none;
+        const lit = focusId === `ds-${n.id}`;
+        const changed = shown.t >= 1 && frame.changed.includes(n.id);
+        return (
+          <g key={n.id} className={lit ? "cv-focus" : undefined}>
+            <g className={before.place[n.id] ? undefined : "cv-in"}>
+              {nodeShape(n.id, p, look)}
+              {changed && <circle key={`flash-${shown.to}`} cx={p.x} cy={p.y} r={Math.max(layout.w, layout.h) * 0.62} fill="#fbbf24" fillOpacity={0.25} className="cv-in" />}
+              <text key={`v-${n.value}`} x={valueX(p)} y={p.y + layout.size * 0.36} textAnchor="middle" fontSize={layout.size} fontWeight={800} fill="#0f172a" className={changed ? "cv-in" : undefined}>
+                {n.value}
+              </text>
+              {state === "remove" && (
+                <g className="cv-in">
+                  <Ink points={[{ x: p.x - layout.w * 0.55, y: p.y - layout.h * 0.55 }, { x: p.x + layout.w * 0.55, y: p.y + layout.h * 0.55 }]} width={4} color="#be123c" />
+                  <Ink points={[{ x: p.x + layout.w * 0.55, y: p.y - layout.h * 0.55 }, { x: p.x - layout.w * 0.55, y: p.y + layout.h * 0.55 }]} width={4} color="#be123c" />
+                </g>
+              )}
+            </g>
+          </g>
+        );
+      })}
+      {/* Removed on this step: crossed out where it was, fading as the rest settles. */}
+      {shown.t < 1 && gone.map((n) => {
+        const p = before.place[n.id];
+        if (!p) return null;
+        return (
+          <g key={`gone-${n.id}`} opacity={1 - e}>
+            {nodeShape(n.id, p, DS_LOOK.remove)}
+            <text x={valueX(p)} y={p.y + layout.size * 0.36} textAnchor="middle" fontSize={layout.size} fontWeight={800} fill="#be123c">{n.value}</text>
+          </g>
+        );
+      })}
+      {after.indices.map((ix) => (
+        <text key={`ix-${ix.text}`} x={ix.at.x} y={ix.at.y} textAnchor="middle" fontSize={13} fontFamily={MONO_FONT} fill={MUTED}>{ix.text}</text>
+      ))}
+      {/* Pointers (root, curr, i, mid…): a name tag with an arrow at the node, gliding with it. */}
+      {after.pointers.map((ptr) => {
+        const was = before.pointers.find((q) => q.name === ptr.name);
+        const tag = lerp(was?.at, ptr.at)!;
+        const tip = lerp(was?.tip, ptr.tip)!;
+        const w = Math.max(30, ptr.name.length * 8.6 + 14);
+        return (
+          <g key={`ptr-${ptr.name}`} className={was ? undefined : "cv-in"}>
+            <rect x={tag.x - w / 2} y={tag.y - 13} width={w} height={22} rx={11} fill={POINTER_INK} />
+            <text x={tag.x} y={tag.y + 3} textAnchor="middle" fontSize={13} fontWeight={800} fill="#ffffff" fontFamily={MONO_FONT}>{ptr.name}</text>
+            {/* Several tags on one node stack up; only the nearest draws the arrow, so none crosses a tag. */}
+            {ptr.arrow && (
+              <>
+                <line x1={tag.x} y1={tag.y + (tip.y > tag.y ? 9 : -13)} x2={tip.x} y2={tip.y} stroke={POINTER_INK} strokeWidth={2.4} strokeLinecap="round" />
+                {arrowHead(tip, { x: tag.x, y: tag.y }, 9, 2.6).map((d, i) => <path key={i} d={d} fill={POINTER_INK} />)}
+              </>
+            )}
+          </g>
+        );
+      })}
+      {caption && (
+        <text key={caption.s} x={mark.rect.x + mark.rect.w / 2} y={mark.captionY} textAnchor="middle" fontSize={20} fontWeight={600} fill={MUTED} className="cv-in">
+          {caption.text}
+        </text>
+      )}
+    </g>
+  );
 }
 
 /* ── code: a listing walked through, line by line ─────────────────────────────────────────── */

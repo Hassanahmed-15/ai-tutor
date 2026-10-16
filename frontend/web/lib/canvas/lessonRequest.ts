@@ -8,6 +8,7 @@ import { CANVAS_CODE_LINES, documentForCanvas, documentListings, extraBoardsForL
 import { strictPlanSection, videoParts, videoPlanSection } from "./sourceLessons";
 import { isVideoSource } from "../youtube/videoSource";
 import { packForPrompt } from "../webSources";
+import { isDataStructureTopic } from "./structure";
 
 /**
  * WHICH LECTURES ARE TAUGHT ON THE LESSON CANVAS, and what its planner is told about them.
@@ -155,6 +156,14 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
     : depth === "deep" ? "6 to 8 sentences (90 to 140 words), going further than a first introduction would"
     : "4 to 6 sentences (60 to 100 words)";
   lines.push("", `SCRIPT LENGTH: each board's script is ${length}.`);
+  // DATA STRUCTURES are taught with the structure itself on the board (owner's direction, 2026-10-15).
+  // A source lesson keeps its own rules: its boards follow the document or the video.
+  if (!strictDoc && !video && isDataStructureTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) {
+    lines.push(
+      "",
+      "THIS IS A DATA STRUCTURES / ALGORITHMS LESSON: every board that runs an operation (insert, search, delete, traverse, rotate, push, pop, swap, BFS, DFS) is a \"code\" board in pseudocode (unless the student named a language) with the structure drawn beside it, changing line by line; a board that explains the structure itself is a \"structure\" board; never illustration, flow or scene for a data structure. Each brief names the starting values and the operation, and the script walks it one step per sentence with those same values — a board that runs an operation may take up to 8 sentences for that.",
+    );
+  }
   if (doc) lines.push("", documentPlanSection(doc, listings, Boolean(question)));
   if (strictDoc) lines.push("", strictPlanSection(strictDoc, strictQuestion));
   if (video) lines.push("", videoPlanSection(video));

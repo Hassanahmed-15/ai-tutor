@@ -1,3 +1,4 @@
+import { describeStructure } from "./structure";
 import type { CanvasBoardSpec } from "./types";
 
 /**
@@ -41,6 +42,11 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
       for (const e of stage.edits ?? []) lines.push(`Line ${e.line} was first shown wrong ("${e.from}") and then fixed to "${stage.lines[e.line - 1]}".`);
       if (stage.trace) lines.push(`Trace of ${stage.trace.vars.join(", ")}: ${stage.trace.rows.map((r) => r.values.join("/")).join(" → ")}.`);
       if (stage.output) lines.push(`It prints: ${stage.output.text.replace(/\n/g, " | ")}`);
+      if (stage.structure) lines.push(describeStructure(stage.structure, stage.steps));
+      break;
+    case "structure":
+      lines.push(describeStructure(stage.structure, stage.steps));
+      if (stage.steps.some((p) => p.note)) lines.push(`Steps: ${stage.steps.filter((p) => p.note).map((p) => p.note).join(" → ")}.`);
       break;
   }
   if (spec.interaction?.kind === "try") {

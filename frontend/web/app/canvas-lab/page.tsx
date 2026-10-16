@@ -8,7 +8,9 @@
  * Type a topic, and a canvas lecture is generated end to end (lib/canvas/generate.ts) and played in
  * the REAL LessonPlayer: same narration, same Aria, same pause/resume and questions — the only thing
  * that changes is the board. Each student's lectures are saved to their own storage, so a replay
- * costs nothing. `?scrub=1` (development only) shows the canvas alone for checking boards.
+ * costs nothing. `?scrub=1` (development only) shows the canvas alone for checking boards;
+ * `&fixture=dsa` loads hand-written data-structure boards (lib/canvas/dsaFixtures.ts) instead, and
+ * `&session=<id>` one of the student's real typed-prompt lectures (the boards it has so far).
  */
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
@@ -17,6 +19,9 @@ import { LessonPlayer } from "@/components/LessonPlayer";
 import { LessonCanvas } from "@/components/canvas/LessonCanvas";
 import type { Beat } from "@/lib/lessonContent";
 import type { CanvasBoardSpec } from "@/lib/canvas/types";
+import { DSA_FIXTURES } from "@/lib/canvas/dsaFixtures";
+import { canvasSentences } from "@/lib/canvas/plan";
+import { validateCanvasSpec } from "@/lib/canvas/validate";
 
 type Lecture = { id: string; title: string; topic: string; beats: Beat[]; costUsd: number; ms: number; log: string[] };
 type Listed = { id: string; title: string; topic: string; createdAt: string };
@@ -49,7 +54,15 @@ export default function CanvasLab() {
     if (params.get("voice") === "0") queueMicrotask(() => setVoice(false));
     if (params.get("scrub") === "1" && process.env.NODE_ENV !== "production") queueMicrotask(() => setScrub(true));
     const id = params.get("id");
-    if (id) queueMicrotask(() => void load(id));
+    const session = params.get("session");
+    if (params.get("fixture") === "dsa" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture()));
+    else if (session && process.env.NODE_ENV !== "production") {
+      fetch(`/api/progressive-lectures/${encodeURIComponent(session)}`)
+        .then((r) => r.json())
+        .then((snap: { title?: string; topic?: string; beats?: Array<Beat | null> }) => setLecture({ id: session, title: snap.title ?? "Lecture", topic: snap.topic ?? "", beats: (snap.beats ?? []).filter((b): b is Beat => Boolean(b)), costUsd: 0, ms: 0, log: [] }))
+        .catch(() => setError("That lecture couldn't be loaded."));
+    }
+    else if (id) queueMicrotask(() => void load(id));
     fetch("/api/canvas-lecture")
       .then((r) => {
         if (r.status === 401) setSignedOut(true);
@@ -201,6 +214,15 @@ export default function CanvasLab() {
       </div>
     </main>
   );
+}
+
+/** The hand-written DSA boards as a lecture, each validated exactly as a generated board is. */
+function fixtureLecture(): Lecture {
+  const beats = DSA_FIXTURES.flatMap((f) => {
+    const spec = validateCanvasSpec(f.raw, canvasSentences(f.script).length);
+    return spec ? [{ id: f.id, script: f.script, draw: { ops: [{ kind: "canvasBoard", spec, at: 0, endAt: 1 }] } } as unknown as Beat] : [];
+  });
+  return { id: "fixture-dsa", title: "DSA boards", topic: "Data structures", beats, costUsd: 0, ms: 0, log: [] };
 }
 
 /**

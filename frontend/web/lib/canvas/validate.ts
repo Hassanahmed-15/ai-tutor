@@ -8,6 +8,7 @@
  */
 
 import { compileExpr, exprUsesOnly } from "./expr";
+import { DS_MAX_STEPS, parseOps, parseStructure } from "./structure";
 import {
   CANVAS_ICONS,
   CANVAS_STAGES,
@@ -24,6 +25,7 @@ import {
   type IllustrationStage,
   type SceneStage,
   type StageSpec,
+  type StructureStage,
 } from "./types";
 
 type Raw = Record<string, unknown>;
@@ -144,6 +146,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
   if (!(CANVAS_STAGES as readonly string[]).includes(kind)) return null;
 
   if (kind === "code") return validateCode(r, sentence, unique);
+  if (kind === "structure") return validateStructureStage(r, sentence, unique);
 
   if (kind === "flow") {
     const nodes = arr(r.nodes)
@@ -354,6 +357,8 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
     const n = Math.round(num(v, 0));
     return n >= 1 && n <= lines.length ? n : 0;
   };
+  // The data structure the code works on, drawn beside it (lib/canvas/structure.ts).
+  const structure = r.structure ? parseStructure(r.structure) : null;
   const steps = arr(r.steps)
     .map((st) => obj(st))
     .map((st, i) => {
@@ -366,11 +371,13 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
         ? rawState.map((v) => obj(v)).map((v) => ({ name: str(v.name, 14), value: cell(v.value) }))
         : Object.entries(obj(rawState)).map(([name, value]) => ({ name: str(name, 14), value: cell(value) }));
       const state = stateList.filter((v) => v.name && /^[A-Za-z_][\w.\[\]]*$/.test(v.name)).slice(0, 5);
-      return { s: sentence(st.s ?? st.sentence, i), lines: [...new Set(picked)].slice(0, 6), ...(note ? { note } : {}), ...(state.length ? { state } : {}) };
+      const ops = structure ? parseOps(st.ops) : [];
+      return { s: sentence(st.s ?? st.sentence, i), lines: [...new Set(picked)].slice(0, 6), ...(note ? { note } : {}), ...(state.length ? { state } : {}), ...(ops.length ? { ops } : {}) };
     })
     .filter((st): st is NonNullable<typeof st> => Boolean(st))
     .sort((a, b) => a.s - b.s)
-    .slice(0, 10);
+    // An operation walked on a structure takes more steps than a plain listing.
+    .slice(0, structure ? DS_MAX_STEPS : 10);
   const traceRaw = obj(r.trace);
   const vars = arr(traceRaw.vars).map((v) => str(v, 14)).filter(Boolean).slice(0, 4);
   const rows = vars.length
@@ -407,8 +414,10 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
     .slice(0, 3);
   if (groups.length) groups.forEach((_, i) => unique(`group-${i + 1}`, `group-${i + 1}`));
   if (steps.some((st) => st.state)) unique("state", "state");
+  if (structure) registerStructureIds(structure, steps, unique);
   return {
     kind: "code",
+    ...(structure ? { structure } : {}),
     language: str(r.language, 20).toLowerCase() || "python",
     lines,
     ...(r.reveal === "all" ? { reveal: "all" as const } : {}),
@@ -418,6 +427,33 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
     ...(rows.length ? { trace: { vars, rows } } : {}),
     ...(outputText ? { output: { s: sentence(outputRaw.s ?? outputRaw.sentence, 0), text: outputText } } : {}),
   };
+}
+
+/**
+ * A structure board: the starting structure and, per sentence, what changes. Its node ids become
+ * targets "ds-<id>" (and the whole structure "structure"), so the pen can point at a node.
+ */
+function validateStructureStage(r: Raw, sentence: (v: unknown, f?: number) => number, unique: (v: unknown, f: string) => string): StructureStage | null {
+  const structure = parseStructure(r.structure ?? r);
+  if (!structure) return null;
+  const steps = arr(r.steps)
+    .map((st) => obj(st))
+    .map((st, i) => {
+      const ops = parseOps(st.ops);
+      const note = str(st.note, 48);
+      return { s: sentence(st.s ?? st.sentence, i), ...(ops.length ? { ops } : {}), ...(note ? { note } : {}) };
+    })
+    .sort((a, b) => a.s - b.s)
+    .slice(0, DS_MAX_STEPS);
+  registerStructureIds(structure, steps, unique);
+  return { kind: "structure", structure, steps };
+}
+
+function registerStructureIds(structure: NonNullable<ReturnType<typeof parseStructure>>, steps: Array<{ ops?: ReturnType<typeof parseOps> }>, unique: (v: unknown, f: string) => string) {
+  unique("structure", "structure");
+  const ids = new Set(structure.nodes.map((n) => n.id));
+  for (const st of steps) for (const op of st.ops ?? []) if (op.op === "add") ids.add(op.id);
+  for (const id of ids) unique(`ds-${id}`, `ds-${id}`);
 }
 
 /** One trace cell as text: a number, boolean or string, capped. */
