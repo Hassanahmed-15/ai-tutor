@@ -179,6 +179,16 @@ RULES:
 - Start from the governing rule, end at the result. No prose, no commentary, no units inside the TeX.`;
 
 /**
+ * A FORMULA QUESTION'S ANSWER (owner's direction, 2026-10-16: "it should ideally just tell the
+ * formula"). Appended to the equation board's prompt when the student asked for a formula: the card
+ * is the formula, typeset, and nothing that competes with it.
+ */
+export const FORMULA_CARD_RULES = `THIS IS A FORMULA CARD — the student asked for a formula. It overrides the step count above:
+- 1 to 3 steps. Step 1 is THE FORMULA itself, in its standard form ("J(m) = \\\\sum_{i}(y_i - m x_i)^2", "a^2 + 2ab + b^2 = (a + b)^2").
+- Add a second step only when it helps: the same formula with THIS lesson's numbers put in (and its result), or the one rearranged form the student asked for. Nothing else — no derivation, no proof.
+- Each "why" says what the symbols mean, in a few words ("y: actual value · ŷ: prediction · m: slope"), or for a numbers step, "with the lesson's values".`;
+
+/**
  * The code board: a real listing plus the line ranges the narration walks through.
  *
  * QUOTE, DON'T WRITE. When the student's document contains the function, the board must show THAT

@@ -7,6 +7,7 @@ import { sanitizeExplanation, sanitizeTextExplanation, sanitizeOfferedExplanatio
 import { fillReactAnimationOps, type ReactAnimationFillOptions } from "@/lib/reactAnimationGen";
 import { fillSpecBoardOps } from "@/lib/specBoardGen";
 import { asksForCode, isCodeQuestion, isProgrammingTopic } from "@/lib/codeSpec";
+import { withoutLatex } from "@/lib/drawConsent";
 import type { Beat } from "@/lib/lessonContent";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
 import { MAX_VIDEO_CONTEXT_CHARS, MAX_VIDEO_LESSON_CHARS, VIDEO_CHAT_RULES, isVideoLessonContext, isVideoTranscriptContext } from "@/lib/youtube/videoSource";
@@ -56,6 +57,8 @@ export async function POST(req: Request) {
    * every other caller (/api/ask-drawing, the ADHD text board, the viewer) behaves exactly as before.
    */
   const offer = body.offer === true;
+  // "What is the formula for…?" (lib/drawConsent.ts isFormulaQuestion): the formula on a KaTeX card.
+  const formulaRequested = body.formula === true;
   /** What she promised to draw, carried into the build so the board is the one that was offered. */
   const visualHint = typeof body.visualHint === "string" ? body.visualHint.trim().slice(0, 300) : "";
 
@@ -102,6 +105,8 @@ export async function POST(req: Request) {
    * rather than refusing every question.
    */
   const strict = strictRequested && Boolean(documentContext || beatSource?.text || beatSource?.labels.length);
+  // A strict lesson keeps its own path: its boards are held to the document, which a card is not.
+  const formula = formulaRequested && !strict && !offer && !textOnly;
   /*
    * The question this whole lesson exists to answer.
    *
@@ -176,6 +181,8 @@ export async function POST(req: Request) {
     (videoContext && documentContext ? `If the answer comes from the video, say around when it is said there, from its [m:ss] labels ("around 1:23 in the video"). ` : "") +
     (offer
       ? `Answer it in words. Propose a drawing only if the answer genuinely needs one.`
+      : formula
+      ? `They asked for a FORMULA. Answer in 2 or 3 sentences: the formula said in WORDS as part of a normal sentence ("the cost J of theta equals one over two m times the sum of the squared errors" — never "it is read aloud as"), then what its symbols mean (and, if this lesson has numbers for it, what it gives with them). This answer is SPOKEN: never write LaTeX, $ signs or \\( \\) in it — the board shows the formula itself, typeset. Do not propose a drawing.`
       : `Preferred visual mode: "${visualMode}". ` +
         (reuseContext ? "Keep useful visual context from the current board when it improves continuity. " : "Use a fresh board composition. ") +
         (visualHint ? `They have asked to see this drawn, and you offered: "${visualHint}". Draw that. ` : "") +
@@ -190,7 +197,7 @@ export async function POST(req: Request) {
         messages: [
           {
             role: "system",
-            content: `${offer ? EXPLAIN_OFFER_SYSTEM_PROMPT : textOnly ? EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT : EXPLAIN_SYSTEM_PROMPT}${strict ? `\n\n${STRICT_ANSWER_RULES}` : ""}`,
+            content: `${offer || formula ? EXPLAIN_OFFER_SYSTEM_PROMPT : textOnly ? EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT : EXPLAIN_SYSTEM_PROMPT}${strict ? `\n\n${STRICT_ANSWER_RULES}` : ""}`,
           },
           {
             role: "user",
@@ -264,6 +271,34 @@ export async function POST(req: Request) {
        * the document like any other — and before the board pipeline exists at all. Nothing is
        * illustrated, so this path costs one model call instead of twenty.
        */
+      /*
+       * THE FORMULA CARD (owner's direction, 2026-10-16). A question asking for a formula drew a
+       * crowded diagram of boxes, arrows and hand-placed maths. It is answered with the formula
+       * itself, typeset by KaTeX (lib/specBoardGen.ts formula mode), and a short spoken answer. If
+       * the card cannot be made, the words alone are the answer — never the crowded board.
+       */
+      if (formula) {
+        const offered = sanitizeOfferedExplanation(parsed);
+        // Spoken and printed in the chat: any LaTeX that slipped through is said in words.
+        const answer = { ...offered, script: withoutLatex(offered.script) };
+        const beat: Beat = {
+          id: `formula-${Date.now()}-${attempt}`,
+          title: topic || question,
+          teacherMove: "Give the formula the student asked for.",
+          stepLabel: "Formula",
+          slideKind: "definition",
+          points: [],
+          script: answer.script,
+          draw: { caption: question.slice(0, 120), durationMs: 30_000, ops: [{ kind: "equationBoard", equationBrief: `The formula the student asked for: "${question}". ${answer.script}`.slice(0, 600), at: 0, endAt: 1 }] },
+        };
+        await fillSpecBoardOps(client, [beat], { formulaBeatIds: new Set([beat.id]) });
+        const card = beat.draw?.ops.find((op) => op.kind === "equationBoard");
+        if (card?.kind === "equationBoard" && card.spec) {
+          return NextResponse.json({ script: answer.script, draw: { ...beat.draw!, ops: [card] }, costUsd: meter.totalUsd });
+        }
+        console.warn(`[explain] formula card failed for "${question.slice(0, 80)}": ${card?.kind === "equationBoard" ? card.error ?? "no spec" : "no op"}`);
+        return NextResponse.json({ script: answer.script, costUsd: meter.totalUsd });
+      }
       if (offer) {
         return NextResponse.json({ ...sanitizeOfferedExplanation(parsed), ...(strict ? { covered: true } : {}), costUsd: meter.totalUsd });
       }

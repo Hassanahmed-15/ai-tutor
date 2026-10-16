@@ -39,9 +39,11 @@ test("with no model, every subject still gets a plain tile at the student's leve
   const view = learnerProfileView(basics, null, NOW);
   const fresh = fallbackFreshTiles(view);
   assert.equal(fresh.length, 2);
-  assert.equal(fresh[0].prompt, "The key ideas in Physics at A-Level level");
-  const withCurriculum = fallbackFreshTiles(learnerProfileView({ ...basics, curricula: [{ id: "aqa", label: "AQA A-Level" }] }, null, NOW));
-  assert.equal(withCurriculum[1].prompt, "The key ideas in AQA A-Level Mathematics");
+  assert.equal(fresh[0].prompt, "The key ideas in A Level Physics", "the Study level's exam");
+  const mdcat = fallbackFreshTiles(learnerProfileView({ ...basics, studyLevel: { id: "mdcat", label: "MDCAT" }, curricula: [{ id: "aqa", label: "AQA A-Level" }] }, null, NOW));
+  assert.equal(mdcat[1].prompt, "The key ideas in MDCAT (Pakistan medical entry test) Mathematics", "the old curriculum field is not read");
+  const uni = fallbackFreshTiles(learnerProfileView({ ...basics, studyLevel: { id: "undergrad", label: "Undergraduate" } }, null, NOW));
+  assert.equal(uni[0].prompt, "The key ideas in Physics at Undergraduate level");
 });
 
 test("the row mixes memory and fresh ideas, drops mastered topics and duplicates, and caps at four", () => {

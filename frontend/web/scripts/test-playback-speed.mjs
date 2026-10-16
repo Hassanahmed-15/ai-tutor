@@ -10,8 +10,8 @@
  * every narration builds its own element, so a speed change that restarted the beat would create one.
  *
  * Asserted:
- *   1. choosing 2x sets the playing element's playbackRate to 2, and no new narration starts;
- *   2. choosing 0.25x sets it to 0.25, likewise;
+ *   1. choosing 1.5x sets the playing element's playbackRate to 1.5, and no new narration starts;
+ *   2. choosing 0.5x sets it to 0.5, likewise;
  *   3. after a reload, the control shows the remembered speed.
  * Costs a few seconds of cloud TTS.
  */
@@ -70,7 +70,7 @@ if (!before.some((a) => a.playing)) {
   problems.push("narration never started playing, so the speed could not be tested");
 } else {
   log(`narration playing (${before.length} element(s), rate ${before.at(-1).rate})`);
-  for (const rate of [2, 0.25]) {
+  for (const rate of [1.5, 0.5]) {
     const count = (await audios()).length;
     await choose(rate);
     const now = await audios();
@@ -89,7 +89,7 @@ await speedButton.waitFor({ state: "visible", timeout: 90_000 });
 await page.waitForTimeout(800);
 const remembered = (await speedButton.innerText()).trim();
 log(`after reload the control reads "${remembered}"`);
-if (remembered !== "0.25×") problems.push(`the speed was not remembered — control reads "${remembered}" after reload`);
+if (remembered !== "0.5×") problems.push(`the speed was not remembered — control reads "${remembered}" after reload`);
 await page.screenshot({ path: path.join(outDir, "after-reload.png") });
 await browser.close();
 

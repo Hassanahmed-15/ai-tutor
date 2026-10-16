@@ -12,16 +12,18 @@ import { layoutPanel } from "./layout";
 import { dropCrossingArrows } from "./layoutQa";
 import { recapTour, unifyConceptColours } from "./lessonPasses";
 import { CANVAS_PLAN_PROMPT, CANVAS_SPEC_PROMPT } from "./prompts";
-import { canvasSentences, validatePlan } from "./plan";
-import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasInteraction, type CanvasPlanBeat } from "./types";
-import { slug, validateCanvasSpec, validateInteraction, validationCuts } from "./validate";
+import { canvasSentences, validatePlan, withRefresherOnlyIfOffered } from "./plan";
+import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat } from "./types";
+import { slug, validateCanvasSpec, validationCuts } from "./validate";
 import { fallbackSpec } from "./fallback";
 import { figureComponent } from "../figures/registry";
 import { foreignFigureWords } from "../figures/foreignText";
 import { DRAWN_GUIDE, drawnFigure } from "../figures/drawn";
 import { findLibraryFigure, libraryAssetTitle, libraryStageAsset } from "../figures/library";
 import type { FigureComponent } from "../figures/types";
-import { saveCanvasImage, saveCanvasLecture, type CanvasLecture } from "./store";
+import { loadSharedCanvasImage, saveCanvasImage, saveCanvasLecture, saveSharedCanvasImage, type CanvasLecture } from "./store";
+import { boardStructureProblem, isDataStructureTopic, withoutStructure } from "./structure";
+import { equationProblem } from "./equationCheck";
 import { createOpenAI } from "../openaiClient";
 import { visualContractIssues } from "../curriculum/visualContract";
 import { applyLessonVisualPolicy, PHYSICAL } from "./visualPolicy";
@@ -130,9 +132,6 @@ function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanB
       : beat.interaction
         ? `"interaction": a "${beat.interaction}" interaction is REQUIRED on this board.`
         : `"interaction": null.`,
-    ...(beat.teachingCycle ? [
-      `PREDICT-THEN-REVEAL: the lecture pauses after sentence [${beat.teachingCycle.predict}] and shows the quiz. Its "question" MUST ask exactly what [${beat.teachingCycle.predict}] asks — same situation, same numbers, same direction of change: "${sentences[beat.teachingCycle.predict]}". The correct option gives, in a few words (at most 80 characters), the answer [${beat.teachingCycle.reveal}] then states: "${sentences[beat.teachingCycle.reveal]}" — a short answer, never that whole sentence. Nothing on the board may show that answer before sentence ${beat.teachingCycle.reveal}.`,
-    ] : []),
     `"overview": ${beat.overview}.`,
     ...(CHANGE_OF_STATE.test(`${beat.title} ${beat.brief} ${beat.script}`) && (beat.stage === "flow" || beat.stage === "scene")
       ? [`This board is about something TURNING INTO something else: the element that changes MUST carry "becomes" on the sentence where it changes.`]
@@ -161,19 +160,6 @@ function figureBrief(c: FigureComponent): string {
 
 /** Faults a board may still ship with when nothing better arrives in time; never meaning, numbers or answer timing. */
 const SOFT_GATES = new Set(["layout", "quiz", "student-view", "figure-data", "sync"]);
-
-const QUIZ_REPAIR_PROMPT = `You rewrite ONE multiple-choice prediction card on a lesson board so it passes every rule. Return JSON only: {"question": string, "options": [{"text": string, "correct": boolean, "feedback": string}]}.
-Rules: the question asks exactly the prediction the narration asks, names what it is about (it is read on its own), and is not a yes/no question. 4 options (3 only if there are exactly three sensible answers), exactly one correct, each a bare answer in one clause (no working, no explanation), parallel in grammar and similar in length. Every wrong option is a specific misconception real students hold about this idea, and its feedback names that mistake. Never "all/none of the above", "both", "neither", "the first/second statement".`;
-
-/** Repairs just the card of an otherwise releasable board — far cheaper than rewriting the board. */
-async function repairQuiz(openai: OpenAI, spec: CanvasBoardSpec, beat: CanvasPlanBeat, issues: string[]): Promise<{ interaction?: CanvasInteraction; costUsd: number }> {
-  const sentences = canvasSentences(beat.script);
-  const prediction = beat.teachingCycle ? sentences[beat.teachingCycle.predict] ?? "" : "";
-  const user = `Board: ${spec.heading}\nNarration: ${beat.script}\n${prediction ? `The prediction Aria asks: ${prediction}\n` : ""}Current card: ${JSON.stringify(spec.interaction)}\nWhat is wrong with it: ${issues.join("; ")}`;
-  const { json, costUsd } = await bounded(jsonCall(openai, SPEC_MODEL, QUIZ_REPAIR_PROMPT, user, 1500), 25_000, `quiz ${beat.id}`);
-  const interaction = validateInteraction({ kind: "quiz", ...(json as Record<string, unknown>) });
-  return { interaction: interaction?.kind === "quiz" ? interaction : undefined, costUsd };
-}
 
 /** The board review runs unless CANVAS_BOARD_REVIEW=off. */
 const BOARD_REVIEW = process.env.CANVAS_BOARD_REVIEW !== "off";
@@ -232,6 +218,15 @@ function drawnBeat(beat: CanvasPlanBeat, why = ""): CanvasPlanBeat {
 
 export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
   const sentences = canvasSentences(beat.script);
+  // A code board in a data-structures lesson draws the structure beside the code (lib/canvas/structure.ts).
+  const needsStructure = beat.stage === "structure" || (beat.stage === "code" && isDataStructureTopic(`${topic} ${beat.title} ${beat.brief}`));
+  const asked = needsStructure && beat.stage === "code"
+    ? [
+        ...extra,
+        `This board runs an operation on a DATA STRUCTURE: draw it in "structure" beside the code (pseudocode unless a language was asked for), and give every step the "ops" its lines perform, so the structure changes as each line is read. The stage looks like this (fill it with THIS board's structure and values):`,
+        `{"kind": "code", "language": "pseudocode", "reveal": "all", "lines": ["...", "..."], "structure": {"kind": "tree", "variant": "bst", "nodes": [{"id": "n50", "value": "50"}, {"id": "n30", "value": "30"}], "edges": [{"from": "n50", "to": "n30", "side": "left"}], "pointers": [{"name": "root", "to": "n50"}]}, "steps": [{"s": 0, "lines": [1], "ops": [{"op": "point", "name": "curr", "to": "n50"}]}, {"s": 1, "lines": [2, 3], "note": "30 < 50: go left", "ops": [{"op": "mark", "id": "n50", "as": "compare"}, {"op": "point", "name": "curr", "to": "n30"}]}]}`,
+      ]
+    : extra;
   let costUsd = 0;
   let lastError: string | undefined;
   let softest: { spec: CanvasBoardSpec; faults: number } | undefined;
@@ -256,13 +251,18 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat), clock, [...extra, `An earlier version of this board was rejected because ${why}. Teach it without that visual.`], true);
     return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd };
   };
+  // The code alone, kept when its structure could not be made right: plainer, never wrong.
+  let plainCode: CanvasBoardSpec | null = null;
+  // An equation board that still misses something after its retries: kept rather than replaced by
+  // a placeholder scene (its terms are whole now; only the check's last complaint is left).
+  let closestEquation: CanvasBoardSpec | null = null;
   for (let attempt = 1; attempt <= 3; attempt++) {
     // A retry is optional work: with too little time left the board falls back instead.
     // A second attempt still runs with 30 s left (one bounded call): with a 75 s floor most slow
     // boards skipped every retry and shipped the fallback.
     if (attempt > 1 && clock.left() < (attempt === 2 ? 30_000 : 75_000)) break;
     try {
-      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, lastError, extra), 6000), Math.min(45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
+      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, lastError, asked), needsStructure ? 9000 : 6000), Math.min(needsStructure ? 60_000 : 45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
       costUsd += c;
       const raw = json as Record<string, unknown>;
       // The plan decides the stage; a model that drifted to another one is corrected, not trusted.
@@ -327,12 +327,30 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           continue;
         }
       }
+      // No quiz on any board (owner's direction, 2026-10-16: no "Predict it"), even one the board model adds.
+      if (spec.interaction?.kind === "quiz") delete spec.interaction;
       if (beat.interaction && spec.interaction?.kind !== beat.interaction) {
         lastError = `the board must carry a "${beat.interaction}" interaction`;
         continue;
       }
       if (spec.interaction?.kind === "try" && spec.interaction.reactions.length < 2) {
         lastError = `the "try" interaction needs 3 to 5 reactions whose "when" conditions use only the slider variables (${spec.interaction.controls.map((c) => c.var).join(", ")})`;
+        continue;
+      }
+      if (spec.stage.kind === "equation") {
+        const problem = equationProblem((raw as { stage?: unknown }).stage, spec.stage, beat.script);
+        if (problem) {
+          closestEquation = spec;
+          lastError = problem;
+          console.warn(`[canvas] board ${beat.id}: ${problem}`);
+          continue;
+        }
+      }
+      const structureProblem = boardStructureProblem(spec, needsStructure);
+      if (structureProblem) {
+        plainCode = withoutStructure(spec) ?? plainCode;
+        lastError = structureProblem;
+        console.warn(`[canvas] board ${beat.id}: ${structureProblem}`);
         continue;
       }
       // Everything appears on the sentence that first says it (lib/canvas/narrationSync.ts) — the
@@ -364,29 +382,6 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         })(),
         ...(cut.length ? [{ gate: "layout", message: `text was cut to fit — rewrite each piece to fit its room (shorter wording, or split it over more items): ${cut.slice(0, 4).join("; ")}` }] : []),
       ];
-      // Only the card is wrong: repair the card alone, twice at most, instead of shipping it or
-      // rewriting a good board (a card with its worked answer inside an option shipped, 2026-10-17).
-      if (releaseFindings.length && releaseFindings.every((f) => f.gate === "quiz") && spec.interaction?.kind === "quiz") {
-        for (let fix = 0; fix < 2 && releaseFindings.length; fix++) {
-          try {
-            const repaired = await repairQuiz(openai, spec, beat, releaseFindings.map((f) => f.message));
-            costUsd += repaired.costUsd;
-            if (!repaired.interaction) continue;
-            const candidate = { ...spec, interaction: repaired.interaction };
-            const left = auditBoardForRelease(candidate, beat);
-            if (left.length < releaseFindings.length || !left.length) { spec.interaction = repaired.interaction; releaseFindings = left; }
-          } catch (error) {
-            costUsd += (error as { costUsd?: number }).costUsd ?? 0;
-          }
-        }
-        if (!releaseFindings.length) {
-          const review = await reviewBoard(openai, topic, spec, beat, reviews);
-          costUsd += review.costUsd;
-          if (review.ship) return { spec, costUsd, attempts: attempt };
-          releaseFindings = review.problems.map((p) => ({ gate: "review", message: `${p.kind}: ${p.detail}` })) as typeof releaseFindings;
-          if (review.problems.some((p) => VISUAL_FAULTS.has(p.kind))) visualRejections++;
-        }
-      }
       if (!releaseFindings.length) {
         // Passed every rule: the review judges what the student will see.
         const review = await reviewBoard(openai, topic, spec, beat, reviews);
@@ -420,6 +415,11 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       return { spec: softest.spec, costUsd, attempts: 3 };
     }
     if (review.problems.some((p) => VISUAL_FAULTS.has(p.kind))) visualRejections++;
+  }
+  if (closestEquation) return { spec: closestEquation, costUsd, attempts: 3 };
+  if (plainCode) {
+    console.warn(`[canvas] board ${beat.id}: kept as code without its structure`);
+    return { spec: plainCode, costUsd, attempts: 3 };
   }
   if (visualRejections >= 1 && !plain && (beat.stage === "figure" || beat.stage === "graph" || beat.stage === "illustration") && clock.left() > 40_000) return rebuildPlain(lastError ?? "its visual did not fit the narration");
   console.log(`[canvas] ${beat.id}: every attempt failed — last reason: ${lastError ?? "time budget"}`);
@@ -566,14 +566,9 @@ export async function generateCanvasLecture(topic: string, userId: string, onPro
   for (let attempt = 1; attempt <= 2 && !plan && clock.left() > 110_000; attempt++) {
     const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, `Topic: ${topic}`, 9000), Math.min(85_000, clock.left() - 100_000), "plan");
     costUsd += c;
-    plan = validatePlan(json);
-    if (plan) {
-      const problems = plan.beats.flatMap((beat) => teachingCycleIssues(beat).map((issue) => `${beat.title}: ${issue}`));
-      if (problems.length) {
-        log.push(`plan attempt ${attempt} rejected: ${problems.slice(0, 6).join("; ")}`);
-        plan = null;
-      }
-    }
+    const valid = validatePlan(json);
+    // No student knowledge here, so no refresher was offered (lib/canvas/plan.ts).
+    plan = valid && withRefresherOnlyIfOffered(valid, false);
   }
   if (!plan) throw new Error("the lesson plan could not be made");
   const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: "prompt", findAsset: findLibraryFigure });

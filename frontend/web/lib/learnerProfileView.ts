@@ -1,6 +1,7 @@
 import type { LearnerBasics, LearnerOption } from "./db/cosmos";
 import type { ConceptMemory, LearnerMemory } from "./learnerModel";
 import { subjectForTopic } from "./education";
+import { effectiveLearner } from "./learnerBasics";
 
 /**
  * THE LEARNER PROFILE AS IT STANDS — the basics the student gave (onboarding screen 1) joined with
@@ -80,7 +81,8 @@ export function preferredExplanation(memory: LearnerMemory | null | undefined): 
 }
 
 export function learnerProfileView(basics: LearnerBasics | null | undefined, memory: LearnerMemory | null | undefined, now = Date.now()): LearnerProfileView {
-  const b = basics ?? null;
+  // One source: the Study level and its exam (lib/learnerBasics.ts effectiveLearner).
+  const b = basics ? effectiveLearner(basics) : null;
   const bySubject = new Map<string, SubjectProfile>();
   const slot = (subject: LearnerOption | null): SubjectProfile => {
     const key = subject?.id ?? "__other";
@@ -174,10 +176,7 @@ export function learnerContextForPrompt(view: LearnerProfileView, prefs: Teachin
   if (b?.subjects.length) lines.push(`Subjects: ${b.subjects.map((s) => s.label).join(", ")}.`);
   for (const s of view.subjects) {
     const name = s.subject?.label ?? "Other topics";
-    const ownCurricula = s.subject && b?.subjectCurricula?.[s.subject.id]?.length ? s.curricula : [];
     const bits = [
-      s.studyLevel && s.subject && b?.subjectLevels?.[s.subject.id] ? `level ${s.studyLevel.label}` : "",
-      ownCurricula.length ? `studying for ${ownCurricula.map((c) => c.label).join(", ")}` : "",
       s.mastered.length ? `mastered ${s.mastered.slice(0, 4).map((c) => c.label).join(", ")}` : "",
       s.strong.length ? `strong on ${s.strong.slice(0, 4).map((c) => c.label).join(", ")}` : "",
       s.weakConcepts.length ? `weak on ${s.weakConcepts.slice(0, 4).map((c) => c.label).join(", ")}` : "",

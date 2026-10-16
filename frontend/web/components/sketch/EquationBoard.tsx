@@ -22,7 +22,7 @@ import type { EquationSpec } from "@/lib/equationSpec";
  * Each step also carries WHY it follows from the one above. That is the part a picture of an
  * equation always loses, and the part a student actually needs.
  */
-export function EquationBoard({ spec, progress = 0 }: { spec: EquationSpec; progress?: number }) {
+export function EquationBoard({ spec, progress = 0, card = false }: { spec: EquationSpec; progress?: number; card?: boolean }) {
   // Typeset once. Every string was already vetted by validateEquationSpec with throwOnError, so
   // throwOnError:false here is a formality rather than a way of quietly rendering broken maths.
   const html = useMemo(
@@ -32,6 +32,25 @@ export function EquationBoard({ spec, progress = 0 }: { spec: EquationSpec; prog
 
   // Steps share the timeline evenly, with a short lead-in so the first line is not present at 0.
   const shown = Math.floor(Math.max(0, Math.min(1, progress)) * (spec.steps.length + 0.4));
+
+  /*
+   * A FORMULA CARD — the answer to "what is the formula for…?" (app/api/explain/route.ts). The
+   * formula is the whole answer, so it is shown large and at once, centred, with what its symbols
+   * mean beneath it: nothing else on the card competes with it.
+   */
+  if (card) {
+    return (
+      <section data-board="formula" className="flex h-full w-full flex-col items-center justify-center gap-8 overflow-auto rounded-xl border border-slate-200 bg-white p-8 text-slate-900">
+        {spec.title && <h3 className="text-center text-lg font-black text-slate-500">{spec.title}</h3>}
+        {spec.steps.map((step, i) => (
+          <div key={i} data-step={i} className="flex max-w-full flex-col items-center gap-3">
+            <div className={`max-w-full overflow-x-auto ${i === 0 ? "text-[2.1rem]" : "text-[1.45rem] text-slate-700"}`} dangerouslySetInnerHTML={{ __html: html[i] }} />
+            {step.why && <p className="text-center text-base font-semibold text-amber-700">{step.why}</p>}
+          </div>
+        ))}
+      </section>
+    );
+  }
 
   return (
     <section

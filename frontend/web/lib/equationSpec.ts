@@ -137,8 +137,13 @@ export function repairTex(raw: string): { tex: string } | { error: string } {
  * The rejects matter as much as the steps. An engine reporting "fewer than two steps compiled"
  * gives whoever sees it nowhere to go — that exact message is how this bug stayed hidden — whereas
  * "KaTeX parse error: Undefined control sequence \foo" names the problem.
+ *
+ * `formula`: a FORMULA CARD (the answer to "what is the formula for…?") — one line is the whole answer
+ * there, so a single step is enough, and at most three are kept (the formula, the lesson's numbers in it).
  */
-export function parseEquationSpec(raw: unknown): { spec: EquationSpec | null; rejected: RejectedStep[] } {
+export function parseEquationSpec(raw: unknown, mode: { formula?: boolean } = {}): { spec: EquationSpec | null; rejected: RejectedStep[] } {
+  const minSteps = mode.formula ? 1 : MIN_STEPS;
+  const maxSteps = mode.formula ? 3 : MAX_STEPS;
   const rejected: RejectedStep[] = [];
   if (!raw || typeof raw !== "object") return { spec: null, rejected };
   const o = raw as Record<string, unknown>;
@@ -146,7 +151,7 @@ export function parseEquationSpec(raw: unknown): { spec: EquationSpec | null; re
   const rawSteps = Array.isArray(o.steps) ? o.steps : [];
   const steps: EquationStep[] = [];
   for (const entry of rawSteps) {
-    if (steps.length >= MAX_STEPS) break;
+    if (steps.length >= maxSteps) break;
     if (!entry || typeof entry !== "object") continue;
     const s = entry as Record<string, unknown>;
     const candidate = typeof s.tex === "string" ? s.tex.trim() : "";
@@ -165,7 +170,7 @@ export function parseEquationSpec(raw: unknown): { spec: EquationSpec | null; re
     steps.push({ tex: repaired.tex, why: text(s.why, 80) });
   }
 
-  if (steps.length < MIN_STEPS) return { spec: null, rejected };
+  if (steps.length < minSteps) return { spec: null, rejected };
   return { spec: { title: text(o.title, 80), steps }, rejected };
 }
 

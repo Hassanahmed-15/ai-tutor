@@ -3,7 +3,6 @@ import assert from "node:assert/strict";
 import { applyLessonVisualPolicy } from "../canvas/visualPolicy";
 import { quizIssues } from "../canvas/quizLint";
 import { argand, argandData, cartesianText, parseComplex, parseLocus } from "../figures/components/argand";
-import { teachingCycleIssues } from "../canvas/predict";
 import { canvasSentences, teachingCycle } from "../canvas/plan";
 import type { CanvasInteraction, CanvasPlanBeat, CanvasStage } from "../canvas/types";
 
@@ -43,12 +42,10 @@ test("quiz lint: yes/no cards and cards that point back at the narration are sen
   assert.deepEqual(quizIssues(quiz("If demand for a normal good rises, what happens to equilibrium price?", ["Price rises", "Price falls", "Price stays the same"]), "demand price equilibrium normal good"), []);
 });
 
-test("a lesson taught in Urdu has sentences, a prediction and a transfer", () => {
+test("a lesson taught in Urdu has its sentences, and no prediction pause (2026-10-16)", () => {
   const script = "مضمون کا آغاز ایک دلچسپ جملے سے ہوتا ہے۔ پھر ہر پیراگراف ایک خیال پیش کرتا ہے۔ اگر آغاز کمزور ہو تو قاری پر کیا اثر پڑے گا؟ قاری دلچسپی کھو دیتا ہے اور آگے نہیں پڑھتا۔ اب ایک نئے موضوع، جیسے صفائی کی اہمیت، پر مضمون کا مضبوط آغاز لکھیے۔";
   assert.equal(canvasSentences(script).length, 5);
-  const { cycle } = teachingCycle(script, "quiz", false);
-  assert.ok(cycle && cycle.predict === 2 && cycle.reveal === 3);
-  assert.deepEqual(teachingCycleIssues({ script, interaction: "quiz", teachingCycle: cycle, overview: false, refresher: false }), []);
+  assert.deepEqual(teachingCycle(script, "quiz", false), { interaction: null, cycle: undefined });
 });
 
 test("a graph with no quantity on it is drawn as a flow; a real graph stays", () => {

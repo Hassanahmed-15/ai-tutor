@@ -17,7 +17,15 @@ export type EduOption = { id: string; label: string; custom?: boolean };
 /** Every level falls in one of these bands, so curricula can say which levels they belong to. */
 export type LevelBand = "primary" | "middle" | "secondary" | "senior" | "undergrad" | "postgrad" | "professional";
 
-export type LevelOption = EduOption & { band: LevelBand };
+export type LevelOption = EduOption & {
+  band: LevelBand;
+  /** How the chips group it ("Pakistan boards", "Cambridge", "Entry tests", ...). */
+  group?: string;
+  /** The syllabus or exam this level IS, when it is one: what research and teaching follow. */
+  exam?: string;
+  /** How the level is said in a search query ("A Level", "undergraduate (university)"). */
+  words?: string;
+};
 
 /* ------------------------------------------------------------------ countries */
 
@@ -45,81 +53,155 @@ const GULF = ["AE", "SA", "QA", "KW", "BH", "OM"];
 
 /* ------------------------------------------------------------------ study levels */
 
-const l = (id: string, label: string, band: LevelBand): LevelOption => ({ id, label, band });
+const l = (id: string, label: string, band: LevelBand, group?: string): LevelOption => ({ id, label, band, ...(group ? { group } : {}) });
 
-/** Study levels by country: local names first, in the order a student moves through them. */
+/**
+ * A level that IS an exam or a syllabus (owner's direction, 2026-10-15: "add all sorts of exams —
+ * MDCAT, A Level, O Level, IGCSE — to Study level, to get the particular curriculum"). `exam` is the
+ * syllabus Aria teaches and searches for (lib/lessonIntent.ts, lib/webResearch.ts); `words` is how
+ * the level is said in a search query. Study level is now the ONE place a student says what they
+ * are studying for: the separate curriculum field and the per-subject levels were removed.
+ */
+const x = (id: string, label: string, band: LevelBand, group: string, exam: string | undefined, words: string): LevelOption => ({ id, label, band, group, ...(exam ? { exam } : {}), words });
+
+const LV = {
+  // Pakistan boards
+  matric: x("pk-matric-ssc", "Matric (SSC)", "secondary", "Pakistan boards", "Matric (SSC) Pakistan board", "Matric (SSC, Pakistan)"),
+  fscPreMed: x("pk-fsc-premed", "FSc Pre-Medical", "senior", "Pakistan boards", "FSc Pre-Medical (HSSC, Pakistan)", "FSc (HSSC, Pakistan)"),
+  fscPreEng: x("pk-fsc-preeng", "FSc Pre-Engineering", "senior", "Pakistan boards", "FSc Pre-Engineering (HSSC, Pakistan)", "FSc (HSSC, Pakistan)"),
+  ics: x("pk-ics", "ICS (Computer Science)", "senior", "Pakistan boards", "ICS (HSSC Computer Science, Pakistan)", "ICS (HSSC, Pakistan)"),
+  icom: x("pk-icom", "I.Com (Commerce)", "senior", "Pakistan boards", "I.Com (HSSC Commerce, Pakistan)", "I.Com (HSSC, Pakistan)"),
+  // Cambridge International
+  oLevel: x("o-level", "O Level", "secondary", "Cambridge", "Cambridge O Level", "O Level"),
+  igcse: x("igcse", "IGCSE", "secondary", "Cambridge", "Cambridge IGCSE", "IGCSE"),
+  aLevelCie: x("cambridge-a-level", "AS & A Level", "senior", "Cambridge", "Cambridge International AS & A Level", "A Level"),
+  // UK boards
+  gcse: x("gcse-uk", "GCSE", "secondary", "UK", "GCSE", "GCSE"),
+  aLevelUk: x("a-level-uk", "A Level (UK boards)", "senior", "UK", "A Level", "A Level"),
+  // Entry tests
+  mdcat: x("mdcat", "MDCAT", "senior", "Entry tests", "MDCAT (Pakistan medical entry test)", "MDCAT"),
+  ecat: x("ecat", "ECAT", "senior", "Entry tests", "ECAT (Pakistan engineering entry test)", "ECAT"),
+  net: x("nust-net", "NUST NET", "senior", "Entry tests", "NUST Entry Test (NET)", "NUST NET"),
+  sat: x("sat", "SAT", "senior", "Entry tests", "SAT", "SAT"),
+  act: x("act", "ACT", "senior", "Entry tests", "ACT", "ACT"),
+  jee: x("jee", "JEE", "senior", "Entry tests", "JEE (India engineering entrance)", "JEE"),
+  neet: x("neet", "NEET", "senior", "Entry tests", "NEET (India medical entrance)", "NEET"),
+  // International
+  ib: x("ib-dp", "IB Diploma", "senior", "International", "IB Diploma", "IB Diploma"),
+  ap: x("ap", "AP (Advanced Placement)", "senior", "International", "AP (Advanced Placement)", "AP"),
+  // University and beyond
+  undergrad: x("undergrad", "Undergraduate", "undergrad", "University", undefined, "undergraduate (university)"),
+  mbbs: x("medical-school", "Medical school (MBBS)", "undergrad", "University", "MBBS", "medical school (MBBS)"),
+  postgrad: x("postgrad", "Postgraduate", "postgrad", "University", undefined, "postgraduate"),
+  professional: x("professional", "Professional study", "professional", "University", undefined, "professional"),
+  bootcamp: x("bootcamp", "Bootcamp / self-taught", "professional", "University", undefined, "self-taught / bootcamp"),
+};
+
+/**
+ * Levels a profile may still hold from before 2026-10-15: the combined options that named two
+ * things at once ("Matric (SSC) / O-Level"). Never offered again, but they keep resolving (band and
+ * exam) so an existing profile is taught exactly as it was until the student picks a new level.
+ */
+export const LEGACY_LEVELS: LevelOption[] = [
+  { id: "pk-matric", label: "Matric (SSC) / O-Level", band: "secondary", exam: "Cambridge O Level", words: "O Level" },
+  { id: "pk-inter", label: "Intermediate (HSSC / FSc) / A-Level", band: "senior", exam: "Cambridge International AS & A Level", words: "A Level" },
+  { id: "gb-gcse", label: "GCSE / O-Level (Years 10–11)", band: "secondary", exam: "GCSE", words: "GCSE" },
+  { id: "gb-alevel", label: "A-Level / Sixth form (Years 12–13)", band: "senior", exam: "A Level", words: "A Level" },
+  { id: "gcse", label: "IGCSE / O-Level / Grade 10", band: "secondary", exam: "Cambridge IGCSE", words: "IGCSE" },
+];
+
+/** Study levels by country: local names first, then the exams students there sit, then university. */
 export function studyLevelsFor(country: string | null | undefined): LevelOption[] {
   const c = (country ?? "").toUpperCase();
+  const s = (id: string, label: string, band: LevelBand) => l(id, label, band, "School");
+  const university = [LV.undergrad, LV.postgrad, LV.professional];
   if (c === "GB") return [
-    l("gb-primary", "Primary school", "primary"),
-    l("gb-ks3", "Secondary school (Years 7–9)", "middle"),
-    l("gb-gcse", "GCSE / O-Level (Years 10–11)", "secondary"),
-    l("gb-alevel", "A-Level / Sixth form (Years 12–13)", "senior"),
-    l("undergrad", "Undergraduate", "undergrad"),
-    l("postgrad", "Postgraduate", "postgrad"),
-    l("professional", "Professional study", "professional"),
+    s("gb-primary", "Primary school", "primary"),
+    s("gb-ks3", "Secondary school (Years 7–9)", "middle"),
+    LV.gcse, LV.aLevelUk, LV.igcse, LV.aLevelCie, LV.ib,
+    ...university,
   ];
   if (c === "US") return [
-    l("us-elementary", "Elementary", "primary"),
-    l("us-middle", "Middle School", "middle"),
-    l("us-high", "High School", "senior"),
-    l("undergrad", "Undergraduate", "undergrad"),
-    l("us-grad", "Graduate", "postgrad"),
-    l("postgrad", "Postgraduate / Doctoral", "postgrad"),
-    l("professional", "Professional study", "professional"),
+    s("us-elementary", "Elementary", "primary"),
+    s("us-middle", "Middle School", "middle"),
+    s("us-high", "High School", "senior"),
+    LV.ap, LV.sat, LV.act, LV.ib,
+    LV.undergrad,
+    l("us-grad", "Graduate", "postgrad", "University"),
+    LV.postgrad, LV.professional,
   ];
   if (c === "PK") return [
-    l("pk-primary", "Primary", "primary"),
-    l("pk-middle", "Middle (Grades 6–8)", "middle"),
-    l("pk-matric", "Matric (SSC) / O-Level", "secondary"),
-    l("pk-inter", "Intermediate (HSSC / FSc) / A-Level", "senior"),
-    l("undergrad", "Undergraduate", "undergrad"),
-    l("postgrad", "Postgraduate", "postgrad"),
-    l("professional", "Professional study", "professional"),
+    s("pk-primary", "Primary", "primary"),
+    s("pk-middle", "Middle (Grades 6–8)", "middle"),
+    LV.matric, LV.fscPreMed, LV.fscPreEng, LV.ics, LV.icom,
+    LV.oLevel, LV.igcse, LV.aLevelCie,
+    LV.mdcat, LV.ecat, LV.net, LV.sat,
+    LV.ib, LV.ap,
+    LV.undergrad, LV.mbbs, LV.postgrad, LV.professional, LV.bootcamp,
   ];
   if (c === "IN") return [
-    l("in-primary", "Primary (Classes 1–5)", "primary"),
-    l("in-middle", "Middle School (Classes 6–8)", "middle"),
-    l("in-secondary", "Secondary (Classes 9–10)", "secondary"),
-    l("in-senior", "Senior Secondary (Classes 11–12)", "senior"),
-    l("undergrad", "Undergraduate", "undergrad"),
-    l("postgrad", "Postgraduate", "postgrad"),
-    l("professional", "Professional study", "professional"),
+    s("in-primary", "Primary (Classes 1–5)", "primary"),
+    s("in-middle", "Middle School (Classes 6–8)", "middle"),
+    s("in-secondary", "Secondary (Classes 9–10)", "secondary"),
+    s("in-senior", "Senior Secondary (Classes 11–12)", "senior"),
+    LV.jee, LV.neet, LV.igcse, LV.ib, LV.sat,
+    ...university,
   ];
   if (c === "AU" || c === "NZ") return [
-    l("au-primary", "Primary school", "primary"),
-    l("au-secondary", "Secondary school (Years 7–10)", "middle"),
-    l("au-senior", "Senior secondary (Years 11–12)", "senior"),
-    l("undergrad", "Undergraduate", "undergrad"),
-    l("postgrad", "Postgraduate", "postgrad"),
-    l("professional", "Professional study", "professional"),
+    s("au-primary", "Primary school", "primary"),
+    s("au-secondary", "Secondary school (Years 7–10)", "middle"),
+    s("au-senior", "Senior secondary (Years 11–12)", "senior"),
+    LV.ib,
+    ...university,
   ];
   if (c === "CA") return [
-    l("ca-elementary", "Elementary", "primary"),
-    l("ca-middle", "Middle School / Junior High", "middle"),
-    l("ca-high", "High School", "senior"),
-    l("undergrad", "Undergraduate", "undergrad"),
-    l("postgrad", "Graduate / Postgraduate", "postgrad"),
-    l("professional", "Professional study", "professional"),
+    s("ca-elementary", "Elementary", "primary"),
+    s("ca-middle", "Middle School / Junior High", "middle"),
+    s("ca-high", "High School", "senior"),
+    LV.ap, LV.ib, LV.sat,
+    LV.undergrad,
+    l("postgrad", "Graduate / Postgraduate", "postgrad", "University"),
+    LV.professional,
   ];
-  if (GULF.includes(c)) return [
-    l("primary", "Primary", "primary"),
-    l("middle", "Middle School", "middle"),
-    l("gcse", "IGCSE / O-Level / Grade 10", "secondary"),
-    l("senior", "High School / A-Level / IB (Grades 11–12)", "senior"),
-    l("undergrad", "Undergraduate", "undergrad"),
-    l("postgrad", "Postgraduate", "postgrad"),
-    l("professional", "Professional study", "professional"),
+  if (GULF.includes(c) || ["BD", "LK", "MU", "SG"].includes(c)) return [
+    s("primary", "Primary", "primary"),
+    s("middle", "Middle School", "middle"),
+    LV.igcse, LV.oLevel, LV.aLevelCie, LV.ib, LV.ap, LV.sat,
+    ...university,
   ];
   return [
-    l("primary", "Primary / Elementary", "primary"),
-    l("middle", "Middle School", "middle"),
-    l("secondary", "Secondary / High School", "secondary"),
-    l("senior", "Upper secondary / Pre-university", "senior"),
-    l("undergrad", "Undergraduate", "undergrad"),
-    l("postgrad", "Postgraduate", "postgrad"),
-    l("professional", "Professional study", "professional"),
+    s("primary", "Primary / Elementary", "primary"),
+    s("middle", "Middle School", "middle"),
+    s("secondary", "Secondary / High School", "secondary"),
+    s("senior", "Upper secondary / Pre-university", "senior"),
+    LV.igcse, LV.aLevelCie, LV.ib, LV.ap, LV.sat,
+    ...university,
   ];
+}
+
+/** Custom-typed levels ("a level", "mdcat prep"): the catalogue level they name, when they name one. */
+const LEVEL_PATTERNS: Array<[RegExp, LevelOption]> = [
+  [/mdcat/i, LV.mdcat], [/\becat\b/i, LV.ecat], [/\bnet\b|nust/i, LV.net], [/\bjee\b/i, LV.jee], [/\bneet\b/i, LV.neet],
+  [/igcse/i, LV.igcse], [/o[- ]?levels?/i, LV.oLevel], [/\bgcse\b/i, LV.gcse],
+  [/pre[- ]?med/i, LV.fscPreMed], [/pre[- ]?eng/i, LV.fscPreEng], [/\bics\b/i, LV.ics], [/i\.?\s?com\b/i, LV.icom],
+  [/\bfsc\b|\bhssc\b|intermediate/i, LV.fscPreMed], [/a[- ]?levels?|sixth form/i, LV.aLevelCie],
+  [/matric|\bssc\b/i, LV.matric], [/\bib\b|baccalaureate/i, LV.ib], [/\bap\b|advanced placement/i, LV.ap],
+  [/\bsat\b/i, LV.sat], [/\bact\b/i, LV.act], [/mbbs|medical school/i, LV.mbbs],
+  [/undergrad|bachelor|\bbs\b|\bbsc\b|university|college/i, LV.undergrad], [/postgrad|master|phd|doctor/i, LV.postgrad],
+];
+
+/**
+ * THE EXAM A STUDY LEVEL STANDS FOR, and how to say it in a search: from the catalogue by id
+ * (including LEGACY_LEVELS), or — for a level the student typed themselves — the catalogue level its
+ * words name. Null `exam` for a level with no syllabus (undergraduate, a school grade).
+ */
+export function examForLevel(level: EduOption | null | undefined): { exam: string | null; words: string | null } | null {
+  if (!level) return null;
+  const known = [...allStudyLevels(), ...LEGACY_LEVELS].find((o) => o.id === level.id);
+  if (known) return { exam: known.exam ?? null, words: known.words ?? known.label };
+  const named = LEVEL_PATTERNS.find(([re]) => re.test(level.label))?.[1];
+  if (named) return { exam: named.exam ?? null, words: named.words ?? named.label };
+  return { exam: null, words: level.label || null };
 }
 
 /**
@@ -136,11 +218,11 @@ export function studyLevelOptions(country: string | null | undefined, subjects: 
   const groups = new Set(subjects.map(subjectGroup).filter((g): g is SubjectGroup => Boolean(g)));
   const extras: LevelOption[] = [];
   if (groups.has("medicine")) {
-    extras.push(l("medical-school", "Medical school (MBBS / MD)", "undergrad"), l("residency", "Residency / specialty training", "postgrad"));
+    extras.push(l("medical-school", "Medical school (MBBS / MD)", "undergrad", "University"), l("residency", "Residency / specialty training", "postgrad", "University"));
   }
-  if (groups.has("law")) extras.push(l("law-school", "Law school (LLB / JD)", "undergrad"));
-  if (groups.has("business")) extras.push(l("prof-qualification", "Professional qualification (ACCA / CFA / CPA)", "professional"));
-  if (groups.has("computing")) extras.push(l("bootcamp", "Bootcamp / self-taught", "professional"));
+  if (groups.has("law")) extras.push(l("law-school", "Law school (LLB / JD)", "undergrad", "University"));
+  if (groups.has("business")) extras.push(l("prof-qualification", "Professional qualification (ACCA / CFA / CPA)", "professional", "University"));
+  if (groups.has("computing")) extras.push(l("bootcamp", "Bootcamp / self-taught", "professional", "University"));
   const universityOnly = groups.size > 0 && [...groups].every((g) => g === "medicine" || g === "law" || g === "engineering");
   const tertiary = (x: LevelOption) => x.band === "undergrad" || x.band === "postgrad" || x.band === "professional";
   const ordered = universityOnly ? [...extras, ...base.filter(tertiary), ...base.filter((x) => !tertiary(x))] : [...base, ...extras];
@@ -159,7 +241,7 @@ export function allStudyLevels(): LevelOption[] {
 
 export function levelBand(level: EduOption | null | undefined): LevelBand | null {
   if (!level) return null;
-  const known = allStudyLevels().find((x) => x.id === level.id);
+  const known = [...allStudyLevels(), ...LEGACY_LEVELS].find((x) => x.id === level.id);
   if (known) return known.band;
   const t = level.label.toLowerCase();
   if (/primary|elementary|grade [1-5]\b/.test(t)) return "primary";

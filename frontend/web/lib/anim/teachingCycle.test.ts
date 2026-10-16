@@ -1,56 +1,33 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { addTransferPrompt, teachingCycle, validatePlan } from "../canvas/plan";
-import { validateInteraction } from "../canvas/validate";
+import { teachingCycle, validatePlan } from "../canvas/plan";
+import { OLD_TRANSFER_PROMPT, withoutOldTransferPrompt } from "../canvas/oldTransferPrompt";
+import { splitNarrationSentences } from "../voice";
 
-test("Phase 4 adds the teach-predict-reveal-transfer slots locally", () => {
-  const cycle = teachingCycle("Teach the idea. Predict: what changes if it doubles? Reveal why. Apply it to a new case.", null, false);
-  assert.equal(cycle.interaction, "quiz");
-  assert.deepEqual(cycle.cycle, { teach: 0, predict: 1, reveal: 2, transfer: 3 });
+/* No "Predict it" in any lecture (owner's direction, 2026-10-16): no quiz, no pause for an answer. */
+
+test("no board is given a quiz or a predict/reveal cycle, however its script or plan reads", () => {
+  const script = "Teach the idea. Predict: what changes if it doubles? Reveal why. Apply it to a new case.";
+  assert.deepEqual(teachingCycle(script, null, false), { interaction: null, cycle: undefined });
+  assert.deepEqual(teachingCycle(script, "quiz", false), { interaction: null, cycle: undefined }, "a planned quiz is dropped too");
+  const plan = validatePlan({ beats: [{ title: "Forces", script: "We teach force. What changes if mass doubles? The answer follows from F equals ma. Apply it to a bicycle.", stage: "equation", objects: ["force"], interaction: "quiz" }] });
+  assert.equal(plan?.beats[0].interaction, null);
+  assert.equal(plan?.beats[0].teachingCycle, undefined);
 });
 
-test("Phase 4 preserves hands-on interactions and does not add work to recap boards", () => {
+test("a hands-on task the plan asked for stays: a slider or a drawing is the skill", () => {
   assert.equal(teachingCycle("Explain it. Try it.", "try", false).interaction, "try");
-  assert.equal(teachingCycle("Explain it. Summarise it.", null, true).interaction, null);
-  assert.equal(teachingCycle("One sentence only.", null, false).cycle, undefined);
+  assert.equal(teachingCycle("Explain it. Draw it.", "draw", false).interaction, "draw");
+  assert.equal(validatePlan({ beats: [{ title: "Light", script: "Light drives the rate. Move the slider and watch.", stage: "graph", objects: ["rate"], interaction: "try" }] })?.beats[0].interaction, "try");
 });
 
-test("validated plans give substantive boards a prediction interaction without another model call", () => {
-  const plan = validatePlan({ beats: [{ title: "Forces", script: "We teach force. What changes if mass doubles? The answer follows from F equals ma. Apply it to a bicycle.", stage: "equation", objects: ["force"] }] });
-  assert.equal(plan?.beats[0].interaction, "quiz");
-  assert.deepEqual(plan?.beats[0].teachingCycle, { teach: 0, predict: 1, reveal: 2, transfer: 3 });
-  assert.equal(validateInteraction({ kind: "quiz", question: "What changes?", options: [
-    { text: "A", correct: true, feedback: "Because the mass changes." },
-    { text: "B", correct: false, feedback: "This ignores the formula." },
-    { text: "C", correct: false, feedback: "That reverses the relationship." },
-  ] })?.kind, "quiz");
-});
-
-test("the cycle is anchored on the script's own Predict sentence, wherever it is", () => {
-  // F board 3 of the 2026-10-15 audit: position-based slots pointed the quiz at sentence 2.
-  const script = "The demand curve slopes downward. A higher real interest rate makes borrowing more costly. A lower real interest rate makes borrowing less costly. Predict: when the real interest rate rises from 4 percent to 6 percent, what happens to quantity demanded? It falls to 600 billion dollars. This is movement along the curve.";
-  assert.deepEqual(teachingCycle(script, null, false).cycle, { teach: 0, predict: 3, reveal: 4, transfer: 5 });
-  assert.equal(teachingCycle("Teach it. Explain it. Apply it.", null, false).cycle, undefined, "no prediction, no cycle");
-});
-
-test("a board ending on its answer is kept as written — no filler line — and a real transfer is preserved", async () => {
-  const { teachingCycleIssues } = await import("../canvas/predict");
-  const weak = validatePlan({ beats: [{ title: "Forces", script: "Force changes motion. Predict: what happens if mass doubles? Acceleration halves. This is the force relationship.", stage: "equation", objects: ["force"] }] })!.beats[0];
-  assert.deepEqual(teachingCycleIssues(weak), []);
-  assert.doesNotMatch(weak.script, /try the same reasoning on a new example/i, "the filler line read out on every board is gone (audit 2026-10-17)");
-  const transfer = validatePlan({ beats: [{ title: "Forces", script: "Force changes motion. Predict: what happens if mass doubles? Acceleration halves. Apply the same reasoning to a loaded bicycle.", stage: "equation", objects: ["force"] }] })!.beats[0];
-  assert.deepEqual(teachingCycleIssues(transfer), []);
-  assert.equal(addTransferPrompt("Teach. Predict: what happens? The answer is clear. Apply it to a new case.", "Forces", null, false), "Teach. Predict: what happens? The answer is clear. Apply it to a new case.");
-  assert.match(addTransferPrompt("Teach it. Predict what changes. It doubles.", "Rates", null, false), /Predict what changes\?/);
-});
-
-test("Week 4 catches an answer printed before the prediction reveal", async () => {
-  const { predictionRevealIssues } = await import("../canvas/predict");
-  const beat = validatePlan({ beats: [{ title: "Rates", script: "Rate links amount and time. Predict: what is the rate for 600 grams in 3 seconds? The rate is 200 grams per second. Apply it to 900 grams in 3 seconds.", stage: "scene", objects: ["rate"] }] })!.beats[0];
-  const early = { v: 1 as const, heading: "Rate", notes: [{ id: "answer", text: "200 grams per second", s: 0 }], stage: { kind: "scene" as const, items: [{ id: "rate", kind: "text" as const, label: "Rate", cell: "C3", s: 0 }], arrows: [] }, cues: [] };
-  assert.match(predictionRevealIssues(early, beat).join(" "), /200|already printed/);
-  early.notes[0].s = beat.teachingCycle!.reveal;
-  assert.deepEqual(predictionRevealIssues(early, beat), []);
+test("the old 'Now try the same reasoning…' ending is never added, and is taken off old scripts and the voice", () => {
+  const ended = `Force changes motion. Acceleration halves when mass doubles. ${OLD_TRANSFER_PROMPT}`;
+  const plan = validatePlan({ beats: [{ title: "Forces", script: ended, stage: "equation", objects: ["force"] }] })!;
+  assert.equal(plan.beats[0].script, "Force changes motion. Acceleration halves when mass doubles.");
+  assert.equal(validatePlan({ beats: [{ title: "Forces", script: "Force changes motion. Predict: what happens if mass doubles? Acceleration halves.", stage: "equation", objects: ["force"] }] })!.beats[0].script, "Force changes motion. Predict: what happens if mass doubles? Acceleration halves.", "nothing is appended");
+  assert.deepEqual(splitNarrationSentences(ended), ["Force changes motion.", "Acceleration halves when mass doubles."]);
+  assert.equal(withoutOldTransferPrompt("No ending here."), "No ending here.");
 });
 
 test("a quiz must ask what the spoken prediction asked", async () => {
@@ -89,7 +66,7 @@ test("last-attempt repairs: a crossing arrow and a contradicting graph label are
   const { layoutPanel } = await import("../canvas/layout");
   const { dropCrossingArrows } = await import("../canvas/layoutQa");
   const { dropContradictingPoints } = await import("../canvas/graphCheck");
-  const raw = JSON.parse(fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), "fixtures-g2-flow.json"), "utf8"));
+  const raw = JSON.parse(fs.readFileSync(path.join(process.cwd(), "lib", "anim", "fixtures-g2-flow.json"), "utf8"));
   const spec = validateCanvasSpec(raw, 6)!;
   const fixed = dropCrossingArrows(spec, layoutPanel(spec));
   assert.ok(fixed.stage.kind === "flow" && !fixed.stage.arrows.some((a) => a.id === "reuse-arrow"));

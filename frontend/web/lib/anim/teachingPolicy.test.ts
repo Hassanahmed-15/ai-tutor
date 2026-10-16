@@ -76,7 +76,8 @@ test("preferences change what a lesson leans on, never take the board or the voi
   const p = policyFor("Grade 9", { helps: ["pictures", "try-it", "real-life"], interests: ["sports", "space"], goal: "exams" });
   const plan = policyForCanvasPlan(p);
   assert.match(plan, /Lean on pictures/);
-  assert.match(plan, /carries a quiz/);
+  assert.match(plan, /a board carries a try/);
+  assert.doesNotMatch(plan, /quiz|predict/i, "no prediction pause (2026-10-16)");
   assert.match(plan, /cricket, football/, "examples from their interests");
   assert.match(plan, /space, planets/);
   assert.match(plan, /Tie each idea to where they meet it in real life/);

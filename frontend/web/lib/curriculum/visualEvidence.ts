@@ -1,5 +1,6 @@
 import type { Beat } from "@/lib/lessonContent";
 import type { CanvasBoardSpec, StageSpec } from "@/lib/canvas/types";
+import { describeStructure } from "../canvas/structure";
 
 /** A compact, literal account of what the finished board renderer gives the student. */
 export function curriculumBoardEvidence(beat: Beat): { title: string; script: string; visual: string } {
@@ -38,7 +39,9 @@ function describeStage(stage: StageSpec): string {
     case "scene":
       return `Scene items: ${stage.items.map((item) => `${item.label || item.id}${item.icon ? ` [${item.icon}]` : ""}`).join("; ")}. Arrows: ${stage.arrows.map((arrow) => `${arrow.from} -> ${arrow.to}${arrow.label ? ` (${arrow.label})` : ""}`).join("; ") || "none"}.`;
     case "code":
-      return `${stage.language} code:\n${stage.lines.join("\n")}`;
+      return `${stage.language} code:\n${stage.lines.join("\n")}${stage.structure ? `\n${describeStructure(stage.structure, stage.steps)}` : ""}`;
+    case "structure":
+      return describeStructure(stage.structure, stage.steps);
     case "molecule":
       return `Deterministic molecular models: ${stage.molecules.map((molecule) => `${molecule.label}: ${molecule.geometry}${molecule.bondAngle ? ` at ${molecule.bondAngle}` : ""}; atoms ${molecule.atoms.map((atom) => `${atom.element}${atom.lonePairs ? ` with ${atom.lonePairs} lone pairs` : ""}`).join(", ")}; bonds ${molecule.bonds.map((bond) => `${bond.from}-${bond.to} (${bond.style ?? "line"})`).join(", ")}`).join(" | ")}.`;
     case "figure":

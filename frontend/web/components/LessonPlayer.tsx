@@ -5,7 +5,7 @@ import { asksForPrediction } from "@/lib/canvas/predict";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
-import { unlockAudio, splitNarrationSentences, playNarration, type NarrationHandle } from "@/lib/voice";
+import { cancelActiveNarrations, unlockAudio, splitNarrationSentences, playNarration, type NarrationHandle } from "@/lib/voice";
 import { scriptClockFromNarration, sentenceWeight, timingFromProgress } from "@/lib/narrationClock";
 import { animationChipDetail } from "@/lib/animationModels";
 import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
@@ -1179,11 +1179,34 @@ export function LessonPlayer({
   useEffect(() => {
     tutorRef.current = tutor;
   });
+  /*
+   * WHEN THE PLAYER GOES, EVERY VOICE GOES WITH IT. The completion screen replaces the player, and
+   * three things used to outlive it and keep Aria talking on "Lecture complete" (2026-10-14): the
+   * browser speech engine's queue (a part read by the fallback voice), the live tutor's session
+   * (its reconnect timer started a new one nobody owned — the hook's own cleanup skips a session
+   * that is mid-reconnect), and the board narration. All three are stopped here, on the way out.
+   */
+  useEffect(() => () => {
+    cancelActiveNarrations();
+    boardNarrationRef.current?.cancel();
+    if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.cancel();
+    tutorRef.current.stop();
+  }, []);
 
   // ── Single-speaker voice pipeline ────────────────────────────────────────
   // The director is the only owner of the teacher's voice vs. the realtime tutor's voice; the
   // lesson machine is the single "should the teacher be talking right now?" state, built on it.
   const voice = useVoiceDirector({ tutorSpeaking: tutor.speaking, isChatbotSpeakingNow: tutor.isSpeaking });
+  /*
+   * A RESUMED LECTURE IS A SPEAKING LECTURE. `speaking` was set only when a narration STARTED
+   * (onStart) and a pause set it false — so after Pause → Resume the avatar took Aria for silent and
+   * her mouth stayed shut for the rest of the part (2026-10-14). Every in-place resume goes through here.
+   */
+  const resumeLectureVoice = (options?: Parameters<typeof voice.resumeTeacher>[0]) => {
+    const resumed = voice.resumeTeacher(options);
+    if (resumed) queueMicrotask(() => setSpeaking(true));
+    return resumed;
+  };
   /*
    * WHEN ARIA'S VOICE SPEAKS, THE LECTURE STOPS. The lecture froze only when the STUDENT started
    * speaking; if the live tutor spoke on her own (answering late, reacting to a sound) the lecture
@@ -1234,7 +1257,7 @@ export function LessonPlayer({
       if (line && !checkinRef.current) {
         voiceRef.current?.speakAsTeacher(
           line,
-          { onStart: () => {}, onEnd: () => {}, onBlocked: () => {} },
+          { onStart: () => {}, onEnd: () => {}, onBlocked: () => {}, rate: rateRef.current, voiceFallback: "silent" },
           "utterance",
         );
       }
@@ -1271,7 +1294,8 @@ export function LessonPlayer({
   /** Boards whose prediction was answered mid-script (state, for rendering; the ref is for the voice callbacks). */
   const [answeredPredictions, setAnsweredPredictions] = useState<string[]>([]);
   const speakCanvasLine = useCallback((text: string) => {
-    voiceRef.current?.speakAsTeacher(text, { onStart: () => {}, onEnd: () => {}, onBlocked: () => {} }, "utterance");
+    // At the lecture's speed and in Aria's voice, like the lecture itself.
+    voiceRef.current?.speakAsTeacher(text, { onStart: () => {}, onEnd: () => {}, onBlocked: () => {}, rate: rateRef.current, voiceFallback: "silent" }, "utterance");
   }, []);
   const tellAriaCanvas = useCallback((note: string) => {
     tutorRef.current.addContext?.(note);
@@ -1363,6 +1387,9 @@ export function LessonPlayer({
       boardNarratingRef.current = true;
       setBoardNarrating(true);
       boardNarrationRef.current = playNarration(board.script, {
+        // The lecture's speed (kept current by the speed effect) and Aria's voice.
+        rate: rateRef.current,
+        voiceFallback: "silent",
         onStart: () => {},
         // Each part is drawn as the sentence about it begins — the same clock the typed answers use.
         onSentenceStart: (sentenceIndex, sentence, total) => {
@@ -1662,6 +1689,10 @@ export function LessonPlayer({
 
   const chat = useLessonChat({
     topic: title,
+    // A spoken answer at the lecture's speed, not suddenly at 1x.
+    rate,
+    // "What is the formula for…?" gets the formula on a KaTeX card — normal mode only.
+    formulaCards: !deafMode && !adhd,
     // The board as it stands, anything the student highlighted on it, and what a sandboxed board
     // actually says — the typed chat used to get the title and script only, so "what does this line
     // of code do?" had no code to look at.
@@ -2211,6 +2242,8 @@ export function LessonPlayer({
         },
         // Read through the ref, not as a dependency: changing speed must not restart the narration.
         rate: rateRef.current,
+        // A failed first clip keeps Aria's voice (a timed gap), never a different browser voice.
+        voiceFallback: "silent",
       },
       "lecture",
       { force },
@@ -2250,6 +2283,8 @@ export function LessonPlayer({
   const setTeacherRate = voice.setTeacherRate;
   useEffect(() => {
     setTeacherRate(rate);
+    // The live tutor's board narration plays outside the director: it gets the new speed too.
+    boardNarrationRef.current?.setRate(rate);
   }, [rate, setTeacherRate]);
 
   /** Beat whose narration has ended and whose move to the next slide is still owed. */
@@ -2302,7 +2337,7 @@ export function LessonPlayer({
        * recovery below continues it, mid-sentence, the moment she goes quiet.
        */
       // A beat whose narration already FINISHED (its advance is owed) moves on; it is not replayed.
-      if (!voice.resumeTeacher() && !voice.hasFrozenTeacher() && pendingAdvanceRef.current !== index) queueMicrotask(() => setStartNonce((n) => n + 1));
+      if (!resumeLectureVoice() && !voice.hasFrozenTeacher() && pendingAdvanceRef.current !== index) queueMicrotask(() => setStartNonce((n) => n + 1));
     } else {
       voice.pauseTeacher();
       queueMicrotask(() => setSpeaking(false));
@@ -2347,7 +2382,7 @@ export function LessonPlayer({
       utterance: voice.hasPendingUtterance(),
     });
     if (action === "resume") {
-      voice.resumeTeacher();
+      resumeLectureVoice();
     } else if (action === "restart") {
       startRefusedForRef.current = null;
       narrationLostForRef.current = null;
@@ -2421,7 +2456,7 @@ export function LessonPlayer({
       const action = snapshot();
       tracePlayback("backstop", { beat: index, action });
       if (action === "resume") {
-        voice.resumeTeacher({ force: true });
+        resumeLectureVoice({ force: true });
       } else if (action === "restart") {
         startRefusedForRef.current = null;
         narrationLostForRef.current = null;
@@ -4908,7 +4943,13 @@ function isCanvasBeat(b: Beat | undefined): boolean {
 function canvasPanelsOf(beats: Beat[]): CanvasPanelInput[] {
   return beats.flatMap((b) => {
     const op = b.draw?.ops.find((o) => (o as { kind: string }).kind === "canvasBoard") as { spec?: CanvasBoardSpec } | undefined;
-    return op?.spec ? [{ key: b.id, spec: op.spec }] : [];
+    if (!op?.spec) return [];
+    // NO "PREDICT IT" (owner's direction, 2026-10-16): a quiz saved on a board before then is not
+    // shown and nothing holds for it — the card, the pause at the question and the board's
+    // concealed answer all hang off the interaction. A try or draw task stays.
+    const { interaction, ...rest } = op.spec;
+    const spec: CanvasBoardSpec = interaction && interaction.kind !== "quiz" ? { ...rest, interaction } : rest;
+    return [{ key: b.id, spec }];
   });
 }
 

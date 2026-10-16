@@ -4,6 +4,7 @@ import "server-only";
 import type { Beat } from "../lessonContent";
 import type { ProgressiveBeatPlan, ProgressiveLectureInput } from "../progressiveLectureTypes";
 import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, plainRebuild, validatePlan, type Clock } from "./generate";
+import { withRefresherOnlyIfOffered } from "./plan";
 import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
 import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
@@ -19,7 +20,6 @@ import { slug } from "./validate";
 import { sourcesForText, type SourcePack } from "../webSources";
 import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
 import { findLibraryFigure } from "../figures/library";
-import { teachingCycleIssues } from "./predict";
 import { courseCoverageGaps, coverageMessage, requiredTermsOf } from "./courseCoverage";
 import { examBoardSpec } from "./examBoard";
 
@@ -73,7 +73,9 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
     try {
       const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, attempt > 1 && lastError ? `${request}\n\nYour previous plan could not be used: ${lastError}` : request, fromDocument ? 16_000 : 9000), fromDocument ? 180_000 : 120_000, "canvas plan");
       costUsd += c;
-      let plan = validatePlan(json);
+      const valid = validatePlan(json);
+      // Only a refresher the student's knowledge offered — the planner may not add its own (lib/canvas/plan.ts).
+      let plan = valid && withRefresherOnlyIfOffered(valid, canvasRefresherAllowed(input, knowledge));
       const courseDoc = curriculumDocumentOf(input);
       // The lesson plan's exam-practice block is drawn as the exam board, whatever stage the planner wrote.
       const examAt = courseDoc?.contentBlocks?.findIndex((b) => b.exam) ?? -1;
@@ -89,17 +91,6 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
       }
       // What the planner chose to SHOW on each board (its stage and catalogue diagram), before any routing.
       if (plan) console.log(`[canvas] planner visuals: ${plan.beats.map((b) => `${b.id} ${b.stage}${b.plannedFigure ? `:${b.plannedFigure}` : ""}`).join(" | ")}; raw diagram fields: ${JSON.stringify(((json as { beats?: Array<{ diagram?: unknown }> }).beats ?? []).map((b) => b.diagram ?? null)).slice(0, 300)}`);
-      // Typed, course and reference lessons must genuinely teach, pause for a prediction, reveal,
-      // then transfer. Strict/video lessons may omit a new transfer case when their source does.
-      const cycleProblems = plan && !sourceMode
-        ? plan.beats.flatMap((beat) => teachingCycleIssues(beat).map((issue) => `${beat.title}: ${issue}`))
-        : [];
-      if (cycleProblems.length) {
-        lastError = `teach–predict–reveal–transfer contract failed: ${cycleProblems.slice(0, 6).join("; ")}`;
-        if (attempt < maxAttempts) { console.log(`[canvas] plan sent back: ${lastError}`); continue; }
-        // A board with a weak prediction still teaches; no lecture at all teaches nothing.
-        console.warn(`[canvas] plan kept with a weak teaching cycle: ${lastError}`);
-      }
       // A course lesson must teach what its syllabus plan lists: a plan that leaves out key points or
       // required terms goes back once, naming each one (lib/canvas/courseCoverage.ts).
       if (plan && courseDoc?.contentBlocks?.length) {

@@ -383,6 +383,23 @@ export function packFromResearch(json: Record<string, unknown> | null, cited: Ar
 }
 
 /** The cache key of a research run: the same topic, for the same curriculum, level, goal and part, is read once. */
+/**
+ * WHAT ARIA SAYS CARRIES NO SOURCE TAGS (2026-10-16). The material is handed to the planner with
+ * every fact tagged by its page ("[S1, S2]"), and it wrote them into the scripts — "Sources: [S1],
+ * [S2]." — which Aria then read aloud as "Sources: S 1, S 2". The slide shows its links by itself
+ * (sourcesForText); here a "Sources:" sentence and any inline [S3] / [S1, S2] tag are removed, and
+ * nothing else is: real brackets, maths and "p1" stay.
+ */
+export function withoutSourceTags(text: string): string {
+  const tag = String.raw`\[S\d{1,2}(?:\s*,\s*S\d{1,2})*\]`;
+  return text
+    .replace(new RegExp(String.raw`\s*\bSources?\s*:\s*${tag}(?:\s*(?:,|and)\s*${tag})*\s*\.?`, "gi"), "")
+    .replace(new RegExp(String.raw`\s*\(?${tag}\)?`, "g"), "")
+    .replace(/\s+([.,;:!?])/g, "$1")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
 export function researchKey(topic: string, brief: LessonBrief | null | undefined): string {
   const norm = (value: string | undefined) => (value ?? "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
   // The level is part of the key: the same topic for an undergraduate and an A Level student is two researches.

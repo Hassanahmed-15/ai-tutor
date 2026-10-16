@@ -37,7 +37,9 @@ test("the grade applies in every subject; the subject list decides only the syll
   assert.equal(bio.readingGrade, 8);
   assert.equal(bio.inSubject, "Biology", "one of their subjects");
   assert.match(studentCardInstruction(bio), /This is Biology, one of their school subjects/);
-  assert.match(studentCardInstruction(bio), /Federal Board syllabus/);
+  assert.match(studentCardInstruction(bio), /the way their syllabus teaches it/, "a school grade names no exam");
+  const matric = buildStudentCard({ ...grade8, studyLevel: { id: "pk-matric-ssc", label: "Matric (SSC)" } }, "How does photosynthesis work?")!;
+  assert.match(studentCardInstruction(matric), /Matric \(SSC\) Pakistan board syllabus/, "an exam level names its syllabus");
   const history = buildStudentCard(grade8, "Why did the Mughal Empire decline?")!;
   assert.equal(history.inSubject, null);
   assert.equal(history.topicSubject, "History");
@@ -46,16 +48,16 @@ test("the grade applies in every subject; the subject list decides only the syll
   assert.match(studentCardInstruction(history), /READING LEVEL OF GRADE 8: sentences of at most 16 words/);
   assert.match(studentCardInstruction(history), /set in Pakistan/, "local examples");
   assert.equal(studentCardNote(history), "Pitched for Grade 8 · Pakistan");
-  assert.match(studentCardPlanningLine(bio), /WHO THE LESSON IS FOR: Grade 8 in Pakistan \(Federal Board\)\. Biology is one of their school subjects/);
+  assert.match(studentCardPlanningLine(bio), /WHO THE LESSON IS FOR: Grade 8 in Pakistan\. Biology is one of their school subjects/);
   assert.doesNotMatch(studentReadingRule(bio), /syllabus|Pakistan/, "a strict lesson keeps only the reading level");
   assert.equal(buildStudentCard(null, "anything"), null);
 });
 
-test("a subject's own level wins, and asking 'simpler' again and again lowers the pitch", () => {
+test("an old per-subject level is not read (2026-10-15), and asking 'simpler' again and again lowers the pitch", () => {
   const withMaths = { ...grade8, subjectLevels: { mathematics: { id: "o-level", label: "O Level" } } };
   const maths = buildStudentCard(withMaths, "solving a quadratic equation")!;
-  assert.equal(maths.subjectLevel, "O Level");
-  assert.equal(maths.readingGrade, 9);
+  assert.equal(maths.subjectLevel, null);
+  assert.equal(maths.readingGrade, 8, "the Study level decides");
   assert.equal(buildStudentCard(grade8, "photosynthesis", { simpler: 3 })!.readingGrade, 7);
   assert.equal(buildStudentCard(grade8, "photosynthesis", { deeper: 2 })!.readingGrade, 9);
   assert.ok(gradeRules(4).sentenceWords < gradeRules(8).sentenceWords && gradeRules(8).sentenceWords < gradeRules(13).sentenceWords);

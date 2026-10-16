@@ -42,6 +42,8 @@ type TextLine = {
   height: number;
   fontSize: number;
   bold: boolean;
+  /** Which page column the line is in (pageGutters); "" on a page without columns. */
+  zone?: string;
 };
 
 type PdfLessonPlanBeat = {
@@ -138,26 +140,121 @@ function lineFromSpans(spans: PdfTextSpan[]): TextLine {
   };
 }
 
-function buildLines(spans: PdfTextSpan[]): TextLine[] {
-  const rows: PdfTextSpan[][] = [];
+function buildLines(spans: PdfTextSpan[], zoneOf: (span: PdfTextSpan) => string = () => ""): TextLine[] {
+  const rows: Array<{ zone: string; spans: PdfTextSpan[] }> = [];
   const ordered = spans
     .filter((span) => clean(span.text))
     .sort((a, b) => a.top - b.top || a.x - b.x);
 
   for (const span of ordered) {
     const tolerance = Math.max(2.5, span.fontSize * 0.38);
+    const zone = zoneOf(span);
     const row = rows.find((candidate) => {
-      const rowTop = candidate.reduce((sum, item) => sum + item.top, 0) / candidate.length;
+      if (candidate.zone !== zone) return false;
+      const rowTop = candidate.spans.reduce((sum, item) => sum + item.top, 0) / candidate.spans.length;
       return Math.abs(rowTop - span.top) <= tolerance;
     });
-    if (row) row.push(span);
-    else rows.push([span]);
+    if (row) row.spans.push(span);
+    else rows.push({ zone, spans: [span] });
   }
 
   return rows
-    .map(lineFromSpans)
+    .map((row) => ({ ...lineFromSpans(row.spans), zone: row.zone }))
     .filter((line) => line.text)
     .sort((a, b) => a.top - b.top || a.x - b.x);
+}
+
+/** A page column's gutter: the blank strip at `x` that separates two columns from `top` to `bottom`. */
+export type PdfGutter = { x: number; top: number; bottom: number };
+
+/**
+ * THE PAGE'S COLUMNS, FROM THE WHITE SPACE BETWEEN THEM.
+ *
+ * Lines were built by baseline across the whole page, so on a page set in columns — a reference
+ * sheet's "Boolean Logic | Statements Blocks | Modules" boxes — three columns' words at one height
+ * became one line, its wide gaps made it a "table", and a block's box stretched across all three: the
+ * strict lecture on statement blocks highlighted "True and False constants" and half the page
+ * (2026-10-16). A gutter is a blank vertical strip that runs at least 15% of the page down through
+ * rows that have text close on both sides of it.
+ *
+ * A TABLE IS NOT COLUMNS. A table's cells share their rows, so nearly every row has words on both
+ * sides of each gap, on one baseline; columns of a page are set independently, so their lines fall at
+ * different heights — words on one side only, or both sides more than a point apart. A strip counts
+ * as a gutter only when at least 40% of the rows beside it are set that way — a table keeps its rows.
+ */
+export function pageGutters(spans: PdfTextSpan[], pageWidth: number, pageHeight: number): PdfGutter[] {
+  const rows = buildLines(spans);
+  if (rows.length < 8) return [];
+  const near = Math.max(60, pageWidth * 0.14);
+  const covered = (row: TextLine, x: number) => row.spans.some((s) => s.x - 1.5 <= x && x <= s.x + s.width + 1.5);
+  const leftOf = (row: TextLine, x: number) => row.spans.filter((s) => s.x + s.width < x && s.x + s.width > x - near);
+  const rightOf = (row: TextLine, x: number) => row.spans.filter((s) => s.x > x && s.x < x + near);
+  const baseline = (spans: PdfTextSpan[]) => Math.max(...spans.map((s) => s.top + s.height));
+  /** Words on one side only, or on both sides but not on one baseline: set independently. */
+  const independent = (row: TextLine, x: number) => {
+    const left = leftOf(row, x), right = rightOf(row, x);
+    return !left.length || !right.length || Math.abs(baseline(left) - baseline(right)) > 1;
+  };
+  type Run = { x: number; top: number; bottom: number };
+  const runs: Run[] = [];
+  for (let x = Math.round(pageWidth * 0.06); x <= pageWidth * 0.94; x += 1) {
+    let start = -1;
+    const close = (end: number) => {
+      const run = rows.slice(start, end);
+      const beside = run.filter((row) => leftOf(row, x).length || rightOf(row, x).length);
+      const both = beside.filter((row) => leftOf(row, x).length && rightOf(row, x).length).length;
+      const free = beside.filter((row) => independent(row, x)).length;
+      // Columns hold words: a diagram's scattered numbers (a tree's nodes) leave blank strips too.
+      const worded = (side: (row: TextLine, x: number) => PdfTextSpan[]) => run.filter((row) => side(row, x).map((s) => s.text).join(" ").length >= 10).length >= 4;
+      const top = run[0].top, bottom = run[run.length - 1].top + run[run.length - 1].height;
+      if (bottom - top >= pageHeight * 0.15 && both >= 4 && free >= beside.length * 0.4 && worded(leftOf) && worded(rightOf)) runs.push({ x, top, bottom });
+    };
+    rows.forEach((row, i) => {
+      if (!covered(row, x)) { if (start < 0) start = i; return; }
+      if (start >= 0) close(i);
+      start = -1;
+    });
+    if (start >= 0) close(rows.length);
+  }
+  // Neighbouring x's of one blank strip are one gutter, at the strip's middle.
+  const gutters: PdfGutter[] = [];
+  const used = new Set<Run>();
+  for (const run of runs) {
+    if (used.has(run)) continue;
+    const strip = [run];
+    used.add(run);
+    for (let grew = true; grew; ) {
+      grew = false;
+      for (const other of runs) {
+        if (used.has(other)) continue;
+        if (strip.some((r) => Math.abs(r.x - other.x) <= 1 && other.top < r.bottom && r.top < other.bottom)) {
+          strip.push(other);
+          used.add(other);
+          grew = true;
+        }
+      }
+    }
+    const xs = strip.map((r) => r.x).sort((a, b) => a - b);
+    gutters.push({ x: (xs[0] + xs[xs.length - 1]) / 2, top: Math.min(...strip.map((r) => r.top)), bottom: Math.max(...strip.map((r) => r.bottom)) });
+  }
+  return gutters.sort((a, b) => a.x - b.x || a.top - b.top);
+}
+
+/**
+ * Lines read column by column: within each stretch of the page that shares the same gutters, the
+ * first column top to bottom, then the next — and the stretches in order down the page.
+ */
+function columnReadingOrder(lines: TextLine[], gutters: PdfGutter[]): TextLine[] {
+  const active = (line: TextLine) => gutters.filter((g) => line.top >= g.top - 2 && line.top <= g.bottom + 2);
+  const chunks: Array<{ key: string; lines: TextLine[] }> = [];
+  for (const line of [...lines].sort((a, b) => a.top - b.top || a.x - b.x)) {
+    const key = active(line).map((g) => gutters.indexOf(g)).join(",");
+    const last = chunks[chunks.length - 1];
+    if (last && last.key === key) last.lines.push(line);
+    else chunks.push({ key, lines: [line] });
+  }
+  const column = (line: TextLine) => active(line).filter((g) => line.x + line.width / 2 > g.x).length;
+  return chunks.flatMap((chunk) => [...chunk.lines].sort((a, b) => column(a) - column(b) || a.top - b.top || a.x - b.x));
 }
 
 function orderReadingFlow(lines: TextLine[], pageWidth: number, pageHeight: number): TextLine[] {
@@ -266,7 +363,14 @@ export function structurePdfPage(
   pageWidth: number,
   pageHeight: number
 ): SuprnotesContentBlock[] {
-  const lines = orderReadingFlow(buildLines(spans), pageWidth, pageHeight);
+  // A page set in columns is read column by column, each line inside one column (pageGutters).
+  const gutters = pageGutters(spans, pageWidth, pageHeight);
+  const zoneOf = (span: PdfTextSpan) => gutters
+    .filter((g) => span.top >= g.top - 2 && span.top <= g.bottom + 2)
+    .map((g) => `${gutters.indexOf(g)}${span.x + span.width / 2 < g.x ? "L" : "R"}`)
+    .join("");
+  const built = buildLines(spans, zoneOf);
+  const lines = gutters.length ? columnReadingOrder(built, gutters) : orderReadingFlow(built, pageWidth, pageHeight);
   if (!lines.length) return [];
   const bodySize = median(
     lines
@@ -445,7 +549,9 @@ export function structurePdfPage(
     // Moving back UP the page means the reading flow changed column: one block must never span
     // both, or its box stretches over everything between them (a 74%-of-the-page highlight).
     const jumpedUp = gap < -Math.max(bodySize * 1.5, 14);
-    if (pending.length && (nextType !== pendingType || (!labelRun && (gap > Math.max(bodySize * 1.55, 18) || jumpedUp)) || paragraphTooLarge)) {
+    // Nor may one block hold two columns of a page set in columns.
+    const otherColumn = Boolean(previous) && (previous.zone ?? "") !== (line.zone ?? "");
+    if (pending.length && (nextType !== pendingType || otherColumn || (!labelRun && (gap > Math.max(bodySize * 1.55, 18) || jumpedUp)) || paragraphTooLarge)) {
       flush();
     }
     pendingType = nextType;
