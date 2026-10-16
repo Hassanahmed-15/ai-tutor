@@ -233,8 +233,6 @@ export async function writeCanvasBoard(args: {
    * passages, and its Beat carries their ids so the PDF panel boxes what is being said.
    */
   strictSource?: { mode: "strict" | "video"; doc: SuprnotesLessonInput } | null;
-  /** What Aria read up on (lib/webResearch.ts): the board's Beat cites the pages its material came from. */
-  webSources?: SourcePack | null;
 }): Promise<{ beat: Beat; costUsd: number; fallback: boolean; log: string[] }> {
   const { plan, index, sessionId } = args;
   const beat = plan[index];
