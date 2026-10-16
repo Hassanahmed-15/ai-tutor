@@ -25,6 +25,35 @@ export function partBounds(drawing: FigureDrawing): Map<string, Box> {
   return out;
 }
 
+/**
+ * WHAT A PART LOOKS LIKE — its words and its closed shapes (a card, a body, a ring), not the arrows
+ * that leave it or their heads. Aria's pen frames this (lib/canvas/layout.ts): framing the part's
+ * leader anchor instead put her box beside the words it named (2026-10-16), and framing every shape
+ * the part owns would stretch a card's box along its arrows to whatever they point at.
+ */
+export function partBodies(drawing: FigureDrawing, measure?: (text: string, size: number) => number): Map<string, Box> {
+  const out = new Map<string, Box>();
+  for (const sh of drawing.shapes) {
+    if (!sh.part) continue;
+    // Words are framed by their real width when the board's own measure is given (the generic
+    // estimate runs wide), from cap height to just under the baseline.
+    const box = sh.t === "text" && measure
+      ? (() => {
+          const w = measure(sh.text, sh.size);
+          const x = sh.anchor === "middle" ? sh.x - w / 2 : sh.anchor === "end" ? sh.x - w : sh.x;
+          return { x, y: sh.y - sh.size * 0.8, w, h: sh.size * 1.05 };
+        })()
+      : partBounds({ ...drawing, shapes: [{ ...sh, part: "x" }] }).get("x");
+    if (!box || box.w * box.h <= 0) continue;
+    // An arrow's line is an open path; its head is a closed one, but tiny.
+    const body = sh.t !== "path" || (/z\s*$/i.test(sh.d.trim()) && box.w * box.h >= 400);
+    if (!body) continue;
+    const prev = out.get(sh.part);
+    out.set(sh.part, prev ? { x: Math.min(prev.x, box.x), y: Math.min(prev.y, box.y), w: Math.max(prev.x + prev.w, box.x + box.w) - Math.min(prev.x, box.x), h: Math.max(prev.y + prev.h, box.y + box.h) - Math.min(prev.y, box.y) } : box);
+  }
+  return out;
+}
+
 function pathPoints(sh: Extract<FigureShape, { t: "path" }>): Array<[number, number]> {
   const pts: Array<[number, number]> = [];
   const tokens = sh.d.match(/[MLHVCSQTAZmlhvcsqtaz]|-?\d*\.?\d+(?:e-?\d+)?/g) ?? [];

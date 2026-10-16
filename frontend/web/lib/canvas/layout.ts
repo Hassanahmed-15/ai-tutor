@@ -12,7 +12,7 @@
 import { layoutStructure, runStructure, type DsFrame, type DsLayout } from "./structure";
 import { evalExpr } from "./expr";
 import { placeLabels } from "../figures/labels";
-import { shapeBoxes } from "../figures/bounds";
+import { partBodies, shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
 import type { FigureDrawing } from "../figures/types";
 import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type EquationStage, type FigureStage, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage, type StructureStage } from "./types";
@@ -502,8 +502,17 @@ function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
   // that span most of the figure (wires, a stand) are left out, or nothing could reach in.
   const obstacles = shapeBoxes(drawing).filter(({ box: b }) => b.w * b.h < drawing.w * drawing.h * 0.45 && b.w > 6 && b.h > 6).map(({ part, box: b, circle }) => ({ id: part, box: { x: rect.x + b.x * scale, y: rect.y + b.y * scale, w: b.w * scale, h: b.h * scale }, ...(circle ? { circle: { cx: rect.x + circle.cx * scale, cy: rect.y + circle.cy * scale, r: circle.r * scale } } : {}) }));
   if (component?.selfLabelled) {
-    // Its own cards are the labels: only pen targets on each part, revealed on its sentence.
-    for (const p of shown) { const a = onBoard(anchors.get(p.id)!); add(p.id, { x: a.x - 16, y: a.y - 16, w: 32, h: 32 }, p.s); }
+    // Its own cards are the labels: only pen targets on each part, revealed on its sentence. The
+    // target is the part as drawn — its card, its words (lib/figures/bounds.ts partBodies) — so the
+    // pen frames what it names; the anchor is a leader's end on the part's EDGE, and a box round it
+    // sat beside the words (2026-10-16). A part with nothing drawn keeps the anchor.
+    const bodies = partBodies(drawing, textWidth);
+    const pad = 6;
+    for (const p of shown) {
+      const b = bodies.get(p.id);
+      if (b) add(p.id, { x: rect.x + b.x * scale - pad, y: rect.y + b.y * scale - pad, w: b.w * scale + pad * 2, h: b.h * scale + pad * 2 }, p.s);
+      else { const a = onBoard(anchors.get(p.id)!); add(p.id, { x: a.x - 16, y: a.y - 16, w: 32, h: 32 }, p.s); }
+    }
     return;
   }
   const placed = placeLabels(shown.map((p) => ({ id: p.id, text: p.name, anchor: onBoard(anchors.get(p.id)!), s: p.s })), rect, box, textWidth, size, obstacles);

@@ -102,7 +102,8 @@ export const causeConsequence: FigureComponent = {
     // Headings.
     b.text(xCause + colW / 2, 24, causesTitle, 19, { fill: BLUE, part: "causes" });
     b.text(xCons + colW / 2, 24, consTitle, 19, { fill: GREEN, part: "consequences" });
-    if (split && short.length) b.text(xCons + colW / 2, shortHead + 18, "Short-term", 15, { fill: GREEN, part: "consequences" });
+    // Untagged: the pen pointing at the column heading ("consequences") frames that heading alone.
+    if (split && short.length) b.text(xCons + colW / 2, shortHead + 18, "Short-term", 15, { fill: GREEN });
     if (split) b.text(xCons + colW / 2, longHead + 18, "Long-term", 15, { fill: VIOLET, part: "long-term" });
 
     // Arrows: into the event (heads spread down its left side), out of it to each consequence.
