@@ -17,6 +17,7 @@ import { prepareClipLipTrack, type ClipLipTrack } from "./avatar/clipLipSync";
 import { CLIP_FETCH_CONCURRENCY, SENTENCE_GAP_MS, sentenceAlignedProgress, sentenceWeight } from "./narrationClock";
 import { recordTtsResponse } from "./costLedger";
 import { ensureRunning, registerAudioContext, resumeAllAudio } from "./voice/audioOutput";
+import { withoutSourceTags } from "./webSources";
 
 export type NarrationHandle = {
   cancel: () => void;
@@ -215,7 +216,8 @@ export function unlockAudio() {
 }
 
 export function splitNarrationSentences(text: string): string[] {
-  return text.split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
+  // A lecture written before 2026-10-16 may end its scripts with "Sources: [S1], [S2]." — never said.
+  return withoutSourceTags(text).split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
 }
 
 export function playNarration(text: string, callbacks: NarrationCallbacks): NarrationHandle {

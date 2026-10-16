@@ -1,5 +1,6 @@
 import { CANVAS_STAGES, type CanvasPlanBeat, type CanvasStage } from "./types";
 import { slug } from "./validate";
+import { withoutSourceTags } from "../webSources";
 
 /**
  * A canvas lecture's PLAN, as the model wrote it, made safe — pure, so it is unit-tested
@@ -20,7 +21,8 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
   // a strict lecture on a whole document, up to 24 boards — lib/canvas/sourceLessons.ts).
   list.slice(0, 24).forEach((item, i) => {
     const b = (item && typeof item === "object" ? item : {}) as Record<string, unknown>;
-    const script = typeof b.script === "string" ? b.script.replace(/\s+/g, " ").trim() : "";
+    // Spoken aloud: a "Sources: [S1]" line the model added from the research material goes.
+    const script = typeof b.script === "string" ? withoutSourceTags(b.script.replace(/\s+/g, " ").trim()) : "";
     const title = typeof b.title === "string" ? b.title.trim().slice(0, 60) : "";
     const stage = (CANVAS_STAGES as readonly string[]).includes(String(b.stage)) ? (b.stage as CanvasStage) : "scene";
     if (!script || !title || canvasSentences(script).length < 2) return;

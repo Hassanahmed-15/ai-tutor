@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { dropOffLevelSources, groundPointsInFound, levelBandOf, packFromResearch, researchKey, sanitizeSourcePack, siteName, sourcesForText, uncoveredChecklist, type SourcePack } from "../webSources";
+import { dropOffLevelSources, groundPointsInFound, levelBandOf, packFromResearch, researchKey, sanitizeSourcePack, siteName, sourcesForText, uncoveredChecklist, withoutSourceTags, type SourcePack } from "../webSources";
+import { validatePlan } from "../canvas/plan";
+import { splitNarrationSentences } from "../voice";
 import { MAX_INTENT_ROUNDS, briefLine, curriculumInText, effectiveBrief, levelSearchTerms, profileAudience, sanitizeIntent } from "../lessonIntent";
 import { allStudyLevels, examForLevel, studyLevelsFor } from "../education";
 import { effectiveLearner } from "../learnerBasics";
@@ -262,4 +264,24 @@ test("a fact linked from memory is credited to the page its own search read that
   assert.equal(grounded.points[1].urls[0], pages[1].url, "the cell-structure page for the structure fact");
   assert.deepEqual(grounded.points[2].urls, [pages[1].url], "a link the search saw is kept as it is");
   assert.equal(groundPointsInFound(json, []), json, "no pages read, nothing changed");
+});
+
+test("source tags never reach what Aria says: the prime-numbers lecture of 2026-10-16", () => {
+  // Beat 0 and beat 8 as they were stored (session 52226057): Aria read these out as "Sources: S 7".
+  const beat0 = "For example, 5 is prime because only 1 and 5 divide it exactly. Today, we will discover why prime numbers cannot ever run out. Sources: [S7].";
+  assert.equal(withoutSourceTags(beat0), "For example, 5 is prime because only 1 and 5 divide it exactly. Today, we will discover why prime numbers cannot ever run out.");
+  const beat8 = "The concept of infinity is closely tied to this endless supply of primes. Sources: [S1], [S2], [S6], [S7].";
+  assert.equal(withoutSourceTags(beat8), "The concept of infinity is closely tied to this endless supply of primes.");
+  assert.equal(withoutSourceTags("Euclid proved it [S1]. The list misses a prime [S1, S2], always."), "Euclid proved it. The list misses a prime, always.");
+  assert.equal(withoutSourceTags("Source: [S3] and [S4]."), "");
+  // Real maths and brackets are left alone.
+  for (const keep of ["Assume every prime appears on one list, written p1, p2, through pn.", "Combine the numerators to get [2x + 3(x − 4)]/6.", "Sources of energy differ.", "Plain words."]) {
+    assert.equal(withoutSourceTags(keep), keep, keep);
+  }
+});
+
+test("a planned script loses its source line, and the voice never says one", () => {
+  const plan = validatePlan({ title: "Primes", beats: [{ title: "Euclid", stage: "flow", script: "Euclid proved it. There is always another prime. Sources: [S1], [S2].", brief: "b", objects: [] }] });
+  assert.equal(plan?.beats[0].script, "Euclid proved it. There is always another prime.");
+  assert.deepEqual(splitNarrationSentences("A prime has two divisors. Sources: [S7]."), ["A prime has two divisors."]);
 });

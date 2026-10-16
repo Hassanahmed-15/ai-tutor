@@ -136,7 +136,7 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   if (pack && !strictDoc && !video && !doc) {
     lines.push(
       "",
-      `TEACH FROM THIS MATERIAL — what Aria read up on for this lesson; every slide will cite the pages it drew on. Every fact a script states comes from this material (plain connecting explanation, analogies and worked examples in your own words are fine; a new fact, number or claim is not).${
+      `TEACH FROM THIS MATERIAL — what Aria read up on for this lesson; the slides show the links they drew on by themselves. The [S1]-style tags are for you only: never put a source tag or a "Sources:" line in a script — every word of a script is spoken aloud. Every fact a script states comes from this material (plain connecting explanation, analogies and worked examples in your own words are fine; a new fact, number or claim is not).${
         pack.checklist.length ? " Name every syllabus point below on the board where it belongs, in the syllabus's own terms." : ""
       }`,
       packForPrompt(pack, 8_000),

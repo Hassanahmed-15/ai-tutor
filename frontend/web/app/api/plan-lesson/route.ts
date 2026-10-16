@@ -42,7 +42,7 @@ import { asksForCode, isCodeQuestion } from "@/lib/codeSpec";
 import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
 import { createOpenAI } from "@/lib/openaiClient";
 import { INTENT_SYSTEM_PROMPT, briefLine, briefSettled, curriculumInText, effectiveBrief, profileAudience, sanitizeBrief, sanitizeIntent } from "@/lib/lessonIntent";
-import { packForPrompt, uncoveredChecklist, type LessonBrief, type SourcePack } from "@/lib/webSources";
+import { packForPrompt, uncoveredChecklist, withoutSourceTags, type LessonBrief, type SourcePack } from "@/lib/webSources";
 import { researchTopic } from "@/lib/webResearch";
 
 /**
@@ -366,7 +366,8 @@ function sanitizeOutline(raw: unknown, fallbackTopic: string, polish = true): Pl
     // across subtopics now instead of collected in one top-level array.
     const scopingQuestion = scopingQuestionCount < 3 ? sanitizeScopingQuestion(rec.scopingQuestion) : undefined;
     if (scopingQuestion) scopingQuestionCount++;
-    if (title.trim()) subtopics.push({ title: title.trim().slice(0, 80), caption: caption.trim().slice(0, 240), reason: reason.trim().slice(0, 140), confidence, safetyNet, scopingQuestion });
+    // The research material's [S1] tags are for the planner only (lib/webSources.ts withoutSourceTags).
+    if (title.trim()) subtopics.push({ title: withoutSourceTags(title).slice(0, 80), caption: withoutSourceTags(caption).slice(0, 240), reason: reason.trim().slice(0, 140), confidence, safetyNet, scopingQuestion });
   }
   if (!polish) return { topic, ...intent, subtopics };
   const polished = polishBeatPlan(
