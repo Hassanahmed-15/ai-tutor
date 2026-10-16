@@ -130,11 +130,35 @@ export async function progressiveInput(session: ProgressiveLectureSessionDoc): P
   return downloadJsonBlob<ProgressiveLectureInput>(session.inputBlobName);
 }
 
+/**
+ * A connection Cosmos dropped mid-request ("socket hang up", ECONNRESET). The SDK retries reads on
+ * its own but never writes, so one reset upsert among the seven a plan reserves failed the whole
+ * lecture after its plan was already saved (2026-10-15). Only for writes that are safe to repeat:
+ * an upsert, or a replace with no etag condition.
+ */
+function droppedConnection(error: unknown): boolean {
+  const e = error as { code?: unknown; message?: unknown } | null;
+  const text = `${typeof e?.code === "string" ? e.code : ""} ${typeof e?.message === "string" ? e.message : ""}`;
+  return /socket hang up|ECONNRESET|EPIPE|ETIMEDOUT|ECONNABORTED/i.test(text);
+}
+
+async function retryDropped<T>(write: () => Promise<T>): Promise<T> {
+  for (let attempt = 0; ; attempt += 1) {
+    try {
+      return await write();
+    } catch (error) {
+      if (attempt >= 2 || !droppedConnection(error)) throw error;
+      console.warn(`[progressive-store] connection dropped, retrying the write (${attempt + 1}/2)`);
+      await new Promise((resolve) => setTimeout(resolve, 400 * 3 ** attempt));
+    }
+  }
+}
+
 export async function replaceProgressiveSession(session: ProgressiveLectureSessionDoc): Promise<void> {
-  await progressiveLectureSessions().item(session.id, session.userId).replace({
+  await retryDropped(() => progressiveLectureSessions().item(session.id, session.userId).replace({
     ...session,
     updatedAt: new Date().toISOString(),
-  });
+  }));
 }
 
 export async function setProgressivePlan(
@@ -166,10 +190,10 @@ export async function progressiveBeat(sessionId: string, sequence: number): Prom
 
 export async function upsertProgressiveBeat(doc: ProgressiveBeatDoc): Promise<void> {
   await ensureContainers();
-  await progressiveLectureBeats().items.upsert({
+  await retryDropped(() => progressiveLectureBeats().items.upsert({
     ...doc,
     updatedAt: new Date().toISOString(),
-  });
+  }));
 }
 
 export async function progressiveBeats(sessionId: string): Promise<ProgressiveBeatDoc[]> {

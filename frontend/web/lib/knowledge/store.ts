@@ -1,7 +1,7 @@
 import "server-only";
 
 import { ensureContainers, knowledgeGraph, progressiveLectureBeats } from "../db/cosmos";
-import { canonicalKey, mergeConcept, mergeEdge, type KnowledgeConcept, type KnowledgeEdge, type LectureKnowledge } from "./graph";
+import { conceptKeysInText, mergeConcept, mergeEdge, type KnowledgeConcept, type KnowledgeEdge, type LectureKnowledge } from "./graph";
 
 /**
  * Persistence for the knowledge graph (lib/knowledge/graph.ts).
@@ -72,10 +72,7 @@ export async function edgesTouching(keys: string[]): Promise<KnowledgeEdge[]> {
  * (or alias), so "how do plants make glucose" finds "plant" and "glucose".
  */
 export async function conceptsInText(text: string): Promise<KnowledgeConcept[]> {
-  const words = canonicalKey(text).split(" ").filter((w) => w.length > 1);
-  const keys = new Set<string>();
-  for (let n = 1; n <= 3; n++) for (let i = 0; i + n <= words.length; i++) keys.add(canonicalKey(words.slice(i, i + n).join(" ")));
-  return conceptsMatching([...keys].filter((k) => k.length > 2));
+  return conceptsMatching(conceptKeysInText(text));
 }
 
 /**

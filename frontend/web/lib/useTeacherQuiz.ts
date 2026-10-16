@@ -98,6 +98,18 @@ export function useTeacherQuiz({
     maxTimerRef.current = null;
   }, []);
 
+  /*
+   * NOTHING IS SAID AFTER THE PLAYER IS GONE: a grade whose fetch was still in flight when the
+   * lecture ended used to be spoken on the "Lecture complete" screen (2026-10-14).
+   */
+  const aliveRef = useRef(true);
+  useEffect(() => {
+    aliveRef.current = true;
+    return () => {
+      aliveRef.current = false;
+    };
+  }, []);
+
   /** The single teardown. Every exit — graded, cancelled, unmounted — goes through here. */
   const teardown = useCallback(() => {
     clearTimers();
@@ -111,6 +123,7 @@ export function useTeacherQuiz({
       if (settledRef.current) return;
       settledRef.current = true;
       teardown();
+      if (!aliveRef.current) return;
       setFeedback(spoken);
       setPhase("feedback");
       const done = () => {

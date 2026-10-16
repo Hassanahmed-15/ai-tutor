@@ -7,8 +7,8 @@ const ids = (xs: Array<{ id: string }>) => xs.map((x) => x.id);
 const subj = (...names: string[]) => subjectOptions().filter((s) => names.includes(s.label));
 
 test("study levels use the country's own names", () => {
-  assert.ok(studyLevelsFor("GB").some((x) => x.label.startsWith("GCSE / O-Level")));
-  assert.ok(studyLevelsFor("GB").some((x) => x.label.startsWith("A-Level")));
+  assert.ok(studyLevelsFor("GB").some((x) => x.label === "GCSE"));
+  assert.ok(studyLevelsFor("GB").some((x) => x.label.startsWith("A Level")));
   assert.ok(studyLevelsFor("US").some((x) => x.label === "Elementary"));
   assert.ok(studyLevelsFor("US").some((x) => x.label === "Graduate"));
   assert.ok(studyLevelsFor("PK").some((x) => /Matric/.test(x.label)));

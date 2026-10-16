@@ -1,4 +1,5 @@
 import type { LessonBrief } from "./webSources";
+import { examForLevel } from "./education";
 
 /**
  * WHAT DOES THE STUDENT ACTUALLY WANT? — asked before planning, the way a good tutor (or Claude) would.
@@ -108,47 +109,21 @@ export function curriculumInText(value: string): string | null {
  * THE STUDENT'S LEVEL, FROM THEIR PROFILE (owner's direction, 2026-10-14: "students will not say A
  * level in the prompt — get it from the user profile", Settings → Learner profile → Study level).
  *
- * The Study level label ("Intermediate (HSSC / FSc) / A-Level", "Matric (SSC) / O-Level",
- * "Undergraduate", …; a subject's own level wins) becomes the words searched and taught at, refined by
- * the profile's curriculum field (FSc rather than A Level, IGCSE rather than O Level) and its board.
- * `exam` is set only for a school exam level — it names a syllabus to search; `level` always is.
+ * Since 2026-10-15 the Study level IS the exam or track ("MDCAT", "O Level", "FSc Pre-Medical",
+ * "Undergraduate") and is the one place the student says it: `examForLevel` (lib/education.ts) gives
+ * the syllabus to search (`exam`, null for a level with none) and the words to search at (`level`).
  */
 export type ProfileCardLike = {
+  levelId?: string | null;
   level: string | null;
-  subjectLevel: string | null;
-  curricula: string[];
-  subjectCurricula: string[];
-  country: string | null;
   topicSubject: string | null;
 };
 
-/** Countries whose O and A Level students sit Cambridge papers unless their profile says otherwise. */
-const CAMBRIDGE_BY_DEFAULT = /^(?:pakistan|bangladesh|sri lanka|united arab emirates|saudi arabia|qatar|kuwait|bahrain|oman|mauritius|singapore)$/i;
-
 export function levelSearchTerms(card: ProfileCardLike): { level: string | null; exam: string | null } {
-  const label = (card.subjectLevel ?? card.level ?? "").trim();
-  const l = label.toLowerCase();
-  const courses = [...card.subjectCurricula, ...card.curricula].join(" | ").toLowerCase();
-  const cambridge = /cambridge/.test(courses) || (!/edexcel|pearson|aqa|ocr|wjec/.test(courses) && CAMBRIDGE_BY_DEFAULT.test(card.country ?? ""));
-  if (/a-level|a level|sixth form|intermediate|hssc|fsc|pre-university|upper secondary/.test(l)) {
-    if (/fsc|hssc|\bics\b/.test(courses)) return { level: "FSc (HSSC, Pakistan)", exam: "FSc (HSSC) Pakistan" };
-    if (/\bib\b|baccalaureate/.test(courses)) return { level: "IB Diploma", exam: "IB Diploma" };
-    if (/a-level|a level|sixth form/.test(l) || /a[- ]level/.test(courses)) {
-      const exam = cambridge ? "Cambridge International A Level" : "A Level";
-      return { level: "A Level", exam };
-    }
-    return { level: label, exam: null };
-  }
-  if (/o-level|o level|igcse|gcse|matric|\bssc\b/.test(l)) {
-    if (/igcse/.test(courses)) return { level: "IGCSE", exam: "Cambridge IGCSE" };
-    if (/\bgcse\b/.test(courses) && !/igcse/.test(courses)) return { level: "GCSE", exam: "GCSE" };
-    if (/matric|\bssc\b/.test(courses)) return { level: "Matric (SSC, Pakistan)", exam: "Matric (SSC) Pakistan" };
-    return { level: "O Level", exam: cambridge ? "Cambridge O Level" : "O Level" };
-  }
-  if (/undergrad/.test(l)) return { level: "undergraduate (university)", exam: null };
-  if (/postgrad|graduate|doctoral/.test(l)) return { level: "postgraduate", exam: null };
-  if (/professional/.test(l)) return { level: "professional", exam: null };
-  return { level: label || null, exam: null };
+  const label = (card.level ?? "").trim();
+  if (!label && !card.levelId) return { level: null, exam: null };
+  const found = examForLevel({ id: card.levelId ?? "", label });
+  return { level: found?.words ?? (label || null), exam: found?.exam ?? null };
 }
 
 /**
@@ -170,7 +145,7 @@ export function profileAudience(card: ProfileCardLike | null | undefined): { cur
 export function effectiveBrief(brief: LessonBrief | null | undefined, request: string, card: ProfileCardLike | null | undefined): LessonBrief | null {
   const named = curriculumInText(request);
   const fromProfile = profileAudience(card);
-  const curriculum = named ? (fromProfile?.curriculum && fromProfile.curriculum.toLowerCase().includes(named.toLowerCase().replace(/^cambridge\s+/, "")) ? fromProfile.curriculum : named) : brief?.curriculum ?? fromProfile?.curriculum ?? undefined;
+  const curriculum = named ? (fromProfile?.curriculum && fromProfile.curriculum.toLowerCase().includes(named.toLowerCase().replace(/^cambridge\s+/, "").replace(/\s*\(.*\)$/, "")) ? fromProfile.curriculum : named) : brief?.curriculum ?? fromProfile?.curriculum ?? undefined;
   const level = brief?.level ?? fromProfile?.level ?? undefined;
   const merged: LessonBrief = { ...(brief ?? {}), ...(curriculum ? { curriculum } : {}), ...(level ? { level } : {}) };
   return Object.keys(merged).length ? merged : null;

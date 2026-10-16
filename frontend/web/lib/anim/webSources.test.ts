@@ -1,7 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { dropOffLevelSources, groundPointsInFound, levelBandOf, packFromResearch, researchKey, sanitizeSourcePack, siteName, sourcesForText, uncoveredChecklist, type SourcePack } from "../webSources";
+import { dropOffLevelSources, groundPointsInFound, levelBandOf, packFromResearch, researchKey, sanitizeSourcePack, siteName, sourcesForText, uncoveredChecklist, withoutSourceTags, type SourcePack } from "../webSources";
+import { validatePlan } from "../canvas/plan";
+import { splitNarrationSentences } from "../voice";
 import { MAX_INTENT_ROUNDS, briefLine, curriculumInText, effectiveBrief, levelSearchTerms, profileAudience, sanitizeIntent } from "../lessonIntent";
+import { allStudyLevels, examForLevel, studyLevelsFor } from "../education";
+import { effectiveLearner } from "../learnerBasics";
+import { buildStudentCard } from "../studentCard";
+import type { LearnerBasics } from "../db/cosmos";
 
 /* Lessons planned from web research, with sources per slide (lib/webSources.ts, lib/lessonIntent.ts), 2026-10-14. */
 
@@ -115,35 +121,79 @@ test("a curriculum named in the request is read from it", () => {
   assert.match(briefLine({ goal: "exam", curriculum: "Cambridge IGCSE Biology", scope: "the whole topic" }), /syllabus topic.*Cambridge IGCSE Biology.*the whole topic/);
 });
 
-/* ── The level from the profile's Study level (owner's direction, 2026-10-14) ───────────────────── */
+/* ── The level from the profile's Study level (owner's direction, 2026-10-14; exams in it, 2026-10-15) ── */
 
 const card = (over: Partial<Parameters<typeof levelSearchTerms>[0]> = {}) => ({
-  level: "Intermediate (HSSC / FSc) / A-Level", subjectLevel: null, curricula: [], subjectCurricula: [], country: "Pakistan", topicSubject: "Biology", ...over,
+  levelId: "cambridge-a-level", level: "AS & A Level", topicSubject: "Biology", ...over,
 });
 
-test("Study level becomes the words searched: A Level, O Level, FSc, undergraduate", () => {
-  assert.deepEqual(levelSearchTerms(card()), { level: "A Level", exam: "Cambridge International A Level" }, "Pakistan, no board set: Cambridge");
-  assert.deepEqual(levelSearchTerms(card({ curricula: ["FSc / HSSC (Intermediate)"] })), { level: "FSc (HSSC, Pakistan)", exam: "FSc (HSSC) Pakistan" }, "the curriculum field says FSc");
-  assert.equal(levelSearchTerms(card({ country: "United Kingdom", level: "A-Level / Sixth form (Years 12–13)", curricula: ["A-Level"] })).exam, "A Level", "UK A-Level, no Cambridge assumed");
-  assert.deepEqual(levelSearchTerms(card({ level: "Matric (SSC) / O-Level" })), { level: "O Level", exam: "Cambridge O Level" });
-  assert.equal(levelSearchTerms(card({ level: "Matric (SSC) / O-Level", curricula: ["Cambridge IGCSE"] })).exam, "Cambridge IGCSE");
-  assert.deepEqual(levelSearchTerms(card({ level: "Undergraduate" })), { level: "undergraduate (university)", exam: null }, "no syllabus at university");
-  assert.equal(levelSearchTerms(card({ level: "Undergraduate", subjectLevel: "Intermediate (HSSC / FSc) / A-Level" })).level, "A Level", "a subject's own level wins");
+test("Pakistan's Study level lists the boards, Cambridge and the entry tests, in that order", () => {
+  const ids = studyLevelsFor("PK").map((o) => o.id);
+  for (const id of ["pk-matric-ssc", "pk-fsc-premed", "pk-fsc-preeng", "pk-ics", "pk-icom", "o-level", "igcse", "cambridge-a-level", "mdcat", "ecat", "nust-net", "undergrad", "medical-school"]) assert.ok(ids.includes(id), id);
+  assert.ok(ids.indexOf("pk-primary") < ids.indexOf("pk-matric-ssc") && ids.indexOf("pk-icom") < ids.indexOf("o-level") && ids.indexOf("cambridge-a-level") < ids.indexOf("mdcat") && ids.indexOf("mdcat") < ids.indexOf("undergrad"));
+  assert.ok(!ids.includes("pk-matric") && !ids.includes("pk-inter"), "the combined options are no longer offered");
+  assert.deepEqual([...new Set(studyLevelsFor("PK").map((o) => o.group))], ["School", "Pakistan boards", "Cambridge", "Entry tests", "International", "University"]);
+  assert.ok(studyLevelsFor("IN").some((o) => o.id === "jee") && studyLevelsFor("US").some((o) => o.id === "sat") && studyLevelsFor("GB").some((o) => o.id === "gcse-uk"));
 });
 
-test("the profile's audience: a syllabus only for a school exam level and a school subject", () => {
-  assert.deepEqual(profileAudience(card()), { curriculum: "Cambridge International A Level Biology", level: "A Level" });
+test("every level names the exam it stands for; old and typed levels still resolve", () => {
+  assert.deepEqual(examForLevel({ id: "mdcat", label: "MDCAT" }), { exam: "MDCAT (Pakistan medical entry test)", words: "MDCAT" });
+  assert.equal(examForLevel({ id: "o-level", label: "O Level" })?.exam, "Cambridge O Level");
+  assert.equal(examForLevel({ id: "igcse", label: "IGCSE" })?.exam, "Cambridge IGCSE");
+  assert.equal(examForLevel({ id: "pk-fsc-premed", label: "FSc Pre-Medical" })?.exam, "FSc Pre-Medical (HSSC, Pakistan)");
+  assert.deepEqual(examForLevel({ id: "undergrad", label: "Undergraduate" }), { exam: null, words: "undergraduate (university)" });
+  assert.equal(examForLevel({ id: "pk-matric", label: "Matric (SSC) / O-Level" })?.exam, "Cambridge O Level", "a profile from before keeps its exam");
+  assert.equal(examForLevel({ id: "pk-inter", label: "Intermediate (HSSC / FSc) / A-Level" })?.exam, "Cambridge International AS & A Level");
+  assert.equal(examForLevel({ id: "custom-1", label: "mdcat prep" })?.exam, "MDCAT (Pakistan medical entry test)", "typed by the student");
+  assert.equal(examForLevel({ id: "custom-2", label: "a levels" })?.words, "A Level");
+  assert.deepEqual(examForLevel({ id: "custom-3", label: "Year 9" }), { exam: null, words: "Year 9" });
+  assert.equal(examForLevel(null), null);
+  for (const level of allStudyLevels()) assert.ok(examForLevel(level)?.words, level.id);
+});
+
+test("one source: the Study level's exam is the curriculum, per-subject levels are ignored", () => {
+  const basics = {
+    country: "PK", countrySource: "user", studyLevel: { id: "mdcat", label: "MDCAT" }, subjects: [{ id: "biology", label: "Biology" }, { id: "computer-science", label: "Computer Science" }],
+    curricula: [{ id: "sat", label: "SAT" }], subjectLevels: { "computer-science": { id: "undergrad", label: "Undergraduate", learned: true } }, subjectCurricula: { biology: [{ id: "ib", label: "IB" }] },
+  } as unknown as LearnerBasics;
+  const e = effectiveLearner(basics);
+  assert.deepEqual(e.curricula, [{ id: "level:mdcat", label: "MDCAT (Pakistan medical entry test)" }]);
+  assert.deepEqual(e.subjectLevels, {});
+  assert.deepEqual(e.subjectCurricula, {});
+  assert.deepEqual(effectiveLearner({ ...basics, studyLevel: { id: "undergrad", label: "Undergraduate" } }).curricula, [], "no exam at university");
+  const c = buildStudentCard(basics, "Computer Science sorting algorithms");
+  assert.equal(c?.level, "MDCAT");
+  assert.equal(c?.levelId, "mdcat");
+  assert.equal(c?.subjectLevel, null, "the hidden learned level is gone");
+});
+
+test("Study level becomes the words searched: MDCAT, O Level, IGCSE, FSc, undergraduate", () => {
+  assert.deepEqual(levelSearchTerms(card()), { level: "A Level", exam: "Cambridge International AS & A Level" });
+  assert.deepEqual(levelSearchTerms(card({ levelId: "mdcat", level: "MDCAT" })), { level: "MDCAT", exam: "MDCAT (Pakistan medical entry test)" });
+  assert.deepEqual(levelSearchTerms(card({ levelId: "o-level", level: "O Level" })), { level: "O Level", exam: "Cambridge O Level" });
+  assert.deepEqual(levelSearchTerms(card({ levelId: "igcse", level: "IGCSE" })), { level: "IGCSE", exam: "Cambridge IGCSE" });
+  assert.deepEqual(levelSearchTerms(card({ levelId: "pk-fsc-premed", level: "FSc Pre-Medical" })), { level: "FSc (HSSC, Pakistan)", exam: "FSc Pre-Medical (HSSC, Pakistan)" });
+  assert.deepEqual(levelSearchTerms(card({ levelId: "undergrad", level: "Undergraduate" })), { level: "undergraduate (university)", exam: null }, "no syllabus at university");
+  assert.equal(levelSearchTerms(card({ levelId: "gb-alevel", level: "A-Level / Sixth form (Years 12–13)" })).exam, "A Level", "UK A-Level from before, no Cambridge assumed");
+  assert.deepEqual(levelSearchTerms(card({ levelId: null, level: null })), { level: null, exam: null });
+});
+
+test("the profile's audience: a syllabus only for an exam level and a school subject", () => {
+  assert.deepEqual(profileAudience(card()), { curriculum: "Cambridge International AS & A Level Biology", level: "A Level" });
+  assert.deepEqual(profileAudience(card({ levelId: "mdcat", level: "MDCAT" })), { curriculum: "MDCAT (Pakistan medical entry test) Biology", level: "MDCAT" });
   assert.deepEqual(profileAudience(card({ topicSubject: null })), { curriculum: null, level: "A Level" }, "transformers in AI: the level only");
-  assert.deepEqual(profileAudience(card({ level: "Undergraduate" })), { curriculum: null, level: "undergraduate (university)" });
+  assert.deepEqual(profileAudience(card({ levelId: "undergrad", level: "Undergraduate" })), { curriculum: null, level: "undergraduate (university)" });
   assert.equal(profileAudience(null), null);
 });
 
 test("precedence: the course in the request, then the answers, then the profile", () => {
   const p = card();
-  assert.equal(effectiveBrief(null, "explain cell biology", p)?.curriculum, "Cambridge International A Level Biology", "nothing typed: the profile");
+  assert.equal(effectiveBrief(null, "explain cell biology", p)?.curriculum, "Cambridge International AS & A Level Biology", "nothing typed: the profile");
   assert.equal(effectiveBrief({ goal: "exam", curriculum: "IB Diploma Biology" }, "cell biology", p)?.curriculum, "IB Diploma Biology", "an answer beats the profile");
   assert.equal(effectiveBrief(null, "cell biology igcse", p)?.curriculum, "Cambridge IGCSE", "a course typed in the request beats the profile");
-  assert.equal(effectiveBrief(null, "cell biology a level", p)?.curriculum, "Cambridge International A Level Biology", "the request agreeing with the profile keeps the profile's detail");
+  assert.equal(effectiveBrief(null, "cell biology a level", p)?.curriculum, "Cambridge International AS & A Level Biology", "the request agreeing with the profile keeps the profile's detail");
+  assert.equal(effectiveBrief(null, "cell biology fsc", card({ levelId: "pk-fsc-premed", level: "FSc Pre-Medical" }))?.curriculum, "FSc Pre-Medical (HSSC, Pakistan) Biology");
+  assert.equal(effectiveBrief(null, "cell biology mdcat", card({ levelId: "mdcat", level: "MDCAT" }))?.curriculum, "MDCAT (Pakistan medical entry test) Biology");
   assert.equal(effectiveBrief(null, "cell biology", p)?.level, "A Level");
   assert.equal(effectiveBrief(null, "cell biology", null), null);
 });
@@ -214,4 +264,24 @@ test("a fact linked from memory is credited to the page its own search read that
   assert.equal(grounded.points[1].urls[0], pages[1].url, "the cell-structure page for the structure fact");
   assert.deepEqual(grounded.points[2].urls, [pages[1].url], "a link the search saw is kept as it is");
   assert.equal(groundPointsInFound(json, []), json, "no pages read, nothing changed");
+});
+
+test("source tags never reach what Aria says: the prime-numbers lecture of 2026-10-16", () => {
+  // Beat 0 and beat 8 as they were stored (session 52226057): Aria read these out as "Sources: S 7".
+  const beat0 = "For example, 5 is prime because only 1 and 5 divide it exactly. Today, we will discover why prime numbers cannot ever run out. Sources: [S7].";
+  assert.equal(withoutSourceTags(beat0), "For example, 5 is prime because only 1 and 5 divide it exactly. Today, we will discover why prime numbers cannot ever run out.");
+  const beat8 = "The concept of infinity is closely tied to this endless supply of primes. Sources: [S1], [S2], [S6], [S7].";
+  assert.equal(withoutSourceTags(beat8), "The concept of infinity is closely tied to this endless supply of primes.");
+  assert.equal(withoutSourceTags("Euclid proved it [S1]. The list misses a prime [S1, S2], always."), "Euclid proved it. The list misses a prime, always.");
+  assert.equal(withoutSourceTags("Source: [S3] and [S4]."), "");
+  // Real maths and brackets are left alone.
+  for (const keep of ["Assume every prime appears on one list, written p1, p2, through pn.", "Combine the numerators to get [2x + 3(x − 4)]/6.", "Sources of energy differ.", "Plain words."]) {
+    assert.equal(withoutSourceTags(keep), keep, keep);
+  }
+});
+
+test("a planned script loses its source line, and the voice never says one", () => {
+  const plan = validatePlan({ title: "Primes", beats: [{ title: "Euclid", stage: "flow", script: "Euclid proved it. There is always another prime. Sources: [S1], [S2].", brief: "b", objects: [] }] });
+  assert.equal(plan?.beats[0].script, "Euclid proved it. There is always another prime.");
+  assert.deepEqual(splitNarrationSentences("A prime has two divisors. Sources: [S7]."), ["A prime has two divisors."]);
 });

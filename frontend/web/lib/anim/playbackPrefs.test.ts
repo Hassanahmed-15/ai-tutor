@@ -9,8 +9,8 @@ import { PLAYBACK_RATES, parseRate, rateLabel } from "../playbackPrefs";
  * corrupted string — must come back as normal speed, never as something the control cannot show.
  */
 
-test("the five offered speeds, slowest first", () => {
-  assert.deepEqual([...PLAYBACK_RATES], [0.25, 0.5, 1, 1.5, 2]);
+test("the three offered speeds, slowest first — 0.25x and 2x were removed (2026-10-14)", () => {
+  assert.deepEqual([...PLAYBACK_RATES], [0.5, 1, 1.5]);
 });
 
 test("every offered speed survives the round trip through storage (which holds strings)", () => {
@@ -18,7 +18,7 @@ test("every offered speed survives the round trip through storage (which holds s
 });
 
 test("anything else is normal speed, never a speed the control cannot show", () => {
-  for (const raw of [null, undefined, "", "fast", "0.85", "1.25", "7", "-1", "NaN", 3, {}, "2x"]) {
+  for (const raw of [null, undefined, "", "fast", "0.85", "1.25", "7", "-1", "NaN", 3, {}, "2x", "2", 2, "0.25", 0.25]) {
     assert.equal(parseRate(raw), 1, String(raw));
   }
 });
@@ -26,5 +26,5 @@ test("anything else is normal speed, never a speed the control cannot show", () 
 test("labels read as speeds", () => {
   assert.equal(rateLabel(1), "1×");
   assert.equal(rateLabel(1.5), "1.5×");
-  assert.equal(rateLabel(0.25), "0.25×");
+  assert.equal(rateLabel(0.5), "0.5×");
 });

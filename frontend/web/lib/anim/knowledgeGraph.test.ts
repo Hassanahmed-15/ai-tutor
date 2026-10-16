@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { bktUpdate, canonicalKey, conceptStatus, edgeConfidence, implicitCredit, mergeConcept, mergeEdge, nextStability, retrievability, shakyPrerequisites, validateLectureKnowledge } from "../knowledge/graph";
+import { bktUpdate, canonicalKey, conceptKeysInText, conceptStatus, edgeConfidence, implicitCredit, LESSON_RELEVANCE, mergeConcept, mergeEdge, nextStability, onlyRelated, retrievability, shakyPrerequisites, validateLectureKnowledge } from "../knowledge/graph";
+import { withRefresherOnlyIfOffered } from "../canvas/plan";
+import type { CanvasPlanBeat } from "../canvas/types";
 import { dueForReview, rateConcept, recordAnswer, recordTaught, reorganiseConcepts } from "../knowledge/overlay";
 import { layoutKnowledgeMap, mapBounds, shortLabel, STAR_SPACING, visibleLabels } from "../knowledge/layout";
 import { emptyMemory } from "../learnerModel";
@@ -122,6 +124,41 @@ test("the planner is told what the student knows, and to open with one refresher
   assert.match(told, /Already solid: Glucose/);
   assert.match(told, /Glucose \(in "Photosynthesis"\)/);
   assert.match(told, /refreshes ATP .*"refresher": true/);
+});
+
+/* ── refreshers belong to the lecture (2026-10-15: a volcano lecture opened with a BST refresher) ── */
+
+test("a lecture title's filler words find no concept on their own", () => {
+  const keys = conceptKeysInText("Volcano Eruptions In Depth");
+  assert.ok(keys.includes("volcano") && keys.includes("eruption"));
+  assert.ok(!keys.includes("depth"), "'depth' alone found tree depth in the shared graph");
+  assert.ok(conceptKeysInText("depth first search on graphs").includes("depth first search"), "inside a longer run it still counts");
+  assert.ok(!conceptKeysInText("Recursion Basics: an Introduction").some((k) => ["basics", "introduction"].includes(k)));
+});
+
+test("only refreshers and earlier lessons close to THIS lecture reach the planner", () => {
+  // Measured cosines (lib/knowledge/graph.ts LESSON_RELEVANCE): BST to volcanoes -0.024, to AVL trees 0.455.
+  const volcano = new Map([["volcano", 0.62], ["tree depth", 0.136], ["binary search tree", -0.024], ["tectonic plate", 0.289]]);
+  const shaky = [{ key: "binary search tree", for: "tree depth" }];
+  const earlier = [{ key: "binary search tree" }, { key: "volcano" }];
+  const v = onlyRelated(shaky, earlier, volcano);
+  assert.deepEqual(v.shaky, [], "no BST refresher before volcanoes");
+  assert.deepEqual(v.earlier.map((e) => e.key), ["volcano"]);
+  assert.deepEqual(v.dropped.sort(), ["binary search tree"]);
+
+  const avl = new Map([["binary search tree", 0.455], ["avl tree", 0.7]]);
+  assert.deepEqual(onlyRelated([{ key: "binary search tree", for: "avl tree" }], [], avl).shaky.map((s) => s.key), ["binary search tree"], "BST before AVL trees is kept");
+  assert.deepEqual(onlyRelated([{ key: "binary search tree", for: "tree depth" }], [], new Map([["binary search tree", 0.455], ["tree depth", 0.1]])).shaky, [], "both ends must belong to the lecture");
+  assert.deepEqual(onlyRelated([{ key: "atp", for: "respiration" }], [{ key: "glucose" }], new Map()).shaky, [], "no scores (embedding failed): nothing is kept");
+  assert.ok(LESSON_RELEVANCE > 0.289 && LESSON_RELEVANCE <= 0.326);
+});
+
+test("the planner cannot add a refresher it was not offered", () => {
+  const beat = (id: string, refresher?: boolean) => ({ id, title: id, stage: "scene", ...(refresher ? { refresher: true } : {}) }) as unknown as CanvasPlanBeat;
+  const plan = { title: "Volcanoes", beats: [beat("b1", true), beat("b2")] };
+  assert.equal(withRefresherOnlyIfOffered(plan, false).beats.some((b) => b.refresher), false);
+  assert.equal(withRefresherOnlyIfOffered(plan, true).beats[0].refresher, true, "an offered one stays");
+  assert.equal(plan.beats[0].refresher, true, "the input is not changed");
 });
 
 /* ── the map ──────────────────────────────────────────────────────────────────────────────── */

@@ -9,12 +9,13 @@
  * A panel is 1000 x 560: heading across the top, a notes column on the left, the stage on the right.
  */
 
+import { layoutStructure, runStructure, type DsFrame, type DsLayout } from "./structure";
 import { evalExpr } from "./expr";
 import { placeLabels } from "../figures/labels";
 import { shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
 import type { FigureDrawing } from "../figures/types";
-import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type CompareStage, type EquationStage, type FigureStage, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage } from "./types";
+import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type EquationStage, type FigureStage, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage, type StructureStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Pt = { x: number; y: number };
@@ -27,7 +28,7 @@ export type Mark =
   | { type: "picture"; id: string; rect: Rect; src?: string; paper?: string; s: number; subject: string }
   | { type: "part"; id: string; cx: number; cy: number; name: string; s: number }
   | { type: "callout"; id: string; partId: string; text: string; box: Rect; anchor: Pt; s: number; size: number }
-  | { type: "equation"; id: string; tokens: Array<{ id: string; text: string; color: string; w: number; size: number }>; steps: Array<{ s: number; place: Record<string, Pt>; highlight: string[]; caption?: string }>; size: number; captionY: number; center: number; s: number }
+  | { type: "equation"; id: string; tokens: Array<{ id: string; text: string; tex?: string; color: string; w: number; size: number }>; steps: Array<{ s: number; place: Record<string, Pt>; highlight: string[]; caption?: string }>; size: number; captionY: number; center: number; s: number }
   | { type: "graph"; id: string; plot: Rect; spec: GraphStage; s: number; /** A stacked panel: its curve's name as a title; x axis printed on the bottom panel only. */ stacked?: { title: string; showX: boolean } }
   | { type: "column"; id: string; rect: Rect; title: string; icon?: CanvasIcon; color: string; s: number }
   | { type: "item"; id: string; text: string; rect: Rect; color: string; s: number; size: number }
@@ -43,7 +44,9 @@ export type Mark =
   | { type: "trace"; id: string; rect: Rect; vars: string[]; rows: Array<{ s: number; values: string[] }>; size: number; s: number }
   | { type: "output"; id: string; rect: Rect; text: string; size: number; s: number }
   | { type: "molecule"; id: string; rect: Rect; molecule: MoleculeStage["molecules"][number]; s: number }
-  | { type: "atom-map"; id: string; rect: Rect; stage: AtomMapStage; s: number };
+  | { type: "atom-map"; id: string; rect: Rect; stage: AtomMapStage; s: number }
+  /** A data structure, one frame per step (lib/canvas/structure.ts): the renderer glides between them. */
+  | { type: "structure"; id: string; rect: Rect; kind: DsKind; directed: boolean; frames: DsFrame[]; layout: DsLayout; captions: Array<{ s: number; text: string }>; captionY: number; s: number };
 
 export type PanelLayout = {
   marks: Mark[];
@@ -115,7 +118,9 @@ const overlaps = (a: Rect, b: Rect, pad = 0) =>
 export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   const marks: Mark[] = [];
   const targets: PanelLayout["targets"] = {};
-  const hasNotes = spec.notes.length > 0;
+  // Code beside its data structure needs the whole width: that board writes no notes column.
+  const split = spec.stage.kind === "code" && Boolean(spec.stage.structure);
+  const hasNotes = spec.notes.length > 0 && !split;
   // Labelled textbook figures need horizontal room for the drawing and two boundary-label columns.
   // Putting their notes in the normal left rail made a correct 440 px scientific figure render at
   // roughly 150 CSS pixels. Figure boards therefore use the wide stage and place supporting facts
@@ -128,7 +133,7 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   marks.push({ type: "heading", id: "heading", text: spec.heading, x: 48, y: 66, size: headingSize, s: -1 });
   targets.heading = { x: 48, y: 66 - headingSize, w: Math.min(PANEL_W - 96, textWidth(spec.heading, headingSize)), h: headingSize * 1.25, s: 0 };
 
-  const visibleNotes = spec.notes.slice(0, 4);
+  const visibleNotes = hasNotes ? spec.notes.slice(0, 4) : [];
   if (figureWithNotes) {
     const gap = 18;
     const noteW = (STAGE_WIDE.w - gap * Math.max(0, visibleNotes.length - 1)) / Math.max(1, visibleNotes.length);
@@ -188,6 +193,9 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
       add("atom-map", stage, 0);
       spec.stage.reactants.concat(spec.stage.products).forEach((group) => add(group.id, stage, group.s));
       break;
+    case "structure":
+      layoutStructureStage(spec.stage, stage, marks, add);
+      break;
   }
   targets.stage = { ...stage, s: 0 };
   targets.board = { x: 0, y: 0, w: PANEL_W, h: PANEL_H, s: 0 };
@@ -215,7 +223,19 @@ const MONO = 0.6;
  * side, the trace table and the output when the board has them. Every line is a target, so Aria's
  * pen can point at it and the camera can zoom to it.
  */
-function layoutCode(st: CodeStage, area: Rect, marks: Mark[], add: Add) {
+function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
+  let st = stage;
+  let area = fullArea;
+  if (stage.structure) {
+    // The code on the left, as wide as its longest line needs at a readable size (40-58% of the
+    // board); the structure it changes on the right. The trace table and the subgoal labels give
+    // way: the structure shows what the trace would, and the labels would crowd the code.
+    const longest = Math.max(8, ...stage.lines.map((l) => l.length));
+    const codeW = Math.round(Math.max(fullArea.w * 0.4, Math.min(fullArea.w * 0.58, 38 + longest * MONO * 15 + 48)));
+    layoutStructureMark(stage.structure, stage.steps, { x: fullArea.x + codeW + 18, y: fullArea.y, w: fullArea.w - codeW - 18, h: fullArea.h }, marks, add, []);
+    area = { ...fullArea, w: codeW };
+    st = { ...stage, trace: undefined, groups: undefined };
+  }
   const rowH = 24;
   // The bottom row: the Variables panel, the trace, the output — whichever the board has, packed left
   // to right. Short of room, the trace goes first (the live Variables panel says more).
@@ -281,6 +301,35 @@ function layoutCode(st: CodeStage, area: Rect, marks: Mark[], add: Add) {
     }
     x += p.w + 16;
   }
+}
+
+/* ── data structures ──────────────────────────────────────────────────────────────────────── */
+
+/** A structure board: the structure across the stage, each step's note written under it. */
+function layoutStructureStage(st: StructureStage, area: Rect, marks: Mark[], add: Add) {
+  const captions = st.steps.filter((p) => p.note).map((p) => ({ s: p.s, text: p.note! }));
+  layoutStructureMark(st.structure, st.steps, area, marks, add, captions);
+}
+
+function layoutStructureMark(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>, area: Rect, marks: Mark[], add: Add, captions: Array<{ s: number; text: string }>) {
+  // Frames up to the first operation that could not be done: the board is checked before it is kept
+  // (lib/canvas/generate.ts), so this only guards a board that slipped through.
+  const { frames } = runStructure(start, steps);
+  const captionRoom = captions.length ? 44 : 0;
+  const inner = { x: area.x, y: area.y, w: area.w, h: area.h - captionRoom };
+  const layout = layoutStructure(start, frames, inner);
+  const s = frames[0]?.s ?? 0;
+  marks.push({ type: "structure", id: "structure", rect: area, kind: start.kind, directed: start.kind === "list" || start.variant === "directed", frames, layout, captions, captionY: area.y + area.h - 12, s });
+  add("structure", area, s);
+  // Each node is a target where it first appears, so the pen can point at it.
+  const seen = new Set<string>();
+  layout.frames.forEach((lf) => {
+    for (const [id, at] of Object.entries(lf.place)) {
+      if (seen.has(id)) continue;
+      seen.add(id);
+      add(`ds-${id}`, { x: at.x - layout.w / 2, y: at.y - layout.h / 2, w: layout.w, h: layout.h }, lf.s);
+    }
+  });
 }
 
 /* ── flow ─────────────────────────────────────────────────────────────────────────────────── */
@@ -523,50 +572,153 @@ function layoutIllustration(stage: IllustrationStage, box: Rect, marks: Mark[], 
 
 /* ── equation ─────────────────────────────────────────────────────────────────────────────── */
 
+/**
+ * A LaTeX term's width in em, estimated (KaTeX lays it out only in a browser, and layout is pure):
+ * a fraction is as wide as its wider part, a power or index is small, a command is one symbol, and
+ * the operators carry KaTeX's spacing. The renderer fits the real typesetting into this slot.
+ */
+export function texEm(s: string, script = false): number {
+  let w = 0;
+  let i = 0;
+  const group = (): string => {
+    while (s[i] === " ") i++;
+    if (s[i] === "{") {
+      const start = i + 1;
+      for (let depth = 0; i < s.length; i++) {
+        if (s[i] === "{") depth++;
+        else if (s[i] === "}" && --depth === 0) return s.slice(start, i++);
+      }
+      return s.slice(start);
+    }
+    if (s[i] === "\\") {
+      const m = /^\\(?:[a-zA-Z]+|.)/.exec(s.slice(i));
+      const cmd = m ? m[0] : "\\";
+      i += cmd.length;
+      return cmd;
+    }
+    return s[i++] ?? "";
+  };
+  while (i < s.length) {
+    const c = s[i];
+    if (c === "\\") {
+      const m = /^\\([a-zA-Z]+|.)/.exec(s.slice(i));
+      const name = m ? m[1] : "";
+      i += m ? m[0].length : 1;
+      if (name === "frac" || name === "dfrac" || name === "tfrac") w += Math.max(texEm(group(), true), texEm(group(), true)) * 0.72 + 0.25;
+      else if (name === "sqrt") {
+        if (s[i] === "[") i = s.indexOf("]", i) < 0 ? s.length : s.indexOf("]", i) + 1;
+        w += texEm(group()) + 0.75;
+      } else if (["text", "mathrm", "textbf", "mathbf", "operatorname", "textit"].includes(name)) w += textWidth(group(), 1);
+      else if (["left", "right", "big", "Big", "bigl", "bigr", "displaystyle"].includes(name)) continue;
+      else if (name === "quad") w += 1;
+      else if (name === "," || name === ";" || name === ":" || name === " " || name === "!") w += 0.22;
+      else if (["times", "cdot", "pm", "mp", "div", "le", "ge", "leq", "geq", "neq", "approx", "to", "rightarrow", "Rightarrow", "equiv", "implies"].includes(name)) w += 1.05;
+      else w += 0.62;
+    } else if (c === "^" || c === "_") {
+      i++;
+      w += texEm(group(), true) * 0.7;
+    } else if (c === "{") w += texEm(group());
+    else if (c === "}" || c === " ") i++;
+    else if (/[+=<>−-]/.test(c)) {
+      // Inside a fraction or a power the operators lose their spacing: just the glyph.
+      w += script ? 0.8 : 1.1;
+      i++;
+    } else {
+      w += textWidth(c, 1) * 1.05;
+      i++;
+    }
+  }
+  return w;
+}
+
+/** A step's terms on one line, or split onto two before an "=" (or a "+"/"−") near the middle when too wide. */
+function wrapRow(row: string[], width: (id: string) => number, isBreak: (id: string) => 0 | 1 | 2, maxW: number, gap: number): string[][] {
+  const total = row.reduce((w, id) => w + width(id), 0) + gap * Math.max(0, row.length - 1);
+  if (total <= maxW || row.length < 2) return [row];
+  let best = 1;
+  let bestScore = Infinity;
+  let acc = 0;
+  for (let k = 1; k < row.length; k++) {
+    acc += width(row[k - 1]) + gap;
+    const kind = isBreak(row[k]);
+    const score = Math.abs(acc - total / 2) - (kind === 2 ? total * 0.25 : kind === 1 ? total * 0.1 : 0);
+    if (score < bestScore) {
+      bestScore = score;
+      best = k;
+    }
+  }
+  return [row.slice(0, best), row.slice(best)];
+}
+
 function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add) {
   const tokens = stage.tokens.slice(0, 16);
   const steps = stage.steps.length ? stage.steps : [{ s: 0, order: tokens.map((t) => t.id) }];
   const hosted = new Map(tokens.filter((t) => t.on && tokens.some((h) => h.id === t.on && !h.on)).map((t) => [t.id, t.on as string]));
   const inRow = (id: string) => !hosted.has(id);
-  const gap = 12;
-  const widest = Math.max(...steps.map((step) => step.order.filter(inRow).reduce((w, id) => w + textWidth(tokens.find((t) => t.id === id)?.text ?? "", 1) + gap / 44, 0)));
-  const size = Math.max(24, Math.min(46, Math.floor((box.w - 40) / Math.max(1, widest))));
+  // A sign on its own is typeset without the spacing it gets inside an expression: just its glyph.
+  const em = new Map(tokens.map((t) => [t.id, t.tex ? (/^\s*(?:[=+<>−-]|\\times|\\cdot|\\to|\\rightarrow)\s*$/.test(t.tex) ? 0.8 : texEm(t.tex)) : textWidth(t.text, 1)]));
+  const maxW = box.w - 40;
+  const gapEm = 12 / 44;
+  const rows = steps.map((step) => step.order.filter((id) => em.has(id) && inRow(id)));
+  const rowEm = (row: string[]) => row.reduce((w, id) => w + em.get(id)!, 0) + gapEm * Math.max(0, row.length - 1);
+  const widest = Math.max(1, ...rows.map(rowEm));
+  // One line as large as fits (down to 26); a step still too wide goes onto two lines, and the size
+  // then fits the widest LINE (down to 18) — a long equation shrinks or wraps, never overflows.
+  let size = Math.max(26, Math.min(46, Math.floor(maxW / widest)));
+  const breakOf = (id: string): 0 | 1 | 2 => {
+    const text = tokens.find((t) => t.id === id)?.text ?? "";
+    return /^[=→⇌]$/.test(text) ? 2 : /^[+−-]$/.test(text) ? 1 : 0;
+  };
+  const wrapAt = (sz: number) => rows.map((row) => wrapRow(row, (id) => em.get(id)! * sz, breakOf, maxW, gapEm * sz));
+  let lined = wrapAt(size);
+  const widestLine = Math.max(1, ...lined.flat().map(rowEm));
+  if (widestLine * size > maxW) {
+    size = Math.max(18, Math.floor(maxW / widestLine));
+    lined = wrapAt(size);
+  }
+  const gap = gapEm * size;
   const small = Math.round(size * 0.5);
   const center = box.x + box.w / 2;
+  const tall = tokens.some((t) => /\\[dt]?frac|\\sqrt/.test(t.tex ?? ""));
+  const lineGap = size * (tall ? 1.95 : 1.6);
+  const twoLines = lined.some((l) => l.length > 1);
   const baseY = box.y + box.h * 0.44;
   const measured = tokens.map((t, i) => {
     const tokenSize = hosted.has(t.id) ? small : size;
     const color = t.color && /^#/.test(t.color) ? t.color : /[→=⇌]/.test(t.text) || /^[+−-]$/.test(t.text) ? "#64748b" : PALETTE[i % PALETTE.length];
-    return { id: t.id, text: t.text, color, w: textWidth(t.text, tokenSize), size: tokenSize };
+    return { id: t.id, text: t.text, ...(t.tex ? { tex: t.tex } : {}), color, w: (em.get(t.id) ?? 0) * tokenSize, size: tokenSize };
   });
-  const laidSteps = steps.map((step) => {
+  const laidSteps = steps.map((step, k) => {
     const order = step.order.filter((id) => measured.some((t) => t.id === id));
-    const row = order.filter(inRow);
-    const total = row.reduce((w, id) => w + measured.find((t) => t.id === id)!.w, 0) + gap * Math.max(0, row.length - 1);
-    let x = center - total / 2;
     const place: Record<string, Pt> = {};
-    for (const id of row) {
-      const t = measured.find((m) => m.id === id)!;
-      place[id] = { x, y: baseY };
-      x += t.w + gap;
-    }
+    const lines = lined[k];
+    lines.forEach((line, n) => {
+      const total = line.reduce((w, id) => w + measured.find((t) => t.id === id)!.w, 0) + gap * Math.max(0, line.length - 1);
+      let x = center - total / 2;
+      const y = lines.length > 1 ? baseY + (n - 0.5) * lineGap : baseY;
+      for (const id of line) {
+        place[id] = { x, y };
+        x += measured.find((m) => m.id === id)!.w + gap;
+      }
+    });
     // A hosted token sits centred over its host, when both are in this step.
     for (const id of order.filter((o) => hosted.has(o))) {
       const host = place[hosted.get(id)!];
       const hostW = measured.find((m) => m.id === hosted.get(id))!.w;
       const t = measured.find((m) => m.id === id)!;
-      if (host) place[id] = { x: host.x + hostW / 2 - t.w / 2, y: baseY - size * 1.05 };
+      if (host) place[id] = { x: host.x + hostW / 2 - t.w / 2, y: host.y - size * 1.05 };
     }
     return { s: step.s, place, highlight: step.highlight ?? [], caption: step.caption };
   });
-  marks.push({ type: "equation", id: "equation", tokens: measured, steps: laidSteps, size, captionY: baseY + 86, center, s: laidSteps[0]?.s ?? 0 });
+  const below = twoLines ? lineGap / 2 : 0;
+  marks.push({ type: "equation", id: "equation", tokens: measured, steps: laidSteps, size, captionY: baseY + below + Math.max(70, size * (tall ? 1.6 : 1.3) + 30), center, s: laidSteps[0]?.s ?? 0 });
   const first = laidSteps[0];
   for (const t of measured) {
     const step = laidSteps.find((st) => st.place[t.id]);
     const p = step?.place[t.id];
-    if (p) add(t.id, { x: p.x - 4, y: p.y - t.size, w: t.w + 8, h: t.size * 1.3 }, step!.s);
+    if (p) add(t.id, { x: p.x - 4, y: p.y - t.size * (tall ? 1.15 : 1), w: t.w + 8, h: t.size * (tall ? 1.7 : 1.3) }, step!.s);
   }
-  add("equation", { x: box.x + 10, y: baseY - size * 1.6, w: box.w - 20, h: size * 1.9 + 32 }, first.s);
+  add("equation", { x: box.x + 10, y: baseY - below - size * 1.6, w: box.w - 20, h: size * 1.9 + below * 2 + 32 }, first.s);
 }
 
 /* ── graph ────────────────────────────────────────────────────────────────────────────────── */

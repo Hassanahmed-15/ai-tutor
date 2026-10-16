@@ -4,6 +4,7 @@ import "server-only";
 import type { Beat } from "../lessonContent";
 import type { ProgressiveBeatPlan, ProgressiveLectureInput } from "../progressiveLectureTypes";
 import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, validatePlan, type Clock } from "./generate";
+import { withRefresherOnlyIfOffered } from "./plan";
 import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
 import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
@@ -71,7 +72,9 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
     try {
       const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, attempt > 1 && lastError ? `${request}\n\nYour previous plan could not be used: ${lastError}` : request, fromDocument ? 16_000 : 9000), fromDocument ? 180_000 : 120_000, "canvas plan");
       costUsd += c;
-      let plan = validatePlan(json);
+      const valid = validatePlan(json);
+      // Only a refresher the student's knowledge offered — the planner may not add its own (lib/canvas/plan.ts).
+      let plan = valid && withRefresherOnlyIfOffered(valid, canvasRefresherAllowed(input, knowledge));
       // Typed, course and reference lessons must genuinely teach, pause for a prediction, reveal,
       // then transfer. Strict/video lessons may omit a new transfer case when their source does.
       const cycleProblems = plan && !sourceMode

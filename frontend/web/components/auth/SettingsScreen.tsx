@@ -27,8 +27,6 @@ const SECTIONS: { id: SettingsSection; label: string }[] = [
 
 const FIELD =
   "w-full rounded-[var(--radius)] border border-[var(--input-border)] bg-[var(--hud-surface)] px-3.5 py-2.5 text-[0.9rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none focus:ring-2 focus:ring-[var(--hud-cyan-glow)]";
-const SELECT =
-  "w-full rounded-[var(--radius)] border border-[var(--input-border)] bg-[var(--hud-surface)] px-2.5 py-2 text-[0.8125rem] text-[var(--hud-text)] focus:border-[var(--hud-cyan)] focus:outline-none";
 
 const TEACHING_DEPTHS: { value: TeachingDepth; label: string; hint: string }[] = [
   { value: "adaptive", label: "Adaptive", hint: "Aria decides from each question: a short question gets a short answer." },
@@ -39,7 +37,7 @@ const TEACHING_DEPTHS: { value: TeachingDepth; label: string; hint: string }[] =
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 import { LearnerProfileInsights } from "@/components/memory/LearnerProfileInsights";
 import { LearnerProfileFields, type LearnerFieldsValue } from "./LearnerProfileFields";
-import { allCurricula, allStudyLevels, curriculaFor, levelBand, studyLevelOptions, type EduOption } from "@/lib/education";
+import { levelBand } from "@/lib/education";
 import { emptyPreferences, preferenceSummary, type LearningPreferences } from "@/lib/learningPreferences";
 import { LearningPreferencesFlow } from "./LearningPreferencesFlow";
 
@@ -84,7 +82,7 @@ export function SettingsScreen({
   });
   const [notes, setNotes] = useState(profile?.notes ?? "");
   const [teachingDepth, setTeachingDepth] = useState<TeachingDepth>(profile?.teachingDepth ?? "adaptive");
-  // The learner profile's basics — the same fields as onboarding screen 1 — and per-subject levels.
+  // The learner profile's basics — the same fields as onboarding screen 1.
   const [learnerFields, setLearnerFields] = useState<LearnerFieldsValue>({
     country: profile?.learner?.country ?? null,
     countrySource: profile?.learner?.countrySource ?? null,
@@ -92,24 +90,9 @@ export function SettingsScreen({
     subjects: profile?.learner?.subjects ?? [],
     curricula: profile?.learner?.curricula ?? [],
   });
-  // Per subject, where it differs from the main ones — chosen here, or learned from lessons
-  // (lib/learnerBasics.ts learnSubjectContext; `learned` marks those, and saving keeps the mark).
-  const [subjectLevels, setSubjectLevels] = useState<Record<string, EduOption & { learned?: boolean }>>(profile?.learner?.subjectLevels ?? {});
   // "How do you like to learn?" — the same questions as onboarding, opened here on request.
   const [learning, setLearning] = useState<LearningPreferences>(profile?.learner?.preferences ?? emptyPreferences());
   const [editingLearning, setEditingLearning] = useState(false);
-  const [subjectCurricula, setSubjectCurricula] = useState<Record<string, Array<EduOption & { learned?: boolean }>>>(profile?.learner?.subjectCurricula ?? {});
-  const levelChoicesFor = (subject: EduOption) => {
-    const local = studyLevelOptions(learnerFields.country, [subject]);
-    const seen = new Set(local.map((l) => l.id));
-    return [...local, ...allStudyLevels().filter((l) => !seen.has(l.id))];
-  };
-  const curriculumChoicesFor = (subject: EduOption) => {
-    const suggested = curriculaFor({ country: learnerFields.country, level: subjectLevels[subject.id] ?? learnerFields.studyLevel, subjects: [subject] });
-    const current = subjectCurricula[subject.id] ?? [];
-    const seen = new Set(suggested.map((c) => c.id));
-    return [...suggested, ...current.filter((c) => !seen.has(c.id)), ...allCurricula().filter((c) => !seen.has(c.id) && !current.some((x) => x.id === c.id))];
-  };
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -151,9 +134,6 @@ export function SettingsScreen({
           notes,
           learner: {
             ...learnerFields,
-            // Only subjects still chosen keep their own level and curriculum.
-            subjectLevels: Object.fromEntries(Object.entries(subjectLevels).filter(([id]) => learnerFields.subjects.some((s) => s.id === id))),
-            subjectCurricula: Object.fromEntries(Object.entries(subjectCurricula).filter(([id]) => learnerFields.subjects.some((s) => s.id === id))),
             preferences: { ...learning, complete: true },
           },
         }),
@@ -329,63 +309,6 @@ export function SettingsScreen({
                 <h3 id="set-profile-h" className={headingClass}>Your learner profile</h3>
                 <p className={helpClass}>What you study and where. Aria uses it for suggestions, examples and terminology.</p>
                 <LearnerProfileFields value={learnerFields} onChange={setLearnerFields} />
-                {learnerFields.subjects.length > 0 && (
-                  <div className="mt-6">
-                    <p className="mb-1 text-[0.875rem] font-medium text-[var(--hud-text)]">Level and curriculum by subject</p>
-                    <p className="mb-3 text-[0.8125rem] text-[var(--hud-text-dim)]">Only where a subject differs from your main ones. Aria also fills these in from your lessons.</p>
-                    <div className="space-y-2.5">
-                      {learnerFields.subjects.map((subject) => {
-                        const level = subjectLevels[subject.id];
-                        const curriculum = subjectCurricula[subject.id]?.[0];
-                        const learned = Boolean(level?.learned || curriculum?.learned);
-                        return (
-                          <div key={subject.id} className="grid grid-cols-1 items-center gap-2 sm:grid-cols-[1fr_1.3fr_1.3fr]">
-                            <span className="min-w-0 truncate text-[0.875rem] text-[var(--hud-text)]">
-                              {subject.label}
-                              {learned && <span className="ml-1.5 whitespace-nowrap text-[0.75rem] text-[var(--hud-text-dim)]">learned from your lessons</span>}
-                            </span>
-                            <label htmlFor={`subject-level-${subject.id}`} className="sr-only">{`${subject.label} study level`}</label>
-                            <select
-                              id={`subject-level-${subject.id}`}
-                              value={level?.id ?? ""}
-                              onChange={(e) => {
-                                const picked = levelChoicesFor(subject).find((l) => l.id === e.target.value);
-                                setSubjectLevels((prev) => {
-                                  const next = { ...prev };
-                                  if (picked) next[subject.id] = { id: picked.id, label: picked.label };
-                                  else delete next[subject.id];
-                                  return next;
-                                });
-                              }}
-                              className={SELECT}
-                            >
-                              <option value="">Same level as my main one</option>
-                              {levelChoicesFor(subject).map((l) => <option key={l.id} value={l.id}>{l.label}</option>)}
-                            </select>
-                            <label htmlFor={`subject-curriculum-${subject.id}`} className="sr-only">{`${subject.label} curriculum, exam or track`}</label>
-                            <select
-                              id={`subject-curriculum-${subject.id}`}
-                              value={curriculum?.id ?? ""}
-                              onChange={(e) => {
-                                const picked = curriculumChoicesFor(subject).find((c) => c.id === e.target.value);
-                                setSubjectCurricula((prev) => {
-                                  const next = { ...prev };
-                                  if (picked) next[subject.id] = [{ id: picked.id, label: picked.label }];
-                                  else delete next[subject.id];
-                                  return next;
-                                });
-                              }}
-                              className={SELECT}
-                            >
-                              <option value="">Same curriculum as my main one</option>
-                              {curriculumChoicesFor(subject).map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
-                            </select>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
                 <div className="mt-6">
                   <label htmlFor="set-notes" className="mb-1.5 block text-[0.8125rem] font-medium text-[var(--hud-text)]">
                     Anything else Aria should know? <span className="font-normal text-[var(--hud-text-dim)]">Optional</span>

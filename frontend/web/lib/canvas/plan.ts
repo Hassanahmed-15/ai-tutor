@@ -1,6 +1,7 @@
 import { CANVAS_STAGES, type CanvasPlanBeat, type CanvasStage } from "./types";
 import { slug } from "./validate";
 import { predictionIndex } from "./predict";
+import { withoutSourceTags } from "../webSources";
 
 /**
  * A canvas lecture's PLAN, as the model wrote it, made safe — pure, so it is unit-tested
@@ -62,7 +63,8 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
   // a strict lecture on a whole document, up to 24 boards — lib/canvas/sourceLessons.ts).
   list.slice(0, 24).forEach((item, i) => {
     const b = (item && typeof item === "object" ? item : {}) as Record<string, unknown>;
-    let script = typeof b.script === "string" ? b.script.replace(/\s+/g, " ").trim() : "";
+    // Spoken aloud: a "Sources: [S1]" line the model added from the research material goes.
+    let script = typeof b.script === "string" ? withoutSourceTags(b.script.replace(/\s+/g, " ").trim()) : "";
     const title = typeof b.title === "string" ? b.title.trim().slice(0, 60) : "";
     const stage = (CANVAS_STAGES as readonly string[]).includes(String(b.stage)) ? (b.stage as CanvasStage) : "scene";
     if (!script || !title || canvasSentences(script).length < 2) return;
@@ -103,6 +105,23 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
   let refreshers = 0;
   for (const beat of beats) if (beat.refresher && (refreshers++ > 0 || beat.overview)) delete beat.refresher;
   return { title: typeof r.title === "string" && r.title.trim() ? r.title.trim().slice(0, 80) : beats[0].title, beats };
+}
+
+/**
+ * A refresher board only when the student's knowledge offered one (lib/canvas/lessonRequest.ts
+ * canvasRefresherAllowed, after lib/knowledge/planning.ts kept only what relates to this lecture).
+ * The planner may not invent its own: an unoffered refresher is taught as an ordinary board.
+ */
+export function withRefresherOnlyIfOffered<P extends { beats: CanvasPlanBeat[] }>(plan: P, offered: boolean): P {
+  if (offered || !plan.beats.some((b) => b.refresher)) return plan;
+  return {
+    ...plan,
+    beats: plan.beats.map((beat) => {
+      const plain = { ...beat };
+      delete plain.refresher;
+      return plain;
+    }),
+  };
 }
 
 /** A document lesson's "source" on a board: real page numbers, a listing number, a line range. */

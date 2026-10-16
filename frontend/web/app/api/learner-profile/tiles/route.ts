@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import { currentUser } from "@/lib/auth";
 import { databaseConfigured, migrateUserDoc, users, type UserDoc } from "@/lib/db/cosmos";
 import { countryName } from "@/lib/education";
+import { effectiveLearner } from "@/lib/learnerBasics";
 import { loadLearnerMemory } from "@/lib/learnerMemoryStore";
 import { learnerProfileView } from "@/lib/learnerProfileView";
 import { costFor } from "@/lib/modelPricing";
@@ -32,7 +33,7 @@ export async function GET() {
   const { resource: raw } = await users().item(session.userId, session.userId).read<UserDoc>().catch(() => ({ resource: undefined }));
   if (!raw) return NextResponse.json({ tiles: [] });
   const { doc: user } = migrateUserDoc(raw);
-  const basics = user.profile?.learner ?? null;
+  const basics = user.profile?.learner ? effectiveLearner(user.profile.learner) : null;
   const memory = await loadLearnerMemory(session.userId).catch(() => null);
   const view = learnerProfileView(basics, memory);
   if (!basics?.subjects.length && view.subjects.length === 0) return NextResponse.json({ tiles: [] });
@@ -61,8 +62,8 @@ export async function GET() {
             content: [
               `Country: ${basics.country ? countryName(basics.country) : "unknown"}`,
               `Study level: ${basics.studyLevel?.label ?? "unknown"}`,
-              `Subjects: ${basics.subjects.map((s) => `${s.label}${basics.subjectLevels?.[s.id] ? ` (${basics.subjectLevels[s.id].label})` : ""}`).join(", ")}`,
-              `Curriculum / exam / track: ${basics.curricula.map((c) => c.label).join(", ") || "not given"}`,
+              `Subjects: ${basics.subjects.map((s) => s.label).join(", ")}`,
+              `Exam / syllabus: ${basics.curricula.map((c) => c.label).join(", ") || "not given"}`,
               `Already mastered: ${mastered.join(", ") || "nothing recorded yet"}`,
               `Currently studying: ${view.currentTopics.join(", ") || "nothing recorded yet"}`,
             ].join("\n"),

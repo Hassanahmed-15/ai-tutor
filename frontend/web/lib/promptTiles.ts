@@ -64,8 +64,7 @@ export function fallbackFreshTiles(view: LearnerProfileView): PromptTile[] {
   const level = b.studyLevel?.label;
   const curriculum = b.curricula[0]?.label;
   return b.subjects.map((subject) => {
-    const levelFor = b.subjectLevels?.[subject.id]?.label ?? level;
-    const scope = curriculum ? `${curriculum} ${subject.label}` : levelFor ? `${subject.label} at ${levelFor} level` : subject.label;
+    const scope = curriculum ? `${curriculum} ${subject.label}` : level ? `${subject.label} at ${level} level` : subject.label;
     return tile("fresh", `The key ideas in ${scope}`, subject.label);
   });
 }

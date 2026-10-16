@@ -10,7 +10,7 @@ const NOW = Date.parse("2026-09-29T12:00:00Z");
 const day = (n: number) => new Date(NOW - n * 86_400_000).toISOString();
 const basics: LearnerBasics = {
   country: "GB", countrySource: "ip",
-  studyLevel: { id: "gb-alevel", label: "A-Level / Sixth form (Years 12–13)" },
+  studyLevel: { id: "cambridge-a-level", label: "AS & A Level" },
   subjects: [{ id: "physics", label: "Physics" }, { id: "mathematics", label: "Mathematics" }],
   curricula: [{ id: "cambridge-a-level", label: "Cambridge International AS & A Level" }],
   subjectLevels: { mathematics: { id: "gb-gcse", label: "GCSE / O-Level (Years 10–11)" } },
@@ -43,7 +43,7 @@ test("the profile sorts what Aria knows into the student's subjects", () => {
   assert.deepEqual(physics.weak, ["heavier objects fall faster"]);
   assert.deepEqual(maths.strong.map((c) => c.label), ["Algebra"]);
   assert.deepEqual(maths.weakConcepts.map((c) => c.label), ["Probability"]);
-  assert.equal(maths.studyLevel?.label, "GCSE / O-Level (Years 10–11)", "a subject's own level overrides the general one");
+  assert.equal(maths.studyLevel?.label, "AS & A Level", "an old per-subject level is no longer read (2026-10-15)");
   assert.equal(physics.studyLevel?.label, basics.studyLevel!.label);
   assert.deepEqual(view.currentTopics, ["Mechanics", "Probability basics"]);
   assert.equal(view.typicalLessonDuration, "10–15 minutes");
@@ -55,7 +55,8 @@ test("the lesson writers get the profile as background lines", () => {
   assert.match(text, /Studies in: United Kingdom/);
   assert.match(text, /Cambridge International AS & A Level — use its terminology/);
   assert.match(text, /Physics: .*mastered Newton's laws/);
-  assert.match(text, /Mathematics: level GCSE.*strong on Algebra.*weak on Probability/);
+  assert.match(text, /Mathematics: strong on Algebra.*weak on Probability/);
+  assert.doesNotMatch(text, /GCSE/, "the hidden per-subject level never reaches the writers");
   assert.equal(learnerContextForPrompt(learnerProfileView(null, null, NOW)), "");
 });
 

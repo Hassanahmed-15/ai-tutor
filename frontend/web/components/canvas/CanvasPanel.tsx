@@ -1,9 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef } from "react";
+import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
 import { graphPoint, INK, textWidth, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
+import { edgeCurve } from "@/lib/canvas/structure";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
 import { IconGlyph } from "./icons";
@@ -409,6 +412,8 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
       return <CodeView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
     case "trace":
       return <TraceView mark={mark} shownThrough={shownThrough} />;
+    case "structure":
+      return <StructureView mark={mark} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} />;
     case "state":
       return <StateView mark={mark} shownThrough={shownThrough} />;
     case "output":
@@ -610,6 +615,166 @@ function ElectrolyticCellView({ mark, shownThrough, focusId, reducedMotion, chal
           <IonPath fromX={beaker.x + beaker.w * 0.48} toX={cathodeX - 18} y={liquidY + 74} charge="+" color={cathodeColor} animate={!reducedMotion} />
           <IonPath fromX={beaker.x + beaker.w * 0.52} toX={anodeX + 18} y={liquidY + 118} charge="−" color={anodeColor} animate={!reducedMotion} />
         </g>
+      )}
+    </g>
+  );
+}
+
+/* ── data structures: the tree, list or array itself, changing as the code runs ───────────── */
+
+const DS_LOOK: Record<string, { fill: string; stroke: string }> = {
+  none: { fill: "#ffffff", stroke: "#0f766e" },
+  visit: { fill: "#dbeafe", stroke: "#2563eb" },
+  compare: { fill: "#fef3c7", stroke: "#d97706" },
+  found: { fill: "#bbf7d0", stroke: "#15803d" },
+  done: { fill: "#e5e7eb", stroke: "#64748b" },
+  remove: { fill: "#fee2e2", stroke: "#be123c" },
+};
+const POINTER_INK = "#7c3aed";
+const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+/**
+ * One frame per step (lib/canvas/structure.ts). When the narration reaches a new step, every node
+ * glides from where it was to where it now sits, a link that is new inks itself in, a removed node is
+ * crossed out and fades, and a changed value flashes — so the student watches the line of code that
+ * was just read do its work on the structure.
+ */
+function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: Extract<Mark, { type: "structure" }>; shownThrough: number; focusId?: string; reducedMotion: boolean }) {
+  const index = mark.frames.reduce((best, f, i) => (f.s <= shownThrough ? i : best), 0);
+  const [glide, setGlide] = useState({ from: index, to: index, t: 1 });
+  useEffect(() => {
+    if (index === glide.to || reducedMotion) return;
+    const from = glide.to;
+    let raf = 0;
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - t0) / 750);
+      setGlide({ from, to: index, t });
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // Runs only when the step changes; `glide.to` is where the last glide ended.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, reducedMotion]);
+  // Reduced motion: the step as it is now, without moving.
+  const shown = reducedMotion ? { from: index, to: index, t: 1 } : glide;
+
+  const { layout } = mark;
+  const before = layout.frames[shown.from] ?? layout.frames[0];
+  const after = layout.frames[shown.to] ?? layout.frames[0];
+  const frame = mark.frames[shown.to] ?? mark.frames[0];
+  const gone = (mark.frames[shown.from]?.nodes ?? []).filter((n) => !frame.nodes.some((m) => m.id === n.id));
+  const e = easeInOut(shown.t);
+  const lerp = (a: Pt | undefined, b: Pt | undefined): Pt | undefined => (a && b ? { x: a.x + (b.x - a.x) * e, y: a.y + (b.y - a.y) * e } : b ?? a);
+  const at = (id: string) => lerp(before.place[id], after.place[id]);
+  const caption = mark.captions.filter((c) => c.s <= shownThrough).at(-1);
+
+  const nodeShape = (id: string, p: Pt, look: { fill: string; stroke: string }) => {
+    if (layout.shape === "circle") return <path d={roughEllipse(`ds-${id}`, p.x, p.y, layout.r, layout.r)} fill={look.fill} stroke={look.stroke} strokeWidth={2.6} />;
+    const x = p.x - layout.w / 2;
+    const y = p.y - layout.h / 2;
+    return (
+      <g>
+        <path d={roughRect(`ds-${id}`, x, y, layout.w, layout.h, layout.shape === "box" ? 8 : 4)} fill={look.fill} stroke={look.stroke} strokeWidth={2.4} />
+        {/* A linked-list node: its value, and the box its next pointer leaves from. */}
+        {layout.shape === "box" && <line x1={x + layout.w * 0.68} y1={y + 4} x2={x + layout.w * 0.68} y2={y + layout.h - 4} stroke={look.stroke} strokeWidth={1.6} opacity={0.7} />}
+      </g>
+    );
+  };
+  const valueX = (p: Pt) => (layout.shape === "box" ? p.x - layout.w * 0.16 : p.x);
+
+  // A link that is new on this step draws itself in. A list's link leaves from a dot in its node's
+  // "next" box (lib/canvas/structure.ts edgeCurve), so list links are drawn over the nodes; a tree's
+  // and a graph's run between circles and sit under them.
+  const box = layout.shape === "box";
+  const links = frame.edges.map((edge) => {
+    const a = at(edge.from);
+    const b = at(edge.to);
+    if (!a || !b) return null;
+    const { p0, c, p1 } = edgeCurve(layout, a, b);
+    const points = quadPoints(p0, c, p1, 14);
+    return (
+      <g key={`${edge.from}>${edge.to}`}>
+        <Ink points={points} width={3.6} color={INK} opacity={0.85} />
+        {box && <circle cx={p0.x} cy={p0.y} r={4.2} fill={INK} />}
+        {mark.directed && <g className="cv-in cv-late">{arrowHead(p1, bezier(p0, c, p1, 0.82), 12, 3.4).map((d, i) => <path key={i} d={d} fill={INK} opacity={0.85} />)}</g>}
+        {edge.label && <text x={c.x} y={c.y - 8} textAnchor="middle" fontSize={14} fontWeight={700} fill={MUTED}>{edge.label}</text>}
+      </g>
+    );
+  });
+
+  return (
+    <g>
+      {!box && links}
+      {frame.nodes.map((n) => {
+        const p = at(n.id);
+        if (!p) return null;
+        const state = frame.marks[n.id] ?? "none";
+        const look = DS_LOOK[state] ?? DS_LOOK.none;
+        const lit = focusId === `ds-${n.id}`;
+        const changed = shown.t >= 1 && frame.changed.includes(n.id);
+        return (
+          <g key={n.id} className={lit ? "cv-focus" : undefined}>
+            <g className={before.place[n.id] ? undefined : "cv-in"}>
+              {nodeShape(n.id, p, look)}
+              {/* A list node that points at nothing: its "next" box struck through — null, as it is taught. */}
+              {box && !frame.edges.some((ed) => ed.from === n.id) && (
+                <Ink points={[{ x: p.x + layout.w * 0.18 + 6, y: p.y + layout.h / 2 - 6 }, { x: p.x + layout.w / 2 - 6, y: p.y - layout.h / 2 + 6 }]} width={2.8} color="#475569" />
+              )}
+              {changed && <circle key={`flash-${shown.to}`} cx={p.x} cy={p.y} r={Math.max(layout.w, layout.h) * 0.62} fill="#fbbf24" fillOpacity={0.25} className="cv-in" />}
+              <text key={`v-${n.value}`} x={valueX(p)} y={p.y + layout.size * 0.36} textAnchor="middle" fontSize={layout.size} fontWeight={800} fill="#0f172a" className={changed ? "cv-in" : undefined}>
+                {n.value}
+              </text>
+              {state === "remove" && (
+                <g className="cv-in">
+                  <Ink points={[{ x: p.x - layout.w * 0.55, y: p.y - layout.h * 0.55 }, { x: p.x + layout.w * 0.55, y: p.y + layout.h * 0.55 }]} width={4} color="#be123c" />
+                  <Ink points={[{ x: p.x + layout.w * 0.55, y: p.y - layout.h * 0.55 }, { x: p.x - layout.w * 0.55, y: p.y + layout.h * 0.55 }]} width={4} color="#be123c" />
+                </g>
+              )}
+            </g>
+          </g>
+        );
+      })}
+      {box && links}
+      {/* Removed on this step: crossed out where it was, fading as the rest settles. */}
+      {shown.t < 1 && gone.map((n) => {
+        const p = before.place[n.id];
+        if (!p) return null;
+        return (
+          <g key={`gone-${n.id}`} opacity={1 - e}>
+            {nodeShape(n.id, p, DS_LOOK.remove)}
+            <text x={valueX(p)} y={p.y + layout.size * 0.36} textAnchor="middle" fontSize={layout.size} fontWeight={800} fill="#be123c">{n.value}</text>
+          </g>
+        );
+      })}
+      {after.indices.map((ix) => (
+        <text key={`ix-${ix.text}`} x={ix.at.x} y={ix.at.y} textAnchor="middle" fontSize={13} fontFamily={MONO_FONT} fill={MUTED}>{ix.text}</text>
+      ))}
+      {/* Pointers (root, curr, i, mid…): a name tag with an arrow at the node, gliding with it. */}
+      {after.pointers.map((ptr) => {
+        const was = before.pointers.find((q) => q.name === ptr.name);
+        const tag = lerp(was?.at, ptr.at)!;
+        const tip = lerp(was?.tip, ptr.tip)!;
+        const w = Math.max(30, ptr.name.length * 8.6 + 14);
+        return (
+          <g key={`ptr-${ptr.name}`} className={was ? undefined : "cv-in"}>
+            <rect x={tag.x - w / 2} y={tag.y - 13} width={w} height={22} rx={11} fill={POINTER_INK} />
+            <text x={tag.x} y={tag.y + 3} textAnchor="middle" fontSize={13} fontWeight={800} fill="#ffffff" fontFamily={MONO_FONT}>{ptr.name}</text>
+            {/* Several tags on one node stack up; only the nearest draws the arrow, so none crosses a tag. */}
+            {ptr.arrow && (
+              <>
+                <line x1={tag.x} y1={tag.y + (tip.y > tag.y ? 9 : -13)} x2={tip.x} y2={tip.y} stroke={POINTER_INK} strokeWidth={2.4} strokeLinecap="round" />
+                {arrowHead(tip, { x: tag.x, y: tag.y }, 9, 2.6).map((d, i) => <path key={i} d={d} fill={POINTER_INK} />)}
+              </>
+            )}
+          </g>
+        );
+      })}
+      {caption && (
+        <text key={caption.s} x={mark.rect.x + mark.rect.w / 2} y={mark.captionY} textAnchor="middle" fontSize={20} fontWeight={600} fill={MUTED} className="cv-in">
+          {caption.text}
+        </text>
       )}
     </g>
   );
@@ -1003,7 +1168,7 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
     return mark.steps.find((st) => st.place[id])?.place[id];
   };
   const groups = useRef<Record<string, SVGGElement | null>>({});
-  const texts = useRef<Record<string, SVGTextElement | null>>({});
+  const texts = useRef<Record<string, Element | null>>({});
   const previousStep = useRef(stepIndex);
   /*
    * When the step changes, every term that moved glides there along an arc (3Blue1Brown's
@@ -1027,7 +1192,9 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
       const pb = pivotX(stepIndex);
       const crossed = pa !== null && pb !== null && Math.sign(from.x - pa) !== Math.sign(to.x - pb);
       const text = texts.current[t.id];
-      if (crossed && text) text.animate([{ fill: t.color }, { fill: ARIA_INK, offset: 0.45 }, { fill: ARIA_INK, offset: 0.65 }, { fill: t.color }], { duration: 1150, easing: "ease-in-out" });
+      // A typeset term is HTML (its colour is CSS "color"); a plain one is SVG text ("fill").
+      const paint = text instanceof SVGElement ? "fill" : "color";
+      if (crossed && text) text.animate([{ [paint]: t.color }, { [paint]: ARIA_INK, offset: 0.45 }, { [paint]: ARIA_INK, offset: 0.65 }, { [paint]: t.color }], { duration: 1150, easing: "ease-in-out" });
     }
     // Runs only when the step changes; the positions it reads are derived from the same layout.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1039,17 +1206,25 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
         if (!at) return null;
         const shown = Boolean(step.place[t.id]);
         const lit = step.highlight.includes(t.id) || focusId === t.id;
+        // A fraction or root stands taller than a line of text: its highlight and underline follow it.
+        const tall = /\\[dt]?frac|\\sqrt/.test(t.tex ?? "");
+        const top = -t.size * (tall ? 1.45 : 0.95);
+        const under = t.size * (tall ? 0.95 : 0.24);
         return (
           <g key={t.id} ref={(el) => { groups.current[t.id] = el; }} style={{ transform: `translate(${at.x}px, ${at.y}px)`, transition: "opacity 600ms", opacity: shown ? 1 : 0 }}>
             {lit && (
               <g className="cv-in">
-                <path d={roughRect(`hl-${t.id}-${stepIndex}`, -7, -t.size * 0.95, t.w + 14, t.size * 1.3, 10)} fill={t.color} fillOpacity={0.14} stroke={t.color} strokeOpacity={0.35} strokeWidth={1.5} />
+                <path d={roughRect(`hl-${t.id}-${stepIndex}`, -7, top, t.w + 14, under - top + t.size * 0.12, 10)} fill={t.color} fillOpacity={0.14} stroke={t.color} strokeOpacity={0.35} strokeWidth={1.5} />
               </g>
             )}
-            <text ref={(el) => { texts.current[t.id] = el; }} x={0} y={0} fontSize={t.size} fontWeight={800} fill={t.color} className="cv-in">
-              {t.text}
-            </text>
-            {lit && <Ink points={[{ x: 0, y: t.size * 0.24 }, { x: t.w / 2, y: t.size * 0.28 }, { x: t.w, y: t.size * 0.22 }]} width={4} color={t.color} />}
+            {t.tex ? (
+              <TexTerm tex={t.tex} size={t.size} w={t.w} color={t.color} onElement={(el) => { texts.current[t.id] = el; }} />
+            ) : (
+              <text ref={(el) => { texts.current[t.id] = el; }} x={0} y={0} fontSize={t.size} fontWeight={800} fill={t.color} className="cv-in">
+                {t.text}
+              </text>
+            )}
+            {lit && <Ink points={[{ x: 0, y: under }, { x: t.w / 2, y: under + t.size * 0.04 }, { x: t.w, y: under - t.size * 0.02 }]} width={4} color={t.color} />}
           </g>
         );
       })}
@@ -1059,6 +1234,60 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
         </text>
       )}
     </g>
+  );
+}
+
+/**
+ * ONE TERM, TYPESET BY KATEX (owner's direction, 2026-10-16), on the board's own coordinates: its
+ * baseline sits where a written term's would. The layout gave it a slot from an estimate of its width
+ * (lib/canvas/layout.ts texEm); once typeset — and again once KaTeX's fonts arrive — it is measured
+ * and, when wider than its slot, scaled down to fit, so terms never run into each other.
+ */
+function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number; w: number; color: string; onElement: (el: HTMLDivElement | null) => void }) {
+  const html = useMemo(() => katex.renderToString(tex, { throwOnError: false, displayMode: false }), [tex]);
+  // The transform goes on a wrapper React owns and never styles: KaTeX's own root is replaced
+  // whenever React writes the typeset HTML again, and would lose it.
+  const wrap = useRef<HTMLSpanElement>(null);
+  const tall = /\\[dt]?frac|\\sqrt|\^/.test(tex);
+  const h = size * (tall ? 2.3 : 1.7);
+  const top = -size * (tall ? 1.45 : 1.15);
+  useLayoutEffect(() => {
+    const inner = wrap.current;
+    if (!inner) return;
+    const fit = (): boolean => {
+      // Inside a foreignObject, CSS pixels ARE board units, whatever the camera's zoom.
+      inner.style.transform = "";
+      const actual = inner.offsetWidth;
+      if (!actual) return false;
+      const scale = actual > w ? w / actual : 1;
+      // An inline box ignores a transform.
+      inner.style.display = "inline-block";
+      inner.style.transformOrigin = "0 50%";
+      inner.style.transform = `translateX(${((w - actual * scale) / 2).toFixed(1)}px) scale(${scale.toFixed(3)})`;
+      return true;
+    };
+    // A board is often mounted before it is laid out (its width reads 0), and a ResizeObserver
+    // never reports inside a foreignObject: try each frame until it has a width (about 2 s at
+    // most), then once more when KaTeX's fonts arrive, which changes the width.
+    let raf = 0;
+    let tries = 0;
+    let alive = true;
+    const attempt = () => {
+      if (alive && !fit() && tries++ < 120) raf = requestAnimationFrame(attempt);
+    };
+    attempt();
+    void document.fonts?.ready.then(() => alive && fit());
+    return () => {
+      alive = false;
+      cancelAnimationFrame(raf);
+    };
+  }, [html, w]);
+  return (
+    <foreignObject x={0} y={top} width={Math.max(4, w)} height={h} overflow="visible" className="cv-in">
+      <div ref={onElement} style={{ display: "flex", alignItems: "center", height: "100%", whiteSpace: "nowrap", color, fontSize: size * 0.84, lineHeight: 1 }}>
+        <span ref={wrap} dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+    </foreignObject>
   );
 }
 

@@ -1,9 +1,12 @@
 import "server-only";
 
+import { cosine } from "../ragRetrieve";
+import { embedTexts } from "../embeddings";
 import { effectiveMastery } from "../learnerModel";
+import { createOpenAI } from "../openaiClient";
 import { loadLearnerMemory } from "../learnerMemoryStore";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
-import { shakyPrerequisites, type PlanningKnowledge } from "./graph";
+import { onlyRelated, shakyPrerequisites, type PlanningKnowledge } from "./graph";
 import { conceptsInText, conceptsMatching, edgesTouching } from "./store";
 
 /**
@@ -34,23 +37,45 @@ export async function knowledgeForPlanning(userId: string, input: ProgressiveLec
     const c = memory.concepts[key];
     return c ? effectiveMastery(c, now) : undefined;
   };
-  // A prerequisite the student never met is only worth a refresher when several lectures agree it
-  // is one; one they met and are shaky on always is.
   // A refresher BOARD is only for something the student met and is shaky on. A prerequisite they
   // never met is not evidence of a gap — adding a board for it is the padding lectures must not have.
   const shakyRaw = shakyPrerequisites(centralKeys, edges, mastery, 4).filter((s) => s.mastery !== undefined);
   const neighbours = [...new Set([...edges.map((e) => e.from), ...edges.map((e) => e.to)])];
   const graphConcepts = await conceptsMatching([...shakyRaw.map((s) => s.key), ...neighbours]);
-  const label = (key: string) => memory.concepts[key]?.label ?? graphConcepts.find((c) => c.id === key)?.label ?? topical.find((c) => c.id === key)?.label ?? key;
+  const known = new Map([...topical, ...graphConcepts].map((c) => [c.id, c]));
+  const label = (key: string) => memory.concepts[key]?.label ?? known.get(key)?.label ?? key;
 
   const relevant = [...new Set([...keys, ...neighbours])];
   // Only what the topic builds on — never the topic itself, which they asked to learn (again).
   const mastered = neighbours.filter((k) => !keys.includes(k) && (mastery(k) ?? 0) >= 0.7).slice(0, 6).map(label);
-  const earlier = relevant
+  const earlierRaw = relevant
     .map((k) => memory.concepts[k])
     .filter((c) => c && (c.taught?.length ?? 0) > 0 && (mastery(c.key) ?? 0) >= 0.4)
-    .slice(0, 4)
-    .map((c) => ({ label: c!.label, topic: c!.taught![0].topic }));
-  const shaky = shakyRaw.slice(0, 2).map((s) => ({ label: label(s.key), for: label(s.for) }));
+    .map((c) => ({ key: c!.key, label: c!.label, topic: c!.taught![0].topic }));
+
+  // Words matched in a shared graph are not proof the lecture is about them: keep only what is
+  // close in meaning to THIS lecture (lib/knowledge/graph.ts onlyRelated).
+  const related = await relatedToLecture(text, [...shakyRaw.flatMap((s) => [s.key, s.for]), ...earlierRaw.map((e) => e.key)], (key) => `${label(key)}: ${known.get(key)?.summary ?? ""}`);
+  const kept = onlyRelated(shakyRaw, earlierRaw, related);
+  if (kept.dropped.length || kept.shaky.length || kept.earlier.length) {
+    console.log(`[knowledge] planning "${input.topic}": shaky=${kept.shaky.map((s) => label(s.key)).join(", ") || "-"}; earlier=${kept.earlier.map((e) => e.label).join(", ") || "-"}; dropped as unrelated: ${kept.dropped.map(label).join(", ") || "-"}`);
+  }
+  const shaky = kept.shaky.slice(0, 2).map((s) => ({ label: label(s.key), for: label(s.for) }));
+  const earlier = kept.earlier.slice(0, 4).map(({ label: l, topic }) => ({ label: l, topic }));
   return { mastered, shaky, earlier };
+}
+
+/**
+ * How close each concept is to the lecture (cosine of embeddings). Empty — so nothing is kept — when
+ * embedding fails or is slow: no refresher at all is better than one about something else.
+ */
+async function relatedToLecture(lecture: string, keys: string[], describe: (key: string) => string): Promise<Map<string, number>> {
+  const unique = [...new Set(keys)];
+  if (unique.length === 0) return new Map();
+  const vectors = await Promise.race([
+    embedTexts(createOpenAI(), [lecture, ...unique.map(describe)]),
+    new Promise<null>((resolve) => setTimeout(() => resolve(null), 3_000)),
+  ]).catch(() => null);
+  if (!vectors) return new Map();
+  return new Map(unique.map((key, i) => [key, cosine(vectors[0], vectors[i + 1])]));
 }

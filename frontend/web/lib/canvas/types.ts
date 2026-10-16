@@ -22,7 +22,7 @@ export const CANVAS_ICONS = [
 ] as const;
 export type CanvasIcon = (typeof CANVAS_ICONS)[number];
 
-export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure"] as const;
+export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure", "structure"] as const;
 export type CanvasStage = (typeof CANVAS_STAGES)[number];
 
 /** A written key note in the notes column, revealed on the sentence that says it. */
@@ -111,7 +111,13 @@ export type FigureStage = {
 
 export type EquationToken = {
   id: string;
+  /** The term as plain text ("x/3", "(5a − 2a)"): the chat's description and the drawing snapshot read it. */
   text: string;
+  /**
+   * The term in LaTeX ("\frac{x}{3}", "(5a - 2a)"), typeset by KaTeX on the board (owner's
+   * direction, 2026-10-16: "all such equations shall be rendered through KaTeX"). Checked to compile.
+   */
+  tex?: string;
   color?: string;
   /** Written small ABOVE this token (a condition over the reaction arrow: "light", "Δ"). */
   on?: string;
@@ -230,7 +236,13 @@ export type CodeStage = {
    * On sentence `s`, lines (1-based) are lit and the pointer sits on the first; `note` is said beside
    * it; `state` is what the variables hold once those lines have run (the Variables panel).
    */
-  steps: Array<{ s: number; lines: number[]; note?: string; state?: Array<{ name: string; value: string }> }>;
+  steps: Array<{ s: number; lines: number[]; note?: string; state?: Array<{ name: string; value: string }>; ops?: DsOp[] }>;
+  /**
+   * A DATA STRUCTURE beside the code (2026-10-15): the tree, list or array the program works on, in
+   * its starting form; each step's `ops` are what those lines just did to it, so the structure changes
+   * as Aria walks the code (lib/canvas/structure.ts).
+   */
+  structure?: DsStart;
   /** "build" (default): the code writes itself as Aria reaches each line. "all": shown whole at once. */
   reveal?: "build" | "all";
   /** Subgoal labels: chunks of lines named by what they do ("set up", "check", "update"). */
@@ -241,7 +253,44 @@ export type CodeStage = {
   output?: { s: number; text: string };
 };
 
-export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage;
+/**
+ * A DATA STRUCTURE drawn as itself — a tree of nodes and edges, a linked list, an array, a stack, a
+ * queue, a graph (owner's direction, 2026-10-15: "DSA should be taught with the tree on the board,
+ * and with code how the change occurs on the tree"). The model writes the starting structure and,
+ * per step, small operations; lib/canvas/structure.ts applies them, checks the result is still a
+ * valid structure (a BST stays ordered) and lays every frame out.
+ */
+export type DsKind = "tree" | "list" | "array" | "stack" | "queue" | "graph";
+export type DsMark = "visit" | "compare" | "found" | "remove" | "done" | "none";
+export type DsNode = { id: string; value: string };
+export type DsEdge = { from: string; to: string; side?: "left" | "right"; label?: string };
+export type DsPointer = { name: string; to: string | null };
+export type DsStart = {
+  kind: DsKind;
+  /** What rules the structure keeps: a binary search tree stays ordered, a heap keeps its order. */
+  variant?: "bst" | "avl" | "heap" | "binary" | "directed";
+  nodes: DsNode[];
+  edges: DsEdge[];
+  pointers?: DsPointer[];
+};
+export type DsOp =
+  | { op: "add"; id: string; value: string; parent?: string; side?: "left" | "right"; at?: number }
+  | { op: "remove"; id: string }
+  | { op: "link"; from: string; to: string; side?: "left" | "right"; label?: string }
+  | { op: "unlink"; from: string; to: string }
+  | { op: "set"; id: string; value: string }
+  | { op: "swap"; a: string; b: string }
+  | { op: "point"; name: string; to: string | null }
+  | { op: "mark"; id: string; as: DsMark };
+
+/** A board that is the structure alone: what a BST is, how a queue is arranged, a traversal's order. */
+export type StructureStage = {
+  kind: "structure";
+  structure: DsStart;
+  steps: Array<{ s: number; ops?: DsOp[]; note?: string }>;
+};
+
+export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage | StructureStage;
 
 /** What the pointer (Aria's pen) or the camera does on a sentence. */
 export type CanvasCue = {

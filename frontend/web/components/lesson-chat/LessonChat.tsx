@@ -4,11 +4,13 @@ import { MessageCircle, Mic, MicOff, Square , X} from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LiveSketch, type DrawScript } from "@/components/sketch/LiveSketch";
 import { CodeBoard } from "@/components/sketch/CodeBoard";
+import { EquationBoard } from "@/components/sketch/EquationBoard";
+import type { EquationSpec } from "@/lib/equationSpec";
 import type { CodeSpec } from "@/lib/codeSpec";
 import { ReactAnimationSandbox } from "@/components/sketch/ReactAnimationSandbox";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
 import { recordJsonCost } from "@/lib/costLedger";
-import { asksForVisual, isAffirmative, isNegative } from "@/lib/drawConsent";
+import { asksForVisual, isAffirmative, isFormulaQuestion, isNegative } from "@/lib/drawConsent";
 import { isCodeQuestion } from "@/lib/codeSpec";
 import { captureVoice, isSpeechSupported, type VoiceCaptureHandle } from "@/lib/speech";
 import { HudPanel, HudEyebrow } from "@/components/hud/HudKit";
@@ -121,6 +123,16 @@ export function useLessonChat(opts: {
   onExplanationClosed?: () => void;
   /** Surface autoplay-blocked so the player can show its banner. */
   onVoiceBlocked?: () => void;
+  /**
+   * The lecture's playback speed, so a spoken answer is not suddenly at 1x when the student chose
+   * 0.5x or 1.5x. Optional — a player that passes none answers at normal speed, as before.
+   */
+  rate?: number;
+  /**
+   * A question asking for a formula is answered with the formula itself on a KaTeX formula card
+   * (lib/drawConsent.ts isFormulaQuestion). Normal mode only: the accessibility players keep their path.
+   */
+  formulaCards?: boolean;
 }): LessonChatState {
   const [chat, setChat] = useState<ChatTurn[]>([]);
   const [explaining, setExplaining] = useState(false);
@@ -149,6 +161,20 @@ export function useLessonChat(opts: {
    */
   const pendingVisualRef = useRef<{ question: string; what: string } | null>(null);
   const answerVisualOfferRef = useRef<(accept: boolean) => void>(() => {});
+  /*
+   * NOTHING IS SAID AFTER THE PANEL IS GONE. An answer whose fetch was still in flight when the
+   * lecture ended used to be spoken anyway — on the "Lecture complete" screen (2026-10-14). The panel
+   * going away also stops an answer that is mid-sentence.
+   */
+  const aliveRef = useRef(true);
+  useEffect(() => {
+    aliveRef.current = true;
+    return () => {
+      aliveRef.current = false;
+      cancelRef.current?.cancel();
+      cancelRef.current = null;
+    };
+  }, []);
 
   const stopNarration = useCallback(() => {
     cancelRef.current?.cancel();
@@ -201,9 +227,11 @@ export function useLessonChat(opts: {
   /** Speak an answer. `onDone` runs when she has finished and nothing is waiting on the student. */
   const narrate = useCallback(
     (script: string, onDone?: () => void) => {
+      if (!aliveRef.current) return;
       setNarrating(true);
       // Maths is read as words, not LaTeX ("\sin 30^\circ" → "sin 30 degrees").
       const handle = playNarration(speakableMath(script), {
+        rate: opts.rate,
         onStart: () => {},
         onSentenceStart: (si, _s, st) => setDrawProgress(st > 1 ? Math.min(1, (si + 1) / st) : 1),
         onEnd: () => {
@@ -269,6 +297,11 @@ export function useLessonChat(opts: {
          * words, and an offer only if the model thinks the answer genuinely needs one.
          */
         const documentContext = opts.getDocumentContext?.() ?? "";
+        // "What is the formula for…?": the formula, typeset — not a revisit of a busy slide, and not a diagram.
+        if (opts.formulaCards && isFormulaQuestion(trimmed)) {
+          await explainWithBoard(trimmed, { formula: true });
+          return;
+        }
         // Taught on an earlier slide: go back to it and answer there, instead of a new board.
         const back = asksForVisual(trimmed) ? null : await opts.revisit?.(trimmed).catch(() => null);
         if (back) {
@@ -492,6 +525,11 @@ function BoardSection({ board, progress }: { board: { script: string; draw?: Dra
     (op): op is Extract<typeof op, { kind: "codeBoard" }> => op.kind === "codeBoard" && Boolean(op.spec)
   );
   if (codeOp?.spec) return <CodeBoard key={board.script.slice(0, 24)} spec={codeOp.spec as CodeSpec} progress={progress} />;
+  // A formula question's answer: the formula, typeset by KaTeX (app/api/explain/route.ts).
+  const equationOp = board.draw?.ops.find(
+    (op): op is Extract<typeof op, { kind: "equationBoard" }> => op.kind === "equationBoard" && Boolean(op.spec)
+  );
+  if (equationOp?.spec) return <EquationBoard key={board.script.slice(0, 24)} spec={equationOp.spec as EquationSpec} progress={progress} card />;
   if (animationOp?.code) {
     return (
       <ReactAnimationSandbox
