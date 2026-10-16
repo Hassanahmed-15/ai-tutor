@@ -22,7 +22,7 @@ export const CANVAS_ICONS = [
 ] as const;
 export type CanvasIcon = (typeof CANVAS_ICONS)[number];
 
-export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure", "structure", "exam"] as const;
+export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure", "structure", "exam", "diagram"] as const;
 export type CanvasStage = (typeof CANVAS_STAGES)[number];
 
 /** A written key note in the notes column, revealed on the sentence that says it. */
@@ -106,6 +106,17 @@ export type FigureStage = {
    */
   asset?: { id: string; w: number; h: number; credit: string; parts: Array<{ id: string; name: string; anchor: { x: number; y: number } }> };
   /** component "drawn": a diagram the board writer described and lib/figures/drawn.ts checked. */
+  drawing?: import("../figures/types").FigureDrawing;
+};
+
+/**
+ * A textbook vector diagram from the general scene grammar (lib/diagrams). Code draws every
+ * primitive, so labels and counts are exact; the model only fills in the spec.
+ */
+export type DiagramStage = {
+  kind: "diagram";
+  spec: import("../diagrams/spec").DiagramSpec;
+  parts: Array<{ id: string; name: string; s: number; say?: string }>;
   drawing?: import("../figures/types").FigureDrawing;
 };
 
@@ -305,7 +316,7 @@ export type StructureStage = {
   steps: Array<{ s: number; ops?: DsOp[]; note?: string }>;
 };
 
-export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage | StructureStage | ExamStage;
+export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage | StructureStage | ExamStage | DiagramStage;
 
 /** What the pointer (Aria's pen) or the camera does on a sentence. */
 export type CanvasCue = {

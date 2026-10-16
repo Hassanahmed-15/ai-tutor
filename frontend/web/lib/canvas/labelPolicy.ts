@@ -75,6 +75,16 @@ export function withMandatoryLabels(spec: CanvasBoardSpec, beat: Pick<CanvasPlan
     const keep = new Set(mandatoryLabels(beat, stage.parts));
     return { ...spec, stage: { ...stage, labels: stage.parts.filter((p) => keep.has(p.id)).map((p) => p.id) } };
   }
+  if (stage.kind === "diagram") {
+    const available = stage.drawing?.parts ?? [];
+    const candidates = [...stage.parts, ...available.filter((a) => !stage.parts.some((p) => p.id === a.id)).map((a) => ({ id: a.id, name: a.name, s: firstNamed(beat.script, a.name) }))];
+    const keep = new Set(mandatoryLabels(beat, candidates));
+    const parts = candidates.filter((p) => keep.has(p.id));
+    const minimum = Math.min(3, stage.parts.length);
+    const kept = parts.length >= minimum ? parts : [...parts, ...stage.parts.filter((p) => !parts.some((q) => q.id === p.id))].slice(0, Math.max(minimum, parts.length));
+    const ids = new Set(kept.map((p) => p.id));
+    return { ...spec, stage: { ...stage, parts: kept }, cues: spec.cues.filter((c) => !c.target || !stage.parts.some((p) => p.id === c.target) || ids.has(c.target)) };
+  }
   if (stage.kind === "figure") {
     // Every part the figure CAN label is a candidate, not only those the board writer chose: Aria
     // named chloroplasts, air spaces, phloem and guard cells over a leaf section that labelled three

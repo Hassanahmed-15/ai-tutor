@@ -55,7 +55,7 @@ export function scoreLesson(args: {
   const layoutish = (issue: string) => /^(layout:|student-view:)/.test(issue);
   const factualRate = boards.length ? boards.filter((b) => b.issues.some((i) => !quizish(i) && !layoutish(i))).length / boards.length : 1;
   const layoutRate = boards.length ? boards.filter((b) => b.issues.some(layoutish)).length / boards.length : 1;
-  const visual = new Set(["figure", "graph", "equation", "molecule", "atom-map", "flow", "compare", "illustration", "code"]);
+  const visual = new Set(["figure", "diagram", "graph", "equation", "molecule", "atom-map", "flow", "compare", "illustration", "code"]);
   const figureRate = boards.length ? boards.filter((b) => visual.has(b.stage)).length / boards.length : 0;
   const quizRate = boards.length ? boards.filter((b) => b.quizOk).length / boards.length : 0;
   const cycleRate = beats.filter((b) => !b.overview && !b.refresher).length
@@ -63,7 +63,7 @@ export function scoreLesson(args: {
     : 0;
   const worked = beats.some((b) => /\b(substitut|therefore|so [uvwxy]=\d|dm³|mol|cm²)\b/i.test(b.script)) || /A Level/i.test(level);
   const labelsOk = specs.every((spec, i) => {
-    if (spec.stage.kind !== "figure") return true;
+    if (spec.stage.kind !== "figure" && spec.stage.kind !== "diagram") return true;
     if (spec.stage.parts.length >= 2) return true;
     const layout = layoutPanel(spec);
     return layout.marks.some((m) => m.type === "figure-label" || (m.type === "text" && m.text.length > 0)) || beats[i].figure === "library";
@@ -86,7 +86,7 @@ export function scoreLesson(args: {
     if (spec.stage.kind === "figure" && spec.stage.component === "riemannSum") {
       return /\b(trapezium|trapezoid|ordinate|strip|interval|area|curve|integral|approximat)\b/i.test(b.script);
     }
-    const ids = spec.stage.kind === "figure" ? spec.stage.parts.map((p) => p.name.toLowerCase()) : [];
+    const ids = spec.stage.kind === "figure" || spec.stage.kind === "diagram" ? spec.stage.parts.map((p) => p.name.toLowerCase()) : [];
     return ids.length === 0 || partMentioned(b.script, ids);
   }).length / Math.max(1, beats.length);
 

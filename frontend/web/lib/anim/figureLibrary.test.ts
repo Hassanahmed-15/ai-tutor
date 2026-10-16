@@ -151,8 +151,8 @@ test("the visual policy gives a heart picture board the code-drawn heart; librar
   assert.equal(eyed.figureAsset?.id, "eye-diagram");
   // Strict source mode never adds a library or kit picture.
   assert.notEqual(applyLessonVisualPolicy([beat({})], { mode: "strict", findAsset: find }).beats[0].stage, "figure");
-  // Without a library diagram, a physical subject with no kit component is still drawn.
-  assert.equal(applyLessonVisualPolicy([eye], { mode: "prompt", aiPictures: false }).beats[0].figure, "drawn");
+  // Without a library diagram, a physical subject with no kit component is a vector diagram.
+  assert.equal(applyLessonVisualPolicy([eye], { mode: "prompt", aiPictures: false }).beats[0].stage, "diagram");
 
   const spec = fallbackSpec(beats[0]);
   assert.ok(spec.stage.kind === "figure" && spec.stage.component === "heart");

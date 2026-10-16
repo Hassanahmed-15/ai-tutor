@@ -3,6 +3,7 @@ import { alignToNarration } from "./narrationSync";
 import { slug, trimToFit } from "./validate";
 import { GRAPH_LIKE, HUMANITIES } from "./visualPolicy";
 import { classifyInstructionalTask } from "./instructionalTask";
+import { isRealProcess } from "../diagrams/visualForm";
 import { figureComponent } from "../figures/registry";
 import { foreignFigureWords } from "../figures/foreignText";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
@@ -85,13 +86,20 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
   const notes = beat.boardNotes?.length
     ? beat.boardNotes.map((n, i) => ({ id: `say-${i + 1}`, text: trimToFit(n.text, 34), s: n.s }))
     : keyPoints(sentences, 3).map((text, i) => ({ id: `point-${i + 1}`, text, s: Math.min(last, i + 1) }));
-  if (names.length >= 2) {
+  if (names.length >= 2 && (isRealProcess(`${beat.title} ${beat.brief} ${beat.script}`) || beat.stage === "flow")) {
     const nodes = names.map((label, i) => {
       const sub = detailFor(label, sentences);
       return { id: slug(label, `step-${i + 1}`), label: atWord(label, 18), ...(sub ? { sub } : {}), s: Math.min(last, Math.round((i * last) / Math.max(1, names.length - 1))) };
     });
     const arrows = nodes.slice(1).map((n, i) => ({ id: `${nodes[i].id}-to-${n.id}`, from: nodes[i].id, to: n.id, s: n.s }));
     return { v: 1, heading: beat.title.slice(0, 40), notes, stage: { kind: "flow", arrangement: "chain", nodes, arrows }, cues: [], ...(beat.overview ? { overview: true } : {}) };
+  }
+  if (names.length >= 2) {
+    const items = names.map((label, i) => {
+      const sub = detailFor(label, sentences);
+      return { id: slug(label, `box-${i + 1}`), kind: "box" as const, label: atWord(label, 22), ...(sub ? { detail: sub } : {}), cell: `${"BD"[i % 2]}${1 + Math.floor(i / 2) * 2}`, span: "2x1", s: Math.min(last, Math.round((i * last) / Math.max(1, names.length - 1))) };
+    });
+    return { v: 1, heading: beat.title.slice(0, 40), notes, stage: { kind: "scene", items, arrows: [] }, cues: [], ...(beat.overview ? { overview: true } : {}) };
   }
   // No named objects: the board is its key points.
   // A box's detail line holds up to 80 characters: the point is written whole where it fits.

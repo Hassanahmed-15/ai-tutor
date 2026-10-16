@@ -27,6 +27,16 @@ export function boardFacts(spec: CanvasBoardSpec): string {
   if (spec.notes.length) lines.push(`Notes written beside it: ${spec.notes.map((n) => `"${n.text}"`).join(", ")}`);
   const stage = spec.stage;
   switch (stage.kind) {
+    case "diagram": {
+      lines.push(`Main visual: a vector textbook diagram (${stage.spec.base ?? "drawn"}).`);
+      const figure = layoutPanel(spec).marks.find((m) => m.type === "figure");
+      if (figure?.type === "figure") {
+        const texts = figure.drawing.shapes.filter((s) => s.t === "text").map((s) => (s as { text: string }).text).filter(Boolean);
+        if (texts.length) lines.push(`Words and numbers drawn inside the diagram: ${[...new Set(texts)].slice(0, 40).map((t) => `"${t}"`).join(", ")}`);
+      }
+      if (stage.parts.length) lines.push(`Labels pointing at parts: ${stage.parts.map((p) => `"${p.name}" → part ${p.id}`).join("; ")}`);
+      break;
+    }
     case "figure": {
       const component = stage.component === "library" || stage.component === "drawn" ? undefined : figureComponent(stage.component);
       const what = stage.asset ? `a textbook diagram (${stage.asset.credit})` : stage.component === "drawn" ? "a line diagram drawn from a description" : `a code-drawn ${component?.title ?? stage.component}`;

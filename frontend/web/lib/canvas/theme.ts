@@ -25,7 +25,7 @@ export const THEME_LABEL: Record<CanvasThemeChoice, string> = { paper: "Paper", 
  * process — goes on the chalkboard; pictures, comparisons and scenes are pinned-up paper.
  */
 export function panelTheme(choice: CanvasThemeChoice, stage: CanvasStage): BoardTheme {
-  if (choice === "mix") return stage === "equation" || stage === "graph" || stage === "flow" ? "chalk" : "paper";
+  if (choice === "mix") return stage === "equation" || stage === "graph" || stage === "flow" || stage === "diagram" ? "chalk" : "paper";
   return choice;
 }
 

@@ -194,10 +194,9 @@ test("labels that look like element ids are rejected; code boards are not blocke
 
 test("the fallback board is readable: plain words on a chain, never id boxes", () => {
   const spec = fallbackSpec({ id: "b1", title: "VSEPR shapes", script: "One. Two. Three.", stage: "scene", brief: "", objects: ["central-atom", "lone-pairs", "bond-angle"], inside: null, carry: [], interaction: null, overview: false });
-  assert.equal(spec.stage.kind, "flow");
-  if (spec.stage.kind === "flow") {
-    assert.deepEqual(spec.stage.nodes.map((n) => n.label), ["Central atom", "Lone pairs", "Bond angle"]);
-    assert.equal(spec.stage.arrows.length, 2);
+  assert.equal(spec.stage.kind, "scene");
+  if (spec.stage.kind === "scene") {
+    assert.deepEqual(spec.stage.items.map((n) => n.label), ["Central atom", "Lone pairs", "Bond angle"]);
   }
   assert.equal(critiqueStudentBoard(spec, { objects: [], brief: "", script: "" }).checks.labelsReadable, true);
 });

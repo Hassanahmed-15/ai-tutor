@@ -15,7 +15,8 @@ import { placeLabels } from "../figures/labels";
 import { partBodies, shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
 import type { FigureDrawing } from "../figures/types";
-import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type EquationStage, type ExamStage, type FigureStage, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage, type StructureStage } from "./types";
+import { compileDiagram } from "../diagrams/render";
+import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type DiagramStage, type EquationStage, type ExamStage, type FigureStage, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage, type StructureStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Pt = { x: number; y: number };
@@ -128,7 +129,7 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   // Putting their notes in the normal left rail made a correct 440 px scientific figure render at
   // roughly 150 CSS pixels. Figure boards therefore use the wide stage and place supporting facts
   // in a compact evidence strip below it.
-  const figureWithNotes = hasNotes && spec.stage.kind === "figure";
+  const figureWithNotes = hasNotes && (spec.stage.kind === "figure" || spec.stage.kind === "diagram");
   const stage = figureWithNotes ? FIGURE_STAGE_WITH_NOTES : hasNotes ? STAGE : STAGE_WIDE;
 
   const headingSize = textWidth(spec.heading, HEADING_SIZE) > PANEL_W - 110 ? 28 : HEADING_SIZE;
@@ -184,6 +185,9 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
       break;
     case "figure":
       layoutFigure(spec.stage, stage, marks, add);
+      break;
+    case "diagram":
+      layoutDiagram(spec.stage, stage, marks, add);
       break;
     case "equation":
       layoutEquation(spec.stage, stage, marks, add);
@@ -501,6 +505,11 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
  * anchor mapped exactly onto the board, labels placed textbook-style (lib/figures/labels.ts). Each
  * labelled part is a pen target at its anchor, revealed on its own sentence.
  */
+function layoutDiagram(stage: DiagramStage, box: Rect, marks: Mark[], add: Add) {
+  const drawing = stage.drawing ?? compileDiagram(stage.spec);
+  layoutFigure({ kind: "figure", component: "drawn", params: {}, parts: stage.parts, drawing }, box, marks, add);
+}
+
 function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
   // A library diagram (lib/figures/library.ts) is a picture with exact anchors: the same label path
   // as a code-drawn figure, with the art drawn from its file instead of from shapes.

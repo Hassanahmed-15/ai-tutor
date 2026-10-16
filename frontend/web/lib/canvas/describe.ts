@@ -30,6 +30,9 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
         ? `Textbook diagram (${stage.asset.credit}): labelled ${stage.parts.map((p) => p.name).join(", ")}.`
         : `Figure (${stage.component}, drawn exactly): labelled ${stage.parts.map((p) => p.name).join(", ")}.`);
       break;
+    case "diagram":
+      lines.push(`Vector diagram (${stage.spec.base ?? "none"}): labelled ${stage.parts.map((p) => p.name).join(", ")}.`);
+      break;
     case "graph":
       lines.push(`Graph of ${stage.y.label} against ${stage.x.label} (${stage.x.min}–${stage.x.max}): ${stage.curves.map((c) => `${c.label ?? c.id} = ${c.expr}`).join("; ")}.`);
       if (stage.guides?.length) lines.push(`Marked: ${stage.guides.map((g) => `${g.label} at ${g.x}`).join(", ")}.`);

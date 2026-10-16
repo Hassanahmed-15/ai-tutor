@@ -30,8 +30,9 @@ test("pictures and diagrams combine: a labelled structure is a diagram, what a t
   const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
   // A structure with no exact diagram is GENERATED as a checked textbook diagram (lib/canvas/textbookDiagram.ts),
   // not described as line art by the board writer.
-  assert.deepEqual(out.beats.map((b) => b.stage), ["illustration", "atom-map", "equation", "graph", "compare", "illustration"]);
-  assert.equal(out.audit.illustrations, 2);
+  // A labelled structure with no kit is a vector diagram; a habitat view is still a photograph.
+  assert.deepEqual(out.beats.map((b) => b.stage), ["diagram", "atom-map", "equation", "graph", "compare", "illustration"]);
+  assert.equal(out.audit.illustrations, 1);
 });
 
 test("generated pictures are capped at four; over the cap a physical subject becomes a plain board, never line art", () => {
@@ -137,6 +138,38 @@ test("with AI pictures off (the default), no board is a generated picture", () =
   const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: false });
   assert.equal(out.beats.filter((b) => b.stage === "illustration").length, 0);
   assert.equal(out.audit.illustrations, 0);
+});
+
+test("geography boards that need a map or model become vector diagrams, never shapes3d or an icon flow", () => {
+  const input = [
+    beat("b1", "The three-cell model", "flow", "Hadley, Ferrel and Polar cells with the subtropical high, trade winds and polar easterlies"),
+    beat("b2", "World ocean currents", "scene", "A world map of the Gulf Stream, North Atlantic Drift and Peru Current"),
+    beat("b3", "Seasonal shift of the ITCZ", "compare", "January and July ITCZ over a world map of pressure belts"),
+    beat("b4", "Latitude energy surplus", "graph", "Incoming solar radiation surplus between 40 degrees north and south, deficit at the poles"),
+  ];
+  input[3].script = "Incoming solar radiation exceeds outgoing between 40 degrees north and 40 degrees south, a surplus of 80 units. Poleward of 40 degrees there is a deficit of 100 units.";
+  const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
+  assert.equal(out.beats[0].stage, "diagram");
+  assert.notEqual(out.beats[0].figure, "shapes3d");
+  assert.equal(out.beats[1].stage, "diagram");
+  assert.equal(out.beats[2].stage, "diagram");
+  assert.equal(out.beats[3].stage, "graph");
+});
+
+test("the exam board is never routed to a diagram", () => {
+  const input = [beat("b6", "Exam practice", "exam", "Answer the structured question for full marks")];
+  const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
+  assert.equal(out.beats[0].stage, "exam");
+});
+
+test("a real process stays an icon flow; a labelled structure does not", () => {
+  const process = beat("b1", "The water cycle", "flow", "Evaporation then condensation then precipitation, a cycle of stages");
+  process.script = "Water evaporates. Then it condenses. Next it falls as precipitation. The cycle repeats.";
+  const structure = beat("b2", "Alpha-particle scattering", "flow", "The set-up with a source, gold foil and the paths of alpha particles");
+  structure.script = "Alpha particles from a source strike a thin gold foil. Most pass straight through. Some are deflected.";
+  const out = applyLessonVisualPolicy([process, structure], { mode: "course", aiPictures: false });
+  assert.equal(out.beats[0].stage, "flow");
+  assert.equal(out.beats[1].stage, "diagram");
 });
 
 test("a titration board is drawn as the apparatus by code, whatever stage the planner chose", () => {

@@ -11,6 +11,9 @@ import { takeFigureCuts } from "../figures/cuts";
 import { compileExpr, exprUsesOnly } from "./expr";
 import { figureComponent } from "../figures/registry";
 import { drawnFigure } from "../figures/drawn";
+import { parseDiagramSpec } from "../diagrams/spec";
+import { checkDiagram } from "../diagrams/check";
+import { compileDiagram } from "../diagrams/render";
 import { snapEquilibrium } from "./graphCheck";
 import { DS_MAX_STEPS, parseOps, parseStructure } from "./structure";
 import { repairTex } from "../equationSpec";
@@ -29,6 +32,7 @@ import {
   type FlowStage,
   type GraphStage,
   type FigureStage,
+  type DiagramStage,
   type IllustrationStage,
   type MoleculeStage,
   type AtomMapStage,
@@ -248,7 +252,7 @@ function validateArrows(raw: unknown, sentence: (v: unknown, f?: number) => numb
 }
 
 function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, unique: (v: unknown, f: string) => string, vars: string[]): StageSpec | null {
-  const kind = str(r.kind, 16) as StageSpec["kind"];
+  const kind = str(r.kind, 20) as StageSpec["kind"];
   if (!(CANVAS_STAGES as readonly string[]).includes(kind)) return null;
 
   if (kind === "code") return validateCode(r, sentence, unique);
@@ -402,6 +406,29 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       .slice(0, 8);
     if (!parts.length) return null;
     const stage: FigureStage = { kind, component: component.name, params, parts };
+    return stage;
+  }
+
+  if (kind === "diagram") {
+    const parsed = parseDiagramSpec(r.spec ?? r);
+    if (!parsed) return null;
+    const checked = checkDiagram(parsed, "", []);
+    const drawing = compileDiagram(checked.spec);
+    const known = new Map(drawing.parts.map((p) => [p.id, p]));
+    const parts = arr(r.parts)
+      .map((p) => (typeof p === "string" ? { id: p } : obj(p)))
+      .map((p, i) => {
+        const id = slug(p.id, "");
+        if (!known.has(id) || unique(id, id) !== id) return null;
+        const name = shown(p.name ?? p.label, 34) || known.get(id)!.name;
+        const say = shown(p.say, 200);
+        return { id, name, s: sentence(p.s ?? p.sentence, i), ...(say ? { say } : {}) };
+      })
+      .filter((p): p is NonNullable<typeof p> => Boolean(p))
+      .slice(0, 8);
+    const labelled = parts.length ? parts : drawing.parts.slice(0, 6).map((p, i) => ({ id: p.id, name: p.name, s: sentence(i, i) }));
+    if (!labelled.length) return null;
+    const stage: DiagramStage = { kind, spec: checked.spec, parts: labelled, drawing };
     return stage;
   }
 

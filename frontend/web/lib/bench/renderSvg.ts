@@ -58,7 +58,9 @@ function markSvg(m: Mark): string {
 
 export function boardSvg(spec: CanvasBoardSpec): string {
   const layout = layoutPanel(spec);
-  const body = layout.marks.map(markSvg).join("");
+  // Complete-board snapshot: the notes column keeps four at a time and wipes; expired
+  // notes (until set) would otherwise stack on the last page.
+  const body = layout.marks.filter((m) => m.type !== "note" || m.until === undefined).map(markSvg).join("");
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><rect width="${W}" height="${H}" rx="22" fill="#fbfaf6"/>${body}</svg>`;
 }
 

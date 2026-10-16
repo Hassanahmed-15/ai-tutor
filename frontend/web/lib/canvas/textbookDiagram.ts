@@ -62,6 +62,35 @@ Return JSON {"accurate": boolean, "missing": [listed parts that are not clearly 
   return { accurate: raw.accurate !== false, missing: list(raw.missing), problems: list(raw.problems), textInImage: raw.textInImage === true, costUsd: costFor(CHECK_MODEL, res.usage) };
 }
 
+/**
+ * Textbook-editor check for a VECTOR diagram. Text and numbers ARE allowed and must be spelled
+ * as the narration spells them. Off unless DIAGRAM_VISION=on — a failed check is a repair hint,
+ * never a hard rejection of the board.
+ */
+export async function checkVectorDiagram(openai: OpenAI, png: Buffer, subject: string, parts: string[], narration: string): Promise<{ accurate: boolean; missing: string[]; problems: string[]; misspellings: string[]; costUsd: number }> {
+  const res = await openai.chat.completions.create({
+    model: CHECK_MODEL,
+    response_format: { type: "json_object" },
+    max_completion_tokens: 2500,
+    reasoning_effort: "low",
+    messages: [{
+      role: "user",
+      content: [
+        { type: "text", text: `You are a school-textbook editor checking ONE labelled VECTOR diagram. Text and numbers ARE allowed and must be spelled correctly. It should show: ${subject}.
+Parts it claims to label: ${parts.join("; ") || "(none listed)"}.
+Narration (the only source of numbers and names): ${narration.slice(0, 1200)}
+Judge accuracy against the subject's usual textbook conventions (e.g. warm ocean currents red, cold blue; oxygenated blood red).
+Reject only for wrong facts, wrong geography, wrong counts, reversed colour conventions, or misspelled labels. Do not reject it for being simple, sparse, or schematic.
+Return JSON {"accurate": boolean, "missing": [listed parts not clearly visible], "problems": [what to change, in a few words], "misspellings": [wrongly spelled labels]}.` },
+        { type: "image_url", image_url: { url: `data:image/png;base64,${png.toString("base64")}` } },
+      ],
+    }],
+  } as OpenAI.Chat.ChatCompletionCreateParamsNonStreaming);
+  const raw = JSON.parse(res.choices[0]?.message?.content ?? "{}") as { accurate?: boolean; missing?: unknown[]; problems?: unknown[]; misspellings?: unknown[] };
+  const list = (v: unknown[] | undefined) => (Array.isArray(v) ? v.map((x) => String(x).slice(0, 160)).filter(Boolean).slice(0, 8) : []);
+  return { accurate: raw.accurate !== false, missing: list(raw.missing), problems: list(raw.problems), misspellings: list(raw.misspellings), costUsd: costFor(CHECK_MODEL, res.usage) };
+}
+
 export type TextbookDiagram = {
   key: string;
   display: Buffer;

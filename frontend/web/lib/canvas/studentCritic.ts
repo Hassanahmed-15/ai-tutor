@@ -23,15 +23,17 @@ export function critiqueStudentBoard(spec: CanvasBoardSpec, beat: Pick<CanvasPla
   const visibleWords = labelTexts(spec).join(" ").toLowerCase();
   const words = (name: string) => name.toLowerCase().replace(/[-_]+/g, " ").split(/\s+/).filter((w) => w.length > 2);
   // Figures draw every part whether labelled or not; atom maps and molecules have fixed element ids.
-  const fixedIds = spec.stage.kind === "code" || spec.stage.kind === "graph" || spec.stage.kind === "equation" || spec.stage.kind === "figure" || spec.stage.kind === "atom-map" || spec.stage.kind === "molecule";
+  const fixedIds = spec.stage.kind === "code" || spec.stage.kind === "graph" || spec.stage.kind === "equation" || spec.stage.kind === "figure" || spec.stage.kind === "diagram" || spec.stage.kind === "atom-map" || spec.stage.kind === "molecule";
   const figurePartIds = spec.stage.kind === "figure"
     ? new Set((spec.stage.asset?.parts ?? figureComponent(spec.stage.component)?.build(spec.stage.params).parts ?? []).map((part) => part.id))
-    : new Set<string>();
+    : spec.stage.kind === "diagram"
+      ? new Set((spec.stage.drawing?.parts ?? spec.stage.parts).map((part) => part.id))
+      : new Set<string>();
   const missing = beat.objects.map((name) => slug(name, "")).filter((id) => {
     if (!id || targetIds.has(id) || fixedIds) return false;
     // A plan may contain conceptual objects that are not physical parts of this component. Ignore
     // those here; but when it names a real drawn part, that part must also have a visible label.
-    if (spec.stage.kind === "figure" && !figurePartIds.has(id)) return false;
+    if ((spec.stage.kind === "figure" || spec.stage.kind === "diagram") && !figurePartIds.has(id)) return false;
     const w = words(id);
     return !(w.length && w.every((x) => visibleWords.includes(x)));
   });
@@ -54,7 +56,7 @@ export function critiqueStudentBoard(spec: CanvasBoardSpec, beat: Pick<CanvasPla
       default: return true;
     }
   })();
-  const examUsable = !visualSkill || spec.stage.kind === "molecule" || spec.stage.kind === "atom-map" || labelsAttached || spec.stage.kind === "equation" || spec.stage.kind === "graph";
+  const examUsable = !visualSkill || spec.stage.kind === "molecule" || spec.stage.kind === "atom-map" || spec.stage.kind === "diagram" || labelsAttached || spec.stage.kind === "equation" || spec.stage.kind === "graph";
 
   const issues: string[] = [];
   const findings: StudentBoardCritique["findings"] = [];

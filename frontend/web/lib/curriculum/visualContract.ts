@@ -60,6 +60,9 @@ export function visualContractIssues(spec: CanvasBoardSpec, contract: VisualCont
     case "code":
       if (stage.lines.length < 3 || stage.steps.length < 1) issues.push("code board needs real lines and execution steps");
       break;
+    case "diagram":
+      if (stage.parts.length < 1) issues.push("diagram needs at least one labelled part");
+      break;
     case "figure":
       if (stage.parts.length < 2) issues.push("figure needs at least two labelled parts");
       {

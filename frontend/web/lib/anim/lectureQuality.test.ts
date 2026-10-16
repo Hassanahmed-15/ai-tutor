@@ -48,12 +48,13 @@ test("a lesson taught in Urdu has its sentences, and no prediction pause (2026-1
   assert.deepEqual(teachingCycle(script, "quiz", false), { interaction: null, cycle: undefined });
 });
 
-test("a graph with no quantity on it is drawn as a flow; a real graph stays", () => {
+test("a graph with no quantity on it is not a graph; a real graph stays", () => {
   const { beats } = applyLessonVisualPolicy([
     beat("b1", "Paragraph order", "graph", "A paragraph develops one central idea, and the ideas follow a logical order."),
     beat("b2", "Rate of reaction", "graph", "The rate rises as temperature increases from 20 to 40 degrees."),
   ], { mode: "course", aiPictures: false });
-  assert.equal(beats[0].stage, "flow");
+  assert.notEqual(beats[0].stage, "graph");
+  assert.notEqual(beats[0].stage, "flow", "an icon chain is only for a real process");
   assert.notEqual(beats[1].stage, "flow");
 });
 

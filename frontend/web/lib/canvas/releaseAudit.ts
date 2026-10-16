@@ -39,7 +39,7 @@ export function auditBoardForRelease(spec: CanvasBoardSpec, beat: CanvasPlanBeat
   if (spec.stage.kind === "scene" || spec.stage.kind === "flow") add("layout", layoutIssues(layoutPanel(spec), spec));
   // A figure squeezed into the board until its words cannot be read (a balance diagram's cards came
   // out at about 7 px, audit 2026-10-17) fails the student view, so the writer shortens or cuts them.
-  if (spec.stage.kind === "figure") {
+  if (spec.stage.kind === "figure" || spec.stage.kind === "diagram") {
     const figure = layoutPanel(spec).marks.find((m) => m.type === "figure");
     if (figure && figure.type === "figure") {
       // Judged on the larger text (90th percentile): small tick numbers on an axis are fine; the words
