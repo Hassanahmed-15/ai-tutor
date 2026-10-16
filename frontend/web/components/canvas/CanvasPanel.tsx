@@ -451,28 +451,29 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
   };
   const valueX = (p: Pt) => (layout.shape === "box" ? p.x - layout.w * 0.16 : p.x);
 
+  // A link that is new on this step draws itself in. A list's link leaves from a dot in its node's
+  // "next" box (lib/canvas/structure.ts edgeCurve), so list links are drawn over the nodes; a tree's
+  // and a graph's run between circles and sit under them.
+  const box = layout.shape === "box";
+  const links = frame.edges.map((edge) => {
+    const a = at(edge.from);
+    const b = at(edge.to);
+    if (!a || !b) return null;
+    const { p0, c, p1 } = edgeCurve(layout, a, b);
+    const points = quadPoints(p0, c, p1, 14);
+    return (
+      <g key={`${edge.from}>${edge.to}`}>
+        <Ink points={points} width={3.6} color={INK} opacity={0.85} />
+        {box && <circle cx={p0.x} cy={p0.y} r={4.2} fill={INK} />}
+        {mark.directed && <g className="cv-in cv-late">{arrowHead(p1, bezier(p0, c, p1, 0.82), 12, 3.4).map((d, i) => <path key={i} d={d} fill={INK} opacity={0.85} />)}</g>}
+        {edge.label && <text x={c.x} y={c.y - 8} textAnchor="middle" fontSize={14} fontWeight={700} fill={MUTED}>{edge.label}</text>}
+      </g>
+    );
+  });
+
   return (
     <g>
-      {/* Links first, under the nodes. A link that is new on this step draws itself in. */}
-      {frame.edges.map((edge) => {
-        const a = at(edge.from);
-        const b = at(edge.to);
-        if (!a || !b) return null;
-        const { p0, c, p1 } = edgeCurve(layout, layout.shape === "box" ? { x: a.x + layout.w * 0.34, y: a.y } : a, b);
-        const points = quadPoints(p0, c, p1, 14);
-        return (
-          <g key={`${edge.from}>${edge.to}`}>
-            <Ink points={points} width={3.6} color={INK} opacity={0.85} />
-            {mark.directed && <g className="cv-in cv-late">{arrowHead(p1, bezier(p0, c, p1, 0.82), 12, 3.4).map((d, i) => <path key={i} d={d} fill={INK} opacity={0.85} />)}</g>}
-            {edge.label && <text x={c.x} y={c.y - 8} textAnchor="middle" fontSize={14} fontWeight={700} fill={MUTED}>{edge.label}</text>}
-          </g>
-        );
-      })}
-      {/* A list's last node points at nothing: written as null, the way it is taught. */}
-      {mark.kind === "list" && frame.nodes.filter((n) => !frame.edges.some((ed) => ed.from === n.id)).map((n) => {
-        const p = at(n.id);
-        return p ? <text key={`null-${n.id}`} x={p.x + layout.w * 0.34} y={p.y + 5} textAnchor="middle" fontSize={17} fontWeight={800} fill="#475569">∅</text> : null;
-      })}
+      {!box && links}
       {frame.nodes.map((n) => {
         const p = at(n.id);
         if (!p) return null;
@@ -484,6 +485,10 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
           <g key={n.id} className={lit ? "cv-focus" : undefined}>
             <g className={before.place[n.id] ? undefined : "cv-in"}>
               {nodeShape(n.id, p, look)}
+              {/* A list node that points at nothing: its "next" box struck through — null, as it is taught. */}
+              {box && !frame.edges.some((ed) => ed.from === n.id) && (
+                <Ink points={[{ x: p.x + layout.w * 0.18 + 6, y: p.y + layout.h / 2 - 6 }, { x: p.x + layout.w / 2 - 6, y: p.y - layout.h / 2 + 6 }]} width={2.8} color="#475569" />
+              )}
               {changed && <circle key={`flash-${shown.to}`} cx={p.x} cy={p.y} r={Math.max(layout.w, layout.h) * 0.62} fill="#fbbf24" fillOpacity={0.25} className="cv-in" />}
               <text key={`v-${n.value}`} x={valueX(p)} y={p.y + layout.size * 0.36} textAnchor="middle" fontSize={layout.size} fontWeight={800} fill="#0f172a" className={changed ? "cv-in" : undefined}>
                 {n.value}
@@ -498,6 +503,7 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
           </g>
         );
       })}
+      {box && links}
       {/* Removed on this step: crossed out where it was, fading as the rest settles. */}
       {shown.t < 1 && gone.map((n) => {
         const p = before.place[n.id];

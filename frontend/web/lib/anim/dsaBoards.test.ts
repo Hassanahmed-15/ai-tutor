@@ -230,3 +230,18 @@ test("a tree link named backwards still unlinks; a code board whose structure ne
   const still = validateCanvasSpec({ ...raw, stage: { ...(raw.stage as object), steps: [{ s: 0, lines: [1] }, { s: 1, lines: [3] }, { s: 2, lines: [7] }] } }, 5)!;
   assert.match(boardStructureProblem(still, true) ?? "", /never changes/);
 });
+
+test("a list's link leaves from its next box and reaches the next node; a reversed one arches over the row", () => {
+  // The bug (2026-10-16): the start was pushed past the box twice, so 500 → 1000 was a bare arrowhead.
+  const list = parseStructure({ kind: "list", nodes: [{ id: "a", value: 100 }, { id: "b", value: 500 }, { id: "c", value: 1000 }], edges: [{ from: "b", to: "c" }, { from: "b", to: "a" }].slice(0, 1) })!;
+  const { frames } = runStructure(list, []);
+  const layout = layoutStructure(list, frames, { x: 500, y: 108, w: 440, h: 424 });
+  const [a, b, c] = ["a", "b", "c"].map((id) => layout.frames[0].place[id]);
+  const forward = edgeCurve(layout, b, c);
+  assert.ok(forward.p0.x > b.x && forward.p0.x < b.x + layout.w / 2, "starts inside 500's next box");
+  assert.ok(forward.p1.x < c.x - layout.w / 2, "ends at 1000's left side");
+  assert.ok(forward.p1.x - forward.p0.x >= (c.x - b.x) - layout.w, "a real line across the gap, not a stub");
+  const back = edgeCurve(layout, b, a);
+  assert.ok(back.c.y < b.y - layout.h / 2, "a reversed link arches over the row (the pointer tags are below)");
+  assert.ok(layout.size * 0.62 * 4 <= layout.w * 0.62 - 8 + 0.5, "\"1000\" fits the value part of its box");
+});

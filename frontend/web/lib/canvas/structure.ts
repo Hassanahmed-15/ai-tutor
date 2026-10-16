@@ -404,7 +404,15 @@ const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v
  * (from the largest frame), so the structure never rescales between steps — nodes only glide.
  */
 export function layoutStructure(start: Pick<DsStart, "kind">, frames: DsFrame[], area: DsBox): DsLayout {
-  const kind = start.kind;
+  const longest = Math.max(1, ...frames.flatMap((f) => f.nodes.map((n) => n.value.length)));
+  const layout = placeStructure(start.kind, frames, area, longest);
+  // The value fits where it is written: a list node's value part, a cell, a circle — so "1000" never
+  // runs into the box beside it. Digits in the bold board font are about 0.62 em wide.
+  const room = layout.shape === "box" ? layout.w * 0.62 - 8 : layout.shape === "cell" ? layout.w - 8 : layout.r * 2 - 6;
+  return { ...layout, size: clamp(Math.min(layout.size, room / (longest * 0.62)), 11, 22) };
+}
+
+function placeStructure(kind: DsKind, frames: DsFrame[], area: DsBox, longest: number): DsLayout {
   const most = Math.max(1, ...frames.map((f) => f.nodes.length));
   if (kind === "tree") return layoutTree(frames, area);
   if (kind === "graph") return layoutGraph(frames, area, most);
@@ -424,7 +432,8 @@ export function layoutStructure(start: Pick<DsStart, "kind">, frames: DsFrame[],
   // A row: list boxes with room for their next-arrows; array and queue cells side by side.
   const list = kind === "list";
   const gap = list ? clamp(area.w / most * 0.34, 26, 46) : 0;
-  const w = clamp((area.w - 20 - gap * (most - 1)) / most, 40, list ? 84 : 72);
+  // Long values ("1000") get a wider list box, so they stay readable rather than tiny.
+  const w = clamp((area.w - 20 - gap * (most - 1)) / most, 40, list ? (longest >= 4 ? 96 : 84) : 72);
   const h = clamp(w * 0.72, 36, 52);
   const rowW = most * w + gap * (most - 1);
   const x0 = area.x + (area.w - rowW) / 2 + w / 2;
@@ -549,16 +558,21 @@ export function edgeCurve(layout: Pick<DsLayout, "shape" | "r" | "w" | "h">, fro
     return { p0, c: { x: (p0.x + p1.x) / 2, y: (p0.y + p1.y) / 2 }, p1 };
   }
   const half = layout.w / 2;
+  const halfH = layout.h / 2;
   const step = Math.abs(to.x - from.x);
+  // A list node's link leaves from its "next" box (the right part of the node), as textbooks draw it.
+  const next = layout.shape === "box" ? from.x + layout.w * 0.34 : from.x;
   const neighbours = Math.abs(to.y - from.y) < 2 && step < layout.w * 2.2;
-  if (neighbours) {
-    const dir = Math.sign(to.x - from.x) || 1;
-    const p0 = { x: from.x + dir * (half + 2), y: from.y + (dir > 0 ? 0 : 8) };
-    const p1 = { x: to.x - dir * (half + 4), y: to.y + (dir > 0 ? 0 : 8) };
+  if (neighbours && to.x > from.x) {
+    // Forward to the next box: straight across the gap, into its left side.
+    const p0 = { x: next, y: from.y };
+    const p1 = { x: to.x - half - 4, y: to.y };
     return { p0, c: { x: (p0.x + p1.x) / 2, y: p0.y }, p1 };
   }
-  const p0 = { x: from.x, y: from.y - layout.h / 2 - 2 };
-  const p1 = { x: to.x, y: to.y - layout.h / 2 - 4 };
+  // Back to the box before it (a reversed link), or skipping boxes: arched over the row, into the
+  // top of the target — the space under the row is the pointer tags'.
+  const p0 = { x: next, y: from.y - halfH - 2 };
+  const p1 = { x: to.x, y: to.y - halfH - 5 };
   return { p0, c: { x: (p0.x + p1.x) / 2, y: Math.min(p0.y, p1.y) - 26 - step * 0.12 }, p1 };
 }
 
