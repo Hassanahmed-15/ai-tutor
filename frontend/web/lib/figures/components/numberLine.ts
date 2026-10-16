@@ -240,6 +240,6 @@ export const numberLine: FigureComponent = {
     if (setAnchor) sk.part("solution-set", cap(sets.length ? intervalsText(sets, v) : "Solution set"), setAnchor);
     if (ints.length) sk.part("integers", cap(`Integers ${ints.length > 8 ? ints.slice(0, 7).map((n) => fmt(n, 0)).join(", ") + "…" : ints.map((n) => fmt(n, 0)).join(", ")}`), { x: X(ints[0]), y: Y });
     if (marked.length) sk.part("point", cap(`Point ${marked[0].name} = ${valueText(marked[0].x)}`), { x: X(clamp(marked[0].x, lo, hi)), y: Y });
-    return sk.finish(14, { h: 130 });
+    return sk.finish(14, { h: 220 });
   },
 };

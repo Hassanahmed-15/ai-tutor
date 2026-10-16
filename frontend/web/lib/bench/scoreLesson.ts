@@ -2,6 +2,7 @@ import { quizIssues } from "../canvas/quizLint";
 import { layoutPanel } from "../canvas/layout";
 import { readingGrade } from "../studentCard";
 import { symbolicBoardIssues } from "./symbolic";
+import { examReadinessScore } from "../curriculum/examAuthenticity";
 import { BENCH_CRITERIA, clampScore, type BenchScores } from "./criteria";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "../canvas/types";
 
@@ -43,14 +44,16 @@ export function scoreLesson(args: {
     return { title: beat.title, stage: spec?.stage.kind ?? "none", figure: beat.figure, issues, quizOk };
   });
   const scripts = beats.map((b) => `${b.title} ${b.script}`).join(" ");
+  const STOP = new Set("about after before using ideas which these those other such including explain describe outline state under over their there every including".split(" "));
   const taught = outcomes.filter((o) => {
-    const keys = o.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 4).slice(0, 6);
+    const keys = o.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 4 && !STOP.has(w)).slice(0, 8);
     const hay = scripts.toLowerCase();
+    if (!keys.length) return true;
     return keys.filter((w) => hay.includes(w) || hay.includes(w.replace(/s$/, ""))).length >= Math.min(2, keys.length);
   });
   const coverage = outcomes.length ? taught.length / outcomes.length : 0.5;
   const quizish = (issue: string) => /^quiz:/.test(issue);
-  const layoutish = (issue: string) => /^layout:/.test(issue);
+  const layoutish = (issue: string) => /^(layout:|student-view:)/.test(issue);
   const factualRate = boards.length ? boards.filter((b) => b.issues.some((i) => !quizish(i) && !layoutish(i))).length / boards.length : 1;
   const layoutRate = boards.length ? boards.filter((b) => b.issues.some(layoutish)).length / boards.length : 1;
   const visual = new Set(["figure", "graph", "equation", "molecule", "atom-map", "flow", "compare", "illustration", "code"]);
@@ -59,7 +62,6 @@ export function scoreLesson(args: {
   const cycleRate = beats.filter((b) => !b.overview && !b.refresher).length
     ? beats.filter((b) => b.teachingCycle).length / Math.max(1, beats.filter((b) => !b.overview && !b.refresher).length)
     : 0;
-  const examBits = /\b(state|describe|explain|calculate|suggest|predict|deduce)\b/i.test(scripts) ? 1 : 0.6;
   const worked = beats.some((b) => /\b(substitut|therefore|so [uvwxy]=\d|dm³|mol|cm²)\b/i.test(b.script)) || /A Level/i.test(level);
   const labelsOk = specs.every((spec, i) => {
     if (spec.stage.kind !== "figure") return true;
@@ -69,11 +71,24 @@ export function scoreLesson(args: {
   });
   const grades = beats.map((b) => readingGrade(b.script));
   const pitch = avg(grades) <= 12 ? 1 : avg(grades) <= 16 ? 0.8 : 0.6;
+  const partMentioned = (script: string, names: string[]) => {
+    const hay = script.toLowerCase();
+    return names.some((n) => n.toLowerCase().split(/[^a-z]+/).some((w) => w.length > 3 && hay.includes(w)));
+  };
   const sync = beats.filter((b, i) => {
     const spec = specs[i];
     if (!spec) return false;
+    if (spec.stage.kind === "figure" && spec.stage.component === "functionGraph") {
+      return /\bf\s*\(|y\s*=|curve|graph|function|gradient|density/i.test(b.script);
+    }
+    if (spec.stage.kind === "figure" && spec.stage.component === "coordinateGrid") {
+      return /\b(point|gradient|length|midpoint|line|axes|axis|rise|run|coordinate|grid|segment|distance|plot)\b/i.test(b.script);
+    }
+    if (spec.stage.kind === "figure" && spec.stage.component === "riemannSum") {
+      return /\b(trapezium|trapezoid|ordinate|strip|interval|area|curve|integral|approximat)\b/i.test(b.script);
+    }
     const ids = spec.stage.kind === "figure" ? spec.stage.parts.map((p) => p.name.toLowerCase()) : [];
-    return ids.length === 0 || ids.some((n) => b.script.toLowerCase().includes(n.split(" ")[0] ?? "___"));
+    return ids.length === 0 || partMentioned(b.script, ids);
   }).length / Math.max(1, beats.length);
 
   const scores = {
@@ -81,7 +96,7 @@ export function scoreLesson(args: {
     coverage: clampScore(Math.round(5 + coverage * 5)),
     teachingDepth: clampScore(Math.round((worked ? 8 : 7) + cycleRate * 2)),
     factualAccuracy: clampScore(Math.round(10 - factualRate * 5)),
-    examReadiness: clampScore(Math.round(6 + examBits * 4)),
+    examReadiness: clampScore(examReadinessScore(outcomes, beats)),
     visualClarity: clampScore(Math.round(5 + figureRate * 5 - layoutRate * 2)),
     diagramsAndLabels: clampScore(Math.round((labelsOk ? 8 : 5) + figureRate * 2)),
     narrationBoardSync: clampScore(Math.round(6 + sync * 4)),

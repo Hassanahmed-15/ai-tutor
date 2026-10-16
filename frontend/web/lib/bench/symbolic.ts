@@ -24,7 +24,11 @@ export function symbolicBoardIssues(spec: CanvasBoardSpec, beat: CanvasPlanBeat)
     const needed = spec.stage.kind === "figure"
       ? figurePartObligations(spec, beat.requiredVisual.mustShow)
       : beat.requiredVisual.mustShow.filter((part) => !isCurriculumProseMustShow(part));
+    const geometric = /\b(reflect|rotat|translat\w*|enlarg|mirror line|scale factor|column vector)\b/i.test(`${beat.title} ${beat.brief} ${beat.script}`);
     for (const part of needed) {
+      // Kit leftovers: visual policy stamps object/image onto any coordinateGrid, including
+      // gradient and identity boards that never draw a transformed shape.
+      if (/^(object|image|image-vertex|mirror-line)$/i.test(part) && !geometric) continue;
       const key = part.toLowerCase().replace(/_/g, "-");
       if (![...shown].some((id) => id.includes(key) || key.includes(id))) {
         issues.push(`required part "${part}" is not a laid-out mark`);

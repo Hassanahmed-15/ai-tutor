@@ -178,6 +178,10 @@ export function applyLessonVisualPolicy(
     // The function plotter labels roots, asymptotes and "y = f(x)": a biology antibody-response graph
     // drawn by it read "Curve y = Primar(x)", "Root x = 0" (audit 2026-10-17). It draws maths only.
     if (component.name === "functionGraph" && !/\bf\s*\(\s*x\s*\)|\bfunctions?\b|\by\s*=|\bequations?\b|\broots?\b|\basymptotes?\b|\bturning points?\b|\bpolynomials?\b|\bquadratics?\b|\bgradient\b/i.test(boardText(beat))) continue;
+    // Algebraic calculus rules and numerical integration are not sketches of y = f(x).
+    if (component.name === "functionGraph" && /\b(trapezium|trapezoid|riemann|product rule|quotient rule|chain rule|parametric differentiat|implicit differentiat)\b/i.test(boardText(beat)) && !/\bturning points?|stationary points?\b/i.test(boardText(beat))) continue;
+    // "A transformation chain" of an integrand is not a geometric object/image on a grid.
+    if (component.name === "coordinateGrid" && /\b(integrat\w*|double[- ]angle|trig(onometric)? identit)\b/i.test(boardText(beat)) && !/\b(reflect|rotat|enlarg|mirror line|scale factor|column vector)\b/i.test(boardText(beat))) continue;
     // A computed chart replaces a generic graph, comparison or equation board — it is the stricter form
     // of the same thing (a supply-shift board planned as "graph" never got the supply–demand diagram,
     // audit 2026-10-17). Humanities visuals may replace a comparison. Pictures of things replace only

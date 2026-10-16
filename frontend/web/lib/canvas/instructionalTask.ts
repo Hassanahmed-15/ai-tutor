@@ -25,7 +25,7 @@ export type InstructionalTaskDecision = {
   task: InstructionalTask;
   stage: CanvasStage;
   /** A renderer whose geometry and label anchors are owned by code, not by the model. */
-  figure?: "inferenceDistribution" | "photosynthesisExperiment" | "standingWave" | "wave" | "heart" | "sequences" | "sectorArc" | "geneticTech" | "oxygenDebt" | "electromagnetism" | "coordinateGrid" | "enzymeAction" | "cellDivision";
+  figure?: "inferenceDistribution" | "photosynthesisExperiment" | "standingWave" | "wave" | "heart" | "sequences" | "sectorArc" | "geneticTech" | "oxygenDebt" | "electromagnetism" | "coordinateGrid" | "enzymeAction" | "cellDivision" | "leafCrossSection" | "proteinSynthesis" | "antibody" | "numberLine" | "functionGraph" | "riemannSum";
   requiredParts?: string[];
   reason: string;
 };
@@ -80,7 +80,7 @@ export function classifyInstructionalTask(beat: Pick<CanvasPlanBeat, "title" | "
   if (/\b(genetic technolog\w*|recombinant DNA|restriction enzymes?|plasmids?|PCR|polymerase chain reaction)\b/.test(text)) {
     return { task: "process", stage: "figure", figure: "geneticTech", requiredParts: ["plasmid", "restriction-site", "insert"], reason: "Genetic technology is a process whose parts (plasmid, cut, insert, or PCR steps) must sit on one figure." };
   }
-  if (/\b(translation|reflection|rotation|enlargement)s?\b(?=[\s\S]{0,80}\b(shape|triangle|object|image|grid|vector)\b)|\b(geometric |combined |single )?transformations?\b(?=[\s\S]{0,80}\b(shape|triangle|polygon|object|image|column vector|mirror line|scale factor)\b)/.test(text) && !/\bcomplet\w* the square|discriminant|vertex|quadratic|integral|derivative\b/i.test(text)) {
+  if (/\b(translation|reflection|rotation|enlargement)s?\b(?=[\s\S]{0,80}\b(shape|triangle|object|image|grid|vector)\b)|\b(geometric |combined |single )?transformations?\b(?=[\s\S]{0,80}\b(shape|triangle|polygon|object|image|column vector|mirror line|scale factor)\b)/.test(text) && !/\bcomplet\w* the square|discriminant|vertex|quadratic|integrat|derivative|double[- ]angle|identit|product rule|quotient rule|chain rule\b/i.test(text)) {
     return { task: "graph-interpretation", stage: "figure", figure: "coordinateGrid", requiredParts: ["object", "image"], reason: "A transformation is the object and its computed image on a coordinate grid." };
   }
   if (/\bmode of action of enzymes\b|\benzyme action\b|\benzymes?\b(?=[\s\S]{0,200}\b(active site|substrate|lock[- ]and[- ]key|induced[- ]fit|denatur)\b)|\block[- ]and[- ]key\b|\binduced[- ]fit\b/.test(text)) {
@@ -88,6 +88,32 @@ export function classifyInstructionalTask(beat: Pick<CanvasPlanBeat, "title" | "
   }
   if (/\b(mitosis|meiosis|cell division|(pro|meta|ana|telo)phase)\b/.test(text)) {
     return { task: "process", stage: "figure", figure: "cellDivision", requiredParts: ["chromosome", "daughter-cells"], reason: "Nuclear division is a sequence of chromosome arrangements, not a generic cycle of icons." };
+  }
+  if (/\bleaf\b(?=[\s\S]{0,200}\b(cross[- ]section|palisade|spongy|mesophyll|stomata?|cuticle|xylem|phloem|epidermis|photosynthes|structure)\b)|\b(palisade|spongy mesophyll)\b/.test(text)) {
+    return { task: "physical-structure", stage: "figure", figure: "leafCrossSection", requiredParts: ["palisade", "stoma", "xylem"], reason: "A leaf-as-organ outcome needs palisade, a stoma and the vascular bundle on one section." };
+  }
+  if (/\bprotein synthes\w*\b|\btranscription and translation\b|\b(transcri(be|ption)|translat(e|ion))\b(?=[\s\S]{0,120}\b(mRNA|ribosome|polypeptide|amino acid|codon)\b)/.test(text)) {
+    return { task: "process", stage: "figure", figure: "proteinSynthesis", requiredParts: ["dna", "mrna", "ribosome"], reason: "Protein synthesis is DNA → mRNA → polypeptide on one labelled process figure." };
+  }
+  if (/\bantibod\w*\b|\bimmunoglobulin\b|\b(active|passive) immunit\w*\b/.test(text)) {
+    return { task: "physical-structure", stage: "figure", figure: "antibody", requiredParts: ["binding-site", "antigen"], reason: "An immunity board must show the Y-shaped antibody and its antigen-binding site." };
+  }
+  if (/\binequalit(y|ies)\b/.test(text) && !/\bcode|program|python\b/i.test(text)) {
+    return { task: "graph-interpretation", stage: "figure", figure: "numberLine", requiredParts: ["number-line", "solution-set"], reason: "An inequality is the solution set on a number line, not a paragraph of inequalities." };
+  }
+  if (/\bprobability density\b|\bpdf\b|\bcontinuous random variable\b/.test(text)) {
+    return { task: "graph-interpretation", stage: "figure", figure: "functionGraph", requiredParts: ["curve"], reason: "A PDF is a non-negative curve whose area is 1, drawn as a function graph." };
+  }
+  if (/\btrapezium rule\b|\btrapezoid(al)? rule\b|\briemann (sum|sums)\b|\barea under (a|the) curve\b.*\b(rectangles?|strips?|approximat|ordinate)/i.test(text)) {
+    return { task: "graph-interpretation", stage: "figure", figure: "riemannSum", requiredParts: ["curve"], reason: "A trapezium rule / Riemann sum is the strips under y = f(x), not a sketch of turning points." };
+  }
+  // Product/quotient/chain/parametric/implicit are algebraic rules. Only curve-reading boards
+  // (turning points, sketching dy/dx) belong on functionGraph.
+  if ((/\bapplications? of differentiat\w*\b|\bturning points?\b|\bstationary points?\b/.test(text) || (/\bdy\/dx\b/.test(text) && /\b(graph|curve|sketch|tangent|turning)\b/i.test(text))) && !/\bintegrat|product rule|quotient rule|chain rule|parametric|implicit differentiat\b/i.test(text)) {
+    return { task: "graph-interpretation", stage: "figure", figure: "functionGraph", requiredParts: ["curve"], reason: "Differentiation applications are read off the graph of y = f(x): gradient, turning point, tangent." };
+  }
+  if (/\bfunctions?\b(?=[\s\S]{0,80}\b(f\s*\(|domain|range|composite|inverse|mapping)\b)|\bf\s*\(\s*x\s*\)/.test(text) && !/\bpython|javascript|program|code|trapezium|trapezoid|riemann|product rule|quotient rule|chain rule|parametric|implicit differentiat\b/i.test(text)) {
+    return { task: "graph-interpretation", stage: "figure", figure: "functionGraph", requiredParts: ["curve"], reason: "A function board is y = f(x) on axes, not a code trace." };
   }
   const experimentalVerb = /\b(investigat\w*|experiment\w*|practical|method|apparatus|set[- ]?up|measure|control(?:led)? variables?|independent variable|dependent variable|fair test|repeat(?:ed)? readings?)\b/i;
   if (experimentalVerb.test(text) && (/\bphotosynth\w*|pondweed|elodea|oxygen bubbles?|light intensity|destarch\w*/i.test(text) || (/\bstarch test|iodine\b/i.test(text) && /\bleaf|leaves|variegated\b/i.test(text) && !/\b(amylase|enzyme)\b/i.test(text)))) {
@@ -98,7 +124,7 @@ export function classifyInstructionalTask(beat: Pick<CanvasPlanBeat, "title" | "
     };
   }
   if (/\b(molecular (shape|geometry|structure)|shapes? of (a |the |simple )?molecules?|vsepr|bond angle|lone pairs?|covalent bond)/i.test(text)) return { task: "molecular-structure", stage: "molecule", reason: "Molecular geometry needs atoms, bonds and three-dimensional structure." };
-  if (/\b(code|program|algorithm|loop|variable|function|python|javascript|trace table)\b/i.test(text)) return { task: "code-trace", stage: "code", reason: "The skill requires executable lines and a visible state trace." };
+  if (/\b(code|program|algorithm|loop|python|javascript|trace table)\b/i.test(text) || (/\bvariable\b/i.test(text) && /\b(code|program|loop)\b/i.test(text))) return { task: "code-trace", stage: "code", reason: "The skill requires executable lines and a visible state trace." };
   if (/\b(equation|formula|calculate|solve|substitut|rearrange|algebra|derive)\b/i.test(text)) return { task: "calculation", stage: "equation", reason: "The skill requires visible worked steps." };
   if (/\b(graph|plot|gradient|slope|trend|correlation|relationship between|rate against|interpolat|extrapolat)\b/i.test(text)) return { task: "graph-interpretation", stage: "graph", reason: "The outcome requires a quantitative graph or interpretation." };
   if (/\b(conservation of (?:mass|matter)|atom count|balanced (?:chemical )?equation|reactants?\b.*\bproducts?\b(?=[\s\S]*\b(atoms?|conserv\w*|balanc\w*|mass)\b))/i.test(text)) return { task: "matter-tracking", stage: "atom-map", reason: "The outcome tracks conserved atoms from reactants to products." };

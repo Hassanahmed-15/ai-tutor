@@ -12,6 +12,9 @@ import { sequences, sequenceTerms, nthTerm } from "../figures/components/sequenc
 import { sectorArc, sectorMeasures } from "../figures/components/sectorArc";
 import { geneticTech } from "../figures/components/geneticTech";
 import { oxygenDebt, oxygenDebtArea } from "../figures/components/oxygenDebt";
+import { leafCrossSection } from "../figures/components/leafCrossSection";
+import { proteinSynthesis } from "../figures/components/proteinSynthesis";
+import { antibody } from "../figures/components/antibody";
 import { fallbackSpec } from "../canvas/fallback";
 import type { CanvasPlanBeat } from "../canvas/types";
 
@@ -21,6 +24,9 @@ const ALL: Array<[FigureComponent, FigureParams[]]> = [
   [sectorArc, [{}, { r: 10, theta: 90 }, { theta: 240, showChord: true }, { r: -4, theta: 400 }]],
   [geneticTech, [{}, { view: "pcr" }, { enzyme: "BamHI", gene: "GFP" }, { view: "nonsense" }]],
   [oxygenDebt, [{}, { rest: 0.25, exercise: 3, exerciseMin: 5, recoveryMin: 8 }, { rest: "x" }]],
+  [leafCrossSection, [{}, { view: "section" }]],
+  [proteinSynthesis, [{}, { view: "transcription" }, { view: "translation" }]],
+  [antibody, [{}, { bound: false }]],
 ];
 
 test("new kit figures: declared parts, anchors inside, finite geometry", () => {
@@ -94,6 +100,15 @@ test("visual policy routes panel-critical boards onto the new kit", () => {
   assert.equal(applyLessonVisualPolicy([beat("Transformations", "Translate the triangle by the column vector, then reflect it in the mirror line.")], { mode: "course" }).beats[0].figure, "coordinateGrid");
   assert.notEqual(classifyInstructionalTask(beat("Read the vertex", "Complete the square and read the vertex of the quadratic y = x² + 4x.")).figure, "coordinateGrid");
   assert.notEqual(applyLessonVisualPolicy([beat("Definite integrals and exact evaluation", "Evaluate the definite integral from 0 to 1 of x².")], { mode: "course" }).beats[0].figure, "evaluationScale");
+  assert.equal(applyLessonVisualPolicy([beat("The leaf as a photosynthesis organ", "Label the palisade mesophyll, stomata and xylem in a leaf cross-section.")], { mode: "course" }).beats[0].figure, "leafCrossSection");
+  assert.equal(applyLessonVisualPolicy([beat("Protein synthesis", "DNA is transcribed to mRNA, then translated at a ribosome into a polypeptide.")], { mode: "course" }).beats[0].figure, "proteinSynthesis");
+  assert.equal(applyLessonVisualPolicy([beat("Active immunity and antibodies", "An antibody binds its antigen at the antigen-binding site.")], { mode: "course" }).beats[0].figure, "antibody");
+  assert.equal(applyLessonVisualPolicy([beat("Inequalities", "Solve −2 < x ≤ 3 and show the solution set on a number line.")], { mode: "course" }).beats[0].figure, "numberLine");
+  assert.equal(applyLessonVisualPolicy([beat("Functions", "Sketch y = f(x) and read the domain and range.")], { mode: "course" }).beats[0].figure, "functionGraph");
+  assert.equal(applyLessonVisualPolicy([beat("The trapezium rule", "Use the trapezium rule with four strips to approximate the area under the curve.")], { mode: "course" }).beats[0].figure, "riemannSum");
+  assert.notEqual(classifyInstructionalTask(beat("Core derivatives and composites", "Differentiate e to the x, ln x, and a composite with the chain rule.")).figure, "functionGraph");
+  assert.notEqual(classifyInstructionalTask(beat("Products and quotients", "Differentiate using the product rule and the quotient rule.")).figure, "functionGraph");
+  assert.notEqual(applyLessonVisualPolicy([beat("Trigonometric identities before integration", "A transformation chain rewrites sin²x with a double-angle identity before integration.")], { mode: "course" }).beats[0].figure, "coordinateGrid");
 });
 
 test("instructional task maps the heart labelling outcome to the heart figure", () => {

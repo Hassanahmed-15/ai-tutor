@@ -6,6 +6,7 @@ import { estimatePhase0Usd } from "../bench/cost";
 import { parseJudgeJson, BENCH_JUDGE_FAMILY } from "../bench/judge";
 import { calibrateJudge, type HandScoredLecture } from "../bench/handScores";
 import { symbolicBoardIssues } from "../bench/symbolic";
+import { scoreLesson } from "../bench/scoreLesson";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "../canvas/types";
 
 test("the audit has twelve named criteria and clamps to 1–10", () => {
@@ -123,4 +124,77 @@ test("symbolic checks skip prose mustShow and flag placeholder labels on a scene
   const issues = symbolicBoardIssues(spec, beat);
   assert.ok(issues.some((i) => /placeholder/i.test(i)), issues.join("; "));
   assert.ok(!issues.some((i) => /required part "distinct visible parts"/i.test(i)), issues.join("; "));
+});
+
+test("gradient language on a coordinateGrid scores narration sync at least 8", () => {
+  const spec: CanvasBoardSpec = {
+    v: 1,
+    heading: "Gradient",
+    notes: [],
+    cues: [],
+    stage: {
+      kind: "figure",
+      component: "coordinateGrid",
+      params: {},
+      parts: [
+        { id: "object", name: "Object (the shape)", s: 0 },
+        { id: "image", name: "Image A′B′C′", s: 1 },
+      ],
+    },
+  };
+  const gridBeat: CanvasPlanBeat = {
+    id: "b1",
+    title: "Gradient as rise over run",
+    script: "Gradient measures steepness on a coordinate grid. From (1, 2) to (5, 10) the line has gradient 2.",
+    stage: "figure",
+    figure: "coordinateGrid",
+    brief: "A coordinate grid with rise and run.",
+    objects: ["object", "image"],
+    inside: null,
+    carry: [],
+    interaction: "quiz",
+    overview: false,
+  };
+  const card = scoreLesson({
+    title: "Gradient and length",
+    outcomes: ["Calculate the gradient of a straight line."],
+    beats: [gridBeat],
+    specs: [spec],
+    level: "O Level",
+  });
+  assert.ok(card.scores.narrationBoardSync >= 8, JSON.stringify(card.scores));
+});
+
+test("leftover object/image mustShow is ignored on a non-transformation grid", () => {
+  const spec: CanvasBoardSpec = {
+    v: 1,
+    heading: "Identities",
+    notes: [],
+    cues: [],
+    stage: {
+      kind: "figure",
+      component: "coordinateGrid",
+      params: { line: "y = x" },
+      parts: [
+        { id: "axes", name: "x- and y-axes", s: 0 },
+        { id: "curve", name: "The plotted line/curve", s: 1 },
+      ],
+    },
+  };
+  const identity: CanvasPlanBeat = {
+    id: "b2",
+    title: "Trigonometric identities before integration",
+    script: "Rewrite sin squared x with a double-angle identity, then integrate each term.",
+    stage: "figure",
+    figure: "coordinateGrid",
+    brief: "A transformation chain rewrites squared trigonometric terms.",
+    objects: ["object", "image"],
+    inside: null,
+    carry: [],
+    interaction: "quiz",
+    overview: false,
+    requiredVisual: { stages: ["figure"], mustShow: ["object", "image"] },
+  };
+  const issues = symbolicBoardIssues(spec, identity);
+  assert.ok(!issues.some((i) => /required part "(object|image)"/i.test(i)), issues.join("; "));
 });

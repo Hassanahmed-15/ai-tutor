@@ -15,6 +15,9 @@ import { decayCurve } from "./components/decayCurve";
 import { particles } from "./components/particles";
 import { heart } from "./components/heart";
 import { geneticTech } from "./components/geneticTech";
+import { proteinSynthesis } from "./components/proteinSynthesis";
+import { antibody } from "./components/antibody";
+import { leafCrossSection } from "./components/leafCrossSection";
 import { oxygenDebt } from "./components/oxygenDebt";
 import { enzymeAction } from "./components/enzymeAction";
 import { membraneTransport } from "./components/membraneTransport";
@@ -82,7 +85,7 @@ import type { FigureComponent } from "./types";
 export const FIGURE_COMPONENTS: FigureComponent[] = [
   titration, distillation, filtration, chromatography, gasCollection, heating, photosynthesisExperiment, oxygenDebt,
   bonding, latticeStructure, atomicStructure, periodicTable, energyProfile, rateGraph, decayCurve, particles,
-  enzymeAction, membraneTransport, cellDivision, punnettSquare, pedigree, geneticTech, dnaStructure, foodWeb, ecologicalPyramid, heart,
+  enzymeAction, membraneTransport, cellDivision, punnettSquare, pedigree, geneticTech, proteinSynthesis, antibody, dnaStructure, leafCrossSection, foodWeb, ecologicalPyramid, heart,
   electromagnetism, circuit, rayLens, reflectionRefraction, fieldLines, standingWave, wave, motionGraph, moments, sankey,
   supplyDemand, ppf, adAs, costRevenue, circularFlow,
   scatterPlot, histogram, boxPlot, cumulativeFrequency, barChart, sectorArc, pieChart, inferenceDistribution,
