@@ -55,7 +55,7 @@ export function DotAvatar({
     if (!svg) return;
     const q = (k: string) => svg.querySelector(`[data-k="${k}"]`) as SVGElement;
     const P = {
-      fig: q("fig"), irisL: q("irisL"), irisR: q("irisR"), eyeL: q("eyeL"), eyeR: q("eyeR"), cheekL: q("cheekL"), cheekR: q("cheekR"),
+      fig: q("fig"), eyes: q("eyes"), eyeL: q("eyeL"), eyeR: q("eyeR"), cheekL: q("cheekL"), cheekR: q("cheekR"),
       mouth: q("mouth"), clip: q("clip"), teeth: q("teeth"), tongue: q("tongue"), lowerlip: q("lowerlip"), line: q("line"), fteeth: q("fteeth"), glow: q("glow"),
     };
     const reduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -114,10 +114,7 @@ export function DotAvatar({
       breath = !talking && !stillRef.current && !reduced ? 0.5 + 0.5 * Math.sin(clock * 1.6) : breath * 0.9;
       const sq = 1 - 0.03 * m.jaw + 0.012 * breath;
       P.fig.setAttribute("transform", `translate(0 ${(nod * 0.55).toFixed(2)}) rotate(${(nod * 0.35).toFixed(2)} 120 222) translate(120 222) scale(${(1 + 0.02 * m.jaw).toFixed(3)} ${sq.toFixed(3)}) translate(-120 -222)`);
-      // Her irises look; the eyes and glasses stay on her face.
-      const iris = `translate(${(look.x * 4).toFixed(2)} ${(look.y * 3).toFixed(2)})`;
-      P.irisL.setAttribute("transform", iris);
-      P.irisR.setAttribute("transform", iris);
+      P.eyes.setAttribute("transform", `translate(${(look.x * 5).toFixed(2)} ${(look.y * 3.5).toFixed(2)})`);
       P.eyeL.setAttribute("transform", `translate(88.5 141) scale(1 ${lid.toFixed(3)}) translate(-88.5 -141)`);
       P.eyeR.setAttribute("transform", `translate(151.5 141) scale(1 ${lid.toFixed(3)}) translate(-151.5 -141)`);
       const smile = talking ? 0.3 : 0.5;
@@ -133,122 +130,42 @@ export function DotAvatar({
   }, [gaze, mouth]);
 
   return (
-    <svg
-      ref={svgRef}
-      viewBox="-12 -8 264 272"
-      className={`overflow-visible ${className}`}
-      role="img"
-      aria-label="Aria"
-      // A face needs a face's mouth: the theme's mouth and lip tokens are for the orb's violet or
-      // orange skin, so on her skin the mouth is a warm rose, whatever the theme.
-      style={{ ["--dot-mouth" as string]: "#6A2232", ["--dot-lip" as string]: "#D9787F", ["--dot-cheek" as string]: "#FF9D96" }}
-    >
+    <svg ref={svgRef} viewBox="-12 -8 264 272" className={`overflow-visible ${className}`} role="img" aria-label="Aria">
       <defs>
+        <radialGradient id={`${uid}g`} cx="38%" cy="30%" r="78%">
+          <stop offset="0" style={{ stopColor: "var(--dot-hi)" }} />
+          <stop offset=".32" style={{ stopColor: "var(--dot-mid)" }} />
+          <stop offset=".74" style={{ stopColor: "var(--dot-body)" }} />
+          <stop offset="1" style={{ stopColor: "var(--dot-edge)" }} />
+        </radialGradient>
         <filter id={`${uid}b`} x="-40%" y="-40%" width="180%" height="180%">
           <feGaussianBlur stdDeviation="12" />
         </filter>
         <clipPath id={`${uid}mc`}>
           <path data-k="clip" />
         </clipPath>
-        {/* Her shirt, in the theme's colour (violet at night, orange by day). */}
-        <linearGradient id={`${uid}s`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" style={{ stopColor: "var(--dot-mid)" }} />
-          <stop offset="1" style={{ stopColor: "var(--dot-body)" }} />
-        </linearGradient>
-        <radialGradient id={`${uid}k`} cx="42%" cy="36%" r="72%">
-          <stop offset="0" stopColor="#FFE9DC" />
-          <stop offset=".7" stopColor="#F7CDB4" />
-          <stop offset="1" stopColor="#EBB394" />
-        </radialGradient>
-        <linearGradient id={`${uid}h`} x1="0" y1="0" x2="0.35" y2="1">
-          <stop offset="0" stopColor="#6B4A5E" />
-          <stop offset="1" stopColor="#3A2534" />
-        </linearGradient>
-        <radialGradient id={`${uid}i`} cx="45%" cy="40%" r="60%">
-          <stop offset="0" style={{ stopColor: "var(--dot-mid)" }} />
-          <stop offset="1" style={{ stopColor: "var(--dot-edge)" }} />
-        </radialGradient>
-        <clipPath id={`${uid}el`}>
-          <ellipse cx="88.5" cy="141" rx="14" ry="15" />
-        </clipPath>
-        <clipPath id={`${uid}er`}>
-          <ellipse cx="151.5" cy="141" rx="14" ry="15" />
-        </clipPath>
       </defs>
-      {/*
-        ARIA AS A PERSON (owner's direction, 2026-10-16: "aria should look like this … but in my colour
-        scheme" — a friendly teacher with her hair tied back, big glasses and a collared shirt). Her
-        shirt, glasses and eyes take the theme's colours; her skin and hair are a person's. The eyes,
-        mouth and cheeks keep the coordinates the animation loop above drives.
-      */}
       <g data-k="fig">
-        <circle data-k="glow" cx="120" cy="140" r="96" style={{ fill: "var(--dot-body)" }} opacity=".42" filter={`url(#${uid}b)`} />
-        {/* The ponytail, tied at the back and falling behind her right shoulder. */}
-        <path d="M168 86 C206 82 222 116 216 156 C212 186 204 210 190 232 C196 202 198 176 192 150 C188 128 178 112 160 104 Z" fill={`url(#${uid}h)`} />
-        <path d="M188 104 C206 122 208 156 200 196" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" opacity=".14" />
-        {/* Hair behind her head and ears. */}
-        <path d="M46 150 C38 90 72 52 120 52 C168 52 202 90 194 150 C190 176 180 186 172 190 L68 190 C60 186 50 176 46 150 Z" fill={`url(#${uid}h)`} />
-        {/* The hair tie, gold, where the ponytail is gathered. */}
-        <rect x="184" y="96" width="20" height="13" rx="6" transform="rotate(32 194 102)" fill="#F5C86B" />
-        <path d="M190 97 L187 106 M196 99 L193 108" stroke="#C99A3D" strokeWidth="1.6" strokeLinecap="round" />
-        {/* Shoulders and shirt, with a collar and two gold buttons. */}
-        <path d="M106 196 L106 228 Q120 240 134 228 L134 196 Z" fill="#E7AE8E" />
-        <path d="M10 264 C12 244 34 232 70 228 L106 222 Q120 238 134 222 L170 228 C206 232 228 244 230 264 Z" fill={`url(#${uid}s)`} />
-        <path d="M106 222 L94 242 L116 248 L120 234 Z M134 222 L146 242 L124 248 L120 234 Z" style={{ fill: "var(--dot-hi)", stroke: "var(--dot-edge)" }} strokeWidth="1.6" strokeLinejoin="round" />
-        <circle cx="120" cy="254" r="3" fill="#F5C86B" />
-        {/* Ears, then her face. */}
-        <ellipse cx="53" cy="148" rx="9" ry="14" fill="#F2BFA2" />
-        <ellipse cx="187" cy="148" rx="9" ry="14" fill="#F2BFA2" />
-        <path d="M120 66 C162 66 187 96 187 140 C187 182 158 212 120 212 C82 212 53 182 53 140 C53 96 78 66 120 66 Z" fill={`url(#${uid}k)`} />
-        <ellipse data-k="cheekL" cx="78" cy="170" rx="13" ry="8" style={{ fill: "var(--dot-cheek)" }} opacity=".4" />
-        <ellipse data-k="cheekR" cx="162" cy="170" rx="13" ry="8" style={{ fill: "var(--dot-cheek)" }} opacity=".4" />
-        {/* Her hair over the top of her head: parted on her right and swept across, behind her ears. */}
-        <path d="M44 152 C36 92 70 50 120 50 C172 50 206 90 196 152 C190 124 180 104 162 92 C140 80 116 80 98 74 C92 96 74 108 62 120 C54 130 48 140 44 152 Z" fill={`url(#${uid}h)`} />
-        <path d="M100 76 C128 84 158 86 180 112 M84 74 C76 92 66 102 56 116 M118 58 C142 58 166 68 182 86" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" opacity=".16" />
-        {/* Eyebrows. */}
-        <path d="M71 111 Q88 101 105 108" fill="none" stroke="#4A3040" strokeWidth="4" strokeLinecap="round" />
-        <path d="M135 108 Q152 101 169 111" fill="none" stroke="#4A3040" strokeWidth="4" strokeLinecap="round" />
-        {/* Eyes: each blinks as a whole (eyeL / eyeR); the irises look where she looks (irisL / irisR). */}
+        <circle data-k="glow" cx="120" cy="132" r="96" style={{ fill: "var(--dot-body)" }} opacity=".42" filter={`url(#${uid}b)`} />
+        <g transform="rotate(-11 120 184)">
+          <path d="M4 184 A116 24 0 0 1 236 184" fill="none" stroke="#F5C86B" strokeWidth="4" strokeLinecap="round" opacity=".5" />
+        </g>
+        <circle cx="120" cy="132" r="90" fill={`url(#${uid}g)`} />
+        <circle cx="120" cy="132" r="89" fill="none" style={{ stroke: "var(--dot-rim)" }} strokeWidth="2.5" opacity=".55" />
+        <path d="M56 96 A74 74 0 0 1 112 60" fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" opacity=".55" />
+        <ellipse data-k="cheekL" cx="63" cy="166" rx="12" ry="7" style={{ fill: "var(--dot-cheek)" }} opacity=".4" />
+        <ellipse data-k="cheekR" cx="177" cy="166" rx="12" ry="7" style={{ fill: "var(--dot-cheek)" }} opacity=".4" />
         <g data-k="eyes">
           <g data-k="eyeL">
-            <ellipse cx="88.5" cy="141" rx="14" ry="15" fill="#FFFFFF" />
-            <g clipPath={`url(#${uid}el)`}>
-              <g data-k="irisL">
-                <circle cx="88.5" cy="142" r="10.5" fill={`url(#${uid}i)`} />
-                <circle cx="88.5" cy="142" r="5.2" style={{ fill: "var(--dot-eye)" }} />
-                <circle cx="84.5" cy="137.5" r="3.2" fill="#FFFFFF" />
-                <circle cx="92" cy="146" r="1.5" fill="#FFFFFF" opacity=".8" />
-              </g>
-            </g>
-            <path d="M73.5 139 Q88.5 121 103.5 139" fill="none" stroke="#2B1A22" strokeWidth="3.2" strokeLinecap="round" />
-            <path d="M75 133 L70 129.5" stroke="#2B1A22" strokeWidth="2.4" strokeLinecap="round" />
+            <rect x="78" y="123" width="21" height="36" rx="10.5" style={{ fill: "var(--dot-eye)" }} />
+            <circle cx="85" cy="133" r="3.8" fill="#FFF" />
+            <circle cx="92" cy="145" r="1.7" fill="#FFF" opacity=".75" />
           </g>
           <g data-k="eyeR">
-            <ellipse cx="151.5" cy="141" rx="14" ry="15" fill="#FFFFFF" />
-            <g clipPath={`url(#${uid}er)`}>
-              <g data-k="irisR">
-                <circle cx="151.5" cy="142" r="10.5" fill={`url(#${uid}i)`} />
-                <circle cx="151.5" cy="142" r="5.2" style={{ fill: "var(--dot-eye)" }} />
-                <circle cx="147.5" cy="137.5" r="3.2" fill="#FFFFFF" />
-                <circle cx="155" cy="146" r="1.5" fill="#FFFFFF" opacity=".8" />
-              </g>
-            </g>
-            <path d="M136.5 139 Q151.5 121 166.5 139" fill="none" stroke="#2B1A22" strokeWidth="3.2" strokeLinecap="round" />
-            <path d="M165 133 L170 129.5" stroke="#2B1A22" strokeWidth="2.4" strokeLinecap="round" />
+            <rect x="141" y="123" width="21" height="36" rx="10.5" style={{ fill: "var(--dot-eye)" }} />
+            <circle cx="148" cy="133" r="3.8" fill="#FFF" />
+            <circle cx="155" cy="145" r="1.7" fill="#FFF" opacity=".75" />
           </g>
-        </g>
-        {/* Her nose. */}
-        <path d="M116 159 Q120 163 124 159" fill="none" stroke="#D99A7C" strokeWidth="2.4" strokeLinecap="round" />
-        {/* Her glasses: big squared lenses with soft corners, frames in the theme's colour, an arm to
-            each ear. They sit on her face, so they nod with her and stay put as she looks. */}
-        <g aria-hidden="true" style={{ stroke: "var(--dot-edge)" }} fill="none" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="64" y="118" width="49" height="46" rx="12" fill="#FFFFFF" fillOpacity=".1" strokeWidth="4.5" />
-          <rect x="127" y="118" width="49" height="46" rx="12" fill="#FFFFFF" fillOpacity=".1" strokeWidth="4.5" />
-          <path d="M113 134 Q120 129 127 134" strokeWidth="4" />
-          <path d="M64 132 Q56 131 50 134" strokeWidth="4.5" />
-          <path d="M176 132 Q184 131 190 134" strokeWidth="4.5" />
-          <path d="M70 132 V128 Q70 124 74 124 H82" stroke="#FFFFFF" strokeWidth="2.4" opacity=".6" />
-          <path d="M133 132 V128 Q133 124 137 124 H145" stroke="#FFFFFF" strokeWidth="2.4" opacity=".6" />
         </g>
         <g transform="translate(120 170) scale(1.42) translate(-120 -170)">
           <path data-k="mouth" style={{ fill: "var(--dot-mouth)", stroke: "var(--dot-mouth)" }} strokeWidth="2.4" strokeLinejoin="round" />
@@ -259,6 +176,11 @@ export function DotAvatar({
           <path data-k="lowerlip" fill="none" style={{ stroke: "var(--dot-lip)" }} strokeWidth="2" strokeLinecap="round" opacity=".6" />
           <path data-k="line" fill="none" style={{ stroke: "var(--dot-mouth)" }} strokeWidth="3.4" strokeLinecap="round" />
           <rect data-k="fteeth" width="10" height="4.5" rx="1.6" fill="#FFFFFF" strokeWidth="1.2" style={{ display: "none", stroke: "var(--dot-mouth)" }} />
+        </g>
+        <g transform="rotate(-11 120 184)">
+          <path d="M4 184 A116 24 0 0 0 236 184" fill="none" stroke="#F5C86B" strokeWidth="4" strokeLinecap="round" />
+          <circle cx="216" cy="198" r="4.5" fill="#FFE7A8" />
+          <circle cx="50" cy="204" r="3.2" fill="#FFE7A8" />
         </g>
       </g>
     </svg>
