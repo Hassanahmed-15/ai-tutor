@@ -31,11 +31,21 @@ export function fallbackSpec(beat: CanvasPlanBeat): CanvasBoardSpec {
   // A code-drawn figure needs no model either: its parts, labelled one per sentence.
   const component = beat.figure ? figureComponent(beat.figure) : undefined;
   if (component) {
-    // The parts the narration names, in the order it names them (then the rest, to fill five).
+    // Required ids first (aorta on a heart board), then the parts the narration names, then the rest.
     const said = (name: string) => { const word = name.toLowerCase().split(/[\s(]/)[0].replace(/[^a-z-]/g, ""); const at = word ? beat.script.toLowerCase().search(new RegExp(`\\b${word}`)) : -1; return at < 0 ? Infinity : at; };
-    const chosen = [...component.parts].map((p) => ({ p, at: said(p.name) })).sort((a, b) => a.at - b.at).slice(0, 5).map((x) => x.p);
+    const required = new Set((beat.requiredVisual?.mustShow ?? []).filter((id) => component.parts.some((p) => p.id === id)));
+    const chosen = [...component.parts]
+      .map((p) => ({ p, at: required.has(p.id) ? -1 : said(p.name) }))
+      .sort((a, b) => a.at - b.at)
+      .slice(0, 6)
+      .map((x) => x.p);
     const parts = chosen.map((p, i, all) => ({ id: p.id, name: p.name, s: Math.min(last, Math.round((i * last) / Math.max(1, all.length - 1))) }));
-    return { v: 1, heading: beat.title.slice(0, 40), notes: [], stage: { kind: "figure", component: component.name, params: {}, parts }, cues: [], ...(beat.overview ? { overview: true } : {}) };
+    const params: Record<string, string | number | boolean> = {};
+    const text = `${beat.title} ${beat.brief} ${beat.script}`;
+    if (component.name === "electromagnetism" && /\btransformers?\b|\bturns ratio\b|\bstep[- ](up|down)\b/i.test(text)) params.device = "transformer";
+    if (component.name === "sequences" && /\bgeom/i.test(text)) params.type = "geometric";
+    if (component.name === "geneticTech" && /\bPCR|polymerase chain/i.test(text)) params.view = "pcr";
+    return { v: 1, heading: beat.title.slice(0, 40), notes: [], stage: { kind: "figure", component: component.name, params, parts }, cues: [], ...(beat.overview ? { overview: true } : {}) };
   }
   // The wired electrolytic cell (lib/canvas/visualPolicy.ts) needs no model: its four parts are the board.
   if (["power-supply", "electrolyte", "anode", "cathode"].every((id) => beat.objects.includes(id))) {

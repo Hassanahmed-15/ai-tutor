@@ -113,7 +113,7 @@ test("the visual contract no longer turns economics 'product' into chemistry, or
   ] as never);
   assert.ok(!funding.preferredStages.includes("atom-map"));
   assert.deepEqual(perspectives.preferredStages, ["compare"]);
-  assert.deepEqual(heart.preferredStages, ["illustration"]);
+  assert.deepEqual(heart.preferredStages, ["figure"]);
 });
 
 test("lesson length has a floor per qualification, and humanities get an exam-depth rule", async () => {

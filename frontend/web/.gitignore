@@ -67,6 +67,7 @@ public/ort
 
 # lesson-canvas cache: generated canvas lectures and their pictures (lib/canvas/generate.ts)
 /.canvas-cache
+.bench/
 
 # Downloaded syllabus PDFs (publishers' copyright): local input to scripts/curriculum, never committed.
 .curricula-raw/

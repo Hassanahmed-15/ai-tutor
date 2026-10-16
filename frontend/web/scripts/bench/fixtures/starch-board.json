@@ -1,0 +1,10 @@
+{
+  "draw": {
+    "ops": [
+      {
+        "kind": "reactAnimation",
+        "code": "export default function Board(){return <div>dry-run board</div>}"
+      }
+    ]
+  }
+}

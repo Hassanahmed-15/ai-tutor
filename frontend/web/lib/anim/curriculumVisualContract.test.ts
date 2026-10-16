@@ -12,9 +12,9 @@ test("Phase 3 maps syllabus verbs to a concrete visual stage", () => {
     { code: "2", text: "Calculate speed using the formula." },
     { code: "3", text: "Compare diffusion and osmosis." },
   ]);
-  assert.deepEqual(reqs.map((r) => r.preferredStages[0]), ["illustration", "equation", "compare"]);
+  assert.deepEqual(reqs.map((r) => r.preferredStages[0]), ["figure", "equation", "compare"]);
   assert.ok(reqs.every((r) => r.required));
-  assert.ok(reqs[0].mustShow.includes("labels for every required part"));
+  assert.ok(reqs[0].mustShow.includes("aorta") || reqs[0].mustShow.includes("right-atrium"));
 });
 
 test("Phase 3 rejects a decorative or structurally incomplete board", () => {
@@ -25,6 +25,23 @@ test("Phase 3 rejects a decorative or structurally incomplete board", () => {
     { id: "a", name: "Atrium", s: 0 }, { id: "v", name: "Ventricle", s: 1 }, { id: "valve", name: "Valve", s: 2 },
   ], labels: ["a", "v", "valve"] });
   assert.deepEqual(visualContractIssues(complete, contract), []);
+});
+
+test("a figure board is not failed for leftover equation-contract words like formula", () => {
+  const grid = board({
+    kind: "figure",
+    component: "coordinateGrid",
+    params: {},
+    parts: [{ id: "object", name: "Object", s: 0 }, { id: "image", name: "Image", s: 1 }],
+  });
+  assert.deepEqual(visualContractIssues(grid, { stages: ["figure"], mustShow: ["formula", "operators", "object", "image"] }), []);
+  const heart = board({
+    kind: "figure",
+    component: "heart",
+    params: {},
+    parts: [{ id: "right-atrium", name: "Right atrium", s: 0 }, { id: "left-ventricle", name: "Left ventricle", s: 1 }],
+  });
+  assert.match(visualContractIssues(heart, { stages: ["figure"], mustShow: ["aorta"] }).join("; "), /aorta/);
 });
 
 test("Phase 3 requires both sides of a comparison and both ends of an atom map", () => {

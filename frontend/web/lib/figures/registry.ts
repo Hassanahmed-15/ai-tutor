@@ -13,6 +13,12 @@ import { energyProfile } from "./components/energyProfile";
 import { rateGraph } from "./components/rateGraph";
 import { decayCurve } from "./components/decayCurve";
 import { particles } from "./components/particles";
+import { heart } from "./components/heart";
+import { geneticTech } from "./components/geneticTech";
+import { proteinSynthesis } from "./components/proteinSynthesis";
+import { antibody } from "./components/antibody";
+import { leafCrossSection } from "./components/leafCrossSection";
+import { oxygenDebt } from "./components/oxygenDebt";
 import { enzymeAction } from "./components/enzymeAction";
 import { membraneTransport } from "./components/membraneTransport";
 import { cellDivision } from "./components/cellDivision";
@@ -58,6 +64,8 @@ import { vectors } from "./components/vectors";
 import { probabilityTree } from "./components/probabilityTree";
 import { venn } from "./components/venn";
 import { fractionModel } from "./components/fractionModel";
+import { sequences } from "./components/sequences";
+import { sectorArc } from "./components/sectorArc";
 import { functionGraph } from "./components/functionGraph";
 import { timeline } from "./components/timeline";
 import { causeConsequence } from "./components/causeConsequence";
@@ -75,13 +83,13 @@ import type { FigureComponent } from "./types";
 // general heating ("Bunsen" also appears on a distillation board), electromagnetism before field lines
 // and circuits, the data charts before general graphs, and specific maths before general.
 export const FIGURE_COMPONENTS: FigureComponent[] = [
-  titration, distillation, filtration, chromatography, gasCollection, heating, photosynthesisExperiment,
+  titration, distillation, filtration, chromatography, gasCollection, heating, photosynthesisExperiment, oxygenDebt,
   bonding, latticeStructure, atomicStructure, periodicTable, energyProfile, rateGraph, decayCurve, particles,
-  enzymeAction, membraneTransport, cellDivision, punnettSquare, pedigree, dnaStructure, foodWeb, ecologicalPyramid,
+  enzymeAction, membraneTransport, cellDivision, punnettSquare, pedigree, geneticTech, proteinSynthesis, antibody, dnaStructure, leafCrossSection, foodWeb, ecologicalPyramid, heart,
   electromagnetism, circuit, rayLens, reflectionRefraction, fieldLines, standingWave, wave, motionGraph, moments, sankey,
   supplyDemand, ppf, adAs, costRevenue, circularFlow,
-  scatterPlot, histogram, boxPlot, cumulativeFrequency, barChart, pieChart, inferenceDistribution,
-  riemannSum, slopeField, argand, unitCircle, circleTheorem, parallelLines, bearings, coordinateGrid, numberLine, shapes3d, triangle, vectors, probabilityTree, venn, fractionModel, functionGraph,
+  scatterPlot, histogram, boxPlot, cumulativeFrequency, barChart, sectorArc, pieChart, inferenceDistribution,
+  riemannSum, slopeField, argand, unitCircle, circleTheorem, sequences, parallelLines, bearings, coordinateGrid, numberLine, shapes3d, triangle, vectors, probabilityTree, venn, fractionModel, functionGraph,
   timeline, causeConsequence, sourceCard, evaluationScale, conceptTable,
 ];
 
