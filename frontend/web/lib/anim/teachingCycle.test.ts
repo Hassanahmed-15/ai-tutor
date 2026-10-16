@@ -33,11 +33,11 @@ test("the cycle is anchored on the script's own Predict sentence, wherever it is
   assert.equal(teachingCycle("Teach it. Explain it. Apply it.", null, false).cycle, undefined, "no prediction, no cycle");
 });
 
-test("Week 4 repairs a recap into a new application and preserves a real transfer", async () => {
+test("a board ending on its answer is kept as written — no filler line — and a real transfer is preserved", async () => {
   const { teachingCycleIssues } = await import("../canvas/predict");
   const weak = validatePlan({ beats: [{ title: "Forces", script: "Force changes motion. Predict: what happens if mass doubles? Acceleration halves. This is the force relationship.", stage: "equation", objects: ["force"] }] })!.beats[0];
   assert.deepEqual(teachingCycleIssues(weak), []);
-  assert.match(weak.script, /try the same reasoning on a new example/i);
+  assert.doesNotMatch(weak.script, /try the same reasoning on a new example/i, "the filler line read out on every board is gone (audit 2026-10-17)");
   const transfer = validatePlan({ beats: [{ title: "Forces", script: "Force changes motion. Predict: what happens if mass doubles? Acceleration halves. Apply the same reasoning to a loaded bicycle.", stage: "equation", objects: ["force"] }] })!.beats[0];
   assert.deepEqual(teachingCycleIssues(transfer), []);
   assert.equal(addTransferPrompt("Teach. Predict: what happens? The answer is clear. Apply it to a new case.", "Forces", null, false), "Teach. Predict: what happens? The answer is clear. Apply it to a new case.");

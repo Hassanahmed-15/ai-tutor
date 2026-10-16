@@ -13,8 +13,8 @@ export type CachedLesson = {
   verification?: unknown;
 };
 
-/** 2: depth rules, board floor by level, out-of-scope no longer excludes named studies (2026-10-15). */
-export const SPEC_VERSION = "spec-2";
+/** 2: depth rules, board floor by level, out-of-scope no longer excludes named studies (2026-10-15). 3: every standard exam case is a key point (coverage audit 2026-10-17). */
+export const SPEC_VERSION = "spec-3";
 
 /** One cache entry per course version + lesson address. */
 export function cacheId(r: CurriculumLessonRequest): string {

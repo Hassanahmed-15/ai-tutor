@@ -1,4 +1,5 @@
 import type { FigureShape, Ink, Pt } from "../types";
+import { fitText, recordFigureCut } from "../cuts";
 import { PALETTE, textW } from "./mathsKit";
 
 /**
@@ -19,7 +20,8 @@ export function measure(text: string, size: number): number {
 export function clean(v: unknown, max = 120): string {
   if (typeof v === "number" && Number.isFinite(v)) return String(v);
   if (typeof v !== "string") return "";
-  return v.replace(/\s+/g, " ").trim().slice(0, max);
+  // Cut at a word, never mid-word, and recorded: the writer is asked to fit it next time.
+  return fitText(v.replace(/\s+/g, " ").trim(), max);
 }
 
 /** Split a list param on ";" (or newlines); "|" is kept for cells. */
@@ -56,6 +58,7 @@ export function wrap(text: string, size: number, maxW: number, maxLines = Infini
   }
   if (cur) lines.push(cur);
   if (lines.length > maxLines) {
+    recordFigureCut(text, `${maxLines} line${maxLines === 1 ? "" : "s"}`);
     const kept = lines.slice(0, maxLines);
     let last = kept[maxLines - 1];
     while (last.length > 1 && measure(last + "…", size) > maxW) last = last.slice(0, -1).trimEnd();

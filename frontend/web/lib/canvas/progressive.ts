@@ -3,7 +3,7 @@ import "server-only";
 
 import type { Beat } from "../lessonContent";
 import type { ProgressiveBeatPlan, ProgressiveLectureInput } from "../progressiveLectureTypes";
-import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, validatePlan, type Clock } from "./generate";
+import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, plainRebuild, validatePlan, type Clock } from "./generate";
 import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
 import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
@@ -20,6 +20,8 @@ import { sourcesForText, type SourcePack } from "../webSources";
 import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
 import { findLibraryFigure } from "../figures/library";
 import { teachingCycleIssues } from "./predict";
+import { courseCoverageGaps, coverageMessage, requiredTermsOf } from "./courseCoverage";
+import { examBoardSpec } from "./examBoard";
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -72,6 +74,21 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
       const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, attempt > 1 && lastError ? `${request}\n\nYour previous plan could not be used: ${lastError}` : request, fromDocument ? 16_000 : 9000), fromDocument ? 180_000 : 120_000, "canvas plan");
       costUsd += c;
       let plan = validatePlan(json);
+      const courseDoc = curriculumDocumentOf(input);
+      // The lesson plan's exam-practice block is drawn as the exam board, whatever stage the planner wrote.
+      const examAt = courseDoc?.contentBlocks?.findIndex((b) => b.exam) ?? -1;
+      if (plan && examAt >= 0) {
+        const lessonBeats = plan.beats.filter((b) => !b.refresher);
+        const examBeat = lessonBeats[examAt];
+        if (examBeat && examBeat.stage !== "exam") {
+          examBeat.stage = "exam";
+          examBeat.interaction = null;
+          delete examBeat.teachingCycle;
+          examBeat.objects = [];
+        }
+      }
+      // What the planner chose to SHOW on each board (its stage and catalogue diagram), before any routing.
+      if (plan) console.log(`[canvas] planner visuals: ${plan.beats.map((b) => `${b.id} ${b.stage}${b.plannedFigure ? `:${b.plannedFigure}` : ""}`).join(" | ")}; raw diagram fields: ${JSON.stringify(((json as { beats?: Array<{ diagram?: unknown }> }).beats ?? []).map((b) => b.diagram ?? null)).slice(0, 300)}`);
       // Typed, course and reference lessons must genuinely teach, pause for a prediction, reveal,
       // then transfer. Strict/video lessons may omit a new transfer case when their source does.
       const cycleProblems = plan && !sourceMode
@@ -82,6 +99,16 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         if (attempt < maxAttempts) { console.log(`[canvas] plan sent back: ${lastError}`); continue; }
         // A board with a weak prediction still teaches; no lecture at all teaches nothing.
         console.warn(`[canvas] plan kept with a weak teaching cycle: ${lastError}`);
+      }
+      // A course lesson must teach what its syllabus plan lists: a plan that leaves out key points or
+      // required terms goes back once, naming each one (lib/canvas/courseCoverage.ts).
+      if (plan && courseDoc?.contentBlocks?.length) {
+        const gaps = courseCoverageGaps(plan.beats, courseDoc.contentBlocks, requiredTermsOf(courseDoc.contentBlocks[0].teachingHints));
+        if (gaps.boards.length || gaps.terms.length > 2) {
+          lastError = `it leaves out parts of the syllabus lesson: ${coverageMessage(gaps)}`;
+          if (attempt < maxAttempts) { console.log(`[canvas] plan sent back for coverage: ${lastError.slice(0, 600)}`); continue; }
+          console.warn(`[canvas] plan kept with coverage gaps: ${lastError.slice(0, 600)}`);
+        } else console.log(`[canvas] plan covers every key point${gaps.terms.length ? ` (terms not used: ${gaps.terms.join(", ")})` : ""}`);
       }
       if (plan && allowed > 0 && plan.beats.length > allowed) {
         lastError = `it had ${plan.beats.length} boards; the outline has exactly ${outlined}${allowed > outlined ? ` (at most ${allowed} with the extra boards allowed)` : ""}`;
@@ -254,10 +281,14 @@ export async function writeCanvasBoard(args: {
 
   let made: { spec: CanvasBoardSpec; costUsd: number; attempts: number };
   let pictured: { spec: CanvasBoardSpec; costUsd: number };
+  // The exam-practice board is the lesson's mark scheme, built by code (lib/canvas/examBoard.ts).
+  const exam = beat.stage === "exam" ? args.document?.contentBlocks?.find((b) => b.exam)?.exam : undefined;
   try {
     const openai = client();
-    made = await generateSpec(openai, args.topic, plan, beat, clock, extra);
-    pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock);
+    if (exam) made = { spec: examBoardSpec(beat, exam), costUsd: 0, attempts: 1 };
+    else if (beat.stage === "exam") throw new Error("an exam board needs the lesson's mark scheme");
+    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra);
+    pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra));
   } catch (error) {
     log.push(`${beat.id}: ${(error as Error).message}`);
     made = { spec: fallbackSpec(beat), costUsd: 0, attempts: -1 };

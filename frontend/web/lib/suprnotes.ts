@@ -37,6 +37,8 @@ export type SuprnotesContentBlock = {
   sourceOrder?: number;
   keyIdeas?: string[];
   teachingHints?: string[];
+  /** A course lesson's exam-practice block (lib/curriculum/lessonSpec.ts): the question and its mark scheme. */
+  exam?: { commandWord: string; question: string; marks: number; markPoints: string[]; lostMarks: string };
   facts?: Array<{ claim?: string; source?: string; confidence?: string }>;
   pageNumber?: number;
   bbox?: { x: number; y: number; width: number; height: number };

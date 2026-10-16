@@ -22,7 +22,7 @@ export const CANVAS_ICONS = [
 ] as const;
 export type CanvasIcon = (typeof CANVAS_ICONS)[number];
 
-export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure"] as const;
+export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure", "exam"] as const;
 export type CanvasStage = (typeof CANVAS_STAGES)[number];
 
 /** A written key note in the notes column, revealed on the sentence that says it. */
@@ -241,7 +241,22 @@ export type CodeStage = {
   output?: { s: number; text: string };
 };
 
-export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage;
+/**
+ * AN EXAM QUESTION ANSWERED FOR FULL MARKS: the question as the paper sets it with its marks, the
+ * command word picked out, each marking point ticked as Aria says it, and the mistake that loses
+ * marks. Built from the lesson's mark scheme by code (lib/canvas/examBoard.ts), never invented.
+ */
+export type ExamStage = {
+  kind: "exam";
+  commandWord: string;
+  question: string;
+  marks: number;
+  /** One per mark, in mark-scheme wording, each revealed on the sentence that says it. */
+  points: Array<{ id: string; text: string; s: number }>;
+  lostMarks?: { id: string; text: string; s: number };
+};
+
+export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage | ExamStage;
 
 /** What the pointer (Aria's pen) or the camera does on a sentence. */
 export type CanvasCue = {
@@ -334,6 +349,13 @@ export type CanvasPlanBeat = {
   audience?: string;
   /** A "figure" board: the code-drawn component it uses (lib/figures/registry.ts), or "library", chosen by the visual policy. */
   figure?: string;
+  /**
+   * The diagram the PLANNER chose for this board from the catalogue (lib/canvas/prompts.ts), before
+   * the script was written around it. The visual policy honours it when it fits the board's words.
+   */
+  plannedFigure?: string;
+  /** Diagrams the board review rejected for this board: no rule may demand them again on a rebuild. */
+  rejectedFigures?: string[];
   /** figure "library": the textbook diagram chosen for this board (lib/figures/library.ts) — its parts are what the board may label. */
   figureAsset?: { id: string; w: number; h: number; credit: string; parts: Array<{ id: string; name: string; anchor: { x: number; y: number } }> };
   /** Curriculum Phase 3: deterministic visual obligations attached after the model plan. */

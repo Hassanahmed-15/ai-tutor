@@ -28,27 +28,29 @@ test("pictures and diagrams combine: a labelled structure is a diagram, what a t
     beat("b6", "A rainforest plant in its habitat", "illustration", "What a rainforest plant and the animals around it look like"),
   ];
   const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
-  assert.deepEqual(out.beats.map((b) => b.stage), ["figure", "atom-map", "equation", "graph", "compare", "illustration"]);
-  assert.equal(out.beats[0].figure, "drawn", "a board that labels a structure gets an exactly labelled diagram");
-  assert.equal(out.audit.illustrations, 1);
+  // A structure with no exact diagram is GENERATED as a checked textbook diagram (lib/canvas/textbookDiagram.ts),
+  // not described as line art by the board writer.
+  assert.deepEqual(out.beats.map((b) => b.stage), ["illustration", "atom-map", "equation", "graph", "compare", "illustration"]);
+  assert.equal(out.audit.illustrations, 2);
 });
 
-test("generated pictures are capped at two; over the cap a physical subject is still drawn", () => {
+test("generated pictures are capped at four; over the cap a physical subject becomes a plain board, never line art", () => {
   const input = [
     beat("b1", "A volcano erupting", "illustration", "What an erupting volcano looks like"),
     beat("b2", "The planet Venus", "illustration", "What the planet Venus looks like through a telescope"),
     beat("b3", "The planet Mars", "illustration", "What the planet Mars looks like from orbit"),
-    beat("b4", "Blood flow sequence", "flow"),
+    beat("b4", "A glacier valley", "illustration", "What a glacier valley looks like"),
+    beat("b5", "A river delta", "illustration", "What a river delta looks like from above"),
+    beat("b6", "Blood flow sequence", "flow"),
   ];
   const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
-  assert.equal(out.beats.filter((b) => b.stage === "illustration").length, 2);
-  const over = out.beats.find((b) => b.stage !== "illustration" && b.id !== "b4")!;
-  assert.equal(over.stage, "figure");
-  assert.equal(over.figure, "drawn");
+  assert.equal(out.beats.filter((b) => b.stage === "illustration").length, 4);
+  const over = out.beats.find((b) => b.stage !== "illustration" && b.id !== "b6")!;
+  assert.notEqual(over.figure, "drawn");
 
   const required = input.map((b) => ({ ...b, requiredVisual: b.stage === "illustration" ? { stages: ["illustration"], mustShow: ["distinct visible parts"] } : undefined }));
   const exception = applyLessonVisualPolicy(required, { mode: "course", aiPictures: true });
-  assert.equal(exception.beats.filter((b) => b.stage === "illustration").length, 3, "three distinct assessed pictures are a justified exception");
+  assert.equal(exception.beats.filter((b) => b.stage === "illustration").length, 5, "distinct assessed pictures are a justified exception");
 });
 
 test("strict mode never invents a generated textbook picture", () => {

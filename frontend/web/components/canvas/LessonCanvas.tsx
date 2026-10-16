@@ -12,7 +12,7 @@ import { CANVAS_THEMES, CHALK, chalkCss, chalkTint, panelTheme, recolour, THEME_
 import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "@/lib/anim/boardFont";
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
 import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint } from "./CanvasPanel";
-import { quadPoints, roughEllipse } from "@/lib/canvas/ink";
+import { quadPoints } from "@/lib/canvas/ink";
 import { playScratch, playTick, playWhoosh, setSoundEnabled, soundEnabled } from "./sound";
 import { Confetti } from "./Confetti";
 
@@ -786,20 +786,22 @@ function Pen({ cue: given, layout, vars }: { cue: CanvasCue; layout: PanelLayout
         const lines = Math.max(1, Math.min(3, Math.round(r.h / 30)));
         const lineH = r.h / lines;
         const x0 = r.x + (cue.target && layout.marks.find((m) => m.id === cue.target)?.type === "note" ? 24 : 0);
+        // An underline beneath each line, not a band across it: on the chalk board a wide band over pale
+        // writing washed the words out ("Government-owned railway" was hard to read, audit 2026-10-17).
         return Array.from({ length: lines }, (_, k) => {
-          const y = r.y + lineH * (k + 0.6);
+          const y = r.y + lineH * (k + 0.94);
           return (
             <path
               key={`u${key}-${k}`}
-              d={`M${x0} ${y} Q ${(x0 + r.x + r.w) / 2} ${y - 2} ${r.x + r.w} ${y + 1}`}
+              d={`M${x0} ${y} Q ${(x0 + r.x + r.w) / 2} ${y + 2} ${r.x + r.w} ${y - 1}`}
               fill="none"
               stroke={ARIA}
-              strokeOpacity={0.3}
-              strokeWidth={Math.min(24, lineH * 0.62)}
+              strokeOpacity={0.85}
+              strokeWidth={Math.max(3, Math.min(6, lineH * 0.16))}
               strokeLinecap="round"
               className="cv-swipe"
               pathLength={1}
-              style={{ mixBlendMode: "multiply", animationDelay: `${k * 220}ms` }}
+              style={{ animationDelay: `${k * 220}ms` }}
             />
           );
         });

@@ -33,7 +33,27 @@ export function quizIssues(interaction: CanvasInteraction | undefined, context: 
   if (options.filter((o) => /^(yes|no|sí|si|oui|non|ja|nein|ہاں|جی ہاں|نہیں|جی نہیں|نعم|لا)(?=[\s:;،؛,.!—–-]|$)/i.test(o.text.trim())).length >= 2) issues.push("a yes/no question is answered by how it is asked — ask the student to choose between specific outcomes, each option a real answer (not Yes/No)");
   // The card is read on its own after the narration: it names what it is about, never "that pattern",
   // "the same plot" or "instead" (audit 2026-10-16: "Is commercial, shareware or open-source the strongest choice?").
-  if (/\b(that|those|these|this|the same) (pattern|graph|plot|example|case|one|board|diagram|situation|cluster|idea|scenario|option|choice|company|student|patient|point)\b|\binstead\b|\bthe above\b|\bstrongest choice\b/i.test(interaction.question)) issues.push("the question must make sense on the card alone — name the case it is about instead of pointing back to the narration (\"that pattern\", \"instead\", \"the same plot\")");
+  if (/\b(that|those|these|this|the same) (pattern|graph|plot|example|case|one|board|diagram|situation|cluster|idea|scenario|option|choice|company|student|patient|point|points|views|arguments|factors|results|ideas|examples|options|cases|statements)\b|\binstead\b|\bthe above\b|\bstrongest choice\b/i.test(interaction.question)) issues.push("the question must make sense on the card alone — name the case it is about instead of pointing back to the narration (\"that pattern\", \"instead\", \"the same plot\")");
+  // An option is an answer, not its working: "ȳ=23, σy=8. Decoding gives ȳ = 3 + 4(5) = 23…" gave
+  // itself away next to three bare answers (audit 2026-10-17).
+  const explained = options.filter((o) => /(?<!\b(?:e\.g|i\.e|etc|vs))[.!?]\s+[A-Z(]/.test(o.text.trim()) || /\b(decoding gives|this gives|which gives|so the answer|working:)\b/i.test(o.text));
+  if (explained.length) issues.push(`each option is a bare answer in one clause — no working or explanation inside an option: ${explained.map((o) => `"${o.text.slice(0, 50)}…"`).join(", ")}`);
+  // A question that spells out its options, where the right one is a wrong one plus a qualifier
+  // ("output alone or output plus acceptable quality?", "wholly valuable or valuable with
+  // limitations?"), is answered by picking the fuller, hedged one (audit 2026-10-17). An honest
+  // either/or ("an external cost or an external benefit?") is a fair question and stays.
+  const asked = new Set(words(interaction.question).map(stem));
+  const ABSOLUTE = /^(alone|only|just|wholly|whol|completely|complete|entirely|entire|always|never|purely|pure|solely|sole)$/;
+  const spelled = options.filter((o) => { const w = words(o.text).map(stem); return w.length >= 2 && w.filter((x) => asked.has(x)).length / w.length >= 0.6; });
+  const correct = options.find((o) => o.correct);
+  if (correct && spelled.includes(correct)) {
+    const has = new Set(words(correct.text).map(stem));
+    const hedged = spelled.filter((o) => !o.correct).some((o) => {
+      const core = words(o.text).map(stem).filter((w) => !ABSOLUTE.test(w));
+      return core.length > 0 && core.every((w) => has.has(w)) && has.size > core.length;
+    });
+    if (hedged) issues.push(`the question lists its answers and the right one is a wrong one plus a qualifier ("${correct.text}") — a student picks the fuller-sounding option without knowing the idea; ask without naming the options`);
+  }
   // Every wrong option must be about this board: it shares a word with the question, the board or the narration.
   const known = new Set(words(`${interaction.question} ${context}`).map(stem));
   // Options with fewer than two words to compare (numbers, symbols, "As zero") are judged by the number check instead.

@@ -72,6 +72,31 @@ import { causeConsequence } from "./components/causeConsequence";
 import { sourceCard } from "./components/sourceCard";
 import { evaluationScale } from "./components/evaluationScale";
 import { conceptTable } from "./components/conceptTable";
+import { rootHairCell } from "./components/rootHairCell";
+import { xylemPhloem } from "./components/xylemPhloem";
+import { guardCells } from "./components/guardCells";
+import { seedStructure } from "./components/seedStructure";
+import { windFlower } from "./components/windFlower";
+import { bloodVessels } from "./components/bloodVessels";
+import { bloodCells } from "./components/bloodCells";
+import { villus } from "./components/villus";
+import { teeth } from "./components/teeth";
+import { placenta } from "./components/placenta";
+import { nephron } from "./components/nephron";
+import { reflexArc } from "./components/reflexArc";
+import { synapse } from "./components/synapse";
+import { skinSection } from "./components/skinSection";
+import { endocrineGlands } from "./components/endocrineGlands";
+import { gametes } from "./components/gametes";
+import { chromosome } from "./components/chromosome";
+import { sarcomere } from "./components/sarcomere";
+import { gelElectrophoresis } from "./components/gelElectrophoresis";
+import { microscopeGraticule } from "./components/microscopeGraticule";
+import { glucoseRings } from "./components/glucoseRings";
+import { lipids } from "./components/lipids";
+import { aminoAcid } from "./components/aminoAcid";
+import { atpNucleotide } from "./components/atpNucleotide";
+import { oxygenDissociation } from "./components/oxygenDissociation";
 import type { FigureComponent } from "./types";
 
 /**
@@ -85,6 +110,10 @@ import type { FigureComponent } from "./types";
 export const FIGURE_COMPONENTS: FigureComponent[] = [
   titration, distillation, filtration, chromatography, gasCollection, heating, photosynthesisExperiment, oxygenDebt,
   bonding, latticeStructure, atomicStructure, periodicTable, energyProfile, rateGraph, decayCurve, particles,
+  // The O/A Level biology kit (2026-10-17): specific structures ahead of the general membrane and cell diagrams.
+  nephron, synapse, reflexArc, skinSection, endocrineGlands, gelElectrophoresis, microscopeGraticule, oxygenDissociation,
+  gametes, chromosome, sarcomere, glucoseRings, lipids, aminoAcid, atpNucleotide,
+  rootHairCell, xylemPhloem, guardCells, seedStructure, windFlower, bloodVessels, bloodCells, villus, teeth, placenta,
   enzymeAction, membraneTransport, cellDivision, punnettSquare, pedigree, geneticTech, proteinSynthesis, antibody, dnaStructure, leafCrossSection, foodWeb, ecologicalPyramid, heart,
   electromagnetism, circuit, rayLens, reflectionRefraction, fieldLines, standingWave, wave, motionGraph, moments, sankey,
   supplyDemand, ppf, adAs, costRevenue, circularFlow,

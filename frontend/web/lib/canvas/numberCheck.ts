@@ -58,7 +58,9 @@ const exponentOf = (m: RegExpExecArray) => (m[2] ? Number(m[2].replace(/[−–\
 export function checkNumbers(text: string): NumberIssue[] {
   const issues: NumberIssue[] = [];
   // Thousands separators ("1,100 + (−150) = 950") are part of the number, not a break in the sum.
-  let t = text.replace(/\\[()[\]]/g, " ");
+  // A currency sign is part of the amount, not a break in the sum: "$42,000 + $2,500 = $45,000" went
+  // unchecked, and an accounting test's model answer could be wrong (audit 2026-10-17).
+  let t = text.replace(/\\[()[\]]/g, " ").replace(/[$£€¥₹](?=\s?\d)/g, "");
   for (let i = 0; i < 3; i++) t = t.replace(/(\d),(\d{3})(?!\d)/g, "$1$2");
   for (let at = t.search(/[=≈]/); at >= 0; at = nextEq(t, at + 1)) {
     const m = NUMBER.exec(t.slice(at + 1));

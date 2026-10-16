@@ -1,5 +1,6 @@
 import { figureComponent, figureFor } from "../figures/registry";
 import { classifyInstructionalTask } from "./instructionalTask";
+import { namedIn } from "./labelPolicy";
 import type { CanvasPlanBeat, CanvasStage } from "./types";
 
 /** How freely the lesson may add visuals beyond a supplied source. */
@@ -13,7 +14,7 @@ export type VisualPolicyAudit = {
   changes: string[];
 };
 
-export const PHYSICAL = /\b(cell|organelle|organ|anatom|heart(?!\s+rate)|lung|kidney|leaf|root|stem|flower|plant part|animal|skeleton|muscle|eye|ear|brain|neuron|alveol\w*|nephron|apparatus|equipment|machine|engine|circuit|battery|magnet|rock layer|volcano|landform|weather system|planet|telescope|microscope|cross[- ]section|cutaway|internal structure|burette|pipette|conical flask|beaker|test[- ]tube|bunsen|thermometer|measuring cylinder|condenser|filter funnel|evaporating basin|cuvette|colorimeter|gas syringe|delivery tube|electrode|building|monument|mosque|ka[ʿ'’]?ba|kaaba|temple|church|cathedral|castle|fort|pyramid|palace|tomb|artefact|artifact|statue|ship|landscape|river|mountain|coastline|glacier|desert)(?:e?s)?\b/i;
+export const PHYSICAL = /\b(cell|organelle|organ|anatom|heart(?!\s+rate)|lung|kidney|leaf|(?<!(?:square|cube|nth|complex|real|repeated|equal|distinct) )root(?!s? of)|stem|flower|plant part|animal|skeleton|muscle|eye|ear|brain|neuron|alveol\w*|nephron|apparatus|equipment|machine|engine|circuit|battery|magnet|rock layer|volcano|landform|weather system|planet|telescope|microscope|cross[- ]section|cutaway|internal structure|burette|pipette|conical flask|beaker|test[- ]tube|bunsen|thermometer|measuring cylinder|condenser|filter funnel|evaporating basin|cuvette|colorimeter|gas syringe|delivery tube|electrode|building|monument|mosque|ka[ʿ'’]?ba|kaaba|temple|church|cathedral|castle|fort|pyramid|palace|tomb|artefact|artifact|statue|ship|landscape|river|mountain|coastline|glacier|desert)(?:e?s)?\b/i;
 const STRUCTURAL = /\b(label|identify|part|structure|inside|cross[- ]section|cutaway|anatomy|location)\b/i;
 const NON_PICTURE = /\b(equation|formula|calculate|solve|graph|plot|gradient|slope|code|program|algorithm|loop|variable|molecule|molecular|vsepr|bond angle|lone pair|atom count|balanced equation)\b/i;
 
@@ -27,8 +28,35 @@ function boardText(beat: CanvasPlanBeat): string {
  * covalent bonds and lone pairs (audit replay 2026-10-17).
  */
 function figureForBoard(beat: CanvasPlanBeat) {
+  // What the board is ABOUT picks its diagram first. The narration may pick one only when it names
+  // that subject at least twice: one passing word put a plasmid on "Risks and balanced discussion"
+  // (audit 2026-10-17), while a terse title ("Transformations") still needs its script.
   const byTitle = figureFor(`${beat.title} ${beat.brief}`);
-  return byTitle ?? figureFor(boardText(beat));
+  if (byTitle) return byTitle;
+  const byScript = figureFor(boardText(beat));
+  if (!byScript) return undefined;
+  const hits = boardText(beat).match(new RegExp(byScript.match.source, byScript.match.flags.includes("g") ? byScript.match.flags : `${byScript.match.flags}g`)) ?? [];
+  if (hits.length >= 2) return byScript;
+  // One mention is enough when the board's own title names the diagram's subject ("Transformations"
+  // and a coordinate grid that draws transformations).
+  const named = (beat.title.toLowerCase().match(/[a-z]{5,}/g) ?? []).map((w) => w.replace(/s$/, "")).filter((w) => !/^(about|using|their|these|which|where|while|after|before)$/.test(w));
+  return named.some((w) => byScript.title.toLowerCase().includes(w)) ? byScript : undefined;
+}
+
+/** Maths content: never a generated picture. */
+const MATHS = /\b(complex numbers?|square roots?|roots? of (an? |the )?(equation|polynomial|quadratic)|equations?|modulus|argand|integra(l|ls|tion|te)|derivatives?|differentiat\w*|matri(x|ces)|algebra\w*|theorem|polynomials?|quadratics?|logarithms?|trigonometr\w*|inequalit(y|ies)\b(?! (between|in|of) (groups|people|income|wealth|health))|loci|locus|cis|simultaneous|surds?|indices)\b/i;
+
+/** Words too general to tie a textbook picture to a board. */
+const GENERIC_PICTURE_WORDS = new Set(["the", "and", "cell", "cells", "diagram", "structure", "system", "human", "complete", "simple", "labelled", "label", "part", "parts", "body", "view", "section", "cross", "model", "type", "process", "edit", "edited", "version", "with", "how", "work", "showing", "show", "basic"]);
+
+/**
+ * A chronology worth a timeline: three or more dates, or two in a historical account. Two study
+ * dates (Asch 1951, Milgram 1963) on a psychology sampling board are citations, not a sequence of
+ * events (audit 2026-10-17).
+ */
+function datedSequence(text: string): boolean {
+  const years = new Set(text.match(/\b1[0-9]{3}\b|\b20[0-9]{2}\b/g) ?? []).size;
+  return years >= 3 || (years >= 2 && /\b(wars?|reign\w*|revolution\w*|treat(y|ies)|empires?|dynast\w*|independence|partition|caliph\w*|kings?|queens?|emperors?|battles?|invasions?|era|century|period|began|ended|founded|declared|signed|elect\w*|seced\w*|secession|rebel\w*|uprising|coup|coloni\w*|crisis|abolish\w*|passed|ruled?|conquer\w*)\b/i.test(text));
 }
 
 /** Higher means a textbook picture carries information that a symbolic renderer cannot. */
@@ -38,7 +66,7 @@ export function pictureNeedScore(beat: CanvasPlanBeat): number {
   if (PHYSICAL.test(text)) score += 3;
   if (STRUCTURAL.test(text)) score += 2;
   if (beat.requiredVisual?.stages.includes("illustration")) score += 4;
-  if (NON_PICTURE.test(text)) score -= 5;
+  if (NON_PICTURE.test(text) || MATHS.test(text)) score -= 5;
   return score;
 }
 
@@ -97,7 +125,7 @@ function meaningful(stage: CanvasStage, apparatus = false): boolean {
  * separate syllabus contracts explicitly require labelled physical structures. The remaining
  * visual load is carried by deterministic renderers: flows, graphs, equations, molecules and code.
  */
-const GRAPH_LIKE = new Set(["supplyDemand", "ppf", "adAs", "costRevenue", "scatterPlot", "histogram", "boxPlot", "cumulativeFrequency", "barChart", "pieChart", "inferenceDistribution", "motionGraph", "rateGraph", "decayCurve", "energyProfile", "functionGraph", "riemannSum", "slopeField", "coordinateGrid", "numberLine", "unitCircle", "argand", "punnettSquare", "probabilityTree", "venn", "sankey", "ecologicalPyramid", "sequences", "oxygenDebt", "sectorArc"]);
+const GRAPH_LIKE = new Set(["supplyDemand", "ppf", "adAs", "costRevenue", "scatterPlot", "histogram", "boxPlot", "cumulativeFrequency", "barChart", "pieChart", "inferenceDistribution", "motionGraph", "rateGraph", "decayCurve", "energyProfile", "functionGraph", "riemannSum", "slopeField", "coordinateGrid", "numberLine", "unitCircle", "argand", "punnettSquare", "probabilityTree", "venn", "sankey", "ecologicalPyramid", "sequences", "oxygenDebt", "sectorArc", "gelElectrophoresis", "oxygenDissociation", "microscopeGraticule"]);
 const HUMANITIES = new Set(["timeline", "causeConsequence", "sourceCard", "evaluationScale", "conceptTable", "circularFlow"]);
 
 export function applyLessonVisualPolicy(
@@ -120,7 +148,10 @@ export function applyLessonVisualPolicy(
   // combination of gpt image 1 mini and diagrams"): a picture shows what something looks like; a
   // board whose job is labelling a structure gets an exactly-labelled diagram. CANVAS_AI_PICTURES=off disables them.
   const aiPictures = options.aiPictures ?? !(typeof process !== "undefined" && process.env?.CANVAS_AI_PICTURES === "off");
-  const maxIllustrations = !aiPictures || options.mode === "strict" ? 0 : beats.length <= 1 ? 1 : 2;
+  // Pictures are generated, checked by a textbook editor and remembered (lib/canvas/textbookDiagram.ts),
+  // so a lesson may show up to four; a verified one costs nothing the next time it is used.
+  const maxIllustrations = !aiPictures || options.mode === "strict" ? 0 : beats.length <= 1 ? 1 : 4;
+  const pictureRoom = () => beats.filter((b) => b.stage === "illustration").length < maxIllustrations;
 
   // A deterministic curriculum contract wins over a model's decorative stage choice.
   for (const beat of beats) {
@@ -144,7 +175,9 @@ export function applyLessonVisualPolicy(
   // A graph needs quantities. "Clarity score against paragraph order" was invented to give a writing
   // lesson a graph (Urdu audit 2026-10-17): a board with no numbers and no measured quantity is a
   // sequence or a structure, so it is drawn as a flow.
-  const QUANTITY = /\d|\b(rate|per|percent|proportion|increase|decrease|rise|fall|price|cost|revenue|demand|supply|speed|velocity|acceleration|distance|temperature|mass|volume|pressure|concentration|time|data|measure\w*|value|function|curve|axis|axes|variable|quantity|population|growth|frequency|probability|gradient|slope|correlation)\b/i;
+  // A bare digit is not a quantity ("Following a nephron" plotted an invented "relative depth",
+  // audit 2026-10-17): a number needs a unit, or the board must name what is measured.
+  const QUANTITY = /\d+(?:\.\d+)?\s?(%|°|°C|cm|mm|km|kg|mg|ml|kPa|mmHg|mol|ms|min|kJ|J|N|V|Hz|m\/s|g\/|s\b|h\b|m\b|g\b|K\b)|\b(rate|per|percent|proportion|increase|decrease|rise|fall|price|cost|revenue|demand|supply|speed|velocity|acceleration|distance|temperature|mass|volume|pressure|concentration|over time|against time|data|measure\w*|function|curve|axis|axes|variable|quantity|population|growth|frequency|probability|gradient|slope|correlation)\b/i;
   for (const beat of beats) {
     if (beat.stage !== "graph" || QUANTITY.test(boardText(beat))) continue;
     if (beat.requiredVisual?.stages.includes("graph")) continue;
@@ -154,9 +187,9 @@ export function applyLessonVisualPolicy(
 
   // A generated picture has no numbers or symbols: a maths board is never one ("The two square roots"
   // of a complex number was sent to the image model, audit 2026-10-17).
-  const MATHS = /\b(complex numbers?|square roots?|roots? of|equations?|modulus|argument|argand|integra\w*|derivative|differentiat\w*|functions?|matri(x|ces)|vectors?|algebra\w*|proofs?|theorem|polynomials?|quadratics?|probabilit\w*|sequences?|series|logarithms?|trigonometr\w*|inequalit\w*|loci|locus|cis)\b/i;
   for (const beat of beats) {
-    if (beat.stage !== "illustration" || PHYSICAL.test(boardText(beat)) || !(MATHS.test(boardText(beat)) || NON_PICTURE.test(boardText(beat)))) continue;
+    // "Each root has modulus √r": in maths a root is a solution, not part of a plant.
+    if (beat.stage !== "illustration" || PHYSICAL.test(boardText(beat).replace(/\broots?\b/gi, "")) || !(MATHS.test(boardText(beat)) || NON_PICTURE.test(boardText(beat)))) continue;
     if (beat.requiredVisual?.stages.includes("illustration")) continue;
     const routed = nativeStageFor(beat);
     const stage = routed === "illustration" || routed === "scene" ? "equation" : routed;
@@ -164,11 +197,63 @@ export function applyLessonVisualPolicy(
     beat.stage = stage;
   }
 
+  // An atom map is for a REACTION whose atom counts are the idea. "Catalysts speed reactions" drew
+  // A×2, B×2 → A×2, B×2, and a physics lesson on the structure of the atom drew "Atom → Helium atom"
+  // with "atoms conserved" (audits 2026-10-17). Any other atom-map board gets the diagram its subject
+  // has, a picture of a physical structure, or a plain flow.
+  for (const beat of beats) {
+    if (options.mode === "strict" || beat.stage !== "atom-map" || beat.requiredVisual?.stages.includes("atom-map")) continue;
+    const text = boardText(beat);
+    // Judged on what Aria says: the planner's brief describes the atom map it already chose.
+    const reaction = /\b(conserv\w*|balanc\w*|atom counts?|atoms? (are |is )?(conserved|rearranged)|reactants?|products? of|react(s|ion|ions)?\b|word equation|chemical equation|combust\w*|photosynthesis|respiration|neutrali[sz]\w*|oxidi[sz]\w*|displacement)\b/i.test(beat.script);
+    const enzymeBoard = /\b(catalys\w*|enzymes?)\b/i.test(text);
+    if (reaction && !enzymeBoard) continue;
+    const enzyme = enzymeBoard && /\benzymes?\b/i.test(text) ? figureComponent("enzymeAction") : undefined;
+    const component = enzyme ?? figureForBoard(beat);
+    if (component) {
+      changes.push(`${beat.id}: atom-map → figure (${component.name}; not an atom-conservation board)`);
+      beat.stage = "figure";
+      beat.figure = component.name;
+      beat.objects = labelledFigureParts(component, beat.requiredVisual?.mustShow ?? []);
+      if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
+    } else if (PHYSICAL.test(text) || /\b(atoms?|nucle(us|i)|electrons?|protons?|neutrons?|isotopes?)\b/i.test(text) && STRUCTURAL.test(text) || /\bexperiment\b/i.test(text)) {
+      changes.push(`${beat.id}: atom-map → illustration (a physical structure, not an atom-conservation board)`);
+      beat.stage = "illustration";
+      if (beat.requiredVisual) beat.requiredVisual.stages = ["illustration"];
+    } else {
+      changes.push(`${beat.id}: atom-map → flow (not an atom-conservation board)`);
+      beat.stage = "flow";
+    }
+  }
+
   // A board whose subject a code-drawn component draws exactly (lib/figures) becomes a figure board:
   // the titration audited at 3/10 as gear icons on a flow chart is drawn as the apparatus itself.
   // Strict source mode teaches only what the student's pages show, so it never swaps in a stock diagram.
+  // THE PLANNER'S CHOICE FIRST. The planner picked this board's diagram from the catalogue before it
+  // wrote the script around it; that is honoured when the diagram fits the board's own words — its
+  // trigger matches them, or the board's title names the diagram's subject. Keyword routing below is
+  // then only a backstop for boards the planner left without a diagram.
   for (const beat of beats) {
-    if (options.mode === "strict" || beat.refresher) continue;
+    if (options.mode === "strict" || beat.refresher || !beat.plannedFigure || beat.figure) continue;
+    const component = figureComponent(beat.plannedFigure);
+    if (!component) continue;
+    if (beat.requiredVisual?.stages.length && !beat.requiredVisual.stages.some((st) => st === "figure" || st === beat.stage)) continue;
+    const text = boardText(beat);
+    const titleWords = (`${beat.title} ${beat.brief}`.toLowerCase().match(/[a-z]{5,}/g) ?? []).map((w) => w.replace(/(es|s)$/, ""));
+    const fits = component.match.test(text) || titleWords.some((w) => component.title.toLowerCase().includes(w));
+    if (!fits) {
+      changes.push(`${beat.id}: planner's ${component.name} ignored (it does not fit the board's words)`);
+      continue;
+    }
+    changes.push(`${beat.id}: ${beat.stage} → figure (${component.name}, chosen by the planner)`);
+    beat.stage = "figure";
+    beat.figure = component.name;
+    beat.objects = labelledFigureParts(component, beat.requiredVisual?.mustShow ?? []);
+    if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
+  }
+
+  for (const beat of beats) {
+    if (options.mode === "strict" || beat.refresher || (beat.plannedFigure && beat.figure === beat.plannedFigure)) continue;
     const decision = classifyInstructionalTask(beat);
     const semantic = decision.figure ? figureComponent(decision.figure) : undefined;
     // A semantic decision may replace a generic graph/flow because the figure is a stricter form of
@@ -189,6 +274,7 @@ export function applyLessonVisualPolicy(
     const replaces = GRAPH_LIKE.has(component.name) ? ["illustration", "scene", "flow", "graph", "compare", "equation"]
       : HUMANITIES.has(component.name) ? ["illustration", "scene", "flow", "compare"]
       : ["illustration", "scene", "flow"];
+    // (see below for atom maps that no component title names)
     // An atom-count board that is not about conserving atoms ("catalysts speed reactions" drew A×2,
     // B×2 → A×2, B×2; audit 2026-10-17) gives way to the diagram its subject has.
     if (beat.stage === "atom-map" && !/\b(conserv\w*|balanc\w*|atom counts?|atoms? (are |is )?(conserved|rearranged)|law of conservation)\b/i.test(boardText(beat)) && !beat.requiredVisual?.stages.includes("atom-map")) replaces.push("atom-map");
@@ -213,8 +299,27 @@ export function applyLessonVisualPolicy(
       if (isElectrolyticCellBeat(beat) || isFreeBodyBeat(beat)) continue;
       const plainScene = beat.stage === "scene" && nativeStageFor(beat) === "scene";
       if (beat.stage !== "illustration" && !plainScene) continue;
-      const asset = options.findAsset(boardText(beat), beat.requiredVisual?.mustShow ?? []);
+      // Like a code-drawn diagram, a textbook picture is chosen by what the board is ABOUT (its title
+      // and brief): "Egg-cell structure" was given a neuron because its narration said "cell" and
+      // "nucleus" (audit 2026-10-17).
+      const about = `${beat.title} ${beat.brief}`;
+      let asset = options.findAsset(about, beat.requiredVisual?.mustShow ?? []);
+      if (!asset) {
+        // Found only in the narration: accepted when the picture's own title names what the board is
+        // about ("Eye diagram" for "The human eye"), never on a generic word ("cell", "diagram").
+        const fromScript = options.findAsset(boardText(beat), beat.requiredVisual?.mustShow ?? []);
+        const words = (t: string) => new Set((t.toLowerCase().match(/[a-z]{3,}/g) ?? []).map((w) => w.replace(/s$/, "")).filter((w) => !GENERIC_PICTURE_WORDS.has(w)));
+        const named = fromScript ? [...words(fromScript.id.replace(/-/g, " "))].some((w) => words(about).has(w)) : false;
+        if (fromScript && named) asset = fromScript;
+      }
       if (!asset) continue;
+      // One textbook picture once per lesson: the same respiratory-system picture on three boards in a
+      // row taught breathing mechanics with a static body outline (audit 2026-10-17). A later board on
+      // the same subject gets its own visual (a described diagram of what it teaches).
+      if (beats.some((other) => other !== beat && other.figureAsset?.id === asset.id)) {
+        changes.push(`${beat.id}: library diagram ${asset.id} already used earlier in this lesson`);
+        continue;
+      }
       changes.push(`${beat.id}: ${beat.stage} → figure (library diagram ${asset.id})`);
       beat.stage = "figure";
       beat.figure = "library";
@@ -237,9 +342,19 @@ export function applyLessonVisualPolicy(
       const physical = PHYSICAL.test(boardText(beat)) || pictureNeedScore(beat) >= 3;
       const pictureLike = beat.stage === "illustration" || (beat.stage === "scene" && nativeStageFor(beat) === "scene");
       if (!physical || !pictureLike) continue;
-      if (aiPictures && !STRUCTURAL.test(boardText(beat))) continue;
       if (isElectrolyticCellBeat(beat) || isFreeBodyBeat(beat)) continue;
       if (beat.requiredVisual?.stages.length && !beat.requiredVisual.stages.some((st) => st === "illustration" || st === "scene" || st === "figure")) continue;
+      // With AI pictures on, a real thing with no exact diagram is GENERATED as a textbook diagram and
+      // checked before release; the writer-described line art (blobs and empty boxes in the 2026-10-17
+      // audits) is used only when pictures are switched off.
+      if (aiPictures) {
+        if (beat.stage !== "illustration" && pictureRoom()) {
+          changes.push(`${beat.id}: ${beat.stage} → illustration (generated textbook diagram)`);
+          beat.stage = "illustration";
+          if (beat.requiredVisual) beat.requiredVisual.stages = ["illustration"];
+        }
+        continue;
+      }
       changes.push(`${beat.id}: ${beat.stage} → figure (drawn textbook diagram)`);
       beat.stage = "figure";
       beat.figure = "drawn";
@@ -297,8 +412,9 @@ export function applyLessonVisualPolicy(
   );
   for (const beat of pictures) {
     if (keep.has(beat.id)) continue;
-    // Over the picture budget, a physical subject is still drawn — as a described diagram.
-    if (options.mode !== "strict" && (PHYSICAL.test(boardText(beat)) || pictureNeedScore(beat) >= 3)) {
+    // Over the picture budget, a physical subject is drawn as a described diagram only when pictures
+    // are off; with pictures on it becomes a plain board (never the writer's blobs).
+    if (!aiPictures && options.mode !== "strict" && (PHYSICAL.test(boardText(beat)) || pictureNeedScore(beat) >= 3)) {
       beat.stage = "figure";
       beat.figure = "drawn";
       if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
@@ -343,6 +459,17 @@ export function applyLessonVisualPolicy(
     changes.push(`${beat.id}: scene → ${routed} (purpose-built visual renderer)`);
   }
 
+  // A calculation taught as a flow chart drew three empty circles ("Frequency table → Mean formula →
+  // Variance formula", audit 2026-10-17): a board that works numbers through a formula is an equation.
+  for (const beat of beats) {
+    if (options.mode === "strict" || beat.stage !== "flow" || beat.refresher) continue;
+    const text = boardText(beat);
+    if (nativeStageFor(beat) !== "equation" || !/\d/.test(beat.script) || !/\b(formula|calculat\w*|substitut\w*|work(ed)? out|mean|variance|standard deviation|σ|Σ)\b|=/i.test(text)) continue;
+    if (beat.requiredVisual?.stages.length && !beat.requiredVisual.stages.includes("equation")) continue;
+    beat.stage = "equation";
+    changes.push(`${beat.id}: flow → equation (a calculation is worked, not drawn as boxes)`);
+  }
+
   // EVERY LESSON GETS A VISUAL. A lesson whose boards all came out as text — comparisons, flows,
   // scenes — has its best-suited board drawn as one (owner, 2026-10-17: "every lesson covered"): a
   // timeline for dated history, a cause map for causal accounts, a balance for evaluation, a source
@@ -351,21 +478,24 @@ export function applyLessonVisualPolicy(
   const DIAGRAM_STAGES = new Set(["figure", "illustration", "graph", "molecule", "atom-map", "equation", "code"]);
   if (options.mode !== "strict" && beats.length && !beats.some((beat) => DIAGRAM_STAGES.has(beat.stage) || apparatus.has(beat.id))) {
     const candidates = beats.filter((beat) => !beat.refresher && !beat.overview && ["compare", "flow", "scene"].includes(beat.stage));
-    const years = (beat: CanvasPlanBeat) => new Set(boardText(beat).match(/\b1[0-9]{3}\b|\b20[0-9]{2}\b/g) ?? []).size;
     const pick = (test: (beat: CanvasPlanBeat) => boolean) => candidates.find(test);
     const choose: Array<[CanvasPlanBeat | undefined, string]> = [
-      [pick((beat) => years(beat) >= 2), "timeline"],
+      [pick((beat) => datedSequence(boardText(beat))), "timeline"],
       [pick((beat) => /\b(led to|leading to|caused?|causes|resulted in|consequences?|effects? of|sparked|triggered|why did)\b/i.test(boardText(beat))), "causeConsequence"],
       [pick((beat) => /\b(evaluat\w*|assess\w*|to what extent|how far|judge\w*|argue\w*|for and against|advantages and disadvantages|strengths and (weaknesses|limitations))\b/i.test(boardText(beat)) && !/\b(integral|integrat|derivative|differentiat|limit|algebra|quadratic|complet\w* the square)\b/i.test(boardText(beat))), "evaluationScale"],
       [pick((beat) => /\b(source|speech|letter|diary|cartoon|extract|document|propaganda|poster|account by)\b/i.test(boardText(beat))), "sourceCard"],
-      [pick((beat) => PHYSICAL.test(boardText(beat)) && !NON_PICTURE.test(boardText(beat))), "drawn"],
+      [pick((beat) => PHYSICAL.test(boardText(beat)) && !NON_PICTURE.test(boardText(beat))), aiPictures ? "picture" : "drawn"],
       [candidates.find((beat) => beat.stage === "compare"), "conceptTable"],
       [candidates.find((beat) => beat.stage === "flow"), "causeConsequence"],
       // Last resort — a plain scene (vocabulary, grammar, definitions) becomes a real table.
       [candidates.find((beat) => beat.stage === "scene"), "conceptTable"],
     ];
     const [beat, figure] = choose.find(([b]) => b) ?? [undefined, ""];
-    if (beat) {
+    if (beat && figure === "picture") {
+      changes.push(`${beat.id}: ${beat.stage} → illustration (generated textbook diagram; the lesson had no visual)`);
+      beat.stage = "illustration";
+      if (beat.requiredVisual) beat.requiredVisual.stages = ["illustration"];
+    } else if (beat) {
       changes.push(`${beat.id}: ${beat.stage} → figure (${figure}; the lesson had no visual)`);
       beat.stage = "figure";
       beat.figure = figure;
@@ -389,15 +519,14 @@ export function applyLessonVisualPolicy(
     const contractAllows = (beat: CanvasPlanBeat) => !beat.requiredVisual?.stages.length || beat.requiredVisual.stages.some((st) => st === "figure" || st === "illustration" || st === "scene" || st === beat.stage);
     const fits = (beat: CanvasPlanBeat): string | null => {
       const text = boardText(beat);
-      const years = new Set(text.match(/\b1[0-9]{3}\b|\b20[0-9]{2}\b/g) ?? []).size;
-      if (years >= 2) return "timeline";
+      if (datedSequence(text)) return "timeline";
       const component = figureForBoard(beat);
       if (component && !HUMANITIES.has(component.name)) return component.name;
       if (/\b(advantages?|disadvantages?|benefits? and (drawbacks?|costs?)|pros and cons|strengths?|weakness(es)?|limitations?|for and against|evaluat\w*|to what extent|how far|weigh\w*|benefits? (and|versus|vs\.?|against) (risks?|concerns?|harms?|costs?)|(risks?|costs?|harms?) (and|versus|against) benefits?|ethical (concerns?|choices?|dilemmas?)|(is|be) (it |this )?(ethically )?acceptable)\b/i.test(text) && !/\b(integral|integrat|derivative|differentiat|limit|algebra|quadratic|complet\w* the square)\b/i.test(text)) return "evaluationScale";
       if (/\b(speech|letter|diary|cartoon|extract|propaganda|poster|account by|primary source|hadith|verse|surah)\b/i.test(text)) return "sourceCard";
       if (/\b(led to|leading to|causes?d?|resulted in|consequences?|effects? of|sparked|triggered|why did|because of)\b/i.test(text) && beat.stage !== "compare") return "causeConsequence";
       // A program's "memory cell" or a formula's "variable" is not a thing to draw.
-      if (PHYSICAL.test(text) && !NON_PICTURE.test(text)) return "drawn";
+      if (PHYSICAL.test(text) && !NON_PICTURE.test(text)) return aiPictures ? (pictureRoom() ? "picture" : null) : "drawn";
       return null;
     };
     let diagrams = teaching.filter(isDiagram).length;
@@ -408,6 +537,17 @@ export function applyLessonVisualPolicy(
       if (diagrams >= target) break;
       const figure = fits(beat);
       if (!figure) continue;
+      // One of each essay diagram per lesson: three evaluation balances in one geography lesson (on
+      // "Measuring development", "How globalisation works" and a case study) read as one template
+      // stamped on every board (audit 2026-10-17). A board whose own subject a diagram draws is exempt.
+      if (HUMANITIES.has(figure) && beats.some((other) => other !== beat && other.figure === figure)) continue;
+      if (figure === "picture") {
+        changes.push(`${beat.id}: ${beat.stage} → illustration (generated textbook diagram; two boards in three are diagrams)`);
+        beat.stage = "illustration";
+        if (beat.requiredVisual) beat.requiredVisual.stages = ["illustration"];
+        diagrams++;
+        continue;
+      }
       changes.push(`${beat.id}: ${beat.stage} → figure (${figure}; two boards in three are diagrams)`);
       beat.stage = "figure";
       beat.figure = figure;
@@ -417,6 +557,48 @@ export function applyLessonVisualPolicy(
       }
       if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
       diagrams++;
+    }
+  }
+
+  // ONE STRUCTURAL DIAGRAM, ONE BOARD. A leaf lesson drew the same leaf section on all three of its
+  // boards (audit 2026-10-17): the student saw one picture three times. A structure is drawn once,
+  // on the board whose own title is about it; every other board on the same thing shows its own
+  // focus — a generated textbook picture (the whole leaf, a close-up, the apparatus in use) when it
+  // is a physical thing, else the visual its content calls for. Graphs and essay diagrams may
+  // repeat with different data (a second supply-and-demand diagram showing a shift is normal).
+  if (options.mode !== "strict") {
+    const keyOf = (beat: CanvasPlanBeat) => (beat.stage !== "figure" || !beat.figure || beat.figure === "drawn" ? null : beat.figure === "library" ? (beat.figureAsset ? `library:${beat.figureAsset.id}` : null) : beat.figure);
+    const groups = new Map<string, typeof beats>();
+    for (const beat of beats) {
+      const key = keyOf(beat);
+      if (!key || GRAPH_LIKE.has(key) || HUMANITIES.has(key) || beat.refresher) continue;
+      groups.set(key, [...(groups.get(key) ?? []), beat]);
+    }
+    for (const [key, list] of groups) {
+      if (list.length < 2) continue;
+      // The board that is most about the structure keeps it: its title names it, then the most
+      // parts its syllabus contract asks to be labelled, then the earliest.
+      // The board that names the most of the diagram's parts is the one that labels it.
+      const parts = key.startsWith("library:") ? (list[0].figureAsset?.parts ?? []) : (figureComponent(key)?.parts ?? []);
+      const fit = (beat: (typeof beats)[number]) => parts.filter((p) => namedIn(beat.script, p.name)).length * 2 + (figureFor(beat.title)?.name === key ? 3 : 0) + (/\b(label|identify|structure|parts?|tissues?|layers?|cross[- ]section)\b/i.test(beat.title) ? 2 : 0);
+      const keep = [...list].sort((a, b) => fit(b) - fit(a) || beats.indexOf(a) - beats.indexOf(b))[0];
+      for (const beat of list) {
+        if (beat === keep) continue;
+        const text = boardText(beat);
+        beat.figure = undefined;
+        beat.figureAsset = undefined;
+        beat.objects = [];
+        // Its syllabus labels are drawn on the board that keeps the diagram.
+        beat.requiredVisual = undefined;
+        if (aiPictures && pictureRoom() && PHYSICAL.test(text) && !MATHS.test(text)) {
+          beat.stage = "illustration";
+          changes.push(`${beat.id}: figure → illustration (${key} is drawn on ${keep.id}; this board shows its own picture)`);
+        } else {
+          const routed = nativeStageFor(beat);
+          beat.stage = routed === "figure" || routed === "illustration" ? "flow" : routed;
+          changes.push(`${beat.id}: figure → ${beat.stage} (${key} is drawn on ${keep.id})`);
+        }
+      }
     }
   }
 

@@ -7,6 +7,7 @@
  * what its stage needs to draw anything returns null, and the caller retries or falls back.
  */
 
+import { takeFigureCuts } from "../figures/cuts";
 import { compileExpr, exprUsesOnly } from "./expr";
 import { figureComponent } from "../figures/registry";
 import { drawnFigure } from "../figures/drawn";
@@ -20,6 +21,7 @@ import {
   type CanvasInteraction,
   type CodeStage,
   type CompareStage,
+  type ExamStage,
   type EquationStage,
   type FlowArrow,
   type FlowStage,
@@ -44,9 +46,20 @@ const str = (v: unknown, max = 80): string => {
  * Text a student reads, kept to a length: cut at a word with "…", never mid-word ("Quantity of
  * loanable funds ($ bi" — audit 2026-10-15).
  */
+/**
+ * Every place a student's text was shortened to fit, during the current validation: the board writer
+ * is told exactly what was cut and the room it had ("methionine–glutami" was cut mid-word from an
+ * 18-character slot, and every rewrite hit the same wall unknowingly; audit 2026-10-17).
+ */
+let cuts: string[] = [];
+export function validationCuts(): string[] {
+  return [...cuts];
+}
+
 const shown = (v: unknown, max = 80): string => {
   const text = str(v, 4000);
   if (text.length <= max) return text;
+  cuts.push(`"${text.slice(0, 70)}${text.length > 70 ? "…" : ""}" is ${text.length} characters where only ${max} fit`);
   const cut = text.slice(0, max - 1);
   const at = cut.lastIndexOf(" ");
   return `${(at >= max * 0.6 ? cut.slice(0, at) : cut).replace(/[\s,;:(–-]+$/, "")}…`;
@@ -108,6 +121,7 @@ const color = (v: unknown): string | undefined => {
 };
 
 export function validateCanvasSpec(raw: unknown, sentenceCount: number, vars: string[] = []): CanvasBoardSpec | null {
+  cuts = [];
   const r = obj(raw);
   const lastS = Math.max(0, sentenceCount - 1);
   const sentence = (v: unknown, fallback = 0) => Math.max(0, Math.min(lastS, Math.round(num(v, fallback))));
@@ -333,7 +347,9 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       else if (typeof v === "boolean") params[k] = v;
     }
     // Only parts this figure actually draws for these params (a transverse wave has no compression).
+    takeFigureCuts();
     const built = component.build(params).parts;
+    for (const c of takeFigureCuts()) cuts.push(`in the diagram, ${c}`);
     const drawn = new Set(built.map((p) => p.id));
     // A name the figure worked out from its data (a timeline event's own text, a titrant's name) is
     // the part's name: the board writer's guess at which event is "event-2" once put labels on the
@@ -388,7 +404,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
     const tokens = arr(r.tokens)
       .map((t) => (typeof t === "string" ? { text: t } : obj(t)))
       .map((t, i) => {
-        const text = str(t.text, 18);
+        const text = shown(t.text, 18);
         return text ? { id: unique(t.id ?? `t${i + 1}`, `t${i + 1}`), text, color: color(t.color), on: t.on === undefined ? undefined : slug(t.on, "") } : null;
       })
       .filter((t): t is NonNullable<typeof t> => Boolean(t))
@@ -486,6 +502,26 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
         .map((l) => ({ from: slug(l.from, ""), to: slug(l.to, "") }))
         .filter((l) => itemIds.has(l.from) && itemIds.has(l.to))
         .slice(0, 4),
+    };
+    return stage;
+  }
+
+  if (kind === "exam") {
+    const question = str(r.question, 600);
+    const points = arr(r.points)
+      .map((p) => obj(p))
+      .map((p, i) => (str(p.text, 200) ? { id: unique(p.id ?? `mark-${i + 1}`, `mark-${i + 1}`), text: str(p.text, 200), s: sentence(p.s ?? p.sentence, i + 1) } : null))
+      .filter((p): p is NonNullable<typeof p> => Boolean(p))
+      .slice(0, 6);
+    if (!question || points.length < 1) return null;
+    const lost = obj(r.lostMarks);
+    const stage: ExamStage = {
+      kind,
+      commandWord: str(r.commandWord, 90) || question.split(/\s+/)[0],
+      question,
+      marks: points.length,
+      points,
+      ...(str(lost.text, 240) ? { lostMarks: { id: unique(lost.id ?? "lost-marks", "lost-marks"), text: str(lost.text, 240), s: sentence(lost.s ?? lost.sentence, points.length + 1) } } : {}),
     };
     return stage;
   }

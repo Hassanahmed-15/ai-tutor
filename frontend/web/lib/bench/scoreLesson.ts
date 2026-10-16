@@ -2,7 +2,6 @@ import { quizIssues } from "../canvas/quizLint";
 import { layoutPanel } from "../canvas/layout";
 import { readingGrade } from "../studentCard";
 import { symbolicBoardIssues } from "./symbolic";
-import { examReadinessScore } from "../curriculum/examAuthenticity";
 import { BENCH_CRITERIA, clampScore, type BenchScores } from "./criteria";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "../canvas/types";
 
@@ -96,7 +95,6 @@ export function scoreLesson(args: {
     coverage: clampScore(Math.round(5 + coverage * 5)),
     teachingDepth: clampScore(Math.round((worked ? 8 : 7) + cycleRate * 2)),
     factualAccuracy: clampScore(Math.round(10 - factualRate * 5)),
-    examReadiness: clampScore(examReadinessScore(outcomes, beats)),
     visualClarity: clampScore(Math.round(5 + figureRate * 5 - layoutRate * 2)),
     diagramsAndLabels: clampScore(Math.round((labelsOk ? 8 : 5) + figureRate * 2)),
     narrationBoardSync: clampScore(Math.round(6 + sync * 4)),

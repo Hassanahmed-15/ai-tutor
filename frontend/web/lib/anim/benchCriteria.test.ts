@@ -10,7 +10,7 @@ import { scoreLesson } from "../bench/scoreLesson";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "../canvas/types";
 
 test("the audit has twelve named criteria and clamps to 1–10", () => {
-  assert.equal(BENCH_CRITERIA.length, 12);
+  assert.equal(BENCH_CRITERIA.length, 11);
   assert.equal(clampScore(0), 1);
   assert.equal(clampScore(11), 10);
   assert.equal(clampScore(7.4), 7);
@@ -67,7 +67,7 @@ test("Phase 0 estimate stays under the $5 cap and does not include TTS", () => {
 
 test("the judge is a different family from the OpenAI writer and parses scores", () => {
   assert.equal(BENCH_JUDGE_FAMILY, "google");
-  const v = parseJudgeJson('noise {"scores":{"curriculumAuthenticity":9,"coverage":8,"teachingDepth":8,"factualAccuracy":9,"examReadiness":8,"visualClarity":4,"diagramsAndLabels":3,"narrationBoardSync":7,"interaction":8,"assessmentFairness":8,"comprehension":7,"overallUsefulness":6},"diagramsAndLabelsEvidence":"labels overlap"}');
+  const v = parseJudgeJson('noise {"scores":{"curriculumAuthenticity":9,"coverage":8,"teachingDepth":8,"factualAccuracy":9,"visualClarity":4,"diagramsAndLabels":3,"narrationBoardSync":7,"interaction":8,"assessmentFairness":8,"comprehension":7,"overallUsefulness":6},"diagramsAndLabelsEvidence":"labels overlap"}');
   assert.equal(v.scores.diagramsAndLabels, 3);
   assert.match(v.diagramsAndLabelsEvidence, /overlap/);
 });

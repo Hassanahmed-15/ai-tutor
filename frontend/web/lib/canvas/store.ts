@@ -144,6 +144,38 @@ export async function loadSharedCanvasImage(name: string): Promise<Buffer | null
   }
 }
 
+/**
+ * A generated textbook diagram that passed its checks (lib/canvas/textbookDiagram.ts): what it shows,
+ * where each part is and the verdict, stored beside its shared picture so the next student who needs
+ * the same diagram gets it at once — verified, with no model call. Contains no student data.
+ */
+const sharedRecordBlob = (name: string) => `shared/canvas/diagrams/${name}.json`;
+
+export async function saveSharedDiagramRecord(name: string, record: unknown): Promise<void> {
+  check(name);
+  if (!name.startsWith("asset-")) throw new Error("shared diagram records need an asset id");
+  if (blobBacked()) {
+    await uploadJsonBlob(sharedRecordBlob(name), record);
+    return;
+  }
+  await mkdir(path.join(CACHE_DIR, "shared-diagrams"), { recursive: true });
+  await writeFile(path.join(CACHE_DIR, "shared-diagrams", `${name}.json`), JSON.stringify(record, null, 1));
+}
+
+export async function loadSharedDiagramRecord<T>(name: string): Promise<T | null> {
+  try {
+    check(name);
+    if (!name.startsWith("asset-")) return null;
+    if (blobBacked()) {
+      const container = await lectureBlobContainer();
+      return JSON.parse((await container.getBlobClient(sharedRecordBlob(name)).downloadToBuffer()).toString("utf8")) as T;
+    }
+    return JSON.parse(await readFile(path.join(CACHE_DIR, "shared-diagrams", `${name}.json`), "utf8")) as T;
+  } catch {
+    return null;
+  }
+}
+
 export async function loadCanvasImage(userId: string, name: string): Promise<Buffer | null> {
   if (name.startsWith("asset-")) return loadSharedCanvasImage(name);
   try {

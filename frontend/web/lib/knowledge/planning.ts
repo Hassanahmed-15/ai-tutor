@@ -46,11 +46,19 @@ export async function knowledgeForPlanning(userId: string, input: ProgressiveLec
   const relevant = [...new Set([...keys, ...neighbours])];
   // Only what the topic builds on — never the topic itself, which they asked to learn (again).
   const mastered = neighbours.filter((k) => !keys.includes(k) && (mastery(k) ?? 0) >= 0.7).slice(0, 6).map(label);
-  const earlier = relevant
+  const candidates = relevant
     .map((k) => memory.concepts[k])
     .filter((c) => c && (c.taught?.length ?? 0) > 0 && (mastery(c.key) ?? 0) >= 0.4)
+    .map((c) => ({ key: c!.key, label: c!.label, topic: c!.taught![0].topic }));
+  // One shared word is not a shared subject: "nucleus" from a lesson on gametes opened a physics
+  // lesson on the atom (audit 2026-10-17). An earlier lesson counts only when its topic shares some
+  // OTHER concept with this lesson's part of the graph.
+  const related = new Set(relevant);
+  const topicConcepts = new Map(await Promise.all([...new Set(candidates.map((c) => c.topic))].slice(0, 6).map(async (t) => [t, await conceptsInText(t).catch(() => [])] as const)));
+  const earlier = candidates
+    .filter((c) => (topicConcepts.get(c.topic) ?? []).some((tc) => tc.id !== c.key && related.has(tc.id)))
     .slice(0, 4)
-    .map((c) => ({ label: c!.label, topic: c!.taught![0].topic }));
+    .map(({ label, topic }) => ({ label, topic }));
   const shaky = shakyRaw.slice(0, 2).map((s) => ({ label: label(s.key), for: label(s.for) }));
   return { mastered, shaky, earlier };
 }

@@ -1,28 +1,35 @@
-import { complexNumbersIn } from "../figures/components/argand";
 import "server-only";
+import { complexNumbersIn } from "../figures/components/argand";
 
 import { createHash, randomBytes } from "node:crypto";
 import OpenAI from "openai";
 import type { Beat } from "../lessonContent";
 import { costFor } from "../modelPricing";
-import { drawIllustration, ILLUSTRATION_STYLE_VERSION, illustrationImageModel, locateParts, pictureSubject, prepareStoredIllustration, verifyParts } from "../illustratedBoard";
+import { ILLUSTRATION_STYLE_VERSION, illustrationImageModel, pictureSubject } from "../illustratedBoard";
+import { textbookDiagram } from "./textbookDiagram";
+import { withMandatoryLabels } from "./labelPolicy";
 import { layoutPanel } from "./layout";
+import { dropCrossingArrows } from "./layoutQa";
 import { recapTour, unifyConceptColours } from "./lessonPasses";
 import { CANVAS_PLAN_PROMPT, CANVAS_SPEC_PROMPT } from "./prompts";
 import { canvasSentences, validatePlan } from "./plan";
-import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat } from "./types";
-import { slug, validateCanvasSpec } from "./validate";
+import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasInteraction, type CanvasPlanBeat } from "./types";
+import { slug, validateCanvasSpec, validateInteraction, validationCuts } from "./validate";
 import { fallbackSpec } from "./fallback";
 import { figureComponent } from "../figures/registry";
+import { foreignFigureWords } from "../figures/foreignText";
 import { DRAWN_GUIDE, drawnFigure } from "../figures/drawn";
 import { findLibraryFigure, libraryAssetTitle, libraryStageAsset } from "../figures/library";
 import type { FigureComponent } from "../figures/types";
-import { loadSharedCanvasImage, saveCanvasImage, saveCanvasLecture, saveSharedCanvasImage, type CanvasLecture } from "./store";
+import { saveCanvasImage, saveCanvasLecture, type CanvasLecture } from "./store";
 import { createOpenAI } from "../openaiClient";
 import { visualContractIssues } from "../curriculum/visualContract";
-import { applyLessonVisualPolicy } from "./visualPolicy";
-import { auditBoardForRelease } from "./releaseAudit";
-import { teachingCycleIssues } from "./predict";
+import { applyLessonVisualPolicy, PHYSICAL } from "./visualPolicy";
+import { auditBoardForRelease, figureDataIssues } from "./releaseAudit";
+import { BOARD_REVIEW_PROMPT, boardReviewRequest, parseBoardReview, type BoardReview } from "./boardReview";
+import { deferRevealLeaks, teachingCycleIssues } from "./predict";
+import { alignToNarration, unshownSentences } from "./narrationSync";
+
 
 export type { CanvasLecture };
 
@@ -144,22 +151,111 @@ function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanB
  */
 function libraryBrief(asset: NonNullable<CanvasPlanBeat["figureAsset"]>): string {
   const title = libraryAssetTitle(asset.id) ?? asset.id;
-  return `FIGURE BOARD: the stage is a real textbook diagram ("${title}") shown exactly; its parts are already located, so a label always lands on its part. Return "stage": {"kind": "figure", "component": "library", "parts": [{"id", "name", "s", "say"}]} (no params, no asset — the server adds the diagram). Label 3 to 6 of these parts — the ones the narration talks about (ids exactly as given): ${asset.parts.map((p) => `${p.id} ("${p.name}")`).join(", ")}. Give each the "name" the narration uses (at most 34 characters; keep the textbook term) and reveal it ("s") on the sentence that first names it, with a short "say". Never label a part this list does not have. Cues point at part ids.`;
+  return `FIGURE BOARD: the stage is a real textbook diagram ("${title}") shown exactly; its parts are already located, so a label always lands on its part. Return "stage": {"kind": "figure", "component": "library", "parts": [{"id", "name", "s", "say"}]} (no params, no asset — the server adds the diagram). Label 3 to 8 of these parts — every one the narration names — the ones the narration talks about (ids exactly as given): ${asset.parts.map((p) => `${p.id} ("${p.name}")`).join(", ")}. Give each the "name" the narration uses (at most 34 characters; keep the textbook term) and reveal it ("s") on the sentence that first names it, with a short "say". Never label a part this list does not have. Cues point at part ids.`;
 }
 
 /** The board writer's instructions for a code-drawn figure, written from the component itself. */
 function figureBrief(c: FigureComponent): string {
-  return `FIGURE BOARD: the stage is the "${c.name}" figure, drawn exactly by code — ${c.title}. Return "stage": {"kind": "figure", "component": "${c.name}", "params": {…}, "parts": [{"id", "name", "s", "say"}]}. params (all optional): ${c.params}. Label 3 to 6 of these parts (ids exactly as given): ${c.parts.map((p) => `${p.id} ("${p.name}")`).join(", ")}. Give each the "name" the narration uses (e.g. "Burette (hydrochloric acid)", at most 34 characters) and reveal it ("s") on the sentence that first names it. Choose params that match what this board teaches (an end-point board shows the end-point colour). Cues point at part ids.`;
+  return `FIGURE BOARD: the stage is the "${c.name}" figure, drawn exactly by code — ${c.title}. Return "stage": {"kind": "figure", "component": "${c.name}", "params": {…}, "parts": [{"id", "name", "s", "say"}]}. params (all optional): ${c.params}. Label 3 to 8 of these parts — every one the narration names (ids exactly as given): ${c.parts.map((p) => `${p.id} ("${p.name}")`).join(", ")}. Give each the "name" the narration uses (e.g. "Burette (hydrochloric acid)", at most 34 characters) and reveal it ("s") on the sentence that first names it. Choose params that match what this board teaches (an end-point board shows the end-point colour). Cues point at part ids.`;
 }
 
 /** Faults a board may still ship with when nothing better arrives in time; never meaning, numbers or answer timing. */
-const SOFT_GATES = new Set(["layout", "quiz", "student-view"]);
+const SOFT_GATES = new Set(["layout", "quiz", "student-view", "figure-data", "sync"]);
 
-export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = []): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
+const QUIZ_REPAIR_PROMPT = `You rewrite ONE multiple-choice prediction card on a lesson board so it passes every rule. Return JSON only: {"question": string, "options": [{"text": string, "correct": boolean, "feedback": string}]}.
+Rules: the question asks exactly the prediction the narration asks, names what it is about (it is read on its own), and is not a yes/no question. 4 options (3 only if there are exactly three sensible answers), exactly one correct, each a bare answer in one clause (no working, no explanation), parallel in grammar and similar in length. Every wrong option is a specific misconception real students hold about this idea, and its feedback names that mistake. Never "all/none of the above", "both", "neither", "the first/second statement".`;
+
+/** Repairs just the card of an otherwise releasable board — far cheaper than rewriting the board. */
+async function repairQuiz(openai: OpenAI, spec: CanvasBoardSpec, beat: CanvasPlanBeat, issues: string[]): Promise<{ interaction?: CanvasInteraction; costUsd: number }> {
+  const sentences = canvasSentences(beat.script);
+  const prediction = beat.teachingCycle ? sentences[beat.teachingCycle.predict] ?? "" : "";
+  const user = `Board: ${spec.heading}\nNarration: ${beat.script}\n${prediction ? `The prediction Aria asks: ${prediction}\n` : ""}Current card: ${JSON.stringify(spec.interaction)}\nWhat is wrong with it: ${issues.join("; ")}`;
+  const { json, costUsd } = await bounded(jsonCall(openai, SPEC_MODEL, QUIZ_REPAIR_PROMPT, user, 1500), 25_000, `quiz ${beat.id}`);
+  const interaction = validateInteraction({ kind: "quiz", ...(json as Record<string, unknown>) });
+  return { interaction: interaction?.kind === "quiz" ? interaction : undefined, costUsd };
+}
+
+/** The board review runs unless CANVAS_BOARD_REVIEW=off. */
+const BOARD_REVIEW = process.env.CANVAS_BOARD_REVIEW !== "off";
+/** Problems that mean the VISUAL itself is wrong for the board — rewriting the same visual will not cure them. */
+const VISUAL_FAULTS = new Set(["wrong-visual", "invented-data", "off-topic"]);
+
+/**
+ * The last check before release (lib/canvas/boardReview.ts): what the board draws, judged against
+ * what Aria says. A reviewer that errors or times out never holds a board back.
+ */
+async function reviewBoard(openai: OpenAI, topic: string, spec: CanvasBoardSpec, beat: CanvasPlanBeat, budget?: { used: number }): Promise<BoardReview & { costUsd: number }> {
+  if (!BOARD_REVIEW || (budget && budget.used >= 2)) return { ship: true, problems: [], costUsd: 0 };
+  if (budget) budget.used++;
+  try {
+    const { json, costUsd } = await bounded(jsonCall(openai, SPEC_MODEL, BOARD_REVIEW_PROMPT, boardReviewRequest(spec, beat, topic), 1200), 25_000, `review ${beat.id}`);
+    return { ...parseBoardReview(json), costUsd };
+  } catch (error) {
+    return { ship: true, problems: [], costUsd: (error as { costUsd?: number }).costUsd ?? 0 };
+  }
+}
+
+/** The diagrams this board has had rejected, including the one it has now. */
+const rejected = (beat: CanvasPlanBeat) => [...new Set([...(beat.rejectedFigures ?? []), ...(beat.figure && beat.figure !== "drawn" && beat.figure !== "library" ? [beat.figure] : [])])];
+
+/** The same board without its visual: a worked equation for a calculation, else a step-by-step flow. */
+function plainBeat(beat: CanvasPlanBeat): CanvasPlanBeat {
+  // A calculation is numbers being worked: an operation between numbers, or "calculate"/"work out"
+  // with numbers. "This means…" and the notation "n = 23" made a sociology board and a genetics board
+  // into equation boards of cut-off words (audit 2026-10-17).
+  const worked = (beat.script.match(/\d[\d,.]*\s*[×x*÷/+−-]\s*\(?\d/g) ?? []).length;
+  const calculation = worked >= 1 && (worked >= 2 || /\b(calculat\w*|substitut\w*|work(ed)? out|the mean|standard deviation|variance)\b/i.test(beat.script));
+  return { ...beat, stage: calculation ? "equation" : "flow", figure: undefined, figureAsset: undefined, objects: [], requiredVisual: undefined, rejectedFigures: rejected(beat) };
+}
+
+/**
+ * The same board as the diagram the reviewer said it should show: generated as a checked textbook
+ * diagram (lib/canvas/textbookDiagram.ts) when pictures are on, else described line art.
+ */
+/**
+ * Words that mean a chart, table or argument — things a picture with no words cannot show. The image
+ * model was asked for "primary, secondary and tertiary bars with percentage values and a legend"
+ * (employment structure, audit 2026-10-17): the editor rightly refused it twice, $0.04 for nothing.
+ */
+export const CHART_LIKE = /\b(graphs?|charts?|bars?|axis|axes|legend|percentages?|per ?cent|statistics?|data|tables?|plots?|curves?|timelines?|scales?|judgements?|arguments?|evidence|costs? and benefits?|framework|model of|stages? of development|indicators?|index|survey|values?)\b|%/i;
+
+/** Is this something a generated textbook picture can show? A real physical thing, not a chart. */
+export function pictureable(text: string): boolean {
+  return PHYSICAL.test(text) && !CHART_LIKE.test(text);
+}
+
+function drawnBeat(beat: CanvasPlanBeat, why = ""): CanvasPlanBeat {
+  // A picture only for a physical thing the review described; a chart or argument is drawn plain.
+  const pictures = process.env.CANVAS_AI_PICTURES !== "off" && pictureable(`${why} ${beat.title}`);
+  return { ...beat, stage: pictures ? "illustration" : "figure", figure: pictures ? undefined : "drawn", figureAsset: undefined, objects: [], requiredVisual: undefined, rejectedFigures: rejected(beat) };
+}
+
+export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
   const sentences = canvasSentences(beat.script);
   let costUsd = 0;
   let lastError: string | undefined;
   let softest: { spec: CanvasBoardSpec; faults: number } | undefined;
+  let visualRejections = 0;
+  // At most two reviews a board: the review must not turn a 2-minute lecture into a 6-minute one.
+  const reviews = { used: 0 };
+  // Builds the same board again without its visual when the review rejected the visual itself.
+  const rebuildPlain = async (why: string) => {
+    // First the diagram the reviewer said the board needs, drawn from its description (and reviewed
+    // like any board); only if that fails, the board without a diagram.
+    // Only a physical thing is redrawn from the review's description: with pictures on, anything else
+    // (a chart, a framework) became a picture request the image model could never satisfy.
+    const suggested = /\bshould (instead )?(show|depict|identify|be)\b/i.test(why) && beat.figure !== "drawn" && beat.stage !== "illustration" && clock.left() > 70_000
+      && (process.env.CANVAS_AI_PICTURES === "off" || pictureable(why));
+    if (suggested) {
+      console.log(`[canvas] ${beat.id}: the board review rejected its ${beat.figure ?? beat.stage} visual twice — redrawn as the diagram the review describes (${why.slice(0, 200)})`);
+      const drawn = await generateSpec(openai, topic, plan, drawnBeat(beat, why), clock, [...extra, `An earlier diagram on this board was rejected: ${why}. Draw the diagram this describes, labelling exactly what the narration teaches.`], true);
+      if (drawn.attempts !== -1) return { ...drawn, costUsd: drawn.costUsd + costUsd };
+      costUsd += drawn.costUsd;
+    }
+    console.log(`[canvas] ${beat.id}: the board review rejected its ${beat.stage} visual twice — rebuilt as a plain board (${why.slice(0, 200)})`);
+    const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat), clock, [...extra, `An earlier version of this board was rejected because ${why}. Teach it without that visual.`], true);
+    return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd };
+  };
   for (let attempt = 1; attempt <= 3; attempt++) {
     // A retry is optional work: with too little time left the board falls back instead.
     // A second attempt still runs with 30 s left (one bounded call): with a 75 s floor most slow
@@ -183,12 +279,22 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       // A described diagram that fails its checks is sent back with what to fix, not a generic error.
       if (beat.figure === "drawn" && raw.stage && typeof raw.stage === "object") {
         const { issues } = drawnFigure((raw.stage as Record<string, unknown>).drawing);
+        // A box diagram is a flow board drawn badly: build the flow instead of retrying the drawing.
+        if (!plain && issues.some((i) => i.startsWith("BOX DIAGRAM"))) return rebuildPlain("its drawn diagram was only empty boxes and rings");
         if (issues.length) {
           lastError = `the drawing needs fixing: ${issues.join("; ")}`;
           continue;
         }
       }
       const spec = validateCanvasSpec(raw, sentences.length);
+      // Text cut to fit is told to the writer, so the next attempt fits rather than being cut again.
+      const cut = validationCuts();
+      // An arrow that would cut through another box is dropped rather than drawn across it (the
+      // first board of an economics lesson shipped with arrows slicing through three boxes, 2026-10-17).
+      if (spec && (spec.stage.kind === "scene" || spec.stage.kind === "flow")) {
+        const tidy = dropCrossingArrows(spec, layoutPanel(spec));
+        if (tidy !== spec) Object.assign(spec, tidy);
+      }
       // An Argand board written without its numbers drew the default 3 + 4i while Aria spoke about
       // −3 + 4i (audit 2026-10-17): the numbers come from the board's own narration.
       if (spec?.stage.kind === "figure" && spec.stage.component === "argand") {
@@ -207,6 +313,9 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         lastError = `the ${beat.stage} stage was missing what it needs to draw (check the schema)`;
         continue;
       }
+      // Only the mandatory labels are written: what the syllabus requires and what Aria names
+      // (lib/canvas/labelPolicy.ts) — a diagram is not a labelling exercise.
+      Object.assign(spec, withMandatoryLabels(spec, beat));
       if (beat.requiredVisual && beat.requiredVisual.stages.length && !beat.requiredVisual.stages.includes(spec.stage.kind)) {
         lastError = `the board must use a visual stage capable of showing ${beat.requiredVisual.mustShow.join(", ")}; expected one of ${beat.requiredVisual.stages.join(", ")}, got ${spec.stage.kind}`;
         continue;
@@ -226,9 +335,69 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         lastError = `the "try" interaction needs 3 to 5 reactions whose "when" conditions use only the slider variables (${spec.interaction.controls.map((c) => c.var).join(", ")})`;
         continue;
       }
+      // Everything appears on the sentence that first says it (lib/canvas/narrationSync.ts) — the
+      // writer's own timing was wrong for a third of items — then anything that would give the
+      // prediction away waits for the reveal (lib/canvas/predict.ts deferRevealLeaks).
+      alignToNarration(spec, beat);
+      deferRevealLeaks(spec, beat);
       // One authoritative audit covers semantics, student-view legibility, calculations, molecular
       // geometry, answer timing, graphs, quiz writing and deterministic layout.
-      const releaseFindings = auditBoardForRelease(spec, beat);
+      let releaseFindings = [
+        ...auditBoardForRelease(spec, beat),
+        ...figureDataIssues(spec, beat.script).map((message) => ({ gate: "figure-data", message })),
+        // A content figure with no data of its own draws its example lesson (Treaty of Versailles on a
+        // psychology board, audit 2026-10-17): never shipped, not even as the best attempt.
+        ...(spec.stage.kind === "figure" && spec.stage.component !== "drawn" && spec.stage.component !== "library"
+          ? (() => {
+              const foreign = foreignFigureWords(spec.stage.component, spec.stage.params ?? {}, `${beat.title} ${beat.brief} ${beat.script}`, spec.stage.parts.map((p) => p.name));
+              const message = `the figure shows words this board never teaches (${foreign.slice(0, 6).join(", ")}): fill its params with this board's own content from the narration`;
+              // Five or more foreign words is an example lesson; three or four may be the figure's own
+              // structure words (mitosis stages) the narration skipped — a soft fault, not a rejection.
+              return foreign.length >= 5 ? [{ gate: "figure-content", message }] : foreign.length ? [{ gate: "figure-data", message }] : [];
+            })()
+          : []),
+        // What Aria says is on the board: teaching sentences with nothing about them are sent back.
+        ...(() => {
+          const sentences = canvasSentences(beat.script);
+          const bare = unshownSentences(spec, beat).filter((i) => !beat.teachingCycle || i !== beat.teachingCycle.reveal);
+          return bare.length >= 2 ? [{ gate: "sync", message: `these sentences put nothing on the board — add the element each one teaches, in its own words, revealed on that sentence: ${bare.slice(0, 4).map((i) => `[${i}] "${sentences[i].slice(0, 90)}"`).join("; ")}` }] : [];
+        })(),
+        ...(cut.length ? [{ gate: "layout", message: `text was cut to fit — rewrite each piece to fit its room (shorter wording, or split it over more items): ${cut.slice(0, 4).join("; ")}` }] : []),
+      ];
+      // Only the card is wrong: repair the card alone, twice at most, instead of shipping it or
+      // rewriting a good board (a card with its worked answer inside an option shipped, 2026-10-17).
+      if (releaseFindings.length && releaseFindings.every((f) => f.gate === "quiz") && spec.interaction?.kind === "quiz") {
+        for (let fix = 0; fix < 2 && releaseFindings.length; fix++) {
+          try {
+            const repaired = await repairQuiz(openai, spec, beat, releaseFindings.map((f) => f.message));
+            costUsd += repaired.costUsd;
+            if (!repaired.interaction) continue;
+            const candidate = { ...spec, interaction: repaired.interaction };
+            const left = auditBoardForRelease(candidate, beat);
+            if (left.length < releaseFindings.length || !left.length) { spec.interaction = repaired.interaction; releaseFindings = left; }
+          } catch (error) {
+            costUsd += (error as { costUsd?: number }).costUsd ?? 0;
+          }
+        }
+        if (!releaseFindings.length) {
+          const review = await reviewBoard(openai, topic, spec, beat, reviews);
+          costUsd += review.costUsd;
+          if (review.ship) return { spec, costUsd, attempts: attempt };
+          releaseFindings = review.problems.map((p) => ({ gate: "review", message: `${p.kind}: ${p.detail}` })) as typeof releaseFindings;
+          if (review.problems.some((p) => VISUAL_FAULTS.has(p.kind))) visualRejections++;
+        }
+      }
+      if (!releaseFindings.length) {
+        // Passed every rule: the review judges what the student will see.
+        const review = await reviewBoard(openai, topic, spec, beat, reviews);
+        costUsd += review.costUsd;
+        if (!review.ship) {
+          releaseFindings = review.problems.map((p) => ({ gate: "review", message: `${p.kind}: ${p.detail}` })) as typeof releaseFindings;
+          if (review.problems.some((p) => VISUAL_FAULTS.has(p.kind))) visualRejections++;
+          console.log(`[canvas] ${beat.id}: board review sent it back — ${releaseFindings.map((f) => f.message).join(" | ").slice(0, 400)}`);
+        }
+      }
+      if (visualRejections >= 2 && !plain && (beat.stage === "figure" || beat.stage === "graph" || beat.stage === "illustration")) return rebuildPlain(releaseFindings.map((f) => f.message).join("; "));
       if (releaseFindings.length) {
         lastError = releaseFindings.map((finding) => `${finding.gate}: ${finding.message}`).join("; ");
         // A board whose only faults are soft — tidiness, quiz wording, legibility notes — is kept in
@@ -244,12 +413,20 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     }
   }
   if (softest) {
-    console.log(`[canvas] ${beat.id}: kept the best attempt (${softest.faults} soft issue(s)) — ${lastError ?? ""}`);
-    return { spec: softest.spec, costUsd, attempts: 3 };
+    const review = await reviewBoard(openai, topic, softest.spec, beat, reviews);
+    costUsd += review.costUsd;
+    if (review.ship) {
+      console.log(`[canvas] ${beat.id}: kept the best attempt (${softest.faults} soft issue(s)) — ${lastError ?? ""}`);
+      return { spec: softest.spec, costUsd, attempts: 3 };
+    }
+    if (review.problems.some((p) => VISUAL_FAULTS.has(p.kind))) visualRejections++;
   }
+  if (visualRejections >= 1 && !plain && (beat.stage === "figure" || beat.stage === "graph" || beat.stage === "illustration") && clock.left() > 40_000) return rebuildPlain(lastError ?? "its visual did not fit the narration");
   console.log(`[canvas] ${beat.id}: every attempt failed — last reason: ${lastError ?? "time budget"}`);
-  const fallback = fallbackSpec(beat);
-  const fallbackIssues = auditBoardForRelease(fallback, beat);
+  // A visual the review rejected is not drawn again as the backup.
+  const backupBeat = visualRejections ? plainBeat(beat) : beat;
+  const fallback = fallbackSpec(backupBeat);
+  const fallbackIssues = auditBoardForRelease(fallback, backupBeat);
   if (fallbackIssues.length) throw Object.assign(new Error(`no releasable board: ${fallbackIssues.map((finding) => `${finding.gate}: ${finding.message}`).join("; ")}`), { costUsd });
   return { spec: fallback, costUsd, attempts: -1 };
 }
@@ -271,7 +448,19 @@ function fallbackReason(error: unknown): "budget" | "generation" | "validation" 
   return "generation";
 }
 
-export async function illustrate(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock): Promise<{ spec: CanvasBoardSpec; costUsd: number }> {
+/**
+ * The same board rewritten without a picture by the board writer (a real flow or worked equation,
+ * reviewed like any board) — used when no picture passed its check and there is time for one call.
+ */
+export function plainRebuild(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = []): () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null> {
+  return async () => {
+    if (clock.left() < 35_000) return null;
+    const made = await generateSpec(openai, topic, plan, plainBeat(beat), clock, [...extra, "A textbook picture of this board could not be made accurately. Teach the same idea without a picture, with every box and arrow carrying what the narration says."], true);
+    return { spec: made.spec, costUsd: made.costUsd };
+  };
+}
+
+export async function illustrate(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock, rebuild?: () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null>): Promise<{ spec: CanvasBoardSpec; costUsd: number }> {
   if (spec.stage.kind !== "illustration") return { spec, costUsd: 0 };
   const stage = spec.stage;
   const started = Date.now();
@@ -280,39 +469,20 @@ export async function illustrate(openai: OpenAI, userId: string, lectureId: stri
     if (clock.left() < 50_000) throw new Error("no time left for a picture");
     const subject = pictureSubject(stage.subject);
     const names = stage.parts.map((p) => p.name);
-    // Only curriculum visuals are globally reusable. Their key contains no student text or id.
-    const sharedName = beat.requiredVisual && !beat.source ? sharedIllustrationName(subject, names) : null;
-    const cached = sharedName ? await loadSharedCanvasImage(sharedName) : null;
-    // An image model sometimes letters its own picture despite being told not to; our labels would
-    // then sit beside its misspelt ones. That picture is drawn once more.
-    let picture = cached
-      ? await bounded(prepareStoredIllustration(cached), Math.min(12_000, clock.left() - 30_000), "cached picture")
-      : await bounded(drawIllustration(openai, subject), Math.min(80_000, clock.left() - 30_000), "picture");
-    let redrawn = false;
-    costUsd += picture.costUsd;
-    let located = await bounded(locateParts(openai, picture.jpeg, subject, names), Math.min(40_000, Math.max(8_000, clock.left() - 12_000)), "locate");
-    costUsd += located.costUsd;
-    if (located.textInImage && clock.left() > 110_000) {
-      log.push(`${beat.id}: picture had text in it — drawn again`);
-      picture = await bounded(drawIllustration(openai, `${subject} Absolutely no letters, words or numbers anywhere in the image.`), 80_000, "picture");
-      redrawn = true;
-      costUsd += picture.costUsd;
-      located = await bounded(locateParts(openai, picture.jpeg, subject, names), 40_000, "locate");
-      costUsd += located.costUsd;
-    }
-    const name = sharedName ?? `${lectureId}-${beat.id}`;
-    if (sharedName) {
-      if (!cached || redrawn) await saveSharedCanvasImage(sharedName, picture.display);
-    } else {
-      await saveCanvasImage(userId, name, picture.display);
-    }
-    // The second look at the points is optional work too.
-    const unchecked = { parts: located.parts, corrected: [] as string[], costUsd: 0 };
-    const checked = clock.left() > 45_000
-      ? await bounded(verifyParts(openai, picture.jpeg, subject, located.parts), Math.min(35_000, clock.left() - 12_000), "verify").catch(() => unchecked)
-      : unchecked;
-    costUsd += checked.costUsd;
-    const byName = new Map(checked.parts.map((p) => [p.name.toLowerCase(), p]));
+    // The last guard before money is spent: a picture has no words, so a chart, table or argument
+    // asked of it can only fail its check.
+    if (CHART_LIKE.test(`${subject} ${names.join(" ")}`) && !PHYSICAL.test(subject)) throw new Error("a chart or table is not a picture (not sent to the image model)");
+    // Generated, checked by a textbook editor, located, and remembered (lib/canvas/textbookDiagram.ts).
+    // A diagram is shared across students unless it comes from a student's own document.
+    const share = !beat.source;
+    const own = `${lectureId}-${beat.id}`;
+    const diagram = await bounded(textbookDiagram(openai, subject, names, {
+      share,
+      budget: { left: () => clock.left() },
+      save: async (_key, display) => { if (!share) await saveCanvasImage(userId, own, display); },
+    }), Math.min(170_000, clock.left() - 20_000), "textbook diagram");
+    costUsd += diagram.costUsd;
+    const byName = new Map(diagram.parts.map((p) => [p.name.toLowerCase(), p]));
     const parts = stage.parts
       .map((p) => {
         const at = byName.get(p.name.toLowerCase());
@@ -320,25 +490,32 @@ export async function illustrate(openai: OpenAI, userId: string, lectureId: stri
       })
       .filter((p): p is NonNullable<typeof p> => Boolean(p));
     const kept = new Set(parts.map((p) => p.id));
-    log.push(`${beat.id}: picture ${Math.round((Date.now() - started) / 1000)}s${cached ? " (shared cache hit)" : ""}, located ${parts.length}/${stage.parts.length}${checked.corrected.length ? `, corrected ${checked.corrected.join(", ")}` : ""}${located.textInImage ? ", TEXT IN IMAGE" : ""}`);
+    log.push(`${beat.id}: textbook diagram ${Math.round((Date.now() - started) / 1000)}s — ${diagram.log}`);
     return {
       spec: {
         ...spec,
-        stage: { ...stage, parts, labels: stage.labels.filter((l) => kept.has(l)), src: `/api/canvas-lecture/image/${name}`, paper: picture.paper },
+        stage: { ...stage, parts, labels: stage.labels.filter((l) => kept.has(l)), src: `/api/canvas-lecture/image/${share ? diagram.key : own}`, paper: diagram.paper },
         cues: spec.cues.filter((c) => !c.target || !stage.parts.some((p) => p.id === c.target) || kept.has(c.target)),
       },
       costUsd,
     };
   } catch (error) {
     log.push(`${beat.id}: picture failed — ${(error as Error).message}`);
-    // No picture: keep the board, drawn as a scene of its parts, so the lesson never loses a board.
-    // Two-cell boxes sit in columns A, C and E of the 6-wide grid so no two overlap.
+    // No diagram passed: never a wrong picture. The board writer rebuilds it as a plain board when
+    // there is time; otherwise it is built from what Aria says (lib/canvas/fallback.ts), keeping its card.
     const reason = fallbackReason(error);
+    const rebuilt = rebuild ? await rebuild().catch(() => null) : null;
+    if (rebuilt) {
+      costUsd += rebuilt.costUsd;
+      log.push(`${beat.id}: rebuilt as a ${rebuilt.spec.stage.kind} board`);
+      return { spec: { ...rebuilt.spec, visualFallback: { from: "illustration", reason, message: "A plain board is shown because no textbook diagram passed its accuracy check." } }, costUsd };
+    }
+    const plain = fallbackSpec(plainBeat(beat));
     return {
       spec: {
-        ...spec,
-        stage: { kind: "scene", items: stage.parts.slice(0, 6).map((p, i) => ({ id: p.id, kind: "box" as const, label: p.name, cell: `${"ACE"[i % 3]}${i < 3 ? 1 : 3}`, span: "2x2", s: p.s })), arrows: [] },
-        visualFallback: { from: "illustration", reason, message: "A simplified labelled diagram is shown because the textbook picture was unavailable." },
+        ...plain,
+        ...(spec.interaction ? { interaction: spec.interaction } : {}),
+        visualFallback: { from: "illustration", reason, message: "A plain board is shown because no textbook diagram passed its accuracy check." },
       },
       costUsd,
     };
@@ -414,7 +591,7 @@ export async function generateCanvasLecture(topic: string, userId: string, onPro
     costUsd += made.costUsd;
     log.push(`${beat.id}: ${made.spec.stage.kind} spec in ${Math.round((Date.now() - t0) / 1000)}s, ${made.attempts < 0 ? "FALLBACK board" : `${made.attempts} attempt(s)`}`);
     onProgress({ step: "board", detail: `Board ${++done}/${planBeats.length}: ${beat.title}` });
-    const pictured = await illustrate(openai, userId, lectureId, beat, made.spec, log, clock);
+    const pictured = await illustrate(openai, userId, lectureId, beat, made.spec, log, clock, plainRebuild(openai, topic, planBeats, beat, clock));
     costUsd += pictured.costUsd;
     if (made.spec.stage.kind === "illustration") onProgress({ step: "picture", detail: `Illustrated: ${beat.title}` });
     return pictured.spec;

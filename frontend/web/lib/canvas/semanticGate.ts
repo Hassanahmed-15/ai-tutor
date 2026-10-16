@@ -8,10 +8,13 @@ import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
  * gate answers "is it the representation this learning task requires?".  Only facts code can know
  * with certainty belong here. Ambiguous judgements remain outside the hard gate.
  */
-export function semanticBoardIssues(spec: CanvasBoardSpec, beat: Pick<CanvasPlanBeat, "title" | "brief" | "script" | "objects" | "requiredVisual">): string[] {
+export function semanticBoardIssues(spec: CanvasBoardSpec, beat: Pick<CanvasPlanBeat, "title" | "brief" | "script" | "objects" | "requiredVisual" | "rejectedFigures">): string[] {
   const decision = classifyInstructionalTask(beat);
   const issues: string[] = [];
   if (!decision.figure) return issues;
+  // The board review judged this diagram wrong for this board (it saw what was drawn); a keyword
+  // rule must not demand it back — that contradiction sent rebuilt boards to the bare backup.
+  if (beat.rejectedFigures?.includes(decision.figure)) return issues;
   if (spec.stage.kind !== "figure") return [`${decision.task} requires the ${decision.figure} semantic renderer, not ${spec.stage.kind}`];
   if (spec.stage.component !== decision.figure) return [`${decision.task} requires figure component ${decision.figure}, not ${spec.stage.component}`];
 

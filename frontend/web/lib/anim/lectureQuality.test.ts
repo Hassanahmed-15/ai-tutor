@@ -128,3 +128,36 @@ test("a biology response curve is not drawn by the maths function plotter", () =
   ], { mode: "course", aiPictures: false });
   assert.notEqual(beats[0].figure, "functionGraph");
 });
+
+test("round-3 audit fixes stay fixed", async () => {
+  const { figureDataIssues } = await import("../canvas/releaseAudit");
+  // A box plot drawn from numbers Aria never says is sent back; one drawn from her data passes.
+  const box = (data: string) => ({ v: 1, heading: "Summary", notes: [], cues: [], carry: [], stage: { kind: "figure", component: "boxPlot", params: { data }, parts: [] } }) as never;
+  const script = "For 3, 5, 5, 7 and 20 the median is 5 and the range is 17.";
+  assert.equal(figureDataIssues(box("2, 3, 4, 7.5, 10"), script).length, 1);
+  assert.equal(figureDataIssues(box("3, 5, 5, 7, 20"), script).length, 0);
+  // Cards that point back with a plural, or carry their working inside an option.
+  assert.ok(quizIssues(quiz("What conclusion best balances these points?", ["Benefits need managed risks", "Benefits always win", "Risks always win"]), "benefits risks").some((i) => /card alone/.test(i)));
+  assert.ok(quizIssues(quiz("If y = 3 + 4u, what are the mean and SD of y?", ["ȳ=23, σy=8. Decoding gives ȳ = 23", "ȳ=20, σy=8", "ȳ=23, σy=2", "ȳ=8, σy=23"]), "coded mean standard deviation").some((i) => /bare answer/.test(i)));
+  // A calculation planned as a flow becomes an equation; social inequality is not a number line;
+  // "each root has modulus" is maths, not a plant.
+  const { beats } = applyLessonVisualPolicy([
+    beat("b1", "Mean and standard deviation from data", "flow", "Use the formula: the mean is 68 divided by 10, which is 6.8, and the variance is 55.2 minus 46.24."),
+    beat("b2", "Ethnicity and attainment", "compare", "Educational inequality between ethnic groups is explained by in-school and out-of-school factors."),
+    beat("b3", "The two square roots", "illustration", "Each root has modulus √r, and the two square roots of a complex number are opposite points."),
+  ], { mode: "course", aiPictures: true });
+  assert.equal(beats[0].stage, "equation");
+  assert.notEqual(beats[1].figure, "numberLine");
+  assert.notEqual(beats[2].stage, "illustration");
+});
+
+test("the planner's diagram is honoured when it fits the board, refused when it does not", () => {
+  const planned = (b: CanvasPlanBeat, figure: string) => ({ ...b, plannedFigure: figure });
+  const { beats, audit } = applyLessonVisualPolicy([
+    planned(beat("b1", "Comparing two data sets with box plots", "compare", "Set P has median 12 and IQR 3; set Q has median 15 and IQR 8."), "boxPlot"),
+    planned(beat("b2", "Risks and balanced discussion", "compare", "Weigh higher yields against the risk that genes spread to wild plants."), "geneticTech"),
+  ], { mode: "course", aiPictures: false });
+  assert.equal(beats[0].figure, "boxPlot");
+  assert.notEqual(beats[1].figure, "geneticTech");
+  assert.ok(audit.changes.some((c) => /planner's geneticTech ignored/.test(c)));
+});

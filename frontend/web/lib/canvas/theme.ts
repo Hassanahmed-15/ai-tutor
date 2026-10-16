@@ -105,6 +105,10 @@ const FIXED: Record<string, string> = {
 const RENDERER_COLOURS = [
   "#0284c7", "#15803d", "#16a34a", "#1d4ed8", "#1e3a8a", "#2563eb", "#334155", "#475569", "#4d7c0f",
   "#6d28d9", "#92400e", "#991b1b", "#a16207", "#be123c", "#c2410c", "#ca8a04", "#d97706", "#ea580c",
+  // Figure colours that stayed dark on the slate board (found building the biology kit, 2026-10-17).
+  // Neutral greys (#374151, #44403c…) are left alone on purpose: they outline shapes inside pale fills.
+  "#dc2626", "#7c3aed", "#166534", "#ef4444", "#be185d", "#b91c1c", "#b45309", "#1e40af", "#a855f7",
+  "#5b21b6", "#0f766e", "#db2777", "#9f1239", "#9a3412", "#8a5a14", "#7f1d1d", "#7c2d12", "#4338ca",
 ];
 
 /** The CSS that turns a board inside `.cv-chalk` into chalk. */
@@ -121,7 +125,7 @@ export function chalkCss(): string {
     // (it was unreadable, audit 2026-10-17).
     `.cv-chalk rect[fill="#fef3c7"]{fill:rgba(245,158,11,.16)}`,
     // The highlighter multiplies on paper; on a dark board multiply would erase it.
-    `.cv-chalk .cv-swipe{mix-blend-mode:screen !important;stroke-opacity:.42}`,
+    `.cv-chalk .cv-swipe{stroke-opacity:.9}`,
   );
   return rules.join("");
 }

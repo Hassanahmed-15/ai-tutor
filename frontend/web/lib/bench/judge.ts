@@ -1,4 +1,5 @@
-import { BENCH_CRITERIA, clampScore, type BenchScores, CRITERION_LABEL } from "./criteria";
+import { BENCH_CRITERIA, clampScore, type BenchScores } from "./criteria";
+import { rubricLines } from "./rubric";
 
 /** Lesson writer family is OpenAI gpt-5.6-luna. The judge must be a different family. */
 export const BENCH_JUDGE_FAMILY = "google";
@@ -23,7 +24,7 @@ export function judgeSystemPrompt(): string {
   return `You are a strict Cambridge O/A Level examiner scoring ONE lesson from PNG boards plus the spoken scripts and quiz cards.
 Score each criterion 1–10 integers. Do not give 9 or 10 if labels are missing, overlap, or do not point at the named part.
 The writer model is a different family from you; do not assume its diagrams are correct — inspect the PNG.
-Criteria:\n${BENCH_CRITERIA.map((c) => `- ${c}: ${CRITERION_LABEL[c]}`).join("\n")}
+Criteria:\n${rubricLines()}
 Return JSON only: {"scores": {${BENCH_CRITERIA.map((c) => `"${c}": n`).join(", ")}}, "notes": {}, "diagramsAndLabelsEvidence": "..."}.`;
 }
 

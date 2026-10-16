@@ -98,7 +98,9 @@ export function classifyInstructionalTask(beat: Pick<CanvasPlanBeat, "title" | "
   if (/\bantibod\w*\b|\bimmunoglobulin\b|\b(active|passive) immunit\w*\b/.test(text)) {
     return { task: "physical-structure", stage: "figure", figure: "antibody", requiredParts: ["binding-site", "antigen"], reason: "An immunity board must show the Y-shaped antibody and its antigen-binding site." };
   }
-  if (/\binequalit(y|ies)\b/.test(text) && !/\bcode|program|python\b/i.test(text)) {
+  // A maths inequality — not educational, social or income inequality (a sociology lesson on ethnicity
+  // and attainment was drawn as number lines, audit 2026-10-17).
+  if (/\binequalit(y|ies)\b/i.test(text) && !/\bcode|program|python\b/i.test(text) && !/\b(social|educational|income|wealth|gender|racial|ethnic\w*|class|health|attainment|structural|global) inequalit/i.test(text) && /[<>≤≥]|\bsolv\w*|\b[xyn]\s*[<>≤≥]|\bsolution set\b|\bnumber line\b/i.test(text)) {
     return { task: "graph-interpretation", stage: "figure", figure: "numberLine", requiredParts: ["number-line", "solution-set"], reason: "An inequality is the solution set on a number line, not a paragraph of inequalities." };
   }
   if (/\bprobability density\b|\bpdf\b|\bcontinuous random variable\b/.test(text)) {

@@ -168,6 +168,11 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   const depth = p.depth;
   const length = video
     ? "as long as its part's key points need — every one of them taught — usually 5 to 10 sentences"
+    // A course board teaches its listed key points: a fixed 4 to 6 sentences left 2 to 4 for up to
+    // nine key points once the prediction and its answer were said, and outcomes went untaught
+    // (coverage audit 2026-10-17). Each board's own length is given in its plan block.
+    : course
+    ? "as long as its key points need — the sentence count given for each board in THE LESSON PLAN below"
     : boards === 1
     ? "5 to 8 sentences (80 to 140 words) — the whole answer, complete on this one board"
     : depth === "concise" ? "3 or 4 sentences (45 to 70 words)"
@@ -181,10 +186,32 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   return lines.join("\n");
 }
 
+/** The steps of a block's worked example ("Worked example: 1. … 2. …" or sentences), at most 6. */
+export function workedSteps(text = ""): number {
+  const worked = /Worked example:\s*([\s\S]*?)(?:\n\n|$)/.exec(text)?.[1] ?? "";
+  if (!worked.trim()) return 0;
+  const numbered = worked.match(/(?:^|\s)\d+[.)]\s/g)?.length ?? 0;
+  const sentences = worked.split(/(?<=[.!?;])\s+/).filter((x) => x.trim().length > 3).length;
+  return Math.min(6, Math.max(2, numbered || sentences));
+}
+
+/**
+ * Sentences a course board needs — enough to explain its content completely, never more. Depth is
+ * that nothing is missed (every key point explained, the worked case done, the standard cases
+ * covered), not length: one sentence per key point, one per worked step, plus the prediction and
+ * its answer, capped at 11 (a board with more to say is two boards in the lesson plan). Owner,
+ * 2026-10-17: "length shouldn't be the goal".
+ */
+export function courseBoardSentences(block: { keyIdeas?: string[]; text?: string }): number {
+  const points = block.keyIdeas?.length ?? 0;
+  return Math.max(6, Math.min(11, points + Math.min(4, workedSteps(block.text)) + 3));
+}
+
 /** What the planner reads for a course lesson: its official outcomes and the board plan made from the syllabus. */
 function curriculumPlanSection(doc: SuprnotesLessonInput): string {
   const goals = doc.lesson?.learningGoals ?? [];
   const plan = doc.lessonPlan as { beats?: Array<{ title?: string; objective?: string; outcomeRefs?: number[]; visualRequirement?: Array<{ preferredStages?: string[]; mustShow?: string[] }> }>; visualRequirements?: Array<{ outcomeRef?: number; preferredStages?: string[]; mustShow?: string[]; reason?: string }> } | undefined;
+  const planBeats = plan?.beats ?? [];
   return [
     `THIS IS A LESSON OF AN OFFICIAL COURSE (${doc.lesson?.level ?? "its level"}). Its learning outcomes are fixed by the syllabus:`,
     ...goals.map((g, i) => `${i + 1}. ${g}`),
@@ -194,6 +221,22 @@ function curriculumPlanSection(doc: SuprnotesLessonInput): string {
     "",
     "THE LESSON PLAN (one block per board, in order):",
     documentForCanvas(doc),
+    "",
+    "WHAT EACH BOARD'S SCRIPT MUST DO — explain its part of the topic so completely that nothing is missed, and say nothing twice:",
+    "  1. every key point of its block, in the mark scheme's precise wording; a point about HOW or WHY (a process, cause, adaptation, method or effect) is said with its reason or mechanism (\"because…\", \"which means…\"); a definition or plain fact is just stated;",
+    "  2. its worked example walked one step per sentence, with every number, unit or named detail it uses, to its answer;",
+    "  3. the prediction question and its answer.",
+    "  A common mistake from a \"Watch for\" line is corrected only on the board it belongs to (two or three in the whole lesson). Never restate what an earlier board said, never add a summary of the board, never pad.",
+    "Sentence counts per board (a ceiling as well as a guide):",
+    ...(doc.contentBlocks ?? []).map((block, i) => {
+      const n = courseBoardSentences(block);
+      if (block.exam) return `- b${i + 1} (${block.heading}): stage "exam", interaction null, diagram "none". The board shows the question, its marks and the mark scheme by itself. The script: read the question and say it is worth ${block.exam.marks} marks; say what the command word "${block.exam.commandWord}" asks for; then give the full-mark answer, ONE sentence per marking point, in the mark scheme's order and wording (${block.exam.markPoints.length} sentences); then say how candidates lose marks and what examiners want instead → ${n} to ${n + 2} sentences.`;
+      const steps = workedSteps(block.text);
+      // The last board of each outcome closes with how that outcome is examined; the others end on their answer.
+      const refs = planBeats[i]?.outcomeRefs ?? [];
+      const lastOfOutcome = refs.some((r) => !planBeats.slice(i + 1).some((b) => b.outcomeRefs?.includes(r)));
+      return `- b${i + 1} (${block.heading}): ${block.keyIdeas?.length ?? 0} key points${steps ? ` + a ${steps}-step worked example` : ""}${lastOfOutcome ? ' + a closing exam-style question as its "How it is examined" line sets it (command word first, marks said)' : ""} → at most ${n + 1} sentences.`;
+    }),
     "",
     "PHASE 3 VISUAL CONTRACT — enforce these requirements in the board stage and visible content:",
     ...(plan?.beats ?? []).map((beat, i) => {

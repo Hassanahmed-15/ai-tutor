@@ -1,3 +1,4 @@
+import { fitText } from "../cuts";
 import type { FigureShape, Ink, Pt } from "../types";
 
 /**
@@ -134,6 +135,6 @@ export function softShape(d: string, colour: `#${string}`, part?: string, opts: 
 
 /** "Grass" → "Grass"; trims, strips odd characters, caps the length. */
 export function cleanName(v: unknown, max = 18): string {
-  return String(v ?? "").replace(/[^\p{L}\p{N} '\-()]/gu, "").replace(/\s+/g, " ").trim().slice(0, max);
+  return fitText(String(v ?? "").replace(/[^\p{L}\p{N} '\-()]/gu, "").replace(/\s+/g, " ").trim(), max);
 }
 export const capital = (s: string) => (s ? s[0].toUpperCase() + s.slice(1) : s);

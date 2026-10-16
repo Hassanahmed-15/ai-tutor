@@ -1,10 +1,12 @@
-/** The 12-criterion student audit (PLAN-to-10 Phase 0). Scores are 1–10 integers. */
+/**
+ * The 11-criterion student audit (PLAN-to-10 Phase 0). Scores are 1–10 integers. Exam readiness was
+ * removed as a scored criterion by the owner (2026-10-17); the exam-practice board still teaches it.
+ */
 export const BENCH_CRITERIA = [
   "curriculumAuthenticity",
   "coverage",
   "teachingDepth",
   "factualAccuracy",
-  "examReadiness",
   "visualClarity",
   "diagramsAndLabels",
   "narrationBoardSync",
@@ -23,7 +25,6 @@ export const CRITERION_LABEL: Record<BenchCriterion, string> = {
   coverage: "Coverage",
   teachingDepth: "Teaching depth",
   factualAccuracy: "Factual accuracy",
-  examReadiness: "Exam readiness",
   visualClarity: "Visual clarity",
   diagramsAndLabels: "Diagrams and labels",
   narrationBoardSync: "Narration / board sync",

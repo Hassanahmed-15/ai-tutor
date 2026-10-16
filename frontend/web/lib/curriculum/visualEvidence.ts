@@ -45,6 +45,8 @@ function describeStage(stage: StageSpec): string {
       return stage.asset
         ? `Textbook diagram (${stage.asset.credit}) with exact labelled parts: ${stage.parts.map((part) => part.name).join(", ")}.`
         : `Code-drawn textbook figure (${stage.component}) with exact labelled parts: ${stage.parts.map((part) => part.name).join(", ")}.`;
+    case "exam":
+      return `Exam question (${stage.marks} marks, command word ${stage.commandWord}): ${stage.question}. Mark-scheme points: ${stage.points.map((p) => p.text).join("; ")}.${stage.lostMarks ? ` Loses marks: ${stage.lostMarks.text}.` : ""}`;
     case "atom-map":
       return `Atom map: ${stage.reactants.map((group) => `${group.label} [${group.atoms.map((atom) => `${atom.element}×${atom.count}`).join(", ")}]`).join(" + ")} -> ${stage.products.map((group) => `${group.label} [${group.atoms.map((atom) => `${atom.element}×${atom.count}`).join(", ")}]`).join(" + ")}. Energy lane: ${stage.energy ? `${stage.energy.input} -> ${stage.energy.output}` : "none"}.`;
   }

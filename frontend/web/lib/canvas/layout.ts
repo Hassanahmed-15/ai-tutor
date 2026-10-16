@@ -14,7 +14,7 @@ import { placeLabels } from "../figures/labels";
 import { shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
 import type { FigureDrawing } from "../figures/types";
-import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type CompareStage, type EquationStage, type FigureStage, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage } from "./types";
+import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type CompareStage, type EquationStage, type ExamStage, type FigureStage, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Pt = { x: number; y: number };
@@ -183,6 +183,9 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
     case "molecule":
       layoutMolecules(spec.stage, stage, marks, add);
       break;
+    case "exam":
+      layoutExam(spec.stage, stage, marks, add);
+      break;
     case "atom-map":
       marks.push({ type: "atom-map", id: "atom-map", rect: stage, stage: spec.stage, s: 0 });
       add("atom-map", stage, 0);
@@ -316,7 +319,16 @@ export function textObstacles(ms: Mark[]): Rect[] {
   return out;
 }
 
-function arrowMarks(arrows: FlowStage["arrows"], centres: Map<string, { c: Pt; r: number; below?: number }>, bend: (a: Pt, b: Pt) => number, marks: Mark[], add: Add, obstacles: Rect[] = []) {
+/** Where the line from a box's centre toward `to` leaves the box, `pad` beyond its border. */
+function boxEdge(box: Rect, to: Pt, pad: number): Pt {
+  const c = { x: box.x + box.w / 2, y: box.y + box.h / 2 };
+  const dx = to.x - c.x, dy = to.y - c.y;
+  const d = Math.hypot(dx, dy) || 1;
+  const t = Math.min(dx ? (box.w / 2) / Math.abs(dx) : Infinity, dy ? (box.h / 2) / Math.abs(dy) : Infinity);
+  return { x: c.x + dx * t + (dx / d) * pad, y: c.y + dy * t + (dy / d) * pad };
+}
+
+function arrowMarks(arrows: FlowStage["arrows"], centres: Map<string, { c: Pt; r: number; below?: number; box?: Rect }>, bend: (a: Pt, b: Pt) => number, marks: Mark[], add: Add, obstacles: Rect[] = []) {
   const placedLabels: Rect[] = [];
   // An arrow that leaves or arrives through a node's underside clears the node's label as well.
   const clear = (from: { c: Pt; r: number; below?: number }, to: Pt) => {
@@ -327,8 +339,9 @@ function arrowMarks(arrows: FlowStage["arrows"], centres: Map<string, { c: Pt; r
     const a = centres.get(arrow.from);
     const b = centres.get(arrow.to);
     if (!a || !b) return;
-    const p0 = edgePoint(a.c, b.c, a.r, 10 + clear(a, b.c));
-    const p1 = edgePoint(b.c, a.c, b.r, 16 + clear(b, a.c));
+    // A card is a rectangle: the arrow starts and ends at its border, not inside it over its words.
+    const p0 = a.box ? boxEdge(a.box, b.c, 8) : edgePoint(a.c, b.c, a.r, 10 + clear(a, b.c));
+    const p1 = b.box ? boxEdge(b.box, a.c, 12) : edgePoint(b.c, a.c, b.r, 16 + clear(b, a.c));
     // Nodes almost touching leave no room for an arrow: a lone arrowhead reads as a mistake.
     if (Math.hypot(p1.x - p0.x, p1.y - p0.y) < 28 || (p1.x - p0.x) * (b.c.x - a.c.x) + (p1.y - p0.y) * (b.c.y - a.c.y) <= 0) return;
     const mx = (p0.x + p1.x) / 2;
@@ -361,7 +374,7 @@ function arrowMarks(arrows: FlowStage["arrows"], centres: Map<string, { c: Pt; r
 
 function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
   const nodes = stage.nodes.slice(0, 7);
-  const centres = new Map<string, { c: Pt; r: number; below?: number }>();
+  const centres = new Map<string, { c: Pt; r: number; below?: number; box?: Rect }>();
   const nodeMarks: Mark[] = [];
   const place = (node: FlowStage["nodes"][number], i: number, cx: number, cy: number, r: number, maxLabelW?: number) => {
     centres.set(node.id, { c: { x: cx, y: cy }, r, below: node.sub ? 48 : 28 });
@@ -377,8 +390,8 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
       const span = box.h - 70;
       list.forEach((node, k) => {
         const cy = box.y + 20 + (span * (k + 0.5)) / list.length;
-        // Three or more in a column leave no room for a second line under each; the label carries it.
-        place(list.length >= 3 ? { ...node, sub: undefined } : node, nodes.indexOf(node), x, cy, r);
+        // A second line under each node only where the column has room for it; the label carries it otherwise.
+        place(list.length >= 3 && span / list.length < 118 ? { ...node, sub: undefined } : node, nodes.indexOf(node), x, cy, r);
       });
     };
     column(inputs, box.x + 58);
@@ -394,8 +407,11 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
       place(node, i, cx + Math.cos(a) * rx, cy + Math.sin(a) * ry, 36);
     });
   } else {
-    // chain: one row up to four, otherwise a snake over two rows.
-    const perRow = nodes.length <= 4 ? nodes.length : Math.ceil(nodes.length / 2);
+    // chain: one row up to four, otherwise a snake over two rows. Four or more nodes carrying a detail
+    // line snake over two rows too: in one row there is no room for it, and dropping it lost the
+    // figures Aria quotes (a psychology flow lost every sub and arrow label, audit 2026-10-17).
+    const detailed = nodes.length >= 4 && nodes.some((n) => n.sub);
+    const perRow = nodes.length <= 4 && !detailed ? nodes.length : Math.ceil(nodes.length / 2);
     const rows = Math.ceil(nodes.length / perRow);
     nodes.forEach((node, i) => {
       const row = Math.floor(i / perRow);
@@ -685,6 +701,63 @@ function layoutCompare(stage: CompareStage, box: Rect, marks: Mark[], add: Add) 
   }
 }
 
+/* ── exam ───────────────────────────────────────────────────────────────────────────────────── */
+
+/**
+ * An exam question as the paper prints it: the question card with its marks, then the mark scheme
+ * written point by point as Aria says each one (a tick and its mark), then the mistake that loses
+ * marks in red. Text is wrapped whole and the sizes shrink until everything fits — nothing is cut.
+ */
+function layoutExam(stage: ExamStage, box: Rect, marks: Mark[], add: Add) {
+  const markInk = "#be123c";
+  const tickInk = "#15803d";
+  const points = stage.points.slice(0, 6);
+  const two = points.length > 3;
+  const colGap = 16;
+  const colW = two ? (box.w - colGap) / 2 : box.w;
+  const fit = (size: number) => {
+    const q = wrap(`${stage.question}`, size + 1, box.w - 150, 6);
+    const qH = q.length * (size + 1) * 1.3 + 24;
+    const rows = points.map((p) => wrap(`✓ ${p.text}  [1]`, size, colW - 36, 3));
+    const rowH = rows.map((r) => r.length * size * 1.3 + 20);
+    const colsH = two ? Math.max(rowH.slice(0, Math.ceil(points.length / 2)).reduce((a, b) => a + b + 10, 0), rowH.slice(Math.ceil(points.length / 2)).reduce((a, b) => a + b + 10, 0)) : rowH.reduce((a, b) => a + b + 10, 0);
+    const lost = stage.lostMarks ? wrap(`✗ Loses marks: ${stage.lostMarks.text}`, size, box.w - 36, 3) : [];
+    const lostH = lost.length ? lost.length * size * 1.3 + 20 : 0;
+    return { size, q, qH, rows, rowH, lost, lostH, total: qH + 34 + colsH + (lostH ? lostH + 12 : 0) };
+  };
+  let f = fit(21);
+  for (const size of [20, 19, 18, 17, 16, 15, 14]) if (f.total > box.h) f = fit(size);
+  let y = box.y;
+  // The question, with its marks at the right as the paper prints them.
+  const qRect = { x: box.x, y, w: box.w, h: f.qH };
+  marks.push({ type: "item", id: "exam-question", text: f.q.join("\n"), rect: qRect, color: "#1d4ed8", s: 0, size: f.size + 1 });
+  add("exam-question", qRect, 0);
+  const marksRect = { x: box.x + box.w - 120, y: y + 6, w: 110, h: 30 };
+  marks.push({ type: "text", id: "exam-marks", text: `[${stage.marks} mark${stage.marks === 1 ? "" : "s"}]`, rect: marksRect, color: markInk, s: 0, size: 18 });
+  add("exam-marks", marksRect, 0);
+  y += f.qH + 8;
+  const cmdRect = { x: box.x, y, w: Math.min(box.w, textWidth(`Command word: ${stage.commandWord}`, 16) + 20), h: 22 };
+  marks.push({ type: "text", id: "command-word", text: `Command word: ${stage.commandWord}`, rect: cmdRect, color: markInk, s: 0, size: 16 });
+  add("command-word", cmdRect, 0);
+  y += 26;
+  // The mark scheme, one row per mark.
+  const half = Math.ceil(points.length / 2);
+  const colY = [y, y];
+  points.forEach((p, i) => {
+    const col = two && i >= half ? 1 : 0;
+    const r = { x: box.x + col * (colW + colGap), y: colY[col], w: colW, h: f.rowH[i] };
+    marks.push({ type: "item", id: p.id, text: f.rows[i].join("\n"), rect: r, color: tickInk, s: p.s, size: f.size });
+    add(p.id, r, p.s);
+    colY[col] += f.rowH[i] + 10;
+  });
+  y = Math.max(...colY) + 2;
+  if (stage.lostMarks && f.lost.length) {
+    const r = { x: box.x, y, w: box.w, h: f.lostH };
+    marks.push({ type: "item", id: stage.lostMarks.id, text: f.lost.join("\n"), rect: r, color: markInk, s: stage.lostMarks.s, size: f.size });
+    add(stage.lostMarks.id, r, stage.lostMarks.s);
+  }
+}
+
 /* ── scene ────────────────────────────────────────────────────────────────────────────────── */
 
 export function sceneCell(cell: string, span: string | undefined, box: Rect): Rect {
@@ -759,9 +832,13 @@ function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
     } else if (item.kind === "box") {
       // A box with no icon is a card: its title, and its detail wrapped beneath — never an empty ring.
       const detail = !item.icon && item.detail ? wrap(item.detail, 15, rect.w - 24, Math.max(1, Math.floor((rect.h - 44) / 19))) : undefined;
-      itemMarks.push({ type: "box", id: item.id, rect, label: item.label, color, s: item.s, icon: item.icon, size: 18, ...(detail?.length ? { detail } : {}) });
-      centres.set(item.id, { c: { x: rect.x + rect.w / 2, y: rect.y + rect.h / 2 }, r: Math.min(rect.w, rect.h) / 2 });
-      add(item.id, rect, item.s);
+      // A card is as tall as what it says, centred in its cells: a two-row box holding one line left
+      // most of itself empty (audit 2026-10-17). Icon boxes keep their room for the icon.
+      const needed = item.icon ? rect.h : Math.max(64, 46 + (detail?.length ?? 0) * 19 + 14);
+      const card = needed < rect.h - 24 ? { x: rect.x, y: rect.y + (rect.h - needed) / 2, w: rect.w, h: needed } : rect;
+      itemMarks.push({ type: "box", id: item.id, rect: card, label: item.label, color, s: item.s, icon: item.icon, size: 18, ...(detail?.length ? { detail } : {}) });
+      centres.set(item.id, { c: { x: card.x + card.w / 2, y: card.y + card.h / 2 }, r: Math.min(card.w, card.h) / 2, ...(item.icon ? {} : { box: card }) });
+      add(item.id, card, item.s);
     } else {
       itemMarks.push({ type: "text", id: item.id, rect, text: item.label ?? "", color, s: item.s, size: 20 });
       centres.set(item.id, { c: { x: rect.x + rect.w / 2, y: rect.y + rect.h / 2 }, r: 20 });

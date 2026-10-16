@@ -31,7 +31,7 @@ export const dnaStructure: FigureComponent = {
   name: "dnaStructure",
   title: "DNA structure: two antiparallel sugar–phosphate backbones, complementary base pairs (A–T, C–G) joined by hydrogen bonds",
   params: `sequence (one strand, 5′→3′, letters A T G C only, 2-10 bases, default "ATGCAT"); the code writes the complementary strand (A–T, C–G), with 2 hydrogen bonds per A–T pair and 3 per C–G pair.`,
-  match: /\bDNA (structure|double helix|molecule|base pairing|replication|strands?)\b|\bstructure of DNA\b|\bdouble helix\b|\bbase pair(s|ing)\b|\bcomplementary (base|strand)s?\b|\bsugar[- ]phosphate\b|\b(adenine|thymine|guanine|cytosine)\b|\bnucleotides?\b/i,
+  match: /\bDNA (structure|double helix|molecule|base pairing|replication|strands?)\b|\bstructure of DNA\b|\bdouble helix\b|(?<!\d[\s,-]*)\bbase pair(s|ing)\b|\bcomplementary (base|strand)s?\b|\bsugar[- ]phosphate\b|\b(adenine|thymine|guanine|cytosine)\b(?=[\s\S]{0,120}\b(pairs?|bonds?|strand|helix)\b)|\bnucleotides?\b(?=[\s\S]{0,80}\b(sugar|phosphate|deoxyribose|strand|helix|bonded)\b)/i,
   parts: [
     { id: "backbone", name: "Sugar–phosphate backbone" },
     { id: "phosphate", name: "Phosphate" },

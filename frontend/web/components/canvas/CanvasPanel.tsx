@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef } from "react";
 import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
-import { graphPoint, INK, textWidth, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
+import { graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
 import { IconGlyph } from "./icons";
@@ -650,12 +650,97 @@ function MoleculeView({ mark, rotation }: { mark: Extract<Mark, { type: "molecul
   </g>;
 }
 
+/**
+ * One balanced reaction: reactant cards, an arrow, product cards, energy in its own lane. Cards are
+ * sized from the terms on BOTH sides together, with "+" between terms; when they do not fit in one
+ * row, reactants sit above products with the arrow between. Each card's formula is set at the size
+ * that fits it. (Sized per side, the two sides overlapped in the middle and the titles ran into
+ * each other — audit 2026-10-17.)
+ */
 function AtomMapView({ mark }: { mark: Extract<Mark, { type: "atom-map" }> }) {
-  const groupW = Math.min(170, (mark.rect.w - 130) / Math.max(mark.stage.reactants.length, mark.stage.products.length));
-  const renderSide = (items: typeof mark.stage.reactants, x0: number) => items.map((group, i) => { const x = x0 + i * (groupW + 12); const y = mark.rect.y + 72; return <g key={group.id} className="cv-in"><rect x={x} y={y} width={groupW} height={116} rx={16} fill="#fff" stroke="#cbd5e1" strokeWidth={2} /><text x={x + groupW / 2} y={y + 27} textAnchor="middle" fontSize={17} fontWeight={850} fill={INK}>{group.label}</text>{group.atoms.map((atom, j) => <g key={atom.element} transform={`translate(${x + 25 + j * ((groupW - 50) / Math.max(1, group.atoms.length - 1))},${y + 69})`}><circle r={18} fill={ELEMENT_COLOR[atom.element] ?? "#8b5cf6"} stroke="#fff" strokeWidth={2} /><text y={5} textAnchor="middle" fontSize={14} fontWeight={900} fill={atom.element === "H" ? "#334155" : "#fff"}>{atom.element}</text><text y={37} textAnchor="middle" fontSize={13} fontWeight={800} fill={MUTED}>×{atom.count}</text></g>)}</g>; });
-  const productsX = mark.rect.x + mark.rect.w - mark.stage.products.length * groupW - (mark.stage.products.length - 1) * 12;
-  const mid = mark.rect.x + mark.rect.w / 2;
-  return <g>{renderSide(mark.stage.reactants, mark.rect.x)}{renderSide(mark.stage.products, productsX)}<path d={`M${mid - 42} ${mark.rect.y + 130}H${mid + 42}`} stroke="#475569" strokeWidth={4} /><path d={`M${mid + 42} ${mark.rect.y + 130}l-14 -8v16z`} fill="#475569" /><text x={mid} y={mark.rect.y + 52} textAnchor="middle" fontSize={14} fontWeight={900} fill={MUTED}>MATTER · atoms conserved</text>{mark.stage.energy && <g><rect x={mark.rect.x + 20} y={mark.rect.y + 250} width={mark.rect.w - 40} height={82} rx={18} fill="#fef3c7" stroke="#f59e0b" strokeWidth={2} /><text x={mark.rect.x + 40} y={mark.rect.y + 280} fontSize={14} fontWeight={900} fill="#92400e">ENERGY · separate lane</text><text x={mark.rect.x + 40} y={mark.rect.y + 310} fontSize={18} fontWeight={750} fill="#92400e">{mark.stage.energy.input} → {mark.stage.energy.output}</text></g>}</g>;
+  const { reactants, products } = mark.stage;
+  const R = mark.rect;
+  const plusW = 26;
+  const arrowW = 96;
+  const n = reactants.length + products.length;
+  const oneRowW = (R.w - arrowW - plusW * Math.max(0, n - 2)) / Math.max(1, n);
+  const twoRows = oneRowW < 118;
+  const groupW = twoRows ? Math.min(176, (R.w - plusW * (Math.max(reactants.length, products.length) - 1)) / Math.max(reactants.length, products.length)) : Math.min(176, oneRowW);
+  const cardH = 116;
+  const rowW = (count: number) => count * groupW + Math.max(0, count - 1) * plusW;
+  const card = (group: typeof reactants[number], x: number, y: number) => {
+    const fit = Math.min(17, Math.floor((groupW - 16) / Math.max(1, textWidth(group.label, 1))));
+    const size = Math.max(12, fit);
+    const lines = fit >= 12 ? [group.label] : wrap(group.label, 12, groupW - 14, 2);
+    const r = Math.min(18, (groupW - 16) / (2.6 * Math.max(1, group.atoms.length)));
+    const step = (groupW - 2 * (r + 10)) / Math.max(1, group.atoms.length - 1);
+    return (
+      <g key={group.id} className="cv-in">
+        <rect x={x} y={y} width={groupW} height={cardH} rx={16} fill="#fff" stroke="#cbd5e1" strokeWidth={2} />
+        {lines.map((line, k) => <text key={k} x={x + groupW / 2} y={y + (lines.length > 1 ? 20 + k * 14 : 27)} textAnchor="middle" fontSize={lines.length > 1 ? 12 : size} fontWeight={850} fill={INK}>{line}</text>)}
+        {group.atoms.map((atom, k) => {
+          const cx = group.atoms.length === 1 ? x + groupW / 2 : x + r + 10 + k * step;
+          return (
+            <g key={atom.element} transform={`translate(${cx},${y + 69})`}>
+              <circle r={r} fill={ELEMENT_COLOR[atom.element] ?? "#8b5cf6"} stroke="#fff" strokeWidth={2} />
+              <text y={r * 0.3} textAnchor="middle" fontSize={Math.min(14, r * 0.8)} fontWeight={900} fill={atom.element === "H" ? "#334155" : "#fff"}>{atom.element}</text>
+              <text y={r + 19} textAnchor="middle" fontSize={13} fontWeight={800} fill={MUTED}>×{atom.count}</text>
+            </g>
+          );
+        })}
+      </g>
+    );
+  };
+  const row = (groups: typeof reactants, x0: number, y: number) => groups.map((g, i) => {
+    const x = x0 + i * (groupW + plusW);
+    return (
+      <g key={g.id}>
+        {card(g, x, y)}
+        {i < groups.length - 1 && <text x={x + groupW + plusW / 2} y={y + cardH / 2 + 8} textAnchor="middle" fontSize={24} fontWeight={800} fill={MUTED}>+</text>}
+      </g>
+    );
+  });
+  const top = R.y + 72;
+  let body: React.ReactNode;
+  if (twoRows) {
+    const y2 = top + cardH + 46;
+    const midX = R.x + R.w / 2;
+    body = (
+      <g>
+        {row(reactants, R.x + (R.w - rowW(reactants.length)) / 2, top)}
+        <path d={`M${midX} ${top + cardH + 8}V${y2 - 10}`} stroke="#475569" strokeWidth={4} />
+        <path d={`M${midX} ${y2 - 6}l-8 -14h16z`} fill="#475569" />
+        {row(products, R.x + (R.w - rowW(products.length)) / 2, y2)}
+      </g>
+    );
+  } else {
+    const leftW = rowW(reactants.length);
+    const total = leftW + arrowW + rowW(products.length);
+    const x0 = R.x + (R.w - total) / 2;
+    const ax = x0 + leftW + 14;
+    body = (
+      <g>
+        {row(reactants, x0, top)}
+        <path d={`M${ax} ${top + cardH / 2}H${ax + arrowW - 28}`} stroke="#475569" strokeWidth={4} />
+        <path d={`M${ax + arrowW - 28} ${top + cardH / 2}l-14 -8v16z`} fill="#475569" />
+        {row(products, x0 + leftW + arrowW, top)}
+      </g>
+    );
+  }
+  const energyY = twoRows ? top + 2 * cardH + 66 : R.y + 250;
+  return (
+    <g>
+      <text x={R.x + R.w / 2} y={R.y + 52} textAnchor="middle" fontSize={14} fontWeight={900} fill={MUTED}>MATTER · atoms conserved</text>
+      {body}
+      {mark.stage.energy && (
+        <g>
+          <rect x={R.x + 20} y={energyY} width={R.w - 40} height={twoRows ? 64 : 82} rx={18} fill="#fef3c7" stroke="#f59e0b" strokeWidth={2} />
+          <text x={R.x + 40} y={energyY + (twoRows ? 24 : 30)} fontSize={14} fontWeight={900} fill="#92400e">ENERGY · separate lane</text>
+          <text x={R.x + 40} y={energyY + (twoRows ? 50 : 60)} fontSize={18} fontWeight={750} fill="#92400e">{mark.stage.energy.input} → {mark.stage.energy.output}</text>
+        </g>
+      )}
+    </g>
+  );
 }
 
 /* ── code: a listing walked through, line by line ─────────────────────────────────────────── */
@@ -908,7 +993,7 @@ function ArrowView({ mark, vars, focused, reducedMotion }: { mark: Extract<Mark,
   const heads = useMemo(() => arrowHead(p1, bezier(p0, c, p1, 0.86), 15, 4.4), [p0, c, p1]);
   const rate = mark.rate ? Math.max(0, Math.min(1, evalExpr(mark.rate, vars, 1))) : 1;
   return (
-    <g className={focused ? "cv-focus" : undefined}>
+    <g className={focused ? "cv-focus" : undefined} data-arrow="">
       <Ink points={points} width={5} color={mark.color} />
       <g className="cv-in cv-late">
         {heads.map((d, i) => <path key={i} d={d} fill={mark.color} />)}

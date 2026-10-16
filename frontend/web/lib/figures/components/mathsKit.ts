@@ -1,3 +1,4 @@
+import { fitText } from "../cuts";
 import type { FigureDrawing, FigurePart, FigureShape, Ink, Pt } from "../types";
 
 /**
@@ -24,7 +25,7 @@ export function optNum(v: unknown): number | undefined {
   return Number.isFinite(n) ? n : undefined;
 }
 export function str(v: unknown, fallback: string, max = 40): string {
-  return typeof v === "string" && v.trim() ? v.trim().slice(0, max) : typeof v === "number" && Number.isFinite(v) ? String(v) : fallback;
+  return typeof v === "string" && v.trim() ? fitText(v.trim(), max) : typeof v === "number" && Number.isFinite(v) ? String(v) : fallback;
 }
 export function bool(v: unknown, fallback: boolean): boolean {
   if (typeof v === "boolean") return v;

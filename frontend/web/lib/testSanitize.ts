@@ -39,9 +39,31 @@ export function sanitizeTestBank(raw: unknown, fallbackTopic: string): TestBank 
   return { topic, questions: questions.slice(0, 10) };
 }
 
+/** Questions whose model answer or marking points contain a sum that does not add up. */
+export function testArithmeticIssues(questions: TestQuestion[]): Array<{ id: string; calculation: string; computed: number }> {
+  return questions.flatMap((q) => checkNumbers([q.rubric.modelAnswer, ...q.rubric.keyPoints].join(" \n ")).map((n) => ({ id: q.id, calculation: n.calculation, computed: n.computed })));
+}
+
+const plain = (t: string) => t.replace(/(\d),(\d{3})(?!\d)/g, "$1$2").replace(/(\d),(\d{3})(?!\d)/g, "$1$2");
+/** The numbers a sentence states that matter: two or more digits, a decimal, money or a percentage. */
+const statedNumbers = (t: string) => (plain(t).match(/[$£€]?\d+(?:\.\d+)?%?/g) ?? []).map((n) => n.replace(/^[$£€]/, "").replace(/%$/, "")).filter((n) => n.length >= 2 || n.includes("."));
+
+/**
+ * FEEDBACK STATES ONLY NUMBERS IT WAS GIVEN. The grader told a student the correct profit was
+ * $40,800 when it is $41,800 (audit 2026-10-17) — a number it computed itself, wrongly. A feedback
+ * sentence stating a number that is not in the question, the mark scheme or the student's answer, or
+ * a sum that does not add up, is removed; the student is never told a wrong figure.
+ */
+export function groundedFeedback(feedback: string, sources: string[]): string {
+  const known = new Set(sources.flatMap(statedNumbers));
+  const sentences = feedback.split(/(?<=[.!?])\s+/).filter(Boolean);
+  const kept = sentences.filter((sentence) => !checkNumbers(sentence).length && statedNumbers(sentence).every((n) => known.has(n)));
+  return kept.join(" ").trim();
+}
+
 /** Validates/clamps a raw grade-test / grade-oral-test model response, keyed against the
  *  question ids that were actually asked so a stray/hallucinated id can never surface. */
-export function sanitizeGradeResults(raw: unknown, questionIds: string[], questionRubrics: Pick<TestQuestion, "id" | "rubric">[] = [], answers: Record<string, string> = {}): TestGradeResult[] {
+export function sanitizeGradeResults(raw: unknown, questionIds: string[], questionRubrics: Array<Pick<TestQuestion, "id" | "rubric"> & { prompt?: string }> = [], answers: Record<string, string> = {}): TestGradeResult[] {
   const obj = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
   const rawResults = Array.isArray(obj.results) ? obj.results : [];
   const validIds = new Set(questionIds);
@@ -99,7 +121,14 @@ export function sanitizeGradeResults(raw: unknown, questionIds: string[], questi
       correct: status === "correct",
       // 400, not 300: feedback is now an explanation of why the answer was judged that way rather
       // than a one-line verdict, and a cap that clips the second sentence mid-word reads as a bug.
-      feedback: typeof rec.feedback === "string" ? rec.feedback.trim().slice(0, 400) : "",
+      feedback: (() => {
+        const q = questionRubrics.find((x) => x.id === id);
+        const raw = typeof rec.feedback === "string" ? rec.feedback.trim() : "";
+        if (!q) return raw.slice(0, 400);
+        const grounded = groundedFeedback(raw, [q.prompt ?? "", q.rubric.modelAnswer, ...q.rubric.keyPoints, answers[id] ?? ""]);
+        // Everything it said rested on a figure it invented: the student gets the model answer instead.
+        return (grounded || (status === "correct" ? "" : `The model answer: ${q.rubric.modelAnswer}`)).slice(0, 400);
+      })(),
       pointsEarned,
       pointsAvailable: available,
       missingKeyPoints,

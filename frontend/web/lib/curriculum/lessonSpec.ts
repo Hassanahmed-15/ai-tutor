@@ -1,6 +1,8 @@
 import type { SuprnotesContentBlock, SuprnotesLessonInput } from "@/lib/suprnotes";
 import { PHYSICAL } from "../canvas/visualPolicy";
 import { classifyInstructionalTask } from "../canvas/instructionalTask";
+import { namedIn } from "../canvas/labelPolicy";
+import { figureComponent } from "../figures/registry";
 
 /**
  * A CURRICULUM LESSON, SPECIFIED BEFORE IT IS WRITTEN (owner, 2026-10-14: "never ask the model to
@@ -41,6 +43,22 @@ export type OutcomeContract = {
   transfer: string;
 };
 
+/**
+ * AN EXAM QUESTION WITH ITS MARK SCHEME. Lessons taught the content but never showed how it is
+ * examined: auditors scored exam readiness 5.5–6 for "no command words, no mark-scheme phrasing, no
+ * mark allocation" (audit 2026-10-17). Each outcome gets one question in the qualification's style,
+ * worth as many marks as it has marking points, written as the mark scheme words them.
+ */
+export type ExamPractice = {
+  outcomeRef: number;
+  commandWord: string;
+  question: string;
+  marks: number;
+  markPoints: string[];
+  modelAnswer: string;
+  lostMarks: string;
+};
+
 export type BoardBudget = { min: number; max: number; recommended: number; reason: string };
 
 export type VisualRequirement = {
@@ -62,7 +80,14 @@ export function visualRequirements(outcomes: SpecOutcome[], contracts: OutcomeCo
     const mustShow: string[] = [];
     const add = (stage: string, ...items: string[]) => { if (!stages.includes(stage)) stages.push(stage); mustShow.push(...items); };
     const task = classifyInstructionalTask({ title: outcome.text, brief: contract?.teach ?? "", script: contractEvidence, objects: [], requiredVisual: undefined });
-    if (task.figure) add("figure", ...(task.requiredParts ?? []));
+    // The figure's minimum parts, plus every part the OUTCOME itself names: "Label a dicot leaf's
+    // cuticle, stomata, guard cells, mesophyll, air spaces, vascular bundles, chloroplasts and
+    // epidermis" required only palisade, stoma and xylem, so five listed structures were never
+    // labelled (coverage audit 2026-10-17).
+    if (task.figure) {
+      const named = (figureComponent(task.figure)?.parts ?? []).filter((p) => namedIn(outcome.text, p.name) || namedIn(outcome.text, p.id.replace(/-/g, " "))).map((p) => p.id);
+      add("figure", ...(task.requiredParts ?? []), ...named);
+    }
     else if (/molecular (shape|geometry|structure)|shapes? of (a |the |simple )?molecules?|vsepr|bond angle|lone pairs?|covalent bond|structural formula|displayed formula/i.test(text)) add("molecule", "named atoms", "bonds", "geometry", "bond angle or lone pairs when required");
     // Chemistry only: "product" alone is also an economics and a sociology word (a company's product).
     else if (/photosynthesis|respiration|conservation of (?:mass|matter)|\batoms?\b|balanced (?:chemical )?equation|reactants?\b.*\bproducts?\b/i.test(text)) add("atom-map", "reactant and product atom counts", "separate energy lane when relevant");
@@ -79,7 +104,9 @@ export function visualRequirements(outcomes: SpecOutcome[], contracts: OutcomeCo
       // an abstract grid with no words on it (Global Perspectives audit 2026-10-15).
       else if (PHYSICAL.test(text)) add("illustration", "distinct visible parts", "labels for every required part");
       else add("compare", "both sides", "distinguishing features");
-    } else if (/program|code|algorithm|loop|variable|function/i.test(text)) add("code", "real code", "execution steps");
+    // Programming only: "variable cost" made an accounting budget statement a Python board, and a
+    // "function" is also a maths and a biology word (audit 2026-10-17).
+    } else if (/\b(program(s|ming|med)?|source code|pseudocode|algorithms?|python|java|loops?|iteration|subroutines?|procedures? (call|in code))\b/i.test(outcome.text)) add("code", "real code", "execution steps");
     const required = stages.length > 0;
     if (!required) add("scene", "the central relationship or definition");
     return {
@@ -120,6 +147,8 @@ export type LessonSpec = {
   visualRequirements?: VisualRequirement[];
   boardBudget?: BoardBudget;
   checkpoint: Array<{ question: string; answer: string; outcomeRef: number }>;
+  /** Optional so specs cached before spec-3 remain readable. */
+  examPractice?: ExamPractice[];
 };
 
 /**
@@ -144,7 +173,7 @@ export function boardBudget(outcomes: SpecOutcome[], level = ""): BoardBudget {
 export function depthRule(courseLabel: string): string {
   if (/global perspectives/i.test(courseLabel)) return "GLOBAL PERSPECTIVES: teach the issue itself — its causes, its consequences, real evidence (named places, data, organisations) and possible courses of action with their likely effects — and then the personal, local, national and global perspectives on it. Students are marked on researching, analysing and evaluating issues, not on naming the four perspectives.";
   if (/sociolog|psycholog|histor|geograph|politic|government|law|religio|islamiyat|pakistan studies|business|econom|media|classical|philosoph|english lit|literature|art history|african american/i.test(courseLabel)) return "EXAM DEPTH FOR THIS SUBJECT: answers at this level are marked on knowledge, application and evaluation. Teach with at least two specific named sources the syllabus area is known for — theorists, studies, case studies, real examples with places and dates (standard textbook ones) — and, wherever an outcome says explain, assess, evaluate, judge or discuss, a board that weighs strengths against limitations, gives a counter-view and reaches a supported judgement.";
-  if (/math|calculus|statistic|physic|chemistr|biolog|science|computer|computing|engineering|further/i.test(courseLabel)) return "EXAM DEPTH FOR THIS SUBJECT: teach mechanisms and reasons, not only facts; every calculation-type outcome gets a full worked example with units and a second one the student completes; use the qualification's notation and the command words it examines.";
+  if (/math|calculus|statistic|physic|chemistr|biolog|science|computer|computing|engineering|further/i.test(courseLabel)) return "EXAM DEPTH FOR THIS SUBJECT: teach mechanisms and reasons, not only facts; every calculation-type outcome gets a full worked example with units and a second one the student completes; use the qualification's notation and the command words it examines. Every standard case and question set-up the exam uses for an outcome is its own key point (each test or condition a topic has, each standard diagram or configuration examiners draw, each direction of a calculation) — a lesson that teaches only the easiest case does not cover the outcome.";
   return "EXAM DEPTH: teach to the depth an examiner at this level rewards, with specific examples and the qualification's command words.";
 }
 
@@ -152,7 +181,7 @@ export function depthRule(courseLabel: string): string {
 export const SPEC_SCHEMA = {
   type: "object",
   additionalProperties: false,
-  required: ["prerequisites", "requiredTerms", "requiredMethods", "commandWords", "depth", "misconceptions", "outOfScope", "boards", "outcomeContracts", "checkpoint"],
+  required: ["prerequisites", "requiredTerms", "requiredMethods", "commandWords", "depth", "misconceptions", "outOfScope", "boards", "outcomeContracts", "checkpoint", "examPractice"],
   properties: {
     prerequisites: { type: "array", items: { type: "string" } },
     requiredTerms: { type: "array", items: { type: "string" } },
@@ -201,6 +230,23 @@ export const SPEC_SCHEMA = {
         properties: { question: { type: "string" }, answer: { type: "string" }, outcomeRef: { type: "integer" } },
       },
     },
+    examPractice: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["outcomeRef", "commandWord", "question", "marks", "markPoints", "modelAnswer", "lostMarks"],
+        properties: {
+          outcomeRef: { type: "integer" },
+          commandWord: { type: "string" },
+          question: { type: "string" },
+          marks: { type: "integer" },
+          markPoints: { type: "array", items: { type: "string" } },
+          modelAnswer: { type: "string" },
+          lostMarks: { type: "string" },
+        },
+      },
+    },
   },
 } as const;
 
@@ -208,13 +254,14 @@ export function specSystemPrompt(courseLabel: string, level: string, outcomes: S
   const budget = boardBudget(outcomes, level);
   return `You plan ONE lesson of an official course: ${courseLabel}, ${level}.
 You are given the lesson's official learning outcomes (numbered) and the syllabus text they come from. The outcomes ARE the lesson — do not add, drop or reinterpret any. Plan how to teach exactly them, at exactly this level:
-- boards: ${budget.min}-${budget.max} boards in teaching order (aim for ${budget.recommended}; give each board one teachable idea at exam depth rather than splitting one idea to fill space). Every outcome number appears in at least one board's outcomeRefs. Each board: a short student-facing title, its objective, the key points that MUST be taught (facts, definitions, formulas, steps — consistent with the syllabus text and correct for this level), a workedExample (a full worked example with its answer when the outcome involves a calculation, method or diagram; otherwise ""), and evidencePages (the syllabus pages it draws on).
+- boards: ${budget.min}-${budget.max} boards in teaching order (aim for ${budget.recommended}; give each board one teachable idea at exam depth rather than splitting one idea to fill space). Every outcome number appears in at least one board's outcomeRefs. Each board: a short student-facing title, its objective, 3 to 5 key points that MUST be taught (facts, definitions, formulas, steps — a point about how or why something happens includes its reason or mechanism; consistent with the syllabus text and correct for this level; together they leave nothing of the board's idea out — an idea needing more than five points is two boards), a workedExample on EVERY board, written as 2 to 4 numbered steps that end in the answer (a calculation: every substitution, value and unit; a science structure or process: one specific case worked from structure or cause through each linked step to its effect; a humanities, business or language idea: one named real case or text analysed step by step to a judgement), and evidencePages (the syllabus pages it draws on).
 - outcomeContracts: exactly one object for every outcome number. For each, state what the lesson will teach (teach), the visible evidence a student should be able to point to (visualEvidence; say "none" only when a visual is genuinely inappropriate), one answerable understanding check (check), and one new-context transfer task (transfer). These are teaching requirements, not vague promises.
 - depth: one or two sentences on the depth this level expects (vocabulary, notation, mathematical level, how far to go).
 - commandWords: the syllabus command words these outcomes use (define, explain, calculate…).
 - prerequisites: what the student must already know; requiredTerms and requiredMethods: the vocabulary and methods this level expects.
 - misconceptions: common mistakes at this level. outOfScope: only content that belongs to a LATER lesson or a HIGHER level (do not teach it) — never the named studies, theorists, case studies, examples or evaluation that exam answers at this level are expected to use.
 - checkpoint: one short question per outcome (outcomeRef = its number) in the style of this qualification, with the correct answer.
+- examPractice: one exam-style question per outcome, exactly as this qualification's papers set them. commandWord: the syllabus command word the question opens with (State, Describe, Explain, Calculate, Show that, Compare, Evaluate…). question: the full question, with any data, diagram description or figures it needs. marks: 2 to 6. markPoints: exactly one point per mark, each worded as the mark scheme credits it — the precise term, value with unit, or step of working (for a calculation: method, substitution, answer with unit). modelAnswer: a full-mark answer a strong candidate writes, in exam language. lostMarks: the most common way candidates lose marks on this question and what examiners want instead. Use real-world contexts and numbers in the style of past papers; never quote a real past paper question.
 ${depthRule(courseLabel)}
 Stay within the outcomes' scope and this level, but teach them to the depth the exam rewards. If the syllabus text does not state a fact you need, use standard, uncontroversial textbook knowledge for this level.`;
 }
@@ -262,7 +309,26 @@ export function completeSpec(spec: LessonSpec): LessonSpec {
     check: `Can you explain or demonstrate: ${o.text}`,
     transfer: `Apply the same idea to a new example: ${o.text}`,
   });
-  return { ...spec, boards, boardBudget: budget, outcomeContracts, visualRequirements: visualRequirements(spec.outcomes, outcomeContracts), checkpoint: spec.checkpoint.filter((c) => c.outcomeRef >= 1 && c.outcomeRef <= n) };
+  return { ...spec, boards, boardBudget: budget, outcomeContracts, visualRequirements: visualRequirements(spec.outcomes, outcomeContracts), checkpoint: spec.checkpoint.filter((c) => c.outcomeRef >= 1 && c.outcomeRef <= n), examPractice: cleanExamPractice(spec.examPractice ?? [], n) };
+}
+
+/** Exam questions made consistent: one mark per marking point (2–6), the command word opening the question. */
+export function cleanExamPractice(list: ExamPractice[], outcomes: number): ExamPractice[] {
+  return list
+    .filter((q) => q && q.outcomeRef >= 1 && q.outcomeRef <= outcomes && q.question?.trim() && (q.markPoints ?? []).filter((m) => m?.trim()).length >= 2)
+    .map((q) => {
+      const markPoints = q.markPoints.map((m) => m.trim()).filter(Boolean).slice(0, 6);
+      const commandWord = (q.commandWord?.trim() || q.question.trim().split(/\s+/)[0]).replace(/^\w/, (c) => c.toUpperCase());
+      return { ...q, commandWord, question: q.question.trim(), marks: markPoints.length, markPoints, modelAnswer: q.modelAnswer?.trim() ?? "", lostMarks: q.lostMarks?.trim() ?? "" };
+    });
+}
+
+/**
+ * The lesson's exam-practice question: the one worth the most marks (a multi-point "explain" or a
+ * full calculation teaches technique; a 2-mark "state" teaches little), the later outcome on a tie.
+ */
+export function examBoardQuestion(spec: Pick<LessonSpec, "examPractice">): ExamPractice | undefined {
+  return [...(spec.examPractice ?? [])].sort((a, b) => b.marks - a.marks || b.outcomeRef - a.outcomeRef)[0];
 }
 
 /** The spec as the lesson document the existing source-grounded lecture writer takes. */
@@ -297,12 +363,37 @@ export function lessonDocument(
           `Transfer task: ${c!.transfer}`,
           c!.visualEvidence ? `Visible evidence: ${c!.visualEvidence}` : "",
         ]),
+        // How this board's outcome is examined: its last sentence asks a short question in this style.
+        ...b.outcomeRefs.map((r) => spec.examPractice?.find((q) => q.outcomeRef === r)).filter(Boolean).map((q) => `How it is examined: "${q!.question}" [${q!.marks} marks] — the mark scheme credits: ${q!.markPoints.join("; ")}.`),
       ].filter(Boolean),
       facts: outs.map((o) => ({ claim: o.text, source: `${meta.framework}${o.code ? ` ${o.code}` : ""}`, confidence: "official" })),
       pageNumber: pages[0] ?? evidence[0]?.page,
       sourceOrder: i,
     };
   });
+  // EXAM PRACTICE: the lesson ends on one real exam-style question answered the way the mark scheme
+  // wants it — command word, marks, one marking point per mark, the mistake that loses marks.
+  const exam = examBoardQuestion(spec);
+  const examPlan = exam ? [{ id: `b${spec.boards.length + 1}`, title: "Exam practice", objective: `Answer an exam question on outcome ${exam.outcomeRef} for full marks.`, outcomeRefs: [exam.outcomeRef], visualRequirement: [], sourceBlockIds: [`c${blocks.length + 1}`] }] : [];
+  if (exam) {
+    blocks.push({
+      id: `c${blocks.length + 1}`,
+      type: "exam-practice",
+      heading: "Exam practice",
+      text: [
+        `Exam question (${exam.marks} marks): ${exam.question}`,
+        `Command word: ${exam.commandWord}.`,
+        `Mark scheme — one mark each:\n${exam.markPoints.map((m) => `- ${m}`).join("\n")}`,
+        exam.modelAnswer ? `Model answer: ${exam.modelAnswer}` : "",
+        exam.lostMarks ? `Where candidates lose marks: ${exam.lostMarks}` : "",
+      ].filter(Boolean).join("\n\n"),
+      keyIdeas: exam.markPoints,
+      teachingHints: [`Level: ${spec.level}. Answer exactly as the mark scheme credits.`],
+      exam: { commandWord: exam.commandWord, question: exam.question, marks: exam.marks, markPoints: exam.markPoints, lostMarks: exam.lostMarks },
+      facts: [],
+      sourceOrder: blocks.length,
+    });
+  }
   return {
     schemaVersion: "suprnotes.lesson_input.v1",
     source: {
@@ -333,16 +424,17 @@ export function lessonDocument(
       targetBeatCount: blocks.length,
       boardBudget: spec.boardBudget ?? boardBudget(spec.outcomes, spec.level),
       outcomeContracts: spec.outcomeContracts ?? [],
-      visualRequirements: spec.visualRequirements ?? visualRequirements(spec.outcomes, spec.outcomeContracts ?? []),
+      // Recomputed, not read from the cache: the rules are deterministic and improve over time.
+      visualRequirements: visualRequirements(spec.outcomes, spec.outcomeContracts ?? []),
       contentBlockIds: blocks.map((b) => b.id),
       beats: spec.boards.map((b, i) => ({
         id: `b${i + 1}`,
         title: b.title,
         objective: b.objective,
         outcomeRefs: b.outcomeRefs,
-        visualRequirement: b.outcomeRefs.map((r) => (spec.visualRequirements ?? visualRequirements(spec.outcomes, spec.outcomeContracts ?? [])).find((v) => v.outcomeRef === r)).filter(Boolean),
+        visualRequirement: b.outcomeRefs.map((r) => visualRequirements(spec.outcomes, spec.outcomeContracts ?? []).find((v) => v.outcomeRef === r)).filter(Boolean),
         sourceBlockIds: [`c${i + 1}`],
-      })),
+      })).concat(examPlan as never[]),
     },
     webPreview: { status: "not_requested" },
   };
@@ -357,6 +449,8 @@ export function lessonSpecText(spec: LessonSpec): string {
     `Depth: ${spec.depth}`,
     ...spec.boards.map((b) => `${b.title}: ${b.keyPoints.join("; ")}${b.workedExample ? ` | Worked example: ${b.workedExample}` : ""}`),
     ...(spec.outcomeContracts ?? []).map((c) => `Outcome ${c.outcomeRef} contract — teach: ${c.teach}; check: ${c.check}; transfer: ${c.transfer}`),
+    // When the student asks how this comes up in an exam, Aria answers with these, not the lesson's own example.
+    ...(spec.examPractice ?? []).map((q) => `Exam-style question on outcome ${q.outcomeRef}: "${q.question}" [${q.marks} marks]. Mark scheme (one mark each): ${q.markPoints.join("; ")}. Model answer: ${q.modelAnswer}. Candidates lose marks by: ${q.lostMarks}`),
     spec.outOfScope.length ? `Outside this level: ${spec.outOfScope.join("; ")}` : "",
   ].filter(Boolean).join("\n\n");
 }

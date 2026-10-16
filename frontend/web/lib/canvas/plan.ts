@@ -1,6 +1,7 @@
 import { CANVAS_STAGES, type CanvasPlanBeat, type CanvasStage } from "./types";
 import { slug } from "./validate";
 import { predictionIndex } from "./predict";
+import { figureComponent } from "../figures/registry";
 
 /**
  * A canvas lecture's PLAN, as the model wrote it, made safe — pure, so it is unit-tested
@@ -41,17 +42,12 @@ export function addTransferPrompt(script: string, title: string, interaction: Ca
   // The planner sometimes writes “Predict what happens.” as a statement. It is still an explicit
   // prediction, but the player must pause on a question; make that punctuation unambiguous.
   const normalized = script.replace(/(\bpredict\b[^.!?]*)([.!])(?=\s|$)/i, "$1?");
-  const sentences = canvasSentences(normalized);
-  const predict = predictionIndex(sentences);
-  if (predict < 0 || predict >= sentences.length - 1) return normalized;
-  const last = sentences.at(-1) ?? "";
-  const concrete = /\b(apply|use|new|another|different|case|example|situation|scenario|suppose|imagine|given|calculate|if|when|now try|exam|state|find|show|illustrate|sketch|work out|determine|write|solve|explain)\b/i;
-  if (concrete.test(last)) return normalized;
-  // Cue words are English: a lesson in Urdu or Arabic keeps its own ending rather than an English sentence.
-  if (!/[A-Za-z]{3}/.test(last)) return normalized;
-  // ("Now apply the same reasoning to a new the two square roots example" read badly; audit 2026-10-17.)
+  // Nothing is appended. A fixed closing line ("Now try the same reasoning on a new example of your
+  // own…") was added to every board without a concrete transfer and was read out on most boards of
+  // every lesson — filler a student hears as a tic (audit 2026-10-17). A board that ends on its
+  // answer simply ends there.
   void title;
-  return `${normalized.replace(/\s+$/, "")} Now try the same reasoning on a new example of your own, and explain what changes.`;
+  return normalized;
 }
 
 export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBeat[] } | null {
@@ -64,7 +60,10 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
     const b = (item && typeof item === "object" ? item : {}) as Record<string, unknown>;
     let script = typeof b.script === "string" ? b.script.replace(/\s+/g, " ").trim() : "";
     const title = typeof b.title === "string" ? b.title.trim().slice(0, 60) : "";
-    const stage = (CANVAS_STAGES as readonly string[]).includes(String(b.stage)) ? (b.stage as CanvasStage) : "scene";
+    const planned = (CANVAS_STAGES as readonly string[]).includes(String(b.stage)) ? (b.stage as CanvasStage) : "scene";
+    // "diagram": "picture" is the planner asking for a generated textbook picture of a real thing; the
+    // lesson visual policy still checks it (not abstract, not maths, within the picture budget).
+    const stage: CanvasStage = typeof b.diagram === "string" && /^\s*picture\s*$/i.test(b.diagram) && ["scene", "illustration", "compare", "flow"].includes(planned) ? "illustration" : planned;
     if (!script || !title || canvasSentences(script).length < 2) return;
     const id = `b${beats.length + 1}`;
     const objects = (Array.isArray(b.objects) ? b.objects : []).map((o) => slug(o, "")).filter(Boolean).slice(0, 4);
@@ -73,7 +72,8 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
     const insideObject = inside ? slug(inside.object, "") : "";
     const overview = b.overview === true;
     script = addTransferPrompt(script, title, b.interaction === "try" || b.interaction === "draw" || b.interaction === "quiz" ? b.interaction : null, overview);
-    const cycle = teachingCycle(script, b.interaction === "try" || b.interaction === "draw" || b.interaction === "quiz" ? b.interaction : null, overview);
+    // An exam-practice board models the answer: no prediction card of its own.
+    const cycle = stage === "exam" ? { interaction: null } : teachingCycle(script, b.interaction === "try" || b.interaction === "draw" || b.interaction === "quiz" ? b.interaction : null, overview);
     beats.push({
       id,
       title,
@@ -89,6 +89,8 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
       // A refresher opens the lesson: only on the first two boards, and only one (below).
       ...(b.refresher === true && beats.length < 2 ? { refresher: true } : {}),
       ...planSource(b.source),
+      // The planner's diagram, only when it names a real catalogue entry.
+      ...(typeof b.diagram === "string" && figureComponent(b.diagram.trim()) ? { plannedFigure: b.diagram.trim() } : {}),
       ...(Array.isArray(b.sentenceBlocks) ? { sentenceBlocks: b.sentenceBlocks.map((v) => (typeof v === "string" ? v.replace(/[{}\s]/g, "") : "")).slice(0, 40) } : {}),
     });
     void i;

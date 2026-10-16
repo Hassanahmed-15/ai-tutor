@@ -24,6 +24,69 @@ const answerWords = (s: string) => (s.toLowerCase().match(/\p{L}[\p{L}\p{M}'-]+/
 // every attempt at a supply-shift board).
 const answerNumbers = (s: string): string[] => [...(s.replace(/(\d),(\d{3})/g, "$1$2").match(/(?<![A-Za-z_])\d+(?:\.\d+)?(?![A-Za-z])/g) ?? [])];
 
+type BoardText = { text: string; s: number; holder?: Record<string, unknown> };
+
+/**
+ * Every piece of text the board shows, with the sentence it appears on and the element that holds
+ * its timing. An equation token has no timing of its own: it appears with the first step that
+ * places it (treating every token as shown from sentence 0 rejected maths boards whose answer is
+ * only worked in a later step — similarity audit 2026-10-17).
+ */
+function boardTexts(spec: CanvasBoardSpec): BoardText[] {
+  const out: BoardText[] = [];
+  const walk = (value: unknown, inheritedS: number, holder: Record<string, unknown> | undefined) => {
+    if (!value || typeof value !== "object") return;
+    if (Array.isArray(value)) { value.forEach((item) => walk(item, inheritedS, holder)); return; }
+    const record = value as Record<string, unknown>;
+    const own = typeof record.s === "number";
+    const s = own ? (record.s as number) : inheritedS;
+    const h = own ? record : holder;
+    for (const [childKey, child] of Object.entries(record)) {
+      if (typeof child === "string" && /^(label|name|title|text|sub|caption|detail)$/.test(childKey)) out.push({ text: child, s, holder: h });
+      else if (child && typeof child === "object") walk(child, s, h);
+    }
+  };
+  walk(spec.notes, 0, undefined);
+  if (spec.stage.kind === "equation") {
+    const first = new Map<string, number>();
+    for (const step of [...spec.stage.steps].sort((a, b) => a.s - b.s)) for (const id of step.order) if (!first.has(id)) first.set(id, step.s);
+    for (const token of spec.stage.tokens) if (first.has(token.id)) out.push({ text: token.text, s: first.get(token.id)! });
+    walk(spec.stage.steps, 0, undefined);
+  } else {
+    walk(spec.stage, 0, undefined);
+  }
+  return out;
+}
+
+/** The board text that gives the answer away before the reveal sentence, and why. */
+function revealLeaks(spec: CanvasBoardSpec, beat: Pick<CanvasPlanBeat, "teachingCycle" | "script">): Array<{ mark: BoardText; why: string }> {
+  const cycle = beat.teachingCycle;
+  if (!cycle) return [];
+  const sentences = beat.script.split(/(?<=[.!?۔؟])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
+  const reveal = sentences[cycle.reveal] ?? "";
+  if (!reveal) return [];
+  const early = boardTexts(spec).filter((m) => m.s < cycle.reveal);
+  // What Aria has already SAID — the worked example before the question, and the question's own
+  // givens — may be on the board: the scale factor 1.5 worked out in sentence 1 is not a leak of an
+  // answer that also uses 1.5 (similarity audit 2026-10-17).
+  const said = sentences.slice(0, cycle.predict + 1).join(" ");
+  const given = new Set(answerNumbers(said));
+  const out: Array<{ mark: BoardText; why: string }> = [];
+  for (const number of answerNumbers(reveal).filter((n) => !given.has(n))) {
+    for (const mark of early.filter((m) => answerNumbers(m.text).includes(number))) out.push({ mark, why: `the answer value ${number} is visible before the reveal in "${mark.text}"` });
+  }
+  const saidWords = new Set(answerWords(said));
+  const revealWords = [...new Set(answerWords(reveal))].filter((w) => !saidWords.has(w));
+  if (revealWords.length >= 2) {
+    for (const mark of early) {
+      const shown = new Set(answerWords(mark.text));
+      const shared = revealWords.filter((word) => shown.has(word)).length;
+      if (shared >= 2 && shared / revealWords.length >= 0.7) out.push({ mark, why: `the reveal is already printed before the student predicts: "${mark.text}"` });
+    }
+  }
+  return out;
+}
+
 /**
  * A prediction is not a prediction when the board has already printed the answer. This inspects
  * only the authored board marks (not the answer options, which must of course include one correct
@@ -33,59 +96,45 @@ export function predictionRevealIssues(spec: CanvasBoardSpec, beat: Pick<CanvasP
   const cycle = beat.teachingCycle;
   if (!cycle) return [];
   const sentences = beat.script.split(/(?<=[.!?۔؟])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
-  const reveal = sentences[cycle.reveal] ?? "";
-  if (!reveal) return ["the planned reveal sentence is missing"];
+  if (!sentences[cycle.reveal]) return ["the planned reveal sentence is missing"];
+  return [...new Set(revealLeaks(spec, beat).map((l) => l.why))];
+}
 
-  const early: string[] = [];
-  const walk = (value: unknown, inheritedS = 0, key = "") => {
-    if (!value || typeof value !== "object") return;
-    if (Array.isArray(value)) { value.forEach((item) => walk(item, inheritedS, key)); return; }
-    const record = value as Record<string, unknown>;
-    const s = typeof record.s === "number" ? record.s : inheritedS;
-    for (const [childKey, child] of Object.entries(record)) {
-      if (typeof child === "string" && /^(label|name|title|text|sub|caption)$/.test(childKey) && s < cycle.reveal) early.push(child);
-      else if (child && typeof child === "object") walk(child, s, childKey);
-    }
-  };
-  walk(spec.notes);
-  walk(spec.stage);
-
-  const issues: string[] = [];
-  // Numbers the question itself gives (the starting price, the sample size) may be on the board already.
-  const given = new Set(answerNumbers(sentences[cycle.predict] ?? ""));
-  const revealNumbers = answerNumbers(reveal).filter((n) => !given.has(n));
-  for (const number of revealNumbers) {
-    const leak = early.find((text) => answerNumbers(text).includes(number));
-    if (leak) issues.push(`the answer value ${number} is visible before the reveal in "${leak}"`);
+/**
+ * Holds back what would give the answer away: an element whose text carries the answer appears on
+ * the reveal sentence instead of before it, and an arrow never appears before the things it joins.
+ * Rejecting such a board instead sent 3 of 4 maths boards to the plain backup (audit 2026-10-17).
+ * Returns how many elements were moved; what cannot be moved (an equation token) is left for the gate.
+ */
+export function deferRevealLeaks(spec: CanvasBoardSpec, beat: Pick<CanvasPlanBeat, "teachingCycle" | "script">): number {
+  const cycle = beat.teachingCycle;
+  if (!cycle) return 0;
+  let moved = 0;
+  for (const { mark } of revealLeaks(spec, beat)) {
+    if (mark.holder && typeof mark.holder.s === "number" && mark.holder.s < cycle.reveal) { mark.holder.s = cycle.reveal; moved++; }
   }
-  const revealWords = [...new Set(answerWords(reveal))];
-  if (revealWords.length >= 2) {
-    const leak = early.find((text) => {
-      const shown = new Set(answerWords(text));
-      const shared = revealWords.filter((word) => shown.has(word)).length;
-      return shared >= 2 && shared / revealWords.length >= 0.7;
-    });
-    if (leak) issues.push(`the reveal is already printed before the student predicts: "${leak}"`);
+  if (moved && (spec.stage.kind === "flow" || spec.stage.kind === "scene")) {
+    const at = new Map<string, number>(((spec.stage.kind === "flow" ? spec.stage.nodes : spec.stage.items) as Array<{ id: string; s: number }>).map((n) => [n.id, n.s]));
+    for (const arrow of spec.stage.arrows) arrow.s = Math.max(arrow.s, at.get(arrow.from) ?? 0, at.get(arrow.to) ?? 0);
   }
-  return [...new Set(issues)];
+  return moved;
 }
 
 /** Plan-level integrity for a complete teach → predict → reveal → transfer cycle. */
-export function teachingCycleIssues(beat: Pick<CanvasPlanBeat, "overview" | "refresher" | "interaction" | "teachingCycle" | "script">): string[] {
-  if (beat.overview || beat.refresher || beat.interaction === "try" || beat.interaction === "draw") return [];
+export function teachingCycleIssues(beat: Pick<CanvasPlanBeat, "overview" | "refresher" | "interaction" | "teachingCycle" | "script"> & { stage?: CanvasPlanBeat["stage"] }): string[] {
+  // The exam-practice board models a full-mark answer; it has no prediction of its own.
+  if (beat.overview || beat.refresher || beat.stage === "exam" || beat.interaction === "try" || beat.interaction === "draw") return [];
   const sentences = beat.script.split(/(?<=[.!?۔؟])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
   const cycle = beat.teachingCycle;
   if (!cycle) return ["a substantive teaching board needs a prediction followed by a reveal and transfer example"];
   const prediction = sentences[cycle.predict] ?? "";
-  const transfer = sentences[cycle.transfer] ?? "";
   const issues: string[] = [];
   if (!/[?؟]$/.test(prediction)) issues.push("the prediction must be its own question ending in ?");
   if (cycle.reveal !== cycle.predict + 1) issues.push("the answer must begin in the sentence immediately after the prediction");
-  if (cycle.transfer <= cycle.reveal) issues.push("the transfer example must come after the reveal");
-  const transferCue = /\b(apply|use|new|another|different|case|example|situation|scenario|suppose|imagine|given|calculate|if|when|now try|exam|state|find|show|illustrate|sketch|work out|determine|write|solve|explain)\b/i;
-  // The cue words are English; a lesson taught in another script is judged on length alone.
-  const latin = /[A-Za-z]{3}/.test(transfer);
-  if ((latin && !transferCue.test(transfer)) || answerWords(transfer).length < 3) issues.push("the last sentence must give a concrete new case, not merely recap the answer");
+  // The transfer sentence is welcome but not required: a board may end on its answer. Demanding one
+  // made the planner (or a filler line) tack on "now try a new example" to every board.
+  if (cycle.transfer < cycle.reveal) issues.push("the transfer example must come after the reveal");
+  // A closing recap is not a fault worth a whole new plan: only the order of the cycle is enforced.
   return issues;
 }
 

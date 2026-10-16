@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { GENERATE_TEST_SYSTEM_PROMPT } from "@/lib/testPrompt";
-import { sanitizeTestBank } from "@/lib/testSanitize";
+import { sanitizeTestBank, testArithmeticIssues } from "@/lib/testSanitize";
 import type { Beat } from "@/lib/lessonContent";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
 import { STRICT_TEST_RULES, groundTestQuestions } from "@/lib/strictSourceAnswers";
@@ -76,6 +76,17 @@ export async function POST(req: Request) {
       });
       const bank = sanitizeTestBank(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), topic);
       if (bank.questions.length === 0) throw new Error("The model did not return usable questions.");
+
+      // A model answer whose sum does not add up would mark a right answer wrong: written again
+      // once, naming the sum; a question still wrong after that is left out of the test.
+      const wrongSums = testArithmeticIssues(bank.questions);
+      if (wrongSums.length && attempt < ATTEMPTS - 1) {
+        issue = `these model-answer calculations are wrong: ${wrongSums.map((w) => `${w.calculation} (it is ${Number(w.computed.toPrecision(6))})`).join("; ")}`;
+        lastError = "The test's model answers had arithmetic errors.";
+        continue;
+      }
+      if (wrongSums.length) bank.questions = bank.questions.filter((q) => !wrongSums.some((w) => w.id === q.id));
+      if (bank.questions.length === 0) throw new Error("No question had a correct model answer.");
 
       const usage = completion.usage;
       const costUsd = usage ? usage.prompt_tokens * (2.5 / 1_000_000) + usage.completion_tokens * (10.0 / 1_000_000) : 0;

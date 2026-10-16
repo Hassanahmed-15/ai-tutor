@@ -193,6 +193,20 @@ function DotAtBoard({
         const r = nodes[i].getBoundingClientRect();
         if (r.width > 2 && r.height > 2) out.push({ x: r.left, y: r.top, w: r.width, h: r.height });
       }
+      // Arrows too, as small boxes along each line (a whole diagonal arrow's bounding box would wall
+      // off empty board): she sat on an arrow between two boxes (audit 2026-10-17).
+      const lines = b.querySelectorAll("[data-arrow] path");
+      for (let i = 0; i < lines.length && i < 40; i++) {
+        const path = lines[i] as SVGPathElement;
+        const ctm = path.getScreenCTM?.();
+        const total = typeof path.getTotalLength === "function" ? path.getTotalLength() : 0;
+        if (!ctm || !(total > 0)) continue;
+        for (let k = 0; k <= 10; k++) {
+          const p = path.getPointAtLength((total * k) / 10);
+          const x = ctm.a * p.x + ctm.c * p.y + ctm.e, y = ctm.b * p.x + ctm.d * p.y + ctm.f;
+          out.push({ x: x - 8, y: y - 8, w: 16, h: 16 });
+        }
+      }
       return out;
     };
     // Filled boxes smaller than the board itself: code listings, tables, cards.
@@ -207,7 +221,12 @@ function DotAtBoard({
         if (r.width < 24 || r.height < 16 || r.width * r.height > bounds.w * bounds.h * 0.4) continue;
         out.push({ x: r.left, y: r.top, w: r.width, h: r.height });
       }
-      // A drawn figure or a graph's plot is one obstacle: she parks beside it, never on its art or points.
+      return out;
+    };
+    // A drawn figure or a graph's plot is one obstacle she never stands on — kept even when the part
+    // she points at is inside it (she sat on the carrier protein she was explaining, 2026-10-17).
+    const figuresOn = (b: Element, bounds: Rect): Rect[] => {
+      const out: Rect[] = [];
       const drawn = b.querySelectorAll("[data-figure]");
       for (let i = 0; i < drawn.length && i < 8; i++) {
         const r = drawn[i].getBoundingClientRect();
@@ -226,7 +245,11 @@ function DotAtBoard({
       const x1 = Math.min(whole.x + whole.w, p.x + p.w) - 10, y1 = Math.min(whole.y + whole.h, p.y + p.h) - 10;
       const bounds = { x: x0, y: y0, w: Math.max(0, x1 - x0), h: Math.max(0, y1 - y0) };
       const mine = (r: Rect) => !covers({ x: r.x + r.w / 2, y: r.y + r.h / 2 }, 2, target);
-      return parkingSpot(target, HOME_PX * AWAY_SCALE, bounds, inkOn(b).filter(mine), near, cardsOn(b, bounds).filter(mine));
+      // A part inside a figure: she parks beside the whole figure (still pointing at the part).
+      const figures = figuresOn(b, bounds);
+      const cx = target.x + target.w / 2, cy = target.y + target.h / 2;
+      const around = figures.find((r) => cx >= r.x && cx <= r.x + r.w && cy >= r.y && cy <= r.y + r.h) ?? target;
+      return parkingSpot(around, HOME_PX * AWAY_SCALE, bounds, [...inkOn(b).filter(mine), ...figures.filter((r) => r !== around)], near, cardsOn(b, bounds).filter(mine));
     };
     const flyTo = (dest: Pt, now: number, target: Rect) => {
       from = pos ?? homeCentre();

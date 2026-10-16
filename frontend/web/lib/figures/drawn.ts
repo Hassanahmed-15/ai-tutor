@@ -35,6 +35,7 @@ export function drawnFigure(raw: unknown): { drawing?: FigureDrawing; issues: st
   const partIds = new Set(rawParts.map((p) => slug(p?.id)).filter(Boolean));
   const shapes: FigureShape[] = [];
   let texts = 0;
+  let boxy = 0, organic = 0;
   for (const s of rawShapes.slice(0, 160)) {
     if (!s || typeof s !== "object") continue;
     const part = slug(s.part);
@@ -47,6 +48,8 @@ export function drawnFigure(raw: unknown): { drawing?: FigureDrawing; issues: st
     };
     const pts = (v: unknown): Array<[number, number]> => (Array.isArray(v) ? (v as unknown[]).map((p) => (Array.isArray(p) ? [num(p[0]), num(p[1])] as [number, number] : [Number.NaN, Number.NaN] as [number, number])).filter(([x, y]) => inside(x, y)).slice(0, 60) : []);
     const t = str(s.t, 10);
+    if (t === "rect" || t === "ellipse" || t === "circle") boxy++;
+    else if (t === "curve" || t === "path" || t === "polyline" || t === "polygon") organic++;
     let d = "";
     if (t === "rect") {
       const [x, y, rw, rh, rx] = [num(s.x), num(s.y), num(s.w), num(s.h), Math.max(0, num(s.rx) || 0)];
@@ -127,6 +130,11 @@ export function drawnFigure(raw: unknown): { drawing?: FigureDrawing; issues: st
     if (p.anchor.x < b.x - 6 || p.anchor.x > b.x + b.w + 6 || p.anchor.y < b.y - 6 || p.anchor.y > b.y + b.h + 6) issues.push(`part "${p.id}"'s anchor (${Math.round(p.anchor.x)}, ${Math.round(p.anchor.y)}) is not on its own shapes — put it on the part`);
   }
   if (shapes.length < 3) issues.push("the drawing has fewer than 3 valid shapes");
+  // A "diagram" of plain boxes and rings with the words outside is a flow chart drawn badly: an
+  // impact chain came out as five empty rectangles (audit 2026-10-17). A drawing must draw the THING
+  // — outlines, curves, structures — or the board should be a flow, where words sit inside boxes.
+  const words = shapes.filter((sh) => sh.t === "text").length;
+  if (boxy >= 4 && organic === 0 && words === 0) issues.push("BOX DIAGRAM: these are plain boxes and rings with nothing drawn and no words inside — a flow board shows this better; draw the actual structure instead");
   return issues.length ? { issues: [...new Set(issues)].slice(0, 6) } : { drawing, issues: [] };
 }
 
