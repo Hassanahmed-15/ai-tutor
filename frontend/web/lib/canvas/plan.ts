@@ -69,6 +69,7 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
       ...planSource(b.source),
       // The planner's diagram, only when it names a real catalogue entry.
       ...(typeof b.diagram === "string" && figureComponent(b.diagram.trim()) ? { plannedFigure: b.diagram.trim() } : {}),
+      ...boardNotesOf(b.board, canvasSentences(script).length),
       ...(Array.isArray(b.sentenceBlocks) ? { sentenceBlocks: b.sentenceBlocks.map((v) => (typeof v === "string" ? v.replace(/[{}\s]/g, "") : "")).slice(0, 40) } : {}),
     });
     void i;
@@ -123,4 +124,16 @@ function planSource(raw: unknown): { source?: CanvasPlanBeat["source"] } {
 function blockIds(raw: unknown): string[] {
   const list = Array.isArray(raw) ? raw : typeof raw === "string" ? raw.split(/[,\s]+/) : [];
   return list.map((v) => (typeof v === "string" ? v.replace(/[{}\s]/g, "") : "")).filter((v) => /^[\w.-]{1,80}$/.test(v));
+}
+
+/** The planner's "board" phrases: one per sentence at most, within the sentences, at most 60 characters as written. */
+export function boardNotesOf(raw: unknown, sentenceCount: number): { boardNotes?: Array<{ s: number; text: string }> } {
+  if (!Array.isArray(raw)) return {};
+  const seen = new Set<number>();
+  const notes = raw
+    .map((n) => (n && typeof n === "object" ? (n as Record<string, unknown>) : {}))
+    .map((n) => ({ s: Math.round(Number(n.s)), text: typeof n.text === "string" ? n.text.replace(/\s+/g, " ").trim().replace(/[.…]+$/, "") : "" }))
+    .filter((n) => Number.isInteger(n.s) && n.s >= 0 && n.s < sentenceCount && n.text && n.text.length <= 60 && !seen.has(n.s) && seen.add(n.s))
+    .sort((a, b) => a.s - b.s);
+  return notes.length ? { boardNotes: notes } : {};
 }

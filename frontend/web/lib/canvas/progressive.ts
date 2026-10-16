@@ -22,6 +22,7 @@ import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
 import { findLibraryFigure } from "../figures/library";
 import { courseCoverageGaps, coverageMessage, requiredTermsOf } from "./courseCoverage";
 import { examBoardSpec } from "./examBoard";
+import { writeCheckCard } from "./checkCard";
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -286,6 +287,16 @@ export async function writeCanvasBoard(args: {
     pictured = { spec: made.spec, costUsd: 0 };
   }
   const spec: CanvasBoardSpec = { ...pictured.spec };
+  // THE "CHECK IT" CARD (lib/canvas/checkCard.ts): written and verified after the board, shown when
+  // Aria finishes it. A card that cannot be verified is left off — it never fails or holds the board.
+  let cardCost = 0;
+  if (!spec.interaction && spec.stage.kind !== "exam" && !beat.overview && !beat.refresher && process.env.CANVAS_CHECK_CARDS !== "off") {
+    const block = args.document?.contentBlocks?.[plan.filter((b) => !b.refresher).indexOf(beat)];
+    const made = await writeCheckCard(client(), beat, spec, { level: args.document?.lesson?.level, teachingHints: block?.teachingHints }).catch((error) => ({ card: null, costUsd: (error as { costUsd?: number }).costUsd ?? 0, log: `no check card — ${(error as Error).message}` }));
+    cardCost = made.costUsd;
+    log.push(`${beat.id}: ${made.log}`);
+    if (made.card) spec.interaction = made.card;
+  }
   // The student's own code, exactly: a token the board model changed while copying is put back.
   const listing = codeDoc && spec.stage.kind === "code" && beat.source?.listing ? documentListings(codeDoc).find((l) => l.n === beat.source!.listing) : undefined;
   if (listing && spec.stage.kind === "code") {
@@ -336,7 +347,7 @@ export async function writeCanvasBoard(args: {
     const cited = sourcesForText(args.webSources, `${beat.title} ${beat.brief ?? ""} ${beat.script}`);
     if (cited.length) written.sources = cited.map(({ title, url, site }) => ({ title, url, site }));
   }
-  return { beat: written, costUsd: made.costUsd + pictured.costUsd, fallback: made.attempts < 0 || Boolean(spec.visualFallback), log };
+  return { beat: written, costUsd: made.costUsd + pictured.costUsd + cardCost, fallback: made.attempts < 0 || Boolean(spec.visualFallback), log };
 }
 
 /**

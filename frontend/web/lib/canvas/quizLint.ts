@@ -1,4 +1,5 @@
-import type { CanvasInteraction } from "./types";
+import { checkNumbers } from "./numberCheck";
+import type { CanvasInteraction, QuizInteraction } from "./types";
 
 /**
  * QUIZ ITEM-WRITING FLAWS, CHECKED BY CODE. Rule-based detectors find more of the classic flaws than
@@ -61,3 +62,19 @@ export function quizIssues(interaction: CanvasInteraction | undefined, context: 
   if (offTopic.length) issues.push(`wrong options must be real misconceptions about this idea, not throwaways: ${offTopic.map((o) => `"${o.text}"`).join(", ")}`);
   return issues;
 }
+
+/** The longest option a "Check it" card shows (lib/canvas/checkCard.ts). */
+export const OPTION_MAX = 60;
+
+/** Code checks on a written card; the problems to fix, empty when it may be verified. */
+export function checkCardIssues(card: QuizInteraction, script: string): string[] {
+  const issues = [...quizIssues(card, script)];
+  const long = card.options.filter((o) => o.text.length > OPTION_MAX);
+  if (long.length) issues.push(`options must be at most ${OPTION_MAX} characters: ${long.map((o) => `"${o.text}"`).join(", ")}`);
+  const right = card.options.find((o) => o.correct);
+  const sums = checkNumbers([right?.text ?? "", ...card.options.map((o) => o.feedback)].join(" \n "));
+  if (sums.length) issues.push(`wrong arithmetic: ${sums.map((n) => `${n.calculation} (it is ${Number(n.computed.toPrecision(6))})`).join("; ")}`);
+  if (card.question.length > 220) issues.push("the question must be at most 220 characters");
+  return issues;
+}
+

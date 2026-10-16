@@ -25,7 +25,7 @@ export type InstructionalTaskDecision = {
   task: InstructionalTask;
   stage: CanvasStage;
   /** A renderer whose geometry and label anchors are owned by code, not by the model. */
-  figure?: "inferenceDistribution" | "photosynthesisExperiment" | "standingWave" | "wave" | "heart" | "sequences" | "sectorArc" | "geneticTech" | "oxygenDebt" | "electromagnetism" | "coordinateGrid" | "enzymeAction" | "cellDivision" | "leafCrossSection" | "proteinSynthesis" | "antibody" | "numberLine" | "functionGraph" | "riemannSum";
+  figure?: "inferenceDistribution" | "photosynthesisExperiment" | "standingWave" | "wave" | "heart" | "sequences" | "sectorArc" | "geneticTech" | "oxygenDebt" | "electromagnetism" | "coordinateGrid" | "enzymeAction" | "chromosomeSets" | "cellDivision" | "leafCrossSection" | "proteinSynthesis" | "antibody" | "numberLine" | "functionGraph" | "riemannSum";
   requiredParts?: string[];
   reason: string;
 };
@@ -85,6 +85,12 @@ export function classifyInstructionalTask(beat: Pick<CanvasPlanBeat, "title" | "
   }
   if (/\bmode of action of enzymes\b|\benzyme action\b|\benzymes?\b(?=[\s\S]{0,200}\b(active site|substrate|lock[- ]and[- ]key|induced[- ]fit|denatur)\b)|\block[- ]and[- ]key\b|\binduced[- ]fit\b/.test(text)) {
     return { task: "process", stage: "figure", figure: "enzymeAction", requiredParts: ["enzyme", "active-site", "substrate"], reason: "Enzyme action is the shape of the active site relative to the substrate." };
+  }
+  // Sets and pairs (haploid, diploid, homologous pairs) are counted on a chromosome-sets diagram, not
+  // the stages of division — a lesson titled "Chromosomes and cell division" sent its haploid board to
+  // the mitosis figure, which the review rightly rejected (audit 2026-10-17).
+  if ((/\b(haploid|diploid|homologous pairs?|chromosome sets?|sets? of chromosomes|pairs? of chromosomes)\b/i.test(text) || /\bchromosomes?\b[\s\S]{0,120}\bdna\b[\s\S]{0,120}\bgenes?\b/i.test(text)) && !/\b((pro|meta|ana|telo)phase|spindle|crossing over|daughter cells?|histones?|nucleosomes?|centromeres?)\b/i.test(text)) {
+    return { task: "physical-structure", stage: "figure", figure: "chromosomeSets", requiredParts: ["chromosome"], reason: "Haploid and diploid are counted sets of chromosomes: one of each type, or matched pairs." };
   }
   if (/\b(mitosis|meiosis|cell division|(pro|meta|ana|telo)phase)\b/.test(text)) {
     return { task: "process", stage: "figure", figure: "cellDivision", requiredParts: ["chromosome", "daughter-cells"], reason: "Nuclear division is a sequence of chromosome arrangements, not a generic cycle of icons." };

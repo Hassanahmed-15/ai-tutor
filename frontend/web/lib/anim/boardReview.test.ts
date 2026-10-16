@@ -21,12 +21,12 @@ test("a review verdict holds a board back only with a concrete problem", () => {
   assert.equal(parseBoardReview(null).ship, true);
 });
 
-test("text cut to fit is reported to the writer, at a word, never mid-word", async () => {
+test("text that does not fit is reported whole and ended at a break, never with \"…\"", async () => {
   const { validateCanvasSpec, validationCuts } = await import("../canvas/validate");
   const spec = validateCanvasSpec({ heading: "Substitution", stage: { kind: "flow", arrangement: "chain", nodes: [{ id: "codon", label: "Codons", sub: "methionine–glutamic acid–serine then stop", s: 0 }, { id: "chain", label: "Polypeptide", s: 1 }], arrows: [{ id: "x", from: "codon", to: "chain", s: 1 }] } }, 3);
   assert.ok(spec);
   const token = spec!.stage.kind === "flow" ? spec!.stage.nodes[0].sub ?? "" : "";
-  assert.ok(!/glutami$/.test(token) && token.endsWith("…"), `cut at a word: ${token}`);
+  assert.ok(!/glutami$/.test(token) && !token.endsWith("…") && token.length <= 32, `ended at a break: ${token}`);
   assert.ok(validationCuts().some((c) => /methionine–glutamic acid–serine then stop/.test(c)));
 });
 

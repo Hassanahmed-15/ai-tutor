@@ -345,6 +345,12 @@ export type QuizInteraction = {
   kind: "quiz";
   question: string;
   options: Array<{ text: string; correct: boolean; feedback: string }>;
+  /**
+   * A "Check it" card (lib/canvas/checkCard.ts): written after the board, verified independently,
+   * shown when Aria finishes the board. Cards without it are the old mid-board "Predict it" ones,
+   * which are never shown.
+   */
+  check?: boolean;
 };
 export type CanvasInteraction = TryItInteraction | DrawInteraction | QuizInteraction;
 
@@ -403,6 +409,12 @@ export type CanvasPlanBeat = {
    * the script was written around it. The visual policy honours it when it fits the board's words.
    */
   plannedFigure?: string;
+  /**
+   * What Aria writes on the board as she speaks (owner, 2026-10-17: "whatever Aria speaks, at least
+   * 60–80% should appear on the board"): the planner's short phrase for a sentence, shown on exactly
+   * that sentence in the notes column.
+   */
+  boardNotes?: Array<{ s: number; text: string }>;
   /** Diagrams the board review rejected for this board: no rule may demand them again on a rebuild. */
   rejectedFigures?: string[];
   /** figure "library": the textbook diagram chosen for this board (lib/figures/library.ts) — its parts are what the board may label. */

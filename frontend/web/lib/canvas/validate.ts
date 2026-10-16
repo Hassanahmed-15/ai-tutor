@@ -55,17 +55,43 @@ const str = (v: unknown, max = 80): string => {
  * 18-character slot, and every rewrite hit the same wall unknowingly; audit 2026-10-17).
  */
 let cuts: string[] = [];
+let cutItems: Array<{ text: string; max: number }> = [];
 export function validationCuts(): string[] {
   return [...cuts];
+}
+/** The texts that did not fit, whole, with the room each had — for the shorten pass (lib/canvas/generate.ts). */
+export function validationCutItems(): Array<{ text: string; max: number }> {
+  return [...cutItems];
+}
+
+/**
+ * Text that does not fit is never shown half-cut (owner, 2026-10-17). The board writer's text is
+ * first rewritten to fit by the shorten pass; what still does not fit is ended at a natural break —
+ * a dash, a semicolon, a comma, "and", "because" — as a complete phrase, without "…".
+ */
+export function trimToFit(text: string, max: number): string {
+  const t = text.replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const head = t.slice(0, max);
+  const breaks = [" — ", " – ", "; ", ": ", ", ", " because ", " which ", " so ", " and ", " or ", " but ", " with ", " while "];
+  let at = -1;
+  for (const b of breaks) {
+    const i = head.lastIndexOf(b);
+    if (i >= max * 0.45 && i > at) at = i;
+  }
+  if (at < 0) at = head.lastIndexOf(" ");
+  let out = (at > 0 ? head.slice(0, at) : head).replace(/[\s,;:(–—-]+$/, "");
+  // A phrase never ends on a small joining word ("…first-hand for a").
+  for (let prev = ""; prev !== out; ) { prev = out; out = out.replace(/\s+(and|or|of|the|a|an|to|in|on|for|with|by|but|so|which|because|while|as|such)$/i, "").replace(/[\s,;:(–—-]+$/, ""); }
+  return out;
 }
 
 const shown = (v: unknown, max = 80): string => {
   const text = str(v, 4000);
   if (text.length <= max) return text;
   cuts.push(`"${text.slice(0, 70)}${text.length > 70 ? "…" : ""}" is ${text.length} characters where only ${max} fit`);
-  const cut = text.slice(0, max - 1);
-  const at = cut.lastIndexOf(" ");
-  return `${(at >= max * 0.6 ? cut.slice(0, at) : cut).replace(/[\s,;:(–-]+$/, "")}…`;
+  cutItems.push({ text, max });
+  return trimToFit(text, max);
 };
 const num = (v: unknown, fallback: number): number => (Number.isFinite(Number(v)) ? Number(v) : fallback);
 
@@ -125,6 +151,7 @@ const color = (v: unknown): string | undefined => {
 
 export function validateCanvasSpec(raw: unknown, sentenceCount: number, vars: string[] = []): CanvasBoardSpec | null {
   cuts = [];
+  cutItems = [];
   const r = obj(raw);
   const lastS = Math.max(0, sentenceCount - 1);
   const sentence = (v: unknown, fallback = 0) => Math.max(0, Math.min(lastS, Math.round(num(v, fallback))));
@@ -146,7 +173,7 @@ export function validateCanvasSpec(raw: unknown, sentenceCount: number, vars: st
       return text ? { id: unique(o.id ?? `note-${i + 1}`, `note-${i + 1}`), text, s: sentence(o.s ?? o.sentence, i) } : null;
     })
     .filter((n): n is NonNullable<typeof n> => Boolean(n))
-    .slice(0, 4);
+    .slice(0, 12);
 
   const interaction = validateInteraction(r.interaction);
   const knownVars = interaction?.kind === "try" ? interaction.controls.map((c) => c.var) : vars;
@@ -725,7 +752,7 @@ export function validateInteraction(raw: unknown): CanvasInteraction | undefined
     if (right.length !== 1 || selfDoubting.test(right[0].feedback)) return undefined;
     // The card's header already says "Predict it"; the question is the question.
     const question = prompt.replace(/^\s*predict\s*:\s*/i, "").replace(/^./, (c) => c.toUpperCase());
-    return options.length === 3 || options.length === 4 ? { kind: "quiz", question, options } : undefined;
+    return options.length === 3 || options.length === 4 ? { kind: "quiz", question, options, ...(r.check === true ? { check: true } : {}) } : undefined;
   }
   if (kind !== "try") return undefined;
   const controls = arr(r.controls)

@@ -29,8 +29,8 @@ test("an equilibrium marker is placed where the curves cross", () => {
   assert.equal(snapped.markers![0].label, "Equilibrium");
 });
 
-test("long labels are cut at a word, never mid-word", () => {
+test("long labels end at a natural break, never mid-word and never with \"…\"", () => {
   const spec = validateCanvasSpec({ heading: "Supply", notes: [], cues: [], stage: { kind: "graph", x: { label: "Quantity of loanable funds supplied by savers in the economy ($ billions)", min: 0, max: 800 }, y: { label: "Real interest rate (%)", min: 0, max: 6 }, curves: [{ id: "s", expr: "x/200", s: 0 }] } }, 3);
   assert.ok(spec && spec.stage.kind === "graph");
-  if (spec?.stage.kind === "graph") { assert.match(spec.stage.x.label, /…$/); assert.doesNotMatch(spec.stage.x.label, /\b\w{1,2}…$/); }
+  if (spec?.stage.kind === "graph") { assert.doesNotMatch(spec.stage.x.label, /…$/); assert.ok(spec.stage.x.label.length <= 48); assert.doesNotMatch(spec.stage.x.label, /\b(of|by|in|the)$/); }
 });

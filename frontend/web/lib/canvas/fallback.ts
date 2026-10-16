@@ -1,10 +1,10 @@
 import { canvasSentences } from "./plan";
 import { alignToNarration } from "./narrationSync";
+import { slug, trimToFit } from "./validate";
 import { GRAPH_LIKE, HUMANITIES } from "./visualPolicy";
 import { classifyInstructionalTask } from "./instructionalTask";
 import { figureComponent } from "../figures/registry";
 import { foreignFigureWords } from "../figures/foreignText";
-import { slug } from "./validate";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 
 /**
@@ -81,7 +81,10 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
   // A figure skipped above leaves its part ids ("for", "against") as the objects: only names Aria
   // actually says are kept then.
   const names = [...new Set(beat.objects.map((o) => asSaid(o, beat.script) ?? (component ? undefined : words(o))).filter((n): n is string => Boolean(n)))].slice(0, 5);
-  const notes = keyPoints(sentences, 3).map((text, i) => ({ id: `point-${i + 1}`, text, s: Math.min(last, i + 1) }));
+  // What Aria writes as she speaks, when the plan has it; otherwise the narration's key points.
+  const notes = beat.boardNotes?.length
+    ? beat.boardNotes.map((n, i) => ({ id: `say-${i + 1}`, text: trimToFit(n.text, 34), s: n.s }))
+    : keyPoints(sentences, 3).map((text, i) => ({ id: `point-${i + 1}`, text, s: Math.min(last, i + 1) }));
   if (names.length >= 2) {
     const nodes = names.map((label, i) => {
       const sub = detailFor(label, sentences);

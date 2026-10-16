@@ -169,7 +169,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
   // No "Predict it" (owner's direction, 2026-10-16): a quiz in a lesson saved before is never shown
   // or waited for — the board plays straight through. Try and draw tasks are unchanged.
-  const interaction = current?.spec.interaction?.kind === "quiz" ? undefined : current?.spec.interaction;
+  // An old mid-board "Predict it" quiz is never shown (owner, 2026-10-16). A verified "Check it" card
+  // (lib/canvas/checkCard.ts) opens when Aria finishes the board, with the board's other tasks.
+  const interaction = current?.spec.interaction?.kind === "quiz" && !current.spec.interaction.check ? undefined : current?.spec.interaction;
   const taskOpen = Boolean(interaction) && currentIndex >= 0 && (waitingForStudent || (finished && !taskDone));
   const drawing = taskOpen && interaction?.kind === "draw";
 
@@ -656,6 +658,24 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           }}
         />
       )}
+      {taskOpen && interaction?.kind === "quiz" && current && (
+        <CheckCard
+          key={current.key}
+          question={interaction.question}
+          options={interaction.options}
+          onAnswer={(i) => {
+            const o = interaction.options[i];
+            if (!reported.current.has(`quiz:${current.key}`)) {
+              reported.current.add(`quiz:${current.key}`);
+              onTaskResult?.("quiz", o.correct, interaction.options.length);
+            }
+            if (o.correct) setCelebration(Date.now());
+            onSpeak(o.feedback);
+            onTellAria(`Asked "${interaction.question}", the student chose "${o.text}" (${o.correct ? "correct" : "not correct"}). You told them: "${o.feedback}"`);
+          }}
+          onContinue={onContinue}
+        />
+      )}
       {(exploring || biologyExplore) && !taskOpen && current?.spec.stage.kind === "illustration" && current.spec.stage.parts.some((p) => p.say) && (
         <p className="pointer-events-none absolute left-1/2 top-3 z-10 -translate-x-1/2 rounded-full bg-black/65 px-3 py-1.5 text-xs font-semibold text-white/85 backdrop-blur">
           Tap the glowing parts of the picture to explore them
@@ -1027,6 +1047,47 @@ function Hotspots({ layout, spec, onTap }: { layout: PanelLayout; spec: CanvasBo
   );
 }
 
+
+/** The end-of-board "Check it" card: one verified question, Aria's feedback on each choice. */
+function CheckCard({ question, options, onAnswer, onContinue }: { question: string; options: Array<{ text: string; correct: boolean; feedback: string }>; onAnswer: (i: number) => void; onContinue: () => void }) {
+  const [picked, setPicked] = useState<number[]>([]);
+  const last = picked[picked.length - 1];
+  const solved = picked.some((i) => options[i].correct);
+  return (
+    <div className="absolute right-4 top-1/2 z-20 w-[min(340px,calc(100%-2rem))] -translate-y-1/2 rounded-2xl border border-violet-300/25 bg-[#100e16]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
+      <p className="flex items-center gap-1.5 text-[0.68rem] font-black uppercase tracking-[0.18em] text-violet-300/90">
+        <Sparkles size={12} /> Check it
+      </p>
+      <p className="mt-1.5 text-sm font-semibold leading-snug text-white/90">{question}</p>
+      <div className="mt-3 space-y-2">
+        {options.map((o, i) => {
+          const chosen = picked.includes(i);
+          return (
+            <button
+              key={i}
+              disabled={solved}
+              onClick={() => {
+                setPicked((p) => (p.includes(i) ? p : [...p, i]));
+                onAnswer(i);
+              }}
+              className={`w-full rounded-xl border px-3 py-2 text-left text-sm font-semibold transition ${
+                chosen ? (o.correct ? "border-emerald-300/60 bg-emerald-400/15 text-emerald-50" : "border-rose-300/50 bg-rose-400/10 text-rose-100/80 line-through decoration-rose-300/60") : "border-white/12 bg-white/[0.04] text-white/85 hover:border-violet-300/50 hover:bg-white/[0.08]"
+              } disabled:cursor-default`}
+            >
+              {o.text}
+            </button>
+          );
+        })}
+      </div>
+      {last !== undefined && (
+        <p className={`mt-2.5 rounded-lg px-2.5 py-2 text-xs font-semibold leading-relaxed ${options[last].correct ? "bg-emerald-400/15 text-emerald-100" : "bg-rose-400/15 text-rose-100"}`}>{options[last].feedback}</p>
+      )}
+      <button onClick={onContinue} disabled={!picked.length} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-violet-400 px-3 py-2 text-sm font-black text-black hover:bg-violet-300 disabled:opacity-40">
+        <Play size={14} /> {solved ? "Continue the lesson" : picked.length ? "Continue anyway" : "Choose an answer"}
+      </button>
+    </div>
+  );
+}
 
 /** The whole lesson in the corner: every board so far, where Aria is, and a click to fly anywhere. */
 function MiniMap({ panels, themes, worldRects, shownIndex, reachedIndex, visitIndex, onPick }: { panels: CanvasPanelInput[]; themes: BoardTheme[]; worldRects: Rect[]; shownIndex: number; reachedIndex: number; visitIndex: number; onPick: (i: number) => void }) {

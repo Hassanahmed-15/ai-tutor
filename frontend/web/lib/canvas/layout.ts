@@ -22,7 +22,7 @@ export type Pt = { x: number; y: number };
 
 export type Mark =
   | { type: "heading"; id: string; text: string; x: number; y: number; size: number; s: number }
-  | { type: "note"; id: string; lines: string[]; x: number; y: number; size: number; s: number; bullet: Pt }
+  | { type: "note"; id: string; lines: string[]; x: number; y: number; size: number; s: number; bullet: Pt; /** Rolled off the column when a later note takes its slot (sentence number). */ until?: number }
   | { type: "node"; id: string; cx: number; cy: number; r: number; icon?: CanvasIcon; label: string; sub?: string; color: string; s: number; glow?: string; labelY: number; labelSize: number; becomes?: Becomes }
   | { type: "arrow"; id: string; p0: Pt; c: Pt; p1: Pt; label?: string; labelAt: Pt; s: number; flow: boolean; rate?: string; color: string }
   | { type: "picture"; id: string; rect: Rect; src?: string; paper?: string; s: number; subject: string }
@@ -96,6 +96,9 @@ export function wrap(text: string, size: number, maxW: number, maxLines = 2): st
     }
   }
   if (line) lines.push(line);
+  // One more line before anything is shortened: text is never cut where a line can still hold it
+  // (owner, 2026-10-17: no half-cut text). Text the shorten pass already fitted rarely gets here.
+  if (lines.length === maxLines + 1) return lines;
   if (lines.length > maxLines) {
     const kept = lines.slice(0, maxLines);
     kept[maxLines - 1] = `${kept[maxLines - 1].replace(/[.,;:]?$/, "")}…`;
@@ -133,27 +136,39 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   marks.push({ type: "heading", id: "heading", text: spec.heading, x: 48, y: 66, size: headingSize, s: -1 });
   targets.heading = { x: 48, y: 66 - headingSize, w: Math.min(PANEL_W - 96, textWidth(spec.heading, headingSize)), h: headingSize * 1.25, s: 0 };
 
-  const visibleNotes = hasNotes ? spec.notes.slice(0, 4) : [];
+  // THE NOTES COLUMN IS WIPED WHEN FULL, like a teacher's board. What Aria writes as she speaks can be
+  // a note for most sentences, so the column holds four at a time, read top to bottom; the fifth note
+  // wipes the column and starts again at the top. When the board is complete the last page shows.
+  const allNotes = hasNotes ? [...spec.notes].sort((a, b) => a.s - b.s) : [];
+  const SLOTS = 4;
+  const slots = Math.min(SLOTS, allNotes.length);
+  const untilOf = (i: number) => {
+    const nextPage = allNotes[(Math.floor(i / SLOTS) + 1) * SLOTS];
+    return nextPage ? Math.max(nextPage.s, allNotes[i].s + 1) : undefined;
+  };
   if (figureWithNotes) {
     const gap = 18;
-    const noteW = (STAGE_WIDE.w - gap * Math.max(0, visibleNotes.length - 1)) / Math.max(1, visibleNotes.length);
-    const noteSize = visibleNotes.length >= 4 ? 15 : 17;
-    visibleNotes.forEach((note, i) => {
-      const x = STAGE_WIDE.x + i * (noteW + gap);
+    const noteW = (STAGE_WIDE.w - gap * Math.max(0, slots - 1)) / Math.max(1, slots);
+    const noteSize = slots >= 4 ? 15 : 17;
+    allNotes.forEach((note, i) => {
+      const x = STAGE_WIDE.x + (i % SLOTS) * (noteW + gap);
       const y = 474;
       const lines = wrap(note.text, noteSize, noteW - 24, 2);
-      marks.push({ type: "note", id: note.id, lines, x: x + 22, y, size: noteSize, s: note.s, bullet: { x: x + 7, y: y - noteSize * 0.34 } });
+      const until = untilOf(i);
+      marks.push({ type: "note", id: note.id, lines, x: x + 22, y, size: noteSize, s: note.s, bullet: { x: x + 7, y: y - noteSize * 0.34 }, ...(until !== undefined ? { until } : {}) });
       const h = lines.length * noteSize * 1.28;
       targets[note.id] = { x, y: y - noteSize, w: noteW, h: h + 6, s: note.s };
     });
   } else {
-    let y = 140;
-    visibleNotes.forEach((note) => {
+    // Fixed slots, each room for two lines, so a note never moves once written.
+    const slotH = 2 * NOTE_SIZE * 1.28 + 30;
+    allNotes.forEach((note, i) => {
+      const y = 140 + (i % SLOTS) * slotH;
       const lines = wrap(note.text, NOTE_SIZE, NOTES_W - 26, 2);
-      marks.push({ type: "note", id: note.id, lines, x: NOTES_X + 24, y, size: NOTE_SIZE, s: note.s, bullet: { x: NOTES_X + 7, y: y - NOTE_SIZE * 0.34 } });
+      const until = untilOf(i);
+      marks.push({ type: "note", id: note.id, lines, x: NOTES_X + 24, y, size: NOTE_SIZE, s: note.s, bullet: { x: NOTES_X + 7, y: y - NOTE_SIZE * 0.34 }, ...(until !== undefined ? { until } : {}) });
       const h = lines.length * NOTE_SIZE * 1.28;
       targets[note.id] = { x: NOTES_X, y: y - NOTE_SIZE, w: NOTES_W, h: h + 6, s: note.s };
-      y += h + 30;
     });
   }
 

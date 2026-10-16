@@ -1276,8 +1276,11 @@ export function LessonPlayer({
   const canvasIndex = canvasLesson ? canvasPanels.findIndex((p) => p.key === beat.id) : -1;
   const canvasTask = canvasIndex >= 0 ? canvasPanels[canvasIndex].spec.interaction : undefined;
   const canvasTaskRef = useRef(false);
+  const canvasMidBoardTaskRef = useRef(false);
   useEffect(() => {
     canvasTaskRef.current = Boolean(canvasTask);
+    // A "Check it" card waits for the end of the board; only a try or draw task may stop mid-board.
+    canvasMidBoardTaskRef.current = Boolean(canvasTask) && !(canvasTask?.kind === "quiz" && canvasTask.check);
   });
   /** The beat whose narration has finished, and the beat held for the student's task. */
   const [narrationDoneIndex, setNarrationDoneIndex] = useState<number | null>(null);
@@ -2129,7 +2132,7 @@ export function LessonPlayer({
         },
         onSentenceStart: (sentenceIndex, sentence, total) => {
           // The sentence after a prediction question is the reveal: hold before it plays.
-          if (previousAskedPrediction && canvasTaskRef.current && sentenceIndex > bridge && !predictDoneRef.current.has(beat.id)) {
+          if (previousAskedPrediction && canvasMidBoardTaskRef.current && sentenceIndex > bridge && !predictDoneRef.current.has(beat.id)) {
             predictDoneRef.current.add(beat.id);
             setPredictHold({ index, boardSentence: Math.max(0, sentenceIndex - bridge - 1) });
             setCanvasHoldIndex(index);
@@ -4947,8 +4950,10 @@ function canvasPanelsOf(beats: Beat[]): CanvasPanelInput[] {
     // NO "PREDICT IT" (owner's direction, 2026-10-16): a quiz saved on a board before then is not
     // shown and nothing holds for it — the card, the pause at the question and the board's
     // concealed answer all hang off the interaction. A try or draw task stays.
+    // A verified end-of-board "Check it" card (lib/canvas/checkCard.ts) is kept; it opens when Aria
+    // finishes the board, never mid-sentence.
     const { interaction, ...rest } = op.spec;
-    const spec: CanvasBoardSpec = interaction && interaction.kind !== "quiz" ? { ...rest, interaction } : rest;
+    const spec: CanvasBoardSpec = interaction && (interaction.kind !== "quiz" || interaction.check) ? { ...rest, interaction } : rest;
     return [{ key: b.id, spec }];
   });
 }

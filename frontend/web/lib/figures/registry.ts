@@ -22,6 +22,7 @@ import { oxygenDebt } from "./components/oxygenDebt";
 import { enzymeAction } from "./components/enzymeAction";
 import { membraneTransport } from "./components/membraneTransport";
 import { cellDivision } from "./components/cellDivision";
+import { chromosomeSets } from "./components/chromosomeSets";
 import { punnettSquare } from "./components/punnettSquare";
 import { pedigree } from "./components/pedigree";
 import { dnaStructure } from "./components/dnaStructure";
@@ -114,7 +115,7 @@ export const FIGURE_COMPONENTS: FigureComponent[] = [
   nephron, synapse, reflexArc, skinSection, endocrineGlands, gelElectrophoresis, microscopeGraticule, oxygenDissociation,
   gametes, chromosome, sarcomere, glucoseRings, lipids, aminoAcid, atpNucleotide,
   rootHairCell, xylemPhloem, guardCells, seedStructure, windFlower, bloodVessels, bloodCells, villus, teeth, placenta,
-  enzymeAction, membraneTransport, cellDivision, punnettSquare, pedigree, geneticTech, proteinSynthesis, antibody, dnaStructure, leafCrossSection, foodWeb, ecologicalPyramid, heart,
+  enzymeAction, membraneTransport, chromosomeSets, cellDivision, punnettSquare, pedigree, geneticTech, proteinSynthesis, antibody, dnaStructure, leafCrossSection, foodWeb, ecologicalPyramid, heart,
   electromagnetism, circuit, rayLens, reflectionRefraction, fieldLines, standingWave, wave, motionGraph, moments, sankey,
   supplyDemand, ppf, adAs, costRevenue, circularFlow,
   scatterPlot, histogram, boxPlot, cumulativeFrequency, barChart, sectorArc, pieChart, inferenceDistribution,

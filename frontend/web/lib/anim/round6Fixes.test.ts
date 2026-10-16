@@ -66,3 +66,12 @@ test("the exam board is never routed into a diagram, and a backup never draws a 
   const backup = fallbackSpec(beat({ id: "b4", title: "Bounds of rounded data", stage: "figure", figure: "numberLine", objects: ["number-line"], script: "A length of 8 m lies between 7.5 m and 8.5 m. The lower bound 7.5 is included, so 7.5 ≤ L < 8.5." }));
   assert.notEqual(backup.stage.kind, "figure", "a −2…3 number line is not this lesson's data");
 });
+
+test("haploid and diploid boards get the chromosome-sets diagram, never a picture or a flow of icons", () => {
+  const { beats } = applyLessonVisualPolicy([
+    beat({ id: "b1", title: "Chromosomes, DNA and genes", stage: "compare", script: "A chromosome is made of a long, coiled thread of DNA. A gene is a short section of that DNA." }),
+    beat({ id: "b2", title: "Two chromosome sets: diploid", stage: "illustration", script: "A diploid nucleus has two sets of chromosomes. Each type occurs as a homologous pair, so humans have 23 pairs." }),
+    beat({ id: "b3", title: "One chromosome set: haploid", stage: "illustration", script: "A haploid nucleus has one set: one chromosome of each type, written as n." }),
+  ], { mode: "course", aiPictures: true });
+  assert.deepEqual(beats.map((b) => b.figure), ["chromosomeSets", "chromosomeSets", "chromosomeSets"]);
+});

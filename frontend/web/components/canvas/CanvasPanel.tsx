@@ -55,7 +55,8 @@ type PanelProps = {
 
 export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live, vars, ghostVars, focusId, carryFrom, reducedMotion, theme = "paper", concealStage = false }: PanelProps) {
   const chalk = theme === "chalk";
-  const visible = layout.marks.filter((m) => m.s <= shownThrough && (!concealStage || m.type === "heading" || m.type === "note"));
+  // A note rolls off the notes column when a later note takes its slot (lib/canvas/layout.ts).
+  const visible = layout.marks.filter((m) => m.s <= shownThrough && !(m.type === "note" && m.until !== undefined && shownThrough >= m.until) && (!concealStage || m.type === "heading" || m.type === "note"));
   const headingW = layout.targets.heading?.w ?? 200;
   return (
     <InkDrawing.Provider value={live && !reducedMotion}>

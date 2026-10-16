@@ -126,6 +126,8 @@ function meaningful(stage: CanvasStage, apparatus = false): boolean {
  * visual load is carried by deterministic renderers: flows, graphs, equations, molecules and code.
  */
 export const GRAPH_LIKE = new Set(["supplyDemand", "ppf", "adAs", "costRevenue", "scatterPlot", "histogram", "boxPlot", "cumulativeFrequency", "barChart", "pieChart", "inferenceDistribution", "motionGraph", "rateGraph", "decayCurve", "energyProfile", "functionGraph", "riemannSum", "slopeField", "coordinateGrid", "numberLine", "unitCircle", "argand", "punnettSquare", "probabilityTree", "venn", "sankey", "ecologicalPyramid", "sequences", "oxygenDebt", "sectorArc", "gelElectrophoresis", "oxygenDissociation", "microscopeGraticule"]);
+/** Structures drawn differently per board from their params: a haploid view, then a diploid one. */
+const REPEATABLE = new Set(["chromosomeSets", "cellDivision", "punnettSquare", "pedigree", "electromagnetism", "titration"]);
 export const HUMANITIES = new Set(["timeline", "causeConsequence", "sourceCard", "evaluationScale", "conceptTable", "circularFlow"]);
 
 export function applyLessonVisualPolicy(
@@ -575,7 +577,8 @@ export function applyLessonVisualPolicy(
     const groups = new Map<string, typeof beats>();
     for (const beat of beats) {
       const key = keyOf(beat);
-      if (!key || GRAPH_LIKE.has(key) || HUMANITIES.has(key) || beat.refresher) continue;
+      // Diagrams whose content changes with the board (which stage of division, which set) may repeat.
+      if (!key || GRAPH_LIKE.has(key) || HUMANITIES.has(key) || REPEATABLE.has(key) || beat.refresher) continue;
       groups.set(key, [...(groups.get(key) ?? []), beat]);
     }
     for (const [key, list] of groups) {
