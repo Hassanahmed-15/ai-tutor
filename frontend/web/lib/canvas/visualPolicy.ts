@@ -125,8 +125,8 @@ function meaningful(stage: CanvasStage, apparatus = false): boolean {
  * separate syllabus contracts explicitly require labelled physical structures. The remaining
  * visual load is carried by deterministic renderers: flows, graphs, equations, molecules and code.
  */
-const GRAPH_LIKE = new Set(["supplyDemand", "ppf", "adAs", "costRevenue", "scatterPlot", "histogram", "boxPlot", "cumulativeFrequency", "barChart", "pieChart", "inferenceDistribution", "motionGraph", "rateGraph", "decayCurve", "energyProfile", "functionGraph", "riemannSum", "slopeField", "coordinateGrid", "numberLine", "unitCircle", "argand", "punnettSquare", "probabilityTree", "venn", "sankey", "ecologicalPyramid", "sequences", "oxygenDebt", "sectorArc", "gelElectrophoresis", "oxygenDissociation", "microscopeGraticule"]);
-const HUMANITIES = new Set(["timeline", "causeConsequence", "sourceCard", "evaluationScale", "conceptTable", "circularFlow"]);
+export const GRAPH_LIKE = new Set(["supplyDemand", "ppf", "adAs", "costRevenue", "scatterPlot", "histogram", "boxPlot", "cumulativeFrequency", "barChart", "pieChart", "inferenceDistribution", "motionGraph", "rateGraph", "decayCurve", "energyProfile", "functionGraph", "riemannSum", "slopeField", "coordinateGrid", "numberLine", "unitCircle", "argand", "punnettSquare", "probabilityTree", "venn", "sankey", "ecologicalPyramid", "sequences", "oxygenDebt", "sectorArc", "gelElectrophoresis", "oxygenDissociation", "microscopeGraticule"]);
+export const HUMANITIES = new Set(["timeline", "causeConsequence", "sourceCard", "evaluationScale", "conceptTable", "circularFlow"]);
 
 export function applyLessonVisualPolicy(
   input: CanvasPlanBeat[],
@@ -141,6 +141,10 @@ export function applyLessonVisualPolicy(
   },
 ): { beats: CanvasPlanBeat[]; audit: VisualPolicyAudit } {
   const beats = input.map((beat) => ({ ...beat, requiredVisual: beat.requiredVisual ? { stages: [...beat.requiredVisual.stages], mustShow: [...beat.requiredVisual.mustShow] } : undefined }));
+  // The exam-practice board is the lesson's mark scheme (lib/canvas/examBoard.ts): no routing rule
+  // may turn it into a diagram ("b6: exam → figure (numberLine)" shipped a demo number line in place
+  // of the exam question, audit 2026-10-17). It is put back exactly as planned at the end.
+  const examIds = new Set(beats.filter((beat) => beat.stage === "exam").map((beat) => beat.id));
   const changes: string[] = [];
   // AI-generated pictures are off unless CANVAS_AI_PICTURES=on (owner, 2026-10-16: "I don't want any
   // vague diagram created by GPT image"): every picture board is drawn by code instead.
@@ -600,6 +604,12 @@ export function applyLessonVisualPolicy(
         }
       }
     }
+  }
+
+  for (const beat of beats) {
+    if (!examIds.has(beat.id) || beat.stage === "exam") continue;
+    changes.push(`${beat.id}: kept as the exam board (a routing rule had made it ${beat.stage})`);
+    Object.assign(beat, { stage: "exam", figure: undefined, figureAsset: undefined, objects: [], requiredVisual: undefined });
   }
 
   const meaningfulVisuals = beats.filter((beat) => meaningful(beat.stage, apparatus.has(beat.id))).length;

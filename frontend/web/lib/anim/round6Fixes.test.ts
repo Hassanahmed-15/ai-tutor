@@ -59,3 +59,10 @@ test("an atom map is one balanced reaction with formula labels", async () => {
   assert.ok(issues.some((i) => /do not balance/.test(i)));
   assert.ok(issues.some((i) => /formula/.test(i)));
 });
+
+test("the exam board is never routed into a diagram, and a backup never draws a data diagram's demo", () => {
+  const exam = applyLessonVisualPolicy([beat({ id: "b6", title: "Exam practice", stage: "exam", script: "Calculate the bounds of the area. A length of 8 m lies between 7.5 m and 8.5 m. The lower bound is included." })], { mode: "course" });
+  assert.equal(exam.beats[0].stage, "exam");
+  const backup = fallbackSpec(beat({ id: "b4", title: "Bounds of rounded data", stage: "figure", figure: "numberLine", objects: ["number-line"], script: "A length of 8 m lies between 7.5 m and 8.5 m. The lower bound 7.5 is included, so 7.5 ≤ L < 8.5." }));
+  assert.notEqual(backup.stage.kind, "figure", "a −2…3 number line is not this lesson's data");
+});

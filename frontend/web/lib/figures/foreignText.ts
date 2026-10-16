@@ -14,7 +14,7 @@ const STOP = new Set("about above after again against also among because been be
 const stem = (w: string) => w.toLowerCase().replace(/(ies|es|s|ed|ing)$/, "").slice(0, 5);
 const contentWords = (text: string) => (text.match(/\p{L}[\p{L}'’-]{3,}/gu) ?? []).map((w) => w.toLowerCase()).filter((w) => !STOP.has(w));
 
-export function foreignFigureWords(component: string, params: FigureParams, boardText: string, partNames: string[] = []): string[] {
+export function foreignFigureWords(component: string, params: FigureParams, boardText: string, partNames: string[] = [], options: { ticksAreData?: boolean } = {}): string[] {
   const c = figureComponent(component);
   if (!c) return [];
   let written: string[];
@@ -35,7 +35,8 @@ export function foreignFigureWords(component: string, params: FigureParams, boar
   const saidNumbers = new Set(`${boardText} ${given}`.replace(/(\d),(\d{3})/g, "$1$2").match(/\d+(?:\.\d+)?/g) ?? []);
   // Only when Aria gives numbers of her own can the figure's contradict them; evenly spaced numbers
   // are a scale's ticks (a burette's 0, 10, 20…), part of the apparatus, not data.
-  const ticks = new Set(scaleTicks(drawnNumbers.map(Number)).map(String));
+  // On a data diagram (a number line, a chart) even evenly spaced numbers are its data.
+  const ticks = new Set(options.ticksAreData ? [] : scaleTicks(drawnNumbers.map(Number)).map(String));
   const foreignNumbers = drawnNumbers.filter((n) => !saidNumbers.has(n) && Number(n) > 1 && !ticks.has(String(Number(n))));
   if (saidNumbers.size >= 2 && foreignNumbers.length >= 2 && foreignNumbers.length > drawnNumbers.length / 2) return [...foreign, ...foreignNumbers.map((n) => `the number ${n}`)];
   // Axis words and units a standard figure always writes are a few; an example lesson is most of them.

@@ -1,5 +1,7 @@
 import { canvasSentences } from "./plan";
 import { alignToNarration } from "./narrationSync";
+import { GRAPH_LIKE, HUMANITIES } from "./visualPolicy";
+import { classifyInstructionalTask } from "./instructionalTask";
 import { figureComponent } from "../figures/registry";
 import { foreignFigureWords } from "../figures/foreignText";
 import { slug } from "./validate";
@@ -43,7 +45,14 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
   // A content figure built with no data draws its own example lesson ("Was the Treaty of Versailles
   // fair?" on a psychology board, audit 2026-10-17): that backup is never used — the board is built
   // from what Aria says instead.
-  if (component && !foreignFigureWords(component.name, backupParams, `${beat.title} ${beat.brief} ${beat.script}`).length) {
+  // A data diagram (a number line, graph, chart, timeline, balance) is only its data: with none, it
+  // draws its built-in example — a −2…3 number line on a bounds lesson's exam board (audit
+  // 2026-10-17). Only a structure (a heart, a leaf, apparatus) is drawn by the backup.
+  // A board whose task requires that diagram (a significance test's distribution) keeps it when it
+  // shows nothing foreign — its numbers, evenly spaced or not, counted as data.
+  const dataDriven = component ? GRAPH_LIKE.has(component.name) || HUMANITIES.has(component.name) : false;
+  const required = component ? classifyInstructionalTask(beat).figure === component.name : false;
+  if (component && (!dataDriven || required) && !foreignFigureWords(component.name, backupParams, `${beat.title} ${beat.brief} ${beat.script}`, [], { ticksAreData: dataDriven }).length) {
     // Required ids first (aorta on a heart board), then the parts the narration names, then the rest.
     const said = (name: string) => { const word = name.toLowerCase().split(/[\s(]/)[0].replace(/[^a-z-]/g, ""); const at = word ? beat.script.toLowerCase().search(new RegExp(`\\b${word}`)) : -1; return at < 0 ? Infinity : at; };
     const required = new Set((beat.requiredVisual?.mustShow ?? []).filter((id) => component.parts.some((p) => p.id === id)));
