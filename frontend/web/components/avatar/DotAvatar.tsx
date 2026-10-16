@@ -167,6 +167,18 @@ export function DotAvatar({
             <circle cx="155" cy="145" r="1.7" fill="#FFF" opacity=".75" />
           </g>
         </g>
+        {/* Her glasses (owner's direction, 2026-10-16): round lenses over the eyes, which still look
+            and blink behind them. They sit on her face, so they nod with her and stay put as she looks. */}
+        <g aria-hidden="true" style={{ stroke: "var(--dot-eye)" }} fill="none" strokeLinecap="round">
+          <circle cx="88.5" cy="141" r="24" fill="#FFFFFF" fillOpacity=".12" strokeWidth="4.5" />
+          <circle cx="151.5" cy="141" r="24" fill="#FFFFFF" fillOpacity=".12" strokeWidth="4.5" />
+          <path d="M112.5 137 Q120 131.5 127.5 137" strokeWidth="4" />
+          {/* The arms, one to each ear: back to the edge of her head, hooking down behind it. */}
+          <path d="M64.5 137 Q48 132.5 34 134.5 Q30.5 135.5 30 140.5" strokeWidth="4.5" />
+          <path d="M175.5 137 Q192 132.5 206 134.5 Q209.5 135.5 210 140.5" strokeWidth="4.5" />
+          <path d="M73 129 A17 17 0 0 1 85 122" stroke="#FFFFFF" strokeWidth="2.6" opacity=".55" />
+          <path d="M136 129 A17 17 0 0 1 148 122" stroke="#FFFFFF" strokeWidth="2.6" opacity=".55" />
+        </g>
         <g transform="translate(120 170) scale(1.42) translate(-120 -170)">
           <path data-k="mouth" style={{ fill: "var(--dot-mouth)", stroke: "var(--dot-mouth)" }} strokeWidth="2.4" strokeLinejoin="round" />
           <g clipPath={`url(#${uid}mc)`}>
