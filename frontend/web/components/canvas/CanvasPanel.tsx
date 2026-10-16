@@ -1,6 +1,8 @@
 "use client";
 
 import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
 import { graphPoint, INK, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
@@ -892,7 +894,7 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
     return mark.steps.find((st) => st.place[id])?.place[id];
   };
   const groups = useRef<Record<string, SVGGElement | null>>({});
-  const texts = useRef<Record<string, SVGTextElement | null>>({});
+  const texts = useRef<Record<string, Element | null>>({});
   const previousStep = useRef(stepIndex);
   /*
    * When the step changes, every term that moved glides there along an arc (3Blue1Brown's
@@ -916,7 +918,9 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
       const pb = pivotX(stepIndex);
       const crossed = pa !== null && pb !== null && Math.sign(from.x - pa) !== Math.sign(to.x - pb);
       const text = texts.current[t.id];
-      if (crossed && text) text.animate([{ fill: t.color }, { fill: ARIA_INK, offset: 0.45 }, { fill: ARIA_INK, offset: 0.65 }, { fill: t.color }], { duration: 1150, easing: "ease-in-out" });
+      // A typeset term is HTML (its colour is CSS "color"); a plain one is SVG text ("fill").
+      const paint = text instanceof SVGElement ? "fill" : "color";
+      if (crossed && text) text.animate([{ [paint]: t.color }, { [paint]: ARIA_INK, offset: 0.45 }, { [paint]: ARIA_INK, offset: 0.65 }, { [paint]: t.color }], { duration: 1150, easing: "ease-in-out" });
     }
     // Runs only when the step changes; the positions it reads are derived from the same layout.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -928,17 +932,25 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
         if (!at) return null;
         const shown = Boolean(step.place[t.id]);
         const lit = step.highlight.includes(t.id) || focusId === t.id;
+        // A fraction or root stands taller than a line of text: its highlight and underline follow it.
+        const tall = /\\[dt]?frac|\\sqrt/.test(t.tex ?? "");
+        const top = -t.size * (tall ? 1.45 : 0.95);
+        const under = t.size * (tall ? 0.95 : 0.24);
         return (
           <g key={t.id} ref={(el) => { groups.current[t.id] = el; }} style={{ transform: `translate(${at.x}px, ${at.y}px)`, transition: "opacity 600ms", opacity: shown ? 1 : 0 }}>
             {lit && (
               <g className="cv-in">
-                <path d={roughRect(`hl-${t.id}-${stepIndex}`, -7, -t.size * 0.95, t.w + 14, t.size * 1.3, 10)} fill={t.color} fillOpacity={0.14} stroke={t.color} strokeOpacity={0.35} strokeWidth={1.5} />
+                <path d={roughRect(`hl-${t.id}-${stepIndex}`, -7, top, t.w + 14, under - top + t.size * 0.12, 10)} fill={t.color} fillOpacity={0.14} stroke={t.color} strokeOpacity={0.35} strokeWidth={1.5} />
               </g>
             )}
-            <text ref={(el) => { texts.current[t.id] = el; }} x={0} y={0} fontSize={t.size} fontWeight={800} fill={t.color} className="cv-in">
-              {t.text}
-            </text>
-            {lit && <Ink points={[{ x: 0, y: t.size * 0.24 }, { x: t.w / 2, y: t.size * 0.28 }, { x: t.w, y: t.size * 0.22 }]} width={4} color={t.color} />}
+            {t.tex ? (
+              <TexTerm tex={t.tex} size={t.size} w={t.w} color={t.color} onElement={(el) => { texts.current[t.id] = el; }} />
+            ) : (
+              <text ref={(el) => { texts.current[t.id] = el; }} x={0} y={0} fontSize={t.size} fontWeight={800} fill={t.color} className="cv-in">
+                {t.text}
+              </text>
+            )}
+            {lit && <Ink points={[{ x: 0, y: under }, { x: t.w / 2, y: under + t.size * 0.04 }, { x: t.w, y: under - t.size * 0.02 }]} width={4} color={t.color} />}
           </g>
         );
       })}
@@ -948,6 +960,60 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
         </text>
       )}
     </g>
+  );
+}
+
+/**
+ * ONE TERM, TYPESET BY KATEX (owner's direction, 2026-10-16), on the board's own coordinates: its
+ * baseline sits where a written term's would. The layout gave it a slot from an estimate of its width
+ * (lib/canvas/layout.ts texEm); once typeset — and again once KaTeX's fonts arrive — it is measured
+ * and, when wider than its slot, scaled down to fit, so terms never run into each other.
+ */
+function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number; w: number; color: string; onElement: (el: HTMLDivElement | null) => void }) {
+  const html = useMemo(() => katex.renderToString(tex, { throwOnError: false, displayMode: false }), [tex]);
+  // The transform goes on a wrapper React owns and never styles: KaTeX's own root is replaced
+  // whenever React writes the typeset HTML again, and would lose it.
+  const wrap = useRef<HTMLSpanElement>(null);
+  const tall = /\\[dt]?frac|\\sqrt|\^/.test(tex);
+  const h = size * (tall ? 2.3 : 1.7);
+  const top = -size * (tall ? 1.45 : 1.15);
+  useLayoutEffect(() => {
+    const inner = wrap.current;
+    if (!inner) return;
+    const fit = (): boolean => {
+      // Inside a foreignObject, CSS pixels ARE board units, whatever the camera's zoom.
+      inner.style.transform = "";
+      const actual = inner.offsetWidth;
+      if (!actual) return false;
+      const scale = actual > w ? w / actual : 1;
+      // An inline box ignores a transform.
+      inner.style.display = "inline-block";
+      inner.style.transformOrigin = "0 50%";
+      inner.style.transform = `translateX(${((w - actual * scale) / 2).toFixed(1)}px) scale(${scale.toFixed(3)})`;
+      return true;
+    };
+    // A board is often mounted before it is laid out (its width reads 0), and a ResizeObserver
+    // never reports inside a foreignObject: try each frame until it has a width (about 2 s at
+    // most), then once more when KaTeX's fonts arrive, which changes the width.
+    let raf = 0;
+    let tries = 0;
+    let alive = true;
+    const attempt = () => {
+      if (alive && !fit() && tries++ < 120) raf = requestAnimationFrame(attempt);
+    };
+    attempt();
+    void document.fonts?.ready.then(() => alive && fit());
+    return () => {
+      alive = false;
+      cancelAnimationFrame(raf);
+    };
+  }, [html, w]);
+  return (
+    <foreignObject x={0} y={top} width={Math.max(4, w)} height={h} overflow="visible" className="cv-in">
+      <div ref={onElement} style={{ display: "flex", alignItems: "center", height: "100%", whiteSpace: "nowrap", color, fontSize: size * 0.84, lineHeight: 1 }}>
+        <span ref={wrap} dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+    </foreignObject>
   );
 }
 

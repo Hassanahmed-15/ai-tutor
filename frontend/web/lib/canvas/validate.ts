@@ -9,6 +9,7 @@
 
 import { compileExpr, exprUsesOnly } from "./expr";
 import { DS_MAX_STEPS, parseOps, parseStructure } from "./structure";
+import { repairTex } from "../equationSpec";
 import {
   CANVAS_ICONS,
   CANVAS_STAGES,
@@ -210,8 +211,11 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
     const tokens = arr(r.tokens)
       .map((t) => (typeof t === "string" ? { text: t } : obj(t)))
       .map((t, i) => {
-        const text = str(t.text, 18);
-        return text ? { id: unique(t.id ?? `t${i + 1}`, `t${i + 1}`), text, color: color(t.color), on: t.on === undefined ? undefined : slug(t.on, "") } : null;
+        // Never cut short: a term longer than this is reported (lib/canvas/equationCheck.ts) and the
+        // board written again, because half a term shows a student half an equation.
+        const text = str(t.text ?? t.tex, EQ_TOKEN_MAX);
+        const tex = typeof t.tex === "string" && t.tex.trim() ? tokenTex(t.tex) : null;
+        return text ? { id: unique(t.id ?? `t${i + 1}`, `t${i + 1}`), text, ...(tex ? { tex } : {}), color: color(t.color), on: t.on === undefined ? undefined : slug(t.on, "") } : null;
       })
       .filter((t): t is NonNullable<typeof t> => Boolean(t))
       .slice(0, 16)
@@ -454,6 +458,18 @@ function registerStructureIds(structure: NonNullable<ReturnType<typeof parseStru
   const ids = new Set(structure.nodes.map((n) => n.id));
   for (const st of steps) for (const op of st.ops ?? []) if (op.op === "add") ids.add(op.id);
   for (const id of ids) unique(`ds-${id}`, `ds-${id}`);
+}
+
+/** The longest equation term kept whole (characters). Longer is reported, never sliced. */
+export const EQ_TOKEN_MAX = 60;
+const EQ_TEX_MAX = 200;
+
+/** A term's LaTeX, repaired when JSON escaping broke it, kept only when KaTeX can typeset it. */
+function tokenTex(raw: string): string | null {
+  const tex = raw.trim();
+  if (tex.length > EQ_TEX_MAX) return null;
+  const fixed = repairTex(tex);
+  return "tex" in fixed ? fixed.tex : null;
 }
 
 /** One trace cell as text: a number, boolean or string, capped. */

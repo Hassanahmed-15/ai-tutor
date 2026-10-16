@@ -84,3 +84,46 @@ export function isNegative(text: string | undefined | null): boolean {
   if (!t) return false;
   return NEGATIVE.test(t) || NEGATIVE_PHRASE.test(t);
 }
+
+/**
+ * A question whose answer IS a formula ("what is the formula for the cost?", "give me the equation of
+ * a line"): answered with the formula itself, typeset, on a formula card (owner's direction,
+ * 2026-10-16 — it had drawn a crowded diagram of boxes and arrows instead). "Why does the formula
+ * work?" or "derive it" is not: that answer is a reason or a derivation, not the formula.
+ */
+const ASKS_FOR_FORMULA = /\b(?:formulae?|formulas|equations?\s+(?:for|of)|expression\s+for|identity\s+for|rule\s+for\s+(?:calculating|finding|working\s+out))\b/i;
+const WANTS_MORE_THAN_THE_FORMULA = /\b(?:why|derive|derivation|derived|prove|proof|intuition|where\s+does\s+(?:it|that|this|the\s+\w+)\s+come\s+from)\b/i;
+
+export function isFormulaQuestion(text: string | undefined | null): boolean {
+  const t = (text ?? "").trim();
+  if (!t || !ASKS_FOR_FORMULA.test(t)) return false;
+  return !WANTS_MORE_THAN_THE_FORMULA.test(t);
+}
+
+/**
+ * A spoken answer with LaTeX in it ("\(J(\theta)=\frac{1}{2m}…\)") would be read out symbol by symbol
+ * and printed raw in the chat. The board shows the formula typeset; what is SAID refers to it. A short
+ * math span (a single symbol, "m", "y_i") is said as its letters; a longer one becomes "the formula on
+ * the board" the first time and "this" after.
+ */
+export function withoutLatex(script: string): string {
+  let longSeen = false;
+  const spoken = (math: string): string => {
+    const plain = math
+      // An index or power is not said ("y^{(i)}" is "y").
+      .replace(/[\^_](?:\{(?:[^{}]|\{[^{}]*\})*\}|\\?[A-Za-z0-9])/g, "")
+      .replace(/\\(?:theta|alpha|beta|lambda|mu|sigma|pi)\b/g, (m) => ` ${m.slice(1)} `)
+      .replace(/\\[a-zA-Z]+|[{}_^\\]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (plain.length <= 3 && !/[=+\-*/]/.test(plain)) return plain;
+    const said = longSeen ? "this" : "the formula on the board";
+    longSeen = true;
+    return said;
+  };
+  return script
+    .replace(/\\\(([\s\S]*?)\\\)|\\\[([\s\S]*?)\\\]|\$\$([\s\S]*?)\$\$|\$([^$\n]+?)\$/g, (_m, a, b, c, d) => spoken(a ?? b ?? c ?? d ?? ""))
+    .replace(/\s+([.,;:!?])/g, "$1")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}

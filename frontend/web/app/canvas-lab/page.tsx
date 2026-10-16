@@ -9,7 +9,7 @@
  * the REAL LessonPlayer: same narration, same Aria, same pause/resume and questions — the only thing
  * that changes is the board. Each student's lectures are saved to their own storage, so a replay
  * costs nothing. `?scrub=1` (development only) shows the canvas alone for checking boards;
- * `&fixture=dsa` loads hand-written data-structure boards (lib/canvas/dsaFixtures.ts) instead, and
+ * `&fixture=dsa` loads hand-written data-structure boards (lib/canvas/dsaFixtures.ts) instead (`&fixture=math`: equation boards, lib/canvas/equationFixtures.ts), and
  * `&session=<id>` one of the student's real typed-prompt lectures (the boards it has so far).
  */
 import { useCallback, useEffect, useState } from "react";
@@ -20,6 +20,7 @@ import { LessonCanvas } from "@/components/canvas/LessonCanvas";
 import type { Beat } from "@/lib/lessonContent";
 import type { CanvasBoardSpec } from "@/lib/canvas/types";
 import { DSA_FIXTURES } from "@/lib/canvas/dsaFixtures";
+import { EQUATION_FIXTURES } from "@/lib/canvas/equationFixtures";
 import { canvasSentences } from "@/lib/canvas/plan";
 import { validateCanvasSpec } from "@/lib/canvas/validate";
 
@@ -55,7 +56,8 @@ export default function CanvasLab() {
     if (params.get("scrub") === "1" && process.env.NODE_ENV !== "production") queueMicrotask(() => setScrub(true));
     const id = params.get("id");
     const session = params.get("session");
-    if (params.get("fixture") === "dsa" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture()));
+    const fixture = params.get("fixture");
+    if ((fixture === "dsa" || fixture === "math") && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(fixture === "math" ? EQUATION_FIXTURES : DSA_FIXTURES)));
     else if (session && process.env.NODE_ENV !== "production") {
       fetch(`/api/progressive-lectures/${encodeURIComponent(session)}`)
         .then((r) => r.json())
@@ -217,8 +219,8 @@ export default function CanvasLab() {
 }
 
 /** The hand-written DSA boards as a lecture, each validated exactly as a generated board is. */
-function fixtureLecture(): Lecture {
-  const beats = DSA_FIXTURES.flatMap((f) => {
+function fixtureLecture(fixtures: typeof DSA_FIXTURES): Lecture {
+  const beats = fixtures.flatMap((f) => {
     const spec = validateCanvasSpec(f.raw, canvasSentences(f.script).length);
     return spec ? [{ id: f.id, script: f.script, draw: { ops: [{ kind: "canvasBoard", spec, at: 0, endAt: 1 }] } } as unknown as Beat] : [];
   });

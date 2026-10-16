@@ -90,7 +90,13 @@ export type IllustrationStage = {
 
 export type EquationToken = {
   id: string;
+  /** The term as plain text ("x/3", "(5a − 2a)"): the chat's description and the drawing snapshot read it. */
   text: string;
+  /**
+   * The term in LaTeX ("\frac{x}{3}", "(5a - 2a)"), typeset by KaTeX on the board (owner's
+   * direction, 2026-10-16: "all such equations shall be rendered through KaTeX"). Checked to compile.
+   */
+  tex?: string;
   color?: string;
   /** Written small ABOVE this token (a condition over the reaction arrow: "light", "Δ"). */
   on?: string;

@@ -1663,6 +1663,8 @@ export function LessonPlayer({
     topic: title,
     // A spoken answer at the lecture's speed, not suddenly at 1x.
     rate,
+    // "What is the formula for…?" gets the formula on a KaTeX card — normal mode only.
+    formulaCards: !deafMode && !adhd,
     // The board as it stands, anything the student highlighted on it, and what a sandboxed board
     // actually says — the typed chat used to get the title and script only, so "what does this line
     // of code do?" had no code to look at.

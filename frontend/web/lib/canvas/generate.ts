@@ -12,6 +12,7 @@ import { canvasSentences, validatePlan, withRefresherOnlyIfOffered } from "./pla
 import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat } from "./types";
 import { slug, validateCanvasSpec } from "./validate";
 import { boardStructureProblem, isDataStructureTopic, withoutStructure } from "./structure";
+import { equationProblem } from "./equationCheck";
 import { saveCanvasImage, saveCanvasLecture, type CanvasLecture } from "./store";
 import { createOpenAI } from "../openaiClient";
 
@@ -133,6 +134,9 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   let lastError: string | undefined;
   // The code alone, kept when its structure could not be made right: plainer, never wrong.
   let plainCode: CanvasBoardSpec | null = null;
+  // An equation board that still misses something after its retries: kept rather than replaced by
+  // a placeholder scene (its terms are whole now; only the check's last complaint is left).
+  let closestEquation: CanvasBoardSpec | null = null;
   for (let attempt = 1; attempt <= 3; attempt++) {
     // A retry is optional work: with too little time left the board falls back instead.
     if (attempt > 1 && clock.left() < 75_000) break;
@@ -158,6 +162,15 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         lastError = `the "try" interaction needs 3 to 5 reactions whose "when" conditions use only the slider variables (${spec.interaction.controls.map((c) => c.var).join(", ")})`;
         continue;
       }
+      if (spec.stage.kind === "equation") {
+        const problem = equationProblem((raw as { stage?: unknown }).stage, spec.stage, beat.script);
+        if (problem) {
+          closestEquation = spec;
+          lastError = problem;
+          console.warn(`[canvas] board ${beat.id}: ${problem}`);
+          continue;
+        }
+      }
       const structureProblem = boardStructureProblem(spec, needsStructure);
       if (structureProblem) {
         plainCode = withoutStructure(spec) ?? plainCode;
@@ -171,6 +184,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       lastError = (error as Error).message;
     }
   }
+  if (closestEquation) return { spec: closestEquation, costUsd, attempts: 3 };
   if (plainCode) {
     console.warn(`[canvas] board ${beat.id}: kept as code without its structure`);
     return { spec: plainCode, costUsd, attempts: 3 };

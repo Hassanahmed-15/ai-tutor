@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import type { Beat } from "./lessonContent";
-import { PLOT_BOARD_SYSTEM_PROMPT, EQUATION_BOARD_SYSTEM_PROMPT, CODE_BOARD_SYSTEM_PROMPT } from "./drawPrompt";
+import { PLOT_BOARD_SYSTEM_PROMPT, EQUATION_BOARD_SYSTEM_PROMPT, CODE_BOARD_SYSTEM_PROMPT, FORMULA_CARD_RULES } from "./drawPrompt";
 import { validatePlotSpec, compilesAsVegaLite, plotFieldIssue } from "./plotSpec";
 import { parseEquationSpec } from "./equationSpec";
 import { parseCodeSpec, verifyFromSource, type CodeSpec } from "./codeSpec";
@@ -121,7 +121,7 @@ function parseSpec(raw: string): unknown {
 }
 
 /** Validates against the renderer that will draw it. Returns the spec, or why it was rejected. */
-async function validateFor(op: SpecBoardOp, raw: unknown): Promise<{ spec: unknown } | { issue: string }> {
+async function validateFor(op: SpecBoardOp, raw: unknown, formula = false): Promise<{ spec: unknown } | { issue: string }> {
   if (op.kind === "plotBoard") {
     const spec = validatePlotSpec(raw);
     if (!spec) {
@@ -148,12 +148,12 @@ async function validateFor(op: SpecBoardOp, raw: unknown): Promise<{ spec: unkno
     return { issue: rejected[0]?.reason ?? "not a usable code spec — it needs `language`, `code` and at least two `steps`" };
   }
 
-  const { spec, rejected } = parseEquationSpec(raw);
+  const { spec, rejected } = parseEquationSpec(raw, { formula });
   if (spec) return { spec };
   return {
     issue: rejected[0]
       ? `KaTeX rejected the steps — ${rejected[0].reason}. Remember that a backslash inside a JSON string must be written twice: "\\\\frac{a}{b}", not "\\frac{a}{b}".`
-      : "the derivation needs at least two steps, each with `tex` that compiles in KaTeX",
+      : formula ? "the formula card needs the formula as a step, with `tex` that compiles in KaTeX" : "the derivation needs at least two steps, each with `tex` that compiles in KaTeX",
   };
 }
 
@@ -165,12 +165,13 @@ async function generateOne(
   images: ContentPart[] = [],
   request?: string,
   priorCode: string[] = [],
+  formula = false,
 ): Promise<{ filled: boolean; costUsd: number; issue?: string }> {
   const systemPrompt = op.kind === "plotBoard"
     ? PLOT_BOARD_SYSTEM_PROMPT
     : op.kind === "codeBoard"
       ? CODE_BOARD_SYSTEM_PROMPT
-      : EQUATION_BOARD_SYSTEM_PROMPT;
+      : formula ? `${EQUATION_BOARD_SYSTEM_PROMPT}\n\n${FORMULA_CARD_RULES}` : EQUATION_BOARD_SYSTEM_PROMPT;
   let spent = 0;
   let issue: string | undefined;
 
@@ -197,7 +198,7 @@ async function generateOne(
       });
       spent += costUsd(completion.usage);
 
-      const parsed = await validateFor(op, parseSpec(completion.choices[0]?.message?.content ?? ""));
+      const parsed = await validateFor(op, parseSpec(completion.choices[0]?.message?.content ?? ""), formula);
       // A listing that is the same as an earlier board's (after normalising names and numbers) is
       // rejected with that reason, so the retry writes a genuinely new example.
       const repeat = "spec" in parsed && op.kind === "codeBoard" && priorCode.some((code) => codeSimilarity((parsed.spec as CodeSpec).code, code) >= CODE_REPEAT_THRESHOLD);
@@ -236,6 +237,8 @@ export type SpecBoardFillOptions = {
   requestByBeatId?: Map<string, string>;
   /** Listings earlier boards of this lesson already showed, per beat id — never shown again. */
   priorCodeByBeatId?: Map<string, string[]>;
+  /** Beats whose equation board answers "what is the formula?": a formula card (lib/drawPrompt.ts FORMULA_CARD_RULES). */
+  formulaBeatIds?: Set<string>;
 };
 
 export async function fillSpecBoardOps(client: OpenAI, beats: Beat[], options: SpecBoardFillOptions = {}): Promise<SpecBoardFillStats> {
@@ -249,7 +252,7 @@ export async function fillSpecBoardOps(client: OpenAI, beats: Beat[], options: S
   }
 
   const results = await Promise.all(
-    pending.map(({ op, beat }) => generateOne(client, op, beat, options.sourceByBeatId?.get(beat.id), options.imagesByBeatId?.get(beat.id), options.requestByBeatId?.get(beat.id), options.priorCodeByBeatId?.get(beat.id))),
+    pending.map(({ op, beat }) => generateOne(client, op, beat, options.sourceByBeatId?.get(beat.id), options.imagesByBeatId?.get(beat.id), options.requestByBeatId?.get(beat.id), options.priorCodeByBeatId?.get(beat.id), options.formulaBeatIds?.has(beat.id))),
   );
   const filled = results.filter((r) => r.filled).length;
   return {

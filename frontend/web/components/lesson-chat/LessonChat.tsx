@@ -4,11 +4,13 @@ import { MessageCircle, Mic, MicOff, Square , X} from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LiveSketch, type DrawScript } from "@/components/sketch/LiveSketch";
 import { CodeBoard } from "@/components/sketch/CodeBoard";
+import { EquationBoard } from "@/components/sketch/EquationBoard";
+import type { EquationSpec } from "@/lib/equationSpec";
 import type { CodeSpec } from "@/lib/codeSpec";
 import { ReactAnimationSandbox } from "@/components/sketch/ReactAnimationSandbox";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
 import { recordJsonCost } from "@/lib/costLedger";
-import { asksForVisual, isAffirmative, isNegative } from "@/lib/drawConsent";
+import { asksForVisual, isAffirmative, isFormulaQuestion, isNegative } from "@/lib/drawConsent";
 import { isCodeQuestion } from "@/lib/codeSpec";
 import { captureVoice, isSpeechSupported, type VoiceCaptureHandle } from "@/lib/speech";
 import { HudPanel, HudEyebrow } from "@/components/hud/HudKit";
@@ -124,6 +126,11 @@ export function useLessonChat(opts: {
    * 0.5x or 1.5x. Optional — a player that passes none answers at normal speed, as before.
    */
   rate?: number;
+  /**
+   * A question asking for a formula is answered with the formula itself on a KaTeX formula card
+   * (lib/drawConsent.ts isFormulaQuestion). Normal mode only: the accessibility players keep their path.
+   */
+  formulaCards?: boolean;
 }): LessonChatState {
   const [chat, setChat] = useState<ChatTurn[]>([]);
   const [explaining, setExplaining] = useState(false);
@@ -287,6 +294,11 @@ export function useLessonChat(opts: {
          * words, and an offer only if the model thinks the answer genuinely needs one.
          */
         const documentContext = opts.getDocumentContext?.() ?? "";
+        // "What is the formula for…?": the formula, typeset — not a revisit of a busy slide, and not a diagram.
+        if (opts.formulaCards && isFormulaQuestion(trimmed)) {
+          await explainWithBoard(trimmed, { formula: true });
+          return;
+        }
         // Taught on an earlier slide: go back to it and answer there, instead of a new board.
         const back = asksForVisual(trimmed) ? null : await opts.revisit?.(trimmed).catch(() => null);
         if (back) {
@@ -510,6 +522,11 @@ function BoardSection({ board, progress }: { board: { script: string; draw?: Dra
     (op): op is Extract<typeof op, { kind: "codeBoard" }> => op.kind === "codeBoard" && Boolean(op.spec)
   );
   if (codeOp?.spec) return <CodeBoard key={board.script.slice(0, 24)} spec={codeOp.spec as CodeSpec} progress={progress} />;
+  // A formula question's answer: the formula, typeset by KaTeX (app/api/explain/route.ts).
+  const equationOp = board.draw?.ops.find(
+    (op): op is Extract<typeof op, { kind: "equationBoard" }> => op.kind === "equationBoard" && Boolean(op.spec)
+  );
+  if (equationOp?.spec) return <EquationBoard key={board.script.slice(0, 24)} spec={equationOp.spec as EquationSpec} progress={progress} card />;
   if (animationOp?.code) {
     return (
       <ReactAnimationSandbox
