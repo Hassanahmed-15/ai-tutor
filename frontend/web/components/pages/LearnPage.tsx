@@ -270,6 +270,8 @@ type BuildCost =
   const [progressiveComplete, setProgressiveComplete] = useState(true);
   const [progressivePlannedBeatCount, setProgressivePlannedBeatCount] = useState(0);
   const [progressiveStreamRevision, setProgressiveStreamRevision] = useState(0);
+  /** Reopens of the lecture stream in a row without a successful connection, for the backoff. */
+  const streamReopensRef = useRef(0);
   const lecturePlayheadRef = useRef(-1);
 
   // Interactive planning: ONE pre-draft gate in the main canvas (ambiguity questions if the
@@ -889,6 +891,8 @@ type BuildCost =
   useEffect(() => {
     if (!progressiveSessionId) return;
     const events = new EventSource(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/events`);
+    /** The lecture is complete or failed: its stream was closed on purpose and is never reopened. */
+    let finished = false;
     const onSnapshot = (event: MessageEvent<string>) => {
       const snapshot = JSON.parse(event.data) as ProgressiveLectureSnapshot;
       // Every planned beat with its measured timings, for the build screen's timeline.
@@ -971,6 +975,7 @@ type BuildCost =
       if (snapshot.complete) {
         setProgressiveComplete(true);
         setBuildCost({ kind: "generated", usd: snapshot.costUsd });
+        finished = true;
         events.close();
       } else if (snapshot.status === "failed") {
         setProgressiveComplete(true);
@@ -978,13 +983,41 @@ type BuildCost =
           setError(snapshot.error || "Progressive lecture generation failed.");
           setPhase("error");
         }
+        finished = true;
         events.close();
       }
     };
     events.addEventListener("snapshot", onSnapshot as EventListener);
     events.addEventListener("stream-error", () => setBuildStatus("Reconnecting to the generation worker"));
-    events.onerror = () => setBuildStatus("Reconnecting to the generation worker");
-    return () => events.close();
+    /*
+     * A STREAM THE BROWSER GAVE UP ON IS OPENED AGAIN. EventSource retries a dropped connection on
+     * its own, but a retry that meets an error answer (a proxy's 502, a 401 or 404 while the store
+     * is slow) closes it for good — and then no later board ever arrived: the player sat on
+     * "preparing next part" with Aria silent (2026-10-16). A closed stream of an unfinished lecture
+     * is reopened after a growing wait, and at once when the browser comes back online.
+     */
+    let reopen: number | undefined;
+    const reopenNow = () => {
+      if (finished || events.readyState !== EventSource.CLOSED || reopen === -1) return;
+      window.clearTimeout(reopen);
+      reopen = -1;
+      setProgressiveStreamRevision((revision) => revision + 1);
+    };
+    events.onerror = () => {
+      setBuildStatus("Reconnecting to the generation worker");
+      if (!finished && events.readyState === EventSource.CLOSED && reopen === undefined) {
+        const wait = Math.min(15_000, 2_000 * 2 ** Math.min(3, streamReopensRef.current));
+        streamReopensRef.current += 1;
+        reopen = window.setTimeout(reopenNow, wait);
+      }
+    };
+    events.addEventListener("open", () => { streamReopensRef.current = 0; });
+    window.addEventListener("online", reopenNow);
+    return () => {
+      window.removeEventListener("online", reopenNow);
+      if (reopen !== undefined && reopen !== -1) window.clearTimeout(reopen);
+      events.close();
+    };
   }, [progressiveSessionId, progressiveStreamRevision]);
 
 
