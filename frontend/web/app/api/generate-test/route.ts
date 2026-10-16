@@ -46,8 +46,16 @@ export async function POST(req: Request) {
   const source = typeof body.source === "string" ? body.source.trim().slice(0, 16_000) : "";
   const strict = sourceScope?.fidelity === "strict" && Boolean(source);
 
+  // The test is in the language the lecture was taught in: an Urdu lesson's test came back in English,
+  // correcting English sentences (audit 2026-10-17).
+  const spoken = beats.map((b) => b.script ?? "").join(" ");
+  const letters = spoken.match(/\p{L}/gu)?.length ?? 0;
+  const nonLatin = spoken.match(/[^\p{Script=Latin}\P{L}]/gu)?.length ?? 0;
+  const languageRule = letters && nonLatin / letters > 0.5
+    ? "LANGUAGE: the lecture was taught in the language of the beats' scripts (not English). Write every question, model answer and mark-scheme point in that same language, about that language's own grammar and writing — never English sentences to correct.\n\n"
+    : "LANGUAGE: write the test in the language the beats' scripts are written in.\n\n";
   const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const userMsg =
+  const userMsg = languageRule +
     `Lecture topic: "${topic}"\nBeats taught (use these ids as beatId):\n${JSON.stringify(compactBeatsForTest(beats))}\n\n` +
     (strict ? `SOURCE — the student's own document, the text this lecture was taught from. Test only what SOURCE states:\n${source}\n\n` : "") +
     "Write the test now.";

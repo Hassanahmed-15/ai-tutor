@@ -15,7 +15,7 @@ export function quizIssues(interaction: CanvasInteraction | undefined, context: 
   const issues: string[] = [];
   const options = interaction.options;
   // "Both x and a are positive" can be a real misconception; a bare "Both" or "None of the above" is not.
-  if (options.some((o) => /\b(all|none) of the above\b|^(both|neither|all of these|none of these)( of (these|them))?\.?$/i.test(o.text.trim()))) issues.push(`no "all/none of the above" or bare "both"/"neither" options`);
+  if (options.some((o) => /\b(all|none) of the above\b|^(both|neither|all of these|none of these)( of (these|them))?\.?$|^(both|neither)( of the)? (descriptions?|statements?|options?|answers?|claims?|views?)( (is|are))? (correct|right|true|wrong)\.?$|^the (first|second) (description|statement|option|claim) is (correct|right|true)\.?$/i.test(o.text.trim()))) issues.push(`no "all/none of the above" or bare "both"/"neither" options`);
   // Two options with the same words (one right, one wrong) make the card unanswerable.
   // Signs stay: "a ≈ −121" and "a ≈ +121" are different answers.
   const norm = (t: string) => t.toLowerCase().replace(/[−–]/g, "-").replace(/[^a-z0-9+\-.]+/g, " ").trim();
@@ -28,6 +28,12 @@ export function quizIssues(interaction: CanvasInteraction | undefined, context: 
   const others = lengths.filter((_, i) => i !== right).sort((a, b) => a - b);
   const median = others[Math.floor(others.length / 2)] ?? 0;
   if (median > 0 && lengths[right] > median * 1.8 && lengths[right] - median > 25) issues.push("the correct option is much longer than the others — a student can spot it without knowing the idea; make the options similar in length");
+  // A yes/no card is answered by the way it is asked ("Would one attainment pattern represent every
+  // student?", audit 2026-10-16): ask for a choice between specific outcomes instead.
+  if (options.filter((o) => /^(yes|no|sí|si|oui|non|ja|nein|ہاں|جی ہاں|نہیں|جی نہیں|نعم|لا)(?=[\s:;،؛,.!—–-]|$)/i.test(o.text.trim())).length >= 2) issues.push("a yes/no question is answered by how it is asked — ask the student to choose between specific outcomes, each option a real answer (not Yes/No)");
+  // The card is read on its own after the narration: it names what it is about, never "that pattern",
+  // "the same plot" or "instead" (audit 2026-10-16: "Is commercial, shareware or open-source the strongest choice?").
+  if (/\b(that|those|these|this|the same) (pattern|graph|plot|example|case|one|board|diagram|situation|cluster|idea|scenario|option|choice|company|student|patient|point)\b|\binstead\b|\bthe above\b|\bstrongest choice\b/i.test(interaction.question)) issues.push("the question must make sense on the card alone — name the case it is about instead of pointing back to the narration (\"that pattern\", \"instead\", \"the same plot\")");
   // Every wrong option must be about this board: it shares a word with the question, the board or the narration.
   const known = new Set(words(`${interaction.question} ${context}`).map(stem));
   // Options with fewer than two words to compare (numbers, symbols, "As zero") are judged by the number check instead.

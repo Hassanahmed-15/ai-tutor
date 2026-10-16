@@ -207,6 +207,12 @@ function DotAtBoard({
         if (r.width < 24 || r.height < 16 || r.width * r.height > bounds.w * bounds.h * 0.4) continue;
         out.push({ x: r.left, y: r.top, w: r.width, h: r.height });
       }
+      // A drawn figure or a graph's plot is one obstacle: she parks beside it, never on its art or points.
+      const drawn = b.querySelectorAll("[data-figure]");
+      for (let i = 0; i < drawn.length && i < 8; i++) {
+        const r = drawn[i].getBoundingClientRect();
+        if (r.width > 24 && r.height > 24 && r.width * r.height < bounds.w * bounds.h * 0.8) out.push({ x: r.left, y: r.top, w: r.width, h: r.height });
+      }
       return out;
     };
     const spotFor = (target: Rect, near: Pt, el: Element): Pt | null => {

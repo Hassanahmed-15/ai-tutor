@@ -1,3 +1,4 @@
+import { complexNumbersIn } from "../figures/components/argand";
 import "server-only";
 
 import { createHash, randomBytes } from "node:crypto";
@@ -13,6 +14,7 @@ import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat } from ".
 import { slug, validateCanvasSpec } from "./validate";
 import { fallbackSpec } from "./fallback";
 import { figureComponent } from "../figures/registry";
+import { DRAWN_GUIDE, drawnFigure } from "../figures/drawn";
 import { findLibraryFigure, libraryAssetTitle, libraryStageAsset } from "../figures/library";
 import type { FigureComponent } from "../figures/types";
 import { loadSharedCanvasImage, saveCanvasImage, saveCanvasLecture, saveSharedCanvasImage, type CanvasLecture } from "./store";
@@ -105,6 +107,7 @@ function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanB
     `Its objects (use these as element ids): ${beat.objects.join(", ") || "(none named)"}`,
     ...(beat.stage === "figure" && beat.figure && figureComponent(beat.figure) ? [figureBrief(figureComponent(beat.figure)!)] : []),
     ...(beat.stage === "figure" && beat.figure === "library" && beat.figureAsset ? [libraryBrief(libraryStageAsset(beat.figureAsset.id) ?? beat.figureAsset)] : []),
+    ...(beat.stage === "figure" && beat.figure === "drawn" ? [`FIGURE BOARD — draw the textbook diagram of what this board teaches (${beat.brief || beat.title}). ${DRAWN_GUIDE} Label 3-6 parts the narration names, each revealed ("s") on the sentence that first names it; cues point at part ids.`] : []),
     ...(beat.stage === "flow" && /\bcycle\b/i.test(`${beat.title} ${beat.brief}`) ? [`This board is a CYCLE: use "arrangement": "cycle", with an arrow from the last stage back to the first.`] : []),
     ...(beat.requiredVisual?.mustShow.length ? [`The syllabus requires this board to visibly show: ${beat.requiredVisual.mustShow.join("; ")}. Each must be a drawn, labelled element, not only spoken.`] : []),
     `Narration, numbered (${sentences.length} sentences, s = 0 to ${sentences.length - 1}):`,
@@ -147,10 +150,14 @@ function figureBrief(c: FigureComponent): string {
   return `FIGURE BOARD: the stage is the "${c.name}" figure, drawn exactly by code — ${c.title}. Return "stage": {"kind": "figure", "component": "${c.name}", "params": {…}, "parts": [{"id", "name", "s", "say"}]}. params (all optional): ${c.params}. Label 3 to 6 of these parts (ids exactly as given): ${c.parts.map((p) => `${p.id} ("${p.name}")`).join(", ")}. Give each the "name" the narration uses (e.g. "Burette (hydrochloric acid)", at most 34 characters) and reveal it ("s") on the sentence that first names it. Choose params that match what this board teaches (an end-point board shows the end-point colour). Cues point at part ids.`;
 }
 
+/** Faults a board may still ship with when nothing better arrives in time; never meaning, numbers or answer timing. */
+const SOFT_GATES = new Set(["layout", "quiz", "student-view"]);
+
 export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = []): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
   const sentences = canvasSentences(beat.script);
   let costUsd = 0;
   let lastError: string | undefined;
+  let softest: { spec: CanvasBoardSpec; faults: number } | undefined;
   for (let attempt = 1; attempt <= 3; attempt++) {
     // A retry is optional work: with too little time left the board falls back instead.
     // A second attempt still runs with 30 s left (one bounded call): with a 75 s floor most slow
@@ -171,7 +178,24 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         stage.component = "library";
         stage.asset = libraryStageAsset(beat.figureAsset?.id) ?? beat.figureAsset;
       }
+      // A described diagram that fails its checks is sent back with what to fix, not a generic error.
+      if (beat.figure === "drawn" && raw.stage && typeof raw.stage === "object") {
+        const { issues } = drawnFigure((raw.stage as Record<string, unknown>).drawing);
+        if (issues.length) {
+          lastError = `the drawing needs fixing: ${issues.join("; ")}`;
+          continue;
+        }
+      }
       const spec = validateCanvasSpec(raw, sentences.length);
+      // An Argand board written without its numbers drew the default 3 + 4i while Aria spoke about
+      // −3 + 4i (audit 2026-10-17): the numbers come from the board's own narration.
+      if (spec?.stage.kind === "figure" && spec.stage.component === "argand") {
+        const params = (spec.stage.params ??= {});
+        if (!params.points && !params.loci) {
+          const found = complexNumbersIn(beat.script);
+          if (found) params.points = found;
+        }
+      }
       if (spec?.stage.kind === "figure" && spec.stage.component === "library") {
         // Filled again after validation from the index itself (the authoritative copy).
         const asset = libraryStageAsset(spec.stage.asset?.id);
@@ -205,6 +229,10 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       const releaseFindings = auditBoardForRelease(spec, beat);
       if (releaseFindings.length) {
         lastError = releaseFindings.map((finding) => `${finding.gate}: ${finding.message}`).join("; ");
+        // A board whose only faults are soft — tidiness, quiz wording, legibility notes — is kept in
+        // reserve: when attempts or time run out it beats the plain backup (audit 2026-10-17: a history
+        // board with one long label was thrown away for the backup).
+        if (releaseFindings.every((f) => SOFT_GATES.has(f.gate)) && (!softest || releaseFindings.length < softest.faults)) softest = { spec, faults: releaseFindings.length };
         continue;
       }
       return { spec, costUsd, attempts: attempt };
@@ -212,6 +240,10 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       costUsd += (error as { costUsd?: number }).costUsd ?? 0;
       lastError = (error as Error).message;
     }
+  }
+  if (softest) {
+    console.log(`[canvas] ${beat.id}: kept the best attempt (${softest.faults} soft issue(s)) — ${lastError ?? ""}`);
+    return { spec: softest.spec, costUsd, attempts: 3 };
   }
   console.log(`[canvas] ${beat.id}: every attempt failed — last reason: ${lastError ?? "time budget"}`);
   const fallback = fallbackSpec(beat);

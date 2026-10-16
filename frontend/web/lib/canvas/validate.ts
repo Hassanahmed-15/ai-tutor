@@ -9,6 +9,7 @@
 
 import { compileExpr, exprUsesOnly } from "./expr";
 import { figureComponent } from "../figures/registry";
+import { drawnFigure } from "../figures/drawn";
 import { snapEquilibrium } from "./graphCheck";
 import {
   CANVAS_ICONS,
@@ -135,13 +136,20 @@ export function validateCanvasSpec(raw: unknown, sentenceCount: number, vars: st
 
   const stage = validateStage(obj(r.stage), sentence, unique, knownVars);
   if (!stage) return null;
+  // A figure title that repeats the board's heading is the same words twice, one above the other.
+  if (stage.kind === "figure" && stage.params && typeof stage.params.title === "string") {
+    const plain = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    if (plain(stage.params.title) === plain(heading)) delete stage.params.title;
+  }
 
   const ids = new Set(used);
   const cues: CanvasCue[] = arr(r.cues)
     .map((c) => obj(c))
     .map((c): CanvasCue | null => {
-      const action = str(c.action, 12) as CanvasCue["action"];
+      let action = str(c.action, 12) as CanvasCue["action"];
       if (!["point", "circle", "underline", "zoom", "unzoom", "visit"].includes(action)) return null;
+      // Rings are retired (owner, 2026-10-17): a "circle" becomes a "point".
+      if (action === "circle") action = "point";
       // A visit names another board; whether that board exists and came earlier is checked by the
       // caller, which knows the lesson.
       if (action === "visit") {
@@ -291,26 +299,53 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
     return stage;
   }
 
+  if (kind === "figure" && str(r.component, 40) === "drawn") {
+    // A diagram the board writer described (lib/figures/drawn.ts): checked, then labelled like any figure.
+    const { drawing } = drawnFigure(r.drawing);
+    if (!drawing) return null;
+    const known = new Map(drawing.parts.map((p) => [p.id, p]));
+    const parts = arr(r.parts)
+      .map((p) => (typeof p === "string" ? { id: p } : obj(p)))
+      .map((p, i) => {
+        const id = slug(p.id, "");
+        if (!known.has(id) || unique(id, id) !== id) return null;
+        const name = shown(p.name ?? p.label, 34) || known.get(id)!.name;
+        const say = shown(p.say, 200);
+        return { id, name, s: sentence(p.s ?? p.sentence, i), ...(say ? { say } : {}) };
+      })
+      .filter((p): p is NonNullable<typeof p> => Boolean(p))
+      .slice(0, 8);
+    if (!parts.length) return null;
+    const stage: FigureStage = { kind, component: "drawn", params: {}, parts, drawing };
+    return stage;
+  }
+
   if (kind === "figure") {
     const component = figureComponent(str(r.component, 40));
     if (!component) return null;
     // Parameters are plain values only; the component itself checks and defaults each one.
     const params: FigureStage["params"] = {};
-    for (const [k, v] of Object.entries(obj(r.params)).slice(0, 12)) {
+    // Up to 16 settings; text up to 400 characters, so data figures can carry their data ("points": "1,2; 3,5; …").
+    for (const [k, v] of Object.entries(obj(r.params)).slice(0, 16)) {
       if (!/^[A-Za-z][A-Za-z0-9]{0,23}$/.test(k)) continue;
-      if (typeof v === "string") params[k] = str(v, 60);
+      if (typeof v === "string") params[k] = str(v, 400);
       else if (typeof v === "number" && Number.isFinite(v)) params[k] = v;
       else if (typeof v === "boolean") params[k] = v;
     }
     // Only parts this figure actually draws for these params (a transverse wave has no compression).
-    const drawn = new Set(component.build(params).parts.map((p) => p.id));
+    const built = component.build(params).parts;
+    const drawn = new Set(built.map((p) => p.id));
+    // A name the figure worked out from its data (a timeline event's own text, a titrant's name) is
+    // the part's name: the board writer's guess at which event is "event-2" once put labels on the
+    // wrong cards (audit 2026-10-17).
+    const derived = new Map(built.filter((p) => p.name !== component.parts.find((d) => d.id === p.id)?.name).map((p) => [p.id, p.name]));
     const known = new Map(component.parts.filter((p) => drawn.has(p.id)).map((p) => [p.id, p]));
     const parts = arr(r.parts)
       .map((p) => (typeof p === "string" ? { id: p } : obj(p)))
       .map((p, i) => {
         const id = slug(p.id, "");
         if (!known.has(id)) return null;
-        const name = shown(p.name ?? p.label, 34) || known.get(id)!.name;
+        const name = derived.get(id)?.slice(0, 34) ?? (shown(p.name ?? p.label, 34) || known.get(id)!.name);
         const say = shown(p.say, 200);
         // A part's id is the component's own (its anchor is looked up by it): a repeat is dropped, not renamed.
         if (unique(id, id) !== id) return null;
@@ -330,6 +365,8 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       .map((p, i) => {
         const name = shown(p.name, 32);
         const say = str(p.say, 220);
+        // A placeholder is not a part: a cell picture was labelled "Callouts" (audit 2026-10-17).
+        if (/^(callouts?|labels?|parts?|arrows?|annotations?|pointers?|items?|part \d+|label \d+)$/i.test(name ?? "")) return null;
         return name ? { id: unique(p.id ?? name, `part-${i + 1}`), name, s: sentence(p.s ?? p.sentence, i), ...(say ? { say } : {}), ...(Number.isFinite(Number(p.x)) ? { x: Number(p.x), y: Number(p.y) } : {}) } : null;
       })
       .filter((p): p is NonNullable<typeof p> => Boolean(p))

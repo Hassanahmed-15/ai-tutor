@@ -18,34 +18,37 @@ function beat(id: string, title: string, stage: CanvasStage, brief = title): Can
   };
 }
 
-test("a physical structure gets one textbook illustration while symbolic ideas keep native renderers", () => {
+test("pictures and diagrams combine: a labelled structure is a diagram, what a thing looks like is a picture, symbols keep native renderers", () => {
   const input = [
     beat("b1", "Plant cell structure", "scene", "Identify and label the parts inside a plant cell"),
     beat("b2", "Photosynthesis atom count", "scene", "Track reactant atoms into products"),
     beat("b3", "The chemical equation", "scene", "Write and balance the equation"),
     beat("b4", "Rate against light", "scene", "Plot the rate against light intensity on a graph"),
     beat("b5", "Compare limiting factors", "scene", "Compare temperature and carbon dioxide"),
+    beat("b6", "A rainforest plant in its habitat", "illustration", "What a rainforest plant and the animals around it look like"),
   ];
   const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
-  assert.deepEqual(out.beats.map((b) => b.stage), ["illustration", "atom-map", "equation", "graph", "compare"]);
+  assert.deepEqual(out.beats.map((b) => b.stage), ["figure", "atom-map", "equation", "graph", "compare", "illustration"]);
+  assert.equal(out.beats[0].figure, "drawn", "a board that labels a structure gets an exactly labelled diagram");
   assert.equal(out.audit.illustrations, 1);
-  assert.equal(out.audit.meaningfulVisuals, 5);
 });
 
-test("generated pictures are capped at two unless separate curriculum contracts require them", () => {
+test("generated pictures are capped at two; over the cap a physical subject is still drawn", () => {
   const input = [
-    beat("b1", "Heart structure", "illustration", "Identify and label heart anatomy"),
-    beat("b2", "Lung structure", "illustration", "Identify and label lung anatomy"),
-    beat("b3", "Kidney structure", "illustration", "Identify and label kidney anatomy"),
+    beat("b1", "A volcano erupting", "illustration", "What an erupting volcano looks like"),
+    beat("b2", "The planet Venus", "illustration", "What the planet Venus looks like through a telescope"),
+    beat("b3", "The planet Mars", "illustration", "What the planet Mars looks like from orbit"),
     beat("b4", "Blood flow sequence", "flow"),
   ];
   const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
   assert.equal(out.beats.filter((b) => b.stage === "illustration").length, 2);
-  assert.notEqual(out.beats.find((b) => b.id === "b3")?.stage, "illustration");
+  const over = out.beats.find((b) => b.stage !== "illustration" && b.id !== "b4")!;
+  assert.equal(over.stage, "figure");
+  assert.equal(over.figure, "drawn");
 
   const required = input.map((b) => ({ ...b, requiredVisual: b.stage === "illustration" ? { stages: ["illustration"], mustShow: ["distinct visible parts"] } : undefined }));
   const exception = applyLessonVisualPolicy(required, { mode: "course", aiPictures: true });
-  assert.equal(exception.beats.filter((b) => b.stage === "illustration").length, 3, "three distinct assessed structures are a justified exception");
+  assert.equal(exception.beats.filter((b) => b.stage === "illustration").length, 3, "three distinct assessed pictures are a justified exception");
 });
 
 test("strict mode never invents a generated textbook picture", () => {
@@ -87,7 +90,18 @@ test("a board about the forces on an object becomes a free-body diagram", () => 
 
 test("abstract or tabular content is never an AI picture", () => {
   const out = applyLessonVisualPolicy([beat("b1", "Compare perspectives with evidence", "illustration", "A labelled four-column perspective grid with rows for viewpoint, scale and evidence")], { mode: "course" });
-  assert.equal(out.beats[0].stage, "compare");
+  assert.notEqual(out.beats[0].stage, "illustration");
+  // A lesson with no other visual has this board drawn as a real table (lesson-visual guarantee).
+  assert.equal(out.beats[0].figure, "conceptTable");
+});
+
+test("every lesson gets a visual: a text-only history lesson has its dated board drawn as a timeline", () => {
+  const out = applyLessonVisualPolicy([
+    beat("b1", "Two different sections", "compare", "North and South economies before the war"),
+    beat("b2", "From secession to war", "flow", "Lincoln elected in 1860, South Carolina secedes in 1860, Fort Sumter attacked in 1861"),
+  ], { mode: "course", aiPictures: true });
+  assert.equal(out.beats[1].stage, "figure");
+  assert.equal(out.beats[1].figure, "timeline");
 });
 
 test("the visual contract no longer turns economics 'product' into chemistry, or 'identifying' into a picture", async () => {

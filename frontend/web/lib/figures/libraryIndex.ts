@@ -92,14 +92,18 @@ export type LibraryMatch = { asset: LibraryAsset; score: number; subject: number
  * extra subject word adds 1; each of the asset's part names the board says adds 1 (2 when the
  * syllabus requires it to be shown), at most 6; title words add 0.5 each, at most 2.
  */
+const GENERIC_KEYWORDS = new Set("system systems human humans male female complete english diagram diagrams structure structures earth labelled labeled simple model models general overview body part parts development cross section view type types process processes cycle".split(" "));
+
 export function scoreLibraryAsset(asset: LibraryAsset, text: string, mustShow: string[] = []): LibraryMatch {
   const tw = words(`${text} ${mustShow.join(" ")}`);
   const mw = words(mustShow.join(" . "));
-  const subjects = [...new Set([asset.seed, ...asset.keywords].map((k) => k.toLowerCase()))].filter((k) => hasPhrase(tw, k));
+  // Generic single words from file titles ("human", "system", "complete", "english") are not a
+  // subject: they matched a maths outcome to the male reproductive system (audit 2026-10-17).
+  const subjects = [...new Set([asset.seed, ...asset.keywords].map((k) => k.toLowerCase()))].filter((k) => words(k).some((w) => !GENERIC_KEYWORDS.has(w)) && hasPhrase(tw, k));
   const subject = subjects.length;
   const said = asset.parts.filter((p) => !/^\d/.test(p.id)).filter((p) => hasPhrase(tw, p.name.replace(/\([^)]*\)/g, " ")));
   const partScore = Math.min(6, said.reduce((sum, p) => sum + (hasPhrase(mw, p.name.replace(/\([^)]*\)/g, " ")) ? 2 : 1), 0));
-  const titleWords = [...new Set(words(asset.title))].filter((w) => tw.includes(w)).length;
+  const titleWords = [...new Set(words(asset.title))].filter((w) => !GENERIC_KEYWORDS.has(w) && tw.includes(w)).length;
   const score = subject ? 4 + (subject - 1) + partScore + Math.min(2, titleWords * 0.5) + (asset.reviewed ? 0.5 : 0) : 0;
   return { asset, score, subject, parts: said.map((p) => p.id) };
 }

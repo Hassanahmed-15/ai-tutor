@@ -33,7 +33,7 @@ export const vectors: FigureComponent = {
   name: "vectors",
   title: "Vectors drawn to a square grid with origin O: arrows from components, the resultant added tip-to-tail (or as a parallelogram), optional dashed components and a scalar multiple",
   params: `a, b (components "x,y", e.g. a "3,1", b "1,2"; each -10..10; default a "3,1", b "1,2"; omit b for one vector); names (vector letters, default "a,b"); operation ("a+b" default | "a-b": the resultant is a + (−b), drawn tip-to-tail with −b); resultant (true default: draw the resultant and write its components); layout ("tip-to-tail" default: b starts at a's tip | "parallelogram": both from O, resultant the diagonal | "origin": both from O, no resultant); components (true: dashed horizontal and vertical components with their values; default false); multiple (a scalar multiple drawn separately, e.g. "2a", "-b", "0.5b"; default none); ticks (axis numbers; default true, false when components are shown). The resultant part exists only when it is drawn.`,
-  match: /\bvectors?\b(?![- ]valued)|\bresultant\b|\btip[- ]to[- ]tail\b|\bcolumn vectors?\b|\bscalar multiples?\b|\bparallelogram (law|rule) of\b/i,
+  match: /^(?![\s\S]*\b(argand|complex numbers?|imaginary (axis|part))\b)[\s\S]*?(?:\bvectors?\b(?![- ]valued)|\bresultant\b|\btip[- ]to[- ]tail\b|\bcolumn vectors?\b|\bscalar multiples?\b|\bparallelogram (law|rule) of\b)/i,
   parts: PARTS,
   build(params: FigureParams) {
     const names = list(params.names);

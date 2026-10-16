@@ -117,6 +117,9 @@ export function chalkCss(): string {
     // White cards (callout pills, compare items) become slate cards; a photo's own border is not white.
     `.cv-chalk rect[fill="#fff"],.cv-chalk rect[fill="#ffffff"]{fill:${CHALK.card}}`,
     `.cv-chalk [stroke="#e7e2d6"]{stroke:${CHALK.line}}`,
+    // The atom map's pale energy lane: on chalk its text turns light, so the lane turns dark amber
+    // (it was unreadable, audit 2026-10-17).
+    `.cv-chalk rect[fill="#fef3c7"]{fill:rgba(245,158,11,.16)}`,
     // The highlighter multiplies on paper; on a dark board multiply would erase it.
     `.cv-chalk .cv-swipe{mix-blend-mode:screen !important;stroke-opacity:.42}`,
   );

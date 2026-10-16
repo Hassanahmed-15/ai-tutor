@@ -5,7 +5,8 @@
  * other than what Aria had just asked (audit 2026-10-15).
  */
 export function asksForPrediction(sentence: string): boolean {
-  return /\bpredict\b/i.test(sentence) || (/\?\s*$/.test(sentence.trim()) && /\b(will|which|what|should|does|do|is|are|can)\b/i.test(sentence));
+  // A question in Urdu or Arabic ("…؟") has no English question word to look for.
+  return /\bpredict\b/i.test(sentence) || (/\?\s*$/.test(sentence.trim()) && /\b(will|which|what|should|does|do|is|are|can)\b/i.test(sentence)) || (/؟\s*$/.test(sentence.trim()) && !/[A-Za-z]{3}/.test(sentence));
 }
 
 /** Index of the board's prediction sentence: an explicit "Predict" first, else a question; -1 if none. */
@@ -18,8 +19,10 @@ export function predictionIndex(sentences: string[]): number {
 }
 
 const ANSWER_STOP = new Set("the a an and or of to in on for with by as at from is are be that this which what will would does do if when it its you your then because so therefore answer result".split(" "));
-const answerWords = (s: string) => (s.toLowerCase().match(/[a-z][a-z'-]+/g) ?? []).filter((word) => word.length > 2 && !ANSWER_STOP.has(word));
-const answerNumbers = (s: string): string[] => [...(s.replace(/(\d),(\d{3})/g, "$1$2").match(/\d+(?:\.\d+)?/g) ?? [])];
+const answerWords = (s: string) => (s.toLowerCase().match(/\p{L}[\p{L}\p{M}'-]+/gu) ?? []).filter((word) => word.length > 2 && !ANSWER_STOP.has(word));
+// A number in a name (S1, D2, P1, Q2, x₂) is a label, not an answer (audit 2026-10-17: "S1 → S2" failed
+// every attempt at a supply-shift board).
+const answerNumbers = (s: string): string[] => [...(s.replace(/(\d),(\d{3})/g, "$1$2").match(/(?<![A-Za-z_])\d+(?:\.\d+)?(?![A-Za-z])/g) ?? [])];
 
 /**
  * A prediction is not a prediction when the board has already printed the answer. This inspects
@@ -29,7 +32,7 @@ const answerNumbers = (s: string): string[] => [...(s.replace(/(\d),(\d{3})/g, "
 export function predictionRevealIssues(spec: CanvasBoardSpec, beat: Pick<CanvasPlanBeat, "teachingCycle" | "script">): string[] {
   const cycle = beat.teachingCycle;
   if (!cycle) return [];
-  const sentences = beat.script.split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
+  const sentences = beat.script.split(/(?<=[.!?۔؟])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
   const reveal = sentences[cycle.reveal] ?? "";
   if (!reveal) return ["the planned reveal sentence is missing"];
 
@@ -48,7 +51,9 @@ export function predictionRevealIssues(spec: CanvasBoardSpec, beat: Pick<CanvasP
   walk(spec.stage);
 
   const issues: string[] = [];
-  const revealNumbers = answerNumbers(reveal);
+  // Numbers the question itself gives (the starting price, the sample size) may be on the board already.
+  const given = new Set(answerNumbers(sentences[cycle.predict] ?? ""));
+  const revealNumbers = answerNumbers(reveal).filter((n) => !given.has(n));
   for (const number of revealNumbers) {
     const leak = early.find((text) => answerNumbers(text).includes(number));
     if (leak) issues.push(`the answer value ${number} is visible before the reveal in "${leak}"`);
@@ -68,17 +73,19 @@ export function predictionRevealIssues(spec: CanvasBoardSpec, beat: Pick<CanvasP
 /** Plan-level integrity for a complete teach → predict → reveal → transfer cycle. */
 export function teachingCycleIssues(beat: Pick<CanvasPlanBeat, "overview" | "refresher" | "interaction" | "teachingCycle" | "script">): string[] {
   if (beat.overview || beat.refresher || beat.interaction === "try" || beat.interaction === "draw") return [];
-  const sentences = beat.script.split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
+  const sentences = beat.script.split(/(?<=[.!?۔؟])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
   const cycle = beat.teachingCycle;
   if (!cycle) return ["a substantive teaching board needs a prediction followed by a reveal and transfer example"];
   const prediction = sentences[cycle.predict] ?? "";
   const transfer = sentences[cycle.transfer] ?? "";
   const issues: string[] = [];
-  if (!prediction.endsWith("?")) issues.push("the prediction must be its own question ending in ?");
+  if (!/[?؟]$/.test(prediction)) issues.push("the prediction must be its own question ending in ?");
   if (cycle.reveal !== cycle.predict + 1) issues.push("the answer must begin in the sentence immediately after the prediction");
   if (cycle.transfer <= cycle.reveal) issues.push("the transfer example must come after the reveal");
-  const transferCue = /\b(apply|use|new|another|different|case|example|situation|scenario|suppose|imagine|given|calculate|if|when|now try)\b/i;
-  if (!transferCue.test(transfer) || answerWords(transfer).length < 3) issues.push("the last sentence must give a concrete new case, not merely recap the answer");
+  const transferCue = /\b(apply|use|new|another|different|case|example|situation|scenario|suppose|imagine|given|calculate|if|when|now try|exam|state|find|show|illustrate|sketch|work out|determine|write|solve|explain)\b/i;
+  // The cue words are English; a lesson taught in another script is judged on length alone.
+  const latin = /[A-Za-z]{3}/.test(transfer);
+  if ((latin && !transferCue.test(transfer)) || answerWords(transfer).length < 3) issues.push("the last sentence must give a concrete new case, not merely recap the answer");
   return issues;
 }
 

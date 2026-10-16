@@ -179,7 +179,7 @@ export function unlockAudio() {
 }
 
 export function splitNarrationSentences(text: string): string[] {
-  return text.split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
+  return text.split(/(?<=[.!?۔؟])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
 }
 
 export function playNarration(text: string, callbacks: NarrationCallbacks): NarrationHandle {

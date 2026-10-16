@@ -12,7 +12,7 @@ export const filtration: FigureComponent = {
   name: "filtration",
   title: "Filtration apparatus: mixture poured down a glass rod into a filter funnel with filter paper, residue on the paper, filtrate collected in a conical flask",
   params: `mixture (what is being filtered, e.g. "sand and salt water"), residue (the insoluble solid left on the paper, e.g. "sand"), residueColour (sand, white, black, grey, blue, green, brown, yellow…; default sand), filtrate (the liquid that passes through, e.g. "salt solution"), filtrateColour (colourless, pale blue, blue, green, yellow…; default colourless), filtrateLevel (0-1, default 0.3)`,
-  match: /^(?!.*\b(kidney|nephron|glomerul\w*|ultrafiltration|urinary)\b)[\s\S]*(\bfiltrat(e|ion)\b|\bfilter(ing|ed)?\b.*\b(funnel|paper|residue|mixture|insoluble)\b|\bfilter (funnel|paper)\b)/i,
+  match: /^(?!.*\b(kidney|nephron|glomerul\w*|ultrafiltration|urinary|colorimet\w*|absorbance|cuvettes?)\b)[\s\S]*(\bfiltrat(e|ion)\b|\bfilter(ing|ed)?\b.*\b(funnel|paper|residue|mixture|insoluble)\b|\bfilter (funnel|paper)\b)/i,
   parts: [
     { id: "beaker", name: "Beaker" },
     { id: "mixture", name: "Mixture" },

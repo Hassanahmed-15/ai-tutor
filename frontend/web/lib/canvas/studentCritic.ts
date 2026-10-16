@@ -22,7 +22,8 @@ export function critiqueStudentBoard(spec: CanvasBoardSpec, beat: Pick<CanvasPla
   // shipped the placeholder board (audit 2026-10-15).
   const visibleWords = labelTexts(spec).join(" ").toLowerCase();
   const words = (name: string) => name.toLowerCase().replace(/[-_]+/g, " ").split(/\s+/).filter((w) => w.length > 2);
-  const fixedIds = spec.stage.kind === "code" || spec.stage.kind === "graph" || spec.stage.kind === "equation";
+  // Figures draw every part whether labelled or not; atom maps and molecules have fixed element ids.
+  const fixedIds = spec.stage.kind === "code" || spec.stage.kind === "graph" || spec.stage.kind === "equation" || spec.stage.kind === "figure" || spec.stage.kind === "atom-map" || spec.stage.kind === "molecule";
   const figurePartIds = spec.stage.kind === "figure"
     ? new Set((spec.stage.asset?.parts ?? figureComponent(spec.stage.component)?.build(spec.stage.params).parts ?? []).map((part) => part.id))
     : new Set<string>();

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="195.118 23.356 639.279 422.206" width="639.279" height="422.206">
+  
+  
+  
+  
+  
+  <style type="text/css"><![CDATA[
+    text {
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 20px;
+      fill: black;
+    }
+    
+    .antigen {
+      stroke: blue;
+      stroke-width: 3px;
+      fill: red;
+    }
+    
+    .construction { stroke: gray; stroke-width: 1px; fill: none; visibility: hidden; }
+    
+    .leader { stroke: black; stroke-width: 2px; fill: none; }
+    
+    .right { text-anchor: end; }
+    
+    .blink { animation: blinking 2s infinite; }
+    @keyframes blinking {
+      50% { opacity: 0.0; }
+    }
+  ]]></style>
+  
+  <defs>
+		<marker id="dot" orient="auto-start-reverse" markerWidth="10" markerHeight="10" refX="5" refY="5">
+			<circle cx="5" cy="5" r="2" fill="black"/>
+		</marker>
+
+    <g id="target" class="construction">
+      <line x1="0" y1="-20" x2="0" y2="20"/>
+      <line x1="-20" y1="0" x2="20" y2="0"/>
+    </g>
+
+    <g id="HBsAg" class="antigen">
+      
+      <circle display="none" r="15"/>
+      <circle display="none" r="8" fill="white"/>
+      <path d="M 15,0 A 15 15 0 0 0 0,-15   A 15 15 0 0 0 -15,0 A 15 15 0 0 0 0,15 A 15 15 0 0 0 15,0 Z
+               M 8,0  A  8  8 0 0 1 0,  8   A  8  8 0 0 1  -8,0 A  8  8 0 0 1 0,-8 A  8  8 0 0 1  8,0 Z"/>
+      <use xlink:href="#target"/>
+    </g>
+
+    <g id="HBcAg" class="antigen">
+      
+      <circle r="15"/>
+      <use xlink:href="#target"/>
+    </g>
+
+    <g id="HBeAg">
+      
+      <use xlink:href="#target"/>
+      <polygon points="13,0 3,-3 0,-20 -3,-3 -13,0 -3,3, 0,20 3,3" stroke="none" fill="blue"/>
+    </g>
+
+    <g id="polymerase">
+      
+      <ellipse rx="30" ry="18" fill="yellow" stroke-width="2" stroke="black"/>
+      <circle r="15" fill="url(#grad)" stroke="none"/>
+      <use xlink:href="#target"/>
+    </g>
+
+    <g id="hex">
+      
+      <polygon points="110,0 55,-95.26, -55,-95.26 -110,0 -55,95.26 55,95.26" stroke="purple" stroke-width="3" fill="lightgray"/>
+      
+      <circle class="construction" r="110" stroke="gray" stroke-width="1" fill="none"/>
+      <use xlink:href="#target"/>
+    </g>
+
+    <radialGradient id="grad">
+      <stop offset="0%" stop-color="red"/>
+      <stop offset="100%" stop-color="yellow"/>
+    </radialGradient>
+
+  </defs>
+  
+	<rect visibility="hidden" fill="pink" width="100%" height="100%"/>
+
+  
+
+  <g id="layer1">
+    
+    <g>
+      
+      <use xlink:href="#HBeAg" x=" 433" y="  68"/>
+      <use xlink:href="#HBeAg" transform="translate(516 120) rotate(90)"/>
+      <use xlink:href="#HBeAg" x=" 553" y=" 195"/>
+    </g>
+
+    <g>
+      
+      <use xlink:href="#HBsAg" x="387" y="50"/>
+
+      <use xlink:href="#HBsAg" x=" 357" y="  57"/>
+      <use xlink:href="#HBsAg" x=" 327" y="  64"/>
+      <use xlink:href="#HBsAg" x=" 305" y="  78"/>
+      <use xlink:href="#HBsAg" x=" 282" y=" 102"/>
+      <use xlink:href="#HBsAg" x=" 260" y=" 124"/>
+      <use xlink:href="#HBsAg" x=" 246" y=" 146"/>
+      <use xlink:href="#HBsAg" x=" 230" y=" 177"/>
+      <use xlink:href="#HBsAg" x=" 222" y=" 206"/>
+      <use xlink:href="#HBsAg" x=" 223" y=" 237"/>
+      <use xlink:href="#HBsAg" x=" 222" y=" 260"/>
+      <use xlink:href="#HBsAg" x=" 222" y=" 290"/>
+      <use xlink:href="#HBsAg" x=" 237" y=" 319"/>
+      <use xlink:href="#HBsAg" x=" 252" y=" 343"/>
+      <use xlink:href="#HBsAg" x=" 268" y=" 364"/>
+      <use xlink:href="#HBsAg" x=" 290" y=" 378"/>
+      <use xlink:href="#HBsAg" x=" 313" y=" 403"/>
+      <use xlink:href="#HBsAg" x=" 342" y=" 409"/>
+      <use xlink:href="#HBsAg" x=" 373" y=" 417"/>
+      <use xlink:href="#HBsAg" x=" 402" y=" 416"/>
+      <use xlink:href="#HBsAg" x=" 433" y=" 418"/>
+      <use xlink:href="#HBsAg" x=" 463" y=" 410"/>
+      <use xlink:href="#HBsAg" x=" 494" y=" 394"/>
+      <use xlink:href="#HBsAg" x=" 515" y=" 372"/>
+      <use xlink:href="#HBsAg" x=" 539" y=" 350"/>
+      <use xlink:href="#HBsAg" x=" 553" y=" 327"/>
+      <use xlink:href="#HBsAg" x=" 569" y=" 297"/>
+      <use xlink:href="#HBsAg" x=" 576" y=" 266"/>
+      <use xlink:href="#HBsAg" x=" 576" y=" 236"/>
+      <use xlink:href="#HBsAg" x=" 576" y=" 207"/>
+      <use xlink:href="#HBsAg" x=" 570" y=" 176"/>
+      <use xlink:href="#HBsAg" x=" 561" y=" 146"/>
+      <use xlink:href="#HBsAg" x=" 546" y=" 125"/>
+      <use xlink:href="#HBsAg" x=" 531" y=" 102"/>
+      <use xlink:href="#HBsAg" x=" 508" y="  79"/>
+      <use xlink:href="#HBsAg" x=" 478" y="  64"/>
+      <use xlink:href="#HBsAg" x=" 447" y="  56"/>
+      <use xlink:href="#HBsAg" x=" 418" y="  50"/>
+    </g>
+
+    <g>
+      
+      <use xlink:href="#HBsAg" x="696" y="244"/>
+      <use xlink:href="#HBsAg" x="748" y="215"/>
+      <use xlink:href="#HBsAg" x="793" y="266"/>
+
+      <use xlink:href="#HBsAg" x=" 696" y=" 296"/>
+      <use xlink:href="#HBsAg" x=" 711" y=" 313"/>
+      <use xlink:href="#HBsAg" x=" 727" y=" 329"/>
+      <use xlink:href="#HBsAg" x=" 743" y=" 345"/>
+      <use xlink:href="#HBsAg" x=" 761" y=" 361"/>
+      <use xlink:href="#HBsAg" x=" 777" y=" 377"/>
+      <use xlink:href="#HBsAg" x=" 792" y=" 393"/>
+      <use xlink:href="#HBsAg" x=" 807" y=" 408"/>
+    </g>
+
+    <g>
+      
+      <use xlink:href="#HBcAg" x="372" y="102"/>
+
+      <use xlink:href="#HBcAg" x=" 343" y=" 109"/>
+      <use xlink:href="#HBcAg" x=" 311" y=" 122"/>
+      <use xlink:href="#HBcAg" x=" 297" y=" 155"/>
+      <use xlink:href="#HBcAg" x=" 282" y=" 177"/>
+      <use xlink:href="#HBcAg" x=" 268" y=" 206"/>
+      <use xlink:href="#HBcAg" x=" 266" y=" 236"/>
+      <use xlink:href="#HBcAg" x=" 276" y=" 267"/>
+      <use xlink:href="#HBcAg" x=" 282" y=" 297"/>
+      <use xlink:href="#HBcAg" x=" 297" y=" 318"/>
+      <use xlink:href="#HBcAg" x=" 312" y=" 342"/>
+
+      <use xlink:href="#HBcAg" x=" 335" y=" 356"/>
+      <use xlink:href="#HBcAg" x=" 365" y=" 362"/>
+      <use xlink:href="#HBcAg" x=" 402" y=" 364"/>
+      <use xlink:href="#HBcAg" x=" 434" y=" 357"/>
+      <use xlink:href="#HBcAg" x=" 464" y=" 350"/>
+      <use xlink:href="#HBcAg" x=" 486" y=" 334"/>
+      <use xlink:href="#HBcAg" x=" 508" y=" 312"/>
+      <use xlink:href="#HBcAg" x=" 524" y=" 280"/>
+      <use xlink:href="#HBcAg" x=" 530" y=" 250"/>
+      <use xlink:href="#HBcAg" x=" 532" y=" 221"/>
+
+      <use xlink:href="#HBcAg" x=" 524" y=" 191"/>
+      <use xlink:href="#HBcAg" x=" 510" y=" 162"/>
+      <use xlink:href="#HBcAg" x=" 484" y=" 138"/>
+      <use xlink:href="#HBcAg" x=" 465" y=" 124"/>
+      <use xlink:href="#HBcAg" x=" 432" y=" 109"/>
+      <use xlink:href="#HBcAg" x=" 401" y="  99"/>
+    </g>
+
+    <use xlink:href="#hex" x="400" y="235"/>
+
+    <use xlink:href="#polymerase" x="372" y="173"/>
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+
+  </g>
+</svg>

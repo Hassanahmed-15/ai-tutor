@@ -41,7 +41,7 @@ async function main() {
     const svg = renderToStaticMarkup(React.createElement(CanvasPanel, { layout, spec, shownThrough: Infinity, sentenceProgress: 1, live: false, vars: {}, carryFrom: {}, reducedMotion: true, theme } as never));
     const body = theme === "chalk" ? `<style>${chalkCss()}</style><rect width="1000" height="560" rx="22" fill="#22302a"/><g class="cv-chalk">${svg}</g>` : svg;
     const file = path.join(out, `${component.name}-${theme}.html`);
-    fs.writeFileSync(file, `<html><body style="margin:0;background:#fff"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" font-family="Nunito, Outfit, sans-serif">${body}</svg></body></html>`);
+    fs.writeFileSync(file, `<html><head><meta charset="utf-8"></head><body style="margin:0;background:#fff"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" font-family="Nunito, Outfit, sans-serif">${body}</svg></body></html>`);
     files.push(file);
   }
   const { chromium } = await import("/Users/hassanahmed/ai-tutor/node_modules/playwright/index.mjs" as string);

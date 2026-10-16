@@ -320,9 +320,20 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
               <IconGlyph name={mark.icon} color={mark.color} />
             </g>
           )}
-          <text x={mark.rect.x + (mark.icon ? 74 : 22)} y={mark.rect.y + 48} fontSize={23} fontWeight={800} fill={mark.color}>
-            {mark.title}
-          </text>
+          {(() => {
+            // The title fits its column: smaller first, then two lines — never past the column's edge
+            // ("Makkah's protected sanctuary" ran off the board, audit 2026-10-17).
+            const x = mark.rect.x + (mark.icon ? 74 : 22);
+            const room = mark.rect.x + mark.rect.w - 16 - x;
+            let size = 23;
+            while (size > 17 && textWidth(mark.title, size) > room) size--;
+            const lines = textWidth(mark.title, size) <= room ? [mark.title] : wrapTitle(mark.title, size, room);
+            return lines.map((line, i) => (
+              <text key={i} x={x} y={mark.rect.y + (lines.length > 1 ? 38 : 48) + i * size * 1.15} fontSize={size} fontWeight={800} fill={mark.color}>
+                {line}
+              </text>
+            ));
+          })()}
         </g>
       );
     case "item":
@@ -434,7 +445,7 @@ function FigureView({ mark, chalk, focusId }: { mark: Extract<Mark, { type: "fig
   const { rect, scale, drawing } = mark;
   if (mark.asset) return <LibraryFigureView mark={mark} chalk={chalk} />;
   return (
-    <g className="cv-in" role="img" aria-label={`Figure with parts: ${drawing.parts.map((p) => p.name).join(", ")}`}>
+    <g className="cv-in" role="img" data-figure="" aria-label={`Figure with parts: ${drawing.parts.map((p) => p.name).join(", ")}`}>
       <g transform={`translate(${rect.x},${rect.y}) scale(${scale})`}>
         {drawing.shapes.map((sh, i) => {
           const focused = Boolean(sh.part && sh.part === focusId);
@@ -1080,6 +1091,46 @@ function curvePath(plot: Rect, spec: GraphStage, expr: string, vars: Record<stri
   return d;
 }
 
+function wrapTitle(text: string, size: number, room: number): string[] {
+  const words = text.split(/\s+/);
+  let first = "";
+  for (const w of words) { const next = first ? `${first} ${w}` : w; if (textWidth(next, size) > room && first) break; first = next; }
+  const rest = text.slice(first.length).trim();
+  return rest ? [first, rest] : [first];
+}
+
+/** The key for crowded curves: in whichever corner of the plot the curves leave most empty. */
+function GraphLegend({ plot, spec, vars, shownThrough, stacked }: { plot: Rect; spec: GraphStage; vars: Record<string, number>; shownThrough: number; stacked: boolean }) {
+  const shown = spec.curves.filter((c) => c.s <= shownThrough && c.label);
+  if (stacked || !shown.length) return null;
+  const ends = shown.map((c) => graphPoint(plot, spec, spec.x.max, evalExpr(c.expr, { ...vars, x: spec.x.max }, spec.y.min)).y).sort((a, b) => a - b);
+  if (!(shown.length >= 3 || ends.some((y, k) => k > 0 && Math.abs(y - ends[k - 1]) < 26))) return null;
+  const w = Math.max(...shown.map((c) => textWidth(c.label!, 14))) + 52;
+  const h = shown.length * 22 + 12;
+  const corners = [
+    { x: plot.x + 10, y: plot.y + 6 }, { x: plot.x + plot.w - w - 10, y: plot.y + 6 },
+    { x: plot.x + 10, y: plot.y + plot.h - h - 8 }, { x: plot.x + plot.w - w - 10, y: plot.y + plot.h - h - 8 },
+  ];
+  const samples = spec.curves.flatMap((c) => Array.from({ length: 60 }, (_, i) => { const x = spec.x.min + ((spec.x.max - spec.x.min) * i) / 59; return graphPoint(plot, spec, x, evalExpr(c.expr, { ...vars, x }, NaN)); }));
+  const hits = (b: { x: number; y: number }) => samples.filter((p) => p.x > b.x - 6 && p.x < b.x + w + 6 && p.y > b.y - 6 && p.y < b.y + h + 6).length;
+  const at = corners.reduce((best, c) => (hits(c) < hits(best) ? c : best), corners[0]);
+  return (
+    <g className="cv-in cv-late">
+      <rect x={at.x} y={at.y} width={w} height={h} rx={10} fill={PAPER} opacity={0.92} />
+      {shown.map((c, i) => {
+        const color = c.color ?? ["#15803d", "#2563eb", "#d97706"][spec.curves.indexOf(c) % 3];
+        const y = at.y + 17 + i * 22;
+        return (
+          <g key={c.id}>
+            <line x1={at.x + 10} y1={y - 4} x2={at.x + 34} y2={y - 4} stroke={color} strokeWidth={4} strokeLinecap="round" />
+            <text x={at.x + 42} y={y} fontSize={14} fontWeight={800} fill={color}>{c.label}</text>
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
 function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focusId }: { mark: Extract<Mark, { type: "graph" }>; shownThrough: number; sentenceProgress: number; vars: Record<string, number>; ghostVars?: Record<string, number>; focusId?: string }) {
   const { plot, spec, stacked } = mark;
   const xTicks = useMemo(() => niceTicks(spec.x.min, spec.x.max), [spec.x.min, spec.x.max]);
@@ -1092,6 +1143,8 @@ function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focu
   const ghostDiffers = ghostVars && Object.keys(ghostVars).some((k) => ghostVars[k] !== vars[k]);
   return (
     <g className="cv-in">
+      {/* Dot (components/avatar/BoardAvatar.tsx) keeps off the plot: she must not sit on the points. */}
+      <rect data-figure="" x={plot.x} y={plot.y} width={plot.w} height={plot.h} fill="none" pointerEvents="none" />
       {yTicks.map((v) => (
         <g key={`y${v}`}>
           <line x1={plot.x} y1={py(v)} x2={plot.x + plot.w} y2={py(v)} stroke="#e7e2d6" strokeWidth={1} />
@@ -1146,14 +1199,17 @@ function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focu
           labelY[i] = Math.max(ends[i].y - 12, last + 18, plot.y + 4);
           last = labelY[i];
         }
-        return shown.map((c, i) => ({ c, i, end: ends[i], y: labelY[i] }));
-      })().map(({ c, i, end, y }) => {
+        // Crowded names (three or more, or ends within a line of each other) go into a key instead of
+        // being stacked over the curves (audit 2026-10-17: "Graph A: strong" over "Graph B: weak").
+        const useLegend = order.length >= 3 || order.some((i, k) => k > 0 && Math.abs(ends[i].y - ends[order[k - 1]].y) < 26);
+        return shown.map((c, i) => ({ c, i, end: ends[i], y: labelY[i], legend: useLegend }));
+      })().map(({ c, i, end, y, legend }) => {
         const color = c.color ?? ["#15803d", "#2563eb", "#d97706"][i % 3];
         const d = curvePath(plot, spec, c.expr, vars);
         return (
           <g key={c.id} className={focusId === c.id ? "cv-focus" : undefined}>
             <path d={d} stroke={color} strokeWidth={4} fill="none" strokeLinecap="round" strokeLinejoin="round" className="cv-stroke cv-slow" pathLength={1} />
-            {c.label && !stacked && (
+            {c.label && !stacked && !legend && (
               <text x={Math.min(end.x, plot.x + plot.w - 4)} y={y ?? end.y - 12} textAnchor="end" fontSize={15} fontWeight={800} fill={color} className="cv-in cv-late">
                 {c.label}
               </text>
@@ -1161,6 +1217,7 @@ function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focu
           </g>
         );
       })}
+      <GraphLegend plot={plot} spec={spec} vars={vars} shownThrough={shownThrough} stacked={Boolean(stacked)} />
       {traceActive && traceCurve && (() => {
         const x = spec.x.min + (spec.x.max - spec.x.min) * Math.min(1, sentenceProgress * 1.15);
         const p = graphPoint(plot, spec, x, evalExpr(traceCurve.expr, { ...vars, x }, spec.y.min));

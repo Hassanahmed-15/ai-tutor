@@ -10,7 +10,7 @@ import { predictionIndex } from "./predict";
 
 /** Mirrors splitNarrationSentences in lib/voice.ts, which numbers the sentences the player speaks. */
 export function canvasSentences(script: string): string[] {
-  return script.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
+  return script.split(/(?<=[.!?۔؟])\s+/).map((s) => s.trim()).filter(Boolean);
 }
 
 /**
@@ -45,10 +45,13 @@ export function addTransferPrompt(script: string, title: string, interaction: Ca
   const predict = predictionIndex(sentences);
   if (predict < 0 || predict >= sentences.length - 1) return normalized;
   const last = sentences.at(-1) ?? "";
-  const concrete = /\b(apply|use|new|another|different|case|example|situation|scenario|suppose|imagine|given|calculate|if|when|now try)\b/i;
+  const concrete = /\b(apply|use|new|another|different|case|example|situation|scenario|suppose|imagine|given|calculate|if|when|now try|exam|state|find|show|illustrate|sketch|work out|determine|write|solve|explain)\b/i;
   if (concrete.test(last)) return normalized;
-  const subject = title.replace(/[^\w\s-]/g, "").trim().toLowerCase().slice(0, 48) || "this idea";
-  return `${normalized.replace(/\s+$/, "")} Now apply the same reasoning to a new ${subject} example and explain what changes.`;
+  // Cue words are English: a lesson in Urdu or Arabic keeps its own ending rather than an English sentence.
+  if (!/[A-Za-z]{3}/.test(last)) return normalized;
+  // ("Now apply the same reasoning to a new the two square roots example" read badly; audit 2026-10-17.)
+  void title;
+  return `${normalized.replace(/\s+$/, "")} Now try the same reasoning on a new example of your own, and explain what changes.`;
 }
 
 export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBeat[] } | null {

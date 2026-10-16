@@ -21,27 +21,33 @@ export type PlacedLabel = {
  * leaves its label horizontally, then runs straight to a dot on the part. Text sits outside the art,
  * never on it; a label too long for its margin wraps onto a second line.
  */
-export function placeLabels(items: LabelInput[], fig: Rect, area: Rect, measure: (text: string, size: number) => number, size = 17, obstacles: Array<{ id: string; box: Rect }> = []): PlacedLabel[] {
+/** Label heights tried around each part: level first, then up and down in 17-unit steps. */
+const DY_STEPS = [0, ...Array.from({ length: 12 }, (_, i) => [-(i + 1) * 17, (i + 1) * 17]).flat()];
+
+export function placeLabels(items: LabelInput[], fig: Rect, area: Rect, measure: (text: string, size: number) => number, size = 17, obstacles: Array<{ id: string; box: Rect; circle?: { cx: number; cy: number; r: number } }> = []): PlacedLabel[] {
   const cx = fig.x + fig.w / 2;
   // Each label takes the side and height whose leader is shortest WITHOUT passing another part on the
   // way in (the circuit's "Fuse" leader crossed the variable resistor). Columns are not forced to
   // balance: a label moved across the figure for symmetry drags its leader through the art.
   const CLEAR = 14;
   const edgeX = (side: "left" | "right") => (side === "left" ? fig.x - 14 : fig.x + fig.w + 14);
-  // Blocked: the leader passes near another label's anchor, or through another part's outline (its
-  // last few units, where it reaches its own part, are allowed to touch).
-  const clear = (item: LabelInput, from: Pt) =>
-    items.every((o) => o === item || distanceToSegment(o.anchor, from, item.anchor) >= CLEAR) &&
-    obstacles.every((o) => o.id === item.id || !segmentHitsBox(from, item.anchor, o.box, 3));
   const choice = new Map<LabelInput, { side: "left" | "right"; dy: number }>();
+  // Every candidate leader (either margin, several heights) is scored: its length, how far it bends,
+  // and — heavily — how much of the drawing it crosses. The cleanest wins; when none is perfectly
+  // clear, the one that crosses least still beats the nearest side (audit 2026-10-17: "Electron
+  // transfer" ran straight through the sodium atom).
+  const crossings = (item: LabelInput, from: Pt) =>
+    items.filter((o) => o !== item && distanceToSegment(o.anchor, from, item.anchor) < CLEAR).length * 3 +
+    obstacles.filter((o) => o.id !== item.id && (o.circle ? segmentHitsCircle(from, item.anchor, o.circle) : segmentHitsBox(from, item.anchor, o.box, 3))).length;
   for (const item of items) {
     const near: "left" | "right" = item.anchor.x < cx ? "left" : "right";
     const far: "left" | "right" = near === "left" ? "right" : "left";
     let best: { side: "left" | "right"; dy: number; cost: number } | null = null;
-    for (const side of [near, far]) for (const dy of [0, -34, 34, -68, 68, -102, 102]) {
+    for (const side of [near, far]) for (const dy of DY_STEPS) {
       const from = { x: edgeX(side), y: item.anchor.y + dy };
-      if (from.y < area.y || from.y > area.y + area.h || !clear(item, from)) continue;
-      const cost = Math.abs(from.x - item.anchor.x) + Math.abs(dy) * 1.5 + (side === far ? 80 : 0);
+      // A label may sit a little above the stage area (the heading is higher still) to clear the art.
+      if (from.y < area.y - 20 || from.y > area.y + area.h) continue;
+      const cost = Math.abs(from.x - item.anchor.x) + Math.abs(dy) * 1.5 + (side === far ? 80 : 0) + crossings(item, from) * 400;
       if (!best || cost < best.cost) best = { side, dy, cost };
     }
     choice.set(item, best ?? { side: near, dy: 0 });
@@ -138,4 +144,11 @@ function segmentHitsBox(a: Pt, b: Pt, box: Rect, pad: number): boolean {
     if (x > box.x - pad && x < box.x + box.w + pad && y > box.y - pad && y < box.y + box.h + pad) return true;
   }
   return false;
+}
+
+/** Does a→b pass through the circle (ignoring its final 10 units, where it reaches its own part)? */
+function segmentHitsCircle(a: Pt, b: Pt, c: { cx: number; cy: number; r: number }): boolean {
+  const len = Math.hypot(b.x - a.x, b.y - a.y) || 1;
+  const end = { x: b.x - ((b.x - a.x) / len) * 10, y: b.y - ((b.y - a.y) / len) * 10 };
+  return distanceToSegment({ x: c.cx, y: c.cy }, a, end) < c.r + 1;
 }

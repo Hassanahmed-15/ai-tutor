@@ -63,7 +63,7 @@ export function visualRequirements(outcomes: SpecOutcome[], contracts: OutcomeCo
     const add = (stage: string, ...items: string[]) => { if (!stages.includes(stage)) stages.push(stage); mustShow.push(...items); };
     const task = classifyInstructionalTask({ title: outcome.text, brief: contract?.teach ?? "", script: contractEvidence, objects: [], requiredVisual: undefined });
     if (task.figure) add("figure", ...(task.requiredParts ?? []));
-    else if (/molecule|molecular|vsepr|bond angle|lone pair|covalent/i.test(text)) add("molecule", "named atoms", "bonds", "geometry", "bond angle or lone pairs when required");
+    else if (/molecular (shape|geometry|structure)|shapes? of (a |the |simple )?molecules?|vsepr|bond angle|lone pairs?|covalent bond|structural formula|displayed formula/i.test(text)) add("molecule", "named atoms", "bonds", "geometry", "bond angle or lone pairs when required");
     // Chemistry only: "product" alone is also an economics and a sociology word (a company's product).
     else if (/photosynthesis|respiration|conservation of (?:mass|matter)|\batoms?\b|balanced (?:chemical )?equation|reactants?\b.*\bproducts?\b/i.test(text)) add("atom-map", "reactant and product atom counts", "separate energy lane when relevant");
     // An outcome solved on a graph ("solve … graphically") allows both boards: forced to an equation,

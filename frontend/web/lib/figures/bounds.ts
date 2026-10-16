@@ -48,3 +48,23 @@ function pathPoints(sh: Extract<FigureShape, { t: "path" }>): Array<[number, num
   }
   return pts;
 }
+
+/**
+ * Every shape's own box (with its part, or "" when unlabelled): the obstacles a leader must avoid.
+ * Per shape, not per part — a part drawn twice (both atoms' shells) is two obstacles, not one box
+ * spanning the whole figure, and unlabelled art (an atom's core) counts too.
+ */
+export function shapeBoxes(drawing: FigureDrawing): Array<{ part: string; box: Box; circle?: { cx: number; cy: number; r: number } }> {
+  const out: Array<{ part: string; box: Box; circle?: { cx: number; cy: number; r: number } }> = [];
+  for (const sh of drawing.shapes) {
+    const one = partBounds({ ...drawing, shapes: [{ ...sh, part: "x" }] }).get("x");
+    if (!one || one.w * one.h <= 0) continue;
+    // A circle is tested as a circle: its box's empty corners are not in the way of a leader.
+    // A path drawn as a circle (arcs whose radius is half its square box) counts as one too.
+    const arc = sh.t === "path" ? /[Aa]\s*([\d.]+)[\s,]+([\d.]+)/.exec(sh.d) : null;
+    const round = arc && Math.abs(one.w - one.h) < 2 && Math.abs(Number(arc[1]) - one.w / 2) < 2 && Math.abs(Number(arc[2]) - one.h / 2) < 2;
+    const circle = sh.t === "circle" ? { cx: sh.cx, cy: sh.cy, r: sh.r } : round ? { cx: one.x + one.w / 2, cy: one.y + one.h / 2, r: one.w / 2 } : undefined;
+    out.push({ part: sh.part ?? "", box: one, ...(circle ? { circle } : {}) });
+  }
+  return out;
+}

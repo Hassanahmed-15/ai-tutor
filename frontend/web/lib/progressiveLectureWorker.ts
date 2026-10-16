@@ -344,23 +344,19 @@ async function generateCanvasBoard(
     const strictDoc = strictDocumentOf(input);
     const video = videoDocumentOf(input);
     const strictSource = strictDoc ? { mode: "strict" as const, doc: strictDoc } : video ? { mode: "video" as const, doc: video } : null;
-<<<<<<< HEAD
     // Taught from web research (lib/webResearch.ts): each slide cites the pages it drew on.
     const webSources = !document && !strictSource ? input.webSources ?? null : null;
-    const written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources });
-=======
-    let written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource });
+    let written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources });
     // A board that fell back to the plain backup is written once more instead of shipped as
     // "ready" (audit 2026-10-15) — only from the third board on, which is written while the
     // student is still watching earlier ones, so the retry never holds up the start.
     if (written.fallback && sequence >= 2) {
-      const again = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource }).catch(() => null);
+      const again = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources }).catch(() => null);
       if (again) {
         console.log(`[canvas] session=${sessionId} board ${sequence} fell back; rewrite ${again.fallback ? "fell back too" : "succeeded"}`);
         written = again.fallback ? { ...written, costUsd: written.costUsd + again.costUsd } : { ...again, costUsd: written.costUsd + again.costUsd, log: [...written.log, ...again.log] };
       }
     }
->>>>>>> d67c707b (courses added)
     beat = written.beat;
     costUsd = written.costUsd;
     fallbackUsed = written.fallback;

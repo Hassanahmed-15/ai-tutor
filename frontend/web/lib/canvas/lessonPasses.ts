@@ -10,7 +10,7 @@ import type { CanvasBoardSpec } from "./types";
 export type TourBeat = { id: string; title: string; script: string; objects: string[]; brief: string };
 
 /** Mirrors splitNarrationSentences in lib/voice.ts. */
-const sentencesOf = (script: string) => script.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
+const sentencesOf = (script: string) => script.split(/(?<=[.!?۔؟])\s+/).map((s) => s.trim()).filter(Boolean);
 
 /**
  * THE RECAP'S TOUR, when the model wrote none: each recap sentence visits the earlier board whose

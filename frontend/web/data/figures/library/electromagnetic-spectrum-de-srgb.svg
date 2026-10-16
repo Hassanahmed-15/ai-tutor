@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg3761" font-family="Verdana,sans-serif" viewBox="-15.323 -15.323 971.453 318.769" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="971.453" height="318.769">
+ <linearGradient id="linearGradient10974" font-family="Verdana,sans-serif" gradientUnits="userSpaceOnUse">
+  <stop id="stop10976" font-family="Verdana,sans-serif" offset="0" stop-color="#f5f5f5"/>
+  <stop id="stop10994" font-family="Verdana,sans-serif" offset=".53571427" stop-color="#f5f5f5"/>
+  <stop id="stop10978" font-family="Verdana,sans-serif" offset="1" stop-color="#f5f5f5" stop-opacity="0"/>
+ </linearGradient>
+ <linearGradient id="aigrd1" font-family="Verdana,sans-serif" gradientUnits="userSpaceOnUse" x1="78.9" x2="844.53" y1="79.36" y2="79.36">
+  <stop id="stop3843" font-family="Verdana,sans-serif" offset=".0506" stop-color="#f5f5f5"/>
+  <stop id="stop3845" font-family="Verdana,sans-serif" offset=".0639" stop-color="#d5d5d5"/>
+  <stop id="stop3847" font-family="Verdana,sans-serif" offset=".089" stop-color="#9f9f9f"/>
+  <stop id="stop3849" font-family="Verdana,sans-serif" offset=".1078" stop-color="#7d7d7d"/>
+  <stop id="stop3851" font-family="Verdana,sans-serif" offset=".118" stop-color="#707070"/>
+  <stop id="stop3853" font-family="Verdana,sans-serif" offset=".87639999" stop-color="#707070"/>
+  <stop id="stop3855" font-family="Verdana,sans-serif" offset=".88730001" stop-color="#7a7a7a"/>
+  <stop id="stop3857" font-family="Verdana,sans-serif" offset=".90579998" stop-color="#949494"/>
+  <stop id="stop3859" font-family="Verdana,sans-serif" offset=".92940003" stop-color="#bfbfbf"/>
+  <stop id="stop3861" font-family="Verdana,sans-serif" offset=".9551" stop-color="#f5f5f5"/>
+ </linearGradient>
+ <linearGradient id="linearGradient11012" font-family="Verdana,sans-serif" gradientTransform="matrix(1.2226415 0 0 1.0111049 -874.06 -1.18)" x1="47.55" x2="203.1" xlink:href="#linearGradient10974" y1="64.36" y2="64.36"/>
+ <linearGradient id="linearGradient11015" font-family="Verdana,sans-serif" gradientTransform="matrix(.9886793 0 0 1.0111049 19.32 -1.18)" x1="47.55" x2="203.1" xlink:href="#linearGradient10974" y1="64.36" y2="64.36"/>
+ <linearGradient id="linearGradient11018" font-family="Verdana,sans-serif" gradientTransform="matrix(.9099634 0 0 .1029459 77 22.18)" gradientUnits="userSpaceOnUse" x1="54.29" x2="697.14" y1="405.22" y2="405.22">
+  <stop id="WL380nm" font-family="Verdana,sans-serif" offset="0" stop-color="#00121f"/>
+  <stop id="WL381nm" font-family="Verdana,sans-serif" offset=".00602409639" stop-color="#00121f"/>
+  <stop id="WL383nm" font-family="Verdana,sans-serif" offset=".01204819277" stop-color="#00121f"/>
+  <stop id="WL385nm" font-family="Verdana,sans-serif" offset=".01807228916" stop-color="#00121f"/>
+  <stop id="WL387nm" font-family="Verdana,sans-serif" offset=".02409638554" stop-color="#00121f"/>
+  <stop id="WL389nm" font-family="Verdana,sans-serif" offset=".03012048193" stop-color="#001930"/>
+  <stop id="WL391nm" font-family="Verdana,sans-serif" offset=".03614457831" stop-color="#001930"/>
+  <stop id="WL393nm" font-family="Verdana,sans-serif" offset=".0421686747" stop-color="#240036"/>
+  <stop id="WL395nm" font-family="Verdana,sans-serif" offset=".04819277108" stop-color="#24003e"/>
+  <stop id="WL397nm" font-family="Verdana,sans-serif" offset=".05421686747" stop-color="#1f0043"/>
+  <stop id="WL399nm" font-family="Verdana,sans-serif" offset=".06024096386" stop-color="#190048"/>
+  <stop id="WL401nm" font-family="Verdana,sans-serif" offset=".06626506024" stop-color="#330052"/>
+  <stop id="WL403nm" font-family="Verdana,sans-serif" offset=".07228915663" stop-color="#2c0059"/>
+  <stop id="WL405nm" font-family="Verdana,sans-serif" offset=".07831325301" stop-color="#240061"/>
+  <stop id="WL407nm" font-family="Verdana,sans-serif" offset=".0843373494" stop-color="#1f006a"/>
+  <stop id="WL409nm" font-family="Verdana,sans-serif" offset=".09036144578" stop-color="#2c0078"/>
+  <stop id="WL411nm" font-family="Verdana,sans-serif" offset=".09638554217" stop-color="#360087"/>
+  <stop id="WL413nm" font-family="Verdana,sans-serif" offset=".10240963855" stop-color="#390096"/>
+  <stop id="WL415nm" font-family="Verdana,sans-serif" offset=".10843373494" stop-color="#4c00a8"/>
+  <stop id="WL417nm" font-family="Verdana,sans-serif" offset=".11445783133" stop-color="#5500bc"/>
+  <stop id="WL419nm" font-family="Verdana,sans-serif" offset=".12048192771" stop-color="#5200cd"/>
+  <stop id="WL421nm" font-family="Verdana,sans-serif" offset=".1265060241" stop-color="#6100e2"/>
+  <stop id="WL423nm" font-family="Verdana,sans-serif" offset=".13253012048" stop-color="#6b00f8"/>
+  <stop id="WL425nm" font-family="Verdana,sans-serif" offset=".13855421687" stop-color="#6e00ff"/>
+  <stop id="WL427nm" font-family="Verdana,sans-serif" offset=".14457831325" stop-color="#7000ff"/>
+  <stop id="WL429nm" font-family="Verdana,sans-serif" offset=".15060240964" stop-color="#6e00ff"/>
+  <stop id="WL431nm" font-family="Verdana,sans-serif" offset=".15662650602" stop-color="#6c00ff"/>
+  <stop id="WL433nm" font-family="Verdana,sans-serif" offset=".16265060241" stop-color="#6e00ff"/>
+  <stop id="WL435nm" font-family="Verdana,sans-serif" offset=".1686746988" stop-color="#7000ff"/>
+  <stop id="WL437nm" font-family="Verdana,sans-serif" offset=".17469879518" stop-color="#6f00ff"/>
+  <stop id="WL439nm" font-family="Verdana,sans-serif" offset=".18072289157" stop-color="#6c00ff"/>
+  <stop id="WL441nm" font-family="Verdana,sans-serif" offset=".18674698795" stop-color="#6a00ff"/>
+  <stop id="WL443nm" font-family="Verdana,sans-serif" offset=".19277108434" stop-color="#6700ff"/>
+  <stop id="WL445nm" font-family="Verdana,sans-serif" offset=".19879518072" stop-color="#6700ff"/>
+  <stop id="WL447nm" font-family="Verdana,sans-serif" offset=".20481927711" stop-color="#6100ff"/>
+  <stop id="WL449nm" font-family="Verdana,sans-serif" offset=".21084337349" stop-color="#5c00ff"/>
+  <stop id="WL451nm" font-family="Verdana,sans-serif" offset=".21686746988" stop-color="#5700ff"/>
+  <stop id="WL453nm" font-family="Verdana,sans-serif" offset=".22289156627" stop-color="#5900ff"/>
+  <stop id="WL455nm" font-family="Verdana,sans-serif" offset=".22891566265" stop-color="#5400ff"/>
+  <stop id="WL457nm" font-family="Verdana,sans-serif" offset=".23493975904" stop-color="#4e00ff"/>
+  <stop id="WL459nm" font-family="Verdana,sans-serif" offset=".24096385542" stop-color="#4300ff"/>
+  <stop id="WL461nm" font-family="Verdana,sans-serif" offset=".24698795181" stop-color="#30f"/>
+  <stop id="WL463nm" font-family="Verdana,sans-serif" offset=".25301204819" stop-color="#1f00ff"/>
+  <stop id="WL465nm" font-family="Verdana,sans-serif" offset=".25903614458" stop-color="#0019ff"/>
+  <stop id="WL467nm" font-family="Verdana,sans-serif" offset=".26506024096" stop-color="#003cff"/>
+  <stop id="WL469nm" font-family="Verdana,sans-serif" offset=".27108433735" stop-color="#0050ff"/>
+  <stop id="WL471nm" font-family="Verdana,sans-serif" offset=".27710843373" stop-color="#0061ff"/>
+  <stop id="WL473nm" font-family="Verdana,sans-serif" offset=".28313253012" stop-color="#0070ff"/>
+  <stop id="WL475nm" font-family="Verdana,sans-serif" offset=".28915662651" stop-color="#007fff"/>
+  <stop id="WL477nm" font-family="Verdana,sans-serif" offset=".29518072289" stop-color="#008dff"/>
+  <stop id="WL479nm" font-family="Verdana,sans-serif" offset=".30120481928" stop-color="#009dff"/>
+  <stop id="WL481nm" font-family="Verdana,sans-serif" offset=".30722891566" stop-color="#00a3fa"/>
+  <stop id="WL483nm" font-family="Verdana,sans-serif" offset=".31325301205" stop-color="#00b1f5"/>
+  <stop id="WL485nm" font-family="Verdana,sans-serif" offset=".31927710843" stop-color="#00b6ed"/>
+  <stop id="WL487nm" font-family="Verdana,sans-serif" offset=".32530120482" stop-color="#00bbe6"/>
+  <stop id="WL489nm" font-family="Verdana,sans-serif" offset=".3313253012" stop-color="#00c4e1"/>
+  <stop id="WL491nm" font-family="Verdana,sans-serif" offset=".33734939759" stop-color="#00cddd"/>
+  <stop id="WL493nm" font-family="Verdana,sans-serif" offset=".34337349398" stop-color="#00d6da"/>
+  <stop id="WL495nm" font-family="Verdana,sans-serif" offset=".34939759036" stop-color="#00dfd8"/>
+  <stop id="WL497nm" font-family="Verdana,sans-serif" offset=".35542168675" stop-color="#00e3d5"/>
+  <stop id="WL499nm" font-family="Verdana,sans-serif" offset=".36144578313" stop-color="#00ebd4"/>
+  <stop id="WL501nm" font-family="Verdana,sans-serif" offset=".36746987952" stop-color="#00f6d5"/>
+  <stop id="WL503nm" font-family="Verdana,sans-serif" offset=".3734939759" stop-color="#00fdd4"/>
+  <stop id="WL505nm" font-family="Verdana,sans-serif" offset=".37951807229" stop-color="#00ffcf"/>
+  <stop id="WL507nm" font-family="Verdana,sans-serif" offset=".38554216867" stop-color="#00ffca"/>
+  <stop id="WL509nm" font-family="Verdana,sans-serif" offset=".39156626506" stop-color="#00ffc4"/>
+  <stop id="WL511nm" font-family="Verdana,sans-serif" offset=".39759036145" stop-color="#00ffbf"/>
+  <stop id="WL513nm" font-family="Verdana,sans-serif" offset=".40361445783" stop-color="#00ffba"/>
+  <stop id="WL515nm" font-family="Verdana,sans-serif" offset=".40963855422" stop-color="#00ffb5"/>
+  <stop id="WL517nm" font-family="Verdana,sans-serif" offset=".4156626506" stop-color="#00ffb2"/>
+  <stop id="WL519nm" font-family="Verdana,sans-serif" offset=".42168674699" stop-color="#00ffad"/>
+  <stop id="WL521nm" font-family="Verdana,sans-serif" offset=".42771084337" stop-color="#0fa"/>
+  <stop id="WL523nm" font-family="Verdana,sans-serif" offset=".43373493976" stop-color="#00ffa6"/>
+  <stop id="WL525nm" font-family="Verdana,sans-serif" offset=".43975903614" stop-color="#00ffa4"/>
+  <stop id="WL527nm" font-family="Verdana,sans-serif" offset=".44578313253" stop-color="#00ffa0"/>
+  <stop id="WL529nm" font-family="Verdana,sans-serif" offset=".45180722892" stop-color="#00ff9c"/>
+  <stop id="WL531nm" font-family="Verdana,sans-serif" offset=".4578313253" stop-color="#00ff97"/>
+  <stop id="WL533nm" font-family="Verdana,sans-serif" offset=".46385542169" stop-color="#00ff94"/>
+  <stop id="WL535nm" font-family="Verdana,sans-serif" offset=".46987951807" stop-color="#00ff8e"/>
+  <stop id="WL537nm" font-family="Verdana,sans-serif" offset=".47590361446" stop-color="#00ff8b"/>
+  <stop id="WL539nm" font-family="Verdana,sans-serif" offset=".48192771084" stop-color="#00ff82"/>
+  <stop id="WL541nm" font-family="Verdana,sans-serif" offset=".48795180723" stop-color="#00ff7e"/>
+  <stop id="WL543nm" font-family="Verdana,sans-serif" offset=".49397590361" stop-color="#00ff76"/>
+  <stop id="WL545nm" font-family="Verdana,sans-serif" offset=".5" stop-color="#00ff6a"/>
+  <stop id="WL547nm" font-family="Verdana,sans-serif" offset=".50602409639" stop-color="#00ff5c"/>
+  <stop id="WL549nm" font-family="Verdana,sans-serif" offset=".51204819277" stop-color="#00ff46"/>
+  <stop id="WL551nm" font-family="Verdana,sans-serif" offset=".51807228916" stop-color="#00ff24"/>
+  <stop id="WL553nm" font-family="Verdana,sans-serif" offset=".52409638554" stop-color="#39ff00"/>
+  <stop id="WL555nm" font-family="Verdana,sans-serif" offset=".53012048193" stop-color="#59ff00"/>
+  <stop id="WL557nm" font-family="Verdana,sans-serif" offset=".53614457831" stop-color="#73ff00"/>
+  <stop id="WL559nm" font-family="Verdana,sans-serif" offset=".5421686747" stop-color="#8aff00"/>
+  <stop id="WL561nm" font-family="Verdana,sans-serif" offset=".54819277108" stop-color="#9dff00"/>
+  <stop id="WL563nm" font-family="Verdana,sans-serif" offset=".55421686747" stop-color="#abff00"/>
+  <stop id="WL565nm" font-family="Verdana,sans-serif" offset=".56024096386" stop-color="#bbfa00"/>
+  <stop id="WL567nm" font-family="Verdana,sans-serif" offset=".56626506024" stop-color="#c7f600"/>
+  <stop id="WL569nm" font-family="Verdana,sans-serif" offset=".57228915663" stop-color="#d5f100"/>
+  <stop id="WL571nm" font-family="Verdana,sans-serif" offset=".57831325301" stop-color="#dfec00"/>
+  <stop id="WL573nm" font-family="Verdana,sans-serif" offset=".5843373494" stop-color="#eae600"/>
+  <stop id="WL575nm" font-family="Verdana,sans-serif" offset=".59036144578" stop-color="#f3e100"/>
+  <stop id="WL577nm" font-family="Verdana,sans-serif" offset=".59638554217" stop-color="#fdda00"/>
+  <stop id="WL579nm" font-family="Verdana,sans-serif" offset=".60240963855" stop-color="#ffce00"/>
+  <stop id="WL581nm" font-family="Verdana,sans-serif" offset=".60843373494" stop-color="#ffc000"/>
+  <stop id="WL583nm" font-family="Verdana,sans-serif" offset=".61445783133" stop-color="#ffb300"/>
+  <stop id="WL585nm" font-family="Verdana,sans-serif" offset=".62048192771" stop-color="#ffa800"/>
+  <stop id="WL587nm" font-family="Verdana,sans-serif" offset=".6265060241" stop-color="#ff9c00"/>
+  <stop id="WL589nm" font-family="Verdana,sans-serif" offset=".63253012048" stop-color="#ff9100"/>
+  <stop id="WL591nm" font-family="Verdana,sans-serif" offset=".63855421687" stop-color="#ff8700"/>
+  <stop id="WL593nm" font-family="Verdana,sans-serif" offset=".64457831325" stop-color="#ff7c00"/>
+  <stop id="WL595nm" font-family="Verdana,sans-serif" offset=".65060240964" stop-color="#ff7000"/>
+  <stop id="WL597nm" font-family="Verdana,sans-serif" offset=".65662650602" stop-color="#ff6a00"/>
+  <stop id="WL599nm" font-family="Verdana,sans-serif" offset=".66265060241" stop-color="#ff5e00"/>
+  <stop id="WL601nm" font-family="Verdana,sans-serif" offset=".6686746988" stop-color="#f50"/>
+  <stop id="WL603nm" font-family="Verdana,sans-serif" offset=".67469879518" stop-color="#ff4800"/>
+  <stop id="WL605nm" font-family="Verdana,sans-serif" offset=".68072289157" stop-color="#ff4100"/>
+  <stop id="WL607nm" font-family="Verdana,sans-serif" offset=".68674698795" stop-color="#f30"/>
+  <stop id="WL609nm" font-family="Verdana,sans-serif" offset=".69277108434" stop-color="#ff2c00"/>
+  <stop id="WL611nm" font-family="Verdana,sans-serif" offset=".69879518072" stop-color="#ff1200"/>
+  <stop id="WL613nm" font-family="Verdana,sans-serif" offset=".70481927711" stop-color="#ff0012"/>
+  <stop id="WL615nm" font-family="Verdana,sans-serif" offset=".71084337349" stop-color="#ff0028"/>
+  <stop id="WL617nm" font-family="Verdana,sans-serif" offset=".71686746988" stop-color="#ff002c"/>
+  <stop id="WL619nm" font-family="Verdana,sans-serif" offset=".72289156627" stop-color="#ff0036"/>
+  <stop id="WL621nm" font-family="Verdana,sans-serif" offset=".72891566265" stop-color="#ff003c"/>
+  <stop id="WL623nm" font-family="Verdana,sans-serif" offset=".73493975904" stop-color="#ff0041"/>
+  <stop id="WL625nm" font-family="Verdana,sans-serif" offset=".74096385542" stop-color="#ff0041"/>
+  <stop id="WL627nm" font-family="Verdana,sans-serif" offset=".74698795181" stop-color="#ff0043"/>
+  <stop id="WL629nm" font-family="Verdana,sans-serif" offset=".75301204819" stop-color="#ff0043"/>
+  <stop id="WL631nm" font-family="Verdana,sans-serif" offset=".75903614458" stop-color="#ff004c"/>
+  <stop id="WL633nm" font-family="Verdana,sans-serif" offset=".76506024096" stop-color="#ff0048"/>
+  <stop id="WL635nm" font-family="Verdana,sans-serif" offset=".77108433735" stop-color="#ff004a"/>
+  <stop id="WL637nm" font-family="Verdana,sans-serif" offset=".77710843373" stop-color="#f7004a"/>
+  <stop id="WL639nm" font-family="Verdana,sans-serif" offset=".78313253012" stop-color="#f3004e"/>
+  <stop id="WL641nm" font-family="Verdana,sans-serif" offset=".78915662651" stop-color="#e80046"/>
+  <stop id="WL643nm" font-family="Verdana,sans-serif" offset=".79518072289" stop-color="#e00046"/>
+  <stop id="WL645nm" font-family="Verdana,sans-serif" offset=".80120481928" stop-color="#d70043"/>
+  <stop id="WL647nm" font-family="Verdana,sans-serif" offset=".80722891566" stop-color="#cf003e"/>
+  <stop id="WL649nm" font-family="Verdana,sans-serif" offset=".81325301205" stop-color="#c90043"/>
+  <stop id="WL651nm" font-family="Verdana,sans-serif" offset=".81927710843" stop-color="#bf003e"/>
+  <stop id="WL653nm" font-family="Verdana,sans-serif" offset=".82530120482" stop-color="#b50039"/>
+  <stop id="WL655nm" font-family="Verdana,sans-serif" offset=".8313253012" stop-color="#af0039"/>
+  <stop id="WL657nm" font-family="Verdana,sans-serif" offset=".83734939759" stop-color="#a9003c"/>
+  <stop id="WL659nm" font-family="Verdana,sans-serif" offset=".84337349398" stop-color="#9d0036"/>
+  <stop id="WL661nm" font-family="Verdana,sans-serif" offset=".84939759036" stop-color="#970030"/>
+  <stop id="WL663nm" font-family="Verdana,sans-serif" offset=".85542168675" stop-color="#8f0030"/>
+  <stop id="WL665nm" font-family="Verdana,sans-serif" offset=".86144578313" stop-color="#880030"/>
+  <stop id="WL667nm" font-family="Verdana,sans-serif" offset=".86746987952" stop-color="#800028"/>
+  <stop id="WL669nm" font-family="Verdana,sans-serif" offset=".8734939759" stop-color="#760028"/>
+  <stop id="WL671nm" font-family="Verdana,sans-serif" offset=".87951807229" stop-color="#6e001f"/>
+  <stop id="WL673nm" font-family="Verdana,sans-serif" offset=".88554216867" stop-color="#640019"/>
+  <stop id="WL675nm" font-family="Verdana,sans-serif" offset=".89156626506" stop-color="#620024"/>
+  <stop id="WL677nm" font-family="Verdana,sans-serif" offset=".89759036145" stop-color="#620024"/>
+  <stop id="WL679nm" font-family="Verdana,sans-serif" offset=".90361445783" stop-color="#570019"/>
+  <stop id="WL681nm" font-family="Verdana,sans-serif" offset=".90963855422" stop-color="#4a0000"/>
+  <stop id="WL683nm" font-family="Verdana,sans-serif" offset=".9156626506" stop-color="#550024"/>
+  <stop id="WL685nm" font-family="Verdana,sans-serif" offset=".92168674699" stop-color="#460019"/>
+  <stop id="WL687nm" font-family="Verdana,sans-serif" offset=".92771084337" stop-color="#460019"/>
+  <stop id="WL689nm" font-family="Verdana,sans-serif" offset=".93373493976" stop-color="#300"/>
+  <stop id="WL691nm" font-family="Verdana,sans-serif" offset=".93975903614" stop-color="#300"/>
+  <stop id="WL693nm" font-family="Verdana,sans-serif" offset=".94578313253" stop-color="#300"/>
+  <stop id="WL695nm" font-family="Verdana,sans-serif" offset=".95180722892" stop-color="#300"/>
+  <stop id="WL697nm" font-family="Verdana,sans-serif" offset=".9578313253" stop-color="#300019"/>
+  <stop id="WL699nm" font-family="Verdana,sans-serif" offset=".96385542169" stop-color="#300019"/>
+  <stop id="WL701nm" font-family="Verdana,sans-serif" offset=".96987951807" stop-color="#300019"/>
+  <stop id="WL703nm" font-family="Verdana,sans-serif" offset=".97590361446" stop-color="#300019"/>
+  <stop id="WL705nm" font-family="Verdana,sans-serif" offset=".98192771084" stop-color="#300019"/>
+  <stop id="WL707nm" font-family="Verdana,sans-serif" offset=".98795180723" stop-color="#300019"/>
+  <stop id="WL709nm" font-family="Verdana,sans-serif" offset=".99397590361" stop-color="#300019"/>
+  <stop id="WL710nm" font-family="Verdana,sans-serif" offset="1" stop-color="#300019"/>
+ </linearGradient>
+ 
+ 
+ <path id="path3766" d="m0 288.007h940.806v-288.007h-940.806z" fill="#f5f5f5" font-family="Verdana, sans-serif"/>
+ <path id="path3863" d="m844.527 12.552v93.49l-418.759 23.52v16.606h-16.99v-16.606l-329.883-23.52v-93.49z" fill="url(#aigrd1)" font-family="Verdana, sans-serif"/>
+ <path id="rect2160" d="m126.4 47.27h584.98v33.24h-584.98z" fill="url(#linearGradient11018)" font-family="Verdana, sans-serif"/>
+ 
+ <path id="rect10996" d="m-815.92 47.27h190.19v33.24h-190.19z" fill="url(#linearGradient11012)" font-family="Verdana, sans-serif" transform="scale(-1 1)"/>
+ <g id="Ebene_x0020_7" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567">
+  
+  <path id="path3771" d="m809.226 249v-57.665" font-family="Verdana,sans-serif"/>
+  
+  <path id="path3775" d="m923.094 249v-55.106" font-family="Verdana,sans-serif"/>
+  <path id="path3777" d="m771.268 249v-59.463" font-family="Verdana,sans-serif"/>
+  
+  
+  <path id="path3783" d="m657.397 249v-53" font-family="Verdana,sans-serif"/>
+  
+  
+  <path id="path3789" d="m543.527 249v-53" font-family="Verdana,sans-serif"/>
+  <path id="path3791" d="m505.569 249v-52.08" font-family="Verdana,sans-serif"/>
+  <path id="path3793" d="m467.613 249v-52.08" font-family="Verdana,sans-serif"/>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <path id="path3815" d="m923.25 216.209h-835.25" font-family="Verdana,sans-serif"/>
+  <path id="path3817" d="m923.25 248.977h-835.25" font-family="Verdana,sans-serif"/>
+  <path id="path3819" d="m758.775 213h23v-11h-23z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+  <path id="path3821" d="m876.271 213h23v-11h-23z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+  <path id="path3823" d="m646.775 213h23v-11h-23z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+  <path id="path3825" d="m569.775 213h23v-11h-23z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+  <path id="path3827" d="m531.775 213h23v-11h-23z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+  <path id="path3829" d="m417.775 213h23v-11h-23z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+  <path id="path3831" d="m304.775 213h23v-11h-23z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+  <path id="path3833" d="m76.775 213h23v-11h-23z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+  <path id="path3835" d="m265.775 213h23v-12.6h-23z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+  <path id="path3837" d="m191.775 213h23v-11h-23z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+  <path id="path3839" d="m39.777 241.987h899.991v-18.987h-899.991z" fill="#f5f5f5" font-family="Verdana,sans-serif" stroke="none"/>
+ </g>
+ <g id="g3923" fill="none" font-family="Verdana, sans-serif" stroke="#fff">
+  <path id="path3925" d="m136.458 70.362h-45.707" font-family="Verdana, sans-serif" stroke="#000" stroke-width="2.551"/>
+  <path id="path3927" d="m79.868 69.265 15.184 5.744v-9.574z" fill="#000" font-family="Verdana, sans-serif" stroke="none"/>
+ </g>
+ <g id="g3929" fill="none" font-family="Verdana, sans-serif" stroke="#fff">
+  <path id="path3931" d="m806.959 70.081h45.707" font-family="Verdana, sans-serif" stroke="#000" stroke-width="2.551"/>
+  <path id="path3933" d="m863.549 71.179-15.184-5.744v9.574z" fill="#000" font-family="Verdana, sans-serif" stroke="none"/>
+ </g>
+ <path id="path3935" d="m694.146 95.658v-15.147" fill="none" font-family="Verdana, sans-serif" stroke="#fff"/>
+ <path id="path3937" d="m516.885 95.658v-15.147" fill="none" font-family="Verdana, sans-serif" stroke="#fff"/>
+ <path id="path3939" d="m428.251 95.658v-15.147" fill="none" font-family="Verdana, sans-serif" stroke="#fff"/>
+ <path id="path3941" d="m339.62 95.658v-15.147" fill="none" font-family="Verdana, sans-serif" stroke="#fff"/>
+ <path id="path3943" d="m250.987 95.658v-15.147" fill="none" font-family="Verdana, sans-serif" stroke="#fff"/>
+ <path id="path3945" d="m605.517 95.658v-15.147" fill="none" font-family="Verdana, sans-serif" stroke="#fff"/>
+ <g id="Ebene_x0020_5" fill="none" font-family="Verdana,sans-serif" stroke="#7f7f7f">
+  
+  <path id="path3950" d="m923.05 188.25v-47.196" font-family="Verdana,sans-serif"/>
+  
+  
+  
+  <path id="path3958" d="m761.354 151.235v-10.182" font-family="Verdana,sans-serif"/>
+  
+  <path id="path3962" d="m671.771 151.235v-10.182" font-family="Verdana,sans-serif"/>
+  
+  
+  
+  <path id="path3970" d="m88.045 151.235v-10.182" font-family="Verdana,sans-serif"/>
+  <path id="path3972" d="m391.805 152.426v-11.372" font-family="Verdana,sans-serif"/>
+  <path id="path3974" d="m397.491 149.423v-8.369" font-family="Verdana,sans-serif"/>
+  <path id="path3976" d="m403.177 149.423v-8.369" font-family="Verdana,sans-serif"/>
+  
+  
+  
+  
+  
+  
+  <path id="path3990" font-family="Verdana,sans-serif" stroke="#000"/>
+  
+  <path id="path3994" d="m830.771 187.878h-10.521" font-family="Verdana,sans-serif"/>
+  <path id="path3996" d="m923.25 187.878h-9.481" font-family="Verdana,sans-serif"/>
+  
+  
+  
+ </g>
+ <g id="Ebene_x0020_3" font-family="Verdana,sans-serif">
+  <text id="text4005" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(168.98 95.11)"><tspan id="tspan4007" fill="#fff" font-family="Verdana,sans-serif" font-size="14" x="0" y="0">400 nm</tspan></text>
+  <text id="text4009" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(257.37 95.11)"><tspan id="tspan4011" fill="#fff" font-family="Verdana,sans-serif" font-size="14" x="0" y="0">450 nm</tspan></text>
+  <text id="text4013" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(434.17 95.11)"><tspan id="tspan4015" fill="#fff" font-family="Verdana,sans-serif" font-size="14" x="0" y="0">550 nm</tspan></text>
+  <text id="text4017" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(345.77 95.11)"><tspan id="tspan4019" fill="#fff" font-family="Verdana,sans-serif" font-size="14" x="0" y="0">500 nm</tspan></text>
+  <text id="text4021" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(522.56 95.11)"><tspan id="tspan4023" fill="#fff" font-family="Verdana,sans-serif" font-size="14" x="0" y="0">600 nm</tspan></text>
+  <text id="text4025" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(610.96 95.11)"><tspan id="tspan4027" fill="#fff" font-family="Verdana,sans-serif" font-size="14" x="0" y="0">650 nm</tspan></text>
+  <text id="text4029" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(699.36 95.11)"><tspan id="tspan4031" fill="#fff" font-family="Verdana,sans-serif" font-size="14" x="0" y="0">700 nm</tspan></text>
+  
+  <text id="text4041" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(787.75 95.11)"><tspan id="tspan4043" font-family="Verdana,sans-serif" font-size="14" x="0" y="0">750 nm</tspan></text>
+  <text id="text4045" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(761.34 211.21)"><tspan id="tspan4047" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">1 km</tspan></text>
+  <text id="text4049" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(874.34 211.21)"><tspan id="tspan4051" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">1 Mm</tspan></text>
+  <text id="text4053" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(647.86 211.21)"><tspan id="tspan4055" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">1 m</tspan></text>
+  <text id="text4057" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(569.13 211.21)"><tspan id="tspan4059" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">1 cm</tspan></text>
+  <text id="text4061" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(530.84 211.21)"><tspan id="tspan4063" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">1 mm</tspan></text>
+  <text id="text4065" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(305.94 211.21)"><tspan id="tspan4067" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">1 nm</tspan></text>
+  <text id="text4069" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(418.94 211.21)"><tspan id="tspan4071" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">1 µm</tspan></text>
+  <text id="text4077" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(192.94 211.21)"><tspan id="tspan4079" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">1 pm</tspan></text>
+  <text id="text4081" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(77.94 211.21)"><tspan id="tspan4083" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">1 fm</tspan></text>
+  <text id="text4085" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(270.94 211.21)"><tspan id="tspan4087" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">1 Å</tspan></text>
+  
+  
+ </g>
+ <g id="Ebene_x0020_6" font-family="Verdana,sans-serif">
+  <g id="g4102" font-family="Verdana,sans-serif">
+   <g id="g4104" font-family="Verdana,sans-serif">
+    <path id="path4106" d="m516.657 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4108" font-family="Verdana,sans-serif">
+     <text id="text4110" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(504.59 268.23)"><tspan id="tspan4112" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4116" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(519.5 261.8)"><tspan id="tspan4118" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">12</tspan></text>
+     
+    </g>
+   </g>
+   <g id="g4124" font-family="Verdana,sans-serif">
+    <path id="path4126" d="m554.613 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4128" font-family="Verdana,sans-serif">
+     <text id="text4130" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(542.54 268.23)"><tspan id="tspan4132" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4136" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(557.25 261.8)"><tspan id="tspan4138" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">11</tspan></text>
+    </g>
+   </g>
+   <g id="g4142" font-family="Verdana,sans-serif">
+    <path id="path4144" d="m478.701 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4146" font-family="Verdana,sans-serif">
+     <text id="text4148" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(466.63 268.23)"><tspan id="tspan4150" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4154" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(481.5 261.8)"><tspan id="tspan4156" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">13</tspan></text>
+    </g>
+   </g>
+   <g id="g4160" font-family="Verdana,sans-serif">
+    <path id="path4162" d="m440.743 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4164" font-family="Verdana,sans-serif">
+     <text id="text4166" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(428.67 268.23)"><tspan id="tspan4168" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4172" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(443.5 261.8)"><tspan id="tspan4174" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">14</tspan></text>
+    </g>
+   </g>
+   <g id="g4178" font-family="Verdana,sans-serif">
+    <path id="path4180" d="m402.786 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4182" font-family="Verdana,sans-serif">
+     <text id="text4184" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(390.72 268.23)"><tspan id="tspan4186" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4190" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(405.25 261.8)"><tspan id="tspan4192" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">15</tspan></text>
+     
+    </g>
+   </g>
+   <g id="g4198" font-family="Verdana,sans-serif">
+    <path id="path4200" d="m364.829 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4202" font-family="Verdana,sans-serif">
+     <text id="text4204" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(352.76 268.23)"><tspan id="tspan4206" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4210" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(367 261.8)"><tspan id="tspan4212" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">16</tspan></text>
+    </g>
+   </g>
+   <g id="g4216" font-family="Verdana,sans-serif">
+    <path id="path4218" d="m326.874 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4220" font-family="Verdana,sans-serif">
+     <text id="text4222" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(314.81 268.23)"><tspan id="tspan4224" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4228" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(329 261.8)"><tspan id="tspan4230" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">17</tspan></text>
+    </g>
+   </g>
+   <g id="g4234" font-family="Verdana,sans-serif">
+    <path id="path4236" d="m288.917 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4238" font-family="Verdana,sans-serif">
+     <text id="text4240" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(276.85 268.23)"><tspan id="tspan4242" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4246" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(291 261.8)"><tspan id="tspan4248" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">18</tspan></text>
+     
+    </g>
+   </g>
+   <g id="g4254" font-family="Verdana,sans-serif">
+    <path id="path4256" d="m250.959 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4258" font-family="Verdana,sans-serif">
+     <text id="text4260" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(238.89 268.23)"><tspan id="tspan4262" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4266" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(253 261.8)"><tspan id="tspan4268" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">19</tspan></text>
+    </g>
+   </g>
+   <g id="g4272" font-family="Verdana,sans-serif">
+    <path id="path4274" d="m213.13 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4276" font-family="Verdana,sans-serif">
+     <text id="text4278" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(201.06 268.23)"><tspan id="tspan4280" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4284" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(216 261.8)"><tspan id="tspan4286" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">20</tspan></text>
+    </g>
+   </g>
+   <g id="g4290" font-family="Verdana,sans-serif">
+    <path id="path4292" d="m174.827 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4294" font-family="Verdana,sans-serif">
+     <text id="text4296" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(162.76 268.23)"><tspan id="tspan4298" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4302" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(177 261.8)"><tspan id="tspan4304" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">21</tspan></text>
+     
+    </g>
+   </g>
+   <g id="g4310" font-family="Verdana,sans-serif">
+    <path id="path4312" d="m174.827 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+   </g>
+   <g id="g4314" font-family="Verdana,sans-serif">
+    <path id="path4316" d="m136.869 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4318" font-family="Verdana,sans-serif">
+     <text id="text4320" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(124.8 268.23)"><tspan id="tspan4322" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4326" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(139 261.8)"><tspan id="tspan4328" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">22</tspan></text>
+    </g>
+   </g>
+   <g id="g4332" font-family="Verdana,sans-serif">
+    <path id="path4334" d="m99.041 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4336" font-family="Verdana,sans-serif">
+     <text id="text4338" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(86.97 268.23)"><tspan id="tspan4340" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4344" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(101.5 261.8)"><tspan id="tspan4346" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">23</tspan></text>
+    </g>
+   </g>
+   <g id="g4350" font-family="Verdana,sans-serif">
+    <path id="path4352" d="m592.569 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4354" font-family="Verdana,sans-serif">
+     <text id="text4356" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(580.5 268.23)"><tspan id="tspan4358" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4362" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(595 261.8)"><tspan id="tspan4364" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">10</tspan></text>
+    </g>
+   </g>
+   <g id="g4368" font-family="Verdana,sans-serif">
+    <path id="path4370" d="m630.527 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4372" font-family="Verdana,sans-serif">
+     <text id="text4374" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(618.46 268.23)"><tspan id="tspan4376" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4380" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(633 261.8)"><tspan id="tspan4382" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">9</tspan></text>
+     
+    </g>
+   </g>
+   <g id="g4388" font-family="Verdana,sans-serif">
+    <path id="path4390" d="m668.483 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4392" font-family="Verdana,sans-serif">
+     <text id="text4394" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(656.41 268.23)"><tspan id="tspan4396" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4400" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(671 261.8)"><tspan id="tspan4402" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">8</tspan></text>
+    </g>
+   </g>
+   <g id="g4406" font-family="Verdana,sans-serif">
+    <path id="path4408" d="m706.441 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4410" font-family="Verdana,sans-serif">
+     <text id="text4412" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(694.37 268.23)"><tspan id="tspan4414" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4418" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(708.5 261.8)"><tspan id="tspan4420" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">7</tspan></text>
+    </g>
+   </g>
+   <g id="g4424" font-family="Verdana,sans-serif">
+    <path id="path4426" d="m744.397 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4428" font-family="Verdana,sans-serif">
+     <text id="text4430" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(732.33 268.23)"><tspan id="tspan4432" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4436" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(747 261.8)"><tspan id="tspan4438" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">6</tspan></text>
+     
+    </g>
+   </g>
+   <g id="g4444" font-family="Verdana,sans-serif">
+    <path id="path4446" d="m782.354 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4448" font-family="Verdana,sans-serif">
+     <text id="text4450" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(770.29 268.23)"><tspan id="tspan4452" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4456" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(785 261.8)"><tspan id="tspan4458" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">5</tspan></text>
+    </g>
+   </g>
+   <g id="g4462" font-family="Verdana,sans-serif">
+    <path id="path4464" d="m820.312 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4466" font-family="Verdana,sans-serif">
+     <text id="text4468" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(808.24 268.23)"><tspan id="tspan4470" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4474" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(823 261.8)"><tspan id="tspan4476" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">4</tspan></text>
+    </g>
+   </g>
+   <g id="g4480" font-family="Verdana,sans-serif">
+    <path id="path4482" d="m858.268 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4484" font-family="Verdana,sans-serif">
+     <text id="text4486" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(846.2 268.23)"><tspan id="tspan4488" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4492" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(861 261.8)"><tspan id="tspan4494" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">3</tspan></text>
+     
+    </g>
+   </g>
+   <g id="g4500" font-family="Verdana,sans-serif">
+    <path id="path4502" d="m896.226 255.649v-6.649" fill="none" font-family="Verdana,sans-serif" stroke="#919191" stroke-width=".567"/>
+    <g id="g4504" font-family="Verdana,sans-serif">
+     <text id="text4506" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(884.16 268.23)"><tspan id="tspan4508" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+     <text id="text4512" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(899 261.8)"><tspan id="tspan4514" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">2</tspan></text>
+    </g>
+   </g>
+  </g>
+  
+  
+  <g id="g4542" font-family="Verdana,sans-serif">
+   <text id="text4544" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(838.22 237.56)"><tspan id="tspan4546" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4548" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(852.5 231.14)"><tspan id="tspan4550" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">5</tspan></text>
+  </g>
+  <g id="g4552" font-family="Verdana,sans-serif">
+   <text id="text4554" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(800.66 237.56)"><tspan id="tspan4556" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4558" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(814.5 231.14)"><tspan id="tspan4560" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">4</tspan></text>
+  </g>
+  <g id="g4562" font-family="Verdana,sans-serif">
+   <text id="text4564" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(875.57 237.56)"><tspan id="tspan4566" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4568" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(889 231.14)"><tspan id="tspan4570" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">6</tspan></text>
+  </g>
+  <g id="g4572" font-family="Verdana,sans-serif">
+   <text id="text4574" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(912.92 237.56)"><tspan id="tspan4576" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4578" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(926.5 231.14)"><tspan id="tspan4580" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">7</tspan></text>
+  </g>
+  <g id="g4582" font-family="Verdana,sans-serif">
+   <text id="text4584" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(763.09 237.56)"><tspan id="tspan4586" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4588" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(777.5 231.14)"><tspan id="tspan4590" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">3</tspan></text>
+  </g>
+  <g id="g4592" font-family="Verdana,sans-serif">
+   <text id="text4594" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(725.53 237.56)"><tspan id="tspan4596" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4598" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(740 231.14)"><tspan id="tspan4600" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">2</tspan></text>
+  </g>
+  <g id="g4602" font-family="Verdana,sans-serif">
+   <text id="text4604" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(687.97 237.56)"><tspan id="tspan4606" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4608" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(702.5 231.14)"><tspan id="tspan4610" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">1</tspan></text>
+  </g>
+  <g id="g4612" font-family="Verdana,sans-serif">
+   <text id="text4614" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(650.4 237.56)"><tspan id="tspan4616" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4618" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(665 231.14)"><tspan id="tspan4620" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">0</tspan></text>
+  </g>
+  <g id="g4622" font-family="Verdana,sans-serif">
+   <text id="text4624" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(609.41 237.56)"><tspan id="tspan4626" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4628" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(624 231.14)"><tspan id="tspan4630" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–1</tspan></text>
+  </g>
+  <g id="g4632" font-family="Verdana,sans-serif">
+   <text id="text4634" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(571.84 237.56)"><tspan id="tspan4636" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4638" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(586 231.14)"><tspan id="tspan4640" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–2</tspan></text>
+  </g>
+  <g id="g4642" font-family="Verdana,sans-serif">
+   <text id="text4644" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(534.28 237.56)"><tspan id="tspan4646" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4648" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(549 231.14)"><tspan id="tspan4650" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–3</tspan></text>
+  </g>
+  <g id="g4652" font-family="Verdana,sans-serif">
+   <text id="text4654" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(496.71 237.56)"><tspan id="tspan4656" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4658" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(511 231.14)"><tspan id="tspan4660" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–4</tspan></text>
+  </g>
+  <g id="g4662" font-family="Verdana,sans-serif">
+   <text id="text4664" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(459.15 237.56)"><tspan id="tspan4666" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4668" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(474 231.14)"><tspan id="tspan4670" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–5</tspan></text>
+  </g>
+  <g id="g4672" font-family="Verdana,sans-serif">
+   <text id="text4674" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(421.59 237.56)"><tspan id="tspan4676" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4678" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(436 231.14)"><tspan id="tspan4680" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–6</tspan></text>
+  </g>
+  <g id="g4682" font-family="Verdana,sans-serif">
+   <text id="text4684" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(384.02 237.56)"><tspan id="tspan4686" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4688" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(398.5 231.14)"><tspan id="tspan4690" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–7</tspan></text>
+  </g>
+  <g id="g4692" font-family="Verdana,sans-serif">
+   <text id="text4694" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(346.46 237.56)"><tspan id="tspan4696" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4698" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(361 231.14)"><tspan id="tspan4700" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–8</tspan></text>
+  </g>
+  <g id="g4702" font-family="Verdana,sans-serif">
+   <text id="text4704" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(308.89 237.56)"><tspan id="tspan4706" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4708" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(323.5 231.14)"><tspan id="tspan4710" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–9</tspan></text>
+  </g>
+  <g id="g4712" font-family="Verdana,sans-serif">
+   <text id="text4714" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(265.59 237.56)"><tspan id="tspan4716" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4718" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(280 231.14)"><tspan id="tspan4720" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–10</tspan></text>
+  </g>
+  <g id="g4722" font-family="Verdana,sans-serif">
+   <text id="text4724" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(228.8 237.56)"><tspan id="tspan4726" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4728" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(243 231.14)"><tspan id="tspan4730" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–11</tspan></text>
+  </g>
+  <g id="g4732" font-family="Verdana,sans-serif">
+   <text id="text4734" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(190.47 237.56)"><tspan id="tspan4736" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4738" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(205 231.14)"><tspan id="tspan4740" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–12</tspan></text>
+  </g>
+  <g id="g4742" font-family="Verdana,sans-serif">
+   <text id="text4744" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(152.9 237.56)"><tspan id="tspan4746" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4748" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(167.5 231.14)"><tspan id="tspan4750" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–13</tspan></text>
+  </g>
+  <g id="g4752" font-family="Verdana,sans-serif">
+   <text id="text4754" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(115.34 237.56)"><tspan id="tspan4756" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4758" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(129 231.14)"><tspan id="tspan4760" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–14</tspan></text>
+  </g>
+  <g id="g4762" font-family="Verdana,sans-serif">
+   <text id="text4764" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(77.78 237.56)"><tspan id="tspan4766" font-family="Verdana,sans-serif" font-size="10" x="0" y="0">10</tspan></text>
+   <text id="text4768" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(92 231.14)"><tspan id="tspan4770" font-family="Verdana,sans-serif" font-size="8" x="0" y="0">–15</tspan></text>
+  </g>
+ </g>
+ <g id="Ebene_x0020_4" font-family="Verdana,sans-serif">
+  
+  
+  <text id="text4785" font-family="Verdana,sans-serif" font-size="9.25" transform="translate(377.31 162.98)"><tspan id="tspan4787" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="0">UV-</tspan><tspan id="tspan4789" font-family="Verdana,sans-serif" font-size="9.25" x="0" y="8.75">C/B/A</tspan></text>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ </g>
+</svg>

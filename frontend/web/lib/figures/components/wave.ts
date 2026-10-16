@@ -30,7 +30,7 @@ export const wave: FigureComponent = {
   name: "wave",
   title: "Transverse or longitudinal wave: crests and troughs or compressions and rarefactions, wavelength, amplitude, direction of travel and of vibration",
   params: `type ("transverse", default; or "longitudinal"), wavelengths (how many wavelengths are drawn, 1-4, default 2), amplitude (0.2-1 of the room, default 0.7). Transverse shows crest, trough, wavelength (crest to crest, λ), amplitude (A), travel and vibration (perpendicular). Longitudinal shows compressions, rarefactions, wavelength (compression to compression), travel and vibration (parallel).`,
-  match: /\b(transverse|longitudinal) waves?\b|\bcompressions? and rarefactions?\b|\brarefactions?\b|\bwavelength\b(?!.*\bfunctions?\b)|\bamplitude of (a|the) wave\b|\b(crests?|troughs?) (and|of) (a |the )?(waves?|troughs?|crests?)\b/i,
+  match: /^(?![\s\S]*\b(colorimet\w*|spectrophotomet\w*|absorbance)\b)[\s\S]*?(?:\b(transverse|longitudinal) waves?\b|\bcompressions? and rarefactions?\b|\brarefactions?\b|\bwavelength\b(?!.*\bfunctions?\b)|\bamplitude of (a|the) wave\b|\b(crests?|troughs?) (and|of) (a |the )?(waves?|troughs?|crests?)\b)/i,
   parts: [
     { id: "crest", name: "Crest" },
     { id: "trough", name: "Trough" },

@@ -16,13 +16,10 @@ import { CANVAS_PLAN_PROMPT } from "./prompts";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 import type { PlanningKnowledge } from "../knowledge/graph";
 import { slug } from "./validate";
-<<<<<<< HEAD
 import { sourcesForText, type SourcePack } from "../webSources";
-=======
 import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
 import { findLibraryFigure } from "../figures/library";
 import { teachingCycleIssues } from "./predict";
->>>>>>> d67c707b (courses added)
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -82,9 +79,9 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         : [];
       if (cycleProblems.length) {
         lastError = `teach–predict–reveal–transfer contract failed: ${cycleProblems.slice(0, 6).join("; ")}`;
-        console.log(`[canvas] plan sent back: ${lastError}`);
-        if (attempt < maxAttempts) continue;
-        throw new Error(lastError);
+        if (attempt < maxAttempts) { console.log(`[canvas] plan sent back: ${lastError}`); continue; }
+        // A board with a weak prediction still teaches; no lecture at all teaches nothing.
+        console.warn(`[canvas] plan kept with a weak teaching cycle: ${lastError}`);
       }
       if (plan && allowed > 0 && plan.beats.length > allowed) {
         lastError = `it had ${plan.beats.length} boards; the outline has exactly ${outlined}${allowed > outlined ? ` (at most ${allowed} with the extra boards allowed)` : ""}`;
@@ -312,16 +309,12 @@ export async function writeCanvasBoard(args: {
     const sentenceBlocks = followCode ?? beat.sentenceBlocks;
     if (sentenceBlocks?.length) written.sentenceBlockIds = sentenceBlocks;
   }
-<<<<<<< HEAD
   // The links at the foot of the slide: the pages behind what this board actually says.
   if (args.webSources) {
     const cited = sourcesForText(args.webSources, `${beat.title} ${beat.brief ?? ""} ${beat.script}`);
     if (cited.length) written.sources = cited.map(({ title, url, site }) => ({ title, url, site }));
   }
-  return { beat: written, costUsd: made.costUsd + pictured.costUsd, fallback: made.attempts < 0, log };
-=======
   return { beat: written, costUsd: made.costUsd + pictured.costUsd, fallback: made.attempts < 0 || Boolean(spec.visualFallback), log };
->>>>>>> d67c707b (courses added)
 }
 
 /**

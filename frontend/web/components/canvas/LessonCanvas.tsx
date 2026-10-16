@@ -740,7 +740,10 @@ function initialVars(panels: CanvasPanelInput[]): Record<string, Record<string, 
 
 /* ── Aria's pen ───────────────────────────────────────────────────────────────────────────── */
 
-function Pen({ cue, layout, vars }: { cue: CanvasCue; layout: PanelLayout; vars: Record<string, number> }) {
+function Pen({ cue: given, layout, vars }: { cue: CanvasCue; layout: PanelLayout; vars: Record<string, number> }) {
+  // No rings (owner, 2026-10-17: "I don't like the red circle"): a "circle" cue — including one in a
+  // lesson saved before — is drawn as a point.
+  const cue: CanvasCue = given.action === "circle" ? { ...given, action: "point" } : given;
   const rect = cue.target ? layout.targets[cue.target] : undefined;
   const marker = cue.target ? markerPoint(layout, cue.target, vars) : null;
   const key = `${cue.s}-${cue.action}-${cue.target}`;
@@ -775,10 +778,6 @@ function Pen({ cue, layout, vars }: { cue: CanvasCue; layout: PanelLayout; vars:
         <rect ref={targetRef} x={r.x - 8} y={r.y - 6} width={r.w + 16} height={r.h + 12} fill="none" stroke="none" />
       ) : (
         <rect ref={targetRef} x={r.x} y={r.y} width={r.w} height={r.h} fill="none" stroke="none" />
-      )}
-      {cue.action === "circle" && (
-        // A hand-drawn ring, gone round twice, the way a teacher circles something on a board.
-        <path key={`c${key}`} d={roughEllipse(`ring-${key}`, cx, cy, r.w / 2 + 16, r.h / 2 + 14)} fill="none" stroke={ARIA} strokeWidth={3.6} strokeLinecap="round" className="cv-ring" pathLength={1} opacity={0.92} />
       )}
       {cue.action === "underline" && (() => {
         // THE HIGHLIGHTER SWIPE (Vox): a translucent marker band across each line of the words,
@@ -845,15 +844,8 @@ function Corrections({ layout, check }: { layout: PanelLayout; check?: DrawingCh
   return (
     <g className="cv-live" pointerEvents="none">
       {check.marks.map((m, i) => {
-        if (m.kind === "circle") {
-          const t = layout.targets[m.target];
-          if (!t) return null;
-          return (
-            <g key={i}>
-              <path d={roughEllipse(`fix-${i}-${m.target}`, t.x + t.w / 2, t.y + t.h / 2, t.w / 2 + 18, t.h / 2 + 16)} fill="none" stroke={ARIA} strokeWidth={3.6} strokeLinecap="round" className="cv-ring" pathLength={1} style={{ animationDelay: `${i * 450}ms` }} />
-            </g>
-          );
-        }
+        // No rings round answers either (owner, 2026-10-17); the arrows and the pen still show the link.
+        if (m.kind === "circle") return null;
         const a = centre(m.from);
         const b = centre(m.to);
         if (!a || !b) return null;

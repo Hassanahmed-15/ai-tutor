@@ -148,7 +148,8 @@ test("the visual policy gives a heart picture board the library heart; fallback 
   assert.equal(beats[1].stage, "equation", "other boards are untouched");
   // Strict source mode never adds a library picture; without findAsset the policy behaves as before.
   assert.notEqual(applyLessonVisualPolicy([beat({})], { mode: "strict", findAsset: find }).beats[0].stage, "figure");
-  assert.notEqual(applyLessonVisualPolicy([beat({})], { mode: "prompt" }).beats[0].stage, "figure");
+  // Without a library diagram, a physical subject is still drawn — as a described textbook diagram.
+  assert.equal(applyLessonVisualPolicy([beat({})], { mode: "prompt", aiPictures: false }).beats[0].figure, "drawn");
 
   const spec = fallbackSpec(beats[0]);
   assert.ok(spec.stage.kind === "figure" && spec.stage.component === "library");

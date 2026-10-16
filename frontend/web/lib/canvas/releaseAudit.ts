@@ -29,7 +29,7 @@ export function auditBoardForRelease(spec: CanvasBoardSpec, beat: CanvasPlanBeat
   if (spec.stage.kind === "molecule") add("molecule", vseprIssues(spec.stage));
   add("prediction", predictionRevealIssues(spec, beat));
   if (beat.teachingCycle && spec.interaction?.kind === "quiz") {
-    const sentences = beat.script.split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
+    const sentences = beat.script.split(/(?<=[.!?۔؟])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
     const match = quizMatchesPrediction(spec.interaction.question, sentences[beat.teachingCycle.predict] ?? "");
     if (!match.ok) add("prediction", [match.why ?? "the quiz asks a different question from the spoken prediction"]);
   }

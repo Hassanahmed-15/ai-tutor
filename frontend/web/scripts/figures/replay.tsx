@@ -23,6 +23,6 @@ beats.forEach((beat, i) => {
   if (beat.stage !== "figure") return;
   const spec = fallbackSpec(beat);
   const svg = renderToStaticMarkup(React.createElement(CanvasPanel, { layout: layoutPanel(spec), spec, shownThrough: Infinity, sentenceProgress: 1, live: false, vars: {}, carryFrom: {}, reducedMotion: true, theme: "paper" } as never));
-  fs.writeFileSync(`${out}/replay-b${i + 1}.html`, `<html><body style="margin:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" font-family="Nunito, sans-serif">${svg}</svg></body></html>`);
+  fs.writeFileSync(`${out}/replay-b${i + 1}.html`, `<html><head><meta charset="utf-8"></head><body style="margin:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" font-family="Nunito, sans-serif">${svg}</svg></body></html>`);
   console.log(`board ${i + 1} → ${out}/replay-b${i + 1}.html`);
 });

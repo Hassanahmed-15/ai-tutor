@@ -203,7 +203,11 @@ async function main() {
   const counts = { found: 0, licenceOk: 0, rejectedLicence: 0, otherLanguage: 0, tooBig: 0, downloaded: 0, failed: 0 };
   const rejections: Record<string, number> = {};
   const queues: Candidate[][] = [];
-  for (const seed of SEEDS) {
+  // More subjects for every course (data/figures/seeds-extra.json); duplicates of a built-in seed are skipped.
+  const extraFile = path.join(ROOT, "data/figures/seeds-extra.json");
+  const extra: Seed[] = fs.existsSync(extraFile) ? JSON.parse(fs.readFileSync(extraFile, "utf8")) : [];
+  const allSeeds = [...SEEDS, ...extra.filter((e) => !SEEDS.some((s) => s.seed === e.seed))];
+  for (const seed of allSeeds) {
     if (only && !only.includes(seed.seed)) continue;
     const cacheFile = path.join(SEARCH, `${seed.seed.replace(/[^a-z0-9]+/gi, "-")}.json`);
     let pages: Page[];

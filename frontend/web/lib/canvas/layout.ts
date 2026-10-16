@@ -11,7 +11,7 @@
 
 import { evalExpr } from "./expr";
 import { placeLabels } from "../figures/labels";
-import { partBounds } from "../figures/bounds";
+import { shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
 import type { FigureDrawing } from "../figures/types";
 import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type CompareStage, type EquationStage, type FigureStage, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage } from "./types";
@@ -424,11 +424,11 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
 function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
   // A library diagram (lib/figures/library.ts) is a picture with exact anchors: the same label path
   // as a code-drawn figure, with the art drawn from its file instead of from shapes.
-  const component = stage.asset ? undefined : figureComponent(stage.component);
-  if (!stage.asset && !component) return;
+  const component = stage.asset || stage.drawing ? undefined : figureComponent(stage.component);
+  if (!stage.asset && !stage.drawing && !component) return;
   const drawing: FigureDrawing = stage.asset
     ? { w: stage.asset.w, h: stage.asset.h, shapes: [], parts: stage.asset.parts, credit: stage.asset.credit }
-    : component!.build(stage.params);
+    : stage.drawing ?? component!.build(stage.params);
   const anchors = new Map(drawing.parts.map((p) => [p.id, p.anchor]));
   const shown = stage.parts.filter((p) => anchors.has(p.id));
   const size = shown.length > 6 ? 15 : 17;
@@ -442,7 +442,7 @@ function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
     to.push(from.shift()!);
   }
   const marginFor = (list: typeof shown) => (list.length ? Math.min(220, Math.max(...list.map((p) => Math.min(textWidth(p.name, size), 190))) + 46) : 16);
-  const left = marginFor(leftSide), right = marginFor(rightSide);
+  const left = component?.selfLabelled ? 16 : marginFor(leftSide), right = component?.selfLabelled ? 16 : marginFor(rightSide);
   const room = { w: box.w - left - right, h: box.h - 24 };
   const scale = Math.min(room.w / drawing.w, room.h / drawing.h);
   const rect = { x: box.x + left + (room.w - drawing.w * scale) / 2, y: box.y + 4 + (room.h - drawing.h * scale) / 2, w: drawing.w * scale, h: drawing.h * scale };
@@ -451,7 +451,12 @@ function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
   add("figure", rect, 0);
   // Every other part's outline is an obstacle a leader must not cross (lib/figures/bounds.ts); parts
   // that span most of the figure (wires, a stand) are left out, or nothing could reach in.
-  const obstacles = [...partBounds(drawing)].filter(([, b]) => b.w * b.h < drawing.w * drawing.h * 0.2).map(([id, b]) => ({ id, box: { x: rect.x + b.x * scale, y: rect.y + b.y * scale, w: b.w * scale, h: b.h * scale } }));
+  const obstacles = shapeBoxes(drawing).filter(({ box: b }) => b.w * b.h < drawing.w * drawing.h * 0.45 && b.w > 6 && b.h > 6).map(({ part, box: b, circle }) => ({ id: part, box: { x: rect.x + b.x * scale, y: rect.y + b.y * scale, w: b.w * scale, h: b.h * scale }, ...(circle ? { circle: { cx: rect.x + circle.cx * scale, cy: rect.y + circle.cy * scale, r: circle.r * scale } } : {}) }));
+  if (component?.selfLabelled) {
+    // Its own cards are the labels: only pen targets on each part, revealed on its sentence.
+    for (const p of shown) { const a = onBoard(anchors.get(p.id)!); add(p.id, { x: a.x - 16, y: a.y - 16, w: 32, h: 32 }, p.s); }
+    return;
+  }
   const placed = placeLabels(shown.map((p) => ({ id: p.id, text: p.name, anchor: onBoard(anchors.get(p.id)!), s: p.s })), rect, box, textWidth, size, obstacles);
   for (const l of placed) {
     marks.push({ type: "figure-label", id: `label-${l.id}`, part: l.id, lines: l.lines, side: l.side, at: l.at, leader: l.leader, size: l.size, s: l.s });
@@ -648,13 +653,20 @@ function layoutCompare(stage: CompareStage, box: Rect, marks: Mark[], add: Add) 
     { side: stage.right, x: box.x + colW + 70, color: colorAt(3, stage.right.color) },
   ];
   const itemAnchors = new Map<string, { left: Pt; right: Pt; s: number }>();
+  // Columns as tall as what they hold, centred: two items in full-height columns left half of each
+  // empty (audit 2026-10-17). Few items are written a little larger.
+  const most = Math.max(...sides.map(({ side }) => Math.min(4, side.items.length)), 1);
+  const size = most <= 3 ? 21 : 19;
+  const itemH = (text: string) => wrap(text, size, colW - 40, 2).length * size * 1.3 + 22;
+  const contentH = Math.max(...sides.map(({ side }) => side.items.slice(0, 4).reduce((sum, item) => sum + itemH(item.text) + 12, 0)));
+  const colH = Math.min(box.h - 10, Math.max(220, 92 + contentH + 20));
+  const top = box.y + Math.max(0, (box.h - 10 - colH) / 2);
   for (const { side, x, color } of sides) {
-    const rect = { x, y: box.y, w: colW, h: box.h - 10 };
+    const rect = { x, y: top, w: colW, h: colH };
     const firstS = Math.min(...side.items.map((i) => i.s), 99);
     marks.push({ type: "column", id: side.id, rect, title: side.title, icon: side.icon, color, s: Number.isFinite(firstS) ? Math.max(0, firstS - 1) : 0 });
     add(side.id, rect, Math.max(0, firstS - 1));
-    const size = 19;
-    let y = box.y + 92;
+    let y = top + 92;
     for (const item of side.items.slice(0, 4)) {
       const lines = wrap(item.text, size, colW - 40, 2);
       const h = lines.length * size * 1.3 + 22;

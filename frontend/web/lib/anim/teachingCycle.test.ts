@@ -37,7 +37,7 @@ test("Week 4 repairs a recap into a new application and preserves a real transfe
   const { teachingCycleIssues } = await import("../canvas/predict");
   const weak = validatePlan({ beats: [{ title: "Forces", script: "Force changes motion. Predict: what happens if mass doubles? Acceleration halves. This is the force relationship.", stage: "equation", objects: ["force"] }] })!.beats[0];
   assert.deepEqual(teachingCycleIssues(weak), []);
-  assert.match(weak.script, /new forces example/i);
+  assert.match(weak.script, /try the same reasoning on a new example/i);
   const transfer = validatePlan({ beats: [{ title: "Forces", script: "Force changes motion. Predict: what happens if mass doubles? Acceleration halves. Apply the same reasoning to a loaded bicycle.", stage: "equation", objects: ["force"] }] })!.beats[0];
   assert.deepEqual(teachingCycleIssues(transfer), []);
   assert.equal(addTransferPrompt("Teach. Predict: what happens? The answer is clear. Apply it to a new case.", "Forces", null, false), "Teach. Predict: what happens? The answer is clear. Apply it to a new case.");

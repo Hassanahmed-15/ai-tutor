@@ -53,7 +53,8 @@ export function classifyInstructionalTask(beat: Pick<CanvasPlanBeat, "title" | "
       reason: "A stationary wave needs fixed nodes, antinodes and the node-spacing/wavelength relationship.",
     };
   }
-  if (/\bwave (?:motion|features?|properties)\b|\b(?:crest|trough|wavelength|amplitude)\b.*\b(?:wave|crest|trough|wavelength|amplitude)\b|\btransverse wave\b|\blongitudinal wave\b/i.test(text)) {
+  // A colorimeter's "wavelength" is the light it selects, not a wave to draw (audit replay 2026-10-17).
+  if (!/\b(colorimet\w*|spectrophotomet\w*|absorbance|cuvettes?)\b/i.test(text) && /\bwave (?:motion|features?|properties)\b|\b(?:crest|trough|wavelength|amplitude)\b.*\b(?:wave|crest|trough|wavelength|amplitude)\b|\btransverse wave\b|\blongitudinal wave\b/i.test(text)) {
     return {
       task: "wave-features", stage: "figure", figure: "wave",
       requiredParts: ["crest", "trough", "wavelength", "amplitude"],
@@ -61,18 +62,18 @@ export function classifyInstructionalTask(beat: Pick<CanvasPlanBeat, "title" | "
     };
   }
   const experimentalVerb = /\b(investigat\w*|experiment\w*|practical|method|apparatus|set[- ]?up|measure|control(?:led)? variables?|independent variable|dependent variable|fair test|repeat(?:ed)? readings?)\b/i;
-  if (experimentalVerb.test(text) && /\bphotosynth\w*|pondweed|elodea|oxygen bubbles?|light intensity|starch test|destarch\w*|iodine\b/i.test(text)) {
+  if (experimentalVerb.test(text) && (/\bphotosynth\w*|pondweed|elodea|oxygen bubbles?|light intensity|destarch\w*/i.test(text) || (/\bstarch test|iodine\b/i.test(text) && /\bleaf|leaves|variegated\b/i.test(text) && !/\b(amylase|enzyme)\b/i.test(text)))) {
     return {
       task: "experimental-method", stage: "figure", figure: "photosynthesisExperiment",
       requiredParts: ["light-source", "pondweed", "oxygen", "ruler"],
       reason: "The outcome is about carrying out and interpreting a photosynthesis investigation, so the apparatus and measured variable must be visible.",
     };
   }
-  if (/\b(molecule|molecular|vsepr|bond angle|lone pair|covalent)\b/i.test(text)) return { task: "molecular-structure", stage: "molecule", reason: "Molecular geometry needs atoms, bonds and three-dimensional structure." };
+  if (/\b(molecular (shape|geometry|structure)|shapes? of (a |the |simple )?molecules?|vsepr|bond angle|lone pairs?|covalent bond)/i.test(text)) return { task: "molecular-structure", stage: "molecule", reason: "Molecular geometry needs atoms, bonds and three-dimensional structure." };
   if (/\b(code|program|algorithm|loop|variable|function|python|javascript|trace table)\b/i.test(text)) return { task: "code-trace", stage: "code", reason: "The skill requires executable lines and a visible state trace." };
   if (/\b(equation|formula|calculate|solve|substitut|rearrange|algebra|derive)\b/i.test(text)) return { task: "calculation", stage: "equation", reason: "The skill requires visible worked steps." };
   if (/\b(graph|plot|gradient|slope|trend|correlation|relationship between|rate against|interpolat|extrapolat)\b/i.test(text)) return { task: "graph-interpretation", stage: "graph", reason: "The outcome requires a quantitative graph or interpretation." };
-  if (/\b(conservation of (?:mass|matter)|atom count|balanced (?:chemical )?equation|reactants?\b.*\bproducts?)\b/i.test(text)) return { task: "matter-tracking", stage: "atom-map", reason: "The outcome tracks conserved atoms from reactants to products." };
+  if (/\b(conservation of (?:mass|matter)|atom count|balanced (?:chemical )?equation|reactants?\b.*\bproducts?\b(?=[\s\S]*\b(atoms?|conserv\w*|balanc\w*|mass)\b))/i.test(text)) return { task: "matter-tracking", stage: "atom-map", reason: "The outcome tracks conserved atoms from reactants to products." };
   if (/\b(compare|difference|similarit|distinguish|versus|advantages?|disadvantages?|strengths?|limitations?)\b/i.test(text)) return { task: "comparison", stage: "compare", reason: "The outcome requires distinctions to be visible side by side." };
   if (/\b(process|cycle|sequence|pathway|steps?|cause and effect|flow)\b/i.test(text)) return { task: "process", stage: "flow", reason: "The outcome requires an ordered or causal relationship." };
   if (/\b(cell|organelle|organ|anatom|heart|lung|kidney|leaf|root|stem|flower|apparatus|circuit|cross[- ]section|internal structure)\b/i.test(text) && /\b(label|identify|structure|parts?|inside|diagram)\b/i.test(text)) return { task: "physical-structure", stage: "illustration", reason: "The outcome requires identifiable physical parts." };

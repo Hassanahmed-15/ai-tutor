@@ -41,4 +41,10 @@ export type FigureComponent = {
   /** The labelable parts, for the board writer (ids are fixed by the component). */
   parts: Array<{ id: string; name: string }>;
   build(params: FigureParams): FigureDrawing;
+  /**
+   * The figure's own cards already say what each part is (a timeline's events, a cause map's boxes):
+   * no margin labels are drawn — they would repeat the cards and take the figure's room. Its parts are
+   * still pen targets, revealed on their sentences.
+   */
+  selfLabelled?: boolean;
 };

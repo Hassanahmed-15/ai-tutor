@@ -105,6 +105,8 @@ export type FigureStage = {
    * index (never trusted from the model); the board draws it from /api/figures/asset/<id>.
    */
   asset?: { id: string; w: number; h: number; credit: string; parts: Array<{ id: string; name: string; anchor: { x: number; y: number } }> };
+  /** component "drawn": a diagram the board writer described and lib/figures/drawn.ts checked. */
+  drawing?: import("../figures/types").FigureDrawing;
 };
 
 export type EquationToken = {

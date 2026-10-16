@@ -145,7 +145,7 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   if (knowledge && !strictDoc && !video && (knowledge.mastered.length || knowledge.shaky.length || knowledge.earlier.length)) {
     lines.push("", "WHAT THIS STUDENT ALREADY KNOWS (from their earlier lessons):");
     if (knowledge.mastered.length) lines.push(`- Already solid: ${knowledge.mastered.join(", ")}. Do not teach these again — mention them in passing as things they know.`);
-    if (knowledge.earlier.length) lines.push(`- Learned in earlier lessons: ${knowledge.earlier.map((e) => `${e.label} (in "${e.topic}")`).join(", ")}. Build on these instead of re-explaining them, and say so out loud at least once, naming the earlier lesson ("remember electron shells from your lesson on atoms?").`);
+    if (knowledge.earlier.length) lines.push(`- Learned in earlier lessons: ${knowledge.earlier.map((e) => `${e.label} (in "${e.topic}")`).join(", ")}. Where one of these is genuinely part of this topic, build on it instead of re-explaining it and name the earlier lesson out loud. Never force a link to an unrelated subject: a complex-numbers lesson that said "remember electron shells from your lesson on atoms" taught nothing (audit 2026-10-17).`);
     if (refresher) lines.push(`- Shaky on what this builds on: ${knowledge.shaky.map((s) => `${s.label} (needed for ${s.for})`).join(", ")}. Put ONE short extra board FIRST that refreshes ${knowledge.shaky[0].label} — 3 sentences, "refresher": true — then the lesson's own boards. It is the only board you may add.`);
   }
   // What Aria read up on before planning (lib/webResearch.ts): the scripts teach FROM it, and each
