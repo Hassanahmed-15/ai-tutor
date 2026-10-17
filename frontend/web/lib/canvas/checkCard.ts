@@ -1,7 +1,7 @@
 import "server-only";
 
 import type OpenAI from "openai";
-import { bounded, jsonCall } from "./generate";
+import { bounded, jsonCall, shortenToFit } from "./generate";
 import { canvasSentences } from "./plan";
 import { checkCardIssues, OPTION_MAX } from "./quizLint";
 import type { CanvasBoardSpec, CanvasPlanBeat, QuizInteraction } from "./types";
@@ -31,7 +31,7 @@ import { validateInteraction } from "./validate";
 const CARD_MODEL = process.env.CANVAS_SPEC_MODEL ?? "gpt-5.6-luna";
 
 const WRITE_PROMPT = `You write ONE multiple-choice check question for the end of one board of a school lesson. Return JSON only: {"question": string, "options": [{"text": string, "correct": boolean, "feedback": string}], "evidence": [sentence numbers]}.
-- The question tests whether the student UNDERSTOOD this board: apply its idea to a new case, or ask why or how — never ask them to recall a phrase word for word. It must be answerable from the narration alone, at the lesson's level. It names what it is about (it is read on its own) and does not list its options inside it.
+- The question tests whether the student UNDERSTOOD this board: apply its idea to a NEW case — different numbers, a different example or situation from the ones the narration already worked — or ask why or how; never ask them to recall a phrase word for word. It must be answerable from the narration alone, at the lesson's level. It names what it is about (it is read on its own) and does not list its options inside it.
 - Exactly 4 options (3 only when there are exactly three sensible answers), exactly ONE correct. Each option a bare answer in one short clause, at most ${OPTION_MAX} characters, parallel in grammar and similar in length, the same units. No "all/none of the above", "both", "neither", no option that is also true, no joke or absurd option.
 - Every wrong option is a specific misconception real students hold about this idea (use the listed common mistakes when they fit; for a calculation, the number a real slip produces).
 - "feedback": 1–2 sentences Aria says when that option is chosen — for the correct one why it is right; for a wrong one the mistake and what is true. Every number you write is computed exactly.
@@ -52,7 +52,7 @@ export async function writeCheckCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, 
   const mistakes = mistakesOf(context.teachingHints);
   let costUsd = 0;
   let issues: string[] = [];
-  for (let attempt = 1; attempt <= 2; attempt++) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
     try {
       const user = [
         `Board: ${beat.title}`,
@@ -65,8 +65,19 @@ export async function writeCheckCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, 
       const written = await bounded(jsonCall(openai, CARD_MODEL, WRITE_PROMPT, user, 1500), 25_000, `check card ${beat.title}`);
       costUsd += written.costUsd;
       const raw = written.json as Record<string, unknown>;
-      const card = validateInteraction({ kind: "quiz", question: raw.question, options: raw.options }) as QuizInteraction | undefined;
-      if (!card || card.kind !== "quiz") { issues = ["the card needs a question and 3–4 options with exactly one correct"]; continue; }
+      // Tidy what is fixable by code before judging the card: the board title the model prefixes to the
+      // stem ("Mucociliary protection: If cilia…"), a speaker tag in the feedback ("Aria: …"), options
+      // longer than the card holds — rewritten to fit, never a reason to drop the card (audit 2026-10-17).
+      const options = (Array.isArray(raw.options) ? raw.options : []).map((o) => (o && typeof o === "object" ? { ...(o as Record<string, unknown>) } : {})) as Array<Record<string, unknown>>;
+      for (const o of options) if (typeof o.feedback === "string") o.feedback = o.feedback.replace(/^\s*(aria|teacher|feedback)\s*:\s*/i, "");
+      const long = options.filter((o) => typeof o.text === "string" && o.text.length > OPTION_MAX).map((o) => ({ text: String(o.text).replace(/\s+/g, " ").trim(), max: OPTION_MAX }));
+      if (long.length) {
+        const fitted = await shortenToFit(openai, long).catch(() => null);
+        if (fitted) { costUsd += fitted.costUsd; for (const o of options) { const t = typeof o.text === "string" ? o.text.replace(/\s+/g, " ").trim() : ""; if (fitted.replacements.has(t)) o.text = fitted.replacements.get(t); } }
+      }
+      const stem = typeof raw.question === "string" ? raw.question.replace(new RegExp(`^\\s*${beat.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*[:—–-]\\s*`, "i"), "") : raw.question;
+      const card = validateInteraction({ kind: "quiz", question: stem, options }) as QuizInteraction | undefined;
+      if (!card || card.kind !== "quiz") { issues = [`the card must have a "question" string and 3 or 4 "options", each {"text", "correct", "feedback"}, with exactly ONE "correct": true`]; continue; }
       issues = checkCardIssues(card, beat.script);
       if (issues.length) continue;
       // The independent check: shuffled, lettered, without the right answer marked.

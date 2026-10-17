@@ -60,6 +60,30 @@ function datedSequence(text: string): boolean {
 }
 
 /** Higher means a textbook picture carries information that a symbolic renderer cannot. */
+/** The vector diagram pipeline is on unless CANVAS_VECTOR_DIAGRAMS=off. */
+const VECTOR_DIAGRAMS = () => !(typeof process !== "undefined" && process.env?.CANVAS_VECTOR_DIAGRAMS === "off");
+
+/**
+ * Ideas whose textbook visual is a map, a cross-section, a circulation or data — drawn exactly by the
+ * vector grammar (lib/diagrams/grammar.ts), never by an image model or as boxes and arrows.
+ */
+export const VECTOR_FORM = /\b(maps?|ocean currents?|(warm|cold|surface) currents?|gulf stream|trade winds?|prevailing winds?|global winds?|jet streams?|itcz|inter-?tropical convergence|latitudes?|longitudes?|hemispheres?|climate zones?|biomes? (of|around) the world|plate boundar\w*|tectonic plates?|ring of fire|global distribution|world distribution|trade routes?|migration routes?|cross[- ]sections?|soil profiles?|soil horizons?|rock strata|strata|layers of the (atmosphere|earth|skin|soil)|atmospheric (circulation|layers)|three[- ]cell model|hadley cells?|ferrel cells?|polar cells?|climate graphs?|population pyramids?|supply and demand|demand curves?|supply curves?|equilibrium price|bar charts?|line graphs?|histograms?|scatter (graphs?|plots?)|frequency (tables?|diagrams?|polygons?)|number lines?|(graph|chart|table) of (the )?data|insolation|solar radiation (by|with|and) latitude)\b/i;
+
+/** Essay and argument boards: their visuals are the humanities kit's (balance, cause map, source card). */
+const ESSAY_BOARD = /\b(evaluat\w*|to what extent|how far|assess\w*|for and against|arguments?|judgements?|essay)\b/i;
+
+/**
+ * Is this board about what something LOOKS like — the one thing a generated picture shows best? An
+ * organism, a specimen, a landform, a building or artefact, its appearance — not its labelled layers,
+ * not a map, not data, not a count.
+ */
+export function photographic(beat: CanvasPlanBeat): boolean {
+  const text = boardText(beat);
+  if (VECTOR_FORM.test(text) || /\b\d{2,}\b|\b(pairs? of|number of|counts?)\b/i.test(`${beat.title} ${beat.brief}`)) return false;
+  return /\b(looks? like|appearance|photo\w*|specimens?|organisms?|animals?|birds?|insects?|fish|mammals?|reptiles?|amphibians?|flowers?|leaf|leaves|plants?|fruits?|seeds?|fung(us|i)|mushrooms?|trees?|forests?|rainforests?|coral reefs?|volcano(es)?|glaciers?|landscapes?|mountains?|deserts?|waterfalls?|canyons?|coastlines?|cliffs?|beach(es)?|deltas?|buildings?|monuments?|mosques?|temples?|churches|cathedrals?|castles?|forts?|pyramids?|palaces?|tombs?|artefacts?|artifacts?|statues?|paintings?|ships?|crystals?|minerals?|rock samples?)\b/i.test(text)
+    && !/\b(label(led)? (the )?(parts|structure)|internal structure|cross[- ]section|cutaway|tissues?|layers?|inside (of|the))\b/i.test(text);
+}
+
 export function pictureNeedScore(beat: CanvasPlanBeat): number {
   const text = boardText(beat);
   let score = 0;
@@ -606,6 +630,30 @@ export function applyLessonVisualPolicy(
           changes.push(`${beat.id}: figure → ${beat.stage} (${key} is drawn on ${keep.id})`);
         }
       }
+    }
+  }
+
+  // VECTOR DIAGRAMS BY DEFAULT (lib/diagrams/). A generated picture shows what a real thing LOOKS
+  // like — an organism, a landform, a building; it cannot get a structure's layers, a map's currents,
+  // a graph's data or an exact count right (8 of 10 picture requests were rejected, audit 2026-10-17).
+  // Every other picture board, and every board whose idea is a map, a cross-section, a circulation or
+  // data, is drawn as a vector diagram: real coastlines, plotted numbers, exact counts, checked by code
+  // and by eye. Maths and essay boards keep their own visuals; a syllabus contract wins.
+  if (options.mode !== "strict" && VECTOR_DIAGRAMS()) {
+    for (const beat of beats) {
+      if (beat.refresher || beat.overview || examIds.has(beat.id)) continue;
+      const text = boardText(beat);
+      if (beat.stage === "illustration") {
+        if (beat.requiredVisual?.stages.includes("illustration") || photographic(beat)) continue;
+        changes.push(`${beat.id}: illustration → figure (vector diagram; a picture cannot draw ${VECTOR_FORM.test(text) ? "a map, section or data" : "a labelled structure"} exactly)`);
+      } else if (["scene", "flow", "compare"].includes(beat.stage) && VECTOR_FORM.test(text) && !MATHS.test(text) && !ESSAY_BOARD.test(text)
+        && (!beat.requiredVisual?.stages.length || beat.requiredVisual.stages.some((st) => st === "figure" || st === "illustration" || st === "scene"))) {
+        changes.push(`${beat.id}: ${beat.stage} → figure (vector diagram: ${text.match(VECTOR_FORM)![0]})`);
+      } else continue;
+      beat.stage = "figure";
+      beat.figure = "drawn";
+      beat.figureAsset = undefined;
+      if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
     }
   }
 

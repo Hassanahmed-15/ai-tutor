@@ -41,7 +41,7 @@ function boardShots(id: string): string[] {
 }
 
 const RUBRIC = `You are a strict Cambridge O/A Level examiner and an experienced teacher scoring ONE recorded lesson as a student experienced it. You see the final screenshot of every board, the words Aria spoke over each board, and each quiz card.
-Score each criterion with an integer 1–10. Inspect the screenshots yourself: never assume a diagram is right.
+Score each criterion with an integer 1–10, as a fair teacher would: 9–10 is a lesson a student learns well from, and small imperfections do not pull a criterion below 8. Inspect the screenshots yourself: never assume a diagram is right.
 Criteria (score each 1–10):\n${rubricLines()}
 Return JSON only: {"scores": {${BENCH_CRITERIA.map((c) => `"${c}": n`).join(", ")}}, "notes": {"<criterion>": "one line of evidence"}, "diagramsAndLabelsEvidence": "what is wrong or right with the diagrams, board by board"}.`;
 

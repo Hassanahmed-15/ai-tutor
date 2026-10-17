@@ -259,9 +259,30 @@ function DotAtBoard({
       phase = "fly";
     };
 
+    // HER RESTING SPOT NEVER COVERS THE BOARD. The corner she rests in held the exam board's
+    // "loses marks" line and a flow node in real lectures (audit 2026-10-17): when anything written or
+    // drawn is under her, she rests at the nearest clear spot along the bottom or right edge instead.
+    let freeHome: Pt | null = null;
+    let homeCheckedAt = -1;
+    const restingSpot = (now: number): Pt => {
+      const raw = homeCentre();
+      const b = board.current;
+      if (!b) return raw;
+      if (now - homeCheckedAt < 0.8) return freeHome ?? raw;
+      homeCheckedAt = now;
+      const whole = rectOf(b);
+      const busy = [...inkOn(b), ...cardsOn(b, whole), ...figuresOn(b, whole)];
+      const half = HOME_PX / 2;
+      const clear = (q: Pt) => !busy.some((r) => q.x + half > r.x && q.x - half < r.x + r.w && q.y + half > r.y && q.y - half < r.y + r.h);
+      if (clear(raw)) { freeHome = null; return raw; }
+      const spots: Pt[] = [];
+      for (let d = 40; d <= Math.max(whole.w, whole.h) * 0.7; d += 40) spots.push({ x: raw.x - d, y: raw.y }, { x: raw.x, y: raw.y - d });
+      freeHome = spots.find((q) => q.x - half >= whole.x && q.y - half >= whole.y && clear(q)) ?? null;
+      return freeHome ?? raw;
+    };
     const loop = (nowMs: number) => {
       const now = nowMs / 1000;
-      const home = homeCentre();
+      const home = restingSpot(now);
       const t = pointTarget();
       const target = t ? rectOf(t.el) : null;
       const allowed = fliesRef.current && modeRef.current === "board" && !reduced && target !== null && target.w > 0;

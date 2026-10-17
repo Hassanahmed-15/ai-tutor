@@ -86,6 +86,16 @@ export function boardFacts(spec: CanvasBoardSpec): string {
       lines.push(`Main visual: an exam question card (${stage.marks} marks, command word "${stage.commandWord}"): "${stage.question}"`, `Mark-scheme points ticked as Aria says them: ${stage.points.map((p) => `"${p.text}"`).join(", ")}`, ...(stage.lostMarks ? [`Warning note: "${stage.lostMarks.text}"`] : []));
       break;
   }
+  // A try-it task is judged by what it COMPUTES: its readouts at the lowest, starting and highest
+  // setting of each slider ("86 / trials" taught that relative frequency falls as trials rise,
+  // audit 2026-10-17). The reviewer flags a model that contradicts the lesson as factually-wrong.
+  if (spec.interaction?.kind === "try") {
+    const task = spec.interaction;
+    const at = (vars: Record<string, number>) => (task.readouts ?? []).map((r) => `${r.label} = ${Number(evalExpr(r.expr, vars).toPrecision(4))}${r.unit ? ` ${r.unit}` : ""}`).join(", ");
+    const base = Object.fromEntries(task.controls.map((c) => [c.var, c.value]));
+    const rows = task.controls.flatMap((c) => [c.min, c.value, c.max].map((v) => `${c.label} = ${v}: ${at({ ...base, [c.var]: v })}`));
+    lines.push(`Try-it task: "${task.prompt}". What its readouts show as the student moves the slider: ${rows.join("; ")}. Fail it (factually-wrong) if these values contradict the idea the board teaches.`);
+  }
   if (spec.interaction?.kind === "quiz") {
     // The card appears when Aria asks her prediction, BEFORE she reveals the answer; the "(marked
     // correct)" note is for the reviewer only (it rejected good cards as "giving the answer away").
@@ -102,7 +112,7 @@ Fail the board (ship false) only for a problem a student would be misled or shor
 - invented-data: a graph or chart shows quantities, axes or data that the narration never gives and that are not standard textbook facts (a "relative depth" graph for the parts of a nephron).
 - empty-or-trivial: the visual carries no information beyond its titles (three boxes "Frequency table → Mean formula → Variance formula" with no table, formula or numbers on a calculation board).
 - mislabelled: a label names the wrong part, or a part the narration teaches is missing its label.
-- factually-wrong: anything on the board is false.
+- factually-wrong: anything on the board is false. Check every equation line as mathematics: each "=" must be true as written, with every factor, power and sign the narration gives ("ϕ(2r) = ϕ(r)" for "doubling the distance halves the potential" is false — it must be "ϕ(2r) = ϕ(r)/2").
 - off-topic: the board teaches something outside the lesson's topic.
 - quiz: the card is ambiguous, has no single right answer, or its wording itself gives the right option away (one option far longer or more detailed than the rest), or a wrong option no student would ever choose ("Oxygen stops existing"). The card is answered before Aria reveals the answer, so the narration revealing it later is correct, never a giveaway.
 Do not fail a board for style, for being simple, or for leaving out detail the narration does not mention. Each detail names the exact text on the board that is wrong and what it should be instead.`;

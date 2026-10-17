@@ -22,7 +22,7 @@ export type LessonJudgeVerdict = {
 
 export function judgeSystemPrompt(): string {
   return `You are a strict Cambridge O/A Level examiner scoring ONE lesson from PNG boards plus the spoken scripts and quiz cards.
-Score each criterion 1–10 integers. Do not give 9 or 10 if labels are missing, overlap, or do not point at the named part.
+Score each criterion 1–10 integers, as a fair teacher would: 9–10 is a lesson a student learns well from, and small imperfections do not pull a criterion below 8. Do not give 9 or 10 for diagrams when a diagram label points at the wrong part or overlaps another.
 The writer model is a different family from you; do not assume its diagrams are correct — inspect the PNG.
 Criteria:\n${rubricLines()}
 Return JSON only: {"scores": {${BENCH_CRITERIA.map((c) => `"${c}": n`).join(", ")}}, "notes": {}, "diagramsAndLabelsEvidence": "..."}.`;

@@ -11,7 +11,7 @@ import { animationChipDetail } from "@/lib/animationModels";
 import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
 import { usePlaybackRate } from "@/lib/playbackPrefs";
 import { useLessonMachine } from "@/lib/lessonMachine";
-import { backstopRecovery, narrationRecovery } from "@/lib/narrationRecovery";
+import { backstopRecovery, narrationRecovery, stallWatchdogAction } from "@/lib/narrationRecovery";
 import { isAdaptiveQuestion } from "@/lib/adaptiveQuestion";
 import { MAX_DEPTH_HELP_REQUESTS_PER_BOARD, requestDepthHelp } from "@/lib/adaptiveDepth";
 import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
@@ -490,6 +490,8 @@ export function LessonPlayer({
   const narrationLostForRef = useRef<number | null>(null);
   /** Set by the stall backstop only: the next start overrides a channel refusal it has judged stale. */
   const forceNextStartRef = useRef(false);
+  /** When the narration last reported anything (a sentence, a progress tick): the stall watchdog's clock. */
+  const lastNarrationSignalRef = useRef(Date.now());
   /*
    * DEVELOPMENT ONLY — never present in a production build.
    *
@@ -2131,6 +2133,7 @@ export function LessonPlayer({
           setSpeaking(true);
         },
         onSentenceStart: (sentenceIndex, sentence, total) => {
+          lastNarrationSignalRef.current = Date.now();
           // The sentence after a prediction question is the reveal: hold before it plays.
           if (previousAskedPrediction && canvasMidBoardTaskRef.current && sentenceIndex > bridge && !predictDoneRef.current.has(beat.id)) {
             predictDoneRef.current.add(beat.id);
@@ -2162,6 +2165,7 @@ export function LessonPlayer({
         // The media element's clock is the source of truth for board progress. This keeps the
         // live marker, generated SVG progress, and beat advancement pinned to the actual voice.
         onProgress: (progress) => {
+          lastNarrationSignalRef.current = Date.now();
           const quarter = Math.floor(progress * 4);
           if (quarter !== tracedQuarter) {
             tracedQuarter = quarter;
@@ -2470,6 +2474,68 @@ export function LessonPlayer({
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lesson.mode, voice.owner, tutor.speaking, tutor.status, quiz.phase, index, stage, startNonce]);
+
+  /*
+   * THE LECTURE THAT SAYS IT IS PLAYING AND IS NOT — WATCHED, NOT WAITED FOR.
+   *
+   * The recovery and the backstop above run when one of their dependencies changes, and the backstop
+   * fires once. A freeze that sets in after those have settled was never looked at again: a replay
+   * sat on its third board for ten minutes after one sentence, "Pause" on the button, nothing heard,
+   * nothing changing (QA 2026-10-17). So while the lecture is meant to be audible this checks every
+   * second. A narration frozen in place with nothing holding it is resumed; a board that should be
+   * talking and has reported nothing for 25 s — no clip, no browser voice, no task, question,
+   * checkpoint or generation holding it — has its narration started again. Anything that is
+   * legitimately waiting resets the clock, so a held board is never disturbed.
+   */
+  const stallGuardRef = useRef({ waiting: true, onBoard: false });
+  stallGuardRef.current = {
+    waiting: canvasHoldIndex !== null || predictHold !== null || narrationDoneIndex === index || pendingAdvanceRef.current === index
+      || mcqRef.current !== null || waitingOnCheckpoint || quiz.phase !== "idle" || focusPause !== null || currentAnimationPending,
+    onBoard: stage === "board",
+  };
+  useEffect(() => {
+    if (lesson.mode !== "teaching") return;
+    lastNarrationSignalRef.current = Date.now();
+    let frozenSince: number | null = null;
+    const timer = window.setInterval(() => {
+      const now = Date.now();
+      const guard = stallGuardRef.current;
+      const frozen = voice.hasFrozenTeacher();
+      const action = stallWatchdogAction({
+        teaching: lesson.modeRef.current === "teaching",
+        waiting: guard.waiting,
+        tutorSpeaking: tutorRef.current.isSpeaking(),
+        utteranceInFlight: voice.hasPendingUtterance(),
+        lectureFrozen: frozen,
+        frozenForMs: frozen ? now - (frozenSince ??= now) : 0,
+        onBoard: guard.onBoard,
+        browserSpeaking: typeof window !== "undefined" && "speechSynthesis" in window && (window.speechSynthesis.speaking || window.speechSynthesis.pending),
+        silentMs: now - lastNarrationSignalRef.current,
+        stallMs: NARRATION_STALL_MS,
+      });
+      if (!frozen) frozenSince = null;
+      // Held, or talking: the silence clock starts again from now.
+      if (lesson.modeRef.current !== "teaching" || guard.waiting || tutorRef.current.isSpeaking() || voice.hasPendingUtterance()) {
+        frozenSince = null;
+        lastNarrationSignalRef.current = now;
+        return;
+      }
+      if (action === "none") return;
+      tracePlayback("watchdog", { beat: index, action, silentMs: now - lastNarrationSignalRef.current });
+      frozenSince = null;
+      lastNarrationSignalRef.current = now;
+      if (action === "resume") {
+        resumeLectureVoice({ force: true });
+      } else {
+        startRefusedForRef.current = null;
+        narrationLostForRef.current = null;
+        forceNextStartRef.current = true;
+        setStartNonce((n) => n + 1);
+      }
+    }, 1_000);
+    return () => window.clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.mode, index]);
 
   // Focus/engagement bands: below 30 the lecture pauses outright (focus-pause overlay, manual
   // resume only); 30-50 the TEACHER stops and asks a quick comprehension question instead of

@@ -9,6 +9,7 @@ import { ILLUSTRATION_STYLE_VERSION, illustrationImageModel, pictureSubject } fr
 import { textbookDiagram } from "./textbookDiagram";
 import { withMandatoryLabels } from "./labelPolicy";
 import { layoutPanel } from "./layout";
+import { takeFigureCutItems } from "../figures/cuts";
 import { dropCrossingArrows } from "./layoutQa";
 import { recapTour, unifyConceptColours } from "./lessonPasses";
 import { CANVAS_PLAN_PROMPT, CANVAS_SPEC_PROMPT } from "./prompts";
@@ -19,6 +20,8 @@ import { fallbackSpec } from "./fallback";
 import { figureComponent, figureFor } from "../figures/registry";
 import { classifyInstructionalTask } from "./instructionalTask";
 import { foreignFigureWords } from "../figures/foreignText";
+import { vectorDiagram } from "../diagrams/write";
+import type { FigureDrawing } from "../figures/types";
 import { DRAWN_GUIDE, drawnFigure } from "../figures/drawn";
 import { findLibraryFigure, libraryAssetTitle, libraryStageAsset } from "../figures/library";
 import type { FigureComponent } from "../figures/types";
@@ -27,11 +30,11 @@ import { boardStructureProblem, isDataStructureTopic, withoutStructure } from ".
 import { equationProblem } from "./equationCheck";
 import { createOpenAI } from "../openaiClient";
 import { visualContractIssues } from "../curriculum/visualContract";
-import { applyLessonVisualPolicy, labelledFigureParts, PHYSICAL } from "./visualPolicy";
+import { applyLessonVisualPolicy, labelledFigureParts, photographic, PHYSICAL } from "./visualPolicy";
 import { auditBoardForRelease, figureDataIssues } from "./releaseAudit";
 import { BOARD_REVIEW_PROMPT, boardReviewRequest, parseBoardReview, type BoardReview } from "./boardReview";
 import { deferRevealLeaks, teachingCycleIssues } from "./predict";
-import { alignToNarration, unshownSentences } from "./narrationSync";
+import { alignToNarration, anchorNotes, unshownSentences } from "./narrationSync";
 
 
 export type { CanvasLecture };
@@ -101,7 +104,7 @@ export async function jsonCall(openai: OpenAI, model: string, system: string, us
 /** Words that mean "this turns into that" — a board where a morph IS the explanation. */
 const CHANGE_OF_STATE = /\b(melt|boil|freez|evaporat|condens|sublimat|becom|turn(?:s|ed|ing)? into|transform|convert|chang(?:e|es|ed|ing) into|grow(?:s|n)? into|split(?:s)? into|break(?:s)? down into)/i;
 
-function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, lastError?: string, extra: string[] = []): string {
+function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, lastError?: string, extra: string[] = [], vector?: FigureDrawing): string {
   const index = plan.indexOf(beat);
   const sentences = canvasSentences(beat.script);
   const outline = plan.map((b) => `${b.id}. ${b.title} (${b.stage})${b.id === beat.id ? "   ← THIS BOARD" : ""}`).join("\n");
@@ -119,7 +122,8 @@ function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanB
     ...(beat.figure === "electromagnetism" && /\btransformers?\b|\bturns ratio\b|\bstep[- ](up|down)\b/i.test(`${beat.title} ${beat.brief} ${beat.script}`) ? [`This board is a TRANSFORMER: params.device MUST be "transformer" (never solenoid). Set np, ns and vp; code computes Vs = Vp × Ns / Np. Label primary-coil, secondary-coil and core.`] : []),
     ...(beat.figure === "coordinateGrid" && /\btransform/i.test(`${beat.title} ${beat.brief}`) ? [`This board is a GEOMETRIC TRANSFORMATION: give shape vertices and transform (reflection, rotation, translation or enlargement). Code computes A′B′C′.`] : []),
     ...(beat.stage === "figure" && beat.figure === "library" && beat.figureAsset ? [libraryBrief(libraryStageAsset(beat.figureAsset.id) ?? beat.figureAsset)] : []),
-    ...(beat.stage === "figure" && beat.figure === "drawn" ? [`FIGURE BOARD — draw the textbook diagram of what this board teaches (${beat.brief || beat.title}). ${DRAWN_GUIDE} Label 3-6 parts the narration names, each revealed ("s") on the sentence that first names it; cues point at part ids.`] : []),
+    ...(beat.stage === "figure" && beat.figure === "drawn" && vector ? [vectorBrief(vector)] : []),
+    ...(beat.stage === "figure" && beat.figure === "drawn" && !vector ? [`FIGURE BOARD — draw the textbook diagram of what this board teaches (${beat.brief || beat.title}). ${DRAWN_GUIDE} Label 3-6 parts the narration names, each revealed ("s") on the sentence that first names it; cues point at part ids.`] : []),
     ...(beat.stage === "flow" && /\bcycle\b/i.test(`${beat.title} ${beat.brief}`) ? [`This board is a CYCLE: use "arrangement": "cycle", with an arrow from the last stage back to the first.`] : []),
     ...(beat.requiredVisual?.mustShow.length ? [`The syllabus requires this board to visibly show: ${beat.requiredVisual.mustShow.join("; ")}. Each must be a drawn, labelled element, not only spoken.`] : []),
     `Narration, numbered (${sentences.length} sentences, s = 0 to ${sentences.length - 1}):`,
@@ -155,6 +159,11 @@ function libraryBrief(asset: NonNullable<CanvasPlanBeat["figureAsset"]>): string
   return `FIGURE BOARD: the stage is a real textbook diagram ("${title}") shown exactly; its parts are already located, so a label always lands on its part. Return "stage": {"kind": "figure", "component": "library", "parts": [{"id", "name", "s", "say"}]} (no params, no asset — the server adds the diagram). Label 3 to 8 of these parts — every one the narration names — the ones the narration talks about (ids exactly as given): ${asset.parts.map((p) => `${p.id} ("${p.name}")`).join(", ")}. Give each the "name" the narration uses (at most 34 characters; keep the textbook term) and reveal it ("s") on the sentence that first names it, with a short "say". Never label a part this list does not have. Cues point at part ids.`;
 }
 
+/** The board writer's instructions for a vector diagram the server has already drawn and checked. */
+function vectorBrief(drawing: FigureDrawing): string {
+  return `FIGURE BOARD: the stage is a textbook diagram already drawn and checked for this board; its parts are located, so a label always lands on its part. Return "stage": {"kind": "figure", "component": "drawn", "parts": [{"id", "name", "s", "say"}]} (no drawing — the server adds it). Label every one of these parts the narration names (ids exactly as given): ${drawing.parts.map((p) => `${p.id} ("${p.name}")`).join(", ")}. Keep each "name" (at most 34 characters) and reveal it ("s") on the sentence that first names it, with a short "say". Cues point at part ids.`;
+}
+
 /** The board writer's instructions for a code-drawn figure, written from the component itself. */
 function figureBrief(c: FigureComponent): string {
   return `FIGURE BOARD: the stage is the "${c.name}" figure, drawn exactly by code — ${c.title}. Return "stage": {"kind": "figure", "component": "${c.name}", "params": {…}, "parts": [{"id", "name", "s", "say"}]}. params (all optional): ${c.params}. Label 3 to 8 of these parts — every one the narration names (ids exactly as given): ${c.parts.map((p) => `${p.id} ("${p.name}")`).join(", ")}. Give each the "name" the narration uses (e.g. "Burette (hydrochloric acid)", at most 34 characters) and reveal it ("s") on the sentence that first names it. Choose params that match what this board teaches (an end-point board shows the end-point colour). Cues point at part ids.`;
@@ -162,6 +171,8 @@ function figureBrief(c: FigureComponent): string {
 
 /** Faults a board may still ship with when nothing better arrives in time; never meaning, numbers or answer timing. */
 
+/** Described diagrams are drawn by the vector pipeline unless CANVAS_VECTOR_DIAGRAMS=off. */
+const VECTOR_DIAGRAMS = process.env.CANVAS_VECTOR_DIAGRAMS !== "off";
 /** The board review runs unless CANVAS_BOARD_REVIEW=off. */
 const BOARD_REVIEW = process.env.CANVAS_BOARD_REVIEW !== "off";
 /** Problems that mean the VISUAL itself is wrong for the board — rewriting the same visual will not cure them. */
@@ -186,7 +197,7 @@ async function reviewBoard(openai: OpenAI, topic: string, spec: CanvasBoardSpec,
 const rejected = (beat: CanvasPlanBeat) => [...new Set([...(beat.rejectedFigures ?? []), ...(beat.figure && beat.figure !== "drawn" && beat.figure !== "library" ? [beat.figure] : [])])];
 
 /** The same board without its visual: a worked equation for a calculation, else a step-by-step flow. */
-function plainBeat(beat: CanvasPlanBeat): CanvasPlanBeat {
+function plainBeat(beat: CanvasPlanBeat, allowFigure = true): CanvasPlanBeat {
   // A calculation is numbers being worked: an operation between numbers, or "calculate"/"work out"
   // with numbers. "This means…" and the notation "n = 23" made a sociology board and a genetics board
   // into equation boards of cut-off words (audit 2026-10-17).
@@ -196,8 +207,12 @@ function plainBeat(beat: CanvasPlanBeat): CanvasPlanBeat {
   // A diagram drawn by code that fits the board comes first: a failed picture of chromosome sets fell
   // back to a flow of icons ("Haploid nucleus → twice the number → Diploid nucleus"), which teaches
   // nothing (owner, 2026-10-17).
-  const fitting = [classifyInstructionalTask(beat).figure, figureFor(`${beat.title} ${beat.brief}`)?.name, figureFor(`${beat.title} ${beat.brief} ${beat.script}`)?.name]
-    .find((name): name is string => Boolean(name) && !base.rejectedFigures.includes(name!) && Boolean(figureComponent(name!)));
+  // Only a diagram of what the board's own TITLE is about: matching a word the narration mentions in
+  // passing ("capillaries") put the blood-vessel diagram on a board about airway tissues (audit 2026-10-17).
+  const titleWords = (beat.title.toLowerCase().match(/[a-z]{5,}/g) ?? []).map((w) => w.replace(/(es|s)$/, ""));
+  const aboutTitle = (name: string) => { const c = figureComponent(name); return Boolean(c) && (c!.match.test(beat.title) || titleWords.some((w) => c!.title.toLowerCase().includes(w))); };
+  const fitting = !allowFigure ? undefined : [classifyInstructionalTask(beat).figure, figureFor(`${beat.title} ${beat.brief}`)?.name]
+    .find((name): name is string => Boolean(name) && !base.rejectedFigures.includes(name!) && aboutTitle(name!));
   if (fitting && !calculation) {
     const component = figureComponent(fitting)!;
     return { ...base, stage: "figure", figure: fitting, objects: labelledFigureParts(component, classifyInstructionalTask(beat).requiredParts ?? []) };
@@ -244,7 +259,8 @@ export function pictureRequestProblem(subject: string, parts: string[]): string 
 
 function drawnBeat(beat: CanvasPlanBeat, why = ""): CanvasPlanBeat {
   // A picture only for a physical thing the review described; a chart or argument is drawn plain.
-  const pictures = process.env.CANVAS_AI_PICTURES !== "off" && pictureable(`${why} ${beat.title}`);
+  // With vector diagrams on, a picture only for what something looks like (lib/canvas/visualPolicy.ts).
+  const pictures = process.env.CANVAS_AI_PICTURES !== "off" && pictureable(`${why} ${beat.title}`) && (!VECTOR_DIAGRAMS || photographic({ ...beat, brief: `${beat.brief} ${why}` }));
   return { ...beat, stage: pictures ? "illustration" : "figure", figure: pictures ? undefined : "drawn", figureAsset: undefined, objects: [], requiredVisual: undefined, rejectedFigures: rejected(beat) };
 }
 
@@ -272,7 +288,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     // Only a physical thing is redrawn from the review's description: with pictures on, anything else
     // (a chart, a framework) became a picture request the image model could never satisfy.
     const suggested = /\bshould (instead )?(show|depict|identify|be)\b/i.test(why) && beat.figure !== "drawn" && beat.stage !== "illustration" && clock.left() > 70_000
-      && (process.env.CANVAS_AI_PICTURES === "off" || pictureable(why));
+      && (VECTOR_DIAGRAMS || process.env.CANVAS_AI_PICTURES === "off" || pictureable(why));
     if (suggested) {
       console.log(`[canvas] ${beat.id}: the board review rejected its ${beat.figure ?? beat.stage} visual twice — redrawn as the diagram the review describes (${why.slice(0, 200)})`);
       const drawn = await generateSpec(openai, topic, plan, drawnBeat(beat, why), clock, [...extra, `An earlier diagram on this board was rejected: ${why}. Draw the diagram this describes, labelling exactly what the narration teaches.`], true);
@@ -288,13 +304,27 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   // An equation board that still misses something after its retries: kept rather than replaced by
   // a placeholder scene (its terms are whole now; only the check's last complaint is left).
   let closestEquation: CanvasBoardSpec | null = null;
+  // A described diagram is drawn by the vector pipeline first (lib/diagrams/write.ts): real
+  // coastlines, plotted data, exact counts, checked by code and by eye. One that cannot pass is not
+  // drawn at all — the board is taught plainly, which beats a wrong diagram (owner, 2026-10-17).
+  let vector: FigureDrawing | undefined;
+  if (beat.stage === "figure" && beat.figure === "drawn" && VECTOR_DIAGRAMS && clock.left() > 60_000) {
+    const made = await vectorDiagram(openai, { title: beat.title, brief: beat.brief, narration: beat.script, mustShow: beat.requiredVisual?.mustShow, topic }, { share: !beat.source, timeLeft: () => clock.left() });
+    costUsd += made.costUsd;
+    console.log(`[canvas] ${beat.id}: ${made.log}`);
+    if (made.diagram) vector = made.diagram.drawing;
+    else {
+      const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat), clock, extra, true);
+      return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd };
+    }
+  }
   for (let attempt = 1; attempt <= 3; attempt++) {
     // A retry is optional work: with too little time left the board falls back instead.
     // A second attempt still runs with 30 s left (one bounded call): with a 75 s floor most slow
     // boards skipped every retry and shipped the fallback.
     if (attempt > 1 && clock.left() < (attempt === 2 ? 30_000 : 75_000)) break;
     try {
-      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, lastError, asked), needsStructure ? 9000 : 6000), Math.min(needsStructure ? 60_000 : 45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
+      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, lastError, asked, vector), needsStructure ? 9000 : 6000), Math.min(needsStructure ? 60_000 : 45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
       costUsd += c;
       const raw = json as Record<string, unknown>;
       // The plan decides the stage; a model that drifted to another one is corrected, not trusted.
@@ -309,7 +339,9 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         stage.asset = libraryStageAsset(beat.figureAsset?.id) ?? beat.figureAsset;
       }
       // A described diagram that fails its checks is sent back with what to fix, not a generic error.
-      if (beat.figure === "drawn" && raw.stage && typeof raw.stage === "object") {
+      // The vector diagram is the server's; whatever drawing the model wrote is replaced by it.
+      if (vector && raw.stage && typeof raw.stage === "object") Object.assign(raw.stage as Record<string, unknown>, { component: "drawn", drawing: vector });
+      if (!vector && beat.figure === "drawn" && raw.stage && typeof raw.stage === "object") {
         const { issues } = drawnFigure((raw.stage as Record<string, unknown>).drawing);
         // A box diagram is a flow board drawn badly: build the flow instead of retrying the drawing.
         if (!plain && issues.some((i) => i.startsWith("BOX DIAGRAM"))) return rebuildPlain("its drawn diagram was only empty boxes and rings");
@@ -322,14 +354,18 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       // TEXT THAT DOES NOT FIT IS REWRITTEN TO FIT, never cut (owner, 2026-10-17): every over-long
       // piece goes to one small call that rewrites it within its exact room, and the board is checked
       // again with the rewritten text.
-      const overlong = validationCutItems();
+      // The layout's own room too: a card's detail can fit its character limit and still not fit its
+      // card (seven "…" on one geography board, QA 2026-10-17). Laying the board out records those.
+      const layoutCuts = (s: CanvasBoardSpec | null) => { takeFigureCutItems(); if (s) layoutPanel(s); return takeFigureCutItems(); };
+      const overlong = [...validationCutItems(), ...layoutCuts(spec)];
       if (spec && overlong.length && clock.left() > 25_000) {
         const fitted = await shortenToFit(openai, overlong).catch((error) => { costUsd += (error as { costUsd?: number }).costUsd ?? 0; return null; });
         if (fitted) {
           costUsd += fitted.costUsd;
           replaceStrings(raw, fitted.replacements);
           spec = validateCanvasSpec(raw, sentences.length);
-          console.log(`[canvas] ${beat.id}: ${fitted.replacements.size} text(s) rewritten to fit${validationCutItems().length ? `, ${validationCutItems().length} still ended at a break` : ""}`);
+          const still = validationCutItems().length + layoutCuts(spec).length;
+          console.log(`[canvas] ${beat.id}: ${fitted.replacements.size} text(s) rewritten to fit${still ? `, ${still} still ended at a break` : ""}`);
         }
       }
       // An arrow that would cut through another box is dropped rather than drawn across it (the
@@ -391,7 +427,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       // What Aria writes as she speaks: the planner's phrase for each sentence, on that sentence.
       const spoken = await spokenNotes(openai, beat, clock);
       costUsd += spoken.costUsd;
-      if (spoken.notes.length && spec.stage.kind !== "exam") spec.notes = spoken.notes;
+      if (spoken.notes.length && spec.stage.kind !== "exam") spec.notes = anchorNotes(spoken.notes, beat.script);
       const findings: Finding[] = [
         // A board-type rule the writer cannot satisfy ("requires the heart renderer, not illustration")
         // is the plan's business, not this board's: it never fails a board.
@@ -419,6 +455,13 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         } else findings.push(...review.problems.map((p) => ({ gate: "review-note", message: `${p.kind}: ${p.detail}` })));
       }
       if (visualRejections >= 2 && !plain && (beat.stage === "figure" || beat.stage === "graph" || beat.stage === "illustration")) return rebuildPlain(fatal.map((f) => f.message).join("; "));
+      // A visual the review rejected twice is never shipped by an unreviewed third attempt: an already
+      // plain board drops its diagram altogether (the blood-vessel figure shipped this way, 2026-10-17).
+      if (visualRejections >= 2 && plain && beat.stage === "figure" && clock.left() > 25_000) {
+        console.log(`[canvas] ${beat.id}: the review rejected its ${beat.figure} twice — rebuilt without a diagram`);
+        const bare = await generateSpec(openai, topic, plan, plainBeat(beat, false), clock, [...extra, `An earlier diagram on this board was rejected: ${fatal.map((f) => f.message).join("; ").slice(0, 300)}. Teach it without a diagram.`], true);
+        return { ...bare, costUsd: bare.costUsd + costUsd };
+      }
       if (fatal.length) {
         // The writer is told the serious faults only — a long list of notes made it fix one thing and break another.
         lastError = fatal.map((f) => `${f.gate}: ${f.message}`).join("; ");
@@ -460,7 +503,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
 const SHORTEN_PROMPT = `You rewrite pieces of text from a school lesson board so each fits its room. Return JSON only: {"items": [{"i": number, "text": string}]}. Each new text keeps the meaning, the key term, every number and unit, and the notation (CO₂, x², ≤), reads as a complete phrase, and has AT MOST the number of characters given — count them. Drop filler words first, then secondary detail; never end with "…".`;
 
 /** One small call: every over-long text rewritten within its exact room. */
-async function shortenToFit(openai: OpenAI, items: Array<{ text: string; max: number }>): Promise<{ replacements: Map<string, string>; costUsd: number }> {
+export async function shortenToFit(openai: OpenAI, items: Array<{ text: string; max: number }>): Promise<{ replacements: Map<string, string>; costUsd: number }> {
   const list = items.slice(0, 24).map((item, i) => ({ i, max: item.max, text: item.text }));
   const { json, costUsd } = await bounded(jsonCall(openai, SPEC_MODEL, SHORTEN_PROMPT, JSON.stringify({ items: list }), 1500), 20_000, "shorten");
   const replacements = new Map<string, string>();
@@ -482,6 +525,8 @@ function replaceStrings(value: unknown, replacements: Map<string, string>): void
     if (typeof child === "string") {
       const norm = child.replace(/\s+/g, " ").trim();
       if (replacements.has(norm)) (value as Record<string | number, unknown>)[key] = replacements.get(norm);
+      // A diagram's list param ("for": "a; b; c") holds the over-long item inside a longer string.
+      else for (const [from, to] of replacements) if (from.length >= 8 && norm.includes(from)) (value as Record<string | number, unknown>)[key] = norm.split(from).join(to);
     } else replaceStrings(child, replacements);
   }
 }
@@ -562,7 +607,11 @@ function fallbackReason(error: unknown): "budget" | "generation" | "validation" 
 export function plainRebuild(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = []): () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null> {
   return async () => {
     if (clock.left() < 35_000) return null;
-    const made = await generateSpec(openai, topic, plan, plainBeat(beat), clock, [...extra, "A textbook picture of this board could not be made accurately. Teach the same idea without a picture, with every box and arrow carrying what the narration says."], true);
+    // With time left, the vector diagram first (it falls back to the plain board itself).
+    const vector = VECTOR_DIAGRAMS && clock.left() > 110_000 && beat.stage === "illustration";
+    const made = vector
+      ? await generateSpec(openai, topic, plan, { ...beat, stage: "figure", figure: "drawn", figureAsset: undefined, objects: [], requiredVisual: beat.requiredVisual ? { ...beat.requiredVisual, stages: ["figure"] } : undefined }, clock, [...extra, "A textbook picture of this board could not be made accurately; it is drawn as a diagram instead."], true)
+      : await generateSpec(openai, topic, plan, plainBeat(beat), clock, [...extra, "A textbook picture of this board could not be made accurately. Teach the same idea without a picture, with every box and arrow carrying what the narration says."], true);
     return { spec: made.spec, costUsd: made.costUsd };
   };
 }

@@ -20,7 +20,8 @@ import { slug } from "./validate";
 import { sourcesForText, type SourcePack } from "../webSources";
 import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
 import { findLibraryFigure } from "../figures/library";
-import { courseCoverageGaps, coverageMessage, requiredTermsOf } from "./courseCoverage";
+import { courseCoverageGaps, coverageMessage, requiredTermsOf, type CoverageGap } from "./courseCoverage";
+import { boardNotesOf } from "./plan";
 import { examBoardSpec } from "./examBoard";
 import { writeCheckCard } from "./checkCard";
 
@@ -100,6 +101,12 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
           lastError = `it leaves out parts of the syllabus lesson: ${coverageMessage(gaps)}`;
           if (attempt < maxAttempts) { console.log(`[canvas] plan sent back for coverage: ${lastError.slice(0, 600)}`); continue; }
           console.warn(`[canvas] plan kept with coverage gaps: ${lastError.slice(0, 600)}`);
+          // The gaps are repaired board by board instead of shipped: each board that left out key
+          // points has its own script rewritten to add them, everything else kept (a history lesson
+          // shipped without the 1960s dollar crisis this way, audit 2026-10-17).
+          const repaired = await repairBoardScripts(openai, plan.beats, gaps.boards);
+          costUsd += repaired.costUsd;
+          if (repaired.count) { plan = { ...plan, beats: repaired.beats }; console.log(`[canvas] ${repaired.count} board script(s) rewritten to teach their missing key points`); }
         } else console.log(`[canvas] plan covers every key point${gaps.terms.length ? ` (terms not used: ${gaps.terms.join(", ")})` : ""}`);
       }
       if (plan && allowed > 0 && plan.beats.length > allowed) {
@@ -424,4 +431,34 @@ async function repairSentences(
 export function canvasSpecOf(beat: Beat | null | undefined): CanvasBoardSpec | undefined {
   const op = beat?.draw?.ops.find((o) => (o as { kind: string }).kind === "canvasBoard") as { spec?: CanvasBoardSpec } | undefined;
   return op?.spec;
+}
+
+const REPAIR_PROMPT = `You revise what Aria says over ONE board of a school lesson so it teaches every key point it is missing. Return JSON only: {"script": string, "board": [{"s": number, "text": string}]}.
+- Keep every sentence already there, in its order and style; add the missing key points where they belong, one sentence each, with the reason or mechanism when the point is a how or why. Spoken sentences ending in . ! or ?, one idea each, at most about 25 words; at most 13 sentences in all.
+- "board": for at least 7 in 10 sentences, the short phrase written on the board as that sentence is said (s = 0-based sentence number, at most 34 characters).`;
+
+/** Each board that left out key points gets its own script rewritten to include them (one small call each, at most four). */
+async function repairBoardScripts(openai: ReturnType<typeof client>, beats: CanvasPlanBeat[], gaps: CoverageGap[]): Promise<{ beats: CanvasPlanBeat[]; count: number; costUsd: number }> {
+  let costUsd = 0;
+  let count = 0;
+  const out = [...beats];
+  await Promise.all(gaps.slice(0, 4).map(async (gap) => {
+    const id = /^(b\d+)/.exec(gap.board)?.[1];
+    const at = out.findIndex((b) => b.id === id);
+    if (at < 0 || (!gap.missing.length && !(gap.depth ?? []).length)) return;
+    const beat = out[at];
+    try {
+      const user = `Board: ${beat.title}\nWhat Aria says now:\n${beat.script}\n\nMissing key points (teach each):\n${gap.missing.map((m) => `- ${m}`).join("\n") || "(none)"}${gap.depth?.length ? `\nAlso fix: ${gap.depth.join("; ")}` : ""}`;
+      const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, REPAIR_PROMPT, user, 2500), 40_000, `repair ${beat.id}`);
+      costUsd += c;
+      const r = json as { script?: unknown; board?: unknown };
+      const script = typeof r.script === "string" ? r.script.replace(/\s+/g, " ").trim() : "";
+      if (canvasSentences(script).length < canvasSentences(beat.script).length) return;
+      out[at] = { ...beat, script, ...boardNotesOf(r.board, canvasSentences(script).length) };
+      count++;
+    } catch (error) {
+      costUsd += (error as { costUsd?: number }).costUsd ?? 0;
+    }
+  }));
+  return { beats: out, count, costUsd };
 }

@@ -167,3 +167,24 @@ test("each component's match routes its own boards and not the others'", () => {
     for (const t of no) assert.ok(!c.match.test(t), `${c.name} should not match "${t}"`);
   }
 });
+
+test("circle chord and tangent theorems: lengths completed by Pythagoras, drawn with equal marks, parts named", async () => {
+  const { circleTheorem, circleLengths } = await import("../figures/components/circleTheorem");
+  assert.deepEqual(circleLengths("tangents-from-point", { radius: 8, op: 17 }), { radius: 8, op: 17, tangent: 15 });
+  const chord = circleLengths("chord-bisector", { chord: 16, radius: 10 })!;
+  assert.equal(chord.distance, 6);
+  assert.equal(chord.half, 8);
+  assert.equal(circleLengths("chord-bisector", { chord: 30, radius: 10 }), null, "a chord longer than the diameter cannot exist");
+  const t = circleTheorem.build({ theorem: "tangents-from-point", radius: 8, op: 17, units: "cm", letters: "A,B,R" });
+  const texts = t.shapes.filter((s) => s.t === "text").map((s) => (s as { text: string }).text);
+  assert.equal(texts.filter((x) => x === "15 cm").length, 2, "both tangents are written as 15 cm");
+  assert.ok(t.parts.some((p) => p.name === "RA = RB"));
+  const e = circleTheorem.build({ theorem: "equal-chords", chord: 10, distance: 4, units: "cm" });
+  assert.ok(e.parts.some((p) => p.name === "OM = ON") && e.parts.some((p) => p.name === "AB = CD"));
+  // The board's own wording routes to this figure.
+  assert.ok(circleTheorem.match.test("Equal chords mirror each other"));
+  assert.ok(circleTheorem.match.test("Two tangents from one point"));
+  assert.ok(circleTheorem.match.test("The perpendicular from the centre bisects a chord"));
+  // An alias in the writer's own words still finds the theorem.
+  assert.ok(circleTheorem.build({ theorem: "perpendicular bisects chord" }).parts.some((p) => p.name === "AM = MB"));
+});

@@ -28,10 +28,10 @@ test("pictures and diagrams combine: a labelled structure is a diagram, what a t
     beat("b6", "A rainforest plant in its habitat", "illustration", "What a rainforest plant and the animals around it look like"),
   ];
   const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
-  // A structure with no exact diagram is GENERATED as a checked textbook diagram (lib/canvas/textbookDiagram.ts),
-  // not described as line art by the board writer.
-  assert.deepEqual(out.beats.map((b) => b.stage), ["illustration", "atom-map", "equation", "graph", "compare", "illustration"]);
-  assert.equal(out.audit.illustrations, 2);
+  // A structure to label is a checked VECTOR diagram (lib/diagrams/); a picture shows what a thing looks like.
+  assert.deepEqual(out.beats.map((b) => b.stage), ["figure", "atom-map", "equation", "graph", "compare", "illustration"]);
+  assert.equal(out.beats[0].figure, "drawn");
+  assert.equal(out.audit.illustrations, 1);
 });
 
 test("generated pictures are capped at four; over the cap a physical subject becomes a plain board, never line art", () => {

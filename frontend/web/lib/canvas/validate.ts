@@ -7,9 +7,10 @@
  * what its stage needs to draw anything returns null, and the caller retries or falls back.
  */
 
-import { takeFigureCuts } from "../figures/cuts";
+import { takeFigureCutItems, takeFigureCuts } from "../figures/cuts";
 import { compileExpr, exprUsesOnly } from "./expr";
 import { figureComponent } from "../figures/registry";
+import { isCompiledDiagram } from "../diagrams/grammar";
 import { drawnFigure } from "../figures/drawn";
 import { snapEquilibrium } from "./graphCheck";
 import { DS_MAX_STEPS, parseOps, parseStructure } from "./structure";
@@ -64,30 +65,13 @@ export function validationCutItems(): Array<{ text: string; max: number }> {
   return [...cutItems];
 }
 
-/**
- * Text that does not fit is never shown half-cut (owner, 2026-10-17). The board writer's text is
- * first rewritten to fit by the shorten pass; what still does not fit is ended at a natural break —
- * a dash, a semicolon, a comma, "and", "because" — as a complete phrase, without "…".
- */
-export function trimToFit(text: string, max: number): string {
-  const t = text.replace(/\s+/g, " ").trim();
-  if (t.length <= max) return t;
-  const head = t.slice(0, max);
-  const breaks = [" — ", " – ", "; ", ": ", ", ", " because ", " which ", " so ", " and ", " or ", " but ", " with ", " while "];
-  let at = -1;
-  for (const b of breaks) {
-    const i = head.lastIndexOf(b);
-    if (i >= max * 0.45 && i > at) at = i;
-  }
-  if (at < 0) at = head.lastIndexOf(" ");
-  let out = (at > 0 ? head.slice(0, at) : head).replace(/[\s,;:(–—-]+$/, "");
-  // A phrase never ends on a small joining word ("…first-hand for a").
-  for (let prev = ""; prev !== out; ) { prev = out; out = out.replace(/\s+(and|or|of|the|a|an|to|in|on|for|with|by|but|so|which|because|while|as|such)$/i, "").replace(/[\s,;:(–—-]+$/, ""); }
-  return out;
-}
+import { trimToFit } from "../text/fit";
+export { trimToFit };
 
 const shown = (v: unknown, max = 80): string => {
-  const text = str(v, 4000);
+  // An ellipsis on a board reads as text cut off, and the writer (or the shorten pass) sometimes
+  // ends a phrase with one ("OA ⊥ PA; angle...", QA 2026-10-17). Board text is a whole phrase.
+  const text = str(v, 4000).replace(/\s*(?:\.{3,}|…)+\s*$/u, "").replace(/\s*(?:\.{3,}|…)\s*/gu, " ").trim();
   if (text.length <= max) return text;
   cuts.push(`"${text.slice(0, 70)}${text.length > 70 ? "…" : ""}" is ${text.length} characters where only ${max} fit`);
   cutItems.push({ text, max });
@@ -346,7 +330,8 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
 
   if (kind === "figure" && str(r.component, 40) === "drawn") {
     // A diagram the board writer described (lib/figures/drawn.ts): checked, then labelled like any figure.
-    const { drawing } = drawnFigure(r.drawing);
+    // A vector diagram compiled by the server (lib/diagrams/grammar.ts) is used as it is.
+    const drawing = isCompiledDiagram(r.drawing) ? r.drawing : drawnFigure(r.drawing).drawing;
     if (!drawing) return null;
     const known = new Map(drawing.parts.map((p) => [p.id, p]));
     const parts = arr(r.parts)
@@ -379,8 +364,10 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
     }
     // Only parts this figure actually draws for these params (a transverse wave has no compression).
     takeFigureCuts();
+    takeFigureCutItems();
     const built = component.build(params).parts;
     for (const c of takeFigureCuts()) cuts.push(`in the diagram, ${c}`);
+    cutItems.push(...takeFigureCutItems());
     const drawn = new Set(built.map((p) => p.id));
     // A name the figure worked out from its data (a timeline event's own text, a titrant's name) is
     // the part's name: the board writer's guess at which event is "event-2" once put labels on the
@@ -544,7 +531,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
     const question = str(r.question, 600);
     const points = arr(r.points)
       .map((p) => obj(p))
-      .map((p, i) => (str(p.text, 200) ? { id: unique(p.id ?? `mark-${i + 1}`, `mark-${i + 1}`), text: str(p.text, 200), s: sentence(p.s ?? p.sentence, i + 1) } : null))
+      .map((p, i) => (str(p.text, 240) ? { id: unique(p.id ?? `mark-${i + 1}`, `mark-${i + 1}`), text: str(p.text, 240), s: sentence(p.s ?? p.sentence, i + 1) } : null))
       .filter((p): p is NonNullable<typeof p> => Boolean(p))
       .slice(0, 6);
     if (!question || points.length < 1) return null;
@@ -553,8 +540,9 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       kind,
       commandWord: str(r.commandWord, 90) || question.split(/\s+/)[0],
       question,
-      marks: points.length,
+      marks: r.scheme === "levels" ? Math.max(points.length, Math.round(num(r.marks, points.length))) : points.length,
       points,
+      ...(r.scheme === "levels" ? { scheme: "levels" as const } : {}),
       ...(str(lost.text, 240) ? { lostMarks: { id: unique(lost.id ?? "lost-marks", "lost-marks"), text: str(lost.text, 240), s: sentence(lost.s ?? lost.sentence, points.length + 1) } } : {}),
     };
     return stage;
@@ -713,6 +701,10 @@ const EQ_TEX_MAX = 200;
 function tokenTex(raw: string): string | null {
   const tex = raw.trim();
   if (tex.length > EQ_TEX_MAX) return null;
+  // A fraction with an empty top or bottom ("\frac{}{}" written for a lone "/") typesets as nothing:
+  // a physics board read "ϕ = − G M  r" with the division gone (QA 2026-10-17). The term's plain text
+  // is shown instead, so a term can never vanish.
+  if (/\\[dt]?frac\s*\{\s*\}|\\[dt]?frac\s*\{[^{}]*\}\s*\{\s*\}|\\sqrt\s*\{\s*\}/.test(tex)) return null;
   const fixed = repairTex(tex);
   return "tex" in fixed ? fixed.tex : null;
 }
@@ -733,7 +725,8 @@ function becomesOf(raw: unknown, sentence: (v: unknown, f?: number) => number): 
 export function validateInteraction(raw: unknown): CanvasInteraction | undefined {
   const r = obj(raw);
   const kind = str(r.kind, 6);
-  const prompt = str(r.prompt ?? r.question, 200);
+  // Never cut a question mid-word ("…the higher tem", audit 2026-10-17): long ones are rewritten by their writer.
+  const prompt = str(r.prompt ?? r.question, 320);
   if (!prompt) return undefined;
   if (kind === "draw") {
     const expect = str(r.expect, 400);

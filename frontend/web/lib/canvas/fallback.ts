@@ -1,5 +1,5 @@
 import { canvasSentences } from "./plan";
-import { alignToNarration } from "./narrationSync";
+import { alignToNarration, anchorNotes } from "./narrationSync";
 import { slug, trimToFit } from "./validate";
 import { GRAPH_LIKE, HUMANITIES } from "./visualPolicy";
 import { classifyInstructionalTask } from "./instructionalTask";
@@ -83,7 +83,7 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
   const names = [...new Set(beat.objects.map((o) => asSaid(o, beat.script) ?? (component ? undefined : words(o))).filter((n): n is string => Boolean(n)))].slice(0, 5);
   // What Aria writes as she speaks, when the plan has it; otherwise the narration's key points.
   const notes = beat.boardNotes?.length
-    ? beat.boardNotes.map((n, i) => ({ id: `say-${i + 1}`, text: trimToFit(n.text, 34), s: n.s }))
+    ? anchorNotes(beat.boardNotes.map((n, i) => ({ id: `say-${i + 1}`, text: trimToFit(n.text, 34), s: n.s })), beat.script)
     : keyPoints(sentences, 3).map((text, i) => ({ id: `point-${i + 1}`, text, s: Math.min(last, i + 1) }));
   if (names.length >= 2) {
     const nodes = names.map((label, i) => {
@@ -136,11 +136,8 @@ function atWord(text: string, max: number): string {
 
 /** Shortens at a word, never mid-word. */
 function shorten(text: string, max: number): string {
-  const t = text.replace(/\s+/g, " ").trim().replace(/[.!?]+$/, "");
-  if (t.length <= max) return t;
-  const cut = t.slice(0, max - 1);
-  const at = cut.lastIndexOf(" ");
-  return `${(at > max * 0.5 ? cut.slice(0, at) : cut).replace(/[\s,;:(–-]+$/, "")}…`;
+  // A complete phrase, never "…" (owner, 2026-10-17).
+  return trimToFit(text.replace(/\s+/g, " ").trim().replace(/[.!?]+$/, ""), max);
 }
 
 /** What the narration says about a named thing: the rest of the first sentence that names it. */
