@@ -373,7 +373,7 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
               </text>
             )}
             {mark.detail?.map((line, i) => (
-              <text key={i} x={mark.rect.x + mark.rect.w / 2} y={top + 22 + i * 19} textAnchor="middle" fontSize={15} fontWeight={600} fill={INK} opacity={0.85}>
+              <text key={i} x={mark.rect.x + mark.rect.w / 2} y={top + 22 + i * (mark.detailSize ?? 15) * 1.27} textAnchor="middle" fontSize={mark.detailSize ?? 15} fontWeight={600} fill={INK} opacity={0.85}>
                 {line}
               </text>
             ))}

@@ -316,7 +316,7 @@ export async function verifyParts(
       role: "user",
       content: [
         { type: "text", text: `The image is ${STORE_W} x ${STORE_H} pixels with a faint blue grid (vertical lines every 60 px, horizontal every 62 px). It shows ${subject}
-Each numbered red dot is meant to sit ON the named part — on the part's own ink; for a thin part (a membrane, a wall, a vessel), exactly on its line; for nested layers, on the right layer. Check each one. Return JSON {"checks":[{"n":number,"ok":boolean,"x":number,"y":number}]} — when a dot is wrong, x and y are the pixel point where it should be; when it is right, repeat its position.
+Each numbered red dot is meant to sit ON the named part — on the part's own ink; for a thin part (a membrane, a wall, a vessel), exactly on its line; for nested layers, on the right layer. For a substance or movement (oxygen, carbon dioxide, water, blood flow, light), the dot must sit on the arrow or region that shows THAT substance moving in ITS correct direction — oxygen on the arrow going from air into blood, not on the one going out. Check each one. Return JSON {"checks":[{"n":number,"ok":boolean,"x":number,"y":number}]} — when a dot is wrong, x and y are the pixel point where it should be; when it is right, repeat its position.
 ${parts.map((p, i) => `${i + 1}. ${p.name} (now at ${Math.round(p.x * STORE_W)}, ${Math.round(p.y * STORE_H)})`).join("\n")}` },
         { type: "image_url", image_url: { url: `data:image/jpeg;base64,${marked}` } },
       ],
