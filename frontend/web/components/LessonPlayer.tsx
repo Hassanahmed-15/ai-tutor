@@ -80,6 +80,7 @@ import { LessonCanvas, type CanvasKnowledge, type CanvasPanelInput } from "./can
 import { BoardPeek, type PeekTarget } from "./knowledge/BoardPeek";
 import { SlideSources } from "./teaching/SlideSources";
 import type { CanvasBoardSpec } from "@/lib/canvas/types";
+import { spaceCheckCards } from "@/lib/canvas/checkCardPlan";
 import { CheckinOverlay } from "./adhd/CheckinOverlay";
 import { CHECKIN_INVITE_CUE } from "@/lib/geminiLiveContract";
 import { DrawOverlay } from "./sketch/DrawOverlay";
@@ -1296,9 +1297,10 @@ export function LessonPlayer({
   const predictDoneRef = useRef(new Set<string>());
   /** Boards whose prediction was answered mid-script (state, for rendering; the ref is for the voice callbacks). */
   const [answeredPredictions, setAnsweredPredictions] = useState<string[]>([]);
-  const speakCanvasLine = useCallback((text: string) => {
-    // At the lecture's speed and in Aria's voice, like the lecture itself.
-    voiceRef.current?.speakAsTeacher(text, { onStart: () => {}, onEnd: () => {}, onBlocked: () => {}, rate: rateRef.current, voiceFallback: "silent" }, "utterance");
+  const speakCanvasLine = useCallback((text: string, onEnd?: () => void) => {
+    // At the lecture's speed and in Aria's voice, like the lecture itself. `onEnd`: the check card's
+    // congrats moves the lecture on once it has been said.
+    voiceRef.current?.speakAsTeacher(text, { onStart: () => {}, onEnd: () => onEnd?.(), onBlocked: () => onEnd?.(), rate: rateRef.current, voiceFallback: "silent" }, "utterance");
   }, []);
   const tellAriaCanvas = useCallback((note: string) => {
     tutorRef.current.addContext?.(note);
@@ -3251,6 +3253,9 @@ export function LessonPlayer({
                   onTellAria={tellAriaCanvas}
                   knowledge={canvasKnowledge}
                   onTaskResult={recordCanvasTask}
+                  /* The question card's own flow (an X to skip, a congrats when right, the right
+                     answer shown when wrong) is the standard lecture's; other profiles keep theirs. */
+                  checkFlow={standardTransitionsEnabled}
                   onOpenEarlier={(from) => {
                     lesson.pause("user");
                     setPeek(from);
@@ -4944,7 +4949,9 @@ function isCanvasBeat(b: Beat | undefined): boolean {
 }
 
 function canvasPanelsOf(beats: Beat[]): CanvasPanelInput[] {
-  return beats.flatMap((b) => {
+  // About every third board at most (lib/canvas/checkCardPlan.ts): a lecture written while every
+  // board had a card shows no more than three.
+  return spaceCheckCards(beats.flatMap((b) => {
     const op = b.draw?.ops.find((o) => (o as { kind: string }).kind === "canvasBoard") as { spec?: CanvasBoardSpec } | undefined;
     if (!op?.spec) return [];
     // NO "PREDICT IT" (owner's direction, 2026-10-16): a quiz saved on a board before then is not
@@ -4955,7 +4962,7 @@ function canvasPanelsOf(beats: Beat[]): CanvasPanelInput[] {
     const { interaction, ...rest } = op.spec;
     const spec: CanvasBoardSpec = interaction && (interaction.kind !== "quiz" || interaction.check) ? { ...rest, interaction } : rest;
     return [{ key: b.id, spec }];
-  });
+  }));
 }
 
 /** Reports "the board has painted" two frames after mounting — what BoardStage does for its boards. */

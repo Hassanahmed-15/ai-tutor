@@ -23,6 +23,7 @@ import { findLibraryFigure } from "../figures/library";
 import { courseCoverageGaps, coverageMessage, requiredTermsOf } from "./courseCoverage";
 import { examBoardSpec } from "./examBoard";
 import { writeCheckCard } from "./checkCard";
+import { checkCardBoards } from "./checkCardPlan";
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -289,8 +290,10 @@ export async function writeCanvasBoard(args: {
   const spec: CanvasBoardSpec = { ...pictured.spec };
   // THE "CHECK IT" CARD (lib/canvas/checkCard.ts): written and verified after the board, shown when
   // Aria finishes it. A card that cannot be verified is left off — it never fails or holds the board.
+  // Only on about every third board, and never in a strict PDF lesson (lib/canvas/checkCardPlan.ts).
   let cardCost = 0;
-  if (!spec.interaction && spec.stage.kind !== "exam" && !beat.overview && !beat.refresher && process.env.CANVAS_CHECK_CARDS !== "off") {
+  const cardHere = checkCardBoards(plan, args.strictSource?.mode === "strict").has(index);
+  if (cardHere && !spec.interaction && spec.stage.kind !== "exam" && !beat.overview && !beat.refresher && process.env.CANVAS_CHECK_CARDS !== "off") {
     const block = args.document?.contentBlocks?.[plan.filter((b) => !b.refresher).indexOf(beat)];
     const made = await writeCheckCard(client(), beat, spec, { level: args.document?.lesson?.level, teachingHints: block?.teachingHints }).catch((error) => ({ card: null, costUsd: (error as { costUsd?: number }).costUsd ?? 0, log: `no check card — ${(error as Error).message}` }));
     cardCost = made.costUsd;

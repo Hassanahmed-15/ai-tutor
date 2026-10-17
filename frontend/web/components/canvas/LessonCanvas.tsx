@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import { Compass, Crosshair, Eraser, Loader2, Palette, PenLine, Play, Sparkles, Volume2, VolumeX } from "lucide-react";
+import { Compass, Crosshair, Eraser, Loader2, Palette, PenLine, Play, Sparkles, Volume2, VolumeX, X } from "lucide-react";
 import { fitView, flightMs, unionRects, viewAt, type View } from "@/lib/canvas/camera";
 import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
@@ -52,7 +52,8 @@ type Props = {
   /** The player is holding this board for the student (Try it / Draw it). */
   waitingForStudent: boolean;
   topic: string;
-  onSpeak: (text: string) => void;
+  /** Says a line in Aria's voice; `onEnd` runs once it has been said. */
+  onSpeak: (text: string, onEnd?: () => void) => void;
   onTellAria: (note: string) => void;
   onContinue: () => void;
   /** The lecture is playing. Paused, the student may explore: picture hotspots appear. */
@@ -67,6 +68,12 @@ type Props = {
   completed?: boolean;
   /** The board's task was already answered at its prediction: it does not reopen at the end. */
   taskDone?: boolean;
+  /**
+   * The standard lecture's question-card flow (owner's direction, 2026-10-16): Aria asks the question,
+   * an X skips it, a right answer is congratulated (no explanation) and the lecture goes on by itself,
+   * a wrong one is explained and the right option shown. Off: the card as other profiles have it.
+   */
+  checkFlow?: boolean;
 };
 
 export type EarlierBoard = { lectureId: string; sequence: number; beatId: string; title: string; topic: string };
@@ -79,7 +86,7 @@ export type CanvasKnowledge = {
 const ARIA = ARIA_INK;
 const STUDENT = "#2563eb";
 
-export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, onTaskResult, completed = false, taskDone = false }: Props) {
+export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, onTaskResult, completed = false, taskDone = false, checkFlow = false }: Props) {
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -658,7 +665,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           }}
         />
       )}
-      {taskOpen && interaction?.kind === "quiz" && current && (
+      {taskOpen && interaction?.kind === "quiz" && current && !checkFlow && (
         <CheckCard
           key={current.key}
           question={interaction.question}
@@ -673,6 +680,33 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
             onSpeak(o.feedback);
             onTellAria(`Asked "${interaction.question}", the student chose "${o.text}" (${o.correct ? "correct" : "not correct"}). You told them: "${o.feedback}"`);
           }}
+          onContinue={onContinue}
+        />
+      )}
+      {taskOpen && interaction?.kind === "quiz" && current && checkFlow && (
+        <QuestionCard
+          key={current.key}
+          question={interaction.question}
+          options={interaction.options}
+          onAsk={() => onSpeak(interaction.question)}
+          onAnswer={(i, done) => {
+            const o = interaction.options[i];
+            if (!reported.current.has(`quiz:${current.key}`)) {
+              reported.current.add(`quiz:${current.key}`);
+              onTaskResult?.("quiz", o.correct, interaction.options.length);
+            }
+            if (o.correct) {
+              setCelebration(Date.now());
+              const praise = PRAISE[Math.floor(Math.random() * PRAISE.length)];
+              onSpeak(praise, done);
+              onTellAria(`Asked "${interaction.question}", the student chose "${o.text}", which is correct. You congratulated them.`);
+              return praise;
+            }
+            onSpeak(o.feedback);
+            onTellAria(`Asked "${interaction.question}", the student chose "${o.text}" (not correct). You told them: "${o.feedback}" The right answer is "${interaction.options.find((x) => x.correct)?.text ?? ""}".`);
+            return o.feedback;
+          }}
+          onSkip={() => onTellAria(`Asked "${interaction.question}", the student skipped the question.`)}
           onContinue={onContinue}
         />
       )}
@@ -1085,6 +1119,114 @@ function CheckCard({ question, options, onAnswer, onContinue }: { question: stri
       <button onClick={onContinue} disabled={!picked.length} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-violet-400 px-3 py-2 text-sm font-black text-black hover:bg-violet-300 disabled:opacity-40">
         <Play size={14} /> {solved ? "Continue the lesson" : picked.length ? "Continue anyway" : "Choose an answer"}
       </button>
+    </div>
+  );
+}
+
+/** What Aria says to a right answer: praise only, no explanation (owner's direction, 2026-10-16). */
+const PRAISE = ["That's right — well done!", "Correct — nice work!", "Exactly right. Great job!", "Yes, that's it — well done!"];
+
+/**
+ * The standard lecture's question card. Aria asks the question as it opens and the lecture waits.
+ * - The X skips it at any moment, and the lecture goes on.
+ * - A right answer: green, praise only, and the lecture goes on by itself once the praise is said
+ *   (or after a few seconds, whichever comes first).
+ * - A wrong answer: struck through, with why it is wrong; the right option is then shown, without
+ *   an explanation of its own, and the student continues.
+ */
+function QuestionCard({ question, options, onAsk, onAnswer, onSkip, onContinue }: {
+  question: string;
+  options: Array<{ text: string; correct: boolean; feedback: string }>;
+  onAsk: () => void;
+  /** Speaks the response and returns the line to show; `done` is called when a right answer's praise ends. */
+  onAnswer: (i: number, done: () => void) => string;
+  onSkip: () => void;
+  onContinue: () => void;
+}) {
+  const [picked, setPicked] = useState<number | null>(null);
+  const [line, setLine] = useState("");
+  const finished = useRef(false);
+  const asked = useRef(false);
+  const timer = useRef<number | undefined>(undefined);
+  // Asked once as the card opens (a re-render must not ask again).
+  useEffect(() => {
+    if (asked.current) return;
+    asked.current = true;
+    onAsk();
+  }, [onAsk]);
+  useEffect(() => {
+    const pending = timer;
+    return () => window.clearTimeout(pending.current);
+  }, []);
+  const finish = useCallback(() => {
+    if (finished.current) return;
+    finished.current = true;
+    window.clearTimeout(timer.current);
+    onContinue();
+  }, [onContinue]);
+  const answered = picked !== null;
+  const right = answered && options[picked].correct;
+  return (
+    // Anchored near the top and kept clear of the bottom-right corner, where Aria stands: an answered
+    // card is tall, and centred it ran under her.
+    <div className="absolute right-4 top-[9%] z-20 max-h-[calc(100%-9%-9.5rem)] w-[min(340px,calc(100%-2rem))] overflow-y-auto rounded-2xl border border-violet-300/25 bg-[#100e16]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
+      <div className="flex items-start justify-between gap-2">
+        <p className="flex items-center gap-1.5 text-[0.68rem] font-black uppercase tracking-[0.18em] text-violet-300/90">
+          <Sparkles size={12} /> Quick question
+        </p>
+        <button
+          type="button"
+          aria-label="Close question"
+          title="Skip and continue the lesson"
+          onClick={() => {
+            if (!answered) onSkip();
+            finish();
+          }}
+          className="-mr-1.5 -mt-1.5 rounded-full p-1.5 text-white/45 transition hover:bg-white/10 hover:text-white"
+        >
+          <X size={15} />
+        </button>
+      </div>
+      <p className="mt-1.5 text-sm font-semibold leading-snug text-white/90">{question}</p>
+      <div className="mt-3 space-y-2">
+        {options.map((o, i) => {
+          const chosen = picked === i;
+          const shownRight = answered && o.correct;
+          // Once answered, only their pick and the right answer stay: the card fits beside Aria.
+          if (answered && !chosen && !o.correct) return null;
+          return (
+            <button
+              key={i}
+              disabled={answered}
+              onClick={() => {
+                setPicked(i);
+                setLine(onAnswer(i, finish));
+                if (o.correct) timer.current = window.setTimeout(finish, 5_000);
+              }}
+              className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3 py-2 text-left text-sm font-semibold transition ${
+                shownRight
+                  ? "border-emerald-300/60 bg-emerald-400/15 text-emerald-50"
+                  : chosen
+                    ? "border-rose-300/50 bg-rose-400/10 text-rose-100/80 line-through decoration-rose-300/60"
+                    : answered
+                      ? "border-white/8 bg-white/[0.02] text-white/45"
+                      : "border-white/12 bg-white/[0.04] text-white/85 hover:border-violet-300/50 hover:bg-white/[0.08]"
+              } disabled:cursor-default`}
+            >
+              <span>{o.text}</span>
+              {shownRight && !chosen && <span className="shrink-0 text-[0.62rem] font-black uppercase tracking-wider text-emerald-300">Right answer</span>}
+            </button>
+          );
+        })}
+      </div>
+      {answered && (
+        <p className={`mt-2.5 rounded-lg px-2.5 py-2 text-xs font-semibold leading-relaxed ${right ? "bg-emerald-400/15 text-emerald-100" : "bg-rose-400/15 text-rose-100"}`}>{line}</p>
+      )}
+      {answered && !right && (
+        <button onClick={finish} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-violet-400 px-3 py-2 text-sm font-black text-black hover:bg-violet-300">
+          <Play size={14} /> Continue the lesson
+        </button>
+      )}
     </div>
   );
 }
