@@ -103,7 +103,7 @@ export function AriaBot({ size = 196 }: { size?: number }) {
         className="shrink-0 rounded-[var(--radius-lg)] focus-visible:outline-2 focus-visible:outline-offset-4"
       >
         <div ref={botRef} style={{ width: size, height: size }} aria-hidden="true">
-          <DotAvatar state={talking ? "speaking" : "idle"} gaze={gaze} mouth={mouth} className="h-full w-full drop-shadow-[0_10px_28px_var(--dot-shadow)]" />
+          <DotAvatar state={talking ? "speaking" : "idle"} gaze={gaze} mouth={mouth} smiley className="h-full w-full drop-shadow-[0_10px_28px_var(--dot-shadow)]" />
         </div>
       </button>
 

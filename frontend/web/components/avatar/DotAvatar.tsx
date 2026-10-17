@@ -30,6 +30,7 @@ export function DotAvatar({
   gaze,
   mouth,
   still = false,
+  smiley = false,
   className = "",
 }: {
   state: AvatarState;
@@ -39,16 +40,20 @@ export function DotAvatar({
   mouth?: RefObject<DotMouthInput>;
   /** Parked beside something she points at: no breath bob, no nod travel. */
   still?: boolean;
+  /** At rest, a big open smile instead of the small one (the home page greeting, 2026-10-16). */
+  smiley?: boolean;
   className?: string;
 }) {
   const uid = useId().replace(/:/g, "");
   const svgRef = useRef<SVGSVGElement>(null);
   const stateRef = useRef(state);
   const stillRef = useRef(still);
+  const smileyRef = useRef(smiley);
   useEffect(() => {
     stateRef.current = state;
     stillRef.current = still;
-  }, [state, still]);
+    smileyRef.current = smiley;
+  }, [state, still, smiley]);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -118,11 +123,14 @@ export function DotAvatar({
       P.eyeL.setAttribute("transform", `translate(88.5 141) scale(1 ${lid.toFixed(3)}) translate(-88.5 -141)`);
       P.eyeR.setAttribute("transform", `translate(151.5 141) scale(1 ${lid.toFixed(3)}) translate(-151.5 -141)`);
       const smile = talking ? 0.3 : 0.5;
-      const cheek = (0.36 + 0.25 * smile + 0.18 * m.spread).toFixed(2);
+      // A grin only while her mouth is at rest: any sound she makes takes the mouth back.
+      const grin = smileyRef.current && !talking && !ext && m.jaw < 0.04;
+      const cheek = (grin ? 0.62 : 0.36 + 0.25 * smile + 0.18 * m.spread).toFixed(2);
       P.cheekL.setAttribute("opacity", cheek);
       P.cheekR.setAttribute("opacity", cheek);
       P.glow.setAttribute("opacity", (s === "speaking" ? 0.5 : s === "listening" ? 0.4 : 0.28).toFixed(2));
-      drawMouth(P, m, smile * (1 - m.round));
+      if (grin) drawGrin(P);
+      else drawMouth(P, m, smile * (1 - m.round));
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -189,6 +197,25 @@ export function DotAvatar({
 
 const f1 = (v: number) => v.toFixed(1);
 type Parts = Record<"mouth" | "clip" | "teeth" | "tongue" | "lowerlip" | "line" | "fteeth", SVGElement>;
+
+/** A smiley face's mouth: a wide open "D", its lower edge deep, with the tip of the tongue showing. */
+function drawGrin(P: Parts) {
+  const x = 120, cy = 167, hw = 17;
+  const d = `M${x - hw} ${cy} Q${x} ${cy + 4} ${x + hw} ${cy} C${x + hw - 2} ${cy + 15} ${x + 7} ${cy + 19} ${x} ${cy + 19} C${x - 7} ${cy + 19} ${x - hw + 2} ${cy + 15} ${x - hw} ${cy} Z`;
+  P.line.style.display = "none";
+  P.fteeth.style.display = "none";
+  P.lowerlip.style.display = "none";
+  P.teeth.style.display = "none";
+  P.mouth.style.display = "";
+  P.mouth.setAttribute("stroke-width", "2.4");
+  P.mouth.setAttribute("d", d);
+  P.clip.setAttribute("d", d);
+  P.tongue.style.display = "";
+  P.tongue.setAttribute("cx", String(x));
+  P.tongue.setAttribute("cy", String(cy + 19));
+  P.tongue.setAttribute("rx", "9");
+  P.tongue.setAttribute("ry", "6.5");
+}
 
 /** The mouth: one shape from the seven muscles (cubic lips, teeth and tongue clipped inside). */
 function drawMouth(P: Parts, m: DotMuscles, smile: number) {
