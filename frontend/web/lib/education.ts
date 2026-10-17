@@ -277,7 +277,7 @@ export const SUBJECTS: SubjectDef[] = [
   s("physics", "Physics", "science", [], ["force", "motion", "newton", "energy", "momentum", "velocity", "acceleration", "electric", "magnet", "wave", "optics", "quantum", "thermodynamics", "gravity", "mechanics", "circuit"]),
   s("chemistry", "Chemistry", "science", [], ["atom", "molecule", "bond", "reaction", "acid", "base", "periodic", "element", "compound", "organic", "mole", "electron", "oxidation", "equilibrium"]),
   s("biology", "Biology", "science", [], ["cell", "dna", "gene", "photosynthesis", "respiration", "evolution", "enzyme", "protein", "organ", "heart", "lung", "chloroplast", "mitochondria", "ecosystem", "plant", "animal", "neuron", "krebs"]),
-  s("computer-science", "Computer Science", "computing", ["cs", "computing"], ["algorithm", "data structure", "code", "program", "binary", "array", "tree", "graph", "sorting", "recursion", "database", "network", "operating system", "compiler"]),
+  s("computer-science", "Computer Science", "computing", ["cs", "computing"], ["algorithm", "data structure", "code", "program", "binary", "array", "tree", "graph", "sorting", "recursion", "database", "network", "operating system", "compiler", "encrypt", "decrypt", "cipher", "cryptograph", "aes", "des", "rsa", "hashing", "cybersecurity"]),
   s("english", "English Language", "languages", ["english"], ["grammar", "essay", "writing", "reading", "vocabulary"]),
   s("english-literature", "English Literature", "humanities", ["literature"], ["poem", "poetry", "novel", "shakespeare", "character", "theme"]),
   s("economics", "Economics", "business", [], ["demand", "supply", "market", "inflation", "gdp", "elasticity", "monetary", "fiscal", "trade"]),
@@ -364,9 +364,14 @@ export function subjectForTopic(topic: string, subjects: EduOption[]): EduOption
   let best: { subject: EduOption; score: number } | null = null;
   for (const subject of subjects) {
     const def = SUBJECTS.find((x) => x.id === subject.id || x.label.toLowerCase() === subject.label.toLowerCase());
-    const words = [subject.label.toLowerCase(), ...(def?.aliases ?? []), ...(def?.keywords ?? [])];
+    const esc = (w: string) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     // A keyword counts only at the start of a word: "evolution" is not in "the French Revolution".
-    const score = words.filter((w) => w && (w.length <= 3 ? t.includes(` ${w} `) : new RegExp(`(?:^|[^a-z])${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`).test(t))).length;
+    const keyword = (w: string) => (w.length <= 3 ? t.includes(` ${w} `) : new RegExp(`(?:^|[^a-z])${esc(w)}`).test(t));
+    // A subject's NAME or alias counts only as a whole word (a plural allowed): "math" is in "maths",
+    // not in "mathematical" — "explain AES … their mathematical valuation" was filed under
+    // Mathematics and taught its syllabus (2026-10-17).
+    const name = (w: string) => new RegExp(`(?:^|[^a-z])${esc(w)}s?(?:[^a-z]|$)`).test(t);
+    const score = [subject.label.toLowerCase(), ...(def?.aliases ?? [])].filter((w) => w && name(w)).length + (def?.keywords ?? []).filter((w) => w && keyword(w)).length;
     if (score > 0 && (!best || score > best.score)) best = { subject, score };
   }
   return best?.subject ?? null;

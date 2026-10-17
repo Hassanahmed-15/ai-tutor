@@ -3,7 +3,7 @@
  * No raw SVG, no scripts — every element is one of the kinds below.
  */
 
-export const DIAGRAM_STYLE_VERSION = "vector-1";
+export const DIAGRAM_STYLE_VERSION = "vector-2";
 
 export type DiagramBase = "world-map" | "cross-section" | "body" | "plant" | "none";
 export type DiagramShapeKind = "rect" | "ellipse" | "polygon" | "rod";
@@ -379,6 +379,78 @@ export function parseDiagramSpec(raw: unknown): DiagramSpec | null {
     .slice(0, 80);
   if (!elements.length && base === "none") return null;
   return { v: 1, w, h, base, elements };
+}
+
+/** A region's box in diagram units: for an ellipse, the box its text can sit in. */
+export function regionBox(el: RegionEl): { x: number; y: number; w: number; h: number } {
+  if (el.shape === "ellipse") {
+    const cx = el.cx ?? 0, cy = el.cy ?? 0, rx = el.rx ?? el.r ?? 10, ry = el.ry ?? el.r ?? 10;
+    return { x: cx - rx * 0.72, y: cy - ry * 0.72, w: rx * 1.44, h: ry * 1.44 };
+  }
+  if (el.shape === "polygon" && el.points?.length) {
+    const xs = el.points.map((p) => p.x), ys = el.points.map((p) => p.y);
+    return { x: Math.min(...xs), y: Math.min(...ys), w: Math.max(...xs) - Math.min(...xs), h: Math.max(...ys) - Math.min(...ys) };
+  }
+  return { x: el.x ?? 0, y: el.y ?? 0, w: el.w ?? 20, h: el.h ?? 20 };
+}
+
+/** Text width in diagram units, the estimate the checks use. */
+const textW = (text: string, size: number) => text.length * size * 0.56;
+
+/**
+ * The lines a box's name takes INSIDE the box at this size (one, or two split at a space), or null
+ * when it does not fit — then it stays a margin label on a leader.
+ */
+export function boxLabelLines(text: string, box: { w: number; h: number }, size = 13): string[] | null {
+  const room = box.w - 14;
+  if (box.w < 40 || box.h < size + 6) return null;
+  if (textW(text, size) <= room) return [text];
+  if (box.h < size * 2.4 + 6) return null;
+  const words = text.split(/\s+/);
+  let best: string[] | null = null;
+  for (let i = 1; i < words.length; i++) {
+    const lines = [words.slice(0, i).join(" "), words.slice(i).join(" ")];
+    if (lines.every((l) => textW(l, size) <= room) && (!best || Math.max(...lines.map((l) => l.length)) < Math.max(...best.map((l) => l.length)))) best = lines;
+  }
+  return best;
+}
+
+/**
+ * THE BOX A LABEL NAMES AND SITS IN. A label pointed at a region by id is that box's name: it is
+ * written inside it (lib/diagrams/render.ts) instead of in the margin on a leader that crossed the
+ * neighbouring boxes — "the labelling is so bad" (2026-10-17). Polygons keep the margin.
+ */
+export function inBoxRegion(label: LabelEl, regions: Map<string, RegionEl>): RegionEl | null {
+  if (!("id" in label.at)) return null;
+  const region = regions.get(label.at.id);
+  if (!region || region.shape === "polygon") return null;
+  const box = regionBox(region);
+  return boxLabelLines(label.text, box) || boxLabelLines(label.text, box, 11) ? region : null;
+}
+
+/**
+ * WHERE A LABEL IS WRITTEN — where the board model put it, not in the margin:
+ * - "box": it names a box (by id, or placed inside it) and fits inside — written in the box;
+ * - "here": placed at a point on the drawing — written at that point;
+ * - "margin": pinned to a line or a mark (or a box too small for it) — the margin, on a leader.
+ * Every label used to default to the margin, so "A3" written inside its byte box and "0 bytes"
+ * beside its row were moved to the board's edge on long leaders across the drawing (2026-10-17).
+ */
+export function labelPlacement(label: LabelEl, regions: Map<string, RegionEl>): { place: "box"; region: RegionEl } | { place: "here" | "margin" } {
+  const byId = inBoxRegion(label, regions);
+  if (byId) return { place: "box", region: byId };
+  if ("id" in label.at) return { place: "margin" };
+  if ("lon" in label.at) return { place: label.leader === false ? "here" : "margin" };
+  const p = label.at;
+  const holding = [...regions.values()]
+    .filter((r) => r.shape !== "polygon")
+    .map((r) => ({ r, b: regionBox(r) }))
+    .filter(({ b }) => p.x >= b.x && p.x <= b.x + b.w && p.y >= b.y - 4 && p.y <= b.y + b.h + 4)
+    .sort((a, b) => a.b.w * a.b.h - b.b.w * b.b.h);
+  const smallest = holding[0];
+  // Inside a box it fits in, with no smaller box under the point: that box's name.
+  if (smallest && (boxLabelLines(label.text, smallest.b) || boxLabelLines(label.text, smallest.b, 11))) return { place: "box", region: smallest.r };
+  return { place: "here" };
 }
 
 export function flattenElements(elements: DiagramElement[]): DiagramElement[] {

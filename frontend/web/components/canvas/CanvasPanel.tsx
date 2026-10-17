@@ -446,6 +446,36 @@ function figureInk(ink: string | undefined, chalk: boolean): string {
   return (chalk ? slate : paper)[ink] ?? INK;
 }
 
+/** A #rgb / #rrggbb colour's lightness (0–1), or null for anything else. */
+function hexLightness(hex: string): number | null {
+  const m = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(hex);
+  if (!m) return null;
+  const v = m[1].length === 3 ? m[1].split("").map((c) => parseInt(c + c, 16)) : [0, 2, 4].map((i) => parseInt(m[1].slice(i, i + 2), 16));
+  return (Math.max(...v) + Math.min(...v)) / 510;
+}
+
+/**
+ * ON THE CHALKBOARD, a pale box is a tint of its colour, and dark lines and words are chalk. A
+ * diagram drawn for paper put opaque pastel boxes on the slate: under the chalk speckle they read as
+ * white noise, and the near-white chalk text and grid inside them vanished (2026-10-17).
+ */
+function chalkFill(ink: string | undefined, chalk: boolean): string {
+  const base = figureInk(ink, chalk);
+  if (!chalk || !base.startsWith("#")) return base;
+  const l = hexLightness(base);
+  if (l === null || l <= 0.8) return base;
+  const m = base.length === 4 ? base.slice(1).split("").map((c) => parseInt(c + c, 16)) : [1, 3, 5].map((i) => parseInt(base.slice(i, i + 2), 16));
+  // The hue kept, pushed away from white so the tint has colour on the slate.
+  const [r, g, b] = m.map((c) => Math.round(c - (255 - Math.min(...m)) * 0.2));
+  return `rgba(${r},${g},${b},0.22)`;
+}
+function chalkLine(ink: string | undefined, chalk: boolean): string {
+  const base = figureInk(ink, chalk);
+  if (!chalk || !base.startsWith("#")) return base;
+  const l = hexLightness(base);
+  return l !== null && l < 0.35 ? "#f1eee4" : base;
+}
+
 /** A code-drawn textbook figure (lib/figures): its shapes, scaled into place; the focused part is drawn bolder. */
 function FigureView({ mark, chalk, focusId }: { mark: Extract<Mark, { type: "figure" }>; chalk: boolean; focusId?: string }) {
   const { rect, scale, drawing } = mark;
@@ -455,11 +485,11 @@ function FigureView({ mark, chalk, focusId }: { mark: Extract<Mark, { type: "fig
       <g transform={`translate(${rect.x},${rect.y}) scale(${scale})`}>
         {drawing.shapes.map((sh, i) => {
           const focused = Boolean(sh.part && sh.part === focusId);
-          const common = { fill: figureInk(sh.fill ?? "none", chalk), stroke: focused ? ARIA_INK : figureInk(sh.stroke ?? "none", chalk), strokeWidth: (sh.width ?? 1) * (focused ? 1.6 : 1), strokeDasharray: sh.dash, opacity: sh.opacity, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+          const common = { fill: chalkFill(sh.fill ?? "none", chalk), stroke: focused ? ARIA_INK : chalkLine(sh.stroke ?? "none", chalk), strokeWidth: (sh.width ?? 1) * (focused ? 1.6 : 1), strokeDasharray: sh.dash, opacity: sh.opacity, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
           if (sh.t === "path") return <path key={i} d={sh.d} {...common} />;
           if (sh.t === "circle") return <circle key={i} cx={sh.cx} cy={sh.cy} r={sh.r} {...common} />;
           return (
-            <text key={i} x={sh.x} y={sh.y} fontSize={sh.size} textAnchor={sh.anchor ?? "start"} fill={figureInk(sh.fill ?? "ink", chalk)} fontWeight={600}>
+            <text key={i} x={sh.x} y={sh.y} fontSize={sh.size} textAnchor={sh.anchor ?? "start"} fill={chalkLine(sh.fill ?? "ink", chalk)} fontWeight={600}>
               {sh.text}
             </text>
           );

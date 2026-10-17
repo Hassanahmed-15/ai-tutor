@@ -117,6 +117,10 @@ export type ProfileCardLike = {
   levelId?: string | null;
   level: string | null;
   topicSubject: string | null;
+  /** The topic's subject when it is one of the student's own (lib/studentCard.ts). */
+  inSubject?: string | null;
+  /** The subjects the student listed. */
+  subjects?: string[];
 };
 
 export function levelSearchTerms(card: ProfileCardLike): { level: string | null; exam: string | null } {
@@ -134,7 +138,13 @@ export function levelSearchTerms(card: ProfileCardLike): { level: string | null;
 export function profileAudience(card: ProfileCardLike | null | undefined): { curriculum: string | null; level: string | null } | null {
   if (!card) return null;
   const { level, exam } = levelSearchTerms(card);
-  const curriculum = exam && card.topicSubject ? `${exam} ${card.topicSubject}` : null;
+  // A syllabus only for a subject they study. A Computer Science student's "4 Operations in AES …
+  // mathematical valuation" was guessed as Mathematics, got the IGCSE Mathematics syllabus, and the
+  // lecture ended on six boards of arithmetic, indices and standard form (2026-10-17). A student
+  // who listed no subjects still gets the guessed one.
+  const listed = card.subjects ?? [];
+  const subject = card.inSubject ?? (listed.length === 0 ? card.topicSubject : null);
+  const curriculum = exam && subject ? `${exam} ${subject}` : null;
   return level || curriculum ? { curriculum, level } : null;
 }
 

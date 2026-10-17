@@ -1,4 +1,4 @@
-import { flattenElements, slug, type DiagramElement, type DiagramSpec, type LabelEl, type RepeatEl } from "./spec";
+import { flattenElements, labelPlacement, regionBox, slug, type DiagramElement, type DiagramSpec, type LabelEl, type RegionEl, type RepeatEl } from "./spec";
 import { validLonLat } from "./project";
 
 /**
@@ -205,10 +205,39 @@ export function checkDiagram(spec: DiagramSpec, narration: string, mustShow: str
   };
   flattenElements(clone.elements).filter((el): el is LabelEl => el.t === "label").forEach(place);
 
-  // Cap labelled parts at 8 — extra on-diagram labels stay, extra margin parts are dropped.
-  const labelled = flattenElements(clone.elements).filter((el) => el.t === "label");
-  if (labelled.length > 8) {
-    clone.elements = dropExtraLabels(clone.elements, 8, repairs);
+  // Cap MARGIN labels at 8 — a box's name written inside its box takes no margin, so it is never
+  // dropped. The cap used to count every label: on "AES Key Lengths and Rounds" the ninth, "14
+  // rounds", was dropped while its box and arrow stayed (2026-10-17).
+  const flatNow = flattenElements(clone.elements);
+  const regions = new Map(flatNow.filter((el): el is RegionEl => el.t === "region").map((r) => [r.id, r]));
+  const margin = (el: LabelEl) => labelPlacement(el, regions).place === "margin";
+  if (flatNow.filter((el): el is LabelEl => el.t === "label" && margin(el)).length > 8) {
+    clone.elements = dropExtraLabels(clone.elements, 8, repairs, margin);
+  }
+
+  // EVERY BOX NAMED, EVERY STATED NUMBER SHOWN. Both are fact issues, so the board writer gets one
+  // retry told exactly what to add.
+  if (narration.trim()) {
+    const flat = flattenElements(clone.elements);
+    const labels = flat.filter((el): el is LabelEl => el.t === "label");
+    const named = (r: RegionEl) => Boolean(r.part) || labels.some((l) => ("id" in l.at && l.at.id === r.id) || ("x" in l.at && !("lon" in l.at) && insideBox(l.at, regionBox(r))));
+    const arrowEnds = new Set(flat.flatMap((el) => (el.t === "arrow" ? [el.from, el.to].flatMap((p) => ("id" in p ? [p.id] : [])) : [])));
+    const sizeKey = (r: RegionEl) => { const b = regionBox(r); return `${Math.round(b.w / 6)}x${Math.round(b.h / 6)}`; };
+    const bySize = new Map<string, RegionEl[]>();
+    for (const r of regions.values()) bySize.set(sizeKey(r), [...(bySize.get(sizeKey(r)) ?? []), r]);
+    for (const r of regions.values()) {
+      if (named(r)) continue;
+      const siblings = (bySize.get(sizeKey(r)) ?? []).filter((x) => x !== r);
+      const siblingsNamed = siblings.length >= 2 && siblings.filter(named).length >= siblings.length - 1;
+      if (arrowEnds.has(r.id) || siblingsNamed) factIssues.push(`box "${r.id}" is drawn${arrowEnds.has(r.id) ? " with an arrow to it" : " beside named boxes"} but has no label — add a label with "at": {"id": "${r.id}"}`);
+    }
+    // A number the narration gives with a noun the board already uses ("10, 12 or 14 rounds" when
+    // "10 rounds" is drawn) must be on the board too.
+    const drawn = [...labels.map((l) => l.text), ...flat.flatMap((el) => (el.t === "arrow" && el.label ? [el.label] : el.t === "bands" ? el.bands.map((b) => b.name ?? "") : []))].join(" | ").toLowerCase();
+    for (const { n, noun } of numberedNouns(narration)) {
+      if (n < 2 || noun.length < 3 || !new RegExp(`\\b${noun}`).test(drawn)) continue;
+      if (!numbersIn(drawn).some((d) => near(d, n, 0.05))) factIssues.push(`the narration states ${n} ${noun} but the board does not show ${n} — label it where the other ${noun} are`);
+    }
   }
 
   // Syllabus mustShow names that never appear become a repair note, not a rejection.
@@ -224,12 +253,30 @@ export function checkDiagram(spec: DiagramSpec, narration: string, mustShow: str
   return { spec: clone, repairs: [...new Set(repairs)], factIssues: [...new Set(factIssues)] };
 }
 
-function dropExtraLabels(elements: DiagramElement[], max: number, repairs: string[]): DiagramElement[] {
+/** Each number in a text with the noun it counts: "10, 12, or 14 rounds" gives 10, 12 and 14 rounds. */
+export function numberedNouns(text: string): Array<{ n: number; noun: string }> {
+  const tokens = text.toLowerCase().replace(/(\d),(\d{3})/g, "$1$2").match(/\d+(?:\.\d+)?|[a-z]+/g) ?? [];
+  const out: Array<{ n: number; noun: string }> = [];
+  for (let i = 0; i < tokens.length; i++) {
+    if (!/^\d/.test(tokens[i])) continue;
+    let j = i + 1;
+    while (j < tokens.length && (/^\d/.test(tokens[j]) || tokens[j] === "or" || tokens[j] === "and" || tokens[j] === "to")) j++;
+    const noun = tokens[j];
+    if (noun && /^[a-z]+$/.test(noun) && !/^(the|a|an|is|are|was|were|of|in|on|at|by|for|with|times|plus|minus|equals|divided|multiplied|percent|per)$/.test(noun)) {
+      out.push({ n: Number(tokens[i]), noun: noun.replace(/s$/, "") });
+    }
+  }
+  return out;
+}
+
+const insideBox = (p: { x: number; y: number }, b: { x: number; y: number; w: number; h: number }) => p.x >= b.x && p.x <= b.x + b.w && p.y >= b.y && p.y <= b.y + b.h;
+
+function dropExtraLabels(elements: DiagramElement[], max: number, repairs: string[], counts: (el: LabelEl) => boolean = () => true): DiagramElement[] {
   let kept = 0;
   const walk = (list: DiagramElement[]): DiagramElement[] => {
     const out: DiagramElement[] = [];
     for (const el of list) {
-      if (el.t === "label") {
+      if (el.t === "label" && counts(el)) {
         if (kept >= max) {
           repairs.push(`extra label "${el.text}" dropped (at most 8)`);
           continue;

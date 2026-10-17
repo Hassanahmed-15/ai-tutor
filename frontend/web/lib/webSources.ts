@@ -284,6 +284,30 @@ export function jsonIn(textOut: string): Record<string, unknown> | null {
   }
 }
 
+/** Words in a topic that say nothing about WHICH topic it is ("4 operations in AES" → only "aes" does). */
+const GENERIC_TOPIC = new Set(
+  ("operation basic introduction intro explain explanation overview concept topic lesson part type method rule step process " +
+    "level calculation number work how detail detailed simple advanced fundamental principle theory example application " +
+    "four five six seven eight nine ten first second third mathematical valuation value").split(" ").map(stem),
+);
+
+/**
+ * IS THIS SYLLABUS ABOUT THE TOPIC? The syllabus search reads "<curriculum> syllabus <topic>", and a
+ * wrong curriculum still returns a syllabus section — "Cambridge IGCSE Mathematics syllabus 4
+ * Operations in AES" came back with the maths section on the four operations, indices and standard
+ * form, and the lecture taught it (2026-10-17). A checklist fits when at least a third of its points
+ * name one of the topic's distinctive words. A topic with no distinctive word ("Basic operations")
+ * cannot be judged and fits.
+ */
+export function checklistFitsTopic(checklist: unknown[], topic: string): boolean {
+  const distinctive = new Set(contentWords(topic).filter((w) => !GENERIC_TOPIC.has(w) && !/^\d+$/.test(w)));
+  if (distinctive.size === 0) return true;
+  const points = checklist.map((p) => (typeof p === "string" ? p : JSON.stringify(p ?? "")));
+  if (points.length === 0) return true;
+  const naming = points.filter((p) => contentWords(p).some((w) => distinctive.has(w))).length;
+  return naming / points.length >= 1 / 3;
+}
+
 /**
  * Of two checklists for the same request, the one that says more: the syllabus search's when it
  * found the syllabus and listed its points (8 or more), otherwise whichever is longer — a search

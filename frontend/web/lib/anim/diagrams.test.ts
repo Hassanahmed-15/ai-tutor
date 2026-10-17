@@ -203,7 +203,7 @@ test("cache keys are stable for the same subject and parts", () => {
   assert.equal(a, b);
   assert.ok(a.startsWith("asset-"));
   assert.notEqual(a, diagramCacheKey("Ocean currents", ["Gulf Stream"], [1]));
-  assert.equal(DIAGRAM_STYLE_VERSION, "vector-1");
+  assert.equal(DIAGRAM_STYLE_VERSION, "vector-2");
 });
 
 test("routing helpers: maps and counts need a vector diagram; a cycle is a process", () => {

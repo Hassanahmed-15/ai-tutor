@@ -1,0 +1,272 @@
+{
+ "narration": "AES uses a key to control its symmetric encryption process, which you already studied. Key length means the number of bits in that key. AES uses 128-bit, 192-bit, or 256-bit keys, giving 10, 12, or 14 rounds respectively.",
+ "spec": {
+  "v": 1,
+  "w": 640,
+  "h": 400,
+  "base": "none",
+  "elements": [
+   {
+    "t": "label",
+    "id": "key-controls",
+    "s": 0,
+    "text": "Key controls encryption",
+    "at": {
+     "x": 320,
+     "y": 28
+    },
+    "leader": true
+   },
+   {
+    "t": "region",
+    "id": "key-lengths",
+    "s": 1,
+    "fill": "#eef2ff",
+    "stroke": "#4f46e5",
+    "shape": "rect",
+    "x": 35,
+    "y": 65,
+    "w": 255,
+    "h": 290,
+    "cx": 162.5,
+    "cy": 210,
+    "rx": 127.5,
+    "ry": 145,
+    "r": 8
+   },
+   {
+    "t": "label",
+    "id": "key-length-label",
+    "s": 1,
+    "text": "Key length (bits)",
+    "at": {
+     "x": 162,
+     "y": 88
+    },
+    "leader": true
+   },
+   {
+    "t": "region",
+    "id": "key-128",
+    "s": 2,
+    "fill": "#dbeafe",
+    "stroke": "#2563eb",
+    "shape": "rect",
+    "x": 60,
+    "y": 115,
+    "w": 205,
+    "h": 55,
+    "cx": 162.5,
+    "cy": 142.5,
+    "rx": 102.5,
+    "ry": 27.5,
+    "r": 8
+   },
+   {
+    "t": "region",
+    "id": "key-192",
+    "s": 2,
+    "fill": "#dbeafe",
+    "stroke": "#2563eb",
+    "shape": "rect",
+    "x": 60,
+    "y": 185,
+    "w": 205,
+    "h": 55,
+    "cx": 162.5,
+    "cy": 212.5,
+    "rx": 102.5,
+    "ry": 27.5,
+    "r": 8
+   },
+   {
+    "t": "region",
+    "id": "key-256",
+    "s": 2,
+    "fill": "#dbeafe",
+    "stroke": "#2563eb",
+    "shape": "rect",
+    "x": 60,
+    "y": 255,
+    "w": 205,
+    "h": 55,
+    "cx": 162.5,
+    "cy": 282.5,
+    "rx": 102.5,
+    "ry": 27.5,
+    "r": 8
+   },
+   {
+    "t": "label",
+    "id": "label-128",
+    "s": 2,
+    "text": "128-bit key",
+    "at": {
+     "id": "key-128"
+    },
+    "leader": true
+   },
+   {
+    "t": "label",
+    "id": "label-192",
+    "s": 2,
+    "text": "192-bit key",
+    "at": {
+     "id": "key-192"
+    },
+    "leader": true
+   },
+   {
+    "t": "label",
+    "id": "label-256",
+    "s": 2,
+    "text": "256-bit key",
+    "at": {
+     "id": "key-256"
+    },
+    "leader": true
+   },
+   {
+    "t": "region",
+    "id": "round-counts",
+    "s": 2,
+    "fill": "#ecfdf5",
+    "stroke": "#15803d",
+    "shape": "rect",
+    "x": 350,
+    "y": 65,
+    "w": 255,
+    "h": 290,
+    "cx": 477.5,
+    "cy": 210,
+    "rx": 127.5,
+    "ry": 145,
+    "r": 8
+   },
+   {
+    "t": "label",
+    "id": "round-count-label",
+    "s": 2,
+    "text": "Number of rounds",
+    "at": {
+     "x": 477,
+     "y": 88
+    },
+    "leader": true
+   },
+   {
+    "t": "region",
+    "id": "round-10",
+    "s": 2,
+    "fill": "#bbf7d0",
+    "stroke": "#15803d",
+    "shape": "rect",
+    "x": 375,
+    "y": 115,
+    "w": 205,
+    "h": 55,
+    "cx": 477.5,
+    "cy": 142.5,
+    "rx": 102.5,
+    "ry": 27.5,
+    "r": 8
+   },
+   {
+    "t": "region",
+    "id": "round-12",
+    "s": 2,
+    "fill": "#bbf7d0",
+    "stroke": "#15803d",
+    "shape": "rect",
+    "x": 375,
+    "y": 185,
+    "w": 205,
+    "h": 55,
+    "cx": 477.5,
+    "cy": 212.5,
+    "rx": 102.5,
+    "ry": 27.5,
+    "r": 8
+   },
+   {
+    "t": "region",
+    "id": "round-14",
+    "s": 2,
+    "fill": "#bbf7d0",
+    "stroke": "#15803d",
+    "shape": "rect",
+    "x": 375,
+    "y": 255,
+    "w": 205,
+    "h": 55,
+    "cx": 477.5,
+    "cy": 282.5,
+    "rx": 102.5,
+    "ry": 27.5,
+    "r": 8
+   },
+   {
+    "t": "label",
+    "id": "label-10",
+    "s": 2,
+    "text": "10 rounds",
+    "at": {
+     "id": "round-10"
+    },
+    "leader": true
+   },
+   {
+    "t": "label",
+    "id": "label-12",
+    "s": 2,
+    "text": "12 rounds",
+    "at": {
+     "id": "round-12"
+    },
+    "leader": true
+   },
+   {
+    "t": "arrow",
+    "id": "link-128-10",
+    "s": 2,
+    "stroke": "ink",
+    "from": {
+     "id": "key-128"
+    },
+    "to": {
+     "id": "round-10"
+    },
+    "curved": false,
+    "label": "gives"
+   },
+   {
+    "t": "arrow",
+    "id": "link-192-12",
+    "s": 2,
+    "stroke": "ink",
+    "from": {
+     "id": "key-192"
+    },
+    "to": {
+     "id": "round-12"
+    },
+    "curved": false,
+    "label": "gives"
+   },
+   {
+    "t": "arrow",
+    "id": "link-256-14",
+    "s": 2,
+    "stroke": "ink",
+    "from": {
+     "id": "key-256"
+    },
+    "to": {
+     "id": "round-14"
+    },
+    "curved": false,
+    "label": "gives"
+   }
+  ]
+ }
+}

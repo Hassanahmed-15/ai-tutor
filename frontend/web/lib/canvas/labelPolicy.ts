@@ -81,7 +81,10 @@ export function withMandatoryLabels(spec: CanvasBoardSpec, beat: Pick<CanvasPlan
     const keep = new Set(mandatoryLabels(beat, candidates));
     const parts = candidates.filter((p) => keep.has(p.id));
     const minimum = Math.min(3, stage.parts.length);
-    const kept = parts.length >= minimum ? parts : [...parts, ...stage.parts.filter((p) => !parts.some((q) => q.id === p.id))].slice(0, Math.max(minimum, parts.length));
+    const enough = parts.length >= minimum ? parts : [...parts, ...stage.parts.filter((p) => !parts.some((q) => q.id === p.id))].slice(0, Math.max(minimum, parts.length));
+    // A box's name always stays: it is what the box IS, said or not ("14 rounds" — 2026-10-17).
+    const boxNames = new Set(available.filter((a) => a.inline || a.target).map((a) => a.id));
+    const kept = [...enough, ...candidates.filter((p) => boxNames.has(p.id) && !enough.some((q) => q.id === p.id))];
     const ids = new Set(kept.map((p) => p.id));
     return { ...spec, stage: { ...stage, parts: kept }, cues: spec.cues.filter((c) => !c.target || !stage.parts.some((p) => p.id === c.target) || ids.has(c.target)) };
   }

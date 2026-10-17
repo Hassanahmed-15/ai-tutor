@@ -24,6 +24,10 @@ export type FigurePart = {
   name: string;
   /** Where the leader line ends: a point inside the part. */
   anchor: Pt;
+  /** Its name is written on the drawing itself (a box's name inside the box): no margin label. */
+  inline?: boolean;
+  /** The drawn part a label names (a diagram label pointed at a box): not an obstacle to its own leader. */
+  target?: string;
 };
 
 export type FigureDrawing = { w: number; h: number; shapes: FigureShape[]; parts: FigurePart[]; credit?: string };

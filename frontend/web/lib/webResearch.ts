@@ -6,7 +6,7 @@ import { recordSpend } from "./spend/record";
 import { usdForUsage } from "./spend/usage";
 import { webResearch } from "./db/cosmos";
 import { briefLine } from "./lessonIntent";
-import { betterChecklist, cleanUrl, dropOffLevelSources, groundPointsInFound, jsonIn, packFromResearch, researchKey, sameUrl, sanitizeSourcePack, type LessonBrief, type SourcePack } from "./webSources";
+import { betterChecklist, checklistFitsTopic, cleanUrl, dropOffLevelSources, groundPointsInFound, jsonIn, packFromResearch, researchKey, sameUrl, sanitizeSourcePack, type LessonBrief, type SourcePack } from "./webSources";
 
 /**
  * READING UP BEFORE TEACHING: OpenAI web search, once per new topic, cached for everyone.
@@ -53,7 +53,7 @@ ${JSON_SHAPE}
 THE STUDENT'S LEVEL IS NOT NEGOTIABLE: every search you run includes the level or curriculum words given below, and you cite only pages written for that level — never a page for a lower or higher one (no GCSE page for an A Level student, no university textbook for an O Level student). The facts go exactly as deep as that level does.`;
 
 /** Bumped whenever the research changes, so older, thinner research is not reused from the cache. */
-const RESEARCH_VERSION = "v13";
+const RESEARCH_VERSION = "v14";
 
 type Found = { pack: SourcePack; costUsd: number; cached: boolean };
 type Searched = { json: Record<string, unknown> | null; cited: Array<{ url: string; title: string; cited: boolean }>; costUsd: number; searches: number };
@@ -193,6 +193,12 @@ export async function researchTopic(args: { topic: string; request?: string; bri
   const scope = await spendScopeNow();
   recordSpend({ ...scope, kind: "planning", model: `${MODEL}+web_search`, endpoint: "responses", usd: costUsd });
 
+  // A syllabus section that is not about this topic is not used at all — not its checklist, its points
+  // or its curriculum (lib/webSources.ts checklistFitsTopic).
+  if (syllabus?.json && !checklistFitsTopic([...list(syllabus.json.checklist), ...list(syllabus.json.points)], args.topic)) {
+    console.log(`[research] "${args.topic}": the ${curriculum} syllabus found is about something else — not used`);
+    syllabus.json = null;
+  }
   // The syllabus says WHAT to learn (its checklist wins); every search's facts are the material.
   const merged: Record<string, unknown> | null = syllabus?.json || content.json || encyclopaedia.json
     ? {

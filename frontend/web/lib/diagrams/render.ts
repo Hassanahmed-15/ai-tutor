@@ -1,7 +1,22 @@
 import { baseShapes, WORLD_MAP_BOX } from "./bases";
 import { project } from "./project";
 import type { DiagramAnchor, DiagramElement, DiagramSpec, RegionEl } from "./spec";
-import { flattenElements } from "./spec";
+import { boxLabelLines, flattenElements, labelPlacement, regionBox } from "./spec";
+
+/** Where the segment from `p` (inside `box`) towards `q` crosses the box's edge, 3 units out. */
+function leaveBox(p: { x: number; y: number }, q: { x: number; y: number }, box: { x: number; y: number; w: number; h: number }): { x: number; y: number } {
+  const dx = q.x - p.x, dy = q.y - p.y;
+  const ts: number[] = [];
+  if (dx) ts.push((dx > 0 ? box.x + box.w - p.x : box.x - p.x) / dx);
+  if (dy) ts.push((dy > 0 ? box.y + box.h - p.y : box.y - p.y) / dy);
+  const t = Math.min(...ts.filter((v) => v >= 0), 1);
+  const len = Math.hypot(dx, dy) || 1;
+  const k = Math.min(1, t + 3 / len);
+  return { x: p.x + dx * k, y: p.y + dy * k };
+}
+
+const inside = (a: { x: number; y: number; w: number; h: number }, b: { x: number; y: number; w: number; h: number }) =>
+  a.x >= b.x - 1 && a.y >= b.y - 1 && a.x + a.w <= b.x + b.w + 1 && a.y + a.h <= b.y + b.h + 1 && a.w * a.h < b.w * b.h;
 import type { FigureDrawing, FigurePart, FigureShape, Ink } from "../figures/types";
 
 /**
@@ -140,6 +155,7 @@ export function compileDiagram(spec: DiagramSpec): FigureDrawing {
   const shapes: FigureShape[] = [...baseShapes(spec.base, spec.w, spec.h)];
   const parts: FigurePart[] = [];
   const lookup = new Map<string, { x: number; y: number }>();
+  const regions = new Map<string, RegionEl>();
   const mapBox = spec.base === "world-map" ? WORLD_MAP_BOX : { x: 0, y: 0, w: spec.w, h: spec.h };
   const axes = new Map<string, Extract<DiagramElement, { t: "axis" }>>();
 
@@ -165,9 +181,14 @@ export function compileDiagram(spec: DiagramSpec): FigureDrawing {
       return;
     }
     if (el.t === "arrow") {
-      const a = resolve(el.from, lookup, mapBox);
-      const b = resolve(el.to, lookup, mapBox);
-      if (!a || !b) return;
+      const from = resolve(el.from, lookup, mapBox);
+      const to = resolve(el.to, lookup, mapBox);
+      if (!from || !to) return;
+      // Box to box, edge to edge: an arrow from centre to centre ran through both boxes' names.
+      const boxOf = (at: DiagramAnchor) => ("id" in at && regions.has(at.id) ? regionBox(regions.get(at.id)!) : null);
+      const fromBox = boxOf(el.from), toBox = boxOf(el.to);
+      const a = fromBox ? leaveBox(from, to, fromBox) : from;
+      const b = toBox ? leaveBox(to, from, toBox) : to;
       const mx = (a.x + b.x) / 2;
       const my = (a.y + b.y) / 2 + (el.curved ? -18 : 0);
       const d = el.curved ? `M${a.x} ${a.y} Q${mx} ${my} ${b.x} ${b.y}` : `M${a.x} ${a.y} L${b.x} ${b.y}`;
@@ -183,11 +204,37 @@ export function compileDiagram(spec: DiagramSpec): FigureDrawing {
     if (el.t === "label") {
       const at = resolve(el.at, lookup, mapBox);
       if (!at) return;
-      remember(el.id, at, el.part ?? (el.leader === false ? undefined : el.text));
-      // Margin labels are placed by layoutFigure from parts. On-diagram labels (no leader) are drawn here.
-      if (el.leader === false) {
-        shapes.push({ t: "text", x: at.x, y: at.y, text: el.text, size: 13, anchor: "middle", fill: "ink", part: el.id });
+      // Written where the board model put it (lib/diagrams/spec.ts labelPlacement): in its box, or at
+      // its point — a pen target where it is written. Only a label pinned to a line or mark goes to
+      // the margin on a leader.
+      const placement = labelPlacement(el, regions);
+      if (placement.place === "here") {
+        shapes.push({ t: "text", x: at.x, y: at.y, text: el.text, size: 15, anchor: "middle", fill: "ink", part: el.id });
+        remember(el.id, at, el.part ?? el.text);
+        const part = parts.find((p) => p.id === el.id);
+        if (part) part.inline = true;
+        return;
       }
+      if (placement.place === "box") {
+        const region = placement.region;
+        const box = regionBox(region);
+        // As large as the box allows: board-sized words, not footnotes.
+        const size = [16, 13, 11].find((n) => boxLabelLines(el.text, box, n)) ?? 11;
+        const lines = boxLabelLines(el.text, box, size) ?? [el.text];
+        // A box holding other boxes is named along its top edge, not over what it holds.
+        const holds = [...regions.values()].some((r) => r !== region && inside(regionBox(r), box));
+        const lineH = size * 1.2;
+        const top = holds ? box.y + size + 5 : box.y + box.h / 2 - ((lines.length - 1) * lineH) / 2 + size * 0.36;
+        lines.forEach((line, i) => shapes.push({ t: "text", x: box.x + box.w / 2, y: top + i * lineH, text: line, size, anchor: "middle", fill: "ink", part: el.id }));
+        remember(el.id, { x: box.x + box.w / 2, y: top }, el.part ?? el.text);
+        const part = parts.find((p) => p.id === el.id);
+        if (part) part.inline = true;
+        return;
+      }
+      // A margin label: placed by layoutFigure from its part, its leader ending on what it names.
+      remember(el.id, at, el.part ?? el.text);
+      const named = "id" in el.at ? parts.find((p) => p.id === el.id) : undefined;
+      if (named && "id" in el.at) named.target = el.at.id;
       return;
     }
     if (el.t === "repeat") {
@@ -302,15 +349,32 @@ export function compileDiagram(spec: DiagramSpec): FigureDrawing {
     }
   };
 
-  spec.elements.forEach(draw);
+  /*
+   * Every element's place is known before anything is drawn, so a label or arrow may name an element
+   * listed after it (it used to be silently skipped). Filled regions are drawn first, so a box never
+   * covers the grid lines or text listed before it.
+   */
+  const flat = flattenElements(spec.elements);
+  for (const el of flat) {
+    if (el.t === "region") {
+      regions.set(el.id, el);
+      lookup.set(el.id, regionAnchor(el));
+    } else if (el.t === "line" && el.points.length) lookup.set(el.id, el.points[Math.floor(el.points.length / 2)]);
+    else if (el.t === "repeat") lookup.set(el.id, { x: (el.x ?? 0) + (el.w ?? 120) / 2, y: (el.y ?? 0) + (el.h ?? 80) / 2 });
+    else if (el.t === "inset" || el.t === "bands") lookup.set(el.id, { x: el.x + el.w / 2, y: el.y + el.h / 2 });
+    else if (el.t === "map-mark") lookup.set(el.id, project(el.lon, el.lat, mapBox));
+  }
+  const filled = (el: DiagramElement) => el.t === "region" && ink(el.fill, "none") !== "none";
+  // Boxes first, then lines and arrows, then words on top — no line is drawn across a name.
+  [...flat.filter(filled), ...flat.filter((el) => !filled(el) && el.t !== "label"), ...flat.filter((el) => el.t === "label")].forEach(draw);
   if (!parts.length) {
-    const named = flattenElements(spec.elements).filter((el) => el.part);
+    const named = flat.filter((el) => el.part);
     for (const el of named) {
       const at = lookup.get(el.id) ?? { x: spec.w / 2, y: spec.h / 2 };
       addPart(parts, el.id, el.part!, at);
     }
   }
-  if (!parts.length) addPart(parts, "diagram", "Diagram", { x: spec.w / 2, y: spec.h / 2 });
+  // No "Diagram" placeholder: a diagram nobody named has no label (it was a label reading "Diagram").
   return { w: spec.w, h: spec.h, shapes, parts: parts.slice(0, 12) };
 }
 

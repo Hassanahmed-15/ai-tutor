@@ -506,7 +506,9 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
  * labelled part is a pen target at its anchor, revealed on its own sentence.
  */
 function layoutDiagram(stage: DiagramStage, box: Rect, marks: Mark[], add: Add) {
-  const drawing = stage.drawing ?? compileDiagram(stage.spec);
+  // Compiled from its spec whenever it has one, so a lecture made before a drawing fix (labels where
+  // the model put them, every box named — 2026-10-17) shows it too; a stored drawing is the fallback.
+  const drawing = stage.spec?.elements?.length ? compileDiagram(stage.spec) : stage.drawing ?? compileDiagram(stage.spec);
   layoutFigure({ kind: "figure", component: "drawn", params: {}, parts: stage.parts, drawing }, box, marks, add);
 }
 
@@ -519,7 +521,10 @@ function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
     ? { w: stage.asset.w, h: stage.asset.h, shapes: [], parts: stage.asset.parts, credit: stage.asset.credit }
     : stage.drawing ?? component!.build(stage.params);
   const anchors = new Map(drawing.parts.map((p) => [p.id, p.anchor]));
-  const shown = stage.parts.filter((p) => anchors.has(p.id));
+  // A part whose name is written on the drawing (a box's name inside its box) gets no margin label.
+  const inline = new Set(drawing.parts.filter((p) => p.inline).map((p) => p.id));
+  const named = stage.parts.filter((p) => anchors.has(p.id));
+  const shown = named.filter((p) => !inline.has(p.id));
   const size = shown.length > 6 ? 15 : 17;
   // Each margin is as wide as the labels that will stand in it (sides as lib/figures/labels.ts picks
   // them), so the figure gets all the room the labels do not need.
@@ -557,7 +562,16 @@ function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
     }
     return;
   }
-  const placed = placeLabels(shown.map((p) => ({ id: p.id, text: p.name, anchor: onBoard(anchors.get(p.id)!), s: p.s })), rect, box, textWidth, size, obstacles);
+  // The inline names: the pen frames the words where they are written.
+  if (inline.size) {
+    const bodies = partBodies(drawing, textWidth);
+    for (const p of named.filter((q) => inline.has(q.id))) {
+      const b = bodies.get(p.id);
+      if (b) add(p.id, { x: rect.x + b.x * scale - 2, y: rect.y + b.y * scale - 2, w: b.w * scale + 4, h: b.h * scale + 4 }, p.s);
+    }
+  }
+  const targets = new Map(drawing.parts.map((p) => [p.id, p.target]));
+  const placed = placeLabels(shown.map((p) => ({ id: p.id, text: p.name, anchor: onBoard(anchors.get(p.id)!), s: p.s, target: targets.get(p.id) })), rect, box, textWidth, size, obstacles);
   for (const l of placed) {
     marks.push({ type: "figure-label", id: `label-${l.id}`, part: l.id, lines: l.lines, side: l.side, at: l.at, leader: l.leader, size: l.size, s: l.s });
     const a = l.leader[l.leader.length - 1];

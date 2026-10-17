@@ -1,7 +1,8 @@
 import type { Pt } from "./types";
 
 type Rect = { x: number; y: number; w: number; h: number };
-export type LabelInput = { id: string; text: string; anchor: Pt; s: number };
+/** `target`: the drawn part the label names, when it is not the label itself — never an obstacle to its own leader. */
+export type LabelInput = { id: string; text: string; anchor: Pt; s: number; target?: string };
 export type PlacedLabel = {
   id: string;
   lines: string[];
@@ -38,7 +39,7 @@ export function placeLabels(items: LabelInput[], fig: Rect, area: Rect, measure:
   // transfer" ran straight through the sodium atom).
   const crossings = (item: LabelInput, from: Pt) =>
     items.filter((o) => o !== item && distanceToSegment(o.anchor, from, item.anchor) < CLEAR).length * 3 +
-    obstacles.filter((o) => o.id !== item.id && (o.circle ? segmentHitsCircle(from, item.anchor, o.circle) : segmentHitsBox(from, item.anchor, o.box, 3))).length;
+    obstacles.filter((o) => o.id !== item.id && o.id !== item.target && (o.circle ? segmentHitsCircle(from, item.anchor, o.circle) : segmentHitsBox(from, item.anchor, o.box, 3))).length;
   for (const item of items) {
     const near: "left" | "right" = item.anchor.x < cx ? "left" : "right";
     const far: "left" | "right" = near === "left" ? "right" : "left";
