@@ -122,3 +122,26 @@ export function unshownSentences(spec: CanvasBoardSpec, beat: Pick<CanvasPlanBea
     .filter(({ w }) => !board.some((b) => { const shared = w.filter((x) => b.has(x)); return shared.length >= Math.min(2, w.length) || (b.size > 0 && b.size <= 3 && [...b].every((x) => w.includes(x)) && [...b].some((x) => x.length >= 5)); }))
     .map(({ i }) => i);
 }
+
+/**
+ * Each spoken note on the sentence that says it. The planner numbers its notes by position, and its
+ * count drifts when a sentence carries two ideas: half the boards of a round ran a sentence late
+ * (audit 2026-10-17). A note goes to the sentence sharing most of its words (the planner's sentence
+ * breaks a tie), and notes keep their written order.
+ */
+export function anchorNotes<T extends { text: string; s: number }>(notes: T[], script: string): T[] {
+  const said = canvasSentences(script).map((x) => new Set(stems(x)));
+  let floor = 0;
+  return notes.map((note) => {
+    const want = stems(note.text);
+    let best = note.s, bestScore = 0;
+    said.forEach((words, i) => {
+      if (i < floor) return;
+      const score = want.filter((w) => words.has(w)).length;
+      if (score > bestScore || (score === bestScore && score > 0 && Math.abs(i - note.s) < Math.abs(best - note.s))) { best = i; bestScore = score; }
+    });
+    const s = Math.max(floor, bestScore > 0 ? best : note.s);
+    floor = s;
+    return { ...note, s };
+  });
+}

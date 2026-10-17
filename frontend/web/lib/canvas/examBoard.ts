@@ -1,4 +1,5 @@
 import { keyPointTaught } from "./courseCoverage";
+import { trimToFit } from "../text/fit";
 import { canvasSentences } from "./plan";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 
@@ -36,7 +37,7 @@ export function commandMeaning(word: string): string | undefined {
   return COMMAND_WORD_MEANING[w] ?? Object.entries(COMMAND_WORD_MEANING).find(([k]) => w.startsWith(k))?.[1];
 }
 
-export type ExamBlock = { commandWord: string; question: string; marks: number; markPoints: string[]; lostMarks: string };
+export type ExamBlock = { commandWord: string; question: string; marks: number; markPoints: string[]; lostMarks: string; levels?: Array<{ level: string; marks: string; descriptor: string }> };
 
 export function examBoardSpec(beat: Pick<CanvasPlanBeat, "title" | "script">, exam: ExamBlock): CanvasBoardSpec {
   const sentences = canvasSentences(beat.script);
@@ -44,7 +45,9 @@ export function examBoardSpec(beat: Pick<CanvasPlanBeat, "title" | "script">, ex
   // Each marking point appears on the first sentence that says it (after the question is read);
   // a point Aria never says outright is spread across the answer in order, never all at once.
   let floor = Math.min(1, last);
-  const points = exam.markPoints.map((text, i) => {
+  // An essay marked by levels shows its bands, top first; a points question its marking points.
+  const rows = exam.levels?.length ? exam.levels.map((l) => trimToFit(`${l.level} (${l.marks}): ${l.descriptor}`, 120)) : exam.markPoints;
+  const points = rows.map((text, i) => {
     // Marking points are said in order: each is looked for after the previous one first.
     const after = sentences.findIndex((s, k) => k >= floor && keyPointTaught(text, s));
     const said = after >= 0 ? after : sentences.findIndex((s, k) => k >= Math.max(1, floor - 1) && keyPointTaught(text, s));
@@ -62,7 +65,8 @@ export function examBoardSpec(beat: Pick<CanvasPlanBeat, "title" | "script">, ex
       kind: "exam",
       commandWord: meaning ? `${exam.commandWord} = ${meaning}` : exam.commandWord,
       question: exam.question,
-      marks: exam.markPoints.length,
+      marks: exam.levels?.length ? exam.marks : exam.markPoints.length,
+      ...(exam.levels?.length ? { scheme: "levels" as const } : {}),
       points,
       ...(exam.lostMarks ? { lostMarks: { id: "lost-marks", text: exam.lostMarks, s: lostAt >= 0 ? lostAt : last } } : {}),
     },

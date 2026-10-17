@@ -12,6 +12,8 @@
 import { layoutStructure, runStructure, type DsFrame, type DsLayout } from "./structure";
 import { evalExpr } from "./expr";
 import { placeLabels } from "../figures/labels";
+import { recordFigureCut } from "../figures/cuts";
+import { trimToFit } from "../text/fit";
 import { partBodies, shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
 import type { FigureDrawing } from "../figures/types";
@@ -34,7 +36,7 @@ export type Mark =
   | { type: "column"; id: string; rect: Rect; title: string; icon?: CanvasIcon; color: string; s: number }
   | { type: "item"; id: string; text: string; rect: Rect; color: string; s: number; size: number }
   | { type: "link"; id: string; p0: Pt; p1: Pt; s: number }
-  | { type: "box"; id: string; rect: Rect; label?: string; color: string; s: number; icon?: CanvasIcon; size: number; /** Wrapped content lines on a card (a box with no icon). */ detail?: string[] }
+  | { type: "box"; id: string; rect: Rect; label?: string; color: string; s: number; icon?: CanvasIcon; size: number; /** Wrapped content lines on a card (a box with no icon). */ detail?: string[]; /** The detail's font size when it was set smaller to fit whole (15 otherwise). */ detailSize?: number }
   | { type: "text"; id: string; rect: Rect; text: string; color: string; s: number; size: number }
   | { type: "figure"; id: string; rect: Rect; scale: number; drawing: FigureDrawing; s: number; asset?: string }
   | { type: "figure-label"; id: string; part: string; lines: string[]; side: "left" | "right"; at: Pt; leader: Pt[]; size: number; s: number }
@@ -101,10 +103,41 @@ export function wrap(text: string, size: number, maxW: number, maxLines = 2): st
   // (owner, 2026-10-17: no half-cut text). Text the shorten pass already fitted rarely gets here.
   if (lines.length === maxLines + 1) return lines;
   if (lines.length > maxLines) {
-    const kept = lines.slice(0, maxLines);
-    kept[maxLines - 1] = `${kept[maxLines - 1].replace(/[.,;:]?$/, "")}…`;
-    return kept;
+    // Never "…" (owner, 2026-10-17: no half-cut text). The cut is recorded so the board writer
+    // rewrites the text to fit this exact room before the board ships (lib/canvas/generate.ts), and
+    // meanwhile the text ends at a natural break rather than mid-thought.
+    const room = lines.slice(0, maxLines).join(" ").length;
+    recordFigureCut(text, `${maxLines} line(s) of its box`, room);
+    const fitted = trimToFit(text, room);
+    const again = wrap(fitted, size, maxW, maxLines + 1);
+    return again.length <= maxLines ? again : again.slice(0, maxLines);
   }
+  return lines;
+}
+
+/**
+ * A card's detail, WHOLE where it can be: set at 15 px, and smaller (down to 12) before any word is
+ * dropped — a card with room for three lines showed two and cut the rest (QA 2026-10-17). Only text
+ * that does not fit even at 12 px is shortened, at a natural break (and recorded for a rewrite).
+ */
+export function fitDetail(text: string, maxW: number, maxH: number): { lines: string[]; size: number } {
+  for (const size of [15, 14, 13, 12]) {
+    const maxLines = Math.max(1, Math.floor(maxH / (size * 1.27)));
+    const lines = wrapWhole(text, size, maxW);
+    if (lines.length <= maxLines) return { lines, size };
+  }
+  const size = 12;
+  return { lines: wrap(text, size, maxW, Math.max(1, Math.floor(maxH / (size * 1.27)))), size };
+}
+function wrapWhole(text: string, size: number, maxW: number): string[] {
+  const lines: string[] = [];
+  let line = "";
+  for (const word of text.split(/\s+/).filter(Boolean)) {
+    const next = line ? `${line} ${word}` : word;
+    if (textWidth(next, size) <= maxW || !line) line = next;
+    else { lines.push(line); line = word; }
+  }
+  if (line) lines.push(line);
   return lines;
 }
 
@@ -445,6 +478,27 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
   const centres = new Map<string, { c: Pt; r: number; below?: number; box?: Rect }>();
   const nodeMarks: Mark[] = [];
   const place = (node: FlowStage["nodes"][number], i: number, cx: number, cy: number, r: number, maxLabelW?: number) => {
+    /*
+     * A STEP WITH NOTHING TO PICTURE IS A CARD, NOT AN EMPTY RING. A node with no icon was drawn as
+     * a circle with a dot in it — a circle-theorems board showed five of them named "Chord AB",
+     * "Circle symmetry", "Diameter", which looked like a diagram and drew nothing (owner, QA
+     * 2026-10-17). Its words now sit inside a card, detail and all; nodes with a real icon, or that
+     * change into something or glow with a variable, keep their picture.
+     */
+    const original = stage.nodes.find((n) => n.id === node.id) ?? node;
+    if (!node.icon && !node.becomes && !node.glow) {
+      const room = maxLabelW ?? 2 * Math.min(cx - box.x, box.x + box.w - cx) - 10;
+      const w = Math.max(110, Math.min(220, room));
+      const labelSize = Math.max(13, Math.min(18, Math.floor((w - 18) / Math.max(1, textWidth(node.label, 1)))));
+      const fit = original.sub ? fitDetail(original.sub, w - 20, 3 * 19) : undefined;
+      const detail = fit?.lines;
+      const h = Math.max(58, 40 + (detail?.length ?? 0) * (fit?.size ?? 15) * 1.27 + 8);
+      const card = { x: cx - w / 2, y: cy - h / 2, w, h };
+      nodeMarks.push({ type: "box", id: node.id, rect: card, label: node.label, color: colorAt(i, node.color), s: node.s, size: labelSize, ...(detail?.length ? { detail, detailSize: fit!.size } : {}) });
+      centres.set(node.id, { c: { x: cx, y: cy }, r: Math.min(w, h) / 2, box: card });
+      add(node.id, card, node.s);
+      return;
+    }
     centres.set(node.id, { c: { x: cx, y: cy }, r, below: node.sub ? 48 : 28 });
     nodeMarks.push(nodeMark(node, i, cx, cy, r, add, maxLabelW));
   };
@@ -739,6 +793,45 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
     const color = t.color && /^#/.test(t.color) ? t.color : /[→=⇌]/.test(t.text) || /^[+−-]$/.test(t.text) ? "#64748b" : PALETTE[i % PALETTE.length];
     return { id: t.id, text: t.text, ...(t.tex ? { tex: t.tex } : {}), color, w: (em.get(t.id) ?? 0) * tokenSize, size: tokenSize };
   });
+  // A WORKED CALCULATION BUILDS DOWN THE BOARD. When most of a step's terms are new (k² = 9, then
+  // 18 × 9 = 162) it is the next line of working, not the same equation rearranged: each step is
+  // written on its own line below the last, and every line stays (one step replacing the last left
+  // a board showing only "0.28 250 plants", audit 2026-10-17). Rearrangements keep their animation.
+  const fresh = steps.slice(1).map((step, k) => { const prev = new Set(steps[k].order); const own = step.order.filter(inRow); return own.length ? own.filter((id) => !prev.has(id)).length / own.length : 0; });
+  if (steps.length > 1 && fresh.reduce((a, b) => a + b, 0) / fresh.length >= 0.5) {
+    const rowsN = lined.reduce((n, l) => n + l.length, 0);
+    const rowSize = Math.max(16, Math.min(size, Math.floor((box.h - 20) / (rowsN * (tall ? 1.95 : 1.55)))));
+    const rowGap = rowSize * (tall ? 1.95 : 1.55);
+    const rowGapEm = gapEm * rowSize;
+    // A step that adds no new term (the same "−GM/r" again, for "Earth values") is not written out
+    // again: the working showed one line three times (QA 2026-10-17). It highlights its terms instead.
+    const seenIds = new Set<string>();
+    const writes = steps.map((step) => { const own = step.order.filter(inRow); const adds = own.some((id) => !seenIds.has(id)); own.forEach((id) => seenIds.add(id)); return adds; });
+    const relined = rows.map((row, k) => (writes[k] ? wrapRow(row, (id) => em.get(id)! * rowSize, breakOf, maxW, rowGapEm) : []));
+    const height = relined.reduce((n, l) => n + l.length, 0) * rowGap;
+    let y = box.y + Math.max(rowSize, (box.h - height) / 2 + rowSize);
+    const sized = tokens.map((t, i) => ({ ...measured[i], w: (em.get(t.id) ?? 0) * (hosted.has(t.id) ? Math.round(rowSize * 0.5) : rowSize), size: hosted.has(t.id) ? Math.round(rowSize * 0.5) : rowSize }));
+    steps.forEach((step, k) => {
+      if (!writes[k]) return;
+      const place: Record<string, Pt> = {};
+      for (const line of relined[k]) {
+        const total = line.reduce((w, id) => w + sized.find((t) => t.id === id)!.w, 0) + rowGapEm * Math.max(0, line.length - 1);
+        let x = center - total / 2;
+        for (const id of line) { place[id] = { x, y }; x += sized.find((m) => m.id === id)!.w + rowGapEm; }
+        y += rowGap;
+      }
+      for (const id of step.order.filter((o) => hosted.has(o))) {
+        const host = place[hosted.get(id)!];
+        const t = sized.find((m) => m.id === id)!;
+        if (host) place[id] = { x: host.x + sized.find((m) => m.id === hosted.get(id))!.w / 2 - t.w / 2, y: host.y - rowSize * 1.05 };
+      }
+      const own = sized.filter((t) => place[t.id]);
+      marks.push({ type: "equation", id: k ? `equation-${k + 1}` : "equation", tokens: own, steps: [{ s: step.s, place, highlight: [] }], size: rowSize, captionY: box.y + box.h + 400, center, s: step.s });
+      for (const t of own) if (!(t.id in place) || k === steps.findIndex((st) => st.order.includes(t.id))) add(t.id, { x: place[t.id].x - 4, y: place[t.id].y - t.size, w: t.w + 8, h: t.size * 1.3 }, step.s);
+    });
+    add("equation", { x: box.x + 10, y: box.y, w: box.w - 20, h: box.h }, steps[0].s);
+    return;
+  }
   const laidSteps = steps.map((step, k) => {
     const order = step.order.filter((id) => measured.some((t) => t.id === id));
     const place: Record<string, Pt> = {};
@@ -899,13 +992,13 @@ function layoutExam(stage: ExamStage, box: Rect, marks: Mark[], add: Add) {
   const markInk = "#be123c";
   const tickInk = "#15803d";
   const points = stage.points.slice(0, 6);
-  const two = points.length > 3;
+  const two = points.length > 3 && stage.scheme !== "levels";
   const colGap = 16;
   const colW = two ? (box.w - colGap) / 2 : box.w;
   const fit = (size: number) => {
     const q = wrap(`${stage.question}`, size + 1, box.w - 150, 6);
     const qH = q.length * (size + 1) * 1.3 + 24;
-    const rows = points.map((p) => wrap(`✓ ${p.text}  [1]`, size, colW - 36, 3));
+    const rows = points.map((p) => wrap(stage.scheme === "levels" ? `▸ ${p.text}` : `✓ ${p.text}  [1]`, size, colW - 36, 3));
     const rowH = rows.map((r) => r.length * size * 1.3 + 20);
     const colsH = two ? Math.max(rowH.slice(0, Math.ceil(points.length / 2)).reduce((a, b) => a + b + 10, 0), rowH.slice(Math.ceil(points.length / 2)).reduce((a, b) => a + b + 10, 0)) : rowH.reduce((a, b) => a + b + 10, 0);
     const lost = stage.lostMarks ? wrap(`✗ Loses marks: ${stage.lostMarks.text}`, size, box.w - 36, 3) : [];
@@ -1018,12 +1111,13 @@ function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
       add(item.id, rect, item.s);
     } else if (item.kind === "box") {
       // A box with no icon is a card: its title, and its detail wrapped beneath — never an empty ring.
-      const detail = !item.icon && item.detail ? wrap(item.detail, 15, rect.w - 24, Math.max(1, Math.floor((rect.h - 44) / 19))) : undefined;
+      const fit = !item.icon && item.detail ? fitDetail(item.detail, rect.w - 24, rect.h - 60) : undefined;
+      const detail = fit?.lines;
       // A card is as tall as what it says, centred in its cells: a two-row box holding one line left
       // most of itself empty (audit 2026-10-17). Icon boxes keep their room for the icon.
-      const needed = item.icon ? rect.h : Math.max(64, 46 + (detail?.length ?? 0) * 19 + 14);
+      const needed = item.icon ? rect.h : Math.max(64, 46 + (detail?.length ?? 0) * (fit?.size ?? 15) * 1.27 + 14);
       const card = needed < rect.h - 24 ? { x: rect.x, y: rect.y + (rect.h - needed) / 2, w: rect.w, h: needed } : rect;
-      itemMarks.push({ type: "box", id: item.id, rect: card, label: item.label, color, s: item.s, icon: item.icon, size: 18, ...(detail?.length ? { detail } : {}) });
+      itemMarks.push({ type: "box", id: item.id, rect: card, label: item.label, color, s: item.s, icon: item.icon, size: 18, ...(detail?.length ? { detail, detailSize: fit!.size } : {}) });
       centres.set(item.id, { c: { x: card.x + card.w / 2, y: card.y + card.h / 2 }, r: Math.min(card.w, card.h) / 2, ...(item.icon ? {} : { box: card }) });
       add(item.id, card, item.s);
     } else {

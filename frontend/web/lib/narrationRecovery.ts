@@ -83,3 +83,32 @@ export function backstopRecovery(snapshot: ChannelSnapshot & { tutorSpeaking: bo
   if (snapshot.startRefused || snapshot.narrationLost) return "restart";
   return "none";
 }
+
+/** How long a board may report nothing, while it should be talking, before the watchdog restarts it. */
+export const NARRATION_SILENCE_RESTART_MS = 25_000;
+
+/**
+ * The stall watchdog's decision, re-read every second while the lecture is meant to be audible
+ * (components/LessonPlayer.tsx). The recovery and backstop above run on dependency changes; this
+ * catches the freeze that sets in after they have settled — a replay sat on one sentence for ten
+ * minutes with nothing changing (QA 2026-10-17). Anything legitimately holding the board means
+ * "none", so a task, question, checkpoint, generation or finished narration is never disturbed.
+ */
+export function stallWatchdogAction(s: {
+  teaching: boolean;
+  /** A task, prediction, checkpoint, question, focus pause, generation or owed advance holds the board. */
+  waiting: boolean;
+  tutorSpeaking: boolean;
+  utteranceInFlight: boolean;
+  lectureFrozen: boolean;
+  frozenForMs: number;
+  onBoard: boolean;
+  browserSpeaking: boolean;
+  silentMs: number;
+  stallMs: number;
+}): NarrationAction {
+  if (!s.teaching || s.waiting || s.tutorSpeaking || s.utteranceInFlight) return "none";
+  if (s.lectureFrozen) return s.frozenForMs >= s.stallMs ? "resume" : "none";
+  if (s.onBoard && !s.browserSpeaking && s.silentMs >= NARRATION_SILENCE_RESTART_MS) return "restart";
+  return "none";
+}

@@ -277,6 +277,8 @@ export type ExamStage = {
   /** One per mark, in mark-scheme wording, each revealed on the sentence that says it. */
   points: Array<{ id: string; text: string; s: number }>;
   lostMarks?: { id: string; text: string; s: number };
+  /** "levels": the rows are level bands of an essay mark scheme, not one mark each. */
+  scheme?: "points" | "levels";
 };
 
 /**

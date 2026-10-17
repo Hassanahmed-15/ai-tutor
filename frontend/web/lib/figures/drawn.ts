@@ -16,23 +16,22 @@ export const TINTS: Record<string, `#${string}`> = {
   blue: "#bfdbfe", green: "#bbf7d0", red: "#fecaca", yellow: "#fef08a", orange: "#fed7aa", purple: "#ddd6fe",
   pink: "#fbcfe8", cyan: "#a5f3fc", brown: "#e7c9a5", grey: "#e5e7eb", sand: "#fde68a", sky: "#e0f2fe",
 };
-const STROKES: Record<string, Ink | "none"> = { ink: "ink", muted: "muted", none: "none" };
+// Strong line colours carry meaning (a warm current red, a cold one blue, a Hadley cell's air): a
+// writer's "red" arrow came out black when only ink and muted were allowed (acceptance run 2026-10-17).
+const STROKES: Record<string, Ink | "none"> = { ink: "ink", muted: "muted", none: "none", red: "#dc2626", blue: "#2563eb", green: "#16a34a", orange: "#ea580c", purple: "#7c3aed", brown: "#92400e" };
 
 type Raw = Record<string, unknown>;
 const num = (v: unknown) => (typeof v === "number" && Number.isFinite(v) ? v : Number.NaN);
 const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 const slug = (v: unknown) => str(v, 40).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-export function drawnFigure(raw: unknown): { drawing?: FigureDrawing; issues: string[] } {
-  const r = (raw && typeof raw === "object" ? raw : {}) as Raw;
+/**
+ * The shapes of a described drawing, checked: anything off the canvas or malformed is dropped, styles
+ * come only from the house palette. Shared by drawnFigure and the diagram grammar (lib/diagrams/grammar.ts).
+ */
+export function drawnShapes(rawShapes: Raw[], w: number, h: number, partIds: Set<string>, maxTexts = 8): { shapes: FigureShape[]; issues: string[]; boxy: number; organic: number } {
   const issues: string[] = [];
-  const w = num(r.w), h = num(r.h);
-  if (!(w >= 200 && w <= 800 && h >= 150 && h <= 600)) return { issues: ["drawing needs w 200-800 and h 150-600"] };
   const inside = (x: number, y: number) => x >= -10 && x <= w + 10 && y >= -10 && y <= h + 10;
-  const rawShapes = Array.isArray(r.shapes) ? (r.shapes as Raw[]) : [];
-  if (rawShapes.length < 3 || rawShapes.length > 160) issues.push("use 3 to 160 shapes");
-  const rawParts = Array.isArray(r.parts) ? (r.parts as Raw[]) : [];
-  const partIds = new Set(rawParts.map((p) => slug(p?.id)).filter(Boolean));
   const shapes: FigureShape[] = [];
   let texts = 0;
   let boxy = 0, organic = 0;
@@ -100,12 +99,27 @@ export function drawnFigure(raw: unknown): { drawing?: FigureDrawing; issues: st
       if (!text || !inside(x, y)) continue;
       // Past 8 marks the rest are dropped, not the drawing: every attempt at an immune-response
       // board failed on its text and the student got a plain flow (audit 2026-10-17).
-      if (++texts > 8) continue;
+      if (++texts > maxTexts) continue;
       shapes.push({ t: "text", x, y, text, size: Math.max(10, Math.min(22, num(s.size) || 14)), anchor: "middle", ...(part ? { part } : {}), fill: "ink" });
       continue;
     }
     if (d) shapes.push({ t: "path", d, ...style });
   }
+  return { shapes, issues, boxy, organic };
+}
+
+export function drawnFigure(raw: unknown): { drawing?: FigureDrawing; issues: string[] } {
+  const r = (raw && typeof raw === "object" ? raw : {}) as Raw;
+  const issues: string[] = [];
+  const w = num(r.w), h = num(r.h);
+  if (!(w >= 200 && w <= 800 && h >= 150 && h <= 600)) return { issues: ["drawing needs w 200-800 and h 150-600"] };
+  const inside = (x: number, y: number) => x >= -10 && x <= w + 10 && y >= -10 && y <= h + 10;
+  const rawShapes = Array.isArray(r.shapes) ? (r.shapes as Raw[]) : [];
+  if (rawShapes.length < 3 || rawShapes.length > 160) issues.push("use 3 to 160 shapes");
+  const rawParts = Array.isArray(r.parts) ? (r.parts as Raw[]) : [];
+  const partIds = new Set(rawParts.map((p) => slug(p?.id)).filter(Boolean));
+  const { shapes, boxy, organic, issues: shapeIssues } = drawnShapes(rawShapes, w, h, partIds);
+  issues.push(...shapeIssues);
   // Names belong to the label engine: a part's name written into the art would be printed twice.
   const names = rawParts.map((p) => str(p?.name, 40).toLowerCase()).filter(Boolean);
   const baked = shapes.filter((s) => s.t === "text" && names.some((n) => n.length > 3 && s.text.toLowerCase().includes(n.slice(0, 6))));
@@ -141,6 +155,6 @@ export function drawnFigure(raw: unknown): { drawing?: FigureDrawing; issues: st
 /** The board writer's instructions for a generated diagram. */
 export const DRAWN_GUIDE = `Draw it as clean TEXTBOOK LINE ART in "stage": {"kind": "figure", "component": "drawn", "drawing": {"w": 600, "h": 420, "shapes": [...], "parts": [...]}, "parts": [{"id", "name", "s", "say"}]}.
 - shapes (x right, y down, inside w×h): {"t": "rect", "x", "y", "w", "h", "rx"} | {"t": "ellipse", "cx", "cy", "rx", "ry"} | {"t": "circle", "cx", "cy", "r"} | {"t": "line", "x1", "y1", "x2", "y2"} | {"t": "arrow", "x1", "y1", "x2", "y2"} | {"t": "polyline"|"polygon", "points": [[x, y], …]} | {"t": "curve", "points": [[x, y], …], "closed": true|false} (a smooth outline through the points — use it for organic shapes: cells, leaves, organs, rivers, landforms) | {"t": "text", "x", "y", "text"} (≤ 12 characters, only signs/letters/values such as "+", "N", "H₂O" — never a part's name).
-- style on any shape: "fill": blue|green|red|yellow|orange|purple|pink|cyan|brown|grey|sand|sky|white|none, "stroke": ink|muted|none, "width" 1-4, "dash": true, "part": <part id>.
+- style on any shape: "fill": blue|green|red|yellow|orange|purple|pink|cyan|brown|grey|sand|sky|white|none, "stroke": ink|muted|none|red|blue|green|orange|purple|brown, "width" 1-4, "dash": true, "part": <part id>.
 - Draw the standard textbook view, proportioned and recognisable, filling most of the canvas; outlines in ink, regions in soft tints; 8-80 shapes. Big shapes first, details on top.
 - drawing.parts: 3-8 {"id", "name", "anchor": {"x", "y"}}; every part's shapes carry "part": its id, and its anchor lies ON those shapes (where a label's dot should touch). The board's "parts" then label them by id, as for any figure.`;

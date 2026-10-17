@@ -57,6 +57,8 @@ export type ExamPractice = {
   markPoints: string[];
   modelAnswer: string;
   lostMarks: string;
+  /** For a question marked by levels of response (an essay): the bands, top first. Empty when marked point by point. */
+  levels?: Array<{ level: string; marks: string; descriptor: string }>;
 };
 
 export type BoardBudget = { min: number; max: number; recommended: number; reason: string };
@@ -235,7 +237,7 @@ export const SPEC_SCHEMA = {
       items: {
         type: "object",
         additionalProperties: false,
-        required: ["outcomeRef", "commandWord", "question", "marks", "markPoints", "modelAnswer", "lostMarks"],
+        required: ["outcomeRef", "commandWord", "question", "marks", "markPoints", "modelAnswer", "lostMarks", "levels"],
         properties: {
           outcomeRef: { type: "integer" },
           commandWord: { type: "string" },
@@ -244,6 +246,7 @@ export const SPEC_SCHEMA = {
           markPoints: { type: "array", items: { type: "string" } },
           modelAnswer: { type: "string" },
           lostMarks: { type: "string" },
+          levels: { type: "array", items: { type: "object", additionalProperties: false, required: ["level", "marks", "descriptor"], properties: { level: { type: "string" }, marks: { type: "string" }, descriptor: { type: "string" } } } },
         },
       },
     },
@@ -261,7 +264,7 @@ You are given the lesson's official learning outcomes (numbered) and the syllabu
 - prerequisites: what the student must already know; requiredTerms and requiredMethods: the vocabulary and methods this level expects.
 - misconceptions: common mistakes at this level. outOfScope: only content that belongs to a LATER lesson or a HIGHER level (do not teach it) — never the named studies, theorists, case studies, examples or evaluation that exam answers at this level are expected to use.
 - checkpoint: one short question per outcome (outcomeRef = its number) in the style of this qualification, with the correct answer.
-- examPractice: one exam-style question per outcome, exactly as this qualification's papers set them. commandWord: the syllabus command word the question opens with (State, Describe, Explain, Calculate, Show that, Compare, Evaluate…). question: the full question, with any data, diagram description or figures it needs. marks: 2 to 6. markPoints: exactly one point per mark, each worded as the mark scheme credits it — the precise term, value with unit, or step of working (for a calculation: method, substitution, answer with unit). modelAnswer: a full-mark answer a strong candidate writes, in exam language. lostMarks: the most common way candidates lose marks on this question and what examiners want instead. Use real-world contexts and numbers in the style of past papers; never quote a real past paper question.
+- examPractice: one exam-style question per outcome, exactly as this qualification's papers set them. commandWord: the syllabus command word the question opens with (State, Describe, Explain, Calculate, Show that, Compare, Evaluate…). question: the full question, with any data, diagram description or figures it needs. marks: 2 to 6. markPoints: exactly one point per mark, each worded as the mark scheme credits it — the precise term, value with unit, or step of working (for a calculation: method, substitution, answer with unit). modelAnswer: a full-mark answer a strong candidate writes, in exam language. lostMarks: the most common way candidates lose marks on this question and what examiners want instead. levels: when this qualification marks the question by levels of response rather than point by point (extended writing — essays and "assess", "evaluate", "discuss", "to what extent" questions in humanities and social sciences at this level), the official-style level bands from top to bottom, each {"level": "Level 4", "marks": "13–15", "descriptor": what an answer at that level does, in a few words}, with "marks" the question's real total and markPoints the points a top-level answer makes; otherwise levels: []. Use real-world contexts and numbers in the style of past papers; never quote a real past paper question.
 ${depthRule(courseLabel)}
 Stay within the outcomes' scope and this level, but teach them to the depth the exam rewards. If the syllabus text does not state a fact you need, use standard, uncontroversial textbook knowledge for this level.`;
 }
@@ -319,7 +322,10 @@ export function cleanExamPractice(list: ExamPractice[], outcomes: number): ExamP
     .map((q) => {
       const markPoints = q.markPoints.map((m) => m.trim()).filter(Boolean).slice(0, 6);
       const commandWord = (q.commandWord?.trim() || q.question.trim().split(/\s+/)[0]).replace(/^\w/, (c) => c.toUpperCase());
-      return { ...q, commandWord, question: q.question.trim(), marks: markPoints.length, markPoints, modelAnswer: q.modelAnswer?.trim() ?? "", lostMarks: q.lostMarks?.trim() ?? "" };
+      // Marked by levels: the total is the top band's top mark, not one mark per point.
+      const levels = (q.levels ?? []).filter((l) => l?.level?.trim() && l?.descriptor?.trim()).slice(0, 5).map((l) => ({ level: l.level.trim(), marks: String(l.marks ?? "").trim(), descriptor: l.descriptor.trim() }));
+      const top = Math.max(0, ...levels.flatMap((l) => (l.marks.match(/\d+/g) ?? []).map(Number)));
+      return { ...q, commandWord, question: q.question.trim(), marks: levels.length >= 2 && top ? top : markPoints.length, markPoints, modelAnswer: q.modelAnswer?.trim() ?? "", lostMarks: q.lostMarks?.trim() ?? "", ...(levels.length >= 2 ? { levels } : {}) };
     });
 }
 
@@ -383,13 +389,13 @@ export function lessonDocument(
       text: [
         `Exam question (${exam.marks} marks): ${exam.question}`,
         `Command word: ${exam.commandWord}.`,
-        `Mark scheme — one mark each:\n${exam.markPoints.map((m) => `- ${m}`).join("\n")}`,
+        exam.levels ? `Marked by levels:\n${exam.levels.map((l) => `- ${l.level} (${l.marks}): ${l.descriptor}`).join("\n")}\nA top-level answer makes these points:\n${exam.markPoints.map((m) => `- ${m}`).join("\n")}` : `Mark scheme — one mark each:\n${exam.markPoints.map((m) => `- ${m}`).join("\n")}`,
         exam.modelAnswer ? `Model answer: ${exam.modelAnswer}` : "",
         exam.lostMarks ? `Where candidates lose marks: ${exam.lostMarks}` : "",
       ].filter(Boolean).join("\n\n"),
       keyIdeas: exam.markPoints,
       teachingHints: [`Level: ${spec.level}. Answer exactly as the mark scheme credits.`],
-      exam: { commandWord: exam.commandWord, question: exam.question, marks: exam.marks, markPoints: exam.markPoints, lostMarks: exam.lostMarks },
+      exam: { commandWord: exam.commandWord, question: exam.question, marks: exam.marks, markPoints: exam.markPoints, lostMarks: exam.lostMarks, ...(exam.levels ? { levels: exam.levels } : {}) },
       facts: [],
       sourceOrder: blocks.length,
     });

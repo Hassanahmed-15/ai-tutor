@@ -1,3 +1,4 @@
+import { trimToFit } from "../../text/fit";
 import type { FigureShape, Ink, Pt } from "../types";
 import { fitText, recordFigureCut } from "../cuts";
 import { PALETTE, textW } from "./mathsKit";
@@ -40,6 +41,8 @@ export function wrap(text: string, size: number, maxW: number, maxLines = Infini
   let cur = "";
   const pushWord = (w: string) => {
     // A word too long for a whole line is broken into pieces that fit.
+    // (Recorded first, so the writer rewords it: "reconstructi-on" split a word in a narrow card.)
+    if (measure(w, size) > maxW && w.length > 1) recordFigureCut(text, "its card (a word wider than a line)", Math.max(6, Math.floor((maxW / (size * 0.56)) * Math.min(maxLines, 3))));
     while (measure(w, size) > maxW && w.length > 1) {
       let k = w.length - 1;
       while (k > 1 && measure(w.slice(0, k) + "-", size) > maxW) k--;
@@ -58,12 +61,12 @@ export function wrap(text: string, size: number, maxW: number, maxLines = Infini
   }
   if (cur) lines.push(cur);
   if (lines.length > maxLines) {
-    recordFigureCut(text, `${maxLines} line${maxLines === 1 ? "" : "s"}`);
-    const kept = lines.slice(0, maxLines);
-    let last = kept[maxLines - 1];
-    while (last.length > 1 && measure(last + "…", size) > maxW) last = last.slice(0, -1).trimEnd();
-    kept[maxLines - 1] = last + "…";
-    return kept;
+    // Recorded with its room in characters for the shorten pass; meanwhile the text that fits ends at
+    // a natural break, never with "…" (owner, 2026-10-17).
+    const room = Math.max(6, Math.floor((maxW / (size * 0.56)) * maxLines));
+    recordFigureCut(text, `${maxLines} line${maxLines === 1 ? "" : "s"}`, room);
+    const fitted = wrap(trimToFit(text, Math.min(room, lines.slice(0, maxLines).join(" ").length)), size, maxW);
+    return fitted.slice(0, maxLines);
   }
   return lines.length ? lines : [""];
 }
@@ -141,5 +144,5 @@ export function roundRect(b: Rect, r: number): string {
 /** A part name that fits a margin label (≤34 characters). */
 export function partName(text: string, fallback: string): string {
   const t = clean(text, 200) || fallback;
-  return t.length <= 34 ? t : t.slice(0, 33).replace(/\s+\S*$/, "").trimEnd() + "…";
+  return t.length <= 34 ? t : trimToFit(t, 34);
 }

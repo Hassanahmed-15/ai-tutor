@@ -155,3 +155,17 @@ test("filler and commands do not re-plan the lecture; real questions do", () => 
     assert.equal(isAdaptiveQuestion(question), true, `"${question}" is a real question`);
   }
 });
+
+test("stall watchdog: resumes a narration frozen with nothing holding it, restarts a silent board, never touches a held one", async () => {
+  const { stallWatchdogAction, NARRATION_SILENCE_RESTART_MS } = await import("../narrationRecovery");
+  const base = { teaching: true, waiting: false, tutorSpeaking: false, utteranceInFlight: false, lectureFrozen: false, frozenForMs: 0, onBoard: true, browserSpeaking: false, silentMs: 0, stallMs: 6000 };
+  assert.equal(stallWatchdogAction(base), "none", "talking normally");
+  assert.equal(stallWatchdogAction({ ...base, lectureFrozen: true, frozenForMs: 2000 }), "none", "a short freeze is given time");
+  assert.equal(stallWatchdogAction({ ...base, lectureFrozen: true, frozenForMs: 7000 }), "resume");
+  assert.equal(stallWatchdogAction({ ...base, silentMs: NARRATION_SILENCE_RESTART_MS }), "restart", "the replay that sat on one sentence");
+  assert.equal(stallWatchdogAction({ ...base, silentMs: 600_000, waiting: true }), "none", "a Check it card or draw task holds it");
+  assert.equal(stallWatchdogAction({ ...base, silentMs: 600_000, tutorSpeaking: true }), "none", "Aria is answering");
+  assert.equal(stallWatchdogAction({ ...base, silentMs: 600_000, browserSpeaking: true }), "none", "the browser voice is reading a late clip");
+  assert.equal(stallWatchdogAction({ ...base, silentMs: 600_000, teaching: false }), "none", "paused by the student");
+  assert.equal(stallWatchdogAction({ ...base, silentMs: 600_000, onBoard: false }), "none", "the title card, not a board");
+});
