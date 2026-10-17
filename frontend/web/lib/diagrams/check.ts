@@ -88,7 +88,9 @@ export function checkDiagram(spec: DiagramSpec, narration: string, mustShow: str
       }
     }
     if (el.t === "label") {
-      const fitted = fitText(el.text, 34);
+      // Two lines' worth, wrapped where it is written — never cut mid-sentence at 34 characters
+      // ("Use the list to test whether it is", 2026-10-17).
+      const fitted = fitText(el.text, 64);
       if (fitted !== el.text) {
         repairs.push(`label "${el.text}" rewritten to fit (${fitted.length} chars)`);
         el.text = fitted;

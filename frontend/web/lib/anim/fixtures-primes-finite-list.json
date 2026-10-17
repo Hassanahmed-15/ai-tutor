@@ -1,0 +1,197 @@
+{
+ "narration": "Euclid's proof begins with a surprising challenge: suppose every prime has already been listed. This is the assumption of finitely many primes, meaning the list eventually ends. Write the complete list as p₁, p₂, and so on, through pₙ. We already know proof by contradiction, so we temporarily accept this opposite claim. The symbols pᵢ mean any prime appearing in that supposed complete list. For a concrete case, imagine the list contains only 2, 3, and 5. Euclid will use that assumed list to construct a number that tests whether it is truly complete.",
+ "spec": {
+  "v": 1,
+  "w": 640,
+  "h": 400,
+  "base": "none",
+  "elements": [
+   {
+    "t": "region",
+    "id": "prime-list",
+    "s": 0,
+    "fill": "#fff1f2",
+    "stroke": "#be123c",
+    "shape": "rect",
+    "x": 55,
+    "y": 95,
+    "w": 500,
+    "h": 170,
+    "cx": 305,
+    "cy": 180,
+    "rx": 250,
+    "ry": 85,
+    "r": 8
+   },
+   {
+    "t": "label",
+    "id": "list-label",
+    "s": 0,
+    "text": "Every prime is on the list",
+    "at": {
+     "x": 305,
+     "y": 120
+    },
+    "leader": true
+   },
+   {
+    "t": "region",
+    "id": "finite-endpoint",
+    "s": 1,
+    "fill": "#ffe4e6",
+    "stroke": "#be123c",
+    "shape": "ellipse",
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 20,
+    "cx": 535,
+    "cy": 180,
+    "rx": 30,
+    "ry": 48,
+    "r": 8
+   },
+   {
+    "t": "label",
+    "id": "endpoint-label",
+    "s": 1,
+    "text": "The list ends",
+    "at": {
+     "id": "finite-endpoint"
+    },
+    "leader": true
+   },
+   {
+    "t": "label",
+    "id": "complete-label",
+    "s": 2,
+    "text": "Complete list: p₁, p₂, and so on,",
+    "at": {
+     "x": 305,
+     "y": 150
+    },
+    "leader": true
+   },
+   {
+    "t": "label",
+    "id": "opposite-claim",
+    "s": 3,
+    "text": "Temporary opposite claim",
+    "at": {
+     "x": 305,
+     "y": 220
+    },
+    "leader": true
+   },
+   {
+    "t": "label",
+    "id": "pi-label",
+    "s": 4,
+    "text": "pᵢ means any prime in the list",
+    "at": {
+     "x": 305,
+     "y": 250
+    },
+    "leader": true
+   },
+   {
+    "t": "repeat",
+    "id": "concrete-primes",
+    "s": 5,
+    "n": 3,
+    "layout": "row",
+    "of": {
+     "t": "region",
+     "id": "el-8-item",
+     "s": 0,
+     "fill": "#fecdd3",
+     "stroke": "#be123c",
+     "shape": "ellipse",
+     "x": 0,
+     "y": 0,
+     "w": 20,
+     "h": 20,
+     "cx": 0,
+     "cy": 0,
+     "rx": 25,
+     "ry": 20,
+     "r": 8
+    },
+    "gap": 4,
+    "x": 180,
+    "y": 285,
+    "w": 210,
+    "h": 55
+   },
+   {
+    "t": "label",
+    "id": "two-label",
+    "s": 2,
+    "text": "2",
+    "at": {
+     "x": 205,
+     "y": 312
+    },
+    "leader": true
+   },
+   {
+    "t": "label",
+    "id": "three-label",
+    "s": 5,
+    "text": "3",
+    "at": {
+     "x": 285,
+     "y": 312
+    },
+    "leader": true
+   },
+   {
+    "t": "label",
+    "id": "five-label",
+    "s": 5,
+    "text": "5",
+    "at": {
+     "x": 365,
+     "y": 312
+    },
+    "leader": true
+   },
+   {
+    "t": "label",
+    "id": "concrete-label",
+    "s": 5,
+    "text": "Concrete case: only 2, 3, and 5",
+    "at": {
+     "x": 305,
+     "y": 350
+    },
+    "leader": true
+   },
+   {
+    "t": "arrow",
+    "id": "test-arrow",
+    "s": 6,
+    "stroke": "#be123c",
+    "from": {
+     "id": "prime-list"
+    },
+    "to": {
+     "id": "finite-endpoint"
+    },
+    "curved": false,
+    "label": "test completeness"
+   },
+   {
+    "t": "label",
+    "id": "test-label",
+    "s": 6,
+    "text": "Use the list to test whether it is",
+    "at": {
+     "x": 305,
+     "y": 385
+    },
+    "leader": true
+   }
+  ]
+ }
+}

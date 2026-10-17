@@ -398,10 +398,14 @@ export function applyLessonVisualPolicy(
       if (beat.stage === "flow" && isRealProcess(text) && !needsVectorDiagram(text)) continue;
       if (beat.stage === "compare" && !needsVectorDiagram(text)) continue;
       if (beat.requiredVisual?.stages.length && !beat.requiredVisual.stages.some((st) => st === "illustration" || st === "scene" || st === "figure" || st === "diagram" || st === beat.stage)) continue;
-      changes.push(`${beat.id}: ${beat.stage} → diagram (vector textbook diagram)`);
-      beat.stage = "diagram";
-      beat.figure = undefined;
-      if (beat.requiredVisual) beat.requiredVisual.stages = ["diagram"];
+      // Drawn by the vector GRAMMAR pipeline (lib/diagrams/grammarWrite.ts: code checks, a vision check
+      // and one repair, a plain board when it fails) — not as a free-form "diagram" board, which no
+      // course board ever gets (2026-10-17).
+      changes.push(`${beat.id}: ${beat.stage} → figure (vector textbook diagram)`);
+      beat.stage = "figure";
+      beat.figure = "drawn";
+      beat.figureAsset = undefined;
+      if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
     }
   }
 
@@ -735,6 +739,15 @@ export function applyLessonVisualPolicy(
       beat.figureAsset = undefined;
       if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
     }
+  }
+
+  // No free-form "diagram" board is left for any source: the contract's stage, else the native board.
+  for (const beat of beats) {
+    if (beat.stage !== "diagram") continue;
+    const next = firstRequiredStage({ ...beat, requiredVisual: beat.requiredVisual ? { ...beat.requiredVisual, stages: beat.requiredVisual.stages.filter((st) => st !== "diagram") } : undefined }) ?? nativeStageFor(beat);
+    changes.push(`${beat.id}: diagram → ${next} (the board a course would draw)`);
+    beat.stage = next === "diagram" ? "scene" : next;
+    beat.figure = undefined;
   }
 
   for (const beat of beats) {

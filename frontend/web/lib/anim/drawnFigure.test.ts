@@ -57,7 +57,7 @@ test("every physical topic without a component or library diagram is routed to a
     beat("b1", "The structure of a skeleton: the skull, ribs and pelvis", "illustration"),
     beat("b2", "Compare inflation and deflation", "compare"),
   ], { mode: "course", aiPictures: false });
-  assert.equal(out.beats[0].stage, "diagram");
+  assert.equal(out.beats[0].stage, "figure");
   assert.notEqual(out.beats[0].figure, "shapes3d");
   assert.equal(out.beats[1].stage, "compare", "abstract boards keep their native board");
   const strict = applyLessonVisualPolicy([beat("b1", "The structure of a leaf: the midrib and veins", "illustration")], { mode: "strict", aiPictures: false });

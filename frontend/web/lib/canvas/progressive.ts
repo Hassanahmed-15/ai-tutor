@@ -19,6 +19,7 @@ import type { PlanningKnowledge } from "../knowledge/graph";
 import { slug } from "./validate";
 import { sourcesForText, type SourcePack } from "../webSources";
 import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
+import { withCourseContract } from "./sourceContract";
 import { findLibraryFigure } from "../figures/library";
 import { courseCoverageGaps, coverageMessage, requiredTermsOf, type CoverageGap } from "./courseCoverage";
 import { boardNotesOf } from "./plan";
@@ -173,11 +174,17 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
               return stages.length || mustShow.length ? { ...beat, requiredVisual: { stages, mustShow } } : beat;
             }),
           };
+        } else if (!strictDoc) {
+          // THE SAME VISUAL CONTRACT AS A COURSE for a typed, PDF or video lesson (owner, 2026-10-17:
+          // "the same animation quality in courses, prompt, pdf and yt"): lib/canvas/sourceContract.ts.
+          plan = { ...plan, beats: plan.beats.map(withCourseContract) };
         }
-        const visualMode: VisualPolicyMode = sourceMode ? "strict" : reference ? "reference" : curriculum ? "course" : "prompt";
+        // A video lesson is taught strictly from the video, but its boards get every visual a course
+        // board gets (2026-10-17); only a strict PDF keeps to what the document itself shows.
+        const visualMode: VisualPolicyMode = strictDoc ? "strict" : reference || video ? "reference" : curriculum ? "course" : "prompt";
         const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: findLibraryFigure });
         plan = { ...plan, beats: visualPolicy.beats };
-        if ((visualMode === "course" || visualMode === "prompt") && visualPolicy.audit.meaningfulVisuals < visualPolicy.audit.targetMeaningfulVisuals && attempt < maxAttempts) {
+        if (visualMode !== "strict" && visualPolicy.audit.meaningfulVisuals < visualPolicy.audit.targetMeaningfulVisuals && attempt < maxAttempts) {
           lastError = `only ${visualPolicy.audit.meaningfulVisuals} of ${plan.beats.length} boards used purpose-built visuals; use at least ${visualPolicy.audit.targetMeaningfulVisuals} appropriate stages such as illustration, flow, graph, equation, compare, molecule, atom-map or code instead of generic scenes`;
           console.log(`[canvas] plan sent back: ${lastError}`);
           continue;

@@ -33,7 +33,7 @@ import { visualContractIssues } from "../curriculum/visualContract";
 import { applyLessonVisualPolicy, labelledFigureParts, photographic, PHYSICAL, pictureRequestProblem } from "./visualPolicy";
 import { DIAGRAM_GUIDE, acceptDiagram } from "../diagrams/write";
 import { diagramCacheKey } from "../diagrams/cache";
-import { componentFitsSubject, hasVisualForm, isRealProcess, needsVectorDiagram } from "../diagrams/visualForm";
+import { componentFitsSubject, isRealProcess } from "../diagrams/visualForm";
 import { dropContradictingPoints } from "./graphCheck";
 import { auditBoardForRelease, figureDataIssues } from "./releaseAudit";
 import { BOARD_REVIEW_PROMPT, boardReviewRequest, parseBoardReview, type BoardReview } from "./boardReview";
@@ -222,7 +222,7 @@ function plainBeat(beat: CanvasPlanBeat, allowFigure = true): CanvasPlanBeat {
     return { ...base, stage: "figure", figure: fitting, objects: labelledFigureParts(component, classifyInstructionalTask(beat).requiredParts ?? []) };
   }
   if (calculation) return { ...base, stage: "equation" };
-  if (!alreadyTriedDiagram && (needsVectorDiagram(text) || hasVisualForm(text))) return { ...base, stage: "diagram" };
+  // A plain rebuild is a plain board — never a free-form "diagram", which no course board gets.
   // A flow only for a real process — steps, causes, a cycle; anything else is labelled boxes.
   return { ...base, stage: isRealProcess(text) ? "flow" : "scene" };
 }

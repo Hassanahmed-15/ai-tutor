@@ -244,7 +244,7 @@ test("routing order: exact kit, then vector diagram, never an unrelated solid", 
   const out = applyLessonVisualPolicy([kit, geo, exam], { mode: "course", aiPictures: true });
   assert.equal(out.beats[0].stage, "figure");
   assert.equal(out.beats[0].figure, "titration");
-  assert.equal(out.beats[1].stage, "diagram");
+  assert.equal(out.beats[1].stage, "figure");
   assert.notEqual(out.beats[1].figure, "shapes3d");
   assert.equal(out.beats[2].stage, "exam");
 });

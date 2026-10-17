@@ -3,6 +3,15 @@ import { project } from "./project";
 import type { DiagramAnchor, DiagramElement, DiagramSpec, RegionEl } from "./spec";
 import { boxLabelLines, flattenElements, labelPlacement, regionBox } from "./spec";
 
+/** A label on one line, or two split at the space nearest the middle when it is longer than `max`. */
+function wrapTwo(text: string, max: number): string[] {
+  if (text.length <= max) return [text];
+  const mid = text.length / 2;
+  let best = -1;
+  for (let i = 0; i < text.length; i++) if (text[i] === " " && (best < 0 || Math.abs(i - mid) < Math.abs(best - mid))) best = i;
+  return best < 0 ? [text] : [text.slice(0, best), text.slice(best + 1)];
+}
+
 /** Where the segment from `p` (inside `box`) towards `q` crosses the box's edge, 3 units out. */
 function leaveBox(p: { x: number; y: number }, q: { x: number; y: number }, box: { x: number; y: number; w: number; h: number }): { x: number; y: number } {
   const dx = q.x - p.x, dy = q.y - p.y;
@@ -156,6 +165,8 @@ export function compileDiagram(spec: DiagramSpec): FigureDrawing {
   const parts: FigurePart[] = [];
   const lookup = new Map<string, { x: number; y: number }>();
   const regions = new Map<string, RegionEl>();
+  /** Where the next name written in a box starts (its baseline), per box. */
+  const boxCursor = new Map<string, number>();
   const mapBox = spec.base === "world-map" ? WORLD_MAP_BOX : { x: 0, y: 0, w: spec.w, h: spec.h };
   const axes = new Map<string, Extract<DiagramElement, { t: "axis" }>>();
 
@@ -209,7 +220,9 @@ export function compileDiagram(spec: DiagramSpec): FigureDrawing {
       // the margin on a leader.
       const placement = labelPlacement(el, regions);
       if (placement.place === "here") {
-        shapes.push({ t: "text", x: at.x, y: at.y, text: el.text, size: 15, anchor: "middle", fill: "ink", part: el.id });
+        // A long label wraps onto a second line under the first, at the same point.
+        const lines = wrapTwo(el.text, 34);
+        lines.forEach((line, i) => shapes.push({ t: "text", x: at.x, y: at.y + i * 17, text: line, size: 14, anchor: "middle", fill: "ink", part: el.id }));
         remember(el.id, at, el.part ?? el.text);
         const part = parts.find((p) => p.id === el.id);
         if (part) part.inline = true;
@@ -224,7 +237,10 @@ export function compileDiagram(spec: DiagramSpec): FigureDrawing {
         // A box holding other boxes is named along its top edge, not over what it holds.
         const holds = [...regions.values()].some((r) => r !== region && inside(regionBox(r), box));
         const lineH = size * 1.2;
-        const top = holds ? box.y + size + 5 : box.y + box.h / 2 - ((lines.length - 1) * lineH) / 2 + size * 0.36;
+        // A second name for the same box goes under the first, never on top of it.
+        const below = boxCursor.get(region.id);
+        const top = below !== undefined ? below + 4 : holds ? box.y + size + 5 : box.y + box.h / 2 - ((lines.length - 1) * lineH) / 2 + size * 0.36;
+        boxCursor.set(region.id, top + (lines.length - 1) * lineH + lineH);
         lines.forEach((line, i) => shapes.push({ t: "text", x: box.x + box.w / 2, y: top + i * lineH, text: line, size, anchor: "middle", fill: "ink", part: el.id }));
         remember(el.id, { x: box.x + box.w / 2, y: top }, el.part ?? el.text);
         const part = parts.find((p) => p.id === el.id);

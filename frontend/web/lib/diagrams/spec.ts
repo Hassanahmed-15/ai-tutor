@@ -384,7 +384,8 @@ export function parseDiagramSpec(raw: unknown): DiagramSpec | null {
 /** A region's box in diagram units: for an ellipse, the box its text can sit in. */
 export function regionBox(el: RegionEl): { x: number; y: number; w: number; h: number } {
   if (el.shape === "ellipse") {
-    const cx = el.cx ?? 0, cy = el.cy ?? 0, rx = el.rx ?? el.r ?? 10, ry = el.ry ?? el.r ?? 10;
+    const rx = el.rx ?? el.r ?? (el.w ?? 20) / 2, ry = el.ry ?? el.r ?? (el.h ?? 20) / 2;
+    const cx = el.cx ?? (el.x ?? 0) + rx, cy = el.cy ?? (el.y ?? 0) + ry;
     return { x: cx - rx * 0.72, y: cy - ry * 0.72, w: rx * 1.44, h: ry * 1.44 };
   }
   if (el.shape === "polygon" && el.points?.length) {
@@ -441,15 +442,9 @@ export function labelPlacement(label: LabelEl, regions: Map<string, RegionEl>): 
   if (byId) return { place: "box", region: byId };
   if ("id" in label.at) return { place: "margin" };
   if ("lon" in label.at) return { place: label.leader === false ? "here" : "margin" };
-  const p = label.at;
-  const holding = [...regions.values()]
-    .filter((r) => r.shape !== "polygon")
-    .map((r) => ({ r, b: regionBox(r) }))
-    .filter(({ b }) => p.x >= b.x && p.x <= b.x + b.w && p.y >= b.y - 4 && p.y <= b.y + b.h + 4)
-    .sort((a, b) => a.b.w * a.b.h - b.b.w * b.b.h);
-  const smallest = holding[0];
-  // Inside a box it fits in, with no smaller box under the point: that box's name.
-  if (smallest && (boxLabelLines(label.text, smallest.b) || boxLabelLines(label.text, smallest.b, 11))) return { place: "box", region: smallest.r };
+  // A label given a point is written AT that point — never re-centred in the box around it: four
+  // lines a model placed one under another in one box were all centred onto the same spot (the
+  // "Assuming a Finite List" board, 2026-10-17).
   return { place: "here" };
 }
 
