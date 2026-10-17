@@ -45,7 +45,7 @@ import { documentLectureTitle, lectureSubject } from "@/lib/lectureSubject";
 import { firstPageTitle } from "@/lib/sectionTitle";
 import { isQuestionAboutFile } from "@/lib/planPrompt";
 import { buildDocumentContext } from "@/lib/lessonChatContext";
-import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
+import { ARIA_LIVE_VOICE, useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
 import type { Beat } from "@/lib/lessonContent";
 import type { LectureMode } from "@/lib/db/cosmos";
@@ -434,6 +434,8 @@ type BuildCost =
 
   const planningVoice = useGeminiLiveTutor({
     voiceSurface: "planning",
+    // The same Aria who teaches the lecture (lib/useGeminiLiveTutor.ts ARIA_LIVE_VOICE).
+    voiceName: ARIA_LIVE_VOICE,
     // The uploaded pages, as images: shared the moment the parse produces them, even if she
     // connected first. A scanned PDF has no text for the instruction below to carry.
     documentId: documentId ?? undefined,

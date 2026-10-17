@@ -64,8 +64,6 @@ const CLOUD_TTS_GAIN = 1.45;
 const BROWSER_TTS_VOLUME = 1;
 /** How long a clip keeps being retried (spaced out) before it is given up on. */
 const CLIP_RETRY_WINDOW_MS = 20_000;
-/** How long playback waits for a sentence's clip once it reaches that sentence, before saying it another way. */
-const CLIP_PATIENCE_MS = 4_000;
 
 /** Resolves when the browser is back online, or after `ms` at most. */
 function untilOnline(ms: number): Promise<void> {
@@ -119,12 +117,12 @@ export interface NarrationCallbacks {
    */
   preserveActive?: boolean;
   /**
-   * What happens when a part's FIRST clip cannot be synthesised (a slow or failed /api/tts call).
-   * "browser" (the default): the whole part is read by the browser's own speech engine — a
-   * different voice, with no lip sync. "silent": Aria's voice is kept — that sentence passes as a
-   * timed gap and the rest of the part plays as its clips arrive; only when the next clip fails too
-   * (an outage, not a hiccup) does it fall back to the browser voice. The normal lecture uses
-   * "silent": after a pause or a stall her voice used to change for a whole part (2026-10-14).
+   * What happens when a part's FIRST clip cannot be synthesised (a failed /api/tts call, after its
+   * retries). "browser" (the default): the whole part is read by the browser's own speech engine —
+   * a different voice, with no lip sync. "silent": Aria's voice is ALWAYS kept — every sentence
+   * waits for its own clip, and one that never comes passes as a timed gap. The standard lecture,
+   * its chat answers and its checkpoint voice use "silent" (owner, 2026-10-17: "the voice of Aria
+   * changes and during that she doesn't lip sync — a very common and big issue").
    */
   voiceFallback?: "browser" | "silent";
 }
@@ -549,8 +547,8 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
      * dropped connection fails a request at once, so all three were spent within ~250 ms and every
      * sentence fetched during a two-second drop was lost to a silent gap (2026-10-16). Tries are now
      * spaced out (0.5, 1, 2, 4 s…) over a window of CLIP_RETRY_WINDOW_MS, and while the browser
-     * reports itself offline a try waits for the connection to come back. Playback never waits on
-     * this window: it waits CLIP_PATIENCE_MS for a sentence's clip, then speaks it another way.
+     * reports itself offline a try waits for the connection to come back. Playback waits on it: a
+     * slow clip pauses Aria on that sentence, and she says it in her own voice when it arrives.
      *
      * A part that hands itself to the browser voice when its first clip fails ("browser") keeps the
      * one 7 s try for that clip: the student is waiting in silence for it.
@@ -612,7 +610,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
      * voice when its first clip fails. One that keeps it ("silent") no longer waits here: it used to
      * wait for the SECOND clip's retries to decide (3 x 10 s) — 23 s of dead air at the start of a
      * part while the player said she was speaking (2026-10-16). Every sentence, the first included,
-     * now gets CLIP_PATIENCE_MS in the loop below, and is spoken another way when its clip is late.
+     * now waits in the loop below for its own clip.
      */
     let firstClip: Blob | null = null;
     if (!keepVoice) {
@@ -699,67 +697,38 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         tick();
       });
 
-    /** Sentence i's clip, waited for at most CLIP_PATIENCE_MS of playing time; null when late or failed. */
-    const clipWithin = async (i: number): Promise<Blob | null> => {
-      const late = sleep(CLIP_PATIENCE_MS).then(() => null);
-      const blob = await Promise.race([clipPromises[i], late]);
-      if (!blob) traceNarration("clip-late", { sentence: i, text: sentences[i].slice(0, 40) });
-      return blob;
-    };
-
     /*
-     * A SENTENCE WHOSE CLIP DID NOT COME IS STILL SAID. It used to pass as a timed silent gap, so a
-     * connection drop took whole sentences out of the lesson while the board moved on. It is now
-     * read by the browser's speech engine (a voice installed on the device when the browser is
-     * offline), bounded so a speech engine that never reports its end cannot hold the lecture. The
-     * next sentence goes back to Aria's own voice as soon as its clip is there.
+     * HER OWN VOICE OR NONE. A sentence whose clip was not ready within 4 s used to be read by the
+     * browser's speech engine: a different voice, and a still mouth (nothing it says reaches the lip
+     * track or the analyser) while she still showed as speaking — "the voice of Aria changes and
+     * she doesn't lip sync" (2026-10-17). Every sentence now waits for its own clip (fetchClip keeps
+     * retrying across a blip for CLIP_RETRY_WINDOW_MS); one that never comes passes as a timed gap.
      */
-    const sayWithBrowser = async (i: number) => {
-      const bound = estimatedSentenceMs(i) * 1.6 + 1_500;
-      if (typeof window === "undefined" || !("speechSynthesis" in window)) {
-        await sleep(estimatedSentenceMs(i));
-        return estimatedSentenceMs(i);
-      }
-      const voices = await waitForVoices();
-      const offline = typeof navigator !== "undefined" && navigator.onLine === false;
-      const voice = (offline ? pickTeacherVoice(voices.filter((v) => v.localService)) : undefined) ?? pickTeacherVoice(voices);
-      const startedAt = performance.now();
-      const pausedBefore = totalPausedMs;
-      await Promise.race([
-        new Promise<void>((resolve) => {
-          const u = new SpeechSynthesisUtterance(sentences[i]);
-          u.rate = 0.93 * rate;
-          u.pitch = 1.08;
-          u.volume = BROWSER_TTS_VOLUME;
-          if (voice) u.voice = voice;
-          u.onend = () => resolve();
-          u.onerror = () => resolve();
-          try {
-            window.speechSynthesis.speak(u);
-          } catch {
-            resolve();
-          }
-        }),
-        sleep(bound),
-      ]);
-      if (!cancelled && (window.speechSynthesis.speaking || window.speechSynthesis.pending)) window.speechSynthesis.cancel();
-      return Math.max(0, performance.now() - startedAt - (totalPausedMs - pausedBefore));
+    const clipFor = async (i: number): Promise<Blob | null> => {
+      let ready = false;
+      const slow = window.setTimeout(() => {
+        if (!ready) traceNarration("clip-waiting", { sentence: i, text: sentences[i].slice(0, 40) });
+      }, 1_500);
+      const blob = await clipPromises[i];
+      ready = true;
+      window.clearTimeout(slow);
+      if (!blob) traceNarration("clip-failed", { sentence: i, text: sentences[i].slice(0, 40) });
+      return blob;
     };
 
     callbacks.onStart();
 
     for (let i = 0; i < sentences.length; i += 1) {
       if (cancelled) return;
-      const blob = i === 0 && firstClip ? firstClip : await clipWithin(i);
+      const blob = i === 0 && firstClip ? firstClip : await clipFor(i);
       if (cancelled) return;
 
+      // A clip that never came, after all its retries: a timed gap, so the board stays in step.
       if (!blob) {
         if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
         callbacks.onProgress?.(sentenceAlignedProgress(weights, i, 0), elapsedBeforeMs, estimatedTotalMs);
-        elapsedBeforeMs += await sayWithBrowser(i);
-        if (cancelled) return;
-        callbacks.onProgress?.(sentenceAlignedProgress(weights, i, 1), elapsedBeforeMs, estimatedTotalMs);
-        if (i < sentences.length - 1) await sleep(SENTENCE_GAP_MS / rate);
+        await sleep(estimatedSentenceMs(i));
+        elapsedBeforeMs += estimatedSentenceMs(i);
         continue;
       }
 

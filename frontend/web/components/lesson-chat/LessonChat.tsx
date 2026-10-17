@@ -128,6 +128,8 @@ export function useLessonChat(opts: {
    * 0.5x or 1.5x. Optional — a player that passes none answers at normal speed, as before.
    */
   rate?: number;
+  /** "silent": an answer is only ever spoken in Aria's own voice, never the browser's (lib/voice.ts). */
+  voiceFallback?: "browser" | "silent";
   /**
    * A question asking for a formula is answered with the formula itself on a KaTeX formula card
    * (lib/drawConsent.ts isFormulaQuestion). Normal mode only: the accessibility players keep their path.
@@ -232,6 +234,7 @@ export function useLessonChat(opts: {
       // Maths is read as words, not LaTeX ("\sin 30^\circ" → "sin 30 degrees").
       const handle = playNarration(speakableMath(script), {
         rate: opts.rate,
+        voiceFallback: opts.voiceFallback,
         onStart: () => {},
         onSentenceStart: (si, _s, st) => setDrawProgress(st > 1 ? Math.min(1, (si + 1) / st) : 1),
         onEnd: () => {

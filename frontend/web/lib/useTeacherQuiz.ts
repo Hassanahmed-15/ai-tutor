@@ -60,6 +60,7 @@ export function useTeacherQuiz({
   voice,
   setMicEnabled,
   rate,
+  voiceFallback,
   onPassed,
   onFailed,
 }: {
@@ -68,6 +69,8 @@ export function useTeacherQuiz({
   setMicEnabled: (on: boolean) => void;
   /** Narration speed, so the question is spoken at the lesson's pace. */
   rate: number;
+  /** "silent": the question and verdict are only ever said in Aria's own voice (lib/voice.ts). */
+  voiceFallback?: "browser" | "silent";
   /** The student got it — carry on with the lecture. */
   onPassed: () => void;
   /** The student missed it — stay paused and offer to go over it again. */
@@ -136,12 +139,12 @@ export function useTeacherQuiz({
       // talking to the chatbot instead) just hand control back without speaking it.
       const spoke = voice.speakAsTeacher(
         spoken,
-        { onStart: () => {}, onEnd: done, onBlocked: done, rate },
+        { onStart: () => {}, onEnd: done, onBlocked: done, rate, voiceFallback },
         "utterance",
       );
       if (!spoke) done();
     },
-    [teardown, voice, rate]
+    [teardown, voice, rate, voiceFallback]
   );
 
   const grade = useCallback(
@@ -242,6 +245,7 @@ export function useTeacherQuiz({
           onEnd: startListening,
           onBlocked: startListening, // audio blocked — still take the answer
           rate,
+          voiceFallback,
         },
         "utterance",
       );
@@ -260,7 +264,7 @@ export function useTeacherQuiz({
       setPhase("asking");
       return true;
     },
-    [setMicEnabled, voice, rate, startListening]
+    [setMicEnabled, voice, rate, voiceFallback, startListening]
   );
 
   const cancel = useCallback(() => {

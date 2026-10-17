@@ -18,13 +18,14 @@ export function canvasSentences(script: string): string[] {
 /**
  * NO PREDICTION, NO QUIZ (owner's direction, 2026-10-16: remove "Predict it" from every lecture —
  * typed, PDF and video). A board keeps only a task the plan asked for because doing it IS the skill:
- * a "try" slider or a "draw". Anything else — a "quiz", or nothing — is no interaction and no
+ * a "try" slider. Anything else — a "quiz", a "draw" (owner, 2026-10-17: drawing tasks removed), or
+ * nothing — is no interaction and no
  * predict/reveal cycle, so the lecture never stops for an answer.
  */
 export function teachingCycle(_script: string, interaction: CanvasPlanBeat["interaction"], _overview: boolean): { interaction: CanvasPlanBeat["interaction"]; cycle?: CanvasPlanBeat["teachingCycle"] } {
   void _script;
   void _overview;
-  return { interaction: interaction === "try" || interaction === "draw" ? interaction : null, cycle: undefined };
+  return { interaction: interaction === "try" ? interaction : null, cycle: undefined };
 }
 
 export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBeat[] } | null {

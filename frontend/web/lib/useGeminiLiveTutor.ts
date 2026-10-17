@@ -34,6 +34,15 @@ import { reportClientSpend } from "./spendTag";
 const LIVE_MODEL_FOR_SPEND = "gemini-live";
 
 /** Which Live models take a thinkingConfig. The 3.8 line rejects it at the socket. */
+/** The live voice every surface had: the accessibility players keep it. */
+export const DEFAULT_LIVE_VOICE = "Kore";
+/**
+ * Aria's live voice in the standard lecture and the home page's planning chat: the Gemini voice
+ * closest to the lecture's OpenAI "nova" (bright, warm), so answering a spoken question does not
+ * sound like a different person (owner, 2026-10-17).
+ */
+export const ARIA_LIVE_VOICE = "Zephyr";
+
 export function supportsThinkingLevel(model: string): boolean {
   return !/gemini-3\.8-live/.test(model);
 }
@@ -1949,7 +1958,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           // sent; the flash-live models accept it. Measured with scripts/probe-live-model.mjs.
           ...(supportsThinkingLevel(sessionData.model) ? { thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL } } : {}),
           speechConfig: {
-            voiceConfig: { prebuiltVoiceConfig: { voiceName: optionsRef.current.voiceName ?? "Kore" } },
+            voiceConfig: { prebuiltVoiceConfig: { voiceName: optionsRef.current.voiceName ?? DEFAULT_LIVE_VOICE } },
           },
           systemInstruction: {
             parts: [{ text: optionsRef.current.systemInstruction ?? sessionData.instructions }],

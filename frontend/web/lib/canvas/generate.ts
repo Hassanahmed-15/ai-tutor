@@ -378,7 +378,8 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       if (beat.requiredVisual?.stages.length && !beat.requiredVisual.stages.includes(spec.stage.kind)) console.log(`[canvas] ${beat.id}: kept as ${spec.stage.kind} (the contract asked for ${beat.requiredVisual.stages.join("/")}; the plan's stage wins)`);
       const contractNotes = beat.requiredVisual ? visualContractIssues(spec, beat.requiredVisual).filter((i) => !/requires|stage/i.test(i)) : [];
       // No quiz written inside a board: the check card is written separately, after the board.
-      if (spec.interaction?.kind === "quiz") delete spec.interaction;
+      // No drawing task either (owner, 2026-10-17: "they are annoying"), even one the board model adds.
+      if (spec.interaction?.kind === "quiz" || spec.interaction?.kind === "draw") delete spec.interaction;
       // A try-it task without enough reactions is left off, not a reason to fail the board.
       if (spec.interaction?.kind === "try" && spec.interaction.reactions.length < 2) delete spec.interaction;
       if (spec.stage.kind === "equation") {

@@ -15,9 +15,9 @@ test("no board is given a quiz or a predict/reveal cycle, however its script or 
   assert.equal(plan?.beats[0].teachingCycle, undefined);
 });
 
-test("a hands-on task the plan asked for stays: a slider or a drawing is the skill", () => {
+test("a slider the plan asked for stays; a drawing task never does (2026-10-17)", () => {
   assert.equal(teachingCycle("Explain it. Try it.", "try", false).interaction, "try");
-  assert.equal(teachingCycle("Explain it. Draw it.", "draw", false).interaction, "draw");
+  assert.equal(teachingCycle("Explain it. Draw it.", "draw", false).interaction, null, "no drawing tasks (2026-10-17)");
   assert.equal(validatePlan({ beats: [{ title: "Light", script: "Light drives the rate. Move the slider and watch.", stage: "graph", objects: ["rate"], interaction: "try" }] })?.beats[0].interaction, "try");
 });
 

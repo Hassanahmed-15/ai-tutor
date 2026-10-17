@@ -70,7 +70,7 @@ import { selectAnimationRenderer } from "@/lib/animationRouting";
 import type { LearnerAdaptiveSignal } from "@/lib/progressiveLectureTypes";
 import { useLessonChat, ChatPanel, ExplainOverlay, TeacherDrawingNotice } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
-import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
+import { ARIA_LIVE_VOICE, useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
 import type { SourceScope } from "@/lib/sourceScope";
 import { beatSourceGroundingFor, isStrictScope, referenceVoicePartContext, strictVoicePartContext, withStrictSourceHeader } from "@/lib/strictSourceAnswers";
 import { useEngagementScore } from "@/lib/useEngagementScore";
@@ -950,6 +950,8 @@ export function LessonPlayer({
   const revisitToolRef = useRef<((args: Record<string, unknown>) => Promise<string>) | null>(null);
   const tutor = useGeminiLiveTutor({
     voiceSurface: documentId ? "pdf" : "normal",
+    // Closest to the lecture voice, so a spoken answer sounds like the same Aria (standard lecture).
+    ...(standardTransitionsEnabled ? { voiceName: ARIA_LIVE_VOICE } : {}),
     // Minutes of narration at a time: nothing stops her without positive evidence.
     gateProfile: "lecture",
     // She is shown the uploaded pages themselves, not only their extracted text.
@@ -1634,6 +1636,8 @@ export function LessonPlayer({
     voice,
     setMicEnabled: tutor.setMicEnabled,
     rate,
+    // Her own voice only, never the browser's (lib/voice.ts) — the standard lecture.
+    voiceFallback: standardTransitionsEnabled ? "silent" : undefined,
     onPassed: () => {
       // A check-in owns the pause; nothing about the lesson may move it. See beginCheckin.
       if (checkinRef.current) return;
@@ -1696,6 +1700,8 @@ export function LessonPlayer({
     topic: title,
     // A spoken answer at the lecture's speed, not suddenly at 1x.
     rate,
+    // Her own voice only, never the browser's (lib/voice.ts) — the standard lecture.
+    voiceFallback: standardTransitionsEnabled ? "silent" : undefined,
     // "What is the formula for…?" gets the formula on a KaTeX card — normal mode only.
     formulaCards: !deafMode && !adhd,
     // The board as it stands, anything the student highlighted on it, and what a sandboxed board
@@ -4960,7 +4966,8 @@ function canvasPanelsOf(beats: Beat[]): CanvasPanelInput[] {
     // A verified end-of-board "Check it" card (lib/canvas/checkCard.ts) is kept; it opens when Aria
     // finishes the board, never mid-sentence.
     const { interaction, ...rest } = op.spec;
-    const spec: CanvasBoardSpec = interaction && (interaction.kind !== "quiz" || interaction.check) ? { ...rest, interaction } : rest;
+    // No "Draw it" task either (owner, 2026-10-17): a lecture made before shows none and holds for none.
+    const spec: CanvasBoardSpec = interaction && interaction.kind !== "draw" && (interaction.kind !== "quiz" || interaction.check) ? { ...rest, interaction } : rest;
     return [{ key: b.id, spec }];
   }));
 }
