@@ -76,7 +76,7 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
       ...planSource(b.source),
       // The planner's diagram, only when it names a real catalogue entry.
       ...(typeof b.diagram === "string" && figureComponent(b.diagram.trim()) ? { plannedFigure: b.diagram.trim() } : {}),
-      ...(typeof b.visual === "string" && ["thing", "quantity", "math", "sequence", "comparison", "concept"].includes(b.visual.trim().toLowerCase()) ? { visualType: b.visual.trim().toLowerCase() as CanvasPlanBeat["visualType"] } : {}),
+      ...(typeof b.visual === "string" && ["thing", "diagram", "quantity", "math", "sequence", "comparison", "concept"].includes(b.visual.trim().toLowerCase()) ? { visualType: b.visual.trim().toLowerCase() as CanvasPlanBeat["visualType"] } : {}),
       ...boardNotesOf(b.board, canvasSentences(script).length),
       ...(Array.isArray(b.sentenceBlocks) ? { sentenceBlocks: b.sentenceBlocks.map((v) => (typeof v === "string" ? v.replace(/[{}\s]/g, "") : "")).slice(0, 40) } : {}),
     });

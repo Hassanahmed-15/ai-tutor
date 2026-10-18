@@ -26,7 +26,7 @@ import { courseCoverageGaps, coverageMessage, requiredTermsOf, type CoverageGap 
 import { boardNotesOf } from "./plan";
 import { examBoardSpec } from "./examBoard";
 import { writeCheckCard } from "./checkCard";
-import { checkCardBoards } from "./checkCardPlan";
+import { checkCardBoards, tasksGiveWay } from "./checkCardPlan";
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -320,7 +320,10 @@ export async function writeCanvasBoard(args: {
   // Only on about every third board, and never in a strict PDF lesson (lib/canvas/checkCardPlan.ts).
   let cardCost = 0;
   const cardHere = checkCardBoards(plan, args.strictSource?.mode === "strict").has(index);
-  if (cardHere && !spec.interaction && spec.stage.kind !== "exam" && !beat.overview && !beat.refresher && process.env.CANVAS_CHECK_CARDS !== "off") {
+  // In a lesson full of sliders the question takes this board's slider's place (the slider stays if
+  // no card can be verified).
+  const taskYields = Boolean(spec.interaction && (spec.interaction.kind === "try" || spec.interaction.kind === "draw") && tasksGiveWay(plan));
+  if (cardHere && (!spec.interaction || taskYields) && spec.stage.kind !== "exam" && !beat.overview && !beat.refresher && process.env.CANVAS_CHECK_CARDS !== "off") {
     const block = args.document?.contentBlocks?.[plan.filter((b) => !b.refresher).indexOf(beat)];
     const made = await writeCheckCard(client(), beat, spec, { level: args.document?.lesson?.level, teachingHints: block?.teachingHints }).catch((error) => ({ card: null, costUsd: (error as { costUsd?: number }).costUsd ?? 0, log: `no check card — ${(error as Error).message}` }));
     cardCost = made.costUsd;

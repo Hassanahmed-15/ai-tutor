@@ -52,6 +52,15 @@ export function boardFacts(spec: CanvasBoardSpec): string {
       break;
     }
     case "graph": {
+      // A shape graph shows no numbers: the reviewer is shown its shape, which is all the student sees,
+      // so a sketch of an enzyme's optimum is never rejected for coordinates nobody can read (2026-10-18).
+      if (stage.qualitative) {
+        lines.push(`Main visual: a SHAPE GRAPH with no numbers on either axis — x axis "${stage.x.label}", y axis "${stage.y.label}". Judge its shape and named points only; it shows no values.`);
+        for (const curve of stage.curves) lines.push(`Curve "${curve.label ?? curve.id}": ${curveShape(curve.expr, stage.x.min, stage.x.max)}.`);
+        for (const m of stage.markers ?? []) lines.push(`Named point "${m.label ?? m.id}" on ${m.curve}.`);
+        for (const g of stage.guides ?? []) lines.push(`Marked line "${g.label}".`);
+        break;
+      }
       lines.push(`Main visual: a graph. x axis "${stage.x.label}" from ${stage.x.min} to ${stage.x.max}; y axis "${stage.y.label}" from ${stage.y.min} to ${stage.y.max}.`);
       for (const curve of stage.curves) {
         const xs = [0, 0.25, 0.5, 0.75, 1].map((t) => stage.x.min + t * (stage.x.max - stage.x.min));
@@ -126,6 +135,22 @@ Fail the board (ship false) only for a problem a student would be misled or shor
 - off-topic: the board teaches something outside the lesson's topic.
 - quiz: the card is ambiguous, has no single right answer, or its wording itself gives the right option away (one option far longer or more detailed than the rest), or a wrong option no student would ever choose ("Oxygen stops existing"). The card is answered before Aria reveals the answer, so the narration revealing it later is correct, never a giveaway.
 Do not fail a board for style, for being simple, or for leaving out detail the narration does not mention. Each detail names the exact text on the board that is wrong and what it should be instead.`;
+
+/** A curve's shape in words: "rises, then falls (peak about 60% of the way along)". */
+export function curveShape(expr: string, min: number, max: number): string {
+  const ys = Array.from({ length: 13 }, (_, i) => evalExpr(expr, { x: min + (i / 12) * (max - min) }, NaN));
+  if (ys.some((y) => !Number.isFinite(y))) return "a curve";
+  const span = Math.max(...ys) - Math.min(...ys) || 1;
+  const moves: string[] = [];
+  for (let i = 1; i < ys.length; i++) {
+    const d = (ys[i] - ys[i - 1]) / span;
+    const m = d > 0.02 ? "rises" : d < -0.02 ? "falls" : "levels off";
+    if (moves[moves.length - 1] !== m) moves.push(m);
+  }
+  const peak = ys.indexOf(Math.max(...ys));
+  const peaked = moves.includes("rises") && moves.includes("falls") && peak > 0 && peak < ys.length - 1;
+  return `${moves.join(", then ")}${peaked ? ` (highest about ${Math.round((peak / 12) * 100)}% of the way along)` : ""}`;
+}
 
 export function boardReviewRequest(spec: CanvasBoardSpec, beat: Pick<CanvasPlanBeat, "title" | "script">, lessonTopic: string): string {
   return `Lesson: ${lessonTopic}\nBoard: ${beat.title}\n\nWHAT ARIA SAYS:\n${beat.script}\n\nWHAT THE BOARD SHOWS:\n${boardFacts(spec)}`;

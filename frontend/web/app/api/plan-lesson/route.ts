@@ -1340,7 +1340,7 @@ export async function POST(req: Request) {
           checkCoverage: (pack) => syllabusAsked(pack) && pack.checklist.length > 0,
         }
       : undefined;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : shape === "process" ? 3 : 2, research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined);
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : shape === "process" ? 3 : shape === "fact" ? 1 : 2, research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined);
   }
 
   // mode === "revise"

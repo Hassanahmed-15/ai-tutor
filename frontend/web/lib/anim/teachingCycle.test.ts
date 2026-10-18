@@ -69,8 +69,9 @@ test("last-attempt repairs: a crossing arrow and a contradicting graph label are
   const raw = JSON.parse(fs.readFileSync(path.join(process.cwd(), "lib", "anim", "fixtures-g2-flow.json"), "utf8"));
   const spec = validateCanvasSpec(raw, 6)!;
   const fixed = dropCrossingArrows(spec, layoutPanel(spec));
-  assert.ok(fixed.stage.kind === "flow" && !fixed.stage.arrows.some((a) => a.id === "reuse-arrow"));
-  assert.ok(fixed.stage.kind === "flow" && fixed.stage.arrows.length === 3);
+  // The layout now bows "reuse-arrow" round the card it used to cross (2026-10-18), so the last-attempt
+  // repair has nothing left to drop: all four arrows stay, none through a card.
+  assert.ok(fixed.stage.kind === "flow" && fixed.stage.arrows.length === 4);
   const stage = dropContradictingPoints({ kind: "graph", x: { label: "Q", min: 0, max: 800 }, y: { label: "r", min: 0, max: 6 }, curves: [{ id: "s", expr: "2 + 0.004 * x", s: 0 }], guides: [{ id: "g", x: 500, label: "$500 billion at 3%", s: 0 }], markers: [{ id: "ok", x: "250", curve: "s", label: "3%", s: 0 }] });
   assert.equal(stage.guides, undefined);
   assert.equal(stage.markers?.length, 1);

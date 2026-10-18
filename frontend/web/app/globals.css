@@ -1408,3 +1408,15 @@ html[data-reduced-motion="1"] *::after {
   .fr-in { animation: none; }
   .fr-line { animation: none; stroke-dashoffset: 0; }
 }
+
+/* The entry status screen: Dot floating as she reads, a highlight passing along the page's lines,
+   and the build screen's thin line sweeping (components/pages/LearnPage.tsx EntryStatus). */
+@keyframes entry-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes entry-read { 0% { background-position: -120% 0; } 100% { background-position: 220% 0; } }
+@keyframes entry-sweep { 0% { transform: translateX(-110%); } 100% { transform: translateX(320%); } }
+.entry-bob { animation: entry-bob 3.2s ease-in-out infinite; }
+.entry-line { background-image: linear-gradient(90deg, transparent 0%, var(--hud-cyan) 50%, transparent 100%); background-size: 45% 100%; background-repeat: no-repeat; animation: entry-read 2.1s linear infinite; }
+.entry-sweep > div { animation: entry-sweep 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .entry-bob, .entry-line, .entry-sweep > div { animation: none; }
+}

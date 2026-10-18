@@ -42,9 +42,12 @@ test("a narrow question that the planner padded keeps only what answers it", () 
   assert.deepEqual(kept.map((s) => s.title), ["Scattering of Sunlight"]);
 });
 
-test("a single-idea question keeps the proven one-board rule; a process gets two or three and the mechanism", () => {
+test("a fact keeps the one-board rule, an idea gets two, a process two or three and the mechanism", () => {
+  const fact = directQuestionInstruction("What is the SI unit of force?", { shape: "fact" });
+  assert.match(fact, /Plan exactly ONE subtopic/);
+  // One board for a one-idea answer was too thin (lightning: one board of ten sentences, bench 2026-10-18).
   const single = directQuestionInstruction("What does the septum do?", { shape: "single" });
-  assert.match(single, /Plan exactly ONE subtopic/);
+  assert.match(single, /plan TWO subtopics/);
   assert.doesNotMatch(single, /TWO or THREE/);
   const unknown = directQuestionInstruction("What does the septum do?");
   assert.match(unknown, /Plan exactly ONE subtopic/, "no classification: planned as one idea, as before");
@@ -52,7 +55,7 @@ test("a single-idea question keeps the proven one-board rule; a process gets two
   assert.match(process, /TWO or THREE subtopics/);
   assert.match(process, /Never more than three/);
   assert.match(process, /explain the mechanism/);
-  for (const rule of [single, process]) assert.match(rule, /importance, impact, role in health or applications/);
+  for (const rule of [fact, single, process]) assert.match(rule, /importance, impact, role in health or applications/);
 });
 
 test("the shape answer is read strictly", () => {

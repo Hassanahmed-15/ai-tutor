@@ -161,6 +161,12 @@ export type GraphMarker = {
 export type GraphGuide = { id: string; x: number; label: string; s: number };
 export type GraphStage = {
   kind: "graph";
+  /**
+   * A SHAPE GRAPH: the curve's form (rise, peak, fall) with no numbered ticks — for a curve Aria
+   * describes without numbers. Its coordinates only draw the shape; the student sees axis names and
+   * named points (owner, 2026-10-18: "named points, no ticks").
+   */
+  qualitative?: boolean;
   x: { label: string; min: number; max: number };
   y: { label: string; min: number; max: number };
   curves: GraphCurve[];
@@ -357,7 +363,20 @@ export type DrawInteraction = {
 export type QuizInteraction = {
   kind: "quiz";
   question: string;
-  options: Array<{ text: string; correct: boolean; feedback: string }>;
+  /**
+   * HOW THE STUDENT ANSWERS (owner, 2026-10-18: "more interactive"): "choice" taps an option on the
+   * card; "tap" taps the part on the board itself (each option's `target`), its label hidden as "?"
+   * until answered; "order" puts the board's steps in order (`steps`, right order first to last).
+   */
+  mode?: "choice" | "tap" | "order";
+  options: Array<{ text: string; correct: boolean; feedback: string; target?: string }>;
+  steps?: Array<{ id: string; text: string }>;
+  /** The steps go round a loop (a cycle): any starting step is right if the order round is. */
+  loop?: boolean;
+  /** A nudge, not the answer: Aria says `text` while the pen points at `target` on the board. */
+  hint?: { text: string; target?: string };
+  /** "Show me again": the sentence that taught the answer, said again with the pen on `target`. */
+  replay?: { text: string; target?: string };
   /**
    * A "Check it" card (lib/canvas/checkCard.ts): written after the board, verified independently,
    * shown when Aria finishes the board. Cards without it are the old mid-board "Predict it" ones,
@@ -428,7 +447,7 @@ export type CanvasPlanBeat = {
    * table) or a concept (notes). The visual policy follows it last (owner, 2026-10-17: routing by
    * word lists never generalised).
    */
-  visualType?: "thing" | "quantity" | "math" | "sequence" | "comparison" | "concept";
+  visualType?: "thing" | "diagram" | "quantity" | "math" | "sequence" | "comparison" | "concept";
   /**
    * What Aria writes on the board as she speaks (owner, 2026-10-17: "whatever Aria speaks, at least
    * 60–80% should appear on the board"): the planner's short phrase for a sentence, shown on exactly

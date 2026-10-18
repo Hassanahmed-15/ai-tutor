@@ -19,7 +19,7 @@ import { partBodies, shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
 import type { FigureDrawing } from "../figures/types";
 import { compileDiagram } from "../diagrams/render";
-import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type DiagramStage, type EquationStage, type ExamStage, type FigureStage, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage, type StructureStage } from "./types";
+import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type DiagramStage, type EquationStage, type ExamStage, type FigureStage, type FlowNode, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage, type StructureStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Pt = { x: number; y: number };
@@ -520,7 +520,23 @@ function arrowMarks(arrows: FlowStage["arrows"], centres: Map<string, { c: Pt; r
     const dx = p1.x - p0.x;
     const dy = p1.y - p0.y;
     const d = Math.hypot(dx, dy) || 1;
-    const k = bend(p0, p1);
+    // Two arrows between the same two nodes, one each way, bow apart — on the same small bend they
+    // were drawn over each other, labels and all ("accepts 2C" over "more reactions", Krebs 2026-10-18).
+    const paired = arrows.some((other) => other !== arrow && other.from === arrow.to && other.to === arrow.from);
+    // An arrow never runs through a card it does not join: it bows round it, or is left off when no
+    // bow clears it ("Redox indicator → Test tube" was drawn straight through "Colour loss", 2026-10-18).
+    const others = [...centres.entries()].filter(([id, n]) => id !== arrow.from && id !== arrow.to && n.box).map(([, n]) => n.box!);
+    const crosses = (k: number) => {
+      const c = { x: mx - (dy / d) * k, y: my + (dx / d) * k };
+      for (let t = 0.12; t <= 0.88; t += 0.04) {
+        const q = { x: (1 - t) * (1 - t) * p0.x + 2 * t * (1 - t) * c.x + t * t * p1.x, y: (1 - t) * (1 - t) * p0.y + 2 * t * (1 - t) * c.y + t * t * p1.y };
+        if (others.some((r) => q.x > r.x + 4 && q.x < r.x + r.w - 4 && q.y > r.y + 4 && q.y < r.y + r.h - 4)) return true;
+      }
+      return false;
+    };
+    const base = paired ? 46 : bend(p0, p1);
+    const k = [base, 55, -55].find((b) => !crosses(b));
+    if (k === undefined) { recordLayoutDrop(`the arrow ${arrow.from} → ${arrow.to} had no path clear of the other cards`); return; }
     const c = { x: mx - (dy / d) * k, y: my + (dx / d) * k };
     // The label sits beside the curve, at the first spot along it (middle first, either side) where it
     // prints over no node, name, box or other label — an arrow label once covered "Sociologist's
@@ -559,15 +575,21 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
     const original = stage.nodes.find((n) => n.id === node.id) ?? node;
     if (!node.icon && !node.becomes && !node.glow) {
       const room = maxLabelW ?? 2 * Math.min(cx - box.x, box.x + box.w - cx) - 10;
-      const w = Math.max(110, Math.min(220, room));
-      const labelSize = Math.max(13, Math.min(18, Math.floor((w - 18) / Math.max(1, textWidth(node.label, 1)))));
+      // Two or three steps fill the board: three small cards in a row left most of it empty (2026-10-18).
+      const few = nodes.length <= 3;
+      const w = Math.max(110, Math.min(few ? 270 : 220, room));
+      const labelSize = Math.max(13, Math.min(few ? 21 : 18, Math.floor((w - 18) / Math.max(1, textWidth(node.label, 1)))));
       // In a column of cards each card fits its share of the column: cards drawn as tall as their
       // detail overlapped ("Testing" printed over "Antiretroviral drugs"; live test, 2026-10-17).
-      const detailRoom = maxH === undefined ? 3 * 19 : maxH - 48;
+      // A title that wraps ("Enzyme-substrate / complex") takes room from the detail under it: counted,
+      // the detail no longer spills out of the card's foot (2026-10-18).
+      const title = fitText(node.label, w - 16, labelSize, 12);
+      const titleExtra = (title.lines.length - 1) * title.size * 1.15;
+      const detailRoom = (maxH === undefined ? 3 * 19 : maxH - 48) - titleExtra;
       const fit = original.sub && detailRoom >= 15 ? fitDetail(original.sub, w - 20, detailRoom) : undefined;
       if (original.sub && !fit) recordLayoutDrop(`"${original.sub}" under "${node.label}" had no room in its card`);
       const detail = fit?.lines;
-      const h = Math.min(maxH ?? Infinity, Math.max(58, 40 + (detail?.length ?? 0) * (fit?.size ?? 15) * 1.27 + 8));
+      const h = Math.min(maxH ?? Infinity, Math.max(few ? 84 : 58, 40 + titleExtra + (detail?.length ?? 0) * (fit?.size ?? 15) * 1.27 + 8));
       const card = { x: cx - w / 2, y: cy - h / 2, w, h };
       nodeMarks.push({ type: "box", id: node.id, rect: card, label: node.label, color: colorAt(i, node.color), s: node.s, size: labelSize, ...(detail?.length ? { detail, detailSize: fit!.size } : {}) });
       centres.set(node.id, { c: { x: cx, y: cy }, r: Math.min(w, h) / 2, box: card });
@@ -585,12 +607,23 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
     const column = (list: typeof nodes, x: number) => {
       const r = list.length > 3 ? 30 : 36;
       const span = box.h - 70;
-      list.forEach((node, k) => {
-        const cy = box.y + 20 + (span * (k + 0.5)) / list.length;
+      // Each node gets the height it really takes — a pictured node is its circle AND the name (and
+      // detail) printed under it; a card is its card. Spaced evenly by those heights, the "Heated air"
+      // icon's name no longer prints over the "Thunder" card below it (lightning board, 2026-10-18).
+      const pictured = (n: (typeof nodes)[number]) => Boolean(n.icon || n.becomes || n.glow);
+      const tight = list.length >= 3 && span / list.length < 118;
+      const heightOf = (n: (typeof nodes)[number]) => (pictured(n) ? 2 * r + (n.sub && !tight ? 48 : 28) : n.sub && !tight ? 96 : 66);
+      const total = list.reduce((sum, n) => sum + heightOf(n), 0);
+      const gap = Math.max(6, (span + 40 - total) / Math.max(1, list.length));
+      let y = box.y + Math.max(0, (span + 40 - total - gap * list.length) / 2) + gap / 2;
+      list.forEach((node) => {
+        const h = heightOf(node);
+        // A pictured node's centre is its circle's, above the name printed under it.
+        const cy = pictured(node) ? y + r : y + h / 2;
         // A second line under each node only where the column has room for it; the label carries it otherwise.
-        const tight = list.length >= 3 && span / list.length < 118;
-        if (tight && node.sub && (node.icon || node.becomes || node.glow)) recordLayoutDrop(`"${node.sub}" under "${node.label}" had no room in its column`);
-        place(tight ? { ...node, sub: undefined } : node, nodes.indexOf(node), x, cy, r, undefined, Math.max(52, span / list.length - 8));
+        if (tight && node.sub && pictured(node)) recordLayoutDrop(`"${node.sub}" under "${node.label}" had no room in its column`);
+        place(tight ? { ...node, sub: undefined } : node, nodes.indexOf(node), x, cy, r, undefined, Math.max(52, h - 4));
+        y += h + gap;
       });
     };
     column(inputs, box.x + 58);
@@ -1205,6 +1238,70 @@ export function sceneCell(cell: string, span: string | undefined, box: Rect): Re
   return { x: box.x + col * cw + 6, y: box.y + row * ch + 6, w: w * cw - 12, h: h * ch - 12 };
 }
 
+/**
+ * A scene of cards as a tidy diagram (owner, 2026-10-18: "chain or tidy grid"): cards joined in order
+ * become a chain; one card most of the others connect to becomes the hub, the rest around it; anything
+ * else a neat grid, with linked cards side by side so their arrows stay short. Laid out by the flow
+ * layout, so every card in a row is the same size and nothing floats. Null for a scene that is not a
+ * board of cards (pictures, text, more than seven items).
+ */
+export function tidyCards(stage: SceneStage): FlowStage | null {
+  const items = stage.items;
+  if (items.length < 2 || items.length > 7 || items.some((it) => it.kind === "text")) return null;
+  if (items.filter((it) => it.kind === "box").length < Math.ceil(items.length / 2)) return null;
+  const ids = new Set(items.map((it) => it.id));
+  const arrows = stage.arrows.filter((a) => ids.has(a.from) && ids.has(a.to) && a.from !== a.to);
+  const out = new Map<string, number>(), into = new Map<string, number>();
+  for (const a of arrows) { out.set(a.from, (out.get(a.from) ?? 0) + 1); into.set(a.to, (into.get(a.to) ?? 0) + 1); }
+  const degree = (id: string) => (out.get(id) ?? 0) + (into.get(id) ?? 0);
+  const node = (it: SceneStage["items"][number], role?: FlowNode["role"]): FlowNode => ({
+    id: it.id, label: it.label ?? "", ...(it.detail ? { sub: it.detail } : {}), ...(it.kind === "icon" && it.icon ? { icon: it.icon } : {}), ...(it.color ? { color: it.color } : {}), ...(role ? { role } : {}), s: it.s, ...(it.becomes ? { becomes: it.becomes } : {}),
+  });
+  // A chain first: the arrows run through every card but at most one, from a card nothing points to.
+  const next = new Map(arrows.map((a) => [a.from, a.to]));
+  const start = items.find((it) => out.has(it.id) && !into.has(it.id));
+  const order: string[] = [];
+  for (let at = start?.id; at && !order.includes(at); at = next.get(at)) order.push(at);
+  const byId = new Map(items.map((it) => [it.id, it]));
+  if (order.length >= Math.max(2, items.length - 1)) {
+    for (const it of items) if (!order.includes(it.id)) order.push(it.id);
+    return { kind: "flow", arrangement: "chain", nodes: order.map((id) => node(byId.get(id)!)), arrows };
+  }
+  // The hub: one card joined to three or more, with every other card (but at most one) joined to it
+  // and at most three on each side of it.
+  const hub = [...items].sort((a, b) => degree(b.id) - degree(a.id))[0];
+  const joined = new Set(arrows.flatMap((a) => (a.from === hub.id ? [a.to] : a.to === hub.id ? [a.from] : [])));
+  const outputs = new Set(arrows.filter((a) => a.from === hub.id).map((a) => a.to));
+  if (joined.size >= 3 && joined.size >= items.length - 2 && outputs.size <= 3 && items.length - 1 - outputs.size <= 3) {
+    return { kind: "flow", arrangement: "inputs-core-outputs", nodes: items.map((it) => node(it, it.id === hub.id ? "core" : outputs.has(it.id) ? "output" : "input")), arrows };
+  }
+  return null;
+}
+
+/**
+ * Any other board of cards on an even grid: equal cells, two columns for up to four cards, three for
+ * more, rows spread down the board, cards that an arrow joins placed next to each other. Pictures,
+ * text and big diagrams keep the writer's own cells.
+ */
+export function tidyGrid(stage: SceneStage): SceneStage {
+  const items = stage.items;
+  // Up to six: two rows of tall cards keep every card's detail whole. Seven or more on a 4-row grid cut
+  // details to one word ("More", "Above" — photoelectric evidence board, 2026-10-18); they keep the
+  // writer's own cells.
+  if (items.length < 2 || items.length > 6 || items.some((it) => it.kind === "text") || items.filter((it) => it.kind === "box").length < items.length - 2) return stage;
+  // Linked cards first, in arrow order, so each arrow joins neighbours.
+  const order: typeof items = [];
+  for (const a of stage.arrows) for (const id of [a.from, a.to]) { const it = items.find((x) => x.id === id); if (it && !order.includes(it)) order.push(it); }
+  for (const it of items) if (!order.includes(it)) order.push(it);
+  const cols = order.length <= 4 ? 2 : 3;
+  const rows = Math.ceil(order.length / cols);
+  // Columns of two cells each (A, C, E) or a 2-wide pair centred (B, D); rows spread over the four.
+  const colCells = cols === 2 ? ["B", "D"] : ["A", "C", "E"];
+  const rowCells = rows === 1 ? [2] : [1, 3];
+  // Snake order (the second row runs right to left), so cards next in the arrows' order stay neighbours.
+  return { ...stage, items: order.map((it, i) => { const row = Math.floor(i / cols); const col = row % 2 ? cols - 1 - (i % cols) : i % cols; return { ...it, cell: `${colCells[col]}${rowCells[row]}`, span: rows === 1 ? "2x1" : "2x2" }; }) };
+}
+
 function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
   const fbd = freeBodyParts(stage);
   if (fbd) {
@@ -1250,6 +1347,18 @@ function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
     add("electrolytic-cell", box, 0);
     return;
   }
+  // A BOARD OF CARDS IS LAID OUT TIDILY, not where the writer dropped each one: floating cards, cards
+  // touching and a seven-card collage with two arrows (enzyme and photoelectric boards, 2026-10-18).
+  const tidy = tidyCards(stage);
+  if (tidy) {
+    layoutFlow(tidy, box, marks, add);
+    return;
+  }
+  const gridded = tidyGrid(stage);
+  // A tidied grid leaves a gutter round every card: room for the arrows between neighbours, which
+  // were dropped when the cards touched.
+  const gutter = gridded !== stage ? { x: 20, y: 10 } : { x: 0, y: 0 };
+  stage = gridded;
   const centres = new Map<string, { c: Pt; r: number; below?: number }>();
   const itemMarks: Mark[] = [];
   // NO TWO ITEMS SHARE A CELL. The writer gave a 2x2 "Villus" card over the cell of "Central lacteal",
@@ -1273,7 +1382,8 @@ function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
     return { ...item, cell: `${String.fromCharCode(65 + spot[0])}${spot[1] + 1}`, span: `${spot[2]}x${spot[3]}` };
   });
   placed.forEach((item, i) => {
-    const rect = sceneCell(item.cell, item.span, box);
+    const cell = sceneCell(item.cell, item.span, box);
+    const rect = { x: cell.x + gutter.x, y: cell.y + gutter.y, w: cell.w - 2 * gutter.x, h: cell.h - 2 * gutter.y };
     const color = colorAt(i, item.color);
     if (item.kind === "icon") {
       const r = Math.min(rect.w, rect.h - 30) / 2 - 4;

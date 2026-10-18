@@ -184,6 +184,15 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const interaction = current?.spec.interaction?.kind === "quiz" && !current.spec.interaction.check ? undefined : current?.spec.interaction;
   const taskOpen = Boolean(interaction) && currentIndex >= 0 && (waitingForStudent || (finished && !taskDone));
   const drawing = taskOpen && interaction?.kind === "draw";
+  // A "tap the board" card: the student answers on the board, the asked parts' names hidden as "?"
+  // until they have answered (owner, 2026-10-18: "tap the board").
+  const [tapPick, setTapPick] = useState<{ key: string; index: number; at: number } | null>(null);
+  const [cardAnswered, setCardAnswered] = useState<Record<string, boolean>>({});
+  const tapCard = taskOpen && checkFlow && interaction?.kind === "quiz" && interaction.mode === "tap" && current ? interaction : undefined;
+  const tapHidden = useMemo(() => (tapCard && current && !cardAnswered[current.key] ? new Set(tapCard.options.map((o) => o.target).filter((t): t is string => Boolean(t))) : null), [tapCard, current, cardAnswered]);
+  // An "order the steps" card: the board's arrows would show the answer, so they are taken off until
+  // the student has answered — then they draw back in.
+  const orderOpen = Boolean(taskOpen && checkFlow && interaction?.kind === "quiz" && interaction.mode === "order" && current && !cardAnswered[current.key]);
 
   /* ── the pen: which cue is live ───────────────────────────────────────────────────────── */
 
@@ -520,7 +529,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               transform={`translate(${at.x},${at.y}) scale(${at.scale})`}
             >
               <MemoPanel
-                layout={layouts[i]}
+                layout={(tapHidden || orderOpen) && panel.key === current?.key ? quizLayout(layouts[i], tapHidden ?? new Set(), orderOpen, orderOpen && interaction?.kind === "quiz" ? (interaction.steps ?? []).map((st) => st.text) : []) : layouts[i]}
                 spec={specs[i]}
                 theme={themes[i]}
                 shownThrough={live && !finished ? sentence : Infinity}
@@ -536,7 +545,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               <Strokes strokes={strokes[panel.key] ?? []} live={live && drawing ? liveStroke : null} />
               {live && penCue && <Pen cue={penCue} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
               {!live && reactionPoint?.key === panel.key && <Pen cue={{ s: 0, action: "point", target: reactionPoint.target }} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
-              {(biologyExplore || (live ? exploring : mode !== "follow")) && (
+              {/* The explore layer's rings stay off a board while its tap card is open: they sat over the
+                  tap rings and caught the student's tap (water-cycle test, 2026-10-18). */}
+              {!(tapCard && panel.key === current?.key) && (biologyExplore || (live ? exploring : mode !== "follow")) && (
                 <Hotspots
                   layout={layouts[i]}
                   spec={panel.spec}
@@ -546,6 +557,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                     onTellAria(`The student tapped "${part.name}" on the picture of board "${panel.spec.heading}". You told them: "${part.say}"`);
                   }}
                 />
+              )}
+              {tapCard && tapHidden && panel.key === current?.key && (
+                <TapTargets layout={layouts[i]} targets={tapCard.options.map((o) => o.target ?? "")} onTap={(index) => setTapPick({ key: panel.key, index, at: Date.now() })} />
               )}
               {/* RACK FOCUS: while the camera is with Aria, every other board steps back — under a veil
                   of the background colour, which looks the same as fading the board but is one
@@ -701,8 +715,22 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           key={current.key}
           question={interaction.question}
           options={interaction.options}
+          mode={interaction.mode ?? "choice"}
+          steps={interaction.steps}
+          loop={interaction.loop}
+          tapped={tapPick?.key === current.key ? tapPick : null}
+          onHint={interaction.hint ? () => {
+            if (interaction.hint!.target && onBoardNow(layouts[currentIndex], interaction.hint!.target)) setReactionPoint({ key: current.key, target: interaction.hint!.target, at: Date.now() });
+            onSpeak(interaction.hint!.text);
+            onTellAria(`The student asked for a hint on "${interaction.question}". You said: "${interaction.hint!.text}"`);
+          } : undefined}
+          onReplay={interaction.replay ? () => {
+            if (interaction.replay!.target && onBoardNow(layouts[currentIndex], interaction.replay!.target)) setReactionPoint({ key: current.key, target: interaction.replay!.target, at: Date.now() });
+            onSpeak(interaction.replay!.text);
+          } : undefined}
           onAsk={() => onSpeak(interaction.question)}
           onAnswer={(i, done) => {
+            setCardAnswered((prev) => ({ ...prev, [current.key]: true }));
             const o = interaction.options[i];
             if (!reported.current.has(`quiz:${current.key}`)) {
               reported.current.add(`quiz:${current.key}`);
@@ -715,6 +743,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               onTellAria(`Asked "${interaction.question}", the student chose "${o.text}", which is correct. You congratulated them.`);
               return praise;
             }
+            // A wrong tap: the pen goes to the right part, its name back on the board.
+            const rightTarget = interaction.options.find((x) => x.correct)?.target;
+            if (interaction.mode === "tap" && rightTarget) setReactionPoint({ key: current.key, target: rightTarget, at: Date.now() });
             onSpeak(o.feedback);
             onTellAria(`Asked "${interaction.question}", the student chose "${o.text}" (not correct). You told them: "${o.feedback}" The right answer is "${interaction.options.find((x) => x.correct)?.text ?? ""}".`);
             return o.feedback;
@@ -1134,6 +1165,55 @@ function DrawCard({ prompt, hasInk, checking, check, onClear, onCheck, onContinu
 
 /* ── exploring: picture hotspots, the quiz, the mini-map ─────────────────────────────────── */
 
+/**
+ * Is this element on the finished board? A note that rolled off the notes column is not: a hint
+ * pointed at one drew the pen's highlight round empty paper (PDF test, 2026-10-18).
+ */
+function onBoardNow(layout: PanelLayout | undefined, target: string): boolean {
+  if (!layout?.targets[target]) return false;
+  const note = layout.marks.find((m) => m.type === "note" && m.id === target) as Extract<Mark, { type: "note" }> | undefined;
+  return !(note && note.until !== undefined);
+}
+
+/** The board with the asked parts' names shown as "?" — a label quiz — while a tap card is open. */
+const quizLayouts = new WeakMap<PanelLayout, Map<string, PanelLayout>>();
+function quizLayout(layout: PanelLayout, hidden: Set<string>, noArrows = false, steps: string[] = []): PanelLayout {
+  const key = `${[...hidden].sort().join("|")}${noArrows ? "|-arrows" : ""}|${steps.join("/")}`;
+  // A note that names two or more of the steps gives their order away ("Collecting duct → ureter →
+  // bladder" beside the kidney order card, 2026-10-18): off the board until the student has answered.
+  const lower = steps.map((st) => st.toLowerCase());
+  const givesOrder = (lines: string[]) => lower.filter((st) => lines.join(" ").toLowerCase().includes(st)).length >= 2;
+  const cached = quizLayouts.get(layout)?.get(key);
+  if (cached) return cached;
+  const marks = layout.marks
+    .filter((m) => !(noArrows && m.type === "arrow") && !(m.type === "note" && lower.length && givesOrder(m.lines)))
+    .map((m) => (m.type === "figure-label" && hidden.has(m.part) ? { ...m, lines: ["?"] } : m.type === "part" && hidden.has(m.id) ? { ...m, name: "?" } : m.type === "callout" && hidden.has(m.partId) ? { ...m, text: "?" } : m));
+  const out = { ...layout, marks };
+  quizLayouts.set(layout, (quizLayouts.get(layout) ?? new Map()).set(key, out));
+  return out;
+}
+
+/** The parts a tap card asks about, as glowing rings the student taps to answer. */
+function TapTargets({ layout, targets, onTap }: { layout: PanelLayout; targets: string[]; onTap: (index: number) => void }) {
+  return (
+    <g>
+      {targets.map((id, i) => {
+        const part = layout.marks.find((m) => m.type === "part" && m.id === id) as Extract<Mark, { type: "part" }> | undefined;
+        const r = layout.targets[id];
+        const c = part ? { x: part.cx, y: part.cy } : r ? { x: r.x + r.w / 2, y: r.y + r.h / 2 } : null;
+        if (!c) return null;
+        return (
+          <g key={id} role="button" aria-label={`Answer: part ${i + 1}`} style={{ cursor: "pointer" }} onPointerDown={(e) => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); onTap(i); }}>
+            <circle cx={c.x} cy={c.y} r={30} fill="#fff" opacity={0.001} />
+            <circle cx={c.x} cy={c.y} r={16} fill="none" stroke="#8b5cf6" strokeWidth={3.5} className="cv-hotspot" style={{ animationDelay: `${i * 160}ms` }} />
+            <circle cx={c.x} cy={c.y} r={7} fill="#8b5cf6" stroke="#fff" strokeWidth={2.5} />
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
 function Hotspots({ layout, spec, onTap }: { layout: PanelLayout; spec: CanvasBoardSpec; onTap: (part: { id: string; name: string; say: string }) => void }) {
   if (spec.stage.kind !== "illustration") return null;
   const parts = spec.stage.parts.filter((p) => p.say);
@@ -1220,9 +1300,16 @@ const PRAISE = ["That's right — well done!", "Correct — nice work!", "Exactl
  * - A wrong answer: struck through, with why it is wrong; the right option is then shown, without
  *   an explanation of its own, and the student continues.
  */
-function QuestionCard({ question, options, onAsk, onAnswer, onSkip, onContinue }: {
+function QuestionCard({ question, options, mode = "choice", steps, loop, tapped, onHint, onReplay, onAsk, onAnswer, onSkip, onContinue }: {
   question: string;
   options: Array<{ text: string; correct: boolean; feedback: string }>;
+  mode?: "choice" | "tap" | "order";
+  steps?: Array<{ id: string; text: string }>;
+  loop?: boolean;
+  /** A part tapped on the board (tap cards): its option index, and when. */
+  tapped?: { index: number; at: number } | null;
+  onHint?: () => void;
+  onReplay?: () => void;
   onAsk: () => void;
   /** Speaks the response and returns the line to show; `done` is called when a right answer's praise ends. */
   onAnswer: (i: number, done: () => void) => string;
@@ -1252,6 +1339,35 @@ function QuestionCard({ question, options, onAsk, onAnswer, onSkip, onContinue }
   }, [onContinue]);
   const answered = picked !== null;
   const right = answered && options[picked].correct;
+  const answer = useCallback((i: number) => {
+    if (picked !== null) return;
+    setPicked(i);
+    setLine(onAnswer(i, finish));
+    if (options[i].correct) timer.current = window.setTimeout(finish, 5_000);
+  }, [picked, onAnswer, finish, options]);
+  // A tap on the board answers a tap card.
+  useEffect(() => {
+    if (mode === "tap" && tapped) answer(tapped.index);
+  }, [mode, tapped, answer]);
+  // An order card: the steps shuffled (never already in order), placed one tap at a time.
+  const shuffled = useMemo(() => {
+    const idx = (steps ?? []).map((_, i) => i);
+    const out = idx.map((i) => idx[(i * 2 + 1) % idx.length]);
+    const unique = new Set(out).size === idx.length ? out : [...idx].reverse();
+    return unique.every((v, k) => v === k) ? [...idx].reverse() : unique;
+  }, [steps]);
+  const [sequence, setSequence] = useState<number[]>([]);
+  const place = (i: number) => {
+    if (answered || sequence.includes(i) || !steps) return;
+    const next = [...sequence, i];
+    setSequence(next);
+    if (next.length === steps.length) {
+      const n = steps.length;
+      // A loop is in order from any step; a chain only from its first.
+      const inOrder = next.every((v, k) => v === (loop ? (next[0] + k) % n : k));
+      answer(inOrder ? options.findIndex((o) => o.correct) : options.findIndex((o) => !o.correct));
+    }
+  };
   return (
     // Anchored near the top and kept clear of the bottom-right corner, where Aria stands: an answered
     // card is tall, and centred it ran under her.
@@ -1274,8 +1390,43 @@ function QuestionCard({ question, options, onAsk, onAnswer, onSkip, onContinue }
         </button>
       </div>
       <p className="mt-1.5 text-sm font-semibold leading-snug text-white/90">{question}</p>
+      {mode === "tap" && !answered && (
+        <p className="mt-2 flex items-center gap-1.5 rounded-lg bg-violet-400/15 px-2.5 py-2 text-xs font-bold text-violet-100">👆 Tap your answer on the board</p>
+      )}
+      {mode === "order" && steps && (
+        <div className="mt-3 space-y-2">
+          <div className="flex flex-wrap gap-1.5">
+            {shuffled.map((i) => (
+              <button key={steps[i].id} disabled={answered || sequence.includes(i)} onClick={() => place(i)} className="rounded-full border border-violet-300/40 bg-white/[0.05] px-3 py-1.5 text-xs font-bold text-white/90 transition hover:border-violet-300/80 hover:bg-violet-400/15 disabled:opacity-25">
+                {steps[i].text}
+              </button>
+            ))}
+          </div>
+          <ol className="space-y-1.5">
+            {steps.map((_, k) => {
+              const placed = sequence[k];
+              const good = answered && placed !== undefined && placed === (loop ? (sequence[0] + k) % steps.length : k);
+              return (
+                <li key={k} className={`flex items-center gap-2 rounded-lg border px-2.5 py-1.5 text-xs font-semibold ${placed === undefined ? "border-dashed border-white/15 text-white/35" : answered ? (good ? "border-emerald-300/50 bg-emerald-400/10 text-emerald-50" : "border-rose-300/50 bg-rose-400/10 text-rose-100") : "border-violet-300/40 bg-violet-400/10 text-white/90"}`}>
+                  <span className="grid size-5 shrink-0 place-items-center rounded-full bg-white/10 text-[0.65rem] font-black">{k + 1}</span>
+                  {placed === undefined ? "…" : steps[placed].text}
+                </li>
+              );
+            })}
+          </ol>
+          {!answered && sequence.length > 0 && (
+            <button onClick={() => setSequence((q) => q.slice(0, -1))} className="text-xs font-bold text-white/55 hover:text-white">↶ Undo</button>
+          )}
+        </div>
+      )}
+      {!answered && (onHint || onReplay) && (
+        <div className="mt-3 flex gap-2">
+          {onHint && <button onClick={onHint} className="flex-1 rounded-xl border border-amber-300/40 bg-amber-300/10 px-2.5 py-1.5 text-xs font-bold text-amber-100 hover:bg-amber-300/20">💡 Hint</button>}
+          {onReplay && <button onClick={onReplay} className="flex-1 rounded-xl border border-white/15 bg-white/[0.04] px-2.5 py-1.5 text-xs font-bold text-white/80 hover:bg-white/[0.08]">↺ Show me again</button>}
+        </div>
+      )}
       <div className="mt-3 space-y-2">
-        {options.map((o, i) => {
+        {(mode === "choice" || (mode === "tap" && answered)) && options.map((o, i) => {
           const chosen = picked === i;
           const shownRight = answered && o.correct;
           // Once answered, only their pick and the right answer stay: the card fits beside Aria.
@@ -1284,11 +1435,7 @@ function QuestionCard({ question, options, onAsk, onAnswer, onSkip, onContinue }
             <button
               key={i}
               disabled={answered}
-              onClick={() => {
-                setPicked(i);
-                setLine(onAnswer(i, finish));
-                if (o.correct) timer.current = window.setTimeout(finish, 5_000);
-              }}
+              onClick={() => answer(i)}
               className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3 py-2 text-left text-sm font-semibold transition ${
                 shownRight
                   ? "border-emerald-300/60 bg-emerald-400/15 text-emerald-50"
@@ -1307,6 +1454,9 @@ function QuestionCard({ question, options, onAsk, onAnswer, onSkip, onContinue }
       </div>
       {answered && (
         <p className={`mt-2.5 rounded-lg px-2.5 py-2 text-xs font-semibold leading-relaxed ${right ? "bg-emerald-400/15 text-emerald-100" : "bg-rose-400/15 text-rose-100"}`}>{line}</p>
+      )}
+      {answered && !right && onReplay && (
+        <button onClick={onReplay} className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/[0.04] px-3 py-1.5 text-xs font-bold text-white/85 hover:bg-white/[0.08]">↺ Show me where this was taught</button>
       )}
       {answered && !right && (
         <button onClick={finish} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-violet-400 px-3 py-2 text-sm font-black text-black hover:bg-violet-300">

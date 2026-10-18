@@ -336,6 +336,13 @@ export function directQuestionInstruction(question: string, options: { nounTitle
       `valves opening and closing; the double circulation and why the left side is stronger). Never more than three. ` +
       `ANSWER WHAT IS ASKED: explain the mechanism — what moves, contracts, changes or causes it — not only the parts ` +
       `and the route. Each subtopic is a different stage and never repeats another. `
+    : options.shape === "single"
+    ? `This question asks for ONE idea that needs explaining: plan TWO subtopics. The first answers it head-on — the ` +
+      `idea or the cause, shown. The second shows that idea AT WORK in one concrete case the student can follow (for ` +
+      `"why does ice float on water?": water expanding as it freezes, so ice is less dense; then a pond freezing from ` +
+      `the top down while fish live in the water below; for "how does soap clean grease?": soap molecules with a ` +
+      `water-loving head and a grease-loving tail; then an oily plate being washed). Never a definition, ` +
+      `history or list of types as the second subtopic. A "why" answer gives the cause. `
     : `Plan exactly ONE subtopic that answers it head-on — TWO only if the answer genuinely has two separate parts that ` +
       `cannot share one board. A "why" answer gives the cause. `;
   return (
@@ -356,17 +363,21 @@ export function directQuestionInstruction(question: string, options: { nounTitle
  * question of ten ("What does the septum do?" got "Clinical Relevance of Septum"): it fills whatever
  * room it is given. A classification is a decision it makes well; the planner is then given either the
  * old, proven "exactly ONE" rule or the process rule, and the code holds it to 2 or 3.
+ * One board for every one-idea answer was too thin (bench, 2026-10-18: "Why do we see lightning before
+ * we hear thunder?" became one board of ten sentences, where it had been three): a narrow fact keeps one
+ * board, an idea that needs explaining gets two — the idea, then the idea at work.
  */
-export type QuestionShape = "single" | "process";
+export type QuestionShape = "fact" | "single" | "process";
 
-export const QUESTION_SHAPE_PROMPT = `Does a complete answer to this student's question need ONE idea, or a PROCESS of different stages?
+export const QUESTION_SHAPE_PROMPT = `Is a complete answer to this student's question ONE FACT, ONE IDEA that needs explaining, or a PROCESS of different stages?
+- "fact": a narrow fact a sentence or two answers — a definition, a unit, a value, a name, what an abbreviation stands for. Examples: "What is the SI unit of force?", "What does DNA stand for?", "What is the formula for the area of a circle?".
 - "single": what one structure, substance, quantity or term is or does; a definition and how it is used; one cause, one reason, one comparison or one fact — even when the answer takes several sentences or a consequence follows from it (a "why" answered by one cause is single). Examples: "What does the cell membrane do?", "What is a mole in chemistry?", "Why do metals conduct electricity?", "What is the median of a data set?", "Why are leaves green?".
 - "process": how something happens or works through different stages in order, a method of several steps, or how or why something changed through several developments. Examples: "How does digestion break down food?", "How is urine made in the kidney?", "How does a bill become law?", "How do you solve a quadratic by completing the square?", "How did the printing press change Europe?".
-Return JSON only: {"shape": "single" | "process"}.`;
+Return JSON only: {"shape": "fact" | "single" | "process"}.`;
 
 export function parseQuestionShape(raw: unknown): QuestionShape | null {
   const shape = raw && typeof raw === "object" ? (raw as { shape?: unknown }).shape : null;
-  return shape === "single" || shape === "process" ? shape : null;
+  return shape === "fact" || shape === "single" || shape === "process" ? shape : null;
 }
 
 /**

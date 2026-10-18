@@ -88,18 +88,44 @@ function parseFeatures(v: unknown): Set<Feat> {
   return out;
 }
 
+/**
+ * A function the board writer gave with other letters in it — "sin(x + h)" with h: 0.5, "(4+h)x − 4 − 2h"
+ * — with each letter's number put in: h from its own param, else 1 for h (a secant one unit wide).
+ * Unreadable functions drew the built-in example x² − 2x − 3 on a sine board (bench, 2026-10-18).
+ */
+export function boundFunction(src: unknown, params: FigureParams): string | null {
+  if (typeof src !== "string" && typeof src !== "number") return null;
+  const values: Record<string, number> = { h: 1 };
+  for (const [k, v] of Object.entries(params)) {
+    const n = typeof v === "number" ? v : typeof v === "string" && /^-?\d+(\.\d+)?$/.test(v.trim()) ? Number(v) : NaN;
+    if (/^[a-wyzA-Z]$/.test(k) && k !== "e" && Number.isFinite(n)) values[k] = n;
+  }
+  return String(src).replace(/(?<![a-zA-Z])([a-wyzA-DF-Z])(?![a-zA-Z(])/g, (m) => (m in values ? `(${values[m]})` : m));
+}
+
+/** Why this board's function graph cannot be drawn as asked — null when it can. */
+export function functionGraphProblem(params: FigureParams): string | null {
+  if (params.f === undefined || params.f === "") return "the functionGraph figure has no f: give the one concrete function of x this board is about (e.g. \"x^3\", \"sin(x)\")";
+  if (!fn1(boundFunction(params.f, params))) return `the functionGraph figure cannot read f = "${String(params.f)}": write it as a function of x only, with any other letter given a number as its own param (e.g. n: 3), never a general x^n`;
+  if (params.g !== undefined && params.g !== "" && !fn1(boundFunction(params.g, params))) return `the functionGraph figure cannot read g = "${String(params.g)}": write it as a function of x only, with any other letter given a number as its own param`;
+  return null;
+}
+
 export const functionGraph: FigureComponent = {
   name: "functionGraph",
   title: "The graph of a function y = f(x) (polynomial, exponential, logarithmic, trigonometric, reciprocal), optionally with a second curve, with roots, turning points, intercepts, asymptotes, intersections, a tangent and a shaded area all computed",
-  params: `f (the function of x, e.g. "x^2 - 2x - 3", "e^x", "ln(x)", "sin(x)", "1/(x-2) + 1"; default "x^2 - 2x - 3"); g (an optional second function, e.g. "x + 1"); xmin, xmax, ymin, ymax (window; default fits the features); features (what to mark, e.g. "roots, turning points, y-intercept, asymptotes, intersections"; default all that exist; "none"); coordinates (true default: write each marked point's coordinates); shade ("none" default | "under": between f and the x-axis | "between": between f and g | "above" / "below": the region y > f(x) or y < f(x), for inequalities); shadeFrom, shadeTo (the x-interval to shade; default between the roots or intersections); tangentAt (draw the tangent at x = this value, with its gradient); fName, gName (curve names, default "f", "g"). The code finds every value — never give coordinates.`,
+  params: `f (REQUIRED: the one concrete function of x this board is about, e.g. "x^3", "e^x", "ln(x)", "sin(x)", "1/(x-2) + 1"; any other letter in it needs its number as its own param, e.g. h: 0.5 — never a general "x^n"); g (an optional second function, e.g. "x + 1"); xmin, xmax, ymin, ymax (window; default fits the features); features (what to mark — ONLY what the narration teaches, e.g. "roots, turning points" on a sketching board; "none" on a gradient, tangent, secant or derivative board; default all that exist); coordinates (true default: write each marked point's coordinates); shade ("none" default | "under": between f and the x-axis | "between": between f and g | "above" / "below": the region y > f(x) or y < f(x), for inequalities); shadeFrom, shadeTo (the x-interval to shade; default between the roots or intersections); tangentAt (draw the tangent at x = this value, with its gradient); fName, gName (curve names, default "f", "g"). The code finds every value — never give coordinates.`,
   match: /\b(sketch|graph|plot|draw)\w*\b.{0,40}(\by\s*=|\bf\(x\)|\b(function|curve|parabola|cubic|quadratic|polynomial|exponential|logarithm\w*|reciprocal|hyperbola)s?\b)|\bturning points?\b(?=[\s\S]*\b(graphs?|curves?|functions?|derivatives?|stationary|maxim(um|a)|minim(um|a)|gradient|quadratic|cubic|y\s*=)\b)|\bstationary points?\b|\b(vertical|horizontal) asymptotes?\b|\bpoints? of intersection\b|\barea between (two |the )?curves\b|\btangent (to|at) (the curve|x\s*=)\b|\b(roots|zeros) of (the|a) (function|polynomial|graph|curve|quadratic|cubic)\b|\bgraphical(ly)? solv\w*\b/i,
   parts: PARTS,
   build(params: FigureParams) {
+    // The curve is the board's own (functionGraphProblem sends an unreadable one back to the writer);
+    // the example x² − 2x − 3 is drawn only for a figure built with no f at all (previews, fixtures).
     const fSrc = str(params.f, "x^2 - 2x - 3", 200);
-    const fParsed = fn1(fSrc);
-    const f = fParsed ?? ((x: number) => x * x - 2 * x - 3);
-    const fShown = fParsed ? fSrc : "x^2 - 2x - 3";
-    const g = params.g !== undefined ? fn1(params.g) : null;
+    const fParsed = fn1(boundFunction(fSrc, params));
+    const gFirst = !fParsed && params.g !== undefined ? fn1(boundFunction(params.g, params)) : null;
+    const f = fParsed ?? gFirst ?? ((x: number) => x * x - 2 * x - 3);
+    const fShown = fParsed ? fSrc : gFirst ? String(params.g) : "x^2 - 2x - 3";
+    const g = params.g !== undefined && !gFirst ? fn1(boundFunction(params.g, params)) : null;
     const gShown = g ? String(params.g) : "";
     // A curve the writer NAMES in words ("Primary response") is labelled by that name; the maths text
     // keeps the symbol. Cutting the words to a 6-letter symbol drew "Curve y = Primar(x)" (2026-10-17).

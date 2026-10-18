@@ -40,7 +40,8 @@ export default function PlayerPreview() {
       .then((r) => r.json())
       .then((snap) => setSession({ beats: (snap.beats ?? []).filter(Boolean), title: snap.topic ?? "Lecture", start }));
   }, []);
-  if (session) return <LessonPlayer key="session" beats={session.beats} title={session.title} startIndex={session.start} autoVoiceAssistant={false} onExit={() => undefined} />;
+  // `&voice=1` plays it hands-free, as a real lecture does (the mic on from the start).
+  if (session) return <LessonPlayer key="session" beats={session.beats} title={session.title} startIndex={session.start} autoVoiceAssistant={typeof window !== "undefined" && new URLSearchParams(window.location.search).get("voice") === "1"} onExit={() => undefined} />;
   const lecture = sandbox ? sandboxBoardLecture() : pending ? pendingBoardLecture() : preview ? PREVIEW_LECTURES[preview] : null;
   return <LessonPlayer key={sandbox ? "sandbox" : pending ? "pending" : preview ?? "demo"} beats={lecture?.beats} title={lecture?.title} autoVoiceAssistant={false} onExit={() => undefined} />;
 }

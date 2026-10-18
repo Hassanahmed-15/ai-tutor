@@ -33,7 +33,7 @@ const MAX_FROM_MEMORY = 2;
 
 const REASONS: Record<PromptTileKind, string> = {
   weak: "You found this tricky",
-  review: "Due for a refresher",
+  review: "Due for review",
   continue: "Pick up where you left off",
   fresh: "For your studies",
 };
@@ -51,7 +51,7 @@ export function memoryTiles(view: LearnerProfileView): PromptTile[] {
   const weak = view.subjects.flatMap((s) => s.weakConcepts).sort((a, b) => a.mastery - b.mastery);
   const review = view.subjects.flatMap((s) => s.needsReview).sort((a, b) => a.mastery - b.mastery);
   if (weak[0]) out.push(tile("weak", `Help me really understand ${weak[0].label}`));
-  if (review[0]) out.push(tile("review", `Quick refresher on ${review[0].label}`));
+  if (review[0]) out.push(tile("review", `Revise ${review[0].label}`));
   const current = view.currentTopics[0];
   if (current) out.push(tile("continue", `What comes after ${current}?`));
   return dedupe(out).slice(0, MAX_FROM_MEMORY);

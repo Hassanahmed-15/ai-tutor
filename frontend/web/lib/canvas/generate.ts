@@ -21,6 +21,9 @@ import { fallbackSpec } from "./fallback";
 import { figureComponent, figureFor } from "../figures/registry";
 import { classifyInstructionalTask } from "./instructionalTask";
 import { foreignFigureWords } from "../figures/foreignText";
+import { functionGraphProblem } from "../figures/components/functionGraph";
+import { textCollisions } from "../diagrams/clutter";
+import { compileDiagram } from "../diagrams/render";
 import { vectorDiagram } from "../diagrams/grammarWrite";
 import type { FigureDrawing } from "../figures/types";
 import { DRAWN_GUIDE, drawnFigure } from "../figures/drawn";
@@ -229,8 +232,10 @@ function plainBeat(beat: CanvasPlanBeat, allowFigure = true): CanvasPlanBeat {
   // named by the board itself is drawn as one; anything else is a plain board.
   const tb = `${beat.title} ${beat.brief}`;
   if (!alreadyTriedDiagram && VECTOR_DIAGRAMS && (VECTOR_FORM.test(tb) || isGeometryOrMechanics(tb))) return { ...base, stage: "figure", figure: "drawn" };
-  // A flow only for a real process — steps, causes, a cycle; anything else is labelled boxes.
-  return { ...base, stage: isRealProcess(text) ? "flow" : "scene" };
+  // A flow for a real process — steps, causes, a cycle — or a board the visual choice called a
+  // diagram or a sequence; anything else is labelled boxes.
+  const processLike = isRealProcess(text) || beat.visualType === "diagram" || beat.visualType === "sequence" || /\bcycle\b/i.test(`${beat.title} ${beat.brief}`);
+  return { ...base, stage: processLike ? "flow" : "scene" };
 }
 
 /**
@@ -510,6 +515,26 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         ...(spec.stage.kind === "figure" && DEMO_DATA.has(spec.stage.component) && !Object.keys(spec.stage.params ?? {}).length
           ? [{ gate: "figure-content", message: `the ${spec.stage.component} figure has no params, so it would draw its built-in example: give it this board's own data from the narration` }]
           : []),
+        // A graph shows how one quantity changes with another. Two flat lines of single numbers on a
+        // "Comparison" axis from 0 to 1 (the speeds of light and sound, bench 2026-10-18) teach nothing.
+        ...(spec.stage.kind === "graph" && spec.stage.curves.length > 0 && spec.stage.curves.every((c) => !/(?<![a-z])x(?![a-z])/i.test(c.expr))
+          ? [{ gate: "figure-content", message: "every curve on this graph is a flat line of one number, so it shows no relationship: plot how one quantity changes with another, or — when the board only compares two values — draw the thing they describe instead of a graph" }]
+          : []),
+        // Words a line runs through, or printed over each other, cannot be read: "Longer wavelength"
+        // across two boxes and an arrow through "absorbed energy" shipped on a light board (owner
+        // screenshot, 2026-10-18). Two or more such collisions send the drawing back.
+        ...(() => {
+          const st = spec.stage;
+          const drawing = st.kind === "figure" && st.component === "drawn" ? st.drawing : st.kind === "diagram" ? st.drawing ?? compileDiagram(st.spec) : undefined;
+          const issues = drawing ? textCollisions(drawing) : [];
+          return issues.length >= 2 ? [{ gate: "figure-content", message: `words on the diagram cannot be read — ${issues.slice(0, 3).join("; ")}: keep every word clear of lines, arrows and other words (inside a box, or beside what it names)` }]
+            : issues.length ? [{ gate: "figure-data", message: `on the diagram, ${issues[0]}: move it clear` }] : [];
+        })(),
+        // A function graph draws the board's own curve or nothing: an unreadable "x^n" or "sin(x + h)"
+        // drew the built-in x² − 2x − 3 on three calculus boards (bench, 2026-10-18).
+        ...(spec.stage.kind === "figure" && spec.stage.component === "functionGraph" && functionGraphProblem(spec.stage.params ?? {})
+          ? [{ gate: "figure-content", message: functionGraphProblem(spec.stage.params ?? {})! }]
+          : []),
         ...(spec.stage.kind === "figure" && spec.stage.component !== "drawn" && spec.stage.component !== "library"
           ? (() => {
               const foreign = foreignFigureWords(spec.stage.component, spec.stage.params ?? {}, `${beat.title} ${beat.brief} ${beat.script}`, spec.stage.parts.map((p) => p.name));
@@ -525,6 +550,22 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         costUsd += review.costUsd;
         // A label on the WRONG part misleads a student (owner, 2026-10-17: labels "very very very
         // accurate"); a label merely missing does not, and stays a note.
+        // A GRAPH SHIPS UNLESS SOMETHING IS SERIOUSLY WRONG (owner, 2026-10-18: "in 95 percent it should
+        // show the graph"). "Invented data" on a graph means numbers Aria never said: the graph becomes a
+        // shape graph — the same curve with no numbers — and ships, where three enzyme curves and the
+        // photoelectric line were rejected twice and became cards. Wrong shape, topic or axes still block.
+        if (spec.stage.kind === "graph" && review.problems.some((p) => p.kind === "invented-data")) {
+          spec.stage.qualitative = true;
+          if (spec.interaction?.kind === "try" && spec.interaction.readouts?.length) spec.interaction = { ...spec.interaction, readouts: [] };
+          review.problems = review.problems.map((p) => (p.kind === "invented-data" ? { ...p, kind: "graph-numbers-hidden" } : p));
+          console.log(`[canvas] ${beat.id}: graph numbers Aria never says — shown as a shape graph`);
+        }
+        // A try-it readout ("Temperature = 50 gives rate = 1") is a number the student reads off a
+        // slider, not the graph: a fault in it takes the readouts away, never the graph.
+        if (spec.stage.kind === "graph" && spec.interaction?.kind === "try" && review.problems.some((p) => /\bread-?outs?\b/i.test(p.detail))) {
+          spec.interaction = { ...spec.interaction, readouts: [] };
+          review.problems = review.problems.filter((p) => !/\bread-?outs?\b/i.test(p.detail));
+        }
         const serious = review.problems.filter((p) => FATAL_REVIEW.has(p.kind) || (p.kind === "mislabelled" && !/\b(missing|not (?:visibly )?labell?ed|unlabell?ed|no label|lacks? (?:a |its )?label)/i.test(p.detail)));
         if (serious.length) {
           fatal = serious.map((p) => ({ gate: "review", message: `${p.kind}: ${p.detail}` }));
@@ -720,7 +761,8 @@ export async function illustrate(openai: OpenAI, userId: string, lectureId: stri
   const started = Date.now();
   let costUsd = 0;
   try {
-    if (clock.left() < 50_000) throw new Error("no time left for a picture");
+    // Too little time for a picture AND its rebuild: the rebuild comes straight away.
+    if (clock.left() < (rebuild ? 95_000 : 50_000)) throw new Error("no time left for a picture");
     const subject = pictureSubject(stage.subject);
     const names = stage.parts.map((p) => p.name);
     // The last guard before money is spent: a picture has no words, so a chart, table or argument
@@ -740,7 +782,9 @@ export async function illustrate(openai: OpenAI, userId: string, lectureId: stri
       share,
       budget: { left: () => clock.left() },
       save: async (_key, display) => { if (!share) await saveCanvasImage(userId, own, display); },
-    }), Math.min(170_000, clock.left() - 20_000), "textbook diagram");
+    // With a rebuild to fall back on, the picture leaves it time: a picture that took two and a half
+    // minutes to fail left none, and four Krebs boards became static text cards (bench, 2026-10-18).
+    }), Math.min(170_000, clock.left() - (rebuild ? 55_000 : 20_000)), "textbook diagram");
     costUsd += diagram.costUsd;
     // Matched by the part's name in a normal form ("The left ventricle" = "left ventricles"): an exact
     // match dropped located parts over a capital or a plural.

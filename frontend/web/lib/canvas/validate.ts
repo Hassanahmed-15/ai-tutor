@@ -9,7 +9,7 @@
 
 import { repairEquationRows } from "./equationRepair";
 import { takeFigureCutItems, takeFigureCuts } from "../figures/cuts";
-import { compileExpr, exprUsesOnly } from "./expr";
+import { compileExpr, evalExpr, exprUsesOnly } from "./expr";
 import { figureComponent } from "../figures/registry";
 import { isCompiledDiagram } from "../diagrams/grammar";
 import { drawnFigure } from "../figures/drawn";
@@ -339,6 +339,10 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       nodes,
       arrows: validateArrows(r.arrows, sentence, unique, new Set(nodes.map((n) => n.id)), vars),
     };
+    // One arrow per direction between two nodes: a Krebs board drew oxaloacetate → intermediates twice
+    // ("accepts 2C" and "cycle repeats") over each other (bench, 2026-10-18).
+    const joined = new Set<string>();
+    stage.arrows = stage.arrows.filter((a) => { const key = `${a.from}>${a.to}`; if (joined.has(key)) return false; joined.add(key); return true; });
     return stage;
   }
 
@@ -607,6 +611,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
     const trace = obj(r.trace);
     const stage: GraphStage = {
       kind,
+      ...(r.qualitative === true ? { qualitative: true } : {}),
       x: axis(r.x, "x"),
       y: axis(r.y, "y"),
       curves,
@@ -614,6 +619,16 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       ...(guides.length ? { guides } : {}),
       ...(curveIds.has(slug(trace.curve, "")) ? { trace: { curve: slug(trace.curve, ""), s: sentence(trace.s ?? trace.sentence) } } : {}),
     };
+    // A shape graph's height is its curve's: its numbers are hidden, so a y range the curve runs past
+    // only flattens the top — an enzyme's optimum drawn as a long plateau (2026-10-18).
+    if (stage.qualitative) {
+      const ys = stage.curves.flatMap((c) => Array.from({ length: 41 }, (_, i) => evalExpr(c.expr, { x: stage.x.min + (i / 40) * (stage.x.max - stage.x.min) }, NaN))).filter(Number.isFinite);
+      if (ys.length) {
+        const hi = Math.max(...ys), lo = Math.min(...ys);
+        if (hi > stage.y.max || hi < stage.y.max * 0.6) stage.y = { ...stage.y, max: hi + (hi - Math.min(0, lo)) * 0.12 || 1 };
+        if (lo < stage.y.min) stage.y = { ...stage.y, min: lo };
+      }
+    }
     return snapEquilibrium(stage);
   }
 
@@ -868,7 +883,7 @@ export function validateInteraction(raw: unknown): CanvasInteraction | undefined
   if (kind === "quiz") {
     const options = arr(r.options)
       .map((o) => obj(o))
-      .map((o) => ({ text: shown(o.text, 110), correct: o.correct === true, feedback: shown(o.feedback, 260) }))
+      .map((o) => ({ text: shown(o.text, 110), correct: o.correct === true, feedback: shown(o.feedback, 260), ...(typeof o.target === "string" && o.target.trim() ? { target: o.target.trim().slice(0, 60) } : {}) }))
       .filter((o) => o.text && o.feedback)
       .slice(0, 4);
     const right = options.filter((o) => o.correct);
@@ -878,7 +893,15 @@ export function validateInteraction(raw: unknown): CanvasInteraction | undefined
     if (right.length !== 1 || selfDoubting.test(right[0].feedback)) return undefined;
     // The card's header already says "Predict it"; the question is the question.
     const question = prompt.replace(/^\s*predict\s*:\s*/i, "").replace(/^./, (c) => c.toUpperCase());
-    return options.length === 3 || options.length === 4 ? { kind: "quiz", question, options, ...(r.check === true ? { check: true } : {}) } : undefined;
+    const mode = r.mode === "tap" && options.every((o) => o.target) ? "tap" : r.mode === "order" ? "order" : undefined;
+    const steps = mode === "order" ? arr(r.steps).map((x) => obj(x)).map((x) => ({ id: str(x.id, 60), text: shown(x.text, 60) })).filter((x) => x.id && x.text).slice(0, 6) : [];
+    const hintRaw = obj(r.hint), replayRaw = obj(r.replay);
+    const hint = str(hintRaw.text, 200) ? { text: shown(hintRaw.text, 200), ...(str(hintRaw.target, 60) ? { target: str(hintRaw.target, 60) } : {}) } : undefined;
+    const replay = str(replayRaw.text, 300) ? { text: shown(replayRaw.text, 300), ...(str(replayRaw.target, 60) ? { target: str(replayRaw.target, 60) } : {}) } : undefined;
+    if (mode === "order" && steps.length < 3) return undefined;
+    return options.length >= 2 && options.length <= 4 && (options.length >= 3 || mode === "order")
+      ? { kind: "quiz", question, options, ...(mode ? { mode } : {}), ...(steps.length ? { steps } : {}), ...(mode === "order" && r.loop === true ? { loop: true } : {}), ...(hint ? { hint } : {}), ...(replay ? { replay } : {}), ...(r.check === true ? { check: true } : {}) }
+      : undefined;
   }
   if (kind !== "try") return undefined;
   const controls = arr(r.controls)

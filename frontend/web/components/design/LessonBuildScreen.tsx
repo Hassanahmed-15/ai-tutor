@@ -4,8 +4,6 @@ import { groupSlides } from "@/lib/anim/slideGroups";
 import { Play, Square } from "lucide-react";
 import {
   LESSON_DESIGN_STAGES,
-  estimateRemainingMs,
-  formatRemaining,
   progressFor,
   stageIndex,
 } from "@/lib/lessonDesignStages";
@@ -63,7 +61,6 @@ export function LessonBuildScreen({
 }: LessonBuildScreenProps) {
   const percent = ready ? 1 : progressFor(progress.stage, progress.stageFraction);
   const currentStage = stageIndex(progress.stage);
-  const remaining = ready ? null : formatRemaining(estimateRemainingMs(progress.elapsedMs, percent));
 
   const slides = beatStatus ?? [];
   const readyCount = slides.filter((s) => s.state === "ready").length;
@@ -89,7 +86,8 @@ export function LessonBuildScreen({
       <div className="relative z-10 flex w-full max-w-2xl flex-col items-center text-center">
         <h1 className="font-display text-[2.2rem] leading-[1.1] text-[var(--hud-text)] sm:text-[2.8rem]" style={{ textWrap: "balance" }}>{topic}</h1>
         <p className="mt-3 font-[family-name:var(--font-hud-mono)] text-[0.75rem] uppercase tracking-[0.1em] text-[var(--hud-text-faint)]" aria-live="polite">
-          {ready ? "Ready" : remaining ? `about ${remaining}` : (LESSON_DESIGN_STAGES[currentStage]?.label ?? progress.status)}
+          {/* No time estimate (owner, 2026-10-18: "remove that"): what Aria is doing, not a countdown. */}
+          {ready ? "Ready" : (LESSON_DESIGN_STAGES[currentStage]?.label ?? progress.status)}
         </p>
 
         <div className="mt-8 h-[3px] w-full max-w-md overflow-hidden rounded-full bg-[var(--hud-surface-2)]" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(percent * 100)}>

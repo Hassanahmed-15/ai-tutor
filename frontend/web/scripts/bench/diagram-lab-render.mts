@@ -26,7 +26,7 @@ for (const f of fs.readdirSync(dir).filter((x) => /-snapshot\.json$/.test(x)).so
   for (const [i, b] of (snap.beats ?? []).entries()) {
     const spec = b.draw.ops[0].spec;
     const layout = layoutPanel(spec);
-    const svg = renderToStaticMarkup(React.createElement(CanvasPanel, { layout, spec, shownThrough: Infinity, sentenceProgress: 1, live: false, vars: {}, carryFrom: {}, reducedMotion: true, theme: "paper" }));
+    const svg = renderToStaticMarkup(React.createElement(CanvasPanel, { layout, spec, shownThrough: Infinity, sentenceProgress: 1, live: false, vars: Object.fromEntries(((spec as { interaction?: { controls?: Array<{ var: string; value: number }> } }).interaction?.controls ?? []).map((c) => [c.var, c.value])), carryFrom: {}, reducedMotion: true, theme: "paper" }));
     await page.setContent(`<html><head><base href="http://localhost:3000/"><link rel=stylesheet href="${KATEX}"><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel=stylesheet></head><body style="margin:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" font-family="Nunito, Outfit, sans-serif"><rect width="1000" height="560" fill="#fbfaf6"/>${svg}</svg></body></html>`);
     await page.waitForLoadState("networkidle").catch(() => {});
     // The maths font must be loaded before the shot: a shot taken earlier showed terms overprinted.

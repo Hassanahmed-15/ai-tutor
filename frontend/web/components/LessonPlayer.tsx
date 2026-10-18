@@ -272,6 +272,8 @@ const wallClock = () => Date.now();
 /** How long a finished board stays on screen after its narration ends, before the next slide. */
 const BOARD_HOLD_AFTER_NARRATION_MS = 2500;
 
+/** Thinking time Aria leaves after a prediction question on a board with no task card to answer it. */
+const THINK_PAUSE_MS = 4_000;
 /** "Predict the products…", "Will it be tetrahedral or…?": a sentence that asks the student to commit. */
 
 export function LessonPlayer({
@@ -1282,6 +1284,8 @@ export function LessonPlayer({
   const canvasTask = canvasIndex >= 0 ? canvasPanels[canvasIndex].spec.interaction : undefined;
   const canvasTaskRef = useRef(false);
   const canvasMidBoardTaskRef = useRef(false);
+  /** The last prediction question Aria asked, for the thinking pause before its reveal. */
+  const lastQuestionRef = useRef("");
   useEffect(() => {
     canvasTaskRef.current = Boolean(canvasTask);
     // A "Check it" card waits for the end of the board; only a try or draw task may stop mid-board.
@@ -2140,16 +2144,32 @@ export function LessonPlayer({
           tracePlayback("voice-start", { beat: index });
           setSpeaking(true);
         },
-        onSentenceStart: (sentenceIndex, sentence, total) => {
-          lastNarrationSignalRef.current = Date.now();
-          // The sentence after a prediction question is the reveal: hold before it plays.
-          if (previousAskedPrediction && canvasMidBoardTaskRef.current && sentenceIndex > bridge && !predictDoneRef.current.has(beat.id)) {
-            predictDoneRef.current.add(beat.id);
+        // THE SENTENCE AFTER A PREDICTION QUESTION IS THE REVEAL: held BEFORE a word of it plays.
+        // With a task card (a slider, a drawing) the lecture waits for the student's answer; with
+        // none, Aria leaves a few seconds to think before she gives it (owner, 2026-10-18: "it never
+        // really waits for me and tells the answers").
+        holdBefore: (sentenceIndex) => {
+          if (!previousAskedPrediction || sentenceIndex <= bridge || predictDoneRef.current.has(beat.id)) return false;
+          predictDoneRef.current.add(beat.id);
+          if (canvasMidBoardTaskRef.current) {
             setPredictHold({ index, boardSentence: Math.max(0, sentenceIndex - bridge - 1) });
             setCanvasHoldIndex(index);
             lesson.holdForStudent();
+            return true;
           }
+          // Resumed only if nothing else stopped the lecture in those seconds (their own pause, a question).
+          // Only a real invitation to predict earns thinking time; a rhetorical "What does this mean?"
+          // on every board would slow every lecture.
+          if (!/\bpredict\b|what do you think|\bguess\b|\bbefore I tell you\b/i.test(lastQuestionRef.current)) return false;
+          // A wait on the narration's own clock, not a pause: a pause had to be resumed by someone, and
+          // the player's own resume logic undid it at once (2026-10-18 test).
+          tracePlayback("think-pause", { beat: index, ms: THINK_PAUSE_MS });
+          return THINK_PAUSE_MS;
+        },
+        onSentenceStart: (sentenceIndex, sentence, total) => {
+          lastNarrationSignalRef.current = Date.now();
           previousAskedPrediction = sentenceIndex >= bridge && asksForPrediction(sentence);
+          if (previousAskedPrediction) lastQuestionRef.current = sentence;
           tutorRef.current.noteNarration?.(sentence);
           tracePlayback("sentence", { beat: index, narration: sentenceIndex, bridge, board: Math.max(0, sentenceIndex - bridge), total, text: sentence.slice(0, 50) });
           narrationCue = sentenceIndex;
@@ -2862,13 +2882,27 @@ export function LessonPlayer({
     }
   }
 
+  /*
+   * THE MIC IS ON WHEN THE LECTURE COMES (owner, 2026-10-18: "mic should've opened by default
+   * whenever the new lecture comes"). Play opened it, but a lecture that starts another way — a jump
+   * to a board, a restart, a saved place — never did. It opens the first time the lecture plays, by
+   * whatever path; the browser asks for the microphone once.
+   */
+  const micOpenedRef = useRef(false);
+  useEffect(() => {
+    if (!REALTIME_TUTOR_ENABLED || !autoVoiceAssistant || micOpenedRef.current || !lesson.playing || tutor.status !== "idle") return;
+    micOpenedRef.current = true;
+    tutor.setMicEnabled(true);
+    void tutor.start();
+  }, [autoVoiceAssistant, lesson.playing, tutor]);
+
   function startLesson() {
     unlockAudio(); // must run inside this click handler — that's what satisfies the autoplay gate
     setVoiceBlocked(false);
     lesson.startTeaching();
     if (REALTIME_TUTOR_ENABLED && autoVoiceAssistant && tutor.status === "idle") {
-      // Preview/lab callers may explicitly opt into hands-free mode. Normal lessons never open the
-      // microphone from the Play button; the student must choose Talk to Aria first.
+      // Hands-free: the mic opens from the Play button (the click the browser needs). Normal lectures
+      // ask for it (components/pages/LearnPage.tsx, owner 2026-10-18); deaf mode and previews do not.
       tutor.setMicEnabled(true);
       void tutor.start();
     }

@@ -319,10 +319,13 @@ export function canvasPolicy(input: ProgressiveLectureInput): TeachingPolicy | n
  * already sized it — a question is 1-2, a topic as many as it contains); with no outline, a ceiling
  * the model plans under. Never a floor: one board is a complete lesson when one board answers it.
  */
-/** A refresher board is for a LESSON whose topic builds on something the student is shaky on — never for a question. */
-export function canvasRefresherAllowed(input: ProgressiveLectureInput, knowledge?: PlanningKnowledge): boolean {
-  if (strictDocumentOf(input) || videoDocumentOf(input)) return false;
-  return Boolean(knowledge?.shaky.length) && input.outline?.scope !== "question" && (input.outline?.subtopics.length ?? 2) >= 2;
+/**
+ * No refresher boards (owner, 2026-10-18: "I don't want any quick refresher from anywhere"). Every
+ * caller still asks here, so this one switch keeps them out of every lecture: the planner is never
+ * offered one, and a board it marks as a refresher anyway is taught as an ordinary board (lib/canvas/plan.ts).
+ */
+export function canvasRefresherAllowed(_input: ProgressiveLectureInput, _knowledge?: PlanningKnowledge): boolean {
+  return false;
 }
 
 export function canvasBoardCount(input: ProgressiveLectureInput): number {

@@ -191,12 +191,12 @@ export function LessonDesignMode({
       const done = LESSON_DESIGN_STAGES.slice(0, stageIndex(state.stage)).map((s) => s.label);
       const left = LESSON_DESIGN_STAGES.slice(stageIndex(state.stage) + 1).map((s) => s.label);
       const pct = spokenPercent(percentRef.current);
-      const remaining = remainingRef.current;
       return [
         `Currently: ${stage?.label ?? state.status}.`,
         state.detail ? `Detail: ${state.detail}.` : "",
         `About ${pct} complete.`,
-        remaining ? `Roughly ${remaining} remaining.` : "Not enough measured progress yet to estimate the time left.",
+        // No time estimate is given to the student, spoken or shown (owner, 2026-10-18).
+        "Do not tell the student how long is left.",
         done.length ? `Already finished: ${done.join(", ")}.` : "",
         left.length ? `Still to come: ${left.join(", ")}.` : "",
       ]

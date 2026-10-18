@@ -22,15 +22,24 @@ function teaches(beat: CanvasPlanBeat): boolean {
  * every 3rd after it. A board that already has a hands-on task (a slider, a drawing) is an activity
  * of its own — it gets no card and the count starts again after it, so activities stay spaced.
  */
+/** Two or more hands-on tasks in a lesson: a board picked for a question card trades its task for it. */
+export function tasksGiveWay(plan: CanvasPlanBeat[]): boolean {
+  return plan.filter((beat) => teaches(beat) && (beat.interaction === "try" || beat.interaction === "draw")).length >= 2;
+}
+
 export function checkCardBoards(plan: CanvasPlanBeat[], strict: boolean): Set<number> {
   const picked = new Set<number>();
   if (strict) return picked;
   const teaching = plan.map((beat, index) => ({ beat, index })).filter(({ beat }) => teaches(beat));
   if (teaching.length < CHECK_CARD_EVERY) return picked;
+  // A lesson with two or more hands-on tasks still gets its questions: a slider on every board left a
+  // water-cycle lesson, and a course lesson, with no question at all (2026-10-18 test). There the card
+  // takes the board's place in the count and replaces that board's task (lib/canvas/progressive.ts).
+  const yields = tasksGiveWay(plan);
   let since = 0;
   for (const { beat, index } of teaching) {
     since += 1;
-    if (beat.interaction === "try" || beat.interaction === "draw") {
+    if (!yields && (beat.interaction === "try" || beat.interaction === "draw")) {
       since = 0;
       continue;
     }
@@ -51,11 +60,13 @@ const isCheckCard = (spec: CanvasBoardSpec) => spec.interaction?.kind === "quiz"
 export function spaceCheckCards<P extends { spec: CanvasBoardSpec }>(panels: P[]): P[] {
   let kept = 0;
   let since = 0;
+  // As checkCardBoards: in a lesson of many hands-on tasks, a task does not restart the count.
+  const yields = panels.filter((p) => p.spec.interaction?.kind === "try" || p.spec.interaction?.kind === "draw").length >= 2;
   return panels.map((panel) => {
     since += 1;
     const kind = panel.spec.interaction?.kind;
     if (kind === "try" || kind === "draw") {
-      since = 0;
+      if (!yields) since = 0;
       return panel;
     }
     if (!isCheckCard(panel.spec)) return panel;

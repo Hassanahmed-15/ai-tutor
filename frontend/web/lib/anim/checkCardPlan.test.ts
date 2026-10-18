@@ -36,3 +36,14 @@ test("a lecture written with a card on every board shows at most three, at least
   const spaced = Array.from({ length: 9 }, (_, i) => ({ key: `b${i}`, spec: spec(i === 2 || i === 5 || i === 8) }));
   assert.deepEqual(spaceCheckCards(spaced).map((p) => Boolean(p.spec.interaction)), spaced.map((p) => Boolean(p.spec.interaction)));
 });
+
+test("a lesson full of sliders still gets question cards: the card takes the slider's place", async () => {
+  const { tasksGiveWay } = await import("../canvas/checkCardPlan");
+  const beats = plan(6).map((b) => ({ ...b, interaction: "try" as const }));
+  assert.equal(tasksGiveWay(beats), true);
+  assert.deepEqual(sorted(checkCardBoards(beats, false)), [2, 5]);
+  // One slider in a lesson keeps it, and the count restarts after it, as before.
+  const one = plan(6).map((b, i) => (i === 2 ? { ...b, interaction: "try" as const } : b));
+  assert.equal(tasksGiveWay(one), false);
+  assert.ok(!checkCardBoards(one, false).has(2));
+});

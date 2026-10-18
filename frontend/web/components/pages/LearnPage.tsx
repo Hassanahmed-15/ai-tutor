@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { HudCorners, type PageName } from "@/components/hud/HudKit";
 import { LessonPlayer } from "@/components/LessonPlayer";
+import { DotAvatar } from "@/components/avatar/DotAvatar";
 import { LectureSummarySlide } from "@/components/LectureSummarySlide";
 import { MindMapView } from "@/components/MindMapView";
 import type { MindMap } from "@/lib/mindMap";
@@ -791,6 +792,8 @@ type BuildCost =
     lastLine: voiceLines.length ? voiceLines[voiceLines.length - 1] : null,
   };
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "choosing" | "ready" | "error">("idle");
+  /** The name of the file being read, shown while it is read (the parsed file's name arrives only after). */
+  const [readingName, setReadingName] = useState<string | null>(null);
   /**
    * Page-selection state. Only ever populated for PDFs/decks; every other upload path skips it
    * entirely. An ARRAY, not a single value, so more than one file can be chosen and previewed
@@ -1562,6 +1565,7 @@ type BuildCost =
   async function ingestFiles(files: File[]) {
     if (!files.length) return;
     setUploadPhase("reading");
+    setReadingName(files.length > 1 ? `${files.length} files` : files[0]?.name ?? null);
     setUploadError(null);
     const initialScope = emptySourceScope();
     setSourceScope(initialScope);
@@ -3833,7 +3837,9 @@ type BuildCost =
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
+        // The mic is on when the lecture opens (owner, 2026-10-18): the student talks to Aria without
+        // finding a button first. It opens on Play — the click the browser needs to ask for it.
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">
@@ -4161,7 +4167,7 @@ type BuildCost =
           error={error}
           uploadPhase={uploadPhase}
           uploadError={uploadError}
-          fileName={uploadedFile?.name ?? null}
+          fileName={uploadedFile?.name ?? readingName}
           videoProgress={videoProgress}
           topic={topic}
           onHome={leaveToHome}
@@ -4211,6 +4217,35 @@ function cleanupSpokenTopic(command: string): string {
  * What the learn page shows between the front page and the plan: reading a file, an error, or the
  * moment before planning starts. Never a form — the front page already asked.
  */
+/** Dot reading: she floats over a page, her eyes moving along its lines as a highlight passes over them. */
+function ReadingDot({ reading }: { reading: boolean }) {
+  // Her eyes move along the page like reading a line, then back to the start of the next.
+  const gaze = useRef<{ x: number; y: number } | null>(reading ? { x: -0.6, y: 0.35 } : null);
+  useEffect(() => {
+    if (!reading) { gaze.current = null; return; }
+    let step = 0;
+    const id = window.setInterval(() => {
+      step = (step + 1) % 9;
+      gaze.current = { x: -0.6 + step * 0.15, y: 0.35 };
+    }, 240);
+    return () => window.clearInterval(id);
+  }, [reading]);
+  return (
+    <div className="mx-auto mb-7 flex flex-col items-center" aria-hidden>
+      <div className="entry-bob size-28">
+        <DotAvatar state="thinking" gaze={gaze} className="h-full w-full drop-shadow-[0_10px_28px_var(--dot-shadow)]" />
+      </div>
+      {reading && (
+        <div className="entry-page mt-3 w-40 space-y-2 rounded-lg border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3">
+          {[1, 0.8, 0.9].map((w, i) => (
+            <span key={i} className="entry-line block h-[5px] rounded-full bg-[var(--hud-line-strong)]" style={{ width: `${w * 100}%`, animationDelay: `${i * 0.7}s` }} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function EntryStatus({
   phase,
   error,
@@ -4238,13 +4273,23 @@ function EntryStatus({
     ? phase === "error" ? "That lesson could not be built" : "That could not be read"
     : videoProgress ? videoProgress.label
     : uploadPhase === "reading" ? `Reading ${fileName ?? "your file"}…` : topic ? `Getting "${topic}" ready…` : "Getting your lesson ready…";
+  // What Aria is doing, in the build screen's small caps line (components/design/LessonBuildScreen.tsx).
+  const doing = videoProgress ? null : uploadPhase === "reading" ? "Aria is reading every page" : "Aria is getting ready";
   return (
-    <section className="hud-canvas hud-grain relative z-10 grid min-h-screen w-full place-items-center p-6">
-      <div className="relative z-10 w-full max-w-md text-center" role={failed ? "alert" : "status"} aria-live="polite">
-        {!failed && (
-          <div className="mx-auto mb-6 h-8 w-8 animate-spin rounded-full border-2 border-[var(--hud-line-strong)] border-t-[var(--hud-text)]" aria-hidden="true" />
+    // THE APP'S OWN LOOK (owner, 2026-10-18: "same style as the app"): Dot reading over a page,
+    // the display face and the build screen's quiet status line — not a bare spinner on black.
+    <section data-quiet-screen="entry-status" className="hud-canvas hud-grain relative z-10 grid min-h-screen w-full place-items-center p-6">
+      <div className="relative z-10 w-full max-w-lg text-center" role={failed ? "alert" : "status"} aria-live="polite">
+        {!failed && <ReadingDot reading={uploadPhase === "reading" || Boolean(videoProgress)} />}
+        <h1 className="font-display text-[2rem] leading-[1.15] tracking-[-0.02em] text-[var(--hud-text)] sm:text-[2.4rem]" style={{ textWrap: "balance" }}>{title}</h1>
+        {!failed && doing && (
+          <p className="mt-3 font-[family-name:var(--font-hud-mono)] text-[0.75rem] uppercase tracking-[0.1em] text-[var(--hud-text-faint)]">{doing}</p>
         )}
-        <h1 className="font-display text-2xl tracking-[-0.02em] text-[var(--hud-text)]">{title}</h1>
+        {!failed && !videoProgress && (
+          <div className="entry-sweep mx-auto mt-7 h-[3px] w-56 overflow-hidden rounded-full bg-[var(--hud-surface-2)]" aria-hidden>
+            <div className="h-full w-1/3 rounded-full bg-[var(--hud-cyan)]" />
+          </div>
+        )}
         {failed && <p data-entry-error className="mt-3 text-sm text-[var(--hud-danger)]">{failed}</p>}
         {!failed && videoProgress && (
           <>

@@ -369,7 +369,11 @@ export function applyLessonVisualPolicy(
     if (beat.requiredVisual?.stages.length && !beat.requiredVisual.stages.some((st) => st === "figure" || st === beat.stage)) continue;
     const text = boardText(beat);
     const titleWords = (`${beat.title} ${beat.brief}`.toLowerCase().match(/[a-z]{5,}/g) ?? []).map((w) => w.replace(/(es|s)$/, ""));
-    const fits = (component.match.test(text) || titleWords.some((w) => component.title.toLowerCase().includes(w))) && componentFitsSubject(component.name, text);
+    // A data graph needs its own trigger in the board's words: a title word shared with its description
+    // ("different", "conditions", "against") put the chemistry rate-of-reaction graph on photoelectric
+    // and enzyme boards (2026-10-18). A structure may still be matched by its subject in the title.
+    const byTitle = !GRAPH_LIKE.has(component.name) && titleWords.some((w) => component.title.toLowerCase().includes(w));
+    const fits = (component.match.test(text) || byTitle) && componentFitsSubject(component.name, text);
     if (!fits) {
       changes.push(`${beat.id}: planner's ${component.name} ignored (it does not fit the board's words)`);
       continue;
@@ -693,7 +697,8 @@ export function applyLessonVisualPolicy(
   // has one — contrast point by point can be the idea.
   if (options.mode !== "strict") {
     const teaching = beats.filter((beat) => !beat.refresher && !beat.overview);
-    const isDiagram = (beat: CanvasPlanBeat) => DIAGRAM_STAGES.has(beat.stage) || apparatus.has(beat.id);
+    // A flow the visual choice asked for (a cycle, a pathway) IS the diagram that board needs.
+    const isDiagram = (beat: CanvasPlanBeat) => DIAGRAM_STAGES.has(beat.stage) || apparatus.has(beat.id) || (beat.stage === "flow" && beat.visualType === "diagram");
     const target = Math.ceil(teaching.length * (2 / 3));
     const contractAllows = (beat: CanvasPlanBeat) => !beat.requiredVisual?.stages.length || beat.requiredVisual.stages.some((st) => st === "figure" || st === "illustration" || st === "scene" || st === beat.stage);
     const fits = (beat: CanvasPlanBeat): string | null => {
@@ -711,9 +716,12 @@ export function applyLessonVisualPolicy(
       if (/\b(speech|letter|diary|cartoon|extract|propaganda|poster|account by|primary source|hadith|verse|surah)\b/i.test(text) && essayOk) return "sourceCard";
       if (/\b(led to|leading to|causes?d?|resulted in|consequences?|effects? of|sparked|triggered|why did|because of)\b/i.test(text) && beat.stage !== "compare" && !needsVectorDiagram(text) && essayOk) return "causeConsequence";
       // A picture subject is a picture before it is a generic vector diagram (owner, 2026-10-17).
-      if (pictureWorthy(beat) && aiPictures && pictureRoom() && !NON_PICTURE.test(beat.title)) return "picture";
+      // Only a board the visual choice called a "thing" becomes a picture here: a comparison of two
+      // pathways was sent to the image model to fill the quota (Krebs lecture, 2026-10-18).
+      const mayPicture = !beat.visualType || beat.visualType === "thing";
+      if (mayPicture && pictureWorthy(beat) && aiPictures && pictureRoom() && !NON_PICTURE.test(beat.title)) return "picture";
       if (needsVectorDiagram(text) || hasVisualForm(text)) return "diagram";
-      if (PHYSICAL.test(text) && !NON_PICTURE.test(text) && (isPhotographicAppearance(text) || pictureBoard(beat))) return aiPictures ? (pictureRoom() ? "picture" : null) : "diagram";
+      if (mayPicture && PHYSICAL.test(text) && !NON_PICTURE.test(text) && (isPhotographicAppearance(text) || pictureBoard(beat))) return aiPictures ? (pictureRoom() ? "picture" : null) : "diagram";
       return null;
     };
     let diagrams = teaching.filter(isDiagram).length;
@@ -778,8 +786,24 @@ export function applyLessonVisualPolicy(
       const parts = key.startsWith("library:") ? (list[0].figureAsset?.parts ?? []) : (figureComponent(key)?.parts ?? []);
       const fit = (beat: (typeof beats)[number]) => parts.filter((p) => namedIn(beat.script, p.name)).length * 2 + (figureFor(beat.title)?.name === key ? 3 : 0) + (/\b(label|identify|structure|parts?|tissues?|layers?|cross[- ]section)\b/i.test(beat.title) ? 2 : 0);
       const keep = [...list].sort((a, b) => fit(b) - fit(a) || beats.indexOf(a) - beats.indexOf(b))[0];
+      // THE FIGURE COMES BACK, ZOOMED (owner, 2026-10-18: more visuals): up to two more boards show it
+      // again when each teaches parts the earlier ones did not — labelled and zoomed to those parts,
+      // never the same picture three times (the leaf audit above).
+      const reused = new Set<CanvasPlanBeat>();
+      const seen = new Set(parts.filter((p) => namedIn(keep.script, p.name)).map((p) => p.id));
       for (const beat of list) {
-        if (beat === keep) continue;
+        if (beat === keep || reused.size >= 2) continue;
+        const own = parts.filter((p) => namedIn(beat.script, p.name));
+        const fresh = own.filter((p) => !seen.has(p.id));
+        if (!fresh.length) continue;
+        reused.add(beat);
+        for (const p of own) seen.add(p.id);
+        beat.objects = own.map((p) => p.id).slice(0, 6);
+        beat.brief = `${beat.brief} This board shows the ${key.replace(/^library:/, "")} figure again (first drawn on ${keep.id}): label only the parts THIS board teaches (${fresh.map((p) => p.name).join(", ")}) and zoom to the first of them as it is named.`.trim();
+        changes.push(`${beat.id}: ${key} again, zoomed to ${fresh.map((p) => p.name).join(", ")} (first drawn on ${keep.id})`);
+      }
+      for (const beat of list) {
+        if (beat === keep || reused.has(beat)) continue;
         const text = boardText(beat);
         beat.figure = undefined;
         beat.figureAsset = undefined;
@@ -913,7 +937,15 @@ export function applyLessonVisualPolicy(
     const kitFits = kit === "library" || Boolean(kit && figureComponent(kit)?.match.test(tb));
     let next: CanvasStage = beat.stage;
     let figure: string | undefined = beat.figure;
-    if (want === "thing") {
+    // A cycle is drawn as its loop of steps, never as a picture (the Krebs cycle was sent to the image
+    // model on four boards, failed its check every time and became text cards — bench, 2026-10-18).
+    const cycle = CYCLE_BOARD.test(tb) && !/\b(maps?|graphs?|data)\b/i.test(tb);
+    if (want === "diagram" || (want === "thing" && cycle)) {
+      // A schematic drawn by code: a process figure that fits stays; anything else is a flow of
+      // labelled boxes and arrows (a loop for a cycle).
+      if (beat.stage === "flow" || (kitFits && PROCESS_KITS.has(kit!))) continue;
+      next = "flow"; figure = undefined;
+    } else if (want === "thing") {
       // An exact figure stays only when the board's TITLE is its subject: a root hair cell kit on
       // "Specialised cells" showed one of the three cells the board teaches.
       if (kit && (kit === "library" || figureComponent(kit)?.match.test(beat.title)) && !PROCESS_KITS.has(kit)) continue;

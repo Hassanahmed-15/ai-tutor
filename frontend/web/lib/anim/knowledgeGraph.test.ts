@@ -116,14 +116,14 @@ test("a lecture's needs: shaky or unmet prerequisites, and how each concept read
   assert.equal(conceptStatus(undefined, true), "new");
 });
 
-test("the planner is told what the student knows, and to open with one refresher when they are shaky", () => {
+test("the planner is told what the student knows, and never offered a refresher board (owner, 2026-10-18)", () => {
   const input = { topic: "Cellular respiration", mood: "", sourceType: "prompt", mode: "standard", learnerProfile: { expertise: "beginner", depth: "balanced", goal: "school", codeExamples: false, preferredExamples: "visual", rationale: "", confirmedAt: "" } } as ProgressiveLectureInput;
   const plain = canvasPlanRequest(input);
   assert.doesNotMatch(plain, /ALREADY KNOWS/);
   const told = canvasPlanRequest(input, { mastered: ["Glucose"], shaky: [{ label: "ATP", for: "Respiration" }], earlier: [{ label: "Glucose", topic: "Photosynthesis" }] });
   assert.match(told, /Already solid: Glucose/);
   assert.match(told, /Glucose \(in "Photosynthesis"\)/);
-  assert.match(told, /refreshes ATP .*"refresher": true/);
+  assert.doesNotMatch(told, /"refresher": true/);
 });
 
 /* ── refreshers belong to the lecture (2026-10-15: a volcano lecture opened with a BST refresher) ── */

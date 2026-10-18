@@ -86,6 +86,14 @@ export interface NarrationCallbacks {
   onBlocked: () => void;
   /** Fired whenever the teacher starts a new sentence so visuals can follow the exact explanation. */
   onSentenceStart?: (index: number, sentence: string, total: number) => void;
+  /**
+   * Asked just BEFORE sentence `index` starts playing (index > 0); true holds the narration there,
+   * paused, until it is resumed. `onSentenceStart` fires once a sentence is already audible, so a hold
+   * made there let the first words of a prediction's reveal play out (owner, 2026-10-18: the card
+   * "never really waits for me and tells the answers"). A number is a wait in ms before the sentence
+   * (thinking time) — counted on the narration's own clock, so it stands still while paused.
+   */
+  holdBefore?: (index: number, sentence: string) => boolean | number;
   /** Fired from the active audio/timeline clock. `progress` is 0..1 for the current beat. */
   onProgress?: (progress: number, currentTimeMs: number, durationMs: number) => void;
   /**
@@ -743,6 +751,11 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       (audio as HTMLAudioElement & { webkitPreservesPitch?: boolean }).webkitPreservesPitch = true;
       audio.volume = 1;
 
+      // The player may hold here, before a word of this sentence is heard (a prediction's reveal).
+      const hold = i > 0 && !paused ? callbacks.holdBefore?.(i, sentences[i]) : false;
+      if (hold === true) pause();
+      else if (typeof hold === "number" && hold > 0) await sleep(hold);
+      if (cancelled) return;
       if (paused) await sleep(1);
       if (cancelled) return;
       // A browser can suspend the output between clips; the element would then play in silence.

@@ -71,14 +71,6 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
             forced the whole board through an extra compositing pass per frame. */}
         {chalk ? <ChalkSurface /> : <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-grain)" pointerEvents="none" />}
         <Ink points={[{ x: 48, y: 88 }, { x: 48 + (headingW + 20) * 0.5, y: 86.5 }, { x: Math.min(PANEL_W - 48, 48 + headingW + 20), y: 88.5 }]} width={4.2} color="#f59e0b" opacity={0.6} />
-        {/* A refresher of something the lesson builds on (lib/knowledge): labelled, so the student
-            knows why it is here and that the topic proper comes next. */}
-        {spec.refresher && (
-          <g pointerEvents="none">
-            <rect x={PANEL_W - 214} y={22} width={186} height={34} rx={17} fill="#7c3aed" opacity={0.92} />
-            <text x={PANEL_W - 121} y={44.5} textAnchor="middle" fontSize={15} fontWeight={800} fill="#ffffff">↺ Quick refresher</text>
-          </g>
-        )}
         {spec.visualFallback && <title>{spec.visualFallback.message}</title>}
         {visible.map((mark) => (
           <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} chalk={chalk} />
@@ -260,7 +252,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
     case "heading": {
       // Never past the board's edge or under the refresher badge: smaller first, then a second line
       // above the first (the stage starts just below the heading's rule).
-      const fit = fitText(mark.text, (spec.refresher ? PANEL_W - 230 : PANEL_W - 48) - mark.x, mark.size, Math.min(mark.size, 20));
+      const fit = fitText(mark.text, (PANEL_W - 48) - mark.x, mark.size, Math.min(mark.size, 20));
       return <FitLines fit={fit} x={mark.x} y={mark.y - (fit.lines.length - 1) * fit.size * 1.12} lead={1.12} fontWeight={800} fill={INK} className="cv-write" />;
     }
     case "note":
@@ -1490,7 +1482,8 @@ function GraphView({ mark, stage, shownThrough, sentenceProgress, vars, ghostVar
     <g className="cv-in">
       {/* Dot (components/avatar/BoardAvatar.tsx) keeps off the plot: she must not sit on the points. */}
       <rect data-figure="" x={plot.x} y={plot.y} width={plot.w} height={plot.h} fill="none" pointerEvents="none" />
-      {yTicks.map((v) => (
+      {/* A shape graph (spec.qualitative) shows the curve's form, not values: no tick numbers. */}
+      {!spec.qualitative && yTicks.map((v) => (
         <g key={`y${v}`}>
           <line x1={plot.x} y1={py(v)} x2={plot.x + plot.w} y2={py(v)} stroke="#e7e2d6" strokeWidth={1} />
           <text x={plot.x - 10} y={py(v) + 5} textAnchor="end" fontSize={13} fill={MUTED} fontWeight={600}>
@@ -1498,7 +1491,7 @@ function GraphView({ mark, stage, shownThrough, sentenceProgress, vars, ghostVar
           </text>
         </g>
       ))}
-      {showX && xTicks.map((v) => (
+      {showX && !spec.qualitative && xTicks.map((v) => (
         <text key={`x${v}`} x={px(v)} y={plot.y + plot.h + 22} textAnchor="middle" fontSize={13} fill={MUTED} fontWeight={600}>
           {v}
         </text>
@@ -1515,15 +1508,18 @@ function GraphView({ mark, stage, shownThrough, sentenceProgress, vars, ghostVar
         // A second line stands to the LEFT of the first's place, so it never reaches the tick numbers.
         <FitLines fit={yName} x={0} y={0} lead={1.12} transform={`translate(${plot.x - 50 - (yName.lines.length - 1) * yName.size * 1.12},${plot.y + plot.h / 2}) rotate(-90)`} textAnchor="middle" fontWeight={700} fill={INK} />
       )}
-      {(spec.guides ?? []).filter((g) => g.s <= shownThrough).map((g) => {
+      {(spec.guides ?? []).filter((g) => g.s <= shownThrough).map((g, gi, shownGuides) => {
         // Centred on its line, but slid back inside the stage when the line is near an edge.
         const fit = g.label ? fitText(g.label, stage.w - 8, 15, 12) : null;
         const half = fit ? Math.max(...fit.lines.map((l) => textWidth(l, fit.size))) / 2 : 0;
         const x = Math.max(stage.x + half + 4, Math.min(stageRight - half - 4, px(g.x)));
+        // Two guide names that would meet ("Optimum" and "Denaturation" printed as one) are stacked:
+        // the later one a line higher.
+        const lift = shownGuides.slice(0, gi).some((o) => Math.abs(px(o.x) - px(g.x)) < half + 70) ? 20 : 0;
         return (
           <g key={g.id} className={`cv-in${focusId === g.id ? " cv-focus" : ""}`}>
             <line x1={px(g.x)} y1={plot.y} x2={px(g.x)} y2={plot.y + plot.h} stroke="#94a3b8" strokeWidth={2} strokeDasharray="7 6" />
-            {fit && <FitLines fit={fit} x={x} y={plot.y - 12 - (fit.lines.length - 1) * fit.size * 1.12} lead={1.12} textAnchor="middle" fontWeight={700} fill={MUTED} />}
+            {fit && <FitLines fit={fit} x={x} y={plot.y - 12 - lift - (fit.lines.length - 1) * fit.size * 1.12} lead={1.12} textAnchor="middle" fontWeight={700} fill={MUTED} />}
           </g>
         );
       })}
