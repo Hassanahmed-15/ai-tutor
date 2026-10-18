@@ -12,6 +12,7 @@ import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { type DesignProgress } from "@/components/design/LessonDesignMode";
 import { LessonBuildScreen } from "@/components/design/LessonBuildScreen";
 import { applyDiagnostic, conceptMap, emptyProfile, hasEnoughSignal, learnerInstruction, profileSummary, resolveDepth, DEPTH_NAMES, type ConceptMapEntry, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
+import { verdictNote, verdictOfAnswer, verdictVoiceLine, type AnswerVerdict } from "@/lib/planningFeedback";
 import { memoryWasUsed, personaForPrompt, profileHasSignal, rememberedLine, seedProfile, snapshotFrom, type LearnerMemory } from "@/lib/learnerModel";
 import { PLAN_CHOICES, planMessage, shouldAddVoiceLine } from "@/lib/planningTranscript";
 import { openingSentence, topicKeywords } from "@/lib/beatPresentation";
@@ -618,6 +619,8 @@ type BuildCost =
   const ambiguityQuestionRef = useRef<{ question: string; options: string[] } | null>(null);
   const diagnosticBusyRef = useRef(false);
   const lastStudentAnswerRef = useRef<string>("");
+  /** The grade of that answer (lib/planningFeedback.ts): praised or explained before the next question. */
+  const lastVerdictRef = useRef<AnswerVerdict | null>(null);
   const spokenQuestionRef = useRef<string>("");
   useEffect(() => {
     diagnosticQuestionRef.current = diagnosticQuestion;
@@ -640,13 +643,15 @@ type BuildCost =
       .map((o, i) => `${String.fromCharCode(65 + i)}: ${o.split(",")[0]}`);
     voiceSay(
       (answered
-        ? `The student just answered: "${answered.slice(0, 300)}". Acknowledge it in ONE short, natural sentence (do not grade it or teach), then ask exactly this question: `
+        ? `The student just answered: "${answered.slice(0, 300)}". ${verdictVoiceLine(lastVerdictRef.current)} Then ask exactly this question: `
         : "Ask exactly this question, warmly and in your own voice: ") +
         `"${q}"` +
         (choices.length
           ? ` Then name the choices on screen, briefly — ${choices.join("; ")} — and ask them to pick one. Nothing else.`
           : " Nothing else."),
     );
+    // Said once: the next question's answer brings its own verdict.
+    lastVerdictRef.current = null;
   }, [diagnosticQuestion, initialAmbiguityQuestions, outline, voiceLive, voiceSay]);
 
   /*
@@ -790,6 +795,7 @@ type BuildCost =
     errorMessage: planningVoice.errorMessage,
     toggleMute: planningVoice.toggleMute,
     lastLine: voiceLines.length ? voiceLines[voiceLines.length - 1] : null,
+    interrupt: planningVoice.silence,
   };
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "choosing" | "ready" | "error">("idle");
   /** The name of the file being read, shown while it is read (the parsed file's name arrives only after). */
@@ -2460,7 +2466,8 @@ type BuildCost =
     question: string,
     answer: string,
     source: "text" | "voice",
-  ): Promise<{ nextQuestion: { question: string; options: string[] } | null; remark: string } | null> {
+  ): Promise<{ nextQuestion: { question: string; options: string[] } | null; remark: string; verdict: AnswerVerdict | null } | null> {
+    const profileBefore = learnerProfileRef.current;
     const exchanges = [...diagnosticExchanges, { question, answer }];
     setDiagnosticExchanges(exchanges);
 
@@ -2478,6 +2485,7 @@ type BuildCost =
     if (!data) return null;
 
     const profile = (data.profile as LearnerProfile | undefined) ?? null;
+    const verdict = verdictOfAnswer(profileBefore, profile, answer);
     if (profile) {
       setLearnerProfile(profile);
       learnerProfileRef.current = profile;
@@ -2499,6 +2507,7 @@ type BuildCost =
     return {
       nextQuestion: next?.question ? { question: next.question, options } : null,
       remark,
+      verdict,
     };
   }
 
@@ -2584,14 +2593,23 @@ type BuildCost =
       return;
     }
 
-    if (result.remark) {
+    // Right or wrong, said back (lib/planningFeedback.ts): the voice line for the next question
+    // reads this, and the screen shows it with the model's remark.
+    lastVerdictRef.current = result.verdict;
+    const note = verdictNote(result.verdict);
+    if (result.remark || note) {
       diagnosticTurnRef.current += 1;
-      setDiagnosticRemark({ text: result.remark, turn: diagnosticTurnRef.current });
+      setDiagnosticRemark({ text: [note, result.remark].filter(Boolean).join(" "), turn: diagnosticTurnRef.current });
     }
 
     if (result.nextQuestion) {
       setDiagnosticQuestion(result.nextQuestion);
       return;
+    }
+    // The last question: the verdict is still said, on its own, while the plan is made.
+    if (result.verdict) {
+      voiceSay(`The student just answered: "${answer.slice(0, 300)}". ${verdictVoiceLine(result.verdict)} Then say you are putting their plan together. Nothing else.`);
+      lastVerdictRef.current = null;
     }
     requestOutline(topic, clarifyAnswers, planAngle);
   }
@@ -4541,6 +4559,11 @@ type VoiceState = {
   toggleMute: () => void;
   /** The most recent thing said, by either side. Shown so the voice is readable as well as audible. */
   lastLine: { role: "you" | "aria"; text: string } | null;
+  /**
+   * Stops what Aria is saying, at once. A tapped answer cuts her off the way a spoken one does: she
+   * kept reading the remaining options after the student had picked one (2026-10-18).
+   */
+  interrupt: () => void;
 };
 
 /**
@@ -5273,6 +5296,7 @@ function OutlineReviewState({
                         options={m.chips.map((c) => c.label)}
                         disabled={m.answered || sending || loading || diagnosticBusy}
                         onSelect={(label) => {
+                          voice.interrupt();
                           const chip = m.chips!.find((c) => c.label === label);
                           if (chip) sendChip(i, m.text, chip.label, chip.instruction, Boolean(m.isAmbiguity), Boolean(m.isDiagnostic), Boolean(m.isPlan));
                         }}
@@ -5412,7 +5436,10 @@ function OutlineReviewState({
                     <button
                       key={option}
                       type="button"
-                      onClick={() => answerIt(option)}
+                      onClick={() => {
+                        voice.interrupt();
+                        answerIt(option);
+                      }}
                       disabled={sending || loading || Boolean(voicePick)}
                       className={`home-lift group flex items-center gap-4 rounded-[14px] border px-4 py-3.5 text-left transition hover:border-[var(--hud-cyan)] disabled:opacity-50 ${
                         heard ? "border-[var(--hud-cyan)] bg-[var(--hud-cyan)]/[0.14] !opacity-100" : "border-[var(--hud-line)] bg-[var(--hud-surface)]"

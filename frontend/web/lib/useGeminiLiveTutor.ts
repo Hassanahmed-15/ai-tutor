@@ -43,6 +43,9 @@ export const DEFAULT_LIVE_VOICE = "Kore";
  */
 export const ARIA_LIVE_VOICE = "Zephyr";
 
+/** The longest a say() waits behind a reply silence() cut (lib/useGeminiLiveTutor.ts say). */
+export const CUT_TURN_WAIT_MS = 2_500;
+
 export function supportsThinkingLevel(model: string): boolean {
   return !/gemini-3\.8-live/.test(model);
 }
@@ -562,6 +565,15 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const responseInFlightRef = useRef(false);
   const turnCompleteRef = useRef(false);
   const turnCompletedRef = useRef(false);
+  /**
+   * A reply cut short by silence() whose server turn has not ended yet. Its remaining audio is still
+   * arriving; a say() sent now would clear the suppression and let it play again (a student who
+   * tapped an answer heard the rest of the options after Aria's reply — 2026-10-18). Such a say()
+   * waits for the cut turn to end (queuedSayRef), at most CUT_TURN_WAIT_MS.
+   */
+  const cutTurnPendingRef = useRef(false);
+  const queuedSayRef = useRef<{ prompt: string; timer: ReturnType<typeof setTimeout> } | null>(null);
+  const flushSayRef = useRef<() => void>(() => {});
   const boardChainPendingRef = useRef(false);
   const pendingLectureResumeRef = useRef(false);
   const studentSpeakingRef = useRef(false);
@@ -1354,6 +1366,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
 
       const content = message.serverContent;
       if (content?.interrupted) {
+        if (cutTurnPendingRef.current) flushSayRef.current();
         suppressCurrentTurnRef.current = true;
         responseInFlightRef.current = false;
         turnCompletedRef.current = true;
@@ -1457,6 +1470,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         scheduleSettle();
       }
       if (content?.turnComplete) {
+        // The turn silence() cut has ended: a line queued behind it is said once this turn is closed.
+        const wasCut = cutTurnPendingRef.current;
+        if (wasCut) queueMicrotask(() => flushSayRef.current());
         responseInFlightRef.current = false;
         turnCompleteRef.current = true;
         // A turn that finished without audio (suppressed, muted, empty) is over too.
@@ -2255,7 +2271,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     startRef.current = start;
   }, [start]);
 
-  const say = useCallback(
+  const sendSay = useCallback(
     (prompt: string) => {
       if (!sessionRef.current || !prompt.trim()) return;
       promptedTurnRef.current = true;
@@ -2266,6 +2282,29 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       sessionRef.current.sendRealtimeInput({ text: prompt.trim() });
     },
     [markTutorActive],
+  );
+  useEffect(() => {
+    flushSayRef.current = () => {
+      cutTurnPendingRef.current = false;
+      const queued = queuedSayRef.current;
+      queuedSayRef.current = null;
+      if (!queued) return;
+      clearTimeout(queued.timer);
+      sendSay(queued.prompt);
+    };
+  }, [sendSay]);
+  const say = useCallback(
+    (prompt: string) => {
+      if (!prompt.trim()) return;
+      // Behind a cut reply still arriving: said once that turn ends (or after a short wait), never over it.
+      if (cutTurnPendingRef.current) {
+        if (queuedSayRef.current) clearTimeout(queuedSayRef.current.timer);
+        queuedSayRef.current = { prompt, timer: setTimeout(() => flushSayRef.current(), CUT_TURN_WAIT_MS) };
+        return;
+      }
+      sendSay(prompt);
+    },
+    [sendSay],
   );
 
   /**
@@ -2403,6 +2442,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   }, [documentId, status]);
 
   const silence = useCallback(() => {
+    // A reply still being generated or played: its turn must end before anything new is said.
+    if (responseInFlightRef.current || playingSourcesRef.current.size > 0) cutTurnPendingRef.current = true;
     suppressCurrentTurnRef.current = true;
     responseInFlightRef.current = false;
     turnCompletedRef.current = true;
