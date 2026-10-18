@@ -67,6 +67,9 @@ backend/packages/*/node_modules
 # and the compiled test build. Student content must never be baked into a shipped image.
 **/.lecture-cache
 **/.canvas-cache
+# The raw syllabus downloads the course catalogue is built from (scripts/curriculum): ~3.4GB that
+# the app never reads — it ships data/curricula. Packed into the build context it filled the disk.
+**/.curricula-raw
 **/.test-build*
 # The standalone animation lab, parked experiments and scratch output — not part of the tutor image.
 anim-lab
