@@ -632,7 +632,9 @@ type BuildCost =
   const voiceSay = planningVoice.say;
   const voiceLive = planningVoice.status === "live" || planningVoice.status === "drawing";
   useEffect(() => {
-    const onScreen = diagnosticQuestion ?? (!outline && initialAmbiguityQuestions.length ? initialAmbiguityQuestions[0] : null);
+    // The intent question ("what do you want from this lesson?") is usually the FIRST one a typed topic
+    // asks, and it was never spoken: the student met a silent screen (2026-10-18).
+    const onScreen = diagnosticQuestion ?? (!outline && initialAmbiguityQuestions.length ? initialAmbiguityQuestions[0] : null) ?? (!outline ? intentQuestion : null);
     const q = onScreen?.question;
     if (!q || !voiceLive || spokenQuestionRef.current === q) return;
     spokenQuestionRef.current = q;
@@ -652,7 +654,7 @@ type BuildCost =
     );
     // Said once: the next question's answer brings its own verdict.
     lastVerdictRef.current = null;
-  }, [diagnosticQuestion, initialAmbiguityQuestions, outline, voiceLive, voiceSay]);
+  }, [diagnosticQuestion, initialAmbiguityQuestions, intentQuestion, outline, voiceLive, voiceSay]);
 
   /*
    * WHAT ARIA ALREADY KNOWS ABOUT THIS STUDENT, from earlier lectures (lib/learnerModel.ts).
@@ -756,7 +758,24 @@ type BuildCost =
   // Not gated on planLoading: a revision Aria makes by voice (revise_plan) loads the plan again, and
   // closing the mic then would cut her off mid-answer.
   const planOnScreen = phase === "outline" && outlineReady;
-  const planningVoiceWanted = planOnScreen || (!outlineReady && questionOpen);
+  /*
+   * The verdict on the LAST answer is said while the plan is drafted — the gap that closes the voice
+   * just below — so it was cut off before a word (2026-10-18). The voice stays until she has said it
+   * (or 10 s at most).
+   */
+  const [sayingLastVerdict, setSayingLastVerdict] = useState(false);
+  const lastVerdictHeardRef = useRef(false);
+  useEffect(() => {
+    if (!sayingLastVerdict) return;
+    if (planningVoice.speaking) lastVerdictHeardRef.current = true;
+    else if (lastVerdictHeardRef.current) setSayingLastVerdict(false);
+  }, [sayingLastVerdict, planningVoice.speaking]);
+  useEffect(() => {
+    if (!sayingLastVerdict) return;
+    const cap = setTimeout(() => setSayingLastVerdict(false), 10_000);
+    return () => clearTimeout(cap);
+  }, [sayingLastVerdict]);
+  const planningVoiceWanted = planOnScreen || (!outlineReady && (questionOpen || sayingLastVerdict));
   useEffect(() => {
     if (phase === "outline" && planningVoiceWanted) {
       void voiceStart();
@@ -2608,6 +2627,8 @@ type BuildCost =
     }
     // The last question: the verdict is still said, on its own, while the plan is made.
     if (result.verdict) {
+      lastVerdictHeardRef.current = false;
+      setSayingLastVerdict(true);
       voiceSay(`The student just answered: "${answer.slice(0, 300)}". ${verdictVoiceLine(result.verdict)} Then say you are putting their plan together. Nothing else.`);
       lastVerdictRef.current = null;
     }

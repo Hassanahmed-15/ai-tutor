@@ -43,8 +43,8 @@ export const DEFAULT_LIVE_VOICE = "Kore";
  */
 export const ARIA_LIVE_VOICE = "Zephyr";
 
-/** The longest a say() waits behind a reply silence() cut (lib/useGeminiLiveTutor.ts say). */
-export const CUT_TURN_WAIT_MS = 2_500;
+/** How long after a say() the server's closing of the PREVIOUS turn is still expected (lib/useGeminiLiveTutor.ts say). */
+export const OLD_TURN_CLOSE_MS = 3_000;
 
 export function supportsThinkingLevel(model: string): boolean {
   return !/gemini-3\.8-live/.test(model);
@@ -566,14 +566,21 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const turnCompleteRef = useRef(false);
   const turnCompletedRef = useRef(false);
   /**
-   * A reply cut short by silence() whose server turn has not ended yet. Its remaining audio is still
-   * arriving; a say() sent now would clear the suppression and let it play again (a student who
-   * tapped an answer heard the rest of the options after Aria's reply — 2026-10-18). Such a say()
-   * waits for the cut turn to end (queuedSayRef), at most CUT_TURN_WAIT_MS.
+   * A say() whose reply has not started yet. The server keeps a turn open about as long as its audio
+   * would take to play, and a say() arriving inside it closes that OLD turn with `interrupted` +
+   * `turnComplete`. Handled as usual, those muted the NEW reply: a student who tapped an answer while
+   * Aria read the options heard nothing back (2026-10-18, measured: 37 chunks of "That's right"
+   * received, none played). In this window an interruption can only be the old turn closing — a
+   * student talking over her goes through beginStudentSpeech, which mutes on its own.
    */
-  const cutTurnPendingRef = useRef(false);
-  const queuedSayRef = useRef<{ prompt: string; timer: ReturnType<typeof setTimeout> } | null>(null);
-  const flushSayRef = useRef<() => void>(() => {});
+  const sayAwaitingAudioRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** That old turn's `turnComplete`, still to come after its `interrupted`. */
+  const oldTurnCompleteDueRef = useRef(false);
+  const endSayWait = useCallback(() => {
+    if (sayAwaitingAudioRef.current) clearTimeout(sayAwaitingAudioRef.current);
+    sayAwaitingAudioRef.current = null;
+    oldTurnCompleteDueRef.current = false;
+  }, []);
   const boardChainPendingRef = useRef(false);
   const pendingLectureResumeRef = useRef(false);
   const studentSpeakingRef = useRef(false);
@@ -1365,8 +1372,13 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       }
 
       const content = message.serverContent;
-      if (content?.interrupted) {
-        if (cutTurnPendingRef.current) flushSayRef.current();
+      // The previous turn closing after a say() went out over it is not the new reply's end (sayAwaitingAudioRef).
+      if (content?.modelTurn?.parts?.some((p) => p.inlineData?.data)) endSayWait();
+      const oldTurnInterrupted = sayAwaitingAudioRef.current !== null && Boolean(content?.interrupted);
+      if (oldTurnInterrupted) oldTurnCompleteDueRef.current = true;
+      const oldTurnComplete = Boolean(content?.turnComplete) && oldTurnCompleteDueRef.current;
+      if (oldTurnComplete) oldTurnCompleteDueRef.current = false;
+      if (content?.interrupted && !oldTurnInterrupted) {
         suppressCurrentTurnRef.current = true;
         responseInFlightRef.current = false;
         turnCompletedRef.current = true;
@@ -1469,10 +1481,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         if (playingSourcesRef.current.size === 0) setSpeaking(false);
         scheduleSettle();
       }
-      if (content?.turnComplete) {
-        // The turn silence() cut has ended: a line queued behind it is said once this turn is closed.
-        const wasCut = cutTurnPendingRef.current;
-        if (wasCut) queueMicrotask(() => flushSayRef.current());
+      if (content?.turnComplete && !oldTurnComplete) {
         responseInFlightRef.current = false;
         turnCompleteRef.current = true;
         // A turn that finished without audio (suppressed, muted, empty) is over too.
@@ -1494,7 +1503,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         if (muteNext) contextOnlyTurnRef.current = true;
       }
     },
-    [handleToolCalls, isHeldReply, markTutorActive, playAudioChunk, resetIdleTimer, scheduleSettle, stopPlayback, teardown],
+    [endSayWait, handleToolCalls, isHeldReply, markTutorActive, playAudioChunk, resetIdleTimer, scheduleSettle, stopPlayback, teardown],
   );
 
   /**
@@ -2271,9 +2280,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     startRef.current = start;
   }, [start]);
 
-  const sendSay = useCallback(
+  const say = useCallback(
     (prompt: string) => {
       if (!sessionRef.current || !prompt.trim()) return;
+      endSayWait();
+      sayAwaitingAudioRef.current = setTimeout(endSayWait, OLD_TURN_CLOSE_MS);
       promptedTurnRef.current = true;
       muteRepliesUntilStudentRef.current = false;
       suppressCurrentTurnRef.current = false;
@@ -2281,30 +2292,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       markTutorActive();
       sessionRef.current.sendRealtimeInput({ text: prompt.trim() });
     },
-    [markTutorActive],
-  );
-  useEffect(() => {
-    flushSayRef.current = () => {
-      cutTurnPendingRef.current = false;
-      const queued = queuedSayRef.current;
-      queuedSayRef.current = null;
-      if (!queued) return;
-      clearTimeout(queued.timer);
-      sendSay(queued.prompt);
-    };
-  }, [sendSay]);
-  const say = useCallback(
-    (prompt: string) => {
-      if (!prompt.trim()) return;
-      // Behind a cut reply still arriving: said once that turn ends (or after a short wait), never over it.
-      if (cutTurnPendingRef.current) {
-        if (queuedSayRef.current) clearTimeout(queuedSayRef.current.timer);
-        queuedSayRef.current = { prompt, timer: setTimeout(() => flushSayRef.current(), CUT_TURN_WAIT_MS) };
-        return;
-      }
-      sendSay(prompt);
-    },
-    [sendSay],
+    [endSayWait, markTutorActive],
   );
 
   /**
@@ -2442,8 +2430,6 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   }, [documentId, status]);
 
   const silence = useCallback(() => {
-    // A reply still being generated or played: its turn must end before anything new is said.
-    if (responseInFlightRef.current || playingSourcesRef.current.size > 0) cutTurnPendingRef.current = true;
     suppressCurrentTurnRef.current = true;
     responseInFlightRef.current = false;
     turnCompletedRef.current = true;
