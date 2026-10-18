@@ -1,3 +1,4 @@
+import { fitText } from "../cuts";
 import type { FigureComponent, FigureParams, Ink, Pt } from "../types";
 import { PALETTE, Sketch, bool, clamp, dist, fmt, optNum, str, textW } from "./mathsKit";
 import {
@@ -100,7 +101,17 @@ export const functionGraph: FigureComponent = {
     const fShown = fParsed ? fSrc : "x^2 - 2x - 3";
     const g = params.g !== undefined ? fn1(params.g) : null;
     const gShown = g ? String(params.g) : "";
-    const fName = str(params.fName, "f", 6), gName = str(params.gName, "g", 6);
+    // A curve the writer NAMES in words ("Primary response") is labelled by that name; the maths text
+    // keeps the symbol. Cutting the words to a 6-letter symbol drew "Curve y = Primar(x)" (2026-10-17).
+    // A formula keeps its case ("m = 6l³" is not "M = 6l³": a capital is another variable); only a name
+    // in words starts with a capital ("primary response" → "Primary response").
+    const worded = (v: unknown) => {
+      if (typeof v !== "string" || !(/\s/.test(v.trim()) || v.trim().length > 6)) return "";
+      const t = v.trim();
+      return /[=<>≤≥^/()]|\d/.test(t) || !/^[a-z]{3,}/i.test(t) ? t : t.replace(/^./, (c) => c.toUpperCase());
+    };
+    const fWords = worded(params.fName), gWords = worded(params.gName);
+    const fName = fWords ? "f" : str(params.fName, "f", 6), gName = gWords ? "g" : str(params.gName, "g", 6);
     const feats = parseFeatures(params.features);
     const coords = bool(params.coordinates, true);
     const trig = /(sin|cos|tan)\s*\(/.test(normalizeExpr(fShown) + " " + normalizeExpr(gShown));
@@ -262,9 +273,9 @@ export const functionGraph: FigureComponent = {
 
     // Anchors.
     const curveAnchor = pickOnCurve(sk, P, fLines, [0.85, 0.15, 0.75, 0.25, 0.65]);
-    if (curveAnchor) sk.part("curve", `Curve y = ${short(fShown, 20, `${fName}(x)`)}`, curveAnchor);
+    if (curveAnchor) sk.part("curve", fWords ? fitText(fWords, 34) : `Curve y = ${short(fShown, 20, `${fName}(x)`)}`, curveAnchor);
     const gAnchor = g ? pickOnCurve(sk, P, gLines, [0.12, 0.88, 0.3, 0.7]) : undefined;
-    if (gAnchor) sk.part("second-curve", `Curve y = ${short(gShown, 20, `${gName}(x)`)}`, gAnchor);
+    if (gAnchor) sk.part("second-curve", gWords ? fitText(gWords, 34) : `Curve y = ${short(gShown, 20, `${gName}(x)`)}`, gAnchor);
     for (const id of ["root", "turning-point", "y-intercept", "intersection"]) {
       const m = marks.find((k) => k.part === id);
       if (m) sk.part(id, m.name.length <= 34 ? m.name : PARTS.find((p) => p.id === id)!.name, P.S(m.x, m.y));

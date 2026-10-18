@@ -1,3 +1,4 @@
+import { prettyPowers } from "../text/fit";
 import { canvasSentences } from "./plan";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 
@@ -136,12 +137,17 @@ export function anchorNotes<T extends { text: string; s: number }>(notes: T[], s
     const want = stems(note.text);
     let best = note.s, bestScore = 0;
     said.forEach((words, i) => {
-      if (i < floor) return;
+      // Within two sentences of the planner's own: a closing summary sentence repeats every idea and
+      // pulled all of a board's notes onto itself (live test, 2026-10-17).
+      if (i < floor || Math.abs(i - note.s) > 2) return;
       const score = want.filter((w) => words.has(w)).length;
       if (score > bestScore || (score === bestScore && score > 0 && Math.abs(i - note.s) < Math.abs(best - note.s))) { best = i; bestScore = score; }
     });
-    const s = Math.max(floor, bestScore > 0 ? best : note.s);
+    // Only a clear match moves a note: one shared word put a note on the last sentence, and every note
+    // after it piled onto that sentence too (all thirteen notes of a board on sentence 12).
+    const clear = bestScore >= 2 || (bestScore === 1 && want.length <= 2);
+    const s = Math.min(Math.max(floor, clear ? best : note.s), Math.max(floor, said.length - 1));
     floor = s;
-    return { ...note, s };
+    return { ...note, text: prettyPowers(note.text), s };
   });
 }

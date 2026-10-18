@@ -73,7 +73,7 @@
   "parts": [
    {
     "id": "letti-capillari",
-    "name": "Letti capillari",
+    "name": "Capillary beds",
     "anchor": {
      "x": 287.1,
      "y": 115.9
@@ -82,7 +82,7 @@
    },
    {
     "id": "sacche-alveolari",
-    "name": "Sacche alveolari",
+    "name": "Alveolar sacs",
     "anchor": {
      "x": 179,
      "y": 86.9
@@ -91,7 +91,7 @@
    },
    {
     "id": "condotto-alveolare",
-    "name": "Condotto alveolare",
+    "name": "Alveolar duct",
     "anchor": {
      "x": 207.5,
      "y": 149.2
@@ -109,7 +109,7 @@
    },
    {
     "id": "vena-polmonare",
-    "name": "Vena polmonare",
+    "name": "Pulmonary vein",
     "anchor": {
      "x": 193.9,
      "y": 189.9
@@ -132,10 +132,11 @@
      "x": 319.1,
      "y": 160.2
     },
-    "confidence": "high"
+    "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "alveolus-diagram",
@@ -160,7 +161,7 @@
   "parts": [
    {
     "id": "capilllary-beds",
-    "name": "Capilllary beds",
+    "name": "Capillary beds",
     "anchor": {
      "x": 134,
      "y": 86.8
@@ -249,7 +250,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "animal-cell-structure",
@@ -465,7 +467,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "atmosphere-composition-diagram",
@@ -554,7 +557,8 @@
     "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "atmosphere-layers",
@@ -616,7 +620,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "prokaryote-cell",
@@ -715,7 +720,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "prokaryote-cell-diagram",
@@ -762,7 +768,7 @@
    },
    {
     "id": "wall",
-    "name": "Wall",
+    "name": "Cell wall",
     "anchor": {
      "x": 304.4,
      "y": 167.4
@@ -780,7 +786,7 @@
    },
    {
     "id": "apsule",
-    "name": "Apsule",
+    "name": "Capsule",
     "anchor": {
      "x": 269.9,
      "y": 175.4
@@ -789,7 +795,7 @@
    },
    {
     "id": "icleoid",
-    "name": "Icleoid",
+    "name": "Nucleoid",
     "anchor": {
      "x": 295.5,
      "y": 259.8
@@ -797,7 +803,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "diagram-showing-the-brain-stem-which-inc",
@@ -1186,7 +1193,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "blood-vessels",
@@ -1376,7 +1384,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "circulatory-system",
@@ -1414,7 +1423,7 @@
    },
    {
     "id": "arcuate-a",
-    "name": "Arcuate a",
+    "name": "Arcuate artery",
     "anchor": {
      "x": 251.6,
      "y": 785.8
@@ -1423,7 +1432,7 @@
    },
    {
     "id": "dorsal-digital-a",
-    "name": "Dorsal digital a",
+    "name": "Dorsal digital artery",
     "anchor": {
      "x": 231.4,
      "y": 798.5
@@ -1458,7 +1467,8 @@
     "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "circulatory-system-en-edited",
@@ -1918,7 +1928,8 @@
     "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "digestive-system-diagram",
@@ -2161,7 +2172,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "digestive-system-diagram-edit",
@@ -2369,7 +2381,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "eukaryotic-dna-replication",
@@ -2473,7 +2486,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "anatomy-of-human-ear-with-cochlear-frequ",
@@ -2887,7 +2901,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "electromagnetic-spectrum-de-c",
@@ -2911,7 +2926,7 @@
   "parts": [
    {
     "id": "ultraviolett-strahlung",
-    "name": "Ultraviolett-strahlung",
+    "name": "Ultraviolet radiation",
     "anchor": {
      "x": 3432.4,
      "y": 1427.9
@@ -2919,7 +2934,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "electromagnetic-spectrum-de-srgb",
@@ -2949,11 +2965,11 @@
      "x": 104.1,
      "y": 161.2
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "ultraviolett-strahlung",
-    "name": "Ultraviolett-strahlung",
+    "name": "Ultraviolet radiation",
     "anchor": {
      "x": 423.9,
      "y": 156.4
@@ -2961,7 +2977,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "electromagnetic-spectrum-with-sources",
@@ -3039,7 +3056,8 @@
     "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "endocrine-alimentary-system",
@@ -3118,7 +3136,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "endocrine-reproductive-system",
@@ -3144,7 +3163,7 @@
   "parts": [
    {
     "id": "ovar",
-    "name": "Ovar",
+    "name": "Ovary",
     "anchor": {
      "x": 282.4,
      "y": 163.8
@@ -3179,7 +3198,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "schematic-diagram-of-the-human-eye",
@@ -3369,7 +3389,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "scheme-female-reproductive-system",
@@ -3454,7 +3475,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "scheme-female-reproductive-system-vagina",
@@ -3541,7 +3563,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "mature-flower-cropped-eg",
@@ -3626,7 +3649,7 @@
    },
    {
     "id": "corolla-petals",
-    "name": "Corolla: Petals",
+    "name": "Petal (corolla)",
     "anchor": {
      "x": 142.5,
      "y": 98.3
@@ -3635,7 +3658,7 @@
    },
    {
     "id": "calix-sepals",
-    "name": "Calix: Sepals",
+    "name": "Sepal (calyx)",
     "anchor": {
      "x": 122.4,
      "y": 131
@@ -3771,7 +3794,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "arctic-food-web",
@@ -3793,7 +3817,8 @@
   "w": 527.4,
   "h": 297.4,
   "parts": [],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "protist-soil-food-web",
@@ -3816,7 +3841,8 @@
   "w": 140.2,
   "h": 93.3,
   "parts": [],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "proton-exchange-fuel-cell-diagram",
@@ -3868,7 +3894,8 @@
     "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "solid-oxide-fuel-cell-protonic",
@@ -3912,7 +3939,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "heart-diagram",
@@ -3940,7 +3968,7 @@
   "parts": [
    {
     "id": "left-common",
-    "name": "Left common",
+    "name": "Left common carotid artery",
     "anchor": {
      "x": 109.9,
      "y": 13.3
@@ -4048,7 +4076,7 @@
    },
    {
     "id": "atrioventricular",
-    "name": "Atrioventricular",
+    "name": "Mitral (bicuspid) valve",
     "anchor": {
      "x": 169.5,
      "y": 180.5
@@ -4066,7 +4094,7 @@
    },
    {
     "id": "tricuspid-valve",
-    "name": "(tricuspid) valve",
+    "name": "Tricuspid valve",
     "anchor": {
      "x": 73.4,
      "y": 204.5
@@ -4245,7 +4273,8 @@
     "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "human-eye-cross-section-detached-retina",
@@ -4298,7 +4327,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "diagram-of-the-human-heart",
@@ -4486,7 +4516,7 @@
      "x": 145.9,
      "y": 420.7
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "tricuspid-valve",
@@ -4605,7 +4635,7 @@
    },
    {
     "id": "sinovial-cavity",
-    "name": "Sinovial cavity",
+    "name": "Synovial cavity",
     "anchor": {
      "x": 186.2,
      "y": 273.4
@@ -4676,7 +4706,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "shoulder-joint-back",
@@ -4705,7 +4736,7 @@
   "parts": [
    {
     "id": "ac-joint",
-    "name": "(AC) joint",
+    "name": "Acromioclavicular (AC) joint",
     "anchor": {
      "x": 188.1,
      "y": 22.6
@@ -4746,7 +4777,7 @@
      "x": 26.8,
      "y": 68.7
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "teres-minor",
@@ -4773,7 +4804,7 @@
      "x": 151.5,
      "y": 121.4
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "humeral",
@@ -4782,7 +4813,7 @@
      "x": 112.6,
      "y": 203
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "scapula",
@@ -4855,7 +4886,7 @@
      "x": 145.5,
      "y": 122
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "nephron",
@@ -5012,7 +5043,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "leaf-tissue-structure-flat",
@@ -5096,7 +5128,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "diagram-showing-how-the-blood-and-lymph",
@@ -5148,7 +5181,7 @@
      "x": 267.6,
      "y": 108.6
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "heart",
@@ -5339,7 +5372,7 @@
    },
    {
     "id": "suspensonary-ligament",
-    "name": "Suspensonary ligament",
+    "name": "Suspensory ligament",
     "anchor": {
      "x": 78.6,
      "y": 129.4
@@ -5366,7 +5399,7 @@
    },
    {
     "id": "bulbourethral-gland-anus",
-    "name": "Bulbourethral gland anus",
+    "name": "Bulbourethral gland",
     "anchor": {
      "x": 166.9,
      "y": 157.3
@@ -5532,7 +5565,7 @@
      "x": 274.1,
      "y": 197.4
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "inner-membrane",
@@ -5604,7 +5637,7 @@
      "x": 282.7,
      "y": 131.3
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "inner-membrane",
@@ -5724,7 +5757,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "skeletal-muscle-svg-hariadhi",
@@ -5825,7 +5859,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "wing-muscles-color",
@@ -5908,7 +5943,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "complete-neuron-cell-diagram",
@@ -6118,7 +6154,8 @@
     "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "neuron-annotated",
@@ -6155,7 +6192,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "diagram-showing-how-the-pancreas-and-bow",
@@ -6221,7 +6259,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "placenta-previa",
@@ -6460,7 +6499,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "tectonic-plate-boundaries",
@@ -6616,7 +6656,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "protein-synthesis",
@@ -6668,7 +6709,7 @@
    },
    {
     "id": "other-trnas-with-anticodonsl",
-    "name": "Other tRNAs with anticodonsl",
+    "name": "Other tRNAs with anticodons",
     "anchor": {
      "x": 1317.6,
      "y": 592.8
@@ -6784,7 +6825,8 @@
     "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "protein-synthesis-editors-version",
@@ -6926,7 +6968,8 @@
     "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "diagram-showing-the-parts-of-the-respira",
@@ -6991,7 +7034,7 @@
      "x": 85.1,
      "y": 163.8
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "left-lower-lobe",
@@ -7112,7 +7155,7 @@
   "parts": [
    {
     "id": "capilllary-beds",
-    "name": "Capilllary beds",
+    "name": "Capillary beds",
     "anchor": {
      "x": 630.8,
      "y": 149.1
@@ -7453,7 +7496,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "human-skeleton-back",
@@ -7625,7 +7669,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "human-skeleton-front",
@@ -7877,7 +7922,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "delta-vs-for-inner-solar-system",
@@ -7965,7 +8011,8 @@
     "confidence": "low"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "diagam-showing-the-anatomy-before-roux-e",
@@ -8039,7 +8086,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "transformer-directional-coupler",
@@ -8137,7 +8185,8 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  },
  {
   "id": "hepatitis-b-virus-v2",
@@ -8255,7 +8304,7 @@
      "x": 177.7,
      "y": 201
     },
-    "confidence": "high"
+    "confidence": "low"
    },
    {
     "id": "crater",
@@ -8376,6 +8425,7 @@
     "confidence": "high"
    }
   ],
-  "reviewed": false
+  "reviewed": false,
+  "rejected": true
  }
 ]

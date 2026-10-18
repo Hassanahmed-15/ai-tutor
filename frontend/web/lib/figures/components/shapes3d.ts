@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Pt } from "../types";
+import { fitText } from "../cuts";
 import { PALETTE, Sketch, add, bool, clamp, fmt, lerp, mul, optNum, perp, rad, str, sub, unit } from "./mathsKit";
 
 /**
@@ -130,7 +131,7 @@ export const shapes3d: FigureComponent = {
     for (const item of String(params.unknown ?? "").split(/[,;]/)) {
       const [k, sym] = item.split(/\s*[=:]\s*/).map((s) => s.trim().toLowerCase());
       const key: Dim | undefined = /slant/.test(k) ? "slant-height" : /^(l|len|length)/.test(k) ? "length" : /^(w|width|depth)/.test(k) ? "width" : /^(h|height)/.test(k) ? "height" : /^(r|rad|radius|d|diam)/.test(k) ? "radius" : undefined;
-      if (key) unknown.set(key, (sym || (unknown.size ? "y" : "x")).slice(0, 3));
+      if (key) unknown.set(key, fitText(sym || (unknown.size ? "y" : "x"), 3));
     }
     const label = (d: Dim) => unknown.get(d) ?? (showMode === "letters" ? LETTER[d] : showMode === "none" ? "" : `${fmt(dim[d], 2)}${units ? ` ${units}` : ""}`);
     const ink = (d: Dim) => (unknown.has(d) ? PALETTE.red : PALETTE.blue);
@@ -439,7 +440,7 @@ export const shapes3d: FigureComponent = {
     }
     for (const p of PARTS) {
       const a = anchors[p.id], n = names[p.id];
-      if (a && n) sk.part(p.id, n.slice(0, 34), a);
+      if (a && n) sk.part(p.id, fitText(n, 34), a);
     }
     return sk.finish(14);
   },

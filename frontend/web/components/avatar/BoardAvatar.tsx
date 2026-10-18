@@ -6,6 +6,7 @@ import { DotAvatar, type DotGaze } from "./DotAvatar";
 import type { AvatarState } from "@/lib/avatar/face";
 import { arcPoint, beam, covers, distanceTo, FLIGHT_GAP_S, FLY_S, gazeAt, HOP_GAP_S, LINGER_S, parkingSpot, REACH, RETURN_S, type Pt, type Rect } from "@/lib/avatar/dotFlight";
 import { pointTarget, setDotPointer } from "@/lib/avatar/pointTarget";
+import { restSpot } from "@/lib/canvas/renderFit";
 
 /**
  * ARIA AT THE BOARD. Not a video tile in a box: she stands at the lower right of the board like a
@@ -111,7 +112,7 @@ export function BoardAvatar({
       </div>
     );
   }
-  return <DotAtBoard anchorRef={ref} anchorClass={anchorClass} anchorStyle={anchorStyle} state={state} mode={mode} board={board} flies={flies} small={small} />;
+  return <DotAtBoard anchorRef={ref} anchorClass={anchorClass} anchorStyle={anchorStyle} state={state} mode={mode} board={board} panel={panel} flies={flies} small={small} />;
 }
 
 type Phase = "home" | "fly" | "parked" | "return";
@@ -123,6 +124,7 @@ function DotAtBoard({
   state,
   mode,
   board,
+  panel,
   flies,
   small,
 }: {
@@ -132,6 +134,7 @@ function DotAtBoard({
   state: AvatarState;
   mode: BoardAvatarMode;
   board: RefObject<HTMLElement | null>;
+  panel: RefObject<HTMLElement | null>;
   flies: boolean;
   small: boolean;
 }) {
@@ -185,6 +188,22 @@ function DotAtBoard({
     const homeCentre = (): Pt => {
       const r = anchor.getBoundingClientRect();
       return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    };
+    // What is on the board being taught: every board of the lecture stays on the canvas, and with
+    // the first 400 texts read off the whole canvas, a late board's words (an exam board's, a
+    // compare board's cards) were never measured at all (audit 2026-10-17).
+    const liveBoard = (b: Element): Element => b.querySelector('[data-live="true"]') ?? b;
+    // The canvas's own HTML on top of the board — task cards, camera buttons — and the questions panel.
+    const uiOn = (b: Element): Rect[] => {
+      const out: Rect[] = [];
+      const nodes = b.querySelectorAll("[data-card], button, [role='radiogroup'], label");
+      for (let i = 0; i < nodes.length && i < 80; i++) {
+        const r = nodes[i].getBoundingClientRect();
+        if (r.width > 2 && r.height > 2) out.push({ x: r.left, y: r.top, w: r.width, h: r.height });
+      }
+      const p = panel.current?.getBoundingClientRect();
+      if (p && p.width > 2) out.push({ x: p.left, y: p.top, w: p.width, h: p.height });
+      return out;
     };
     const inkOn = (b: Element): Rect[] => {
       const out: Rect[] = [];
@@ -245,14 +264,15 @@ function DotAtBoard({
       const x1 = Math.min(whole.x + whole.w, p.x + p.w) - 10, y1 = Math.min(whole.y + whole.h, p.y + p.h) - 10;
       const bounds = { x: x0, y: y0, w: Math.max(0, x1 - x0), h: Math.max(0, y1 - y0) };
       const mine = (r: Rect) => !covers({ x: r.x + r.w / 2, y: r.y + r.h / 2 }, 2, target);
+      const root = panelEl ?? liveBoard(b);
       // A part inside a figure: she parks beside the whole figure (still pointing at the part).
-      const figures = figuresOn(b, bounds);
+      const figures = figuresOn(root, bounds);
       const cx = target.x + target.w / 2, cy = target.y + target.h / 2;
       const around = figures.find((r) => cx >= r.x && cx <= r.x + r.w && cy >= r.y && cy <= r.y + r.h) ?? target;
-      return parkingSpot(around, HOME_PX * AWAY_SCALE, bounds, [...inkOn(b).filter(mine), ...figures.filter((r) => r !== around)], near, cardsOn(b, bounds).filter(mine));
+      return parkingSpot(around, HOME_PX * AWAY_SCALE, bounds, [...inkOn(root).filter(mine), ...figures.filter((r) => r !== around)], near, cardsOn(root, bounds).filter(mine));
     };
     const flyTo = (dest: Pt, now: number, target: Rect) => {
-      from = pos ?? homeCentre();
+      from = pos ?? rest ?? homeCentre();
       to = dest;
       rel = { x: dest.x - (target.x + target.w / 2), y: dest.y - (target.y + target.h / 2) };
       started = now;
@@ -260,29 +280,49 @@ function DotAtBoard({
     };
 
     // HER RESTING SPOT NEVER COVERS THE BOARD. The corner she rests in held the exam board's
-    // "loses marks" line and a flow node in real lectures (audit 2026-10-17): when anything written or
-    // drawn is under her, she rests at the nearest clear spot along the bottom or right edge instead.
-    let freeHome: Pt | null = null;
+    // "loses marks" line and a flow node in real lectures (audit 2026-10-17): when anything written,
+    // drawn or carded is under her, she rests at the nearest clear spot on the board, smaller if she
+    // must; on a full board, in the frame's corner where she covers least (lib/canvas/renderFit.ts).
+    // In the corner picture (a question is up) she stays where she is put.
+    let freeHome: { at: Pt; scale: number } | null = null;
     let homeCheckedAt = -1;
-    const restingSpot = (now: number): Pt => {
+    const restingSpot = (now: number): { at: Pt; scale: number } => {
       const raw = homeCentre();
       const b = board.current;
-      if (!b) return raw;
-      if (now - homeCheckedAt < 0.8) return freeHome ?? raw;
+      if (!b || modeRef.current === "pip") return { at: raw, scale: 1 };
+      if (now - homeCheckedAt < 0.8) return freeHome ?? { at: raw, scale: 1 };
       homeCheckedAt = now;
       const whole = rectOf(b);
-      const busy = [...inkOn(b), ...cardsOn(b, whole), ...figuresOn(b, whole)];
-      const half = HOME_PX / 2;
-      const clear = (q: Pt) => !busy.some((r) => q.x + half > r.x && q.x - half < r.x + r.w && q.y + half > r.y && q.y - half < r.y + r.h);
-      if (clear(raw)) { freeHome = null; return raw; }
-      const spots: Pt[] = [];
-      for (let d = 40; d <= Math.max(whole.w, whole.h) * 0.7; d += 40) spots.push({ x: raw.x - d, y: raw.y }, { x: raw.x, y: raw.y - d });
-      freeHome = spots.find((q) => q.x - half >= whole.x && q.y - half >= whole.y && clear(q)) ?? null;
-      return freeHome ?? raw;
+      const root = liveBoard(b);
+      const area = rectOf(root);
+      const busy = [...inkOn(root), ...cardsOn(root, area), ...figuresOn(root, area), ...uiOn(b)];
+      const spot = restSpot(raw, HOME_PX, { x: whole.x + 8, y: whole.y + 8, w: whole.w - 16, h: whole.h - 16 }, busy, AWAY_SCALE);
+      freeHome = spot.scale === 1 && spot.at.x === raw.x && spot.at.y === raw.y ? null : spot;
+      return spot;
     };
+    // Where she is drawn at rest: her corner, or gliding to and from a spot clear of the board's
+    // writing (a change of spot is a glide, not a jump).
+    let rest: Pt | null = null;
+    let restScale = 1;
+    let restMs = performance.now();
+    let gliding = false;
     const loop = (nowMs: number) => {
       const now = nowMs / 1000;
-      const home = restingSpot(now);
+      const raw = homeCentre();
+      const spot = restingSpot(now);
+      const free = spot.at.x !== raw.x || spot.at.y !== raw.y || spot.scale !== 1;
+      if (free) gliding = true;
+      const ease = Math.min(1, (nowMs - restMs) / 260);
+      restMs = nowMs;
+      if (!gliding || !rest) {
+        rest = spot.at;
+        restScale = spot.scale;
+      } else {
+        rest = { x: rest.x + (spot.at.x - rest.x) * ease, y: rest.y + (spot.at.y - rest.y) * ease };
+        restScale += (spot.scale - restScale) * ease;
+        if (!free && Math.hypot(rest.x - spot.at.x, rest.y - spot.at.y) < 0.5 && Math.abs(restScale - 1) < 0.005) gliding = false;
+      }
+      const home = rest;
       const t = pointTarget();
       const target = t ? rectOf(t.el) : null;
       const allowed = fliesRef.current && modeRef.current === "board" && !reduced && target !== null && target.w > 0;
@@ -339,7 +379,7 @@ function DotAtBoard({
         if (target && t?.key === key) to = { x: target.x + target.w / 2 + rel.x, y: target.y + target.h / 2 + rel.y };
         const k = (now - started) / FLY_S;
         pos = arcPoint(from, to, k);
-        scale = 1 - (1 - AWAY_SCALE) * Math.min(1, k * 1.4);
+        scale = restScale - (restScale - AWAY_SCALE) * Math.min(1, k * 1.4);
         if (k >= 1) {
           phase = "parked";
           arrivedAt = now;
@@ -357,14 +397,17 @@ function DotAtBoard({
       } else if (phase === "return") {
         const k = (now - started) / RETURN_S;
         pos = arcPoint(from, home, k);
-        scale = AWAY_SCALE + (1 - AWAY_SCALE) * Math.min(1, k);
+        scale = AWAY_SCALE + (restScale - AWAY_SCALE) * Math.min(1, k);
         if (k >= 1) {
           phase = "home";
           pos = null;
         }
-      }
+      } else scale = restScale;
       const at = pos ?? home;
-      flyer.style.transform = pos ? `translate(${(pos.x - home.x).toFixed(1)}px, ${(pos.y - home.y).toFixed(1)}px) scale(${scale.toFixed(3)})` : "";
+      // Moved from where her corner really is (`raw`): measured from her resting spot instead, a
+      // moved resting spot was never drawn at all and her flights landed off by the difference.
+      const dx = at.x - raw.x, dy = at.y - raw.y;
+      flyer.style.transform = pos || Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5 || Math.abs(scale - 1) > 0.005 ? `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${scale.toFixed(3)})` : "";
 
       // Eyes on what is named, wherever she is; the beam only once she stands beside it.
       gaze.current = target ? gazeAt(at, target) : null;
@@ -392,7 +435,7 @@ function DotAtBoard({
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [anchorRef, board]);
+  }, [anchorRef, board, panel]);
 
   const sizeClass = small ? "size-[6.5rem]" : "size-[10.25rem]";
   return (

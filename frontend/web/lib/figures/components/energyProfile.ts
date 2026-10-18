@@ -1,9 +1,10 @@
 import type { FigureComponent, FigureParams, FigureShape, Pt } from "../types";
+import { fitText } from "../cuts";
 
 const SUB: Record<string, string> = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
 /** A name or formula; digits after an element or bracket become subscripts (N2 + 3H2 → N₂ + 3H₂). */
 const formula = (v: unknown, fallback: string) =>
-  typeof v === "string" && v.trim() ? v.trim().slice(0, 34).replace(/([A-Z][a-z]?|\))(\d+)/g, (_, el: string, d: string) => el + [...d].map((c) => SUB[c]).join("")) : fallback;
+  typeof v === "string" && v.trim() ? fitText(v.trim(), 34).replace(/([A-Z][a-z]?|\))(\d+)/g, (_, el: string, d: string) => el + [...d].map((c) => SUB[c]).join("")) : fallback;
 const num = (v: unknown): number | undefined => {
   if (typeof v === "number" && Number.isFinite(v)) return v;
   if (typeof v !== "string") return undefined;

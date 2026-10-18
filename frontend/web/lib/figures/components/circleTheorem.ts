@@ -6,7 +6,7 @@ import { PALETTE, Sketch, angleMark, clamp, dist, fmt, lerp, list, num, rad, str
  * points on the circle so the configuration really has that angle, and computes the angle the
  * theorem gives (angle at the centre = 2 × angle at the circumference, angle in a semicircle = 90°,
  * angles in the same segment are equal, opposite angles of a cyclic quadrilateral sum to 180°,
- * tangent ⟂ radius, alternate segment theorem). Values are written at their arcs.
+ * tangent perpendicular to radius, alternate segment theorem). Values are written at their arcs.
  */
 
 export const THEOREMS = ["angle-at-centre", "semicircle", "same-segment", "cyclic-quadrilateral", "tangent-radius", "alternate-segment"] as const;
@@ -85,8 +85,8 @@ const PARTS = [
 export const circleTheorem: FigureComponent = {
   name: "circleTheorem",
   title: "Circle theorem diagram drawn exactly: circle, centre O, the chords/tangent of one theorem, the given angle and the angle the theorem gives (values at the arcs)",
-  params: `theorem: "angle-at-centre" (angle at centre = 2 × angle at circumference) | "semicircle" (angle in a semicircle = 90°) | "same-segment" (angles in the same segment are equal) | "cyclic-quadrilateral" (opposite angles sum to 180°) | "tangent-radius" (tangent ⟂ radius) | "alternate-segment" (tangent–chord angle = angle in the alternate segment); default "angle-at-centre". angle: the given angle in degrees — angle-at-centre: the angle at the circumference (12-84, default 50); semicircle: angle CAB (15-75); same-segment: angle ACB (15-80); cyclic-quadrilateral: angle A (40-140; angle2 = angle B, default 95); tangent-radius: angle OPT at the outside point P (18-70); alternate-segment: angle between the tangent and chord TA (15-80). givenAt ("circumference" default | "centre", angle-at-centre only: the angle given is the one at the centre). show ("both" default: write the found angle's value | "given": write the found angle as the unknown symbol); unknown (symbol for it, default "x"); letters (point letters in order, e.g. "A,B,C,D"; tangent-radius uses "T,P", alternate-segment "T,A,B"); centre (centre letter, default "O"). Parts that name lines get the theorem's name: chord AB, diameter AB, tangent at T.
-CHORD AND TANGENT THEOREMS (lengths, not angles): theorem "chord-bisector" (the perpendicular from the centre to a chord bisects it: chord AB, OM ⟂ AB, AM = MB) | "equal-chords" (equal chords are equidistant from the centre: chords AB and CD, OM = ON) | "tangents-from-point" (tangents from an outside point are equal: PA = PB, each ⟂ its radius). Lengths, all optional, in the board's own numbers: radius, chord (chord length), distance (perpendicular distance from the centre), op (distance from the centre to the outside point), tangent (tangent length); code completes the rest by Pythagoras and writes them on the lines; units (e.g. "cm"). Letters: chord-bisector "A,B,M", equal-chords "A,B,C,D,M,N", tangents-from-point "A,B,P".`,
+  params: `theorem: "angle-at-centre" (angle at centre = 2 × angle at circumference) | "semicircle" (angle in a semicircle = 90°) | "same-segment" (angles in the same segment are equal) | "cyclic-quadrilateral" (opposite angles sum to 180°) | "tangent-radius" (tangent perpendicular to radius) | "alternate-segment" (tangent–chord angle = angle in the alternate segment); default "angle-at-centre". angle: the given angle in degrees — angle-at-centre: the angle at the circumference (12-84, default 50); semicircle: angle CAB (15-75); same-segment: angle ACB (15-80); cyclic-quadrilateral: angle A (40-140; angle2 = angle B, default 95); tangent-radius: angle OPT at the outside point P (18-70); alternate-segment: angle between the tangent and chord TA (15-80). givenAt ("circumference" default | "centre", angle-at-centre only: the angle given is the one at the centre). show ("both" default: write the found angle's value | "given": write the found angle as the unknown symbol); unknown (symbol for it, default "x"); letters (point letters in order, e.g. "A,B,C,D"; tangent-radius uses "T,P", alternate-segment "T,A,B"); centre (centre letter, default "O"). Parts that name lines get the theorem's name: chord AB, diameter AB, tangent at T.
+CHORD AND TANGENT THEOREMS (lengths, not angles): theorem "chord-bisector" (the perpendicular from the centre to a chord bisects it: chord AB, OM perpendicular to AB, AM = MB) | "equal-chords" (equal chords are equidistant from the centre: chords AB and CD, OM = ON) | "tangents-from-point" (tangents from an outside point are equal: PA = PB, each perpendicular to its radius). Lengths, all optional, in the board's own numbers: radius, chord (chord length), distance (perpendicular distance from the centre), op (distance from the centre to the outside point), tangent (tangent length); code completes the rest by Pythagoras and writes them on the lines; units (e.g. "cm"). Letters: chord-bisector "A,B,M", equal-chords "A,B,C,D,M,N", tangents-from-point "A,B,P".`,
   match: /\bequal chords?\b|\bperpendicular (from|bisector of) (the )?(centre|center|a chord)\b|\bbisects? (the|a) chord\b|\btangents? from (an? )?(external|outside|one|the same)? ?point\b|\bcircle theorems?\b|\b(angle|angles) (at|in) the (centre|center|circumference)\b|\bangle in a semicircle\b|\bsame segment\b|\bcyclic quadrilateral\b|\balternate segment\b|\btangents? (to a circle|and radius|meets? the radius)\b|\bsubtended\b/i,
   parts: PARTS,
   build(params: FigureParams) {
@@ -263,12 +263,16 @@ function buildLengthTheorem(theorem: LengthTheorem, params: FigureParams) {
   sk.circle(O, R, { stroke: "ink", width: 2.6, fill: "none", part: "circumference" });
   sk.circle(O, 4, { fill: "ink", stroke: "ink", width: 1, part: "centre" }, false);
   const G = PALETTE.blue, F = PALETTE.red;
-  /** Two short strokes across a segment's middle: the textbook "these are equal" mark. */
+  /**
+   * Two short strokes across a segment's middle: the textbook "these are equal" mark. They are
+   * obstacles, so the length written on the segment moves clear of them ("7 cm" was printed over
+   * the chord's tick marks, 2026-10-17).
+   */
   const ticks = (p: Pt, q: Pt, count: number, colour: Ink = F) => {
     const m = lerp(p, q, 0.5), u = unit(sub(q, p)), nrm = { x: -u.y, y: u.x };
     for (let i = 0; i < count; i++) {
       const c = add(m, mul(u, (i - (count - 1) / 2) * 6));
-      sk.line([add(c, mul(nrm, -7)), add(c, mul(nrm, 7))], { stroke: colour, width: 2 }, false);
+      sk.line([add(c, mul(nrm, -7)), add(c, mul(nrm, 7))], { stroke: colour, width: 2 });
     }
   };
   const onLine = (text: string | undefined, p: Pt, q: Pt, away: Pt, fill: Ink = "ink") => {

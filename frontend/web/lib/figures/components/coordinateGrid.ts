@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Pt } from "../types";
+import { fitText } from "../cuts";
 import { PALETTE, Sketch, add, arrow, bool, clamp, fmt, lerp, list, mul, optNum, polar, rad, sub, unit } from "./mathsKit";
 
 /**
@@ -48,7 +49,7 @@ export function parsePoints(v: unknown, first = "A", max = 10): Named[] {
       while (out.some((o) => o.name === String.fromCharCode(next))) next++;
       name = String.fromCharCode(Math.min(next++, 90));
     }
-    out.push({ name: name.slice(0, 3), p: { x: clamp(x, -LIM, LIM), y: clamp(y, -LIM, LIM) } });
+    out.push({ name: fitText(name, 3), p: { x: clamp(x, -LIM, LIM), y: clamp(y, -LIM, LIM) } });
     if (out.length >= max) break;
   }
   return out;
@@ -189,13 +190,14 @@ const PARTS = [
 ];
 
 const SHAPE_NAME = ["Point", "Segment", "Triangle", "Quadrilateral", "Pentagon", "Hexagon", "Heptagon", "Octagon"];
-const cap = (s: string, n = 34) => (s.length <= n ? s : s.slice(0, n - 1) + "…");
+/** A label kept to `n` characters: ended at a word break and recorded for the rewrite pass, never "…". */
+const cap = (s: string, n = 34) => fitText(s, n);
 const coord = (p: Pt) => `(${fmt(p.x, 2)}, ${fmt(p.y, 2)})`;
 
 export const coordinateGrid: FigureComponent = {
   name: "coordinateGrid",
   title: "A coordinate grid on equal-scaled axes: plotted points, a shape, a line or quadratic from its equation, and a transformation (reflection, rotation, translation, enlargement) whose image A′B′C′ the code computes and draws beside the object",
-  params: `shape (the object's vertices, e.g. "A(1,1); B(4,1); C(1,3)"; 1-10 points; default that triangle when a transformation is asked for or nothing else is given); points (extra plotted points, e.g. "P(2,3); Q(-1,4)"); segments (joins between named points, e.g. "PQ; QR"); line (an equation to plot, linear or quadratic, e.g. "y = 2x + 1", "y = x^2 - 3", "x = 2", "2x + 3y = 6"); transform ("reflection" | "rotation" | "translation" | "enlargement", or in words like "reflect in y = x", "rotate 90° clockwise about (0,0)"); mirror (for reflection: "x = 2", "y = -1", "y = x", "y = -x", "the y-axis", any straight line); angle (rotation in degrees, positive anticlockwise; or "90 clockwise"); direction ("clockwise" | "anticlockwise"); centre (rotation/enlargement centre "(0,0)"); vector (translation "3,-2"); scaleFactor (enlargement, e.g. 2, -1, "1/2", -0.5); xRange, yRange (e.g. "-6,6"; widened to fit everything; coordinates limited to ±20); coords (true: write each object vertex's coordinates; default false; plotted points always show theirs); guides (true default: enlargement rays from the centre and the rotation arc). Parts exist only for what is drawn.`,
+  params: `shape (the object's vertices, e.g. "A(1,1); B(4,1); C(1,3)"; 1-10 points; default that triangle only when no points and no line are given — to transform a line, give it as "line"); points (extra plotted points, e.g. "P(2,3); Q(-1,4)"); segments (joins between named points, e.g. "PQ; QR"); line (an equation to plot, linear or quadratic, e.g. "y = 2x + 1", "y = x^2 - 3", "x = 2", "2x + 3y = 6"); transform ("reflection" | "rotation" | "translation" | "enlargement", or in words like "reflect in y = x", "rotate 90° clockwise about (0,0)"); mirror (for reflection: "x = 2", "y = -1", "y = x", "y = -x", "the y-axis", any straight line); angle (rotation in degrees, positive anticlockwise; or "90 clockwise"); direction ("clockwise" | "anticlockwise"); centre (rotation/enlargement centre "(0,0)"); vector (translation "3,-2"); scaleFactor (enlargement, e.g. 2, -1, "1/2", -0.5); xRange, yRange (e.g. "-6,6"; widened to fit everything; coordinates limited to ±20); coords (true: write each object vertex's coordinates; default false; plotted points always show theirs); guides (true default: enlargement rays from the centre and the rotation arc). Parts exist only for what is drawn.`,
   match: /^(?![\s\S]*\b(integrat\w*|double[- ]angle|trig(onometric)? identit)\b)[\s\S]*?(?:\bcoordinate (grid|plane|axes|geometry)\b|\bcartesian (plane|grid)\b|\bplot(ting)? (the )?(points?|coordinates)\b|\breflect(ed|ion|ing)?\b[^.]{0,30}\b(in|across) the (line|x-axis|y-axis|mirror line)|\bmirror line\b|\bline of reflection\b|\brotat(e|ed|ion|ing)\b[^.]{0,40}\babout (the )?(origin|point|centre|\()|\bcentre of (rotation|enlargement)\b|\benlarge(ment|d)?\b[^.]{0,30}\bscale factor\b|\bnegative (scale factor|enlargement)\b|\btranslat(ed|ion|e)\b[^.]{0,20}\bby (the )?(column )?vector\b|\b(combined|geometric|single) transformations?\b|\btransformations? (of|on) (a )?(shapes?|triangles?|polygons?)\b|\btransformations?\b(?=[\s\S]{0,160}\b(shape|triangle|polygon|object|image|column vector|mirror line|scale factor)\b)|\bmidpoint of (a|the) (line )?segment\b)/i,
   parts: PARTS,
   build(params: FigureParams) {
@@ -203,7 +205,9 @@ export const coordinateGrid: FigureComponent = {
     const pts = parsePoints(params.points, "P");
     const line = parseCurve(params.line ?? params.equation);
     let shape = parsePoints(params.shape ?? params.object ?? params.polygon);
-    if (!shape.length && (transform || (!pts.length && !line))) shape = parsePoints("A(1,1); B(4,1); C(1,3)");
+    // The example triangle only when the board gives nothing to draw: a board sketching y = 2x + 1 and
+    // its reflection in y = x drew a stray triangle A, B, C from another lesson (diagram lab, 2026-10-17).
+    if (!shape.length && !pts.length && !line) shape = parsePoints("A(1,1); B(4,1); C(1,3)");
     // Letters must be unique across the figure.
     const used = new Set(shape.map((s) => s.name));
     const points = pts.filter((p) => !used.has(p.name));

@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Ink, Pt } from "../types";
+import { fitWithin } from "../cuts";
 import { Sketch, polar, rad, textW } from "./mathsKit";
 import { ON_FILL, names, numbers, raw, sum, title, val } from "./statsKit";
 
@@ -47,15 +48,17 @@ export const pieChart: FigureComponent = {
   ],
   build(params: FigureParams) {
     let cats = names(params.categories, 20, 18);
+    // The board's whole category names: a label that fits one is recorded with the board's own words.
+    const fullCats = names(params.categories, 20, 400);
     let vals = numbers(params.values, 20).map((v) => Math.max(0, v));
     if (!cats.length && vals.length) cats = vals.map((_, i) => String.fromCharCode(65 + i));
     if (!cats.length || !vals.length || sum(vals.slice(0, cats.length)) <= 0) (cats = DEFAULT_CATS), (vals = DEFAULT_VALS);
-    let rows = cats.map((c, i) => ({ c, v: vals[i] ?? 0 })).filter((r) => r.v > 0);
-    if (!rows.length) rows = DEFAULT_CATS.map((c, i) => ({ c, v: DEFAULT_VALS[i] }));
+    let rows = cats.map((c, i) => ({ c, v: vals[i] ?? 0, full: fullCats.length === cats.length ? fullCats[i] : c })).filter((r) => r.v > 0);
+    if (!rows.length) rows = DEFAULT_CATS.map((c, i) => ({ c, v: DEFAULT_VALS[i], full: c }));
     if (rows.length > MAX) {
       const keep = [...rows].sort((a, b) => b.v - a.v).slice(0, MAX - 1);
       const other = rows.filter((r) => !keep.includes(r));
-      rows = [...rows.filter((r) => keep.includes(r)), { c: "Other", v: sum(other.map((r) => r.v)) }];
+      rows = [...rows.filter((r) => keep.includes(r)), { c: "Other", v: sum(other.map((r) => r.v)), full: "Other" }];
     }
     const angles = pieAngles(rows.map((r) => r.v));
     const pct = piePercents(rows.map((r) => r.v));
@@ -126,9 +129,9 @@ export const pieChart: FigureComponent = {
     rows.forEach((r, i) => {
       const m = rad(mids[i]);
       const onRim = polar(C, R * (angles[i] < 30 ? 0.86 : 0.9), m);
-      sk.part(`sector-${i + 1}`, `${r.c} (${val(pct[i], 1)}%)`.slice(0, 34), onRim);
+      sk.part(`sector-${i + 1}`, fitWithin("", r.full, ` (${val(pct[i], 1)}%)`, 34, 18), onRim);
     });
-    if (ties === 1 && rows.length > 1) sk.part("largest", `Largest: ${rows[big].c} (${val(pct[big], 1)}%)`.slice(0, 34), polar(C, R + 7, rad(bigStart + angles[big] * 0.3)));
+    if (ties === 1 && rows.length > 1) sk.part("largest", fitWithin("Largest: ", rows[big].full, ` (${val(pct[big], 1)}%)`, 34, 18), polar(C, R + 7, rad(bigStart + angles[big] * 0.3)));
     sk.part("centre", "Centre", C);
     if (keyAnchor) sk.part("key", "Key", keyAnchor);
     return sk.finish(14);

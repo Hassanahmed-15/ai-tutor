@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, FigurePart, FigureShape } from "../types";
+import { fitText } from "../cuts";
 import { r2 } from "./bioDraw";
 
 /**
@@ -54,7 +55,7 @@ export const chromosomeSets: FigureComponent = {
     const zoom = params.zoom === true || params.zoom === "true";
     const view = zoom ? "haploid" : params.view === "haploid" || params.view === "diploid" ? params.view : "both";
     const types = int(params.types, 3, 2, 6);
-    const caption = typeof params.caption === "string" ? params.caption.slice(0, 48) : "";
+    const caption = typeof params.caption === "string" ? fitText(params.caption, 48) : "";
     const shapes: FigureShape[] = [];
     const parts: FigurePart[] = [];
     const W = view === "both" || zoom ? 660 : 360;

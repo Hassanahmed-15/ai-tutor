@@ -1,4 +1,5 @@
 import type { Ink, Pt } from "../types";
+import { fitText } from "../cuts";
 import { Sketch, fmt, optNum, textBox, textW } from "./mathsKit";
 
 /**
@@ -44,7 +45,7 @@ export function numbers(v: unknown, max = 200): number[] {
 export function names(v: unknown, max = 12, len = 18): string[] {
   return raw(v)
     .split(/[,;]/)
-    .map((s) => s.trim().slice(0, len))
+    .map((s) => fitText(s.trim(), len))
     .filter(Boolean)
     .slice(0, max);
 }
@@ -67,7 +68,7 @@ export function pairs(v: unknown, max = 60): Pt[] {
 /** An axis/key title: short text, no newlines. */
 export function title(v: unknown, fallback: string, max = 34): string {
   const s = raw(v).replace(/\s+/g, " ");
-  return s ? s.slice(0, max) : fallback;
+  return s ? fitText(s, max) : fallback;
 }
 
 /* ── statistics ───────────────────────────────────────────────────────────────────────────── */

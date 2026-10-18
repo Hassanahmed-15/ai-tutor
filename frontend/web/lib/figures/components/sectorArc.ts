@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Pt } from "../types";
+import { fitText } from "../cuts";
 import { PALETTE, Sketch, clamp, fmt, num, polar, rad } from "./mathsKit";
 
 /**
@@ -27,7 +28,7 @@ export const sectorArc: FigureComponent = {
   build(params: FigureParams) {
     const rVal = num(params.r ?? params.radius, 7, 0.1, 1e6);
     const theta = clamp(num(params.theta ?? params.angle, 72, 1, 359), 1, 359);
-    const unit = String(params.unit ?? "cm").replace(/[^a-zA-Z°]/g, "").slice(0, 4) || "cm";
+    const unit = fitText(String(params.unit ?? "cm").replace(/[^a-zA-Z°]/g, ""), 4) || "cm";
     const showChord = String(params.showChord ?? "") === "true" || params.showChord === true;
     const m = sectorMeasures(rVal, theta);
     const sk = new Sketch();

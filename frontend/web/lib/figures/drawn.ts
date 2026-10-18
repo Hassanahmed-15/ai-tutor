@@ -1,12 +1,13 @@
-import { partBounds } from "./bounds";
-import type { FigureDrawing, FigureShape, Ink } from "./types";
+import type { FigureDrawing, FigureShape, Ink, Pt } from "./types";
 
 /**
  * A DIAGRAM FOR ANY TOPIC, DRAWN FROM A CHECKED DESCRIPTION. Where no code-drawn component
  * (lib/figures/registry.ts) and no textbook diagram (lib/figures/library.ts) fits, the board writer
  * describes the figure itself — textbook line art from a small vocabulary of shapes in a fixed soft
  * palette, every part named, with the point a label should touch. This checks it the way the label
- * engine needs it: each part has its own shapes, its anchor lies on them, nothing leaves the canvas,
+ * engine needs it: each part has its own shapes, its anchor lies ON them (on a stroke, or inside a
+ * closed shape of its own that no other part's shape covers — not merely inside the part's bounding
+ * box, which for a curved part can cover its neighbours), nothing leaves the canvas,
  * no label is baked into the art (labels are placed by lib/figures/labels.ts), and path data is
  * plain geometry. The result is an ordinary FigureDrawing, labelled and revealed like any figure.
  */
@@ -137,11 +138,14 @@ export function drawnFigure(raw: unknown): { drawing?: FigureDrawing; issues: st
   }
   if (parts.length < 2) issues.push("name at least 2 parts");
   const drawing: FigureDrawing = { w, h, shapes, parts };
-  const bounds = partBounds(drawing);
   for (const p of parts) {
-    const b = bounds.get(p.id);
-    if (!b) { issues.push(`part "${p.id}" has no shapes — give its shapes "part": "${p.id}"`); continue; }
-    if (p.anchor.x < b.x - 6 || p.anchor.x > b.x + b.w + 6 || p.anchor.y < b.y - 6 || p.anchor.y > b.y + b.h + 6) issues.push(`part "${p.id}"'s anchor (${Math.round(p.anchor.x)}, ${Math.round(p.anchor.y)}) is not on its own shapes — put it on the part`);
+    const fit = anchorFit(shapes, p.id, p.anchor);
+    if (!fit) { issues.push(`part "${p.id}" has no shapes — give its shapes "part": "${p.id}"`); continue; }
+    if (fit.distance <= ON_PART) continue;
+    // A few pixels off its own line: code moves it onto the nearest point of the part (always the
+    // right part). Farther off, the writer likely tagged the wrong shapes — it must fix the drawing.
+    if (fit.distance <= SNAP_ANCHOR) { p.anchor = { x: Math.round(fit.nearest.x * 10) / 10, y: Math.round(fit.nearest.y * 10) / 10 }; continue; }
+    issues.push(`part "${p.id}"'s anchor (${Math.round(p.anchor.x)}, ${Math.round(p.anchor.y)}) is not on its own shapes (${Math.round(fit.distance)} px off; the nearest point of "${p.id}" is (${Math.round(fit.nearest.x)}, ${Math.round(fit.nearest.y)})) — put it ON the part's line, or inside its own closed shape`);
   }
   if (shapes.length < 3) issues.push("the drawing has fewer than 3 valid shapes");
   // A "diagram" of plain boxes and rings with the words outside is a flow chart drawn badly: an
@@ -152,9 +156,165 @@ export function drawnFigure(raw: unknown): { drawing?: FigureDrawing; issues: st
   return issues.length ? { issues: [...new Set(issues)].slice(0, 6) } : { drawing, issues: [] };
 }
 
+/** An anchor this close to its part's own geometry is on it; within SNAP_ANCHOR code moves it on. */
+const ON_PART = 3;
+const SNAP_ANCHOR = 16;
+
+type Polyline = { pts: Array<[number, number]>; closed: boolean };
+
+/**
+ * How far an anchor is from its part's OWN geometry, and the nearest point of it. 0 when it is on a
+ * stroke of the part or inside a closed shape of the part that no other part's shape covers there —
+ * covered meaning drawn later on top, or nested inside (a smaller closed shape of another part). An
+ * open line has no inside, so a curved part's bounding box no longer counts. null: the part has no shapes.
+ */
+export function anchorFit(shapes: FigureShape[], partId: string, anchor: Pt): { distance: number; nearest: Pt } | null {
+  const own = shapes.map((sh, k) => ({ sh, k })).filter(({ sh }) => sh.part === partId);
+  if (!own.length) return null;
+  const geo = shapes.map(shapeGeometry);
+  let best = { distance: Infinity, nearest: anchor };
+  for (const { sh, k } of own) {
+    const g = geo[k];
+    const half = (sh.t === "text" ? 0 : sh.width ?? 2) / 2;
+    for (const line of g.lines) {
+      const near = nearestOnPolyline(line.pts, anchor);
+      const d = Math.max(0, near.d - half);
+      if (d < best.distance) best = { distance: d, nearest: near.at };
+    }
+    if (!g.inside(anchor)) continue;
+    const covered = geo.some((o, j) => j !== k && shapes[j].part !== partId && o.closedArea > 0 && o.inside(anchor) && (shapes[j].part || (shapes[j].fill ?? "none") !== "none") && (j > k || o.closedArea < g.closedArea));
+    if (!covered) return { distance: 0, nearest: anchor };
+  }
+  return best;
+}
+
+function shapeGeometry(sh: FigureShape): { lines: Polyline[]; inside: (p: Pt) => boolean; closedArea: number } {
+  if (sh.t === "circle") {
+    const pts: Array<[number, number]> = Array.from({ length: 49 }, (_, i) => [sh.cx + sh.r * Math.cos((i / 48) * Math.PI * 2), sh.cy + sh.r * Math.sin((i / 48) * Math.PI * 2)]);
+    return { lines: [{ pts, closed: true }], inside: (p) => (p.x - sh.cx) ** 2 + (p.y - sh.cy) ** 2 <= sh.r ** 2, closedArea: Math.PI * sh.r * sh.r };
+  }
+  if (sh.t === "text") {
+    const w = sh.text.length * sh.size * 0.55;
+    const x0 = sh.anchor === "middle" ? sh.x - w / 2 : sh.anchor === "end" ? sh.x - w : sh.x;
+    const y0 = sh.y - sh.size;
+    const pts: Array<[number, number]> = [[x0, y0], [x0 + w, y0], [x0 + w, sh.y], [x0, sh.y], [x0, y0]];
+    return { lines: [{ pts, closed: true }], inside: (p) => p.x >= x0 && p.x <= x0 + w && p.y >= y0 && p.y <= sh.y, closedArea: 0 };
+  }
+  const lines = pathPolylines(sh.d);
+  const closed = lines.filter((l) => l.closed && l.pts.length >= 3);
+  const area = closed.reduce((sum, l) => sum + Math.abs(polygonArea(l.pts)), 0);
+  return { lines, inside: (p) => closed.some((l) => insidePolygon(l.pts, p)), closedArea: area };
+}
+
+function polygonArea(pts: Array<[number, number]>): number {
+  let a = 0;
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) a += (pts[j][0] + pts[i][0]) * (pts[j][1] - pts[i][1]);
+  return a / 2;
+}
+
+function insidePolygon(pts: Array<[number, number]>, p: Pt): boolean {
+  let inside = false;
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+    const [xi, yi] = pts[i], [xj, yj] = pts[j];
+    if ((yi > p.y) !== (yj > p.y) && p.x < ((xj - xi) * (p.y - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+}
+
+function nearestOnPolyline(pts: Array<[number, number]>, p: Pt): { d: number; at: Pt } {
+  let best = { d: Infinity, at: p };
+  if (pts.length === 1) return { d: Math.hypot(pts[0][0] - p.x, pts[0][1] - p.y), at: { x: pts[0][0], y: pts[0][1] } };
+  for (let i = 1; i < pts.length; i++) {
+    const [ax, ay] = pts[i - 1], [bx, by] = pts[i];
+    const dx = bx - ax, dy = by - ay;
+    const len = dx * dx + dy * dy;
+    const t = len ? Math.max(0, Math.min(1, ((p.x - ax) * dx + (p.y - ay) * dy) / len)) : 0;
+    const at = { x: ax + t * dx, y: ay + t * dy };
+    const d = Math.hypot(at.x - p.x, at.y - p.y);
+    if (d < best.d) best = { d, at };
+  }
+  return best;
+}
+
+/** A path's outline as polylines (curves and arcs sampled), each marked closed when it ends in Z. */
+export function pathPolylines(d: string): Polyline[] {
+  const tokens = d.match(/[MLHVCSQTAZmlhvcsqtaz]|-?\d*\.?\d+(?:e-?\d+)?/g) ?? [];
+  const out: Polyline[] = [];
+  let cur: Polyline | null = null;
+  let cmd = "M", x = 0, y = 0, sx = 0, sy = 0, i = 0;
+  let ctrl: [number, number] | null = null;
+  const num = () => Number(tokens[i++]);
+  const isNum = () => i < tokens.length && !/^[A-Za-z]$/.test(tokens[i]);
+  const to = (px: number, py: number) => {
+    if (!cur) { cur = { pts: [[x, y]], closed: false }; out.push(cur); }
+    cur.pts.push([px, py]);
+  };
+  const bezier = (ctrlPts: Array<[number, number]>) => {
+    const p0: [number, number] = [x, y];
+    for (let j = 1; j <= 16; j++) {
+      const t = j / 16;
+      let row = [p0, ...ctrlPts];
+      while (row.length > 1) row = row.slice(1).map((q, k) => [row[k][0] + (q[0] - row[k][0]) * t, row[k][1] + (q[1] - row[k][1]) * t] as [number, number]);
+      to(row[0][0], row[0][1]);
+    }
+  };
+  while (i < tokens.length) {
+    if (/^[A-Za-z]$/.test(tokens[i])) cmd = tokens[i++];
+    const rel = cmd !== cmd.toUpperCase();
+    const C = cmd.toUpperCase();
+    if (C === "Z") {
+      if (cur) { cur.closed = true; cur.pts.push([sx, sy]); }
+      cur = null; x = sx; y = sy; ctrl = null;
+      while (isNum()) i++;
+      continue;
+    }
+    if (!isNum()) { i++; continue; }
+    const pair = (): [number, number] => { const a = num(), b = num(); return rel ? [x + a, y + b] : [a, b]; };
+    if (C === "M") { [x, y] = pair(); sx = x; sy = y; cur = { pts: [[x, y]], closed: false }; out.push(cur); cmd = rel ? "l" : "L"; ctrl = null; }
+    else if (C === "L" || C === "T") { const p = pair(); to(p[0], p[1]); [x, y] = p; ctrl = null; }
+    else if (C === "H") { const a = num(); x = rel ? x + a : a; to(x, y); ctrl = null; }
+    else if (C === "V") { const a = num(); y = rel ? y + a : a; to(x, y); ctrl = null; }
+    else if (C === "C") { const p1 = pair(), p2 = pair(), p3 = pair(); bezier([p1, p2, p3]); [x, y] = p3; ctrl = p2; }
+    else if (C === "S") { const p2 = pair(), p3 = pair(); const p1: [number, number] = ctrl ? [2 * x - ctrl[0], 2 * y - ctrl[1]] : [x, y]; bezier([p1, p2, p3]); [x, y] = p3; ctrl = p2; }
+    else if (C === "Q") { const p1 = pair(), p2 = pair(); bezier([p1, p2]); [x, y] = p2; ctrl = null; }
+    else if (C === "A") {
+      const rx = num(), ry = num(), rot = num(), large = num(), sweep = num();
+      const p = pair();
+      for (const q of arcPoints(x, y, rx, ry, rot, large === 1, sweep === 1, p[0], p[1])) to(q[0], q[1]);
+      [x, y] = p; ctrl = null;
+    } else i++;
+    if (![x, y].every(Number.isFinite)) break;
+  }
+  return out;
+}
+
+/** Points along an SVG arc (endpoint parameterisation, SVG 1.1 F.6.5). */
+function arcPoints(x1: number, y1: number, rx: number, ry: number, deg: number, large: boolean, sweep: boolean, x2: number, y2: number): Array<[number, number]> {
+  rx = Math.abs(rx); ry = Math.abs(ry);
+  if (!rx || !ry || (x1 === x2 && y1 === y2)) return [[x2, y2]];
+  const phi = (deg * Math.PI) / 180, cos = Math.cos(phi), sin = Math.sin(phi);
+  const dx = (x1 - x2) / 2, dy = (y1 - y2) / 2;
+  const xp = cos * dx + sin * dy, yp = -sin * dx + cos * dy;
+  const fit = (xp * xp) / (rx * rx) + (yp * yp) / (ry * ry);
+  if (fit > 1) { rx *= Math.sqrt(fit); ry *= Math.sqrt(fit); }
+  const k = (large === sweep ? -1 : 1) * Math.sqrt(Math.max(0, (rx * rx * ry * ry - rx * rx * yp * yp - ry * ry * xp * xp) / (rx * rx * yp * yp + ry * ry * xp * xp)));
+  const cxp = (k * rx * yp) / ry, cyp = (-k * ry * xp) / rx;
+  const cx = cos * cxp - sin * cyp + (x1 + x2) / 2, cy = sin * cxp + cos * cyp + (y1 + y2) / 2;
+  const t1 = Math.atan2((yp - cyp) / ry, (xp - cxp) / rx);
+  let dt = Math.atan2((-yp - cyp) / ry, (-xp - cxp) / rx) - t1;
+  if (!sweep && dt > 0) dt -= 2 * Math.PI;
+  if (sweep && dt < 0) dt += 2 * Math.PI;
+  const out: Array<[number, number]> = [];
+  for (let j = 1; j <= 24; j++) {
+    const t = t1 + (dt * j) / 24;
+    out.push([cx + rx * Math.cos(t) * cos - ry * Math.sin(t) * sin, cy + rx * Math.cos(t) * sin + ry * Math.sin(t) * cos]);
+  }
+  return out;
+}
+
 /** The board writer's instructions for a generated diagram. */
 export const DRAWN_GUIDE = `Draw it as clean TEXTBOOK LINE ART in "stage": {"kind": "figure", "component": "drawn", "drawing": {"w": 600, "h": 420, "shapes": [...], "parts": [...]}, "parts": [{"id", "name", "s", "say"}]}.
 - shapes (x right, y down, inside w×h): {"t": "rect", "x", "y", "w", "h", "rx"} | {"t": "ellipse", "cx", "cy", "rx", "ry"} | {"t": "circle", "cx", "cy", "r"} | {"t": "line", "x1", "y1", "x2", "y2"} | {"t": "arrow", "x1", "y1", "x2", "y2"} | {"t": "polyline"|"polygon", "points": [[x, y], …]} | {"t": "curve", "points": [[x, y], …], "closed": true|false} (a smooth outline through the points — use it for organic shapes: cells, leaves, organs, rivers, landforms) | {"t": "text", "x", "y", "text"} (≤ 12 characters, only signs/letters/values such as "+", "N", "H₂O" — never a part's name).
 - style on any shape: "fill": blue|green|red|yellow|orange|purple|pink|cyan|brown|grey|sand|sky|white|none, "stroke": ink|muted|none|red|blue|green|orange|purple|brown, "width" 1-4, "dash": true, "part": <part id>.
 - Draw the standard textbook view, proportioned and recognisable, filling most of the canvas; outlines in ink, regions in soft tints; 8-80 shapes. Big shapes first, details on top.
-- drawing.parts: 3-8 {"id", "name", "anchor": {"x", "y"}}; every part's shapes carry "part": its id, and its anchor lies ON those shapes (where a label's dot should touch). The board's "parts" then label them by id, as for any figure.`;
+- drawing.parts: 3-8 {"id", "name", "anchor": {"x", "y"}}; every part's shapes carry "part": its id, and its anchor lies ON those shapes (where a label's dot should touch): on the part's own line (for a line, arrow or open curve, ON the line itself), or inside its own closed shape away from any other part drawn inside or over it. The board's "parts" then label them by id, as for any figure.`;

@@ -1,4 +1,6 @@
 import type { Pt } from "./types";
+import { fitText } from "./cuts";
+import { trimToFit } from "../text/fit";
 
 type Rect = { x: number; y: number; w: number; h: number };
 export type LabelInput = { id: string; text: string; anchor: Pt; s: number };
@@ -55,18 +57,42 @@ export function placeLabels(items: LabelInput[], fig: Rect, area: Rect, measure:
   const left = items.filter((i) => choice.get(i)!.side === "left");
   const right = items.filter((i) => choice.get(i)!.side === "right");
   const gap = 10;
-  const lineH = size * 1.25;
+  const roomOf = (side: "left" | "right") => Math.max(60, side === "left" ? fig.x - area.x - 28 : area.x + area.w - (fig.x + fig.w) - 28);
+  // NO LABEL IS CUT FIRST: the type gets smaller (to a floor) until every label fits its margin in at
+  // most two lines and each column fits the stage's height. Both columns share the size. Only a label
+  // still too long at the floor is fitted — ended at a natural break and recorded, so the board writer
+  // rewrites it to fit (owner, 2026-10-17: "no text has been cut").
+  const floor = Math.max(12, size - 4);
+  const fits = (s: number) =>
+    ([["left", left], ["right", right]] as const).every(([side, list]) => {
+      const fitted = list.map((item) => fitLines(item.text, s, roomOf(side), measure));
+      const tall = fitted.reduce((t, f) => t + f.lines.length * s * 1.25, 0) + Math.max(0, list.length - 1) * 2;
+      return fitted.every((f) => f.cut === undefined) && tall <= area.h + 20;
+    });
+  let used = size;
+  while (used > floor && !fits(used)) used -= 1;
+  const lineH = used * 1.25;
   const out: PlacedLabel[] = [];
   for (const [side, list] of [["left", left], ["right", right]] as const) {
-    const room = side === "left" ? fig.x - area.x - 28 : area.x + area.w - (fig.x + fig.w) - 28;
+    const room = roomOf(side);
     const placed = [...list].map((item) => {
-      const lines = wrap(item.text, size, Math.max(60, room), measure);
-      const w = Math.max(...lines.map((l) => measure(l, size)));
+      const f = fitLines(item.text, used, room, measure);
+      // Recorded with the characters its two lines hold; meanwhile it ends at a natural break.
+      const lines = f.cut === undefined ? f.lines : wrap(fitText(item.text, f.cut), used, room, measure);
+      const w = Math.max(...lines.map((l) => measure(l, used)));
       return { item, lines, w, h: lines.length * lineH, y: item.anchor.y + choice.get(item)!.dy - (lines.length * lineH) / 2 };
     }).sort((a, b) => a.y - b.y);
-    // Stack downwards without overlap, then pull back up if the column ran past the bottom.
-    for (let i = 0; i < placed.length; i++) placed[i].y = Math.max(placed[i].y, area.y, i ? placed[i - 1].y + placed[i - 1].h + gap : -Infinity);
-    for (let i = placed.length - 1; i >= 0; i--) placed[i].y = Math.min(placed[i].y, (i < placed.length - 1 ? placed[i + 1].y - gap : area.y + area.h) - placed[i].h);
+    // A column never leaves the stage: its gaps close up when it is tall, and it may use the strip
+    // just above the stage only when it cannot fit inside it (a label pushed above the stage top
+    // overprinted the heading).
+    const sumH = placed.reduce((t, p) => t + p.h, 0);
+    const g = placed.length > 1 ? Math.max(2, Math.min(gap, (area.h - sumH) / (placed.length - 1))) : gap;
+    const top = sumH + g * Math.max(0, placed.length - 1) > area.h ? area.y - 20 : area.y;
+    // Stack downwards without overlap, pull back up if the column ran past the bottom, then down again
+    // so nothing rises above the top.
+    for (let i = 0; i < placed.length; i++) placed[i].y = Math.max(placed[i].y, top, i ? placed[i - 1].y + placed[i - 1].h + g : -Infinity);
+    for (let i = placed.length - 1; i >= 0; i--) placed[i].y = Math.min(placed[i].y, (i < placed.length - 1 ? placed[i + 1].y - g : area.y + area.h) - placed[i].h);
+    for (let i = 0; i < placed.length; i++) placed[i].y = Math.max(placed[i].y, top, i ? placed[i - 1].y + placed[i - 1].h + g : -Infinity);
     for (const p of placed) {
       const edge = side === "left" ? fig.x - 14 : fig.x + fig.w + 14;
       const mid = p.y + p.h / 2;
@@ -76,10 +102,10 @@ export function placeLabels(items: LabelInput[], fig: Rect, area: Rect, measure:
         id: p.item.id,
         lines: p.lines,
         side,
-        at: { x: edge, y: p.y + size * 0.95 },
+        at: { x: edge, y: p.y + used * 0.95 },
         leader: [start, elbow, p.item.anchor],
         box: { x: side === "left" ? edge - p.w : edge, y: p.y, w: p.w, h: p.h },
-        size,
+        size: used,
         s: p.item.s,
       });
     }
@@ -116,6 +142,20 @@ function wrap(text: string, size: number, maxW: number, measure: (t: string, s: 
   }
   const rest = text.slice(first.length).trim();
   return rest ? [first, rest] : [first];
+}
+
+/**
+ * A label's lines at this size: at most two, each within the margin. A text whose second line would
+ * run past the margin is ended at a natural break, and `cut` says how many characters it kept (the
+ * room the rewrite pass is given); a single word wider than the margin cannot be helped by a cut.
+ */
+function fitLines(text: string, size: number, maxW: number, measure: (t: string, s: number) => number): { lines: string[]; cut?: number } {
+  const lines = wrap(text, size, maxW, measure);
+  const ok = (l: string[]) => l.length < 2 || measure(l[1], size) <= maxW;
+  if (ok(lines)) return { lines };
+  let n = text.length - 1;
+  while (n > 6 && !ok(wrap(trimToFit(text, n), size, maxW, measure))) n--;
+  return { lines: wrap(trimToFit(text, n), size, maxW, measure), cut: n };
 }
 
 /** Do two leaders cross? Used by tests and by layout QA. */

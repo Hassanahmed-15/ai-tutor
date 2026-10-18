@@ -117,7 +117,7 @@ test("a strict lesson keeps only the words: no interests, no country, no goal", 
 });
 
 test("the planning screen's line says what Aria assumed and what she is leaning on", () => {
-  assert.equal(policyNote(policyFor("Grade 8", { helps: ["pictures", "real-life"] })), "Pitched for Grade 8 · Pakistan · pictures, real-life examples");
+  assert.equal(policyNote(policyFor("Grade 8", { helps: ["pictures", "real-life"] })), "Explained for Grade 8 · Pakistan · pictures, real-life examples");
   assert.equal(policyNote(null), "");
 });
 

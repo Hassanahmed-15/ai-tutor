@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Ink, Pt } from "../types";
+import { fitText } from "../cuts";
 import { Sketch, PALETTE, num, optNum, str, bool, fmt } from "./mathsKit";
 
 /**
@@ -36,7 +37,7 @@ function parseCurves(v: unknown): Array<{ kind: Kind; label: string; scale: numb
   for (const raw of text.split(/[;\n|]/).map((s) => s.trim()).filter(Boolean).slice(0, 3)) {
     const m = raw.match(/^(original|standard|control|first|reference|faster|steeper|quicker|slower)\s*[:=-]\s*(.*)$/i);
     const head = m ? m[1].toLowerCase() : "";
-    const label = (m ? m[2] : raw).replace(/\((half|halved|double|doubled)\)/gi, "").trim().slice(0, 60);
+    const label = fitText((m ? m[2] : raw).replace(/\((half|halved|double|doubled)\)/gi, "").trim(), 60);
     let kind: Kind = /fast|steep|quick/.test(head) ? "faster" : head === "slower" ? "slower" : m ? "original" : "original";
     if (!m) kind = /^(original|standard|control|reference|first)/i.test(label) ? "original" : SLOWER.test(label) && !/higher|increas|more/i.test(label) ? "slower" : FASTER.test(label) ? "faster" : "original";
     // The limiting reactant halved / doubled changes the final amount; nothing else does.

@@ -244,7 +244,8 @@ test("routing order: exact kit, then vector diagram, never an unrelated solid", 
   const out = applyLessonVisualPolicy([kit, geo, exam], { mode: "course", aiPictures: true });
   assert.equal(out.beats[0].stage, "figure");
   assert.equal(out.beats[0].figure, "titration");
-  assert.equal(out.beats[1].stage, "diagram");
-  assert.notEqual(out.beats[1].figure, "shapes3d");
+  // A circulation model is drawn by the coordinate grammar first ("drawn"); the scene grammar is its fallback.
+  assert.equal(out.beats[1].stage, "figure");
+  assert.equal(out.beats[1].figure, "drawn");
   assert.equal(out.beats[2].stage, "exam");
 });

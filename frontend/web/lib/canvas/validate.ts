@@ -7,6 +7,7 @@
  * what its stage needs to draw anything returns null, and the caller retries or falls back.
  */
 
+import { repairEquationRows } from "./equationRepair";
 import { takeFigureCutItems, takeFigureCuts } from "../figures/cuts";
 import { compileExpr, exprUsesOnly } from "./expr";
 import { figureComponent } from "../figures/registry";
@@ -69,17 +70,35 @@ export function validationCutItems(): Array<{ text: string; max: number }> {
   return [...cutItems];
 }
 
-import { trimToFit } from "../text/fit";
+import { prettyPowers, trimToFit } from "../text/fit";
+import { accurateLabel, movingSubstance, placeholderPartName } from "./labelMatch";
+import { drawableText } from "../diagrams/glyphs";
 export { trimToFit };
 
 const shown = (v: unknown, max = 80): string => {
   // An ellipsis on a board reads as text cut off, and the writer (or the shorten pass) sometimes
   // ends a phrase with one ("OA ⊥ PA; angle...", QA 2026-10-17). Board text is a whole phrase.
   const text = str(v, 4000).replace(/\s*(?:\.{3,}|…)+\s*$/u, "").replace(/\s*(?:\.{3,}|…)\s*/gu, " ").trim();
-  if (text.length <= max) return text;
+  // Powers are printed as superscripts ("m s⁻¹"); a cut is recorded as the writer wrote it, so the
+  // shorten pass can find it in the board's JSON.
+  const pretty = prettyPowers(text);
+  if (pretty.length <= max) return pretty;
   cuts.push(`"${text.slice(0, 70)}${text.length > 70 ? "…" : ""}" is ${text.length} characters where only ${max} fit`);
   cutItems.push({ text, max });
-  return trimToFit(text, max);
+  return trimToFit(pretty, max);
+};
+/**
+ * The name written on a figure's part. A writer's phrase too long for a label ("Right atrium receives
+ * deoxygenated blood") was ended at a word — "Right atrium receives" — a fragment on a textbook figure
+ * (2026-10-17). The part's own name is used instead; the phrase belongs in what Aria says. Only a
+ * placeholder part ("Body A") keeps the writer's text, recorded for the shorten pass.
+ */
+const partLabel = (raw: unknown, part: { id: string; name: string }): string => {
+  const whole = str(raw, 4000);
+  // A label that was itself cut short ("Waste products (urine) to the…") is a fragment too.
+  const cutShort = /(?:…|\.{3})\s*$/.test(whole) || /\s(?:the|a|an|to|of|and|or|in|on|for|with|by|from|into|as)\s*$/i.test(whole);
+  if ((whole.length > 34 || cutShort) && !placeholderPartName(part.name) && part.name.length <= 40) return accurateLabel(part.name, part);
+  return accurateLabel(shown(raw, 34), part);
 };
 const num = (v: unknown, fallback: number): number => (Number.isFinite(Number(v)) ? Number(v) : fallback);
 
@@ -100,8 +119,8 @@ const ICON_MEANS: Partial<Record<CanvasIcon, RegExp>> = {
   sugar: /sugar|glucose|sucrose|starch|carbohydrate|sweet|food/i,
   chloroplast: /chloroplast|photosynth|chlorophyll/i,
   stomata: /stomat|pore|leaf|guard cell/i,
-  lungs: /lung|breath|respir|air|gas exchange|alveol/i,
-  heart: /heart|blood|pump|circulat|cardi/i,
+  lungs: /lung|alveol/i,
+  heart: /heart|cardi/i,
   flame: /flame|fire|burn|combust|heat|hot|fuel/i,
   ice: /ice|freez|cold|solid|melt|frozen/i,
   steam: /steam|vapou?r|boil|evaporat/i,
@@ -124,20 +143,26 @@ const ICON_MEANS: Partial<Record<CanvasIcon, RegExp>> = {
   animal: /animal|organism|species|mammal|predator|prey|creature|wildlife/i,
   cloud: /cloud|weather|rain|sky|climate|data|storage/i,
   // A gear means a mechanism or a process step, never a piece of glassware (a burette drawn as a gear).
-  gear: /gear|machine|mechanism|process|engine|system|method|step|procedure|control|regulat|catalys|enzyme|work/i,
+  gear: /gear|machine|engine|motor/i,
 };
+/**
+ * AN ICON SHOWS THE THING ITS CARD NAMES, or there is no icon (owner, 2026-10-17: "what even are these
+ * images"). A heart on "Blood", a book on "Hormone table", a gear on "RNA processing", a person on
+ * "Body diagram" taught nothing. The card's NAME must match the icon; an icon with no meaning list
+ * (a person, a book) is never shown.
+ */
 const icon = (v: unknown, means = ""): CanvasIcon | undefined => {
   const s = str(v, 20).toLowerCase();
   if (!(CANVAS_ICONS as readonly string[]).includes(s)) return undefined;
   const need = ICON_MEANS[s as CanvasIcon];
-  return !means || !need || need.test(means) ? (s as CanvasIcon) : undefined;
+  return need && means && need.test(means) ? (s as CanvasIcon) : undefined;
 };
 const color = (v: unknown): string | undefined => {
   const s = str(v, 9);
   return /^#[0-9a-f]{6}$/i.test(s) ? s : undefined;
 };
 
-export function validateCanvasSpec(raw: unknown, sentenceCount: number, vars: string[] = []): CanvasBoardSpec | null {
+export function validateCanvasSpec(raw: unknown, sentenceCount: number, vars: string[] = [], script = ""): CanvasBoardSpec | null {
   cuts = [];
   cutItems = [];
   const r = obj(raw);
@@ -166,7 +191,7 @@ export function validateCanvasSpec(raw: unknown, sentenceCount: number, vars: st
   const interaction = validateInteraction(r.interaction);
   const knownVars = interaction?.kind === "try" ? interaction.controls.map((c) => c.var) : vars;
 
-  const stage = validateStage(obj(r.stage), sentence, unique, knownVars);
+  const stage = validateStage(obj(r.stage), sentence, unique, knownVars, script);
   if (!stage) return null;
   // A figure title that repeats the board's heading is the same words twice, one above the other.
   if (stage.kind === "figure" && stage.params && typeof stage.params.title === "string") {
@@ -235,7 +260,7 @@ function validateArrows(raw: unknown, sentence: (v: unknown, f?: number) => numb
     .slice(0, 10);
 }
 
-function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, unique: (v: unknown, f: string) => string, vars: string[]): StageSpec | null {
+function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, unique: (v: unknown, f: string) => string, vars: string[], script = ""): StageSpec | null {
   const kind = str(r.kind, 20) as StageSpec["kind"];
   if (!(CANVAS_STAGES as readonly string[]).includes(kind)) return null;
 
@@ -288,7 +313,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
           id: unique(n.id ?? label, `node-${i + 1}`),
           label,
           sub: shown(n.sub, 32) || undefined,
-          icon: icon(n.icon, `${str(n.id, 40)} ${str(n.label, 60)} ${str(n.sub, 60)}`),
+          icon: icon(n.icon, str(n.label, 60)),
           color: color(n.color),
           role: (["input", "core", "output"].includes(role) ? role : undefined) as FlowStage["nodes"][number]["role"],
           s: sentence(n.s ?? n.sentence, i),
@@ -299,6 +324,14 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       .filter((n): n is NonNullable<typeof n> => Boolean(n))
       .slice(0, 7);
     if (nodes.length < 2) return null;
+    // A node never turns into another node of the chain: "Meteoroid" became "Meteor" while "Meteor"
+    // became "Meteorite" beside the real "Meteorite", so the board read "Meteor → Meteorite →
+    // Meteorite" (2026-10-18). The chain already shows each stage; the morph is dropped.
+    const labelKey = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, "");
+    for (const n of nodes) {
+      const into = (n as { becomes?: { label?: string } }).becomes?.label;
+      if (into && nodes.some((m) => m !== n && labelKey(m.label) === labelKey(into))) delete (n as { becomes?: unknown }).becomes;
+    }
     const arrangement = str(r.arrangement, 24);
     const stage: FlowStage = {
       kind,
@@ -320,7 +353,8 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       .map((p, i) => {
         const id = str(p.id, 60).toLowerCase();
         if (!known.has(id)) return null;
-        const name = shown(p.name ?? p.label, 34) || known.get(id)!.name.slice(0, 34);
+        // The library's own name is whole (up to 40 characters; the label layout sets it smaller to fit).
+        const name = partLabel(p.name ?? p.label, { id, name: known.get(id)!.name.length <= 40 ? known.get(id)!.name : shown(known.get(id)!.name, 34) });
         const say = shown(p.say, 200);
         if (unique(id, id) !== id) return null;
         return { id, name, s: sentence(p.s ?? p.sentence, i), ...(say ? { say } : {}) };
@@ -343,7 +377,8 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       .map((p, i) => {
         const id = slug(p.id, "");
         if (!known.has(id) || unique(id, id) !== id) return null;
-        const name = shown(p.name ?? p.label, 34) || known.get(id)!.name;
+        // A symbol the board font lacks ("OM ⟂ AB") rendered as a row of boxes: written in words instead.
+        const name = drawableText(partLabel(p.name ?? p.label, known.get(id)!));
         const say = shown(p.say, 200);
         return { id, name, s: sentence(p.s ?? p.sentence, i), ...(say ? { say } : {}) };
       })
@@ -383,7 +418,8 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       .map((p, i) => {
         const id = slug(p.id, "");
         if (!known.has(id)) return null;
-        const name = derived.get(id)?.slice(0, 34) ?? (shown(p.name ?? p.label, 34) || known.get(id)!.name);
+        const own = derived.get(id);
+        const name = own !== undefined ? shown(own, 34) : partLabel(p.name ?? p.label, known.get(id)!);
         const say = shown(p.say, 200);
         // A part's id is the component's own (its anchor is looked up by it): a repeat is dropped, not renamed.
         if (unique(id, id) !== id) return null;
@@ -399,7 +435,12 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
   if (kind === "diagram") {
     const parsed = parseDiagramSpec(r.spec ?? r);
     if (!parsed) return null;
+    // Labels the diagram check had to shorten are recorded like a figure's, so the shorten pass sees them.
+    takeFigureCuts();
+    takeFigureCutItems();
     const checked = checkDiagram(parsed, "", []);
+    for (const c of takeFigureCuts()) cuts.push(`in the diagram, ${c}`);
+    cutItems.push(...takeFigureCutItems());
     const drawing = compileDiagram(checked.spec);
     const known = new Map(drawing.parts.map((p) => [p.id, p]));
     const parts = arr(r.parts)
@@ -407,13 +448,26 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       .map((p, i) => {
         const id = slug(p.id, "");
         if (!known.has(id) || unique(id, id) !== id) return null;
-        const name = shown(p.name ?? p.label, 34) || known.get(id)!.name;
+        const name = partLabel(p.name ?? p.label, known.get(id)!);
         const say = shown(p.say, 200);
         return { id, name, s: sentence(p.s ?? p.sentence, i), ...(say ? { say } : {}) };
       })
       .filter((p): p is NonNullable<typeof p> => Boolean(p))
       .slice(0, 8);
-    const labelled = parts.length ? parts : drawing.parts.slice(0, 6).map((p, i) => ({ id: p.id, name: p.name, s: sentence(i, i) }));
+    // One label per name: a writer that drew a part AND a text label for it listed both, and "Shoot tip"
+    // and "Chloroplasts" were each written two or three times on one diagram (live test, 2026-10-17).
+    // Same words in another order, or one name inside another ("6C citrate" / "Citrate 6C", "Acetyl
+    // coenzyme A: 2C acetyl" / "2C acetyl from acetyl coenzyme A"), are the same label.
+    const wordsOf = (name: string) => new Set(name.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w && !["the", "a", "an", "of", "from", "and", "in", "to"].includes(w)));
+    const kept: Array<Set<string>> = [];
+    const distinct = parts.filter((p) => {
+      const w = wordsOf(p.name);
+      const dup = kept.some((k) => { const small = k.size <= w.size ? k : w, big = small === k ? w : k; return small.size > 0 && [...small].every((x) => big.has(x)); });
+      if (dup) return false;
+      kept.push(w);
+      return true;
+    });
+    const labelled = distinct.length ? distinct : drawing.parts.slice(0, 6).map((p, i) => ({ id: p.id, name: p.name, s: sentence(i, i) }));
     if (!labelled.length) return null;
     const stage: DiagramStage = { kind, spec: checked.spec, parts: labelled, drawing };
     return stage;
@@ -428,6 +482,8 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
         const say = str(p.say, 220);
         // A placeholder is not a part: a cell picture was labelled "Callouts" (audit 2026-10-17).
         if (/^(callouts?|labels?|parts?|arrows?|annotations?|pointers?|items?|part \d+|label \d+)$/i.test(name ?? "")) return null;
+        // Structures only: a gas or ion arrow is named by the narration, never by a located label.
+        if (name && movingSubstance(name)) return null;
         return name ? { id: unique(p.id ?? name, `part-${i + 1}`), name, s: sentence(p.s ?? p.sentence, i), ...(say ? { say } : {}), ...(Number.isFinite(Number(p.x)) ? { x: Number(p.x), y: Number(p.y) } : {}) } : null;
       })
       .filter((p): p is NonNullable<typeof p> => Boolean(p))
@@ -438,7 +494,8 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       kind,
       subject,
       parts,
-      labels: arr(r.labels).map((l) => slug(l, "")).filter((l) => partIds.has(l)).slice(0, 6),
+      // As many as the label policy allows (8): a cap of 6 here silently dropped the 7th and 8th.
+      labels: arr(r.labels).map((l) => slug(l, "")).filter((l) => partIds.has(l)).slice(0, 8),
       ...(typeof r.src === "string" ? { src: r.src } : {}),
       ...(typeof r.paper === "string" ? { paper: r.paper } : {}),
     };
@@ -456,22 +513,56 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
         return text ? { id: unique(t.id ?? `t${i + 1}`, `t${i + 1}`), text, ...(tex ? { tex } : {}), color: color(t.color), on: t.on === undefined ? undefined : slug(t.on, "") } : null;
       })
       .filter((t): t is NonNullable<typeof t> => Boolean(t))
-      .slice(0, 16)
+      // 24, not 16: a circuits board's 17th and 18th terms were "=" and its answer, cut silently (2026-10-18).
+      .slice(0, 24)
       .map((t, _, all) => (t.on && all.some((h) => h.id === t.on && h.id !== t.id) ? t : { ...t, on: undefined }));
     if (tokens.length < 2) return null;
-    const tokenIds = new Set(tokens.map((t) => t.id));
+    // An operator the writer used but never defined ("equals-5", "multiply-2", "plus") is restored as
+    // its symbol: dropping it left numbers side by side ("£250  1.17 = €292.50"; live test, 2026-10-17).
+    const OPS: Record<string, [string, string]> = { equal: ["=", "="], equals: ["=", "="], eq: ["=", "="], plus: ["+", "+"], add: ["+", "+"], minus: ["−", "-"], subtract: ["−", "-"], times: ["×", "\\times"], multiply: ["×", "\\times"], mult: ["×", "\\times"], divide: ["÷", "\\div"], div: ["÷", "\\div"], arrow: ["→", "\\to"], to: ["→", "\\to"], approx: ["≈", "\\approx"], ne: ["≠", ""], neq: ["≠", ""], implies: ["⇒", "\\Rightarrow"] };
+    const known = new Set(tokens.map((t) => t.id));
+    for (const st of arr(r.steps).map((x) => obj(x))) {
+      for (const raw of arr(st.order)) {
+        const id = slug(raw, "");
+        const op = /^([a-z]+)(?:-?\d+)?$/.exec(id)?.[1];
+        if (!id || known.has(id) || !op || !OPS[op] || tokens.length >= 32) continue;
+        tokens.push({ id, text: OPS[op][0], ...(OPS[op][1] ? { tex: OPS[op][1] } : {}), color: color(undefined), on: undefined });
+        known.add(id);
+      }
+    }
+    // A sentence is not a term: it moves to its step's caption ("unknown rightward = known leftward").
+    const wordCount = (t: string) => (t.match(/[A-Za-z]{3,}/g) ?? []).filter((w) => !/^(sin|cos|tan|log|exp|lim|max|min|mod|arg|det)$/i.test(w)).length;
+    const proseFound = new Map(tokens.filter((t) => !t.on && (wordCount(t.text) >= 5 || (wordCount(t.text) >= 1 && /:/.test(t.text)) || (wordCount(t.text) >= 2 && /[=≈<>]/.test(t.text)))).map((t) => [t.id, t.text]));
+    // Only when an equation is left: a board that is all sentences is reported and written again.
+    const prose = tokens.filter((t) => !proseFound.has(t.id)).length >= 2 ? proseFound : new Map<string, string>();
+    const isOp = (id: string) => /^\s*(?:[=+×÷−\-→≈<>≤≥≠⇒*/·]|\\(?:times|div|to|cdot|approx|rightarrow|Rightarrow|neq?))\s*$/.test(tokens.find((t) => t.id === id)?.tex ?? tokens.find((t) => t.id === id)?.text ?? "");
+    const tokenIds = new Set(tokens.filter((t) => !prose.has(t.id)).map((t) => t.id));
     const steps = arr(r.steps)
       .map((st) => obj(st))
       .map((st) => {
-        const order = arr(st.order).map((id) => slug(id, "")).filter((id) => tokenIds.has(id));
+        const ids = arr(st.order).map((id) => slug(id, ""));
+        const words = ids.filter((id) => prose.has(id)).map((id) => prose.get(id)!);
+        const order = [...new Set(ids.filter((id) => tokenIds.has(id)))];
+        // A term the writer named but never defined is gone from the row: the row is rebuilt below.
+        let cut = ids.some((id) => id && !tokenIds.has(id) && !prose.has(id));
+        // A row never starts or ends on a bare operator (a trailing "=" with nothing after it) — and
+        // one that did had lost what came after it.
+        while (order.length && isOp(order[order.length - 1])) { order.pop(); cut = true; }
+        while (order.length && isOp(order[0]) && !/^[−-]$/.test(tokens.find((t) => t.id === order[0])?.text ?? "")) order.shift();
+        const caption = shown(st.caption, 64) || (words.length ? shown(words.join("; "), 64) : "") || undefined;
         return order.length
-          ? { s: sentence(st.s ?? st.sentence), order: [...new Set(order)], highlight: arr(st.highlight).map((h) => slug(h, "")).filter((h) => tokenIds.has(h)), caption: shown(st.caption, 64) || undefined }
+          ? { s: sentence(st.s ?? st.sentence), order, highlight: arr(st.highlight).map((h) => slug(h, "")).filter((h) => tokenIds.has(h)), caption, cut }
           : null;
       })
       .filter((st): st is NonNullable<typeof st> => Boolean(st))
       .sort((a, b) => a.s - b.s)
       .slice(0, 6);
-    const stage: EquationStage = { kind, tokens, steps: steps.length ? steps : [{ s: 0, order: tokens.map((t) => t.id), highlight: [] }] };
+    const kept = tokens.filter((t) => tokenIds.has(t.id) || t.on);
+    if (kept.length < 2) return null;
+    const cutSteps = new Set(steps.map((st, i) => (st.cut ? i : -1)).filter((i) => i >= 0));
+    const stage: EquationStage = { kind, tokens: kept, steps: steps.length ? steps.map(({ cut: _cut, ...st }) => st) : [{ s: 0, order: kept.filter((t) => !t.on).map((t) => t.id), highlight: [] }] };
+    // Every row of working written whole, from what its caption or Aria's sentence states (lib/canvas/equationRepair.ts).
+    if (script) repairEquationRows(stage, script, cutSteps);
     return stage;
   }
 
@@ -534,8 +625,9 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
         .map((it) => (typeof it === "string" ? { text: it } : obj(it)))
         .map((it, i) => (str(it.text, 80) ? { id: unique(it.id ?? `${fallback}-${i + 1}`, `${fallback}-${i + 1}`), text: shown(it.text, 72), s: sentence(it.s ?? it.sentence, i) } : null))
         .filter((it): it is NonNullable<typeof it> => Boolean(it))
-        .slice(0, 4);
-      return title && items.length ? { id: unique(s.id ?? fallback, fallback), title, icon: icon(s.icon, `${str(s.title, 60)} ${items.map((i) => i.text).join(" ")}`), color: color(s.color), items } : null;
+        // Up to six a side: the layout sets more items smaller rather than dropping them.
+        .slice(0, 6);
+      return title && items.length ? { id: unique(s.id ?? fallback, fallback), title, icon: icon(s.icon, str(s.title, 60)), color: color(s.color), items } : null;
     };
     const left = side(r.left, "left");
     const right = side(r.right, "right");
@@ -555,10 +647,11 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
   }
 
   if (kind === "exam") {
-    const question = str(r.question, 600);
+    // Recorded when long (shown), so the shorten pass rewrites it instead of a silent cut.
+    const question = shown(r.question, 600);
     const points = arr(r.points)
       .map((p) => obj(p))
-      .map((p, i) => (str(p.text, 240) ? { id: unique(p.id ?? `mark-${i + 1}`, `mark-${i + 1}`), text: str(p.text, 240), s: sentence(p.s ?? p.sentence, i + 1) } : null))
+      .map((p, i) => (str(p.text, 240) ? { id: unique(p.id ?? `mark-${i + 1}`, `mark-${i + 1}`), text: shown(p.text, 240), s: sentence(p.s ?? p.sentence, i + 1) } : null))
       .filter((p): p is NonNullable<typeof p> => Boolean(p))
       .slice(0, 6);
     if (!question || points.length < 1) return null;
@@ -570,7 +663,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       marks: r.scheme === "levels" ? Math.max(points.length, Math.round(num(r.marks, points.length))) : points.length,
       points,
       ...(r.scheme === "levels" ? { scheme: "levels" as const } : {}),
-      ...(str(lost.text, 240) ? { lostMarks: { id: unique(lost.id ?? "lost-marks", "lost-marks"), text: str(lost.text, 240), s: sentence(lost.s ?? lost.sentence, points.length + 1) } } : {}),
+      ...(str(lost.text, 240) ? { lostMarks: { id: unique(lost.id ?? "lost-marks", "lost-marks"), text: shown(lost.text, 240), s: sentence(lost.s ?? lost.sentence, points.length + 1) } } : {}),
     };
     return stage;
   }
@@ -585,7 +678,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       return {
         id: unique(it.id ?? it.label ?? `item-${i + 1}`, `item-${i + 1}`),
         kind: (k === "box" || k === "text" ? k : "icon") as SceneStage["items"][number]["kind"],
-        icon: icon(it.icon, `${str(it.id, 40)} ${str(it.label, 60)} ${str(it.detail, 90)}`),
+        icon: icon(it.icon, str(it.label, 60)),
         label: shown(it.label, 40) || undefined,
         ...(shown(it.detail, 90) ? { detail: shown(it.detail, 90) } : {}),
         cell,
@@ -628,7 +721,7 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
     .map((st, i) => {
       const picked = (Array.isArray(st.lines) ? st.lines : [st.lines ?? st.line]).map(lineNo).filter(Boolean);
       if (picked.length === 0) return null;
-      const note = str(st.note, 48);
+      const note = shown(st.note, 48);
       // What the variables hold after these lines: an object {"count": 1} or a list of {name, value}.
       const rawState = st.state ?? st.vars;
       const stateList = Array.isArray(rawState)
@@ -698,13 +791,22 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
  * targets "ds-<id>" (and the whole structure "structure"), so the pen can point at a node.
  */
 function validateStructureStage(r: Raw, sentence: (v: unknown, f?: number) => number, unique: (v: unknown, f: string) => string): StructureStage | null {
+  // A data structure holds values ("50", "key"), not sentences: an essay board drawn as a linked list
+  // showed "Topic", "Eviden", "becaus", "Unifor" — each cut to six characters (2026-10-18). Words that
+  // do not fit are not cut: the board is written again as something else.
+  const rawStructure = obj(r.structure ?? r);
+  const values = [
+    ...arr(rawStructure.nodes).map((n) => obj(n).value),
+    ...arr(r.steps).flatMap((st) => arr(obj(st).ops).map((op) => obj(op).value)),
+  ].filter((v): v is string => typeof v === "string");
+  if (values.some((v) => v.trim().length > 6 && /[A-Za-z]{4,}/.test(v))) return null;
   const structure = parseStructure(r.structure ?? r);
   if (!structure) return null;
   const steps = arr(r.steps)
     .map((st) => obj(st))
     .map((st, i) => {
       const ops = parseOps(st.ops);
-      const note = str(st.note, 48);
+      const note = shown(st.note, 48);
       return { s: sentence(st.s ?? st.sentence, i), ...(ops.length ? { ops } : {}), ...(note ? { note } : {}) };
     })
     .sort((a, b) => a.s - b.s)
@@ -733,6 +835,10 @@ function tokenTex(raw: string): string | null {
   // is shown instead, so a term can never vanish.
   if (/\\[dt]?frac\s*\{\s*\}|\\[dt]?frac\s*\{[^{}]*\}\s*\{\s*\}|\\sqrt\s*\{\s*\}/.test(tex)) return null;
   const fixed = repairTex(tex);
+  // KaTeX draws ≠ as "/" laid over "=" from a glyph of its own font, which showed as "a /= 0" on a
+  // board (2026-10-18): the character itself is drawn instead.
+  // A term that is only "≠" is drawn as the character (no tex), so it never shows as "/=".
+  if ("tex" in fixed && /^\s*(?:\\neq?|\\not\s*=|≠)\s*$/.test(fixed.tex)) return null;
   return "tex" in fixed ? fixed.tex : null;
 }
 
@@ -753,7 +859,7 @@ export function validateInteraction(raw: unknown): CanvasInteraction | undefined
   const r = obj(raw);
   const kind = str(r.kind, 6);
   // Never cut a question mid-word ("…the higher tem", audit 2026-10-17): long ones are rewritten by their writer.
-  const prompt = str(r.prompt ?? r.question, 320);
+  const prompt = shown(r.prompt ?? r.question, 320);
   if (!prompt) return undefined;
   if (kind === "draw") {
     const expect = str(r.expect, 400);
@@ -783,7 +889,7 @@ export function validateInteraction(raw: unknown): CanvasInteraction | undefined
       const min = num(c.min, 0);
       const max = num(c.max, 100);
       if (!(max > min)) return null;
-      return { var: v, label: str(c.label, 28) || v, min, max, step: num(c.step, (max - min) / 100), value: Math.max(min, Math.min(max, num(c.value, (min + max) / 2))), unit: str(c.unit, 10) || undefined };
+      return { var: v, label: shown(c.label, 28) || v, min, max, step: num(c.step, (max - min) / 100), value: Math.max(min, Math.min(max, num(c.value, (min + max) / 2))), unit: str(c.unit, 10) || undefined };
     })
     .filter((c): c is NonNullable<typeof c> => Boolean(c))
     .slice(0, 2);
@@ -800,7 +906,7 @@ export function validateInteraction(raw: unknown): CanvasInteraction | undefined
       .slice(0, 6),
     readouts: arr(r.readouts)
       .map((x) => obj(x))
-      .map((x) => ({ label: str(x.label, 24), expr: str(x.expr, 120), unit: str(x.unit, 16) || undefined }))
+      .map((x) => ({ label: shown(x.label, 24), expr: str(x.expr, 120), unit: str(x.unit, 16) || undefined }))
       .filter((x) => x.label && exprUsesOnly(x.expr, vars))
       .slice(0, 2),
   };
@@ -823,7 +929,7 @@ function libraryAsset(v: unknown): NonNullable<FigureStage["asset"]> | null {
       const at = obj(p.anchor);
       const x = num(at.x, NaN), y = num(at.y, NaN);
       if (!pid || !Number.isFinite(x) || !Number.isFinite(y) || x < -w * 0.05 || x > w * 1.05 || y < -h * 0.05 || y > h * 1.05) return null;
-      return { id: pid, name: str(p.name, 60) || pid, anchor: { x, y } };
+      return { id: pid, name: shown(p.name, 60) || pid, anchor: { x, y } };
     })
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
     .slice(0, 80);

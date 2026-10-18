@@ -2,6 +2,10 @@ import { partBounds } from "../figures/bounds";
 import { drawnShapes, TINTS } from "../figures/drawn";
 import type { FigureDrawing, FigurePart, FigureShape, Ink } from "../figures/types";
 import { WORLD_LAND } from "./worldLand";
+import { drawableText } from "./glyphs";
+import { collisionElement, geometryElement } from "./grammarKinds";
+import { clearAnchor, cropToInk, inkIndex, partInkDistance, rayBlocked, textGap } from "./ink";
+import { untangleLeaders } from "./leaders";
 
 /**
  * THE DIAGRAM GRAMMAR. A diagram is described as JSON and drawn by code, so what needs to be exact is
@@ -18,8 +22,12 @@ import { WORLD_LAND } from "./worldLand";
  *   - "geoArrow" / "geoPoint" / "band": an arrow along lon/lat points, a place, a latitude belt;
  *   - "plot": axes with ticks and titles, and data as a line, bars, points or an area;
  *   - "layers": a stacked cross-section (soil horizons, tissue layers, the atmosphere);
- *   - "repeat": one shape repeated an exact number of times in a row or grid.
- * Parts are named regions the label engine points at; an anchor is optional — code puts it on the part.
+ *   - "repeat": one shape repeated an exact number of times in a row or grid;
+ *   - "geometry" / "collision" (lib/diagrams/grammarKinds.ts): an exact construction (circle, chords,
+ *     perpendicular feet, tangents, right angles), and bodies before and after an impact.
+ * Parts are named regions the label engine points at. A part drawn by one of these elements gets its
+ * anchor from the geometry code drew, whatever the writer said; a part made only of free shapes keeps
+ * the writer's anchor only when it lies on the part's own ink.
  *
  * Pure: no model, no I/O. Returns the drawing, what is wrong with the description, and the facts the
  * checks need (counts, written numbers, data).
@@ -149,6 +157,8 @@ function shapePoints(s: Raw): Array<[number, number]> {
  * membership is by object identity, set only here.
  */
 const COMPILED = new WeakSet<FigureDrawing>();
+/** Parts whose dot is an exact point (a crossing, a map place): never moved to clear a leader. */
+const EXACT = new WeakMap<FigureDrawing, Set<string>>();
 export const isCompiledDiagram = (drawing: unknown): drawing is FigureDrawing => typeof drawing === "object" && drawing !== null && COMPILED.has(drawing as FigureDrawing);
 
 export function compileDiagram(raw: unknown): CompiledDiagram {
@@ -161,15 +171,24 @@ export function compileDiagram(raw: unknown): CompiledDiagram {
   const elements = (Array.isArray(r.elements) ? r.elements : Array.isArray(r.shapes) ? r.shapes : []).filter(isObj).slice(0, 120);
   const rawParts = (Array.isArray(r.parts) ? r.parts : []).filter(isObj).slice(0, 10);
   const partIds = new Set(rawParts.map((p) => slug(p.id)).filter(Boolean));
+  const partNames = new Map(rawParts.map((p) => [slug(p.id), drawableText(str(p.name, 200))] as const));
+  // Parts whose names code writes INTO the art (a circulation cell's name inside its loop, a velocity
+  // arrow's value over it): no margin label and no leader for them.
+  const selfNamed = new Set<string>();
   const partOf = (v: unknown) => { const id = slug(v); return id && partIds.has(id) ? { part: id } : {}; };
   const shapes: FigureShape[] = [];
   // Points on each part's art, from which its anchor is chosen when the writer gives none.
   const points = new Map<string, Array<[number, number]>>();
-  const mark = (part: unknown, ...pts: Array<[number, number]>) => {
+  // Parts some element of the grammar placed (a cell, a current, a chord): their anchors are code's.
+  const placed = new Set<string>();
+  const markAny = (part: unknown, pts: Array<[number, number]>) => {
     const id = slug(part);
-    if (!id || !partIds.has(id)) return;
+    if (!id || !partIds.has(id)) return "";
     points.set(id, [...(points.get(id) ?? []), ...pts.filter(([x, y]) => Number.isFinite(x) && Number.isFinite(y))]);
+    return id;
   };
+  const mark = (part: unknown, ...pts: Array<[number, number]>) => { const id = markAny(part, pts); if (id) placed.add(id); };
+  const markFree = (part: unknown, ...pts: Array<[number, number]>) => { markAny(part, pts); };
   let projection: Projection | undefined;
   const drawnRaw: Raw[] = [];
   let writerTexts = 0;
@@ -265,7 +284,12 @@ export function compileDiagram(raw: unknown): CompiledDiagram {
       const px = (v: number) => box.x + ((v - X.min) / (X.max - X.min)) * box.w;
       const py = (v: number) => box.y + box.h - ((v - Y.min) / (Y.max - Y.min)) * box.h;
       const zeroY = Y.min <= 0 && Y.max >= 0 ? py(0) : box.y + box.h;
-      shapes.push({ t: "path", d: `M${r1(box.x)} ${r1(box.y - 6)} V${r1(box.y + box.h)} H${r1(box.x + box.w + 6)}`, stroke: "ink", width: 1.8, fill: "none" });
+      // The x axis is the line y = 0 when the data go negative: a potential φ = −GM/r drawn with its
+      // r axis at the bottom read as rising from the axis instead of rising towards zero.
+      const axisY = Y.min < 0 && Y.max >= 0 && !categorical ? zeroY : box.y + box.h;
+      const above = axisY <= box.y + 1;
+      shapes.push({ t: "path", d: `M${r1(box.x)} ${r1(box.y - 6)} V${r1(box.y + box.h)}`, stroke: "ink", width: 1.8, fill: "none" });
+      shapes.push({ t: "path", d: `M${r1(box.x)} ${r1(axisY)} H${r1(box.x + box.w + 6)}`, stroke: "ink", width: 1.8, fill: "none" });
       for (const v of Y.ticks) {
         const y = py(v);
         shapes.push({ t: "path", d: `M${r1(box.x - 5)} ${r1(y)} H${r1(box.x)}`, stroke: "ink", width: 1.2, fill: "none" });
@@ -276,11 +300,15 @@ export function compileDiagram(raw: unknown): CompiledDiagram {
       if (categorical) X.categories.forEach((c, i) => shapes.push({ t: "text", x: r1(box.x + slot * (i + 0.5)), y: r1(box.y + box.h + 17), text: c, size: 12, anchor: "middle", fill: "ink" }));
       else for (const v of X.ticks) {
         const x = px(v);
-        shapes.push({ t: "path", d: `M${r1(x)} ${r1(box.y + box.h)} V${r1(box.y + box.h + 5)}`, stroke: "ink", width: 1.2, fill: "none" });
-        shapes.push({ t: "text", x: r1(x), y: r1(box.y + box.h + 18), text: tickText(v), size: 12, anchor: "middle", fill: "muted" });
+        shapes.push({ t: "path", d: `M${r1(x)} ${r1(axisY)} V${r1(axisY + (above ? -5 : 5))}`, stroke: "ink", width: 1.2, fill: "none" });
+        if (v !== 0 || axisY === box.y + box.h) shapes.push({ t: "text", x: r1(x), y: r1(above ? axisY - 9 : axisY + 18), text: tickText(v), size: 12, anchor: "middle", fill: "muted" });
       }
-      if (X.label) shapes.push({ t: "text", x: r1(box.x + box.w / 2), y: r1(box.y + box.h + 38), text: X.label, size: 13, anchor: "middle", fill: "ink" });
-      if (Y.label) shapes.push({ t: "text", x: r1(box.x), y: r1(box.y - 14), text: Y.label, size: 13, anchor: "start", fill: "ink" });
+      if (X.label) shapes.push(above
+        ? { t: "text", x: r1(box.x + box.w + 8), y: r1(axisY - 26), text: X.label, size: 13, anchor: "end", fill: "ink" }
+        : { t: "text", x: r1(box.x + box.w / 2), y: r1(box.y + box.h + 38), text: X.label, size: 13, anchor: "middle", fill: "ink" });
+      if (Y.label) shapes.push(above
+        ? { t: "text", x: r1(box.x), y: r1(box.y + box.h + 20), text: Y.label, size: 13, anchor: "start", fill: "ink" }
+        : { t: "text", x: r1(box.x), y: r1(box.y - 14), text: Y.label, size: 13, anchor: "start", fill: "ink" });
       const series = (Array.isArray(e.series) ? e.series : []).filter(isObj).slice(0, 4);
       // Each line's data, by its part id, for intersections.
       const lines = new Map<string, Array<[number, number]>>();
@@ -376,6 +404,9 @@ export function compileDiagram(raw: unknown): CompiledDiagram {
       const flows = stops.map((st) => (/^ris|^up|ascen/i.test(str(st.flow, 10)) ? "rise" : /^sink|^sank|^down|descen/i.test(str(st.flow, 10)) ? "sink" : ""));
       if (flows.some((f) => !f)) { issues.push(`every circulation stop needs "flow": "rise" or "sink"`); continue; }
       const xs = stops.map((st, i) => { const at = num(st.at); return x + (at >= 0 && at <= 1 ? at : i / (stops.length - 1)) * cw; });
+      // Stops are drawn where they are listed, left to right: a writer listed 90°S → 90°N with "at"
+      // values running the other way, so the labels read backwards against the cells (2026-10-17).
+      if (xs.some((v, i) => i > 0 && v <= xs[i - 1] + 4)) { issues.push(`list the circulation "stops" left to right, in the order they are drawn — their "at" values must increase`); continue; }
       const top = y, ground = y + ch;
       shapes.push({ t: "path", d: `M${r1(x)} ${r1(ground)} H${r1(x + cw)}`, stroke: "ink", width: 2.2, fill: "none" });
       for (let i = 0; i < stops.length - 1; i++) {
@@ -395,6 +426,21 @@ export function compileDiagram(raw: unknown): CompiledDiagram {
           shapes.push(head([mid[0] - dx * 7, mid[1] - dy * 7], [mid[0] + dx * 7, mid[1] + dy * 7], colour, part, 13));
         }
         mark(cell.part, [(L + R) / 2, T]);
+        // The cell's name inside its loop, as textbooks print it — not a margin label whose leader
+        // runs along the tops of the other cells (QA 2026-10-17).
+        const cellName = part ? partNames.get(part) : "";
+        if (part && cellName) {
+          const room = R - L - 12, size = room > 90 ? 14 : 12;
+          const lines: string[] = [];
+          for (const word of cellName.split(" ")) {
+            const last = lines[lines.length - 1];
+            if (last !== undefined && (last.length + 1 + word.length) * size * 0.56 <= room) lines[lines.length - 1] = `${last} ${word}`;
+            else lines.push(word);
+          }
+          const mid = (T + B) / 2 - ((lines.length - 1) * size * 1.2) / 2 + size * 0.35;
+          lines.forEach((line, k) => shapes.push({ t: "text", x: r1((L + R) / 2), y: r1(mid + k * size * 1.2), text: line, size, anchor: "middle", fill: colour, part }));
+          selfNamed.add(part);
+        }
       }
       stops.forEach((st, i) => {
         if (e.pressure !== false) shapes.push({ t: "text", x: r1(xs[i]), y: r1(ground + 17), text: flows[i] === "rise" ? "L" : "H", size: 14, anchor: "middle", fill: "ink" });
@@ -509,13 +555,21 @@ export function compileDiagram(raw: unknown): CompiledDiagram {
       for (let i = 0; i < count; i++) {
         const copy = shifted({ ...shape, ...(part ? { part } : {}) }, (i % cols) * dx, Math.floor(i / cols) * (dy || 0));
         drawnRaw.push(copy);
-        mark(part, ...shapePoints(copy));
+        markFree(part, ...shapePoints(copy));
       }
+      continue;
+    }
+    if (t === "geometry" || t === "collision") {
+      flushDrawn();
+      facts.kinds.push(t);
+      const made = (t === "geometry" ? geometryElement : collisionElement)(e, { inside, partOf, mark, lineColour, tint, written: facts.written, selfLabel: (part) => { const id = slug(part); if (id && partIds.has(id)) selfNamed.add(id); } });
+      issues.push(...made.issues);
+      shapes.push(...made.shapes);
       continue;
     }
     // Any other element is a shape of the drawn grammar.
     drawnRaw.push(e);
-    mark(e.part, ...shapePoints(e));
+    markFree(e.part, ...shapePoints(e));
   }
   flushDrawn();
 
@@ -529,38 +583,76 @@ export function compileDiagram(raw: unknown): CompiledDiagram {
   const parts: FigurePart[] = [];
   const bounds = partBounds({ w, h, shapes, parts: [] });
   const seen = new Set<string>();
+  // Every word the art writes, in glyphs the board font draws ("OM ⟂ AB" was seven boxes).
+  for (const sh of shapes) if (sh.t === "text") sh.text = drawableText(sh.text);
+  // Where every shape's ink and every word is, for choosing label points a leader can reach.
+  const index = inkIndex(shapes);
+  const exact = new Set<string>();
   for (const p of rawParts) {
-    const id = slug(p.id), name = str(p.name, 34);
+    if (selfNamed.has(slug(p.id))) continue;
+    const full = drawableText(str(p.name, 200));
+    const id = slug(p.id), name = full.slice(0, 34);
     if (!id || !name || seen.has(id)) { issues.push(`part "${id || name || "?"}" needs a unique id and a name`); continue; }
+    // A name is never cut: one too long goes back to the writer.
+    if (full.length > 34) issues.push(`the part name "${full}" is ${full.length} characters — name it in at most 34`);
     seen.add(id);
     // A place on a map is named by where it is: "at": [lon, lat] (a country, an ocean, a city).
     const at = Array.isArray(p.at) && projection ? projection.at(num(p.at[0]), num(p.at[1])) : undefined;
-    if (at && inside(at[0], at[1])) { parts.push({ id, name, anchor: { x: r1(at[0]), y: r1(at[1]) } }); continue; }
+    if (at && inside(at[0], at[1])) { exact.add(id); parts.push({ id, name, anchor: { x: r1(at[0]), y: r1(at[1]) } }); continue; }
     const own = points.get(id) ?? [];
     if (!own.length) { issues.push(`part "${id}" has nothing drawn — give its elements "part": "${id}"${projection ? `, or place it on the map with "at": [lon, lat]` : ""}`); continue; }
-    // The writer's own anchor is kept only when it lies on the part's art.
+    // The writer's own anchor is kept only for a part made of free shapes, and only when it lies ON
+    // the part's ink — not merely inside its bounding box, where "Ferrel cell" pointed at the gap
+    // between two cells (acceptance run 2026-10-17). A part an element placed is labelled where code
+    // drew it; a free anchor off the ink is sent back with the reason.
     const a = isObj(p.anchor) ? { x: num(p.anchor.x), y: num(p.anchor.y) } : undefined;
     const b = bounds.get(id);
     let anchor: { x: number; y: number };
-    if (a && b && a.x >= b.x - 4 && a.x <= b.x + b.w + 4 && a.y >= b.y - 4 && a.y <= b.y + b.h + 4) anchor = a;
+    const onInk = a && Number.isFinite(a.x) && Number.isFinite(a.y) && partInkDistance({ shapes }, id, a.x, a.y, true) <= 6;
+    if (a && !placed.has(id) && !onInk) issues.push(`part "${id}"'s anchor (${Math.round(a.x)}, ${Math.round(a.y)}) is not on its own lines or inside its shape — move it onto the part, or leave "anchor" out and code will place it`);
+    if (a && onInk && !placed.has(id)) anchor = { x: r1(a.x), y: r1(a.y) };
     else {
       // The point on the part nearest the middle of its points — on the part, never in empty space,
       // and not under another part drawn inside it (a nucleus's label pointed at a chromosome).
       const within = (q: [number, number], o: { x: number; y: number; w: number; h: number }) => q[0] >= o.x && q[0] <= o.x + o.w && q[1] >= o.y && q[1] <= o.y + o.h;
       const others = [...bounds].filter(([k, o]) => k !== id && b && !(o.x <= b.x && o.y <= b.y && o.x + o.w >= b.x + b.w && o.y + o.h >= b.y + b.h)).map(([, o]) => o);
       const free = own.filter((q) => !others.some((o) => within(q, o)));
-      const pool = free.length ? free : own;
+      // Never on a word (a body's dot sat on its "A"), and preferably where a leader from a margin
+      // reaches it without running over other parts' ink.
+      const clearOfText = (free.length ? free : own).filter((q) => textGap(index, q[0], q[1]) > 6);
+      const pool = clearOfText.length ? clearOfText : free.length ? free : own;
       const cx = own.reduce((s, q) => s + q[0], 0) / own.length, cy = own.reduce((s, q) => s + q[1], 0) / own.length;
-      const best = pool.reduce((m, q) => (Math.hypot(q[0] - cx, q[1] - cy) < Math.hypot(m[0] - cx, m[1] - cy) ? q : m));
+      const cost = (q: [number, number]) => Math.min(rayBlocked(index, id, q[0], q[1], "left", w), rayBlocked(index, id, q[0], q[1], "right", w)) * 4 + Math.hypot(q[0] - cx, q[1] - cy);
+      const scored = pool.length > 40 ? pool.filter((_, i) => i % Math.ceil(pool.length / 40) === 0) : pool;
+      const best = scored.map((q) => ({ q, c: cost(q) })).reduce((m, x) => (x.c < m.c ? x : m)).q;
       anchor = { x: r1(best[0]), y: r1(best[1]) };
     }
-    parts.push({ id, name, anchor });
+    // A point a margin leader reaches without running over other parts or along the part's own edge.
+    // Exact single points (a crossing, a place on the map, a geometry point) are never moved.
+    // A part drawn as a point (a crossing's dot, a geometry point, a city) is exact: its dot never moves.
+    const single = !b || (b.w <= 12 && b.h <= 12);
+    if (single) exact.add(id);
+    parts.push({ id, name, anchor: single ? anchor : clearAnchor(index, id, anchor, w) });
   }
   // A graph or a map may have one named thing (its curve, its current); anything else needs two.
-  if (parts.length < (facts.kinds.some((k) => k === "plot" || k === "world" || k === "circulation") ? 1 : 2)) issues.push("name at least 2 parts");
+  if (!parts.length && selfNamed.size) issues.push(`the names written inside the diagram (${[...selfNamed].join(", ")}) are not margin labels — also name at least one other part a label should point at (give a circulation stop a "part", e.g. the ITCZ or a subtropical high)`);
+  else if (parts.length < (facts.kinds.some((k) => k === "plot" || k === "world" || k === "circulation") ? 1 : 2) - (selfNamed.size ? 1 : 0)) issues.push("name at least 2 parts");
   if (shapes.length < 3) issues.push("the diagram has fewer than 3 valid shapes");
   if (issues.length) return { issues: [...new Set(issues)].slice(0, 8), facts };
   const drawing: FigureDrawing = { w, h, shapes, parts };
   COMPILED.add(drawing);
+  EXACT.set(drawing, exact);
   return { drawing, issues: [], facts };
+}
+
+/**
+ * A compiled diagram cropped to its art (lib/diagrams/ink.ts cropToInk), still trusted by the
+ * validator: a writer who drew in half the canvas no longer gets half the frame.
+ */
+export function fitCompiledDiagram(drawing: FigureDrawing): FigureDrawing {
+  // Cropped first: the labels are then laid out at the scale the student sees, and each dot is moved
+  // along its own part until its leader runs over no other part (lib/diagrams/leaders.ts).
+  const fitted = untangleLeaders(cropToInk(drawing), EXACT.get(drawing));
+  if (isCompiledDiagram(drawing)) { COMPILED.add(fitted); EXACT.set(fitted, EXACT.get(drawing) ?? new Set()); }
+  return fitted;
 }

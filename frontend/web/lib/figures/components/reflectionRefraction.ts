@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Ink, Pt } from "../types";
+import { fitText } from "../cuts";
 import { Sketch, add, angleMark, bool, deg, dot, mul, num, perp, rad, sub, unit } from "./mathsKit";
 import { INK, ray, reflect, refract, show } from "./physicsKit2";
 
@@ -36,7 +37,7 @@ function setupOf(v: unknown): Setup {
   return "refraction";
 }
 function mediumName(v: unknown, n: number): string {
-  if (typeof v === "string" && v.trim()) return v.trim().slice(0, 30);
+  if (typeof v === "string" && v.trim()) return fitText(v.trim(), 30);
   if (Math.abs(n - 1) < 0.02) return "Air";
   if (Math.abs(n - 1.33) < 0.03) return "Water";
   if (n >= 1.4 && n <= 1.7) return "Glass";

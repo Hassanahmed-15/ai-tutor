@@ -1,4 +1,5 @@
 import { solutionColour } from "../colours";
+import { fitText } from "../cuts";
 import type { FigureShape, Ink, Pt } from "../types";
 
 /**
@@ -11,7 +12,7 @@ import type { FigureShape, Ink, Pt } from "../types";
 
 export const GLASS_W = 2.6;
 
-export const text = (v: unknown, fallback: string, max = 40) => (typeof v === "string" && v.trim() ? v.trim().slice(0, max) : fallback);
+export const text = (v: unknown, fallback: string, max = 40) => (typeof v === "string" && v.trim() ? fitText(v.trim(), max) : fallback);
 export const num = (v: unknown, fallback: number, lo: number, hi: number) => {
   const n = typeof v === "string" ? parseFloat(v) : Number(v);
   return v !== "" && v !== null && v !== undefined && typeof v !== "boolean" && Number.isFinite(n) ? Math.max(lo, Math.min(hi, n)) : fallback;

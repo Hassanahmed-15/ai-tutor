@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { BOARD_FONT_FACES } from "../anim/boardFont";
 import { appPath } from "../appPaths";
-import { placeLabels } from "../figures/labels";
+import { diagramLabelLayout } from "./leaders";
 import type { FigureDrawing, FigureShape } from "../figures/types";
 
 /**
@@ -29,23 +29,11 @@ function shapeSvg(sh: FigureShape): string {
   return `<path d="${sh.d}" fill="${fill}" stroke="${stroke}" stroke-width="${sh.width ?? 1.6}" stroke-linejoin="round" stroke-linecap="round"${common}/>`;
 }
 
+export { diagramLabelLayout };
+
 /** The SVG of a diagram with these labels (part id → the name shown). */
 export function diagramSvg(drawing: FigureDrawing, labels: Array<{ id: string; name: string }> = drawing.parts.map((p) => ({ id: p.id, name: p.name }))): string {
-  const named = labels.filter((l) => drawing.parts.some((p) => p.id === l.id));
-  const margin = named.length ? 220 : 30;
-  const k = Math.min((W - margin * 2) / drawing.w, (H - 60) / drawing.h);
-  const fig = { x: (W - drawing.w * k) / 2, y: (H - drawing.h * k) / 2, w: drawing.w * k, h: drawing.h * k };
-  const measure = (text: string, size: number) => text.length * size * 0.56;
-  const placed = placeLabels(
-    named.map((l, i) => {
-      const p = drawing.parts.find((q) => q.id === l.id)!;
-      return { id: l.id, text: l.name, anchor: { x: fig.x + p.anchor.x * k, y: fig.y + p.anchor.y * k }, s: i };
-    }),
-    fig,
-    { x: 12, y: 12, w: W - 24, h: H - 24 },
-    measure,
-    17,
-  );
+  const { fig, k, placed } = diagramLabelLayout(drawing, labels);
   const art = `<g transform="translate(${fig.x} ${fig.y}) scale(${k})">${drawing.shapes.map(shapeSvg).join("")}</g>`;
   const marks = placed.map((m) => {
     const d = m.leader.map((p, i) => `${i ? "L" : "M"}${p.x} ${p.y}`).join(" ");

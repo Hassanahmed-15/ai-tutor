@@ -1,3 +1,4 @@
+import { trimToFit } from "../text/fit";
 import { CANVAS_STAGES, type CanvasPlanBeat, type CanvasStage } from "./types";
 import { slug } from "./validate";
 import { figureComponent } from "../figures/registry";
@@ -38,11 +39,16 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
     const b = (item && typeof item === "object" ? item : {}) as Record<string, unknown>;
     // Spoken aloud: a "Sources: [S1]" line the model added from the research material goes.
     let script = typeof b.script === "string" ? withoutSourceTags(b.script.replace(/\s+/g, " ").trim()) : "";
-    const title = typeof b.title === "string" ? b.title.trim().slice(0, 60) : "";
+    // Headings shrink to fit their board (lib/canvas/layout.ts), so a long title is kept whole; a
+    // runaway one is ended at a word, never mid-word ("…the perpendicular bisec").
+    const title = typeof b.title === "string" ? trimToFit(b.title, 90) : "";
     const planned = (CANVAS_STAGES as readonly string[]).includes(String(b.stage)) ? (b.stage as CanvasStage) : "scene";
     // "diagram": "picture" is the planner asking for a generated textbook picture of a real thing; the
     // lesson visual policy still checks it (not abstract, not maths, within the picture budget).
-    const stage: CanvasStage = typeof b.diagram === "string" && /^\s*picture\s*$/i.test(b.diagram) && ["scene", "illustration", "compare", "flow"].includes(planned) ? "illustration" : planned;
+    // A "figure" board asking for a picture names no figure to draw: it is a picture request too (a
+    // bacterial-cell board planned that way was left with no figure at all; live test, 2026-10-17).
+    // An exact code figure that fits still replaces it in the visual policy.
+    const stage: CanvasStage = typeof b.diagram === "string" && /^\s*picture\s*$/i.test(b.diagram) && ["scene", "illustration", "compare", "flow", "figure"].includes(planned) ? "illustration" : planned;
     if (!script || !title || canvasSentences(script).length < 2) return;
     const id = `b${beats.length + 1}`;
     const objects = (Array.isArray(b.objects) ? b.objects : []).map((o) => slug(o, "")).filter(Boolean).slice(0, 4);
@@ -70,6 +76,7 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
       ...planSource(b.source),
       // The planner's diagram, only when it names a real catalogue entry.
       ...(typeof b.diagram === "string" && figureComponent(b.diagram.trim()) ? { plannedFigure: b.diagram.trim() } : {}),
+      ...(typeof b.visual === "string" && ["thing", "quantity", "math", "sequence", "comparison", "concept"].includes(b.visual.trim().toLowerCase()) ? { visualType: b.visual.trim().toLowerCase() as CanvasPlanBeat["visualType"] } : {}),
       ...boardNotesOf(b.board, canvasSentences(script).length),
       ...(Array.isArray(b.sentenceBlocks) ? { sentenceBlocks: b.sentenceBlocks.map((v) => (typeof v === "string" ? v.replace(/[{}\s]/g, "") : "")).slice(0, 40) } : {}),
     });

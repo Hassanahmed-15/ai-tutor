@@ -11,6 +11,7 @@ import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/c
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
 import { IconGlyph } from "./icons";
 import { figureAssetHref } from "@/lib/figures/assetHref";
+import { fitText } from "@/lib/canvas/renderFit";
 
 /**
  * ONE PANEL OF THE LESSON CANVAS, drawn from its layout (lib/canvas/layout.ts).
@@ -180,8 +181,26 @@ function Sketch({ d, color, width = 2.2, fill, className, opacity }: { d: string
   return <path d={d} fill={fill ?? "none"} stroke={color} strokeWidth={width} strokeLinecap="round" strokeLinejoin="round" pathLength={1} className={`cv-stroke ${className ?? ""}`} opacity={opacity} />;
 }
 
+/**
+ * Board text set by lib/canvas/renderFit.ts fitText: the first baseline at `y`, each further line
+ * `lead` × its size lower. One line renders exactly as a plain <text> did.
+ */
+function FitLines({ fit, x, y, lead = 1.15, ...rest }: { fit: { lines: string[]; size: number }; x: number; y: number; lead?: number } & Omit<React.SVGProps<SVGTextElement>, "x" | "y" | "fontSize" | "ref">) {
+  return (
+    <text x={x} y={y} fontSize={fit.size} {...rest}>
+      {fit.lines.length === 1
+        ? fit.lines[0]
+        : fit.lines.map((line, i) => (
+            <tspan key={i} x={x} dy={i === 0 ? 0 : fit.size * lead}>
+              {line}
+            </tspan>
+          ))}
+    </text>
+  );
+}
+
 /** A carried element starts where it was on the previous board and flies into place. */
-function Carry({ from, to, children, reducedMotion }: { from?: Rect; to?: Rect; children: React.ReactNode; reducedMotion: boolean }) {
+function Carry({ id, from, to, children, reducedMotion }: { id: string; from?: Rect; to?: Rect; children: React.ReactNode; reducedMotion: boolean }) {
   const ref = useRef<SVGGElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -200,7 +219,7 @@ function Carry({ from, to, children, reducedMotion }: { from?: Rect; to?: Rect; 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <g ref={ref} style={{ transformOrigin: "0 0" }}>
+    <g ref={ref} data-mark={id} style={{ transformOrigin: "0 0" }}>
       {children}
     </g>
   );
@@ -227,7 +246,7 @@ function MarkView(props: MarkProps) {
   const body = renderMark(props);
   if (carry && targetRect) {
     return (
-      <Carry from={carry} to={targetRect} reducedMotion={reducedMotion}>
+      <Carry id={mark.id} from={carry} to={targetRect} reducedMotion={reducedMotion}>
         {body}
       </Carry>
     );
@@ -235,15 +254,15 @@ function MarkView(props: MarkProps) {
   return <g data-mark={mark.id}>{body}</g>;
 }
 
-function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, focused, focusId, reducedMotion, chalk }: MarkProps) {
+function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, ghostVars, focused, focusId, reducedMotion, chalk }: MarkProps) {
   const focus = focused ? " cv-focus" : "";
   switch (mark.type) {
-    case "heading":
-      return (
-        <text x={mark.x} y={mark.y} fontSize={mark.size} fontWeight={800} fill={INK} className="cv-write">
-          {mark.text}
-        </text>
-      );
+    case "heading": {
+      // Never past the board's edge or under the refresher badge: smaller first, then a second line
+      // above the first (the stage starts just below the heading's rule).
+      const fit = fitText(mark.text, (spec.refresher ? PANEL_W - 230 : PANEL_W - 48) - mark.x, mark.size, Math.min(mark.size, 20));
+      return <FitLines fit={fit} x={mark.x} y={mark.y - (fit.lines.length - 1) * fit.size * 1.12} lead={1.12} fontWeight={800} fill={INK} className="cv-write" />;
+    }
     case "note":
       return (
         <g className={`cv-in${focus}`}>
@@ -303,17 +322,18 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
           <g className="cv-in cv-late">
             <rect x={mark.box.x} y={mark.box.y} width={mark.box.w} height={mark.box.h} rx={mark.box.h / 2} fill="#fff" />
             <Sketch d={roughRect(`co-${mark.id}`, mark.box.x, mark.box.y, mark.box.w, mark.box.h, mark.box.h / 2)} color={INK} width={2} />
-            <text x={mark.box.x + mark.box.w / 2} y={mark.box.y + mark.box.h / 2 + mark.size * 0.36} textAnchor="middle" fontSize={mark.size} fontWeight={700} fill={INK}>
-              {mark.text}
-            </text>
+            {(() => {
+              const fit = fitText(mark.text, mark.box.w - 14, mark.size, Math.max(11, Math.round(mark.size * 0.75)));
+              return <FitLines fit={fit} x={mark.box.x + mark.box.w / 2} y={mark.box.y + mark.box.h / 2 + fit.size * 0.36 - ((fit.lines.length - 1) * fit.size * 1.15) / 2} lead={1.15} textAnchor="middle" fontWeight={700} fill={INK} />;
+            })()}
           </g>
         </g>
       );
     }
     case "equation":
-      return <EquationView mark={mark} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} />;
+      return <EquationView mark={mark} stage={layout.stage} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} />;
     case "graph":
-      return <GraphView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focusId={focusId} />;
+      return <GraphView mark={mark} stage={layout.stage} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focusId={focusId} />;
     case "column":
       return (
         <g className="cv-in">
@@ -326,12 +346,11 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
           )}
           {(() => {
             // The title fits its column: smaller first, then two lines — never past the column's edge
-            // ("Makkah's protected sanctuary" ran off the board, audit 2026-10-17).
+            // ("Makkah's protected sanctuary" ran off the board, audit 2026-10-17). Two lines start at
+            // 17 px, and set smaller still when the second would run past the edge.
             const x = mark.rect.x + (mark.icon ? 74 : 22);
             const room = mark.rect.x + mark.rect.w - 16 - x;
-            let size = 23;
-            while (size > 17 && textWidth(mark.title, size) > room) size--;
-            const lines = textWidth(mark.title, size) <= room ? [mark.title] : wrapTitle(mark.title, size, room);
+            const { lines, size } = fitText(mark.title, room, 23, 13, 2, 17, 17);
             return lines.map((line, i) => (
               <text key={i} x={x} y={mark.rect.y + (lines.length > 1 ? 38 : 48) + i * size * 1.15} fontSize={size} fontWeight={800} fill={mark.color}>
                 {line}
@@ -361,19 +380,18 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
     }
     case "box":
       if (!mark.icon) {
-        // A card: a hand-drawn outline, its title, and its content lines.
-        const top = mark.rect.y + (mark.detail?.length ? 26 : mark.rect.h / 2 + 6);
+        // A card: a hand-drawn outline, its title, and its content lines. A title wider than the card
+        // is set smaller, then on two lines (the detail moves down for the second), never past the edge.
+        const fit = mark.label ? fitText(mark.label, mark.rect.w - 16, mark.size, Math.max(12, Math.round(mark.size * 0.72))) : null;
+        const extra = fit ? (fit.lines.length - 1) * fit.size * 1.15 : 0;
+        const top = mark.rect.y + (mark.detail?.length ? 26 : mark.rect.h / 2 + 6 - extra / 2);
         return (
           <g className={`cv-in${focus}`}>
             <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={14} fill={mark.color} fillOpacity={0.08} />
             <Sketch d={roughRect(`box-${mark.id}`, mark.rect.x, mark.rect.y, mark.rect.w, mark.rect.h, 14)} color={mark.color} width={2.2} opacity={0.75} />
-            {mark.label && (
-              <text x={mark.rect.x + mark.rect.w / 2} y={top} textAnchor="middle" fontSize={mark.size} fontWeight={800} fill={INK}>
-                {mark.label}
-              </text>
-            )}
+            {fit && <FitLines fit={fit} x={mark.rect.x + mark.rect.w / 2} y={top} lead={1.15} textAnchor="middle" fontWeight={800} fill={INK} />}
             {mark.detail?.map((line, i) => (
-              <text key={i} x={mark.rect.x + mark.rect.w / 2} y={top + 22 + i * (mark.detailSize ?? 15) * 1.27} textAnchor="middle" fontSize={mark.detailSize ?? 15} fontWeight={600} fill={INK} opacity={0.85}>
+              <text key={i} x={mark.rect.x + mark.rect.w / 2} y={top + extra + 22 + i * (mark.detailSize ?? 15) * 1.27} textAnchor="middle" fontSize={mark.detailSize ?? 15} fontWeight={600} fill={INK} opacity={0.85}>
                 {line}
               </text>
             ))}
@@ -388,11 +406,7 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
               <IconGlyph name={mark.icon} color={mark.color} />
             </g>
           )}
-          {mark.label && (
-            <text x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2 + 42} textAnchor="middle" fontSize={mark.size} fontWeight={700} fill={INK}>
-              {mark.label}
-            </text>
-          )}
+          {mark.label && <FitLines fit={fitText(mark.label, mark.rect.w - 12, mark.size, Math.max(12, Math.round(mark.size * 0.72)))} x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2 + 42} lead={1.15} textAnchor="middle" fontWeight={700} fill={INK} />}
         </g>
       );
     case "figure":
@@ -403,12 +417,11 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
       return <FreeBodyView mark={mark} shownThrough={shownThrough} focusId={focusId} chalk={Boolean(chalk)} />;
     case "electrolytic-cell":
       return <ElectrolyticCellView mark={mark} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} chalk={Boolean(chalk)} />;
-    case "text":
-      return (
-        <text x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2 + mark.size * 0.35} textAnchor="middle" fontSize={mark.size} fontWeight={700} fill={mark.color} className={`cv-write${focus}`}>
-          {mark.text}
-        </text>
-      );
+    case "text": {
+      // Set smaller, then on two lines centred in its box, when it is wider than the box.
+      const fit = fitText(mark.text, mark.rect.w, mark.size, Math.max(12, Math.round(mark.size * 0.72)));
+      return <FitLines fit={fit} x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2 + fit.size * 0.35 - ((fit.lines.length - 1) * fit.size * 1.15) / 2} lead={1.15} textAnchor="middle" fontWeight={700} fill={mark.color} className={`cv-write${focus}`} />;
+    }
     case "code":
       return <CodeView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
     case "trace":
@@ -1139,11 +1152,9 @@ function NodeView({ mark, vars, focused, shownThrough }: { mark: Extract<Mark, {
           {label}
         </text>
       )}
-      {mark.sub && !morphed && (
-        <text x={mark.cx} y={mark.labelY + 20} textAnchor="middle" fontSize={15} fontWeight={600} fill={MUTED}>
-          {mark.sub}
-        </text>
-      )}
+      {/* The sub-line keeps to about its node's width (smaller, then two lines): a long one ran into
+          the next node's name. */}
+      {mark.sub && !morphed && <FitLines fit={fitText(mark.sub, Math.max(textWidth(label, mark.labelSize), mark.r * 2 + 60), 15, 12)} x={mark.cx} y={mark.labelY + 20} lead={1.15} textAnchor="middle" fontWeight={600} fill={MUTED} />}
     </g>
   );
 }
@@ -1244,7 +1255,7 @@ function FlowParticles({ p0, c, p1, color, rate }: { p0: Pt; c: Pt; p1: Pt; colo
 
 /* ── equation: terms glide on arcs, and flash colour when they cross ──────────────────────── */
 
-function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Extract<Mark, { type: "equation" }>; shownThrough: number; focusId?: string; reducedMotion: boolean }) {
+function EquationView({ mark, stage, shownThrough, focusId, reducedMotion }: { mark: Extract<Mark, { type: "equation" }>; stage: Rect; shownThrough: number; focusId?: string; reducedMotion: boolean }) {
   const stepIndex = Math.max(0, mark.steps.reduce((best, step, i) => (step.s <= shownThrough ? i : best), 0));
   const step = mark.steps[stepIndex];
   // A token absent from this step keeps the spot it last had (so it fades where it was), or waits
@@ -1297,7 +1308,7 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
         const top = -t.size * (tall ? 1.45 : 0.95);
         const under = t.size * (tall ? 0.95 : 0.24);
         return (
-          <g key={t.id} ref={(el) => { groups.current[t.id] = el; }} style={{ transform: `translate(${at.x}px, ${at.y}px)`, transition: "opacity 600ms", opacity: shown ? 1 : 0 }}>
+          <g key={t.id} data-target={t.id} ref={(el) => { groups.current[t.id] = el; }} style={{ transform: `translate(${at.x}px, ${at.y}px)`, transition: "opacity 600ms", opacity: shown ? 1 : 0 }}>
             {lit && (
               <g className="cv-in">
                 <path d={roughRect(`hl-${t.id}-${stepIndex}`, -7, top, t.w + 14, under - top + t.size * 0.12, 10)} fill={t.color} fillOpacity={0.14} stroke={t.color} strokeOpacity={0.35} strokeWidth={1.5} />
@@ -1314,11 +1325,14 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
           </g>
         );
       })}
-      {step.caption && (
-        <text key={stepIndex} x={mark.center} y={mark.captionY} textAnchor="middle" fontSize={21} fontWeight={600} fill={MUTED} className="cv-in">
-          {step.caption}
-        </text>
-      )}
+      {step.caption && (() => {
+        // The caption keeps within the stage (a 64-character one at 21 px ran ~110 px past it): smaller,
+        // then two lines, lifted when the second would leave the board.
+        const half = Math.min(mark.center - stage.x, stage.x + stage.w - mark.center);
+        const fit = fitText(step.caption, half > 120 ? half * 2 : stage.w, 21, 16);
+        const lift = Math.max(0, mark.captionY + (fit.lines.length - 1) * fit.size * 1.18 - (PANEL_H - 14));
+        return <FitLines key={stepIndex} fit={fit} x={mark.center} y={mark.captionY - lift} lead={1.18} textAnchor="middle" fontWeight={600} fill={MUTED} className="cv-in" />;
+      })()}
     </g>
   );
 }
@@ -1327,29 +1341,48 @@ function EquationView({ mark, shownThrough, focusId, reducedMotion }: { mark: Ex
  * ONE TERM, TYPESET BY KATEX (owner's direction, 2026-10-16), on the board's own coordinates: its
  * baseline sits where a written term's would. The layout gave it a slot from an estimate of its width
  * (lib/canvas/layout.ts texEm); once typeset — and again once KaTeX's fonts arrive — it is measured
- * and, when wider than its slot, scaled down to fit, so terms never run into each other.
+ * and, when wider than its slot, scaled down to fit, so terms never run into each other. Never below
+ * 60% of its size, though: past that it stays readable and stands a little wider than its slot. Its
+ * box grows to what it holds — a foreignObject's content past its box is clipped by Safari, whatever
+ * its overflow says, and a tall fraction outgrew the fixed one.
  */
 function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number; w: number; color: string; onElement: (el: HTMLDivElement | null) => void }) {
   const html = useMemo(() => katex.renderToString(tex, { throwOnError: false, displayMode: false }), [tex]);
   // The transform goes on a wrapper React owns and never styles: KaTeX's own root is replaced
   // whenever React writes the typeset HTML again, and would lose it.
   const wrap = useRef<HTMLSpanElement>(null);
+  const box = useRef<SVGForeignObjectElement>(null);
   const tall = /\\[dt]?frac|\\sqrt|\^/.test(tex);
   const h = size * (tall ? 2.3 : 1.7);
   const top = -size * (tall ? 1.45 : 1.15);
   useLayoutEffect(() => {
     const inner = wrap.current;
+    const fo = box.current;
     if (!inner) return;
     const fit = (): boolean => {
       // Inside a foreignObject, CSS pixels ARE board units, whatever the camera's zoom.
       inner.style.transform = "";
+      // An inline box ignores a transform (and reports no height of its own).
+      inner.style.display = "inline-block";
       const actual = inner.offsetWidth;
       if (!actual) return false;
-      const scale = actual > w ? w / actual : 1;
-      // An inline box ignores a transform.
-      inner.style.display = "inline-block";
+      // Overlap is worse than small type (owner, 2026-10-17: "a lot of overlap in text"): a term shrinks
+      // to its slot down to 45%; the layout's width estimate is also wider for words (lib/canvas/layout.ts).
+      const scale = actual > w ? Math.max(0.45, w / actual) : 1;
+      const shown = actual * scale;
+      // Wider than its slot even at the floor: the box widens about its centre to hold it.
+      const left = Math.min(0, (w - shown) / 2 - 4);
+      const width = Math.max(4, w, shown + 8);
+      const height = Math.max(h, inner.offsetHeight + 8);
+      if (fo) {
+        fo.setAttribute("x", left.toFixed(1));
+        fo.setAttribute("width", width.toFixed(1));
+        // Grown about the same centre, so the term's baseline stays where the layout put it.
+        fo.setAttribute("y", (top + h / 2 - height / 2).toFixed(1));
+        fo.setAttribute("height", height.toFixed(1));
+      }
       inner.style.transformOrigin = "0 50%";
-      inner.style.transform = `translateX(${((w - actual * scale) / 2).toFixed(1)}px) scale(${scale.toFixed(3)})`;
+      inner.style.transform = `translateX(${((w - shown) / 2 - left).toFixed(1)}px) scale(${scale.toFixed(3)})`;
       return true;
     };
     // A board is often mounted before it is laid out (its width reads 0), and a ResizeObserver
@@ -1367,9 +1400,9 @@ function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number
       alive = false;
       cancelAnimationFrame(raf);
     };
-  }, [html, w]);
+  }, [html, w, h, top]);
   return (
-    <foreignObject x={0} y={top} width={Math.max(4, w)} height={h} overflow="visible" className="cv-in">
+    <foreignObject ref={box} x={0} y={top} width={Math.max(4, w)} height={h} overflow="visible" className="cv-in">
       <div ref={onElement} style={{ display: "flex", alignItems: "center", height: "100%", whiteSpace: "nowrap", color, fontSize: size * 0.84, lineHeight: 1 }}>
         <span ref={wrap} dangerouslySetInnerHTML={{ __html: html }} />
       </div>
@@ -1406,14 +1439,6 @@ function curvePath(plot: Rect, spec: GraphStage, expr: string, vars: Record<stri
   return d;
 }
 
-function wrapTitle(text: string, size: number, room: number): string[] {
-  const words = text.split(/\s+/);
-  let first = "";
-  for (const w of words) { const next = first ? `${first} ${w}` : w; if (textWidth(next, size) > room && first) break; first = next; }
-  const rest = text.slice(first.length).trim();
-  return rest ? [first, rest] : [first];
-}
-
 /** The key for crowded curves: in whichever corner of the plot the curves leave most empty. */
 function GraphLegend({ plot, spec, vars, shownThrough, stacked }: { plot: Rect; spec: GraphStage; vars: Record<string, number>; shownThrough: number; stacked: boolean }) {
   const shown = spec.curves.filter((c) => c.s <= shownThrough && c.label);
@@ -1446,7 +1471,7 @@ function GraphLegend({ plot, spec, vars, shownThrough, stacked }: { plot: Rect; 
   );
 }
 
-function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focusId }: { mark: Extract<Mark, { type: "graph" }>; shownThrough: number; sentenceProgress: number; vars: Record<string, number>; ghostVars?: Record<string, number>; focusId?: string }) {
+function GraphView({ mark, stage, shownThrough, sentenceProgress, vars, ghostVars, focusId }: { mark: Extract<Mark, { type: "graph" }>; stage: Rect; shownThrough: number; sentenceProgress: number; vars: Record<string, number>; ghostVars?: Record<string, number>; focusId?: string }) {
   const { plot, spec, stacked } = mark;
   const xTicks = useMemo(() => niceTicks(spec.x.min, spec.x.max), [spec.x.min, spec.x.max]);
   const yTicks = useMemo(() => niceTicks(spec.y.min, spec.y.max, stacked ? 2 : 5), [spec.y.min, spec.y.max, stacked]);
@@ -1456,6 +1481,11 @@ function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focu
   const traceActive = spec.trace && spec.trace.s === shownThrough;
   const traceCurve = spec.trace ? spec.curves.find((c) => c.id === spec.trace!.curve) : undefined;
   const ghostDiffers = ghostVars && Object.keys(ghostVars).some((k) => ghostVars[k] !== vars[k]);
+  // The axis names keep to the stage: the y name, turned on its side, to the plot's height (a long
+  // one ran ~100 px past it), smaller first and then on two lines (audit 2026-10-17).
+  const xName = fitText(spec.x.label, plot.w + 60, 17, 12);
+  const yName = fitText(spec.y.label, plot.h, 17, 13);
+  const stageRight = stage.x + stage.w;
   return (
     <g className="cv-in">
       {/* Dot (components/avatar/BoardAvatar.tsx) keeps off the plot: she must not sit on the points. */}
@@ -1475,29 +1505,28 @@ function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focu
       ))}
       <line x1={plot.x} y1={plot.y + plot.h} x2={plot.x + plot.w + 8} y2={plot.y + plot.h} stroke={INK} strokeWidth={2.5} />
       <line x1={plot.x} y1={plot.y + plot.h} x2={plot.x} y2={plot.y - 8} stroke={INK} strokeWidth={2.5} />
-      {showX && (
-        <text x={plot.x + plot.w / 2} y={plot.y + plot.h + 50} textAnchor="middle" fontSize={17} fontWeight={700} fill={INK}>
-          {spec.x.label}
-        </text>
-      )}
+      {showX && <FitLines fit={xName} x={plot.x + plot.w / 2} y={plot.y + plot.h + 50} lead={1.12} textAnchor="middle" fontWeight={700} fill={INK} />}
       {stacked ? (
         // A stacked panel is too short for a rotated label: its quantity is written across its top.
         <text x={plot.x + 12} y={plot.y + 4} fontSize={15} fontWeight={800} fill={spec.curves[0]?.color ?? ["#15803d", "#2563eb", "#d97706"][0]}>
           {stacked.title}
         </text>
       ) : (
-        <text transform={`translate(${plot.x - 50},${plot.y + plot.h / 2}) rotate(-90)`} textAnchor="middle" fontSize={17} fontWeight={700} fill={INK}>
-          {spec.y.label}
-        </text>
+        // A second line stands to the LEFT of the first's place, so it never reaches the tick numbers.
+        <FitLines fit={yName} x={0} y={0} lead={1.12} transform={`translate(${plot.x - 50 - (yName.lines.length - 1) * yName.size * 1.12},${plot.y + plot.h / 2}) rotate(-90)`} textAnchor="middle" fontWeight={700} fill={INK} />
       )}
-      {(spec.guides ?? []).filter((g) => g.s <= shownThrough).map((g) => (
-        <g key={g.id} className={`cv-in${focusId === g.id ? " cv-focus" : ""}`}>
-          <line x1={px(g.x)} y1={plot.y} x2={px(g.x)} y2={plot.y + plot.h} stroke="#94a3b8" strokeWidth={2} strokeDasharray="7 6" />
-          <text x={px(g.x)} y={plot.y - 12} textAnchor="middle" fontSize={15} fontWeight={700} fill={MUTED}>
-            {g.label}
-          </text>
-        </g>
-      ))}
+      {(spec.guides ?? []).filter((g) => g.s <= shownThrough).map((g) => {
+        // Centred on its line, but slid back inside the stage when the line is near an edge.
+        const fit = g.label ? fitText(g.label, stage.w - 8, 15, 12) : null;
+        const half = fit ? Math.max(...fit.lines.map((l) => textWidth(l, fit.size))) / 2 : 0;
+        const x = Math.max(stage.x + half + 4, Math.min(stageRight - half - 4, px(g.x)));
+        return (
+          <g key={g.id} className={`cv-in${focusId === g.id ? " cv-focus" : ""}`}>
+            <line x1={px(g.x)} y1={plot.y} x2={px(g.x)} y2={plot.y + plot.h} stroke="#94a3b8" strokeWidth={2} strokeDasharray="7 6" />
+            {fit && <FitLines fit={fit} x={x} y={plot.y - 12 - (fit.lines.length - 1) * fit.size * 1.12} lead={1.12} textAnchor="middle" fontWeight={700} fill={MUTED} />}
+          </g>
+        );
+      })}
       {/* The ghost: where the curve was before the student's last drag, so the change is visible. */}
       {ghostDiffers && spec.curves.filter((c) => c.s <= shownThrough).map((c, i) => (
         <path key={`ghost-${c.id}`} d={curvePath(plot, spec, c.expr, ghostVars!)} stroke={c.color ?? ["#15803d", "#2563eb", "#d97706"][i % 3]} strokeWidth={3} strokeDasharray="6 7" fill="none" opacity={0.3} />
@@ -1551,15 +1580,22 @@ function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focu
         const x = Math.max(spec.x.min, Math.min(spec.x.max, evalExpr(m.x, vars, spec.x.min)));
         const y = evalExpr(curve.expr, { ...vars, x }, spec.y.min);
         const p = graphPoint(plot, spec, x, y);
+        // Its name to the upper right of the point — flipped to the left, or below, when it would leave
+        // the stage there; smaller, then two lines, when neither side has the room.
+        const label = (() => {
+          if (!m.label) return null;
+          const rightRoom = stageRight - (p.x + 14) - 4;
+          const leftRoom = p.x - 14 - stage.x - 4;
+          const left = textWidth(m.label, 15) > rightRoom && leftRoom > rightRoom;
+          const fit = fitText(m.label, left ? leftRoom : rightRoom, 15, 12);
+          const below = p.y - 14 - fit.lines.length * fit.size * 1.12 < stage.y;
+          return { fit, left, y: below ? 30 : -14 - (fit.lines.length - 1) * fit.size * 1.12 };
+        })();
         return (
           <g key={m.id} className={focusId === m.id ? "cv-focus" : undefined} style={{ transform: `translate(${p.x}px, ${p.y}px)`, transition: "transform 260ms cubic-bezier(.2,.9,.3,1.25)" }}>
             <line x1={0} y1={0} x2={0} y2={plot.y + plot.h - p.y} stroke={ARIA_INK} strokeWidth={1.5} strokeDasharray="4 4" opacity={0.6} />
             <circle r={11} fill={ARIA_INK} stroke="#fff" strokeWidth={3} className="cv-in" />
-            {m.label && (
-              <text x={14} y={-14} fontSize={15} fontWeight={800} fill="#c2410c">
-                {m.label}
-              </text>
-            )}
+            {label && <FitLines fit={label.fit} x={label.left ? -14 : 14} y={label.y} lead={1.12} textAnchor={label.left ? "end" : undefined} fontWeight={800} fill="#c2410c" />}
           </g>
         );
       })}

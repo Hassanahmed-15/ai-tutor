@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Ink, Pt } from "../types";
+import { fitText } from "../cuts";
 import { PALETTE, Sketch, type Frac, bool, clamp, fmt, frac, fracAdd, fracMul, fracStr, lerp, list, num, parseProb, perp, str, sub, textW, unit } from "./mathsKit";
 
 /**
@@ -43,7 +44,7 @@ export function branchProbs(raw: string[], n: number): Prob[] {
 
 function stageParams(params: FigureParams) {
   const labels = (k: string, fb: string[]) => {
-    const l = list(params[k], /,/).slice(0, 3).map((s) => s.slice(0, 12));
+    const l = list(params[k], /,/).slice(0, 3).map((s) => fitText(s, 12));
     return l.length >= 2 ? l : fb;
   };
   const first = labels("first", ["H", "T"]);

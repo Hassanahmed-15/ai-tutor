@@ -85,7 +85,7 @@ export const OUTLINE_LESSON_SYSTEM_PROMPT = `You are Aria, sketching a lesson OU
 Return JSON only: { "topic": string, "scope": "question" | "lesson", "depth"?: "quick" | "deep", "subtopics": [{ "title": string, "caption": string, "reason": string, "confidence"?: "low", "safetyNet"?: { "prerequisite": string, "diagnostic": string, "masterySignal": string, "rescueMove": string, "reinforceAfter": 1|2|3, "reinforcementPrompt": string }, "scopingQuestion"?: { "question": string, "options": [{ "label": string, "instruction": string }] } }] }
 
 TEACH THE MINIMUM THAT ANSWERS IT. Slides are an output of teaching, never a target. Before planning, decide:
-- "scope": "lesson" when they name a whole topic to learn, however they phrase it — "Teach me linear regression", "I want to learn thermodynamics", "full lesson on…", and equally "What is photosynthesis?", "Explain the Krebs cycle", "Tell me about black holes", "How does the heart work?" or just "Photosynthesis". Asking what a TOPIC is, is asking to learn that topic. "question" only when they ask something narrow INSIDE a topic — one specific why/how, a clarification, a comparison, a request for one example ("Why does overfitting happen?", "Why is the sky blue?", "What does the p-value mean here?", "Difference between TCP and UDP?"). A question gets 1 subtopic, or 2 only if one genuinely cannot answer it completely.
+- "scope": "lesson" when they name a whole topic to learn, however they phrase it — "Teach me linear regression", "I want to learn thermodynamics", "full lesson on…", and equally "What is photosynthesis?", "Explain the Krebs cycle", "Tell me about black holes", "How does the heart work?" or just "Photosynthesis". Asking what a TOPIC is, is asking to learn that topic. "question" only when they ask something narrow INSIDE a topic — one specific why/how, a clarification, a comparison, a request for one example ("Why does overfitting happen?", "Why is the sky blue?", "What does the p-value mean here?", "Difference between TCP and UDP?"). A question is answered COMPLETELY at the student's level, and with nothing more: 1 subtopic for a single idea (2 only if one genuinely cannot answer it); 2-3 only when the request says the question asks about a process with stages. Never a subtopic on the idea's importance, impact, role in health, applications or wider context unless the question asks for it.
 - "depth": "quick" if the request says quickly, briefly, short, simple, in one line or similar; "deep" if it says in depth, deeply, thoroughly, in detail, everything about, or similar; omit it otherwise. The student's words always win over any saved preference.
 - Then plan only the subtopics this scope and depth need. Stop as soon as the request is fully answered: never add a subtopic that re-explains, re-defines, re-examples or rewords something an earlier subtopic already covers. Each subtopic must add understanding the others do not — if you cannot name what NEW thing it adds, leave it out. Examples earn a subtopic only when each one shows something different (intuition, real case, technical case), never two of the same kind.
 
@@ -147,7 +147,7 @@ export type PlanOutline = {
   topic: string;
   /**
    * What the student asked for, decided by the outline call itself (no extra round trip): a
-   * specific "question" is answered in one or two boards with no opener, recap or extra passes; a
+   * specific "question" is answered in one to three boards with no opener, recap or extra passes; a
    * "lesson" is a whole topic. Absent on older outlines, which are treated as lessons.
    */
   scope?: "question" | "lesson";
@@ -270,7 +270,9 @@ export function isQuestionAboutFile(text: string): boolean {
  * topic: a why, a comparison, one aspect ("what is the role of chlorophyll in photosynthesis").
  */
 const TOPIC_REQUEST = /^(?:what\s+(?:is|are)|what's|explain|describe|tell\s+me\s+about|how\s+(?:does|do)(?=.*\bwork\??$))\s+(?:an?\s+|the\s+)?(.+?)(?:\s+works?)?\s*\??$/;
-const NARROWING = /\b(?:why|difference|differences|between|vs|versus|compared?|role|purpose|function|meaning|mean|means|used|use|uses|when|where|for|with|without|after|before|during|if)\b/;
+// A unit, formula, symbol or value OF something is one fact, never the whole topic: "what is the unit of
+// power?" was planned as a five-board lesson (2026-10-18).
+const NARROWING = /\b(?:why|difference|differences|between|vs|versus|compared?|role|purpose|function|meaning|mean|means|used|use|uses|when|where|for|with|without|after|before|during|if|units?|formulae?|formulas|symbols?|values?|equation)\b/;
 
 export function isTopicRequest(text: string): boolean {
   const value = text.trim().toLowerCase();
@@ -313,37 +315,70 @@ export function isBroadTopicQuestion(text: string): boolean {
 }
 
 /**
- * The planner's instruction for a direct question: answer it, in one board, two at most.
+ * The planner's instruction for a direct question: answer it completely, and nothing more — one board
+ * for a narrow fact, two or three for a how/why about a process (owner, 2026-10-18: "How does the
+ * heart pump blood?" was one board on the route of the blood, and never explained the pumping).
  *
  * `nounTitles` is for a TYPED-PROMPT lecture, whose titles are noun phrases (PROMPT_OUTLINE_RULES):
  * the title names what the answer is about ("Chlorophyll and Leaf Colour"), never "Why X Happens".
  * A document lecture keeps the answer-framing title it has always had.
  */
-export function directQuestionInstruction(question: string, options: { nounTitles?: boolean } = {}): string {
+export function directQuestionInstruction(question: string, options: { nounTitles?: boolean; shape?: QuestionShape | null } = {}): string {
   const titleRule = options.nounTitles
     ? `The first subtopic's title is a noun phrase naming what the answer is about (for "why do leaves look green?": ` +
       `"Chlorophyll and Leaf Colour"), never the question itself and never "Why X Happens". `
     : `The first subtopic's title states the answer's own framing (for "why does X happen?": "Why X Happens" or the ` +
       `cause itself), never just the topic's name. `;
+  const size = options.shape === "process"
+    ? `This question asks how or why a PROCESS happens, in different stages: plan TWO or THREE subtopics, one per ` +
+      `stage a teacher would draw to answer it completely at this student's level (for "how does the heart pump ` +
+      `blood?": the heart's chambers and the route of the blood; the beat itself — the chambers contracting and the ` +
+      `valves opening and closing; the double circulation and why the left side is stronger). Never more than three. ` +
+      `ANSWER WHAT IS ASKED: explain the mechanism — what moves, contracts, changes or causes it — not only the parts ` +
+      `and the route. Each subtopic is a different stage and never repeats another. `
+    : `Plan exactly ONE subtopic that answers it head-on — TWO only if the answer genuinely has two separate parts that ` +
+      `cannot share one board. A "why" answer gives the cause. `;
   return (
-    `\n\nTHIS IS A DIRECT QUESTION: "${question}". Set "scope": "question". Plan exactly ONE subtopic that ` +
-    `answers it head-on — TWO only if the answer genuinely has two separate parts that cannot share one board. ` +
+    `\n\nTHIS IS A DIRECT QUESTION: "${question}". Set "scope": "question". ` +
+    size +
     titleRule +
     `Do NOT add an introduction, a standalone definition, a separate ` +
-    `example, a related concept or a comparison unless the question itself asks for it — a one-line definition or ` +
+    `example, a related concept, a comparison, a list of types or kinds, or the idea's importance, impact, role in health ` +
+    `or applications unless ` +
+    `the question itself asks for it — a one-line definition or ` +
     `example belongs INSIDE the answer, not as its own topic. The caption says what the answer explains.`
   );
 }
 
 /**
- * Hold a direct question's outline to at most `max` subtopics, keeping the ones that answer it.
+ * WHAT SHAPE OF ANSWER A QUESTION NEEDS — decided on its own, before planning (2026-10-18). Told "one
+ * subtopic for a single idea, two or three for a process", the outline model planned three for every
+ * question of ten ("What does the septum do?" got "Clinical Relevance of Septum"): it fills whatever
+ * room it is given. A classification is a decision it makes well; the planner is then given either the
+ * old, proven "exactly ONE" rule or the process rule, and the code holds it to 2 or 3.
+ */
+export type QuestionShape = "single" | "process";
+
+export const QUESTION_SHAPE_PROMPT = `Does a complete answer to this student's question need ONE idea, or a PROCESS of different stages?
+- "single": what one structure, substance, quantity or term is or does; a definition and how it is used; one cause, one reason, one comparison or one fact — even when the answer takes several sentences or a consequence follows from it (a "why" answered by one cause is single). Examples: "What does the cell membrane do?", "What is a mole in chemistry?", "Why do metals conduct electricity?", "What is the median of a data set?", "Why are leaves green?".
+- "process": how something happens or works through different stages in order, a method of several steps, or how or why something changed through several developments. Examples: "How does digestion break down food?", "How is urine made in the kidney?", "How does a bill become law?", "How do you solve a quadratic by completing the square?", "How did the printing press change Europe?".
+Return JSON only: {"shape": "single" | "process"}.`;
+
+export function parseQuestionShape(raw: unknown): QuestionShape | null {
+  const shape = raw && typeof raw === "object" ? (raw as { shape?: unknown }).shape : null;
+  return shape === "single" || shape === "process" ? shape : null;
+}
+
+/**
+ * Hold a direct question's outline to at most `max` subtopics (three: a how/why about a process takes
+ * two or three), keeping the ones that answer it.
  *
  * The backstop for when the planner still returns a survey: rank subtopics by how much of the
  * question they address (a "why" question favours causes and reasons), keep the best `max` in their
  * original order. No model call — the answer is already in the outline, it is just buried.
  */
-export function capQuestionOutline<T extends { title: string; caption: string }>(subtopics: T[], question: string, max = 2): T[] {
-  if (subtopics.length <= max) return subtopics;
+export function capQuestionOutline<T extends { title: string; caption: string }>(subtopics: T[], question: string, max = 3): T[] {
+  if (subtopics.length <= 1) return subtopics;
   const stem = (word: string) => word.toLowerCase().replace(/(?:ing|ed|es|s)$/, "");
   const stop = new Set(["why", "how", "what", "does", "do", "did", "is", "are", "the", "a", "an", "of", "in", "to", "and", "it", "this", "that", "can", "should"]);
   const asked = new Set((question.toLowerCase().match(/[a-z0-9]+/g) ?? []).filter((w) => !stop.has(w)).map(stem));
@@ -355,11 +390,15 @@ export function capQuestionOutline<T extends { title: string; caption: string }>
     let score = words.filter((w) => asked.has(w)).length;
     if (why && /\b(?:why|cause|causes|caused|reason|reasons|because|leads? to|happens?|occurs?)\b/.test(text)) score += 4;
     if (how && /\b(?:how|steps?|process|works?|mechanism)\b/.test(text)) score += 4;
-    if (/\b(?:introduc|overview|defin|example|concrete example|related|compare|comparison)\w*/.test(item.title.toLowerCase())) score -= 2;
+    // Padding a question does not ask for: an introduction, a standalone definition or example, a
+    // comparison, or the idea's importance, impact, role in health or applications.
+    if (/\b(?:introduc|overview|defin|example|concrete example|related|compare|comparison|importan|impact|significan|application|role in|wider|health|types? of|kinds? of)\w*/.test(item.title.toLowerCase())) score -= 2;
     return { item, index, score };
   });
-  const keep = new Set(
-    [...scored].sort((a, b) => b.score - a.score || a.index - b.index).slice(0, max).map((entry) => entry.index),
-  );
+  // Beyond the best one, an introduction, a standalone definition or example, or a related idea that
+  // shares too little with the question to make up for it is not part of the answer, even when it
+  // fits under `max`. A neutral step of the answer (score 0) is never dropped.
+  const ranked = [...scored].sort((a, b) => b.score - a.score || a.index - b.index);
+  const keep = new Set(ranked.filter((entry, i) => i === 0 || entry.score >= 0).slice(0, max).map((entry) => entry.index));
   return subtopics.filter((_, index) => keep.has(index));
 }

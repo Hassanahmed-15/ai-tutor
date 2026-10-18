@@ -77,7 +77,9 @@ export function classifyInstructionalTask(beat: Pick<CanvasPlanBeat, "title" | "
   if (/\b(arc length|area of (a |the )?sector|arcs? and sectors?|circles?, arcs and sectors)\b/.test(text)) {
     return { task: "calculation", stage: "figure", figure: "sectorArc", requiredParts: ["radius", "sector", "arc", "angle"], reason: "Arc length and sector area are read off one labelled circle with θ at the centre." };
   }
-  if (/\b(genetic technolog\w*|recombinant DNA|restriction enzymes?|plasmids?|PCR|polymerase chain reaction)\b/.test(text)) {
+  // A plasmid alone is part of every bacterial cell ("The bacterial cell" got this figure, live test
+  // 2026-10-17): only plasmids made recombinant or used as vectors mean genetic technology.
+  if (/\b(genetic technolog\w*|genetic(ally)? (engineer\w*|modif\w*)|recombinant (DNA|plasmids?)|restriction enzymes?|plasmids? (as|used as) (a |the )?vectors?|PCR|polymerase chain reaction)\b/.test(text)) {
     return { task: "process", stage: "figure", figure: "geneticTech", requiredParts: ["plasmid", "restriction-site", "insert"], reason: "Genetic technology is a process whose parts (plasmid, cut, insert, or PCR steps) must sit on one figure." };
   }
   if (/\b(translation|reflection|rotation|enlargement)s?\b(?=[\s\S]{0,80}\b(shape|triangle|object|image|grid|vector)\b)|\b(geometric |combined |single )?transformations?\b(?=[\s\S]{0,80}\b(shape|triangle|polygon|object|image|column vector|mirror line|scale factor)\b)/.test(text) && !/\bcomplet\w* the square|discriminant|vertex|quadratic|integrat|derivative|double[- ]angle|identit|product rule|quotient rule|chain rule\b/i.test(text)) {

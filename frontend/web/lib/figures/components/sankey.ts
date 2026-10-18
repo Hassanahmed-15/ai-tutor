@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Ink, Pt } from "../types";
+import { fitText } from "../cuts";
 import { Sketch } from "./mathsKit";
 import { INK, firstNumber, show } from "./physicsKit2";
 
@@ -26,9 +27,8 @@ function item(s: string): { name: string; value: number | undefined; unit?: stri
     .replace(/\b(useful|wasted?|lost|dissipated|energy|store|output|input|of)\b/gi, " ")
     .replace(/[()=:]/g, " ")
     .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 28);
-  return { name, value: value !== undefined && Number.isFinite(value) ? Math.abs(value) : undefined, unit, useful };
+    .trim();
+  return { name: fitText(name, 28), value: value !== undefined && Number.isFinite(value) ? Math.abs(value) : undefined, unit, useful };
 }
 
 export function sankeyFlow(params: FigureParams): SankeyResult {

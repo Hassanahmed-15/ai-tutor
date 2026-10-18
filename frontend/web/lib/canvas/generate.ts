@@ -7,8 +7,9 @@ import type { Beat } from "../lessonContent";
 import { costFor } from "../modelPricing";
 import { ILLUSTRATION_STYLE_VERSION, illustrationImageModel, pictureSubject } from "../illustratedBoard";
 import { checkVectorDiagram, textbookDiagram } from "./textbookDiagram";
-import { withMandatoryLabels } from "./labelPolicy";
-import { layoutPanel } from "./layout";
+import { partNameKey, withMandatoryLabels } from "./labelPolicy";
+import { layoutPanel, takeLayoutDrops } from "./layout";
+import { takeLabelMismatches } from "./labelMatch";
 import { takeFigureCutItems } from "../figures/cuts";
 import { dropCrossingArrows } from "./layoutQa";
 import { recapTour, unifyConceptColours } from "./lessonPasses";
@@ -30,10 +31,10 @@ import { boardStructureProblem, isDataStructureTopic, withoutStructure } from ".
 import { equationProblem } from "./equationCheck";
 import { createOpenAI } from "../openaiClient";
 import { visualContractIssues } from "../curriculum/visualContract";
-import { applyLessonVisualPolicy, labelledFigureParts, photographic, PHYSICAL, pictureRequestProblem } from "./visualPolicy";
+import { applyLessonVisualPolicy, labelledFigureParts, LIFE_SCIENCE, photographic, PHYSICAL, pictureRequestProblem, VECTOR_FORM } from "./visualPolicy";
 import { DIAGRAM_GUIDE, acceptDiagram } from "../diagrams/write";
 import { diagramCacheKey } from "../diagrams/cache";
-import { componentFitsSubject, hasVisualForm, isRealProcess, needsVectorDiagram } from "../diagrams/visualForm";
+import { componentFitsSubject, hasVisualForm, isGeometryOrMechanics, isRealProcess, needsVectorDiagram } from "../diagrams/visualForm";
 import { dropContradictingPoints } from "./graphCheck";
 import { auditBoardForRelease, figureDataIssues } from "./releaseAudit";
 import { BOARD_REVIEW_PROMPT, boardReviewRequest, parseBoardReview, type BoardReview } from "./boardReview";
@@ -216,13 +217,18 @@ function plainBeat(beat: CanvasPlanBeat, allowFigure = true): CanvasPlanBeat {
   const fitting = !allowFigure ? undefined : [classifyInstructionalTask(beat).figure, figureFor(`${beat.title} ${beat.brief}`)?.name, figureFor(`${beat.title} ${beat.brief} ${beat.script}`)?.name]
     .find((name): name is string => Boolean(name) && !base.rejectedFigures.includes(name!) && Boolean(figureComponent(name!)) && componentFitsSubject(name!, text));
   // A failed vector diagram must not loop back into another vector attempt — it ships as a plain board.
-  const alreadyTriedDiagram = beat.stage === "diagram";
+  const alreadyTriedDiagram = beat.stage === "diagram" || beat.figure === "drawn";
   if (fitting && !calculation && !alreadyTriedDiagram) {
     const component = figureComponent(fitting)!;
     return { ...base, stage: "figure", figure: fitting, objects: labelledFigureParts(component, classifyInstructionalTask(beat).requiredParts ?? []) };
   }
   if (calculation) return { ...base, stage: "equation" };
-  if (!alreadyTriedDiagram && (needsVectorDiagram(text) || hasVisualForm(text))) return { ...base, stage: "diagram" };
+  // Scene-grammar diagrams are retired (lib/canvas/visualPolicy.ts): a visual form is the coordinate
+  // vector diagram, whose own failure falls back here as a plain board.
+  // Free-form vector diagrams are retired: only exact geometry (a map, data, a construction, mechanics)
+  // named by the board itself is drawn as one; anything else is a plain board.
+  const tb = `${beat.title} ${beat.brief}`;
+  if (!alreadyTriedDiagram && VECTOR_DIAGRAMS && (VECTOR_FORM.test(tb) || isGeometryOrMechanics(tb))) return { ...base, stage: "figure", figure: "drawn" };
   // A flow only for a real process — steps, causes, a cycle; anything else is labelled boxes.
   return { ...base, stage: isRealProcess(text) ? "flow" : "scene" };
 }
@@ -231,7 +237,9 @@ function plainBeat(beat: CanvasPlanBeat, allowFigure = true): CanvasPlanBeat {
  * The same board as the diagram the reviewer said it should show: generated as a checked textbook
  * diagram (lib/canvas/textbookDiagram.ts) when pictures are on, else described line art.
  */
-export const CHART_LIKE = /\b(graphs?|charts?|bars?|axis|axes|legend|percentages?|per ?cent|statistics?|data|tables?|plots?|curves?|timelines?|scales?|judgements?|arguments?|evidence|costs? and benefits?|framework|model of|stages? of development|indicators?|index|survey|values?)\b|%/i;
+// Only real charts and tables (owner, 2026-10-17): words such as "values", "scale", "data" or
+// "evidence" in a subject refused pictures of organs and landscapes that merely mentioned them.
+export const CHART_LIKE = /\b(graphs?|charts?|bar charts?|axis|axes|legend|tables?|plots?|histograms?|pie charts?|timelines?)\b|%/i;
 
 /** Is this something a generated textbook picture can show? A real physical thing, not a chart. */
 export function pictureable(text: string): boolean {
@@ -240,8 +248,18 @@ export function pictureable(text: string): boolean {
 
 function drawnBeat(beat: CanvasPlanBeat, why = ""): CanvasPlanBeat {
   // A picture only for a physical thing the review described; a chart or argument is a vector diagram.
-  const pictures = process.env.CANVAS_AI_PICTURES !== "off" && pictureable(`${why} ${beat.title}`) && photographic({ ...beat, brief: `${beat.brief} ${why}` });
-  return { ...beat, stage: pictures ? "illustration" : "diagram", figure: undefined, figureAsset: undefined, objects: [], requiredVisual: undefined, rejectedFigures: rejected(beat) };
+  // Any board that is not maths, a chart or a map can be a checked picture (free-form diagrams retired).
+  const pictures = process.env.CANVAS_AI_PICTURES !== "off" && !CHART_LIKE.test(`${why} ${beat.title}`) && [null, "not a physical thing"].includes(pictureRequestProblem(`${beat.title} ${beat.brief}`, [])) && !/\b(equation|formula|calculat\w*|solve|graph)\b/i.test(beat.title);
+  // A sequence the review asks for ("HIV infection → possible later AIDS") is a clean flow of cards:
+  // the scene-grammar diagram drew it as overlapping blobs with labels on empty space (live test,
+  // 2026-10-17). Maps, data, apparatus and structures stay diagrams.
+  const text = `${beat.title} ${beat.brief} ${why}`;
+  const flow = !pictures && isRealProcess(text) && !needsVectorDiagram(text);
+  // A life-science board never falls back to the coordinate vector diagram (owner, 2026-10-17).
+  const tb = `${beat.title} ${beat.brief}`;
+  const exact = VECTOR_FORM.test(tb) || isGeometryOrMechanics(tb);
+  const stage = pictures ? "illustration" : flow ? "flow" : VECTOR_DIAGRAMS && exact ? "figure" : "scene";
+  return { ...beat, stage, figure: stage === "figure" ? "drawn" : undefined, figureAsset: undefined, objects: [], requiredVisual: undefined, rejectedFigures: rejected(beat) };
 }
 
 function diagramKeyFor(beat: CanvasPlanBeat): string {
@@ -306,6 +324,13 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat), clock, extra, true);
       return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd };
     }
+  } else if (beat.stage === "figure" && beat.figure === "drawn") {
+    // No time (or no switch) for the checked vector pipeline: free-hand line art is never the
+    // stand-in. Its labels were checked only against its own shapes, and a label check of saved
+    // lectures found its parts wrong ("Mitochondria" in a sperm's head, "Prostate gland" on a bare
+    // oval; 2026-10-17). A code-drawn figure that fits, else a plain board, is taught instead.
+    const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat), clock, extra, true);
+    return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd };
   }
   for (let attempt = 1; attempt <= 3; attempt++) {
     // A retry is optional work: with too little time left the board falls back instead.
@@ -354,7 +379,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           continue;
         }
       }
-      let spec = validateCanvasSpec(raw, sentences.length);
+      let spec = validateCanvasSpec(raw, sentences.length, [], beat.script);
       // TEXT THAT DOES NOT FIT IS REWRITTEN TO FIT, never cut (owner, 2026-10-17): every over-long
       // piece goes to one small call that rewrites it within its exact room, and the board is checked
       // again with the rewritten text.
@@ -362,16 +387,26 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       // card (seven "…" on one geography board, QA 2026-10-17). Laying the board out records those.
       const layoutCuts = (s: CanvasBoardSpec | null) => { takeFigureCutItems(); if (s) layoutPanel(s); return takeFigureCutItems(); };
       const overlong = [...validationCutItems(), ...layoutCuts(spec)];
-      if (spec && overlong.length && clock.left() > 25_000) {
+      if (spec && overlong.length && clock.left() > 15_000) {
         const fitted = await shortenToFit(openai, overlong).catch((error) => { costUsd += (error as { costUsd?: number }).costUsd ?? 0; return null; });
         if (fitted) {
           costUsd += fitted.costUsd;
           replaceStrings(raw, fitted.replacements);
-          spec = validateCanvasSpec(raw, sentences.length);
+          spec = validateCanvasSpec(raw, sentences.length, [], beat.script);
           const still = validationCutItems().length + layoutCuts(spec).length;
           console.log(`[canvas] ${beat.id}: ${fitted.replacements.size} text(s) rewritten to fit${still ? `, ${still} still ended at a break` : ""}`);
         }
       }
+      // A function graph labels the features the lesson is about: "Root x = 0" on a direct-proportion
+      // graph taught nothing (live test, 2026-10-17). A feature the narration never mentions is unlabelled.
+      if (spec?.stage.kind === "figure" && spec.stage.component === "functionGraph") {
+        const said: Record<string, RegExp> = { root: /\b(roots?|x-intercepts?|zeros?|solutions?|crosses the x-axis|cuts the x-axis)\b/i, "y-intercept": /\b(y-intercepts?|intercepts? (on|with) the y|crosses the y-axis|cuts the y-axis)\b/i, "turning-point": /\b(turning points?|maximum|minimum|stationary points?|vertex)\b/i, intersection: /\b(intersect\w*|meet|cross each other|solutions? of)\b/i };
+        const keep = spec.stage.parts.filter((p) => !said[p.id] || said[p.id].test(beat.script));
+        if (keep.length && keep.length < spec.stage.parts.length) spec.stage.parts = keep;
+      }
+      // A label written on a part it does not name was replaced by the part's own name (lib/canvas/labelMatch.ts).
+      const relabelled = takeLabelMismatches();
+      if (relabelled.length) console.log(`[canvas] ${beat.id}: ${relabelled.length} label(s) corrected — ${relabelled.join(" | ").slice(0, 300)}`);
       // An arrow that would cut through another box is dropped rather than drawn across it (the
       // first board of an economics lesson shipped with arrows slicing through three boxes, 2026-10-17).
       if (spec && (spec.stage.kind === "scene" || spec.stage.kind === "flow")) {
@@ -436,9 +471,12 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       const spoken = await spokenNotes(openai, beat, clock);
       costUsd += spoken.costUsd;
       if (spoken.notes.length && spec.stage.kind !== "exam") spec.notes = anchorNotes(spoken.notes, beat.script);
-      // Optional vision pass (DIAGRAM_VISION=on). One repair round; a remaining complaint is a note,
-      // never a reason to drop the board — only invented numbers retry above.
-      if (spec.stage.kind === "diagram" && process.env.DIAGRAM_VISION === "on" && attempt === 1 && clock.left() > 45_000) {
+      // Vision pass, on by default since 2026-10-17 (DIAGRAM_VISION=off disables it): an editor looks
+      // at the rendered diagram, labels included — the main diagram route was the one visual nobody
+      // saw before a student did. The attempt that ships is the one checked: the repair used to go out
+      // unseen, and three messy diagrams of one lecture were second attempts (live test, 2026-10-17).
+      // A repair the editor still rejects is rebuilt — as a checked picture for a cell, organ or plant.
+      if (spec.stage.kind === "diagram" && process.env.DIAGRAM_VISION !== "off" && attempt <= 2 && clock.left() > 45_000) {
         try {
           const { boardPng } = await import("../bench/renderSvg");
           const png = boardPng(spec);
@@ -447,6 +485,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           const notes = [...verdict.problems, ...verdict.misspellings];
           if (!verdict.accurate && notes.length) {
             lastError = `textbook editor: ${notes.join("; ")}. Keep every number the narration states; spell every label as the narration spells it.`;
+            if (attempt === 2 && !plain) return rebuildPlain(`the diagram is still wrong: ${notes.join("; ")}. It should show ${beat.title.toLowerCase()} correctly`);
             continue;
           }
         } catch (error) {
@@ -458,7 +497,19 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         // is the plan's business, not this board's: it never fails a board.
         ...auditBoardForRelease(spec, beat).filter((f) => !(f.gate === "semantic" && /requires (the |figure component )/.test(f.message)) && f.gate !== "quiz"),
         ...contractNotes.map((message) => ({ gate: "visual-contract", message })),
+        // Words the layout had to leave off (an arrow's label, a callout, a step's second line): a note,
+        // so the first attempt is rewritten shorter instead of shipping with words silently missing.
+        ...(() => { takeLayoutDrops(); layoutPanel(spec); return takeLayoutDrops(); })().slice(0, 4).map((message) => ({ gate: "text-dropped", message: `${message} — write it shorter or with fewer items` })),
         ...figureDataIssues(spec, beat.script).map((message) => ({ gate: "figure-data", message })),
+        // A figure whose fixed design contradicts the board (a time axis where Aria never mentions time).
+        ...(spec.stage.kind === "figure" && !componentFitsSubject(spec.stage.component, `${beat.title} ${beat.brief} ${beat.script}`)
+          ? [{ gate: "figure-content", message: `the ${spec.stage.component} figure does not fit this board (its axes or kind contradict what Aria says): draw what the narration describes instead — for a quantity against another quantity, a "graph" with those axes` }]
+          : []),
+        // A data figure given no data draws its built-in example: "−2 < x ≤ 3" on a rounding-bounds
+        // board, twice, in a saved lecture (label check, 2026-10-17). Never shipped; the writer fills it.
+        ...(spec.stage.kind === "figure" && DEMO_DATA.has(spec.stage.component) && !Object.keys(spec.stage.params ?? {}).length
+          ? [{ gate: "figure-content", message: `the ${spec.stage.component} figure has no params, so it would draw its built-in example: give it this board's own data from the narration` }]
+          : []),
         ...(spec.stage.kind === "figure" && spec.stage.component !== "drawn" && spec.stage.component !== "library"
           ? (() => {
               const foreign = foreignFigureWords(spec.stage.component, spec.stage.params ?? {}, `${beat.title} ${beat.brief} ${beat.script}`, spec.stage.parts.map((p) => p.name));
@@ -472,7 +523,9 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       if (!fatal.length) {
         const review = await reviewBoard(openai, topic, spec, beat, reviews);
         costUsd += review.costUsd;
-        const serious = review.problems.filter((p) => FATAL_REVIEW.has(p.kind));
+        // A label on the WRONG part misleads a student (owner, 2026-10-17: labels "very very very
+        // accurate"); a label merely missing does not, and stays a note.
+        const serious = review.problems.filter((p) => FATAL_REVIEW.has(p.kind) || (p.kind === "mislabelled" && !/\b(missing|not (?:visibly )?labell?ed|unlabell?ed|no label|lacks? (?:a |its )?label)/i.test(p.detail)));
         if (serious.length) {
           fatal = serious.map((p) => ({ gate: "review", message: `${p.kind}: ${p.detail}` }));
           if (serious.some((p) => VISUAL_FAULTS.has(p.kind))) visualRejections++;
@@ -530,8 +583,10 @@ const SHORTEN_PROMPT = `You rewrite pieces of text from a school lesson board so
 
 /** One small call: every over-long text rewritten within its exact room. */
 export async function shortenToFit(openai: OpenAI, items: Array<{ text: string; max: number }>): Promise<{ replacements: Map<string, string>; costUsd: number }> {
-  const list = items.slice(0, 24).map((item, i) => ({ i, max: item.max, text: item.text }));
-  const { json, costUsd } = await bounded(jsonCall(openai, SPEC_MODEL, SHORTEN_PROMPT, JSON.stringify({ items: list }), 1500), 20_000, "shorten");
+  // Every piece in one call (24 left the rest of a crowded board cut).
+  const unique = [...new Map(items.map((item) => [item.text, item])).values()].slice(0, 48);
+  const list = unique.map((item, i) => ({ i, max: item.max, text: item.text }));
+  const { json, costUsd } = await bounded(jsonCall(openai, SPEC_MODEL, SHORTEN_PROMPT, JSON.stringify({ items: list }), Math.min(4000, 400 + list.length * 60)), 20_000, "shorten");
   const replacements = new Map<string, string>();
   for (const out of ((json as { items?: Array<{ i?: number; text?: string }> }).items ?? [])) {
     const item = typeof out.i === "number" ? list[out.i] : undefined;
@@ -583,6 +638,10 @@ async function spokenNotes(openai: OpenAI, beat: CanvasPlanBeat, clock: Clock): 
 }
 
 type Finding = { gate: string; message: string };
+
+
+/** Figures that are only their data: with no params they draw a built-in example from another lesson. */
+const DEMO_DATA = new Set(["numberLine", "barChart", "pieChart", "histogram", "boxPlot", "scatterPlot", "cumulativeFrequency", "venn", "probabilityTree", "sankey", "sequences", "functionGraph", "coordinateGrid", "argand", "timeline", "causeConsequence", "conceptTable", "evaluationScale", "sourceCard"]);
 
 /** Faults a board may never ship with: wrong numbers, unbalanced reactions, another lesson's content. */
 const FATAL_GATES = new Set(["numbers", "atom-balance", "figure-content"]);
@@ -667,7 +726,12 @@ export async function illustrate(openai: OpenAI, userId: string, lectureId: stri
     // The last guard before money is spent: a picture has no words, so a chart, table or argument
     // asked of it can only fail its check.
     const unfit = pictureRequestProblem(subject, names);
-    if (unfit) throw new Error(`not a picture — ${unfit} (not sent to the image model)`);
+    // "Not on the physical-word list" no longer refuses a picture (free-form diagrams retired; the
+    // textbook check decides what can be drawn). Maps, charts, counts, formulas and arguments still are.
+    // When the planner said the board shows a THING, only words-and-symbols boards are refused: a
+    // number in its text ("one parent, 2 offspring") is not a reason to give up the picture.
+    const plannerThing = beat.visualType === "thing" && !/^(a chart|words, symbols|working or units|a map)/.test(unfit ?? "");
+    if (unfit && unfit !== "not a physical thing" && !plannerThing) throw new Error(`not a picture — ${unfit} (not sent to the image model)`);
     // Generated, checked by a textbook editor, located, and remembered (lib/canvas/textbookDiagram.ts).
     // A diagram is shared across students unless it comes from a student's own document.
     const share = !beat.source;
@@ -678,23 +742,25 @@ export async function illustrate(openai: OpenAI, userId: string, lectureId: stri
       save: async (_key, display) => { if (!share) await saveCanvasImage(userId, own, display); },
     }), Math.min(170_000, clock.left() - 20_000), "textbook diagram");
     costUsd += diagram.costUsd;
-    const byName = new Map(diagram.parts.map((p) => [p.name.toLowerCase(), p]));
+    // Matched by the part's name in a normal form ("The left ventricle" = "left ventricles"): an exact
+    // match dropped located parts over a capital or a plural.
+    const byName = new Map(diagram.parts.map((p) => [partNameKey(p.name), p]));
     const parts = stage.parts
       .map((p) => {
-        const at = byName.get(p.name.toLowerCase());
+        const at = byName.get(partNameKey(p.name));
         return at ? { ...p, x: Math.round(at.x * 1000) / 1000, y: Math.round(at.y * 1000) / 1000 } : null;
       })
       .filter((p): p is NonNullable<typeof p> => Boolean(p));
     const kept = new Set(parts.map((p) => p.id));
     log.push(`${beat.id}: textbook diagram ${Math.round((Date.now() - started) / 1000)}s — ${diagram.log}`);
-    return {
-      spec: {
-        ...spec,
-        stage: { ...stage, parts, labels: stage.labels.filter((l) => kept.has(l)), src: `/api/canvas-lecture/image/${share ? diagram.key : own}`, paper: diagram.paper },
-        cues: spec.cues.filter((c) => !c.target || !stage.parts.some((p) => p.id === c.target) || kept.has(c.target)),
-      },
-      costUsd,
+    const pictured: CanvasBoardSpec = {
+      ...spec,
+      stage: { ...stage, parts, labels: stage.labels.filter((l) => kept.has(l)), src: `/api/canvas-lecture/image/${share ? diagram.key : own}`, paper: diagram.paper },
+      cues: spec.cues.filter((c) => !c.target || !stage.parts.some((p) => p.id === c.target) || kept.has(c.target)),
     };
+    // Labels are chosen again from the parts actually found on the picture (lib/canvas/labelPolicy.ts):
+    // a part the picture lost can no longer hold a narration-named label another found part could take.
+    return { spec: withMandatoryLabels(pictured, beat), costUsd };
   } catch (error) {
     log.push(`${beat.id}: picture failed — ${(error as Error).message}`);
     // No diagram passed: never a wrong picture. The board writer rebuilds it as a plain board when

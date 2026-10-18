@@ -13,6 +13,7 @@ import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "@/lib/ani
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
 import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint } from "./CanvasPanel";
 import { quadPoints } from "@/lib/canvas/ink";
+import { cardSideView, textRows, underlineY } from "@/lib/canvas/renderFit";
 import { playScratch, playTick, playWhoosh, setSoundEnabled, soundEnabled } from "./sound";
 import { Confetti } from "./Confetti";
 
@@ -91,6 +92,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const [aspect, setAspect] = useState(16 / 9);
+  /** The canvas's size on screen (px): a task card's column is measured in pixels, not board units. */
+  const [boxSize, setBoxSize] = useState({ w: 0, h: 0 });
   const [mode, setMode] = useState<"follow" | "free" | "overview">("follow");
   const [biologyExplore, setBiologyExplore] = useState(false);
   const [moleculeRotation, setMoleculeRotation] = useState(0);
@@ -229,10 +232,14 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       const y = Math.max(0, Math.min(PANEL_H - h, t.y + t.h / 2 - h / 2));
       return fitView(toWorld({ x, y, w, h }, currentPlace), aspect, 0.06);
     }
-    // A task card sits to the right of the board: the camera slides the board left to make room.
+    // A task card sits to the right of the board: the camera slides the board left to make room —
+    // the board as large as the space left of the card's column allows. A fixed half-board of room
+    // shrank it to ~60% with the next board's giant text showing under it (audit 2026-10-17).
+    const beside = taskOpen ? cardSideView(toWorld({ x: 0, y: 0, w: PANEL_W, h: PANEL_H }, currentPlace), boxSize, CARD_COLUMN_PX) : null;
+    if (beside) return beside;
     const room = taskOpen ? PANEL_W * 0.52 : 0;
     return fitView(toWorld({ x: 0, y: 0, w: PANEL_W + room, h: PANEL_H }, currentPlace), aspect, 0.035);
-  }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, taskOpen, visitIndex, shownIndex, worldRects]);
+  }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, boxSize, taskOpen, visitIndex, shownIndex, worldRects]);
 
   const viewRef = useRef<View>(followView);
   const flightRef = useRef(0);
@@ -281,7 +288,10 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     if (!el) return;
     const measure = () => {
       const r = el.getBoundingClientRect();
-      if (r.width > 0 && r.height > 0) setAspect(r.width / r.height);
+      if (r.width > 0 && r.height > 0) {
+        setAspect(r.width / r.height);
+        setBoxSize((was) => (Math.abs(was.w - r.width) < 1 && Math.abs(was.h - r.height) < 1 ? was : { w: r.width, h: r.height }));
+      }
     };
     measure();
     const ro = new ResizeObserver(measure);
@@ -539,8 +549,11 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               )}
               {/* RACK FOCUS: while the camera is with Aria, every other board steps back — under a veil
                   of the background colour, which looks the same as fading the board but is one
-                  rectangle to draw, where an opacity on the whole board was a second full render of it. */}
-              <rect x={-2} y={-2} width={PANEL_W + 4} height={PANEL_H + 4} rx={23} fill="#0b0f14" pointerEvents="none" style={{ opacity: rackFocus && !live && visitIndex !== i ? 0.62 : 0, transition: "opacity 700ms ease" }} />
+                  rectangle to draw, where an opacity on the whole board was a second full render of it.
+                  While a task card is open the others go fully dark: a neighbour's big writing showed
+                  around the board and under the card (audit 2026-10-17). A board drawn inside this
+                  one keeps the usual veil, so it never blacks out part of the board being answered. */}
+              <rect x={-2} y={-2} width={PANEL_W + 4} height={PANEL_H + 4} rx={23} fill="#0b0f14" pointerEvents="none" style={{ opacity: rackFocus && !live && visitIndex !== i ? (taskOpen && panel.spec.inside?.beat !== current?.key ? 1 : 0.62) : 0, transition: "opacity 700ms ease" }} />
               {visitIndex === i && <rect x={-14} y={-14} width={PANEL_W + 28} height={PANEL_H + 28} rx={32} fill="none" stroke="#f59e0b" strokeWidth={6} opacity={0.85} className="cv-live" />}
               {showOverviewBadges && !panel.spec.inside && (
                 <g transform="translate(-26,-26)">
@@ -750,6 +763,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 }
 
 const EMPTY: Record<string, number> = {};
+/** A task card's column at the canvas's right (px): its width (320), its right margin, and a gap. */
+const CARD_COLUMN_PX = 320 + 16 + 12;
 const EMPTY_RECTS: Record<string, Rect> = {};
 const MemoPanel = memo(CanvasPanel);
 
@@ -774,6 +789,7 @@ function Pen({ cue: given, layout, vars }: { cue: CanvasCue; layout: PanelLayout
   // target and points; the ring / highlighter / outline stay, the pen body goes.
   const dot = useSyncExternalStore(onDotPointer, dotPointer, () => false);
   const targetRef = useRef<SVGRectElement>(null);
+  const penRef = useRef<SVGGElement>(null);
   const shown = Boolean(rect || marker);
   useEffect(() => {
     const el = targetRef.current;
@@ -781,6 +797,24 @@ function Pen({ cue: given, layout, vars }: { cue: CanvasCue; layout: PanelLayout
     setPointTarget({ el, action: cue.action === "circle" || cue.action === "underline" ? cue.action : "point", key });
     return () => setPointTarget(null);
   }, [key, cue.action, shown]);
+  // THE UNDERLINE GOES UNDER THE WORDS AS DRAWN. Guessing the lines from the box's height put three
+  // strokes across a padded two-line card, through its words (audit 2026-10-17); the lines are read
+  // off the rendered text instead, and again once its entrance animation has settled.
+  const [rows, setRows] = useState<{ key: string; rows: UnderRow[] } | null>(null);
+  useLayoutEffect(() => {
+    if (cue.action !== "underline" || !cue.target) return;
+    const target = cue.target;
+    const measure = () => {
+      const pen = penRef.current;
+      if (pen) setRows({ key, rows: measureRows(pen, target) });
+    };
+    const first = requestAnimationFrame(measure);
+    const settled = [window.setTimeout(measure, 520), window.setTimeout(measure, 1100)];
+    return () => {
+      cancelAnimationFrame(first);
+      settled.forEach((t) => window.clearTimeout(t));
+    };
+  }, [key, cue.action, cue.target]);
   if (!rect && !marker) return null;
   const r = marker ? { x: marker.x - 16, y: marker.y - 16, w: 32, h: 32 } : rect!;
   const cx = r.x + r.w / 2;
@@ -792,7 +826,7 @@ function Pen({ cue: given, layout, vars }: { cue: CanvasCue; layout: PanelLayout
     : cue.action === "underline" ? { x: r.x + r.w + 8, y: r.y + r.h * 0.62 }
     : { x: r.x + r.w + 7, y: r.y + r.h + 5 };
   return (
-    <g pointerEvents="none">
+    <g ref={penRef} pointerEvents="none">
       {/* What is pointed at, for Dot to measure (invisible): the element plus its ring or outline,
           so she keeps clear of the mark as well as the thing. */}
       {cue.action === "circle" ? (
@@ -802,25 +836,21 @@ function Pen({ cue: given, layout, vars }: { cue: CanvasCue; layout: PanelLayout
       ) : (
         <rect ref={targetRef} x={r.x} y={r.y} width={r.w} height={r.h} fill="none" stroke="none" />
       )}
-      {cue.action === "underline" && (() => {
-        // THE HIGHLIGHTER SWIPE (Vox): a translucent marker band across each line of the words,
-        // multiply-blended so the text stays crisp, landing with the pen and the element's own glow.
-        // A note's box includes its bullet, so the band starts after it.
-        const lines = Math.max(1, Math.min(3, Math.round(r.h / 30)));
-        const lineH = r.h / lines;
-        const x0 = r.x + (cue.target && layout.marks.find((m) => m.id === cue.target)?.type === "note" ? 24 : 0);
+      {cue.action === "underline" && rows?.key === key && (() => {
         // An underline beneath each line, not a band across it: on the chalk board a wide band over pale
         // writing washed the words out ("Government-owned railway" was hard to read, audit 2026-10-17).
-        return Array.from({ length: lines }, (_, k) => {
-          const y = r.y + lineH * (k + 0.94);
+        // Each one sits just below its line's lowest glyph. When the words cannot be measured (a part
+        // of a picture, a curve), one line goes just under the whole box — never through it.
+        const lines: UnderRow[] = rows.rows.length ? rows.rows : [{ x0: r.x, x1: r.x + r.w, y: r.y + r.h + 4, h: 26 }];
+        return lines.map(({ x0, x1, y, h: lineH }, k) => {
           return (
             <path
               key={`u${key}-${k}`}
-              d={`M${x0} ${y} Q ${(x0 + r.x + r.w) / 2} ${y + 2} ${r.x + r.w} ${y - 1}`}
+              d={`M${x0} ${y} Q ${(x0 + x1) / 2} ${y + 2} ${x1} ${y - 1}`}
               fill="none"
               stroke={ARIA}
               strokeOpacity={0.85}
-              strokeWidth={Math.max(3, Math.min(6, lineH * 0.16))}
+              strokeWidth={Math.max(2.5, Math.min(4.5, lineH * 0.11))}
               strokeLinecap="round"
               className="cv-swipe"
               pathLength={1}
@@ -845,6 +875,59 @@ function Pen({ cue: given, layout, vars }: { cue: CanvasCue; layout: PanelLayout
       </g>}
     </g>
   );
+}
+
+/** One underline: from x0 to x1 at y, under a line of writing `h` tall. */
+type UnderRow = { x0: number; x1: number; y: number; h: number };
+
+/**
+ * The lines of writing of the element `target` on the pen's own board, in the board's units: every
+ * <text> line (each <tspan> of a wrapped one) and every typeset term, grouped into rows. Empty when
+ * nothing can be measured.
+ */
+function measureRows(pen: SVGGElement, target: string): UnderRow[] {
+  const board = pen.closest("[data-panel]");
+  const ctm = pen.getScreenCTM?.();
+  if (!board || !ctm) return [];
+  const sel = typeof CSS !== "undefined" && CSS.escape ? CSS.escape(target) : target.replace(/["\\]/g, "");
+  const el = board.querySelector(`[data-mark="${sel}"], [data-target="${sel}"]`);
+  if (!el) return [];
+  const inv = ctm.inverse();
+  const toBoard = (r: DOMRect) => {
+    const a = new DOMPoint(r.left, r.top).matrixTransform(inv);
+    const b = new DOMPoint(r.right, r.bottom).matrixTransform(inv);
+    return { x: Math.min(a.x, b.x), y: Math.min(a.y, b.y), w: Math.abs(b.x - a.x), h: Math.abs(b.y - a.y) };
+  };
+  const boxes: Array<Rect & { under?: number }> = [];
+  el.querySelectorAll("text").forEach((t) => {
+    const spans = Array.from(t.querySelectorAll("tspan"));
+    // A wrapped text's lines are its tspans (each moved down by dy); coloured runs of one line are one line.
+    const lines: SVGTextContentElement[] = spans.length > 1 && spans.some((n) => n.hasAttribute("dy")) ? spans : [t];
+    const tctm = t.getScreenCTM();
+    for (const n of lines) {
+      const box = toBoard(n.getBoundingClientRect());
+      let under: number | undefined;
+      try {
+        // The line's own baseline and size, so the stroke goes below its descenders and above the next line.
+        if (tctm && n.getNumberOfChars() > 0) {
+          const rel = inv.multiply(tctm);
+          const start = n.getStartPositionOfChar(0);
+          const base = new DOMPoint(start.x, start.y).matrixTransform(rel).y;
+          const size = parseFloat(getComputedStyle(n).fontSize) * Math.hypot(rel.a, rel.b);
+          if (Number.isFinite(base) && size > 0) under = underlineY(base, size);
+        }
+      } catch {
+        // Not laid out yet: underlined just below its box.
+      }
+      boxes.push({ ...box, under });
+    }
+  });
+  // A typeset term (KaTeX in a foreignObject): the typeset formula's own box.
+  el.querySelectorAll("foreignObject").forEach((fo) => {
+    const tex = fo.querySelector(".katex") ?? fo.firstElementChild;
+    if (tex) boxes.push(toBoard(tex.getBoundingClientRect()));
+  });
+  return textRows(boxes).map((row) => ({ x0: row.x0, x1: row.x1, y: row.under, h: row.bottom - row.top }));
 }
 
 /* ── the student's ink and Aria's corrections ─────────────────────────────────────────────── */
@@ -973,7 +1056,7 @@ async function schematic(layout: PanelLayout, strokes: Pt[][]): Promise<{ image:
 
 function TryItCard({ task, values, onChange, onGrab, onRelease, onContinue }: { task: TryItInteraction; values: Record<string, number>; onChange: (v: Record<string, number>) => void; onGrab: () => void; onRelease: (v: Record<string, number>) => void; onContinue: () => void }) {
   return (
-    <div className="absolute right-4 top-1/2 z-20 w-[min(340px,calc(100%-2rem))] -translate-y-1/2 rounded-2xl border border-amber-300/25 bg-[#11100f]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
+    <div data-card="" className="absolute right-4 top-1/2 z-20 max-h-[calc(100%-2rem)] w-[min(320px,calc(100%-2rem))] -translate-y-1/2 overflow-y-auto rounded-2xl border border-amber-300/25 bg-[#11100f]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
       <p className="flex items-center gap-1.5 text-[0.68rem] font-black uppercase tracking-[0.18em] text-amber-300/90">
         <Sparkles size={12} /> Try it yourself
       </p>
@@ -1023,7 +1106,7 @@ function TryItCard({ task, values, onChange, onGrab, onRelease, onContinue }: { 
 
 function DrawCard({ prompt, hasInk, checking, check, onClear, onCheck, onContinue }: { prompt: string; hasInk: boolean; checking: boolean; check?: DrawingCheck; onClear: () => void; onCheck: () => void; onContinue: () => void }) {
   return (
-    <div className="absolute right-4 top-1/2 z-20 w-[min(340px,calc(100%-2rem))] -translate-y-1/2 rounded-2xl border border-sky-300/25 bg-[#0e1116]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
+    <div data-card="" className="absolute right-4 top-1/2 z-20 max-h-[calc(100%-2rem)] w-[min(320px,calc(100%-2rem))] -translate-y-1/2 overflow-y-auto rounded-2xl border border-sky-300/25 bg-[#0e1116]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
       <p className="flex items-center gap-1.5 text-[0.68rem] font-black uppercase tracking-[0.18em] text-sky-300/90">
         <PenLine size={12} /> Your turn to draw
       </p>
@@ -1088,7 +1171,10 @@ function CheckCard({ question, options, onAnswer, onContinue }: { question: stri
   const last = picked[picked.length - 1];
   const solved = picked.some((i) => options[i].correct);
   return (
-    <div className="absolute right-4 top-1/2 z-20 w-[min(340px,calc(100%-2rem))] -translate-y-1/2 rounded-2xl border border-violet-300/25 bg-[#100e16]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
+    // Anchored near the top and scrolled inside, as the question card is: centred with no height limit,
+    // a long stem with four long options and the feedback ran off the canvas, which clips (audit
+    // 2026-10-17). Kept clear of the bottom-right corner, where Aria stands.
+    <div data-card="" className="absolute right-4 top-[9%] z-20 max-h-[calc(100%-9%-9.5rem)] w-[min(320px,calc(100%-2rem))] overflow-y-auto rounded-2xl border border-violet-300/25 bg-[#100e16]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
       <p className="flex items-center gap-1.5 text-[0.68rem] font-black uppercase tracking-[0.18em] text-violet-300/90">
         <Sparkles size={12} /> Check it
       </p>
@@ -1169,7 +1255,7 @@ function QuestionCard({ question, options, onAsk, onAnswer, onSkip, onContinue }
   return (
     // Anchored near the top and kept clear of the bottom-right corner, where Aria stands: an answered
     // card is tall, and centred it ran under her.
-    <div className="absolute right-4 top-[9%] z-20 max-h-[calc(100%-9%-9.5rem)] w-[min(340px,calc(100%-2rem))] overflow-y-auto rounded-2xl border border-violet-300/25 bg-[#100e16]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
+    <div data-card="" className="absolute right-4 top-[9%] z-20 max-h-[calc(100%-9%-9.5rem)] w-[min(320px,calc(100%-2rem))] overflow-y-auto rounded-2xl border border-violet-300/25 bg-[#100e16]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
       <div className="flex items-start justify-between gap-2">
         <p className="flex items-center gap-1.5 text-[0.68rem] font-black uppercase tracking-[0.18em] text-violet-300/90">
           <Sparkles size={12} /> Quick question
@@ -1319,7 +1405,9 @@ function paperShadow(): string | null {
 }
 
 const CHALK_CSS = chalkCss();
-const THEME_KEY = "aria.canvas.theme";
+// v2: the whiteboard became the default (owner, 2026-10-17); choices stored under the old key, mostly
+// the automatic chalk of the dark app, start again on the whiteboard.
+const THEME_KEY = "aria.canvas.theme.v2";
 const THEME_HINT: Record<CanvasThemeChoice, string> = {
   paper: "Every board on paper",
   chalk: "Every board on a chalkboard",
@@ -1333,17 +1421,17 @@ function storeTheme(choice: CanvasThemeChoice) {
     // Storage unavailable: the choice still applies for this visit.
   }
 }
-/** A classroom: the working on the chalkboard, pictures pinned up on paper. */
-const DEFAULT_THEME: CanvasThemeChoice = "mix";
+/** A whiteboard by default (owner, 2026-10-17: "turn off the chalk board, switch to whiteboard"); chalk and mix stay a choice. */
+const DEFAULT_THEME: CanvasThemeChoice = "paper";
 const THEME_SWATCH: Record<CanvasThemeChoice, string> = {
   paper: "#fbfaf6",
   chalk: CHALK.slate,
   mix: `linear-gradient(135deg, #fbfaf6 50%, ${CHALK.slate} 50%)`,
 };
 
-/** A choice this browser stored, else the app's material: chalk on a dark app, paper on a light one. */
+/** A choice this browser stored, else the whiteboard — on a dark app too. */
 function storedTheme(): CanvasThemeChoice {
-  const fromApp = (): CanvasThemeChoice => (document.documentElement.dataset.theme === "dark" ? "chalk" : "paper");
+  const fromApp = (): CanvasThemeChoice => DEFAULT_THEME;
   try {
     const v = localStorage.getItem(THEME_KEY);
     return (CANVAS_THEMES as readonly string[]).includes(v ?? "") ? (v as CanvasThemeChoice) : fromApp();

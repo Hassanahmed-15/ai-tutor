@@ -19,3 +19,15 @@ export function trimToFit(text: string, max: number): string {
   for (let prev = ""; prev !== out; ) { prev = out; out = out.replace(/\s+(and|or|of|the|a|an|to|in|on|for|with|by|but|so|which|because|while|as|such)$/i, "").replace(/[\s,;:(–—+×=→&/-]+$/, ""); }
   return out;
 }
+
+const SUPER: Record<string, string> = { "-": "⁻", "−": "⁻", "+": "⁺", "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" };
+
+/**
+ * A unit's or a letter's power written as a student reads it in print: "m s^-1" → "m s⁻¹", "x^2" →
+ * "x²", "6.0 × 10^24" → "6.0 × 10²⁴". One board showed "m s^-1" in its notes beside "m s⁻¹" in its
+ * boxes (audit 2026-10-17). Other number powers ("3^4") are left as written; the number checks read
+ * superscripts either way (lib/canvas/numberCheck.ts).
+ */
+export function prettyPowers(text: string): string {
+  return text.replace(/\b10\^\(?([-−+]?\d{1,3})\)?(?!\d|\.\d)/g, (_, power: string) => "10" + [...power].map((c) => SUPER[c] ?? c).join("")).replace(/([A-Za-z)])\^\(?([-−+]?\d{1,2})\)?(?!\d|\.\d)/g, (_, base: string, power: string) => base + [...power].map((c) => SUPER[c] ?? c).join(""));
+}

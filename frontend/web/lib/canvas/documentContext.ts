@@ -92,6 +92,26 @@ export function numberedLines(stream: string): string[] {
 }
 
 /** Every code listing in the document, rebuilt whole, in reading order. */
+/**
+ * THE LISTINGS A CODE QUESTION NAMES. "Explain the code for a single rotation" was answered with all
+ * six listings of an AVL chapter — node, height, insert, balance, double rotation, delete — in nine
+ * boards (PDF bench, 2026-10-18). The question's words are matched against each listing's caption
+ * and the names in its code ("rotateWithLeftChild" → rotate, with, left, child): the best-matching
+ * listings are the answer. A question that names nothing in particular ("explain the code") gets all.
+ */
+const GENERIC_CODE_WORDS = /^(?:expla|code|codes|routi|funct|metho|progr|imple|algor|works|work|does|what|how|show|tell|about|this|that|the|for|and|with|step|steps|line|lines|each|happe|write|writt)$/;
+export function listingsAsked(question: string, listings: DocumentListing[]): DocumentListing[] {
+  const stem = (w: string) => w.toLowerCase().slice(0, 5);
+  const asked = [...new Set((question.match(/[A-Za-z]{4,}/g) ?? []).map(stem).filter((w) => !GENERIC_CODE_WORDS.test(w)))];
+  if (!asked.length || listings.length <= 1) return listings;
+  const words = (l: DocumentListing) => new Set(`${l.caption} ${l.lines.join(" ")}`.replace(/([a-z])([A-Z])/g, "$1 $2").match(/[A-Za-z]{4,}/g)?.map(stem) ?? []);
+  const scored = listings.map((l) => { const w = words(l); return { l, score: asked.filter((a) => w.has(a)).length }; });
+  const best = Math.max(...scored.map((x) => x.score));
+  // Only a clear pick narrows the answer: the best listings must match more of the question than the rest.
+  const picked = scored.filter((x) => x.score === best).map((x) => x.l);
+  return best >= 1 && picked.length < listings.length && scored.some((x) => x.score < best) ? picked : listings;
+}
+
 export function documentListings(doc: SuprnotesLessonInput | null | undefined): DocumentListing[] {
   if (!doc) return [];
   const blocks = ordered(doc);
@@ -235,6 +255,35 @@ export function overlongCodeBoards(doc: SuprnotesLessonInput, beats: Array<Pick<
   });
 }
 
+/**
+ * EVERY LINE OF A LISTING THAT IS TAUGHT IS SHOWN. A long listing is split over consecutive code
+ * boards, each naming its "lines"; an AVL chapter's insert listing was split and its last piece never
+ * got a board, so "Balancing after insertion" stopped mid-function (PDF bench, 2026-10-18). For each
+ * listing a code board shows, the printed lines no board covers are named, so the plan is sent back.
+ */
+export function listingGaps(doc: SuprnotesLessonInput, beats: Array<Pick<CanvasPlanBeat, "id" | "stage" | "source">>): string[] {
+  const listings = documentListings(doc);
+  const shown = new Map<number, Array<[number, number]>>();
+  for (const beat of beats) {
+    if (beat.stage !== "code" || !beat.source?.listing) continue;
+    const listing = listings.find((l) => l.n === beat.source!.listing);
+    if (!listing) continue;
+    const range = beat.source.lines ?? [1, listing.lines.length];
+    shown.set(listing.n, [...(shown.get(listing.n) ?? []), range]);
+  }
+  const gaps: string[] = [];
+  for (const [n, ranges] of shown) {
+    const listing = listings.find((l) => l.n === n)!;
+    // A blank line or a lone brace left off is no gap.
+    const missing = listing.lines.map((text, i) => ({ line: i + 1, text })).filter(({ line, text }) => text.trim() && !/^[{}\s;]*$/.test(text) && !ranges.some(([a, b]) => line >= a && line <= b));
+    if (!missing.length) continue;
+    const spans: Array<[number, number]> = [];
+    for (const { line } of missing) { const last = spans[spans.length - 1]; if (last && line === last[1] + 1) last[1] = line; else spans.push([line, line]); }
+    gaps.push(`LISTING ${n} lines ${spans.map(([a, b]) => (a === b ? `${a}` : `${a} to ${b}`)).join(", ")} are on no code board — the student would see the routine stop mid-way: give them a code board (the next one after the board showing the lines before them), naming its "lines"`);
+  }
+  return gaps;
+}
+
 /** Two short texts' likeness, 0..1: shared character pairs (Dice). */
 function likeness(a: string, b: string): number {
   const pairs = (s: string) => {
@@ -370,6 +419,55 @@ export function documentPageMap(doc: SuprnotesLessonInput): PageSummary[] {
 }
 
 /** A page with enough on it that a lecture covering the document must teach it. */
+/**
+ * THE DOCUMENT'S SECTIONS, as an outline must cover them: its real headings (not the parser's "Page
+ * N" markers or figure captions), and for a heading that names nothing ("Activity 1.1", "Questions")
+ * the words that follow it, so "Activity 1.1: testing a leaf for starch" can be matched.
+ */
+export function documentSections(doc: SuprnotesLessonInput): string[] {
+  // Parser headings are noisy: the same heading on every block under it, running page headers
+  // ("6 1Plants"), bullet lines and symbol runs. One section per distinct, real heading.
+  const junk = (h: string) =>
+    h.length < 4 || h.length > 80
+    || /^(?:page \d+|figure\b|fig\.|table\b|contents|references|bibliography|index)/i.test(h)
+    || /^[•·*\-–—]/.test(h) || /^[a-z]/.test(h)
+    || (/\d[A-Za-z]|[A-Za-z]\d/.test(h) && !/^\d+(?:\.\d+)*\.?\s/.test(h))
+    || (h.match(/[A-Za-z]{3,}/g) ?? []).length < (/^[A-Z][a-z]{3,}/.test(h) ? 1 : 2)
+    || (h.replace(/[\w\s.,:;'’()&?!\-–—/]/g, "").length > h.length * 0.2);
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const b of doc.contentBlocks ?? []) {
+    const h = (b.heading ?? "").replace(/\s+/g, " ").trim();
+    if (!h || seen.has(h.toLowerCase())) continue;
+    seen.add(h.toLowerCase());
+    if (junk(h)) continue;
+    const generic = /^(?:activity|practical|question|questions|exercise|example|task|summary|check your|end of|worked example)\b/i.test(h);
+    out.push(generic ? `${h}: ${(b.text ?? "").replace(/\s+/g, " ").split(" ").slice(0, 8).join(" ")}`.trim() : h);
+  }
+  // A code chapter's sections are its listings: "Node declaration for AVL trees", "Deletion in an AVL tree".
+  for (const l of documentListings(doc)) {
+    const name = l.caption.replace(/^(?:figure|fig\.|listing)\s*[\d.]+\s*/i, "").trim();
+    if (name.length >= 6 && !out.some((o) => o.toLowerCase() === name.toLowerCase())) out.push(name);
+  }
+  return out.slice(0, 30);
+}
+
+/**
+ * THE QUESTION'S KEY WORDS THE DOCUMENT NEVER USES. Asked "What happens in the Calvin cycle?" of a
+ * photosynthesis chapter that never mentions it, strict mode retitled the chapter's own content "the
+ * Calvin cycle" — wrong science, in the student's own document's name (PDF bench, 2026-10-18). A word
+ * of the question (four letters or more, not a question word) found nowhere in the document is named,
+ * so the lecture says plainly that the document does not cover it.
+ */
+const QUESTION_WORDS = new Set("what which when where why how does do did is are was were happen happens happened explain describe tell about mean means work works between difference different compare their there this that these those with from into your notes document page pages section chapter".split(" "));
+export function termsNotInDocument(question: string, doc: SuprnotesLessonInput): string[] {
+  const text = (doc.contentBlocks ?? []).map((b) => [b.heading, b.text, ...(b.items ?? [])].filter(Boolean).join(" ")).join(" ").toLowerCase();
+  // The word's root, so "store" finds "storing" and "fertilisers" finds "fertiliser".
+  const stem = (w: string) => { const l = w.toLowerCase().replace(/(?:ies|es|s)$/, ""); return l.slice(0, Math.max(4, l.length - 2)); };
+  return [...new Set((question.match(/[A-Za-z][A-Za-z-]{3,}/g) ?? []).filter((w) => !QUESTION_WORDS.has(w.toLowerCase())))]
+    .filter((w) => !text.includes(stem(w)));
+}
+
 export function substantivePages(doc: SuprnotesLessonInput): number[] {
   return documentPageMap(doc).filter((p) => p.chars >= 150 || p.listings.length > 0).map((p) => p.page);
 }

@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Pt } from "../types";
+import { fitText } from "../cuts";
 import { PALETTE, Sketch, arrow, bool, clamp, fmt, list, str } from "./mathsKit";
 import { parseNum } from "./coordinateGrid";
 
@@ -139,7 +140,8 @@ const PARTS = [
   { id: "point", name: "Marked point" },
 ];
 
-const cap = (s: string, n = 34) => (s.length <= n ? s : s.slice(0, n - 1) + "…");
+/** A label kept to `n` characters: ended at a word break and recorded for the rewrite pass, never "…". */
+const cap = (s: string, n = 34) => fitText(s, n);
 
 export const numberLine: FigureComponent = {
   name: "numberLine",
@@ -238,7 +240,7 @@ export const numberLine: FigureComponent = {
     if (firstOpen) sk.part("open-circle", "Open circle (not included)", firstOpen);
     if (firstClosed) sk.part("closed-circle", "Closed circle (included)", firstClosed);
     if (setAnchor) sk.part("solution-set", cap(sets.length ? intervalsText(sets, v) : "Solution set"), setAnchor);
-    if (ints.length) sk.part("integers", cap(`Integers ${ints.length > 8 ? ints.slice(0, 7).map((n) => fmt(n, 0)).join(", ") + "…" : ints.map((n) => fmt(n, 0)).join(", ")}`), { x: X(ints[0]), y: Y });
+    if (ints.length) sk.part("integers", cap(`Integers ${ints.length <= 8 ? ints.map((n) => fmt(n, 0)).join(", ") : ints.every((n, i) => !i || n === ints[i - 1] + 1) ? `${fmt(ints[0], 0)} to ${fmt(ints[ints.length - 1], 0)}` : `${ints.slice(0, 6).map((n) => fmt(n, 0)).join(", ")} and ${ints.length - 6} more`}`), { x: X(ints[0]), y: Y });
     if (marked.length) sk.part("point", cap(`Point ${marked[0].name} = ${valueText(marked[0].x)}`), { x: X(clamp(marked[0].x, lo, hi)), y: Y });
     return sk.finish(14, { h: 220 });
   },

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import { createCostMeter } from "@/lib/costMeter";
+import { FORMULA_TRANSCRIPTION_PROMPT, pageHasGarbledFormulas, rebuildFormulaBlocks } from "@/lib/pdfFormulas";
 import {
   applyGlobalSourceOrder,
   buildPdfLessonPlan,
@@ -229,6 +230,32 @@ Return JSON only: { "keep": true|false, "type": "table|chart|graph|diagram|flowc
     // figure — the page-level detector + deterministic filter already screened it once.
     console.error(`[pdf] crop verification failed: ${error instanceof Error ? error.message : "unknown error"}`);
     return { keep: true, type: claimedType };
+  }
+}
+
+/**
+ * The page's displayed formulas, read from its image (lib/pdfFormulas.ts): asked only of a page whose
+ * formulas did not survive text extraction. An empty list on any failure — the page then gets a
+ * marker in their place, never a formula guessed from the jumble.
+ */
+async function transcribeFormulas(client: OpenAI, image: Buffer, mime: string): Promise<string[]> {
+  try {
+    const completion = await client.chat.completions.create({
+      model: VISION_MODEL,
+      max_tokens: 2_000,
+      response_format: { type: "json_object" },
+      messages: [{
+        role: "user",
+        content: [
+          { type: "image_url", image_url: { url: `data:${mime};base64,${image.toString("base64")}`, detail: "high" } },
+          { type: "text", text: FORMULA_TRANSCRIPTION_PROMPT },
+        ],
+      }],
+    } as never);
+    const raw = JSON.parse((completion as { choices: Array<{ message: { content: string | null } }> }).choices[0]?.message?.content ?? "{}") as { formulas?: unknown };
+    return (Array.isArray(raw.formulas) ? raw.formulas : []).filter((f): f is string => typeof f === "string" && f.trim().length > 0).map((f) => f.trim().slice(0, 400)).slice(0, 12);
+  } catch {
+    return [];
   }
 }
 
@@ -972,6 +999,7 @@ async function parsePdfRequest(req: NextRequest) {
    * concurrently per page, because those are independent network calls where concurrency is the
    * whole win.
    */
+  const formulaPages: Array<{ page: number; formulas: string[] }> = [];
   const detectedPages = await mapLimit(renderedPages, PAGE_CONCURRENCY, async (page) => {
     const pageBlocks = [...page.blocks];
     let figures: PdfDetectedFigure[] = [];
@@ -1027,6 +1055,15 @@ async function parsePdfRequest(req: NextRequest) {
         pageNumber: page.pageNumber,
         role: "visual",
       });
+    }
+    // A formula that came out of the PDF as jumble is read from the page image instead (lib/pdfFormulas.ts).
+    if (client && pageHasGarbledFormulas(pageBlocks)) {
+      const image = page.visionImage ?? page.png;
+      const formulas = image ? await transcribeFormulas(client, image, page.visionImage ? page.visionMime : "image/png") : [];
+      const rebuilt = rebuildFormulaBlocks(pageBlocks, formulas, page.pageNumber);
+      pageBlocks.splice(0, pageBlocks.length, ...rebuilt);
+      if (formulas.length) formulaPages.push({ page: page.pageNumber, formulas });
+      console.log(`[parse-pdf] page ${page.pageNumber}: ${formulas.length} formula(s) read from the page image in place of jumbled text`);
     }
     return { page, pageBlocks, figures, textRegions };
   });
@@ -1440,7 +1477,10 @@ async function parsePdfRequest(req: NextRequest) {
      * The lecture is still built only from the selection; this exists so a question asked during
      * the lecture can be about any part of the document they uploaded.
      */
-    fullDocumentText,
+    // The full text keeps the extractor's jumble on formula pages: each such page's formulas as printed are added.
+    fullDocumentText: formulaPages.length
+      ? `${fullDocumentText}\n\n${formulaPages.sort((a, b) => a.page - b.page).map((f) => `[page ${f.page} formulas, as printed] ${f.formulas.join(" ; ")}`).join("\n")}`.slice(0, FULL_TEXT_CHARS + 4_000)
+      : fullDocumentText,
     pageImageCount: storedPages.length,
     regionImageCount: storedRegions.length,
     title,

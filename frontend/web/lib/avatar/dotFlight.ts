@@ -54,6 +54,7 @@ export function parkingSpot(target: Rect, size: number, bounds: Rect, ink: Rect[
   const usable: Rect = { x: bounds.x + 6, y: bounds.y + 6, w: bounds.w - 12, h: bounds.h - 12 };
   let best: Pt | null = null;
   let bestScore = Infinity;
+  let bestCovered = 0;
   candidates.forEach((c, order) => {
     const box = boxAt(c, size);
     if (!inside(box, usable)) return;
@@ -65,9 +66,13 @@ export function parkingSpot(target: Rect, size: number, bounds: Rect, ink: Rect[
     if (score < bestScore) {
       bestScore = score;
       best = c;
+      bestCovered = covered;
     }
   });
-  return best;
+  // Every spot beside the target would cover words (a full exam board): no spot — she points from
+  // where she stands rather than land on the text ("…or omit the direction" was hidden under her
+  // on two exam boards; live test, 2026-10-17).
+  return bestCovered > 0.03 ? null : best;
 }
 
 /** Distance from a point to a rectangle's edge (0 inside). */

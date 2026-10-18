@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Ink, Pt } from "../types";
+import { fitText } from "../cuts";
 import { PALETTE, Sketch, arrow, frac, fracAdd, fracMul, fracStr, list, num, polar, textW, type Frac } from "./mathsKit";
 
 /**
@@ -276,7 +277,7 @@ export const fractionModel: FigureComponent = {
     const subRow = rows.find((r) => r.subAnchor);
     if (subRow?.subAnchor && L) sk.part("common-denominator", `Common denominator ${L}`, subRow.subAnchor);
     if (eqRow) sk.part("result", `Equivalent ${fracStr({ n: a.n * k, d: a.d * k })}`, eqRow.cells[Math.max(0, a.n * k - 1)].c);
-    else if (resultAnchor) sk.part("result", resultName.slice(0, 34), resultAnchor);
+    else if (resultAnchor) sk.part("result", fitText(resultName, 34), resultAnchor);
     return sk.finish(14);
   },
 };
@@ -388,6 +389,6 @@ function numberLine(fracs: Frac[], op: Op, k: number): ReturnType<FigureComponen
   if (a.n > 0) sk.part("shaded-part", `${fracStr(a)} along the line`, tips[0]);
   if (a.d > 1) sk.part("unit-fraction", `Unit fraction 1/${a.d}`, { x: X(1 / a.d / 2), y });
   if (L !== a.d) sk.part("common-denominator", `Common denominator ${L}`, { x: X((L / a.d > 1 ? 1 : 0.5) / L), y: y + 6 });
-  if (resultAnchor) sk.part("result", resultName.slice(0, 34), resultAnchor);
+  if (resultAnchor) sk.part("result", fitText(resultName, 34), resultAnchor);
   return sk.finish(14);
 }

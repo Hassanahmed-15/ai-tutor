@@ -1,6 +1,7 @@
 import type { FigureComponent, FigureParams, FigureShape } from "../types";
+import { fitText } from "../cuts";
 
-const name = (v: unknown, fallback: string) => (typeof v === "string" && v.trim() ? v.trim().slice(0, 24) : fallback);
+const name = (v: unknown, fallback: string) => (typeof v === "string" && v.trim() ? fitText(v.trim(), 24) : fallback);
 const gcd = (a: number, b: number): number => (b ? gcd(b, a % b) : a);
 /** Dominant (capital) allele first: "bB" → "Bb". */
 const pair = (a: string, b: string) => (a === a.toUpperCase() && b !== b.toUpperCase() ? a + b : b === b.toUpperCase() && a !== a.toUpperCase() ? b + a : a + b);

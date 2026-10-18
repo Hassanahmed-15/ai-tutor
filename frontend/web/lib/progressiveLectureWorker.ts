@@ -197,7 +197,7 @@ function promptQuestionSection(input: ProgressiveLectureInput): string {
   if (input.sourceType !== "prompt" || isSuprnotesLessonInput(input.suprnotes) || input.outline?.scope !== "question") return "";
   const question = (input.focus || input.topic || "").replace(/\s+/g, " ").trim();
   if (!question) return "";
-  return `THIS LECTURE ANSWERS ONE QUESTION: "${question}". This slide answers it directly: start with the answer, then give only what is needed to understand it. No history, no background the question did not ask for, no tangents, and do not restate the question.`;
+  return `THIS LECTURE ANSWERS ONE QUESTION: "${question}". This slide is one part of that answer — the part its title names; together the slides answer it completely. Get straight to this part and give only what is needed to understand it. No history, no background the question did not ask for, no tangents, do not restate the question, and do not repeat what another slide of the answer covers.`;
 }
 
 /** The selection, stated as the lecture's subject — for every beat's context and its board. */
@@ -556,7 +556,7 @@ async function generateOneBeat(
    * examples, pacing, questions and goal. A strict lesson keeps only the reading level — its content
    * is its source, so no syllabus scope, no interests and no local examples.
    */
-  const cardSection = policy ? `\n${policyForWriter(policy, { strict })}` : "";
+  const cardSection = policy ? `\n${policyForWriter(policy, { strict, source: input.sourceType === "pdf" ? "pdf" : input.sourceType === "suprnotes" ? "course" : undefined })}` : "";
   const personaSection = `${cardSection}${!strict && input.learnerPersona?.trim() ? `\n${input.learnerPersona.trim()}` : ""}`;
   if (personaSection && planned.sequence === 0) console.log(`[persona] script prompt for ${session.id} carries the student portrait (${personaSection.length} chars)`);
 

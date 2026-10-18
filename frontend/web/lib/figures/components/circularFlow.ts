@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, FigurePart, Ink, Pt } from "../types";
+import { trimToFit } from "../../text/fit";
 import { PALETTE, Sketch, arrow, bool, optNum } from "./mathsKit";
 import { txt } from "./econKit";
 
@@ -40,10 +41,10 @@ export const circularFlow: FigureComponent = {
   params: `sectors (2 — households and firms, default —, 3 adds government, 4 adds overseas (open economy), 5 adds the financial sector; or name them, e.g. "government, financial sector"), flows ("both" — default —, "money" for income and expenditure only, "real" for factor services and goods and services only), injections (false hides the withdrawal and injection arrows of the added sectors). Real flows are the inner loops, money flows the outer loops.`,
   match: /\b(circular flow( of (income|money|national income))?|injections? and (withdrawals?|leakages?)|(withdrawals?|leakages?) and injections?|(two|three|four|five)[- ]sector (model|economy|circular flow))\b/i,
   parts: [
-    { id: "income", name: "Income (wages, rent, interest…)" },
+    { id: "income", name: "Income (wages, rent, interest)" },
     { id: "expenditure", name: "Consumer expenditure" },
     { id: "goods-services", name: "Goods and services" },
-    { id: "factor-services", name: "Factor services (labour, land…)" },
+    { id: "factor-services", name: "Factor services (labour, land)" },
     { id: "withdrawals", name: "Withdrawals" },
     { id: "injections", name: "Injections" },
     { id: "households", name: "Households" },
@@ -111,14 +112,15 @@ export const circularFlow: FigureComponent = {
     };
     const clearTop = Math.min(top, sTop) - 40, clearBot = Math.max(bot, sBot) + 40;
     const hIn = hx + boxW * 0.68, hOut = hx + boxW * 0.32, fIn = fx + boxW * 0.32, fOut = fx + boxW * 0.68;
-    if (real) loop(hIn, fIn, top, clearTop, REAL, "factor-services", "Factor services (labour, land…)");
-    if (money) loop(fOut, hOut, top, clearTop - 40, MONEY, "income", "Income (wages, rent, interest…)");
+    if (real) loop(hIn, fIn, top, clearTop, REAL, "factor-services", "Factor services (labour, land)");
+    if (money) loop(fOut, hOut, top, clearTop - 40, MONEY, "income", "Income (wages, rent, interest)");
     if (real) loop(fIn, hIn, bot, clearBot, REAL, "goods-services", "Goods and services");
     if (money) loop(hOut, fOut, bot, clearBot + 40, MONEY, "expenditure", "Consumer expenditure");
     // Flows first, then injections/withdrawals, then the boxes (whose names are written inside them).
     const rank = (id: string) => ["income", "expenditure", "goods-services", "factor-services", "withdrawals", "injections"].indexOf(id);
     parts.sort((a, b) => (rank(a.id) < 0 ? 99 : rank(a.id)) - (rank(b.id) < 0 ? 99 : rank(b.id)));
-    for (const p of parts) sk.part(p.id, p.name.slice(0, 34), p.anchor);
+    // Self-labelled: these names are pen targets, never drawn, so they are only kept whole-worded (not sent for a rewrite).
+    for (const p of parts) sk.part(p.id, trimToFit(p.name, 34), p.anchor);
     return sk.finish(16);
   },
 };

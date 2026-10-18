@@ -2,7 +2,7 @@ import "server-only";
 
 import type OpenAI from "openai";
 import { costFor } from "../modelPricing";
-import { drawIllustration, illustrationImageModel, locateParts, prepareStoredIllustration, verifyParts } from "../illustratedBoard";
+import { drawIllustration, illustrationImageModel, locateParts, prepareStoredIllustration, trustedParts, verifyParts } from "../illustratedBoard";
 import { loadSharedCanvasImage, loadSharedDiagramRecord, saveSharedCanvasImage, saveSharedDiagramRecord } from "./store";
 import { TEXTBOOK_STYLE_VERSION, textbookDiagramKey, textbookPrompt } from "./textbookPrompt";
 
@@ -21,7 +21,9 @@ export { TEXTBOOK_STYLE_VERSION, textbookDiagramKey, textbookPrompt };
  *      conventions named, no text;
  *   3. checked by a vision model acting as a textbook editor — accurate, conventional, every part
  *      visible, no text — and redrawn once with that editor's corrections if it fails;
- *   4. its parts located on the picture and those points checked again (lib/illustratedBoard.ts);
+ *   4. its parts located on the picture and those points checked again (lib/illustratedBoard.ts) —
+ *      a picture the locator finds text in fails like one the editor rejects (text could contradict
+ *      our labels), and when the second look cannot run only the parts located surely are labelled;
  *   5. stored with a verified record, so the next student gets it instantly.
  *
  * A diagram that cannot pass is not shown: the caller falls back to a plain board that is correct.
@@ -51,7 +53,8 @@ export async function checkTextbookPicture(openai: OpenAI, jpeg: Buffer, subject
       role: "user",
       content: [
         { type: "text", text: `You are a strict school-textbook editor checking ONE generated diagram before a student sees it. It should show: ${subject}. It must show these parts: ${parts.join("; ") || "(none listed)"}.
-First, for each listed part, say to yourself where it is and what it touches; compare that with the standard textbook arrangement (which layer it belongs to and what lies on each side of it, which way each arrow or flow points). Reject it ("accurate": false) for anything a teacher would correct: a part in the wrong layer or position (cilia beneath the epithelium instead of on its surface), an arrow pointing the wrong way, wrong anatomy or structure, parts missing or merged, wrong connections, reversed colour conventions, impossible proportions, a decorative or cartoon style instead of a textbook diagram, or any letters, numbers or labels in the picture. Do not reject it for being simple, for style details, or for parts that were not listed.
+First, for each listed part, say to yourself where it is and what it touches; compare that with the standard textbook arrangement (which layer it belongs to and what lies on each side of it, which way each arrow or flow points). Reject it ("accurate": false) for anything a teacher would correct: a part in the wrong layer or position (cilia beneath the epithelium instead of on its surface), an arrow pointing the wrong way, wrong anatomy or structure, parts missing or merged, wrong connections, reversed colour conventions, impossible proportions, a part at an impossible depth, distance or scale (an earthquake's focus drawn in the Earth's core — it lies in the crust or upper mantle), or any letters, numbers or labels in the picture. Also reject anything drawn that does not belong in this subject and would mislead a student (organs, bones or blood vessels drawn on a person in a physics or everyday scene). Do not reject it for being simple, for style details, or for harmless parts that were not listed. JUDGE THE LISTED PARTS, NOT A STORY: the subject line only says what is drawn — never reject because an arrangement, sequence, hierarchy, interaction or process it mentions is not shown; reject only a listed part that is missing, wrong or in the wrong place. DRAWING STYLE IS NOT A FAULT: a flat-coloured, simplified, illustrated or "cartoon-like" look is exactly the house style — judge only whether the science is right and each listed part is visible. Do not ask for a process to be shown happening (binding, moving, reacting) unless it is a listed part.
+The picture is UNLABELLED ON PURPOSE: the app adds its own labels, leader lines and explanations afterwards. Never reject it, and never list a problem, because parts are not named, labelled, "identified", "indicated" or "distinguished" in words, because there are no arrows or lines linking parts to their functions, or because something is not "explicitly shown" in text — judge only whether each listed part is drawn correctly, in the right place, and visible enough to point at.
 Return JSON {"accurate": boolean, "missing": [listed parts that are not clearly visible], "problems": [each problem in a few words, saying what to change], "textInImage": boolean}.` },
         { type: "image_url", image_url: { url: `data:image/jpeg;base64,${jpeg.toString("base64")}` } },
       ],
@@ -59,7 +62,9 @@ Return JSON {"accurate": boolean, "missing": [listed parts that are not clearly 
   } as OpenAI.Chat.ChatCompletionCreateParamsNonStreaming);
   const raw = JSON.parse(res.choices[0]?.message?.content ?? "{}") as { accurate?: boolean; missing?: unknown[]; problems?: unknown[]; textInImage?: boolean };
   const list = (v: unknown[] | undefined) => (Array.isArray(v) ? v.map((x) => String(x).slice(0, 160)).filter(Boolean).slice(0, 8) : []);
-  return { accurate: raw.accurate !== false, missing: list(raw.missing), problems: list(raw.problems), textInImage: raw.textInImage === true, costUsd: costFor(CHECK_MODEL, res.usage) };
+  // Only an explicit "accurate": true passes: an answer that leaves the verdict out has not vouched
+  // for the picture.
+  return { accurate: raw.accurate === true, missing: list(raw.missing), problems: list(raw.problems), textInImage: raw.textInImage === true, costUsd: costFor(CHECK_MODEL, res.usage) };
 }
 
 /**
@@ -120,38 +125,62 @@ export async function textbookDiagram(openai: OpenAI, subject: string, parts: st
     }
   }
 
-  // 2–3. Drawn, checked, and drawn again with the editor's corrections when it fails.
+  // 2–4. Drawn, checked, located — and drawn again with the corrections when it fails. A picture the
+  // editor passes is located at once: the locator finding text in it fails it too (one redraw).
+  type Attempt = { picture: Awaited<ReturnType<typeof drawIllustration>>; verdict: Awaited<ReturnType<typeof checkTextbookPicture>>; located?: Awaited<ReturnType<typeof locateParts>> };
+  const faultsOf = (v: Attempt["verdict"]) => (v.accurate ? 0 : 3) + v.missing.length + (v.textInImage ? 2 : 0);
+  const passes = (v: Attempt["verdict"]) => v.accurate && !v.textInImage && v.missing.length <= Math.floor(parts.length / 4);
   let corrections: string[] = [];
-  let best: { picture: Awaited<ReturnType<typeof drawIllustration>>; verdict: Awaited<ReturnType<typeof checkTextbookPicture>> } | undefined;
+  let best: Attempt | undefined;
   for (let attempt = 1; attempt <= 2; attempt++) {
     if (attempt > 1 && options.budget.left() < 100_000) break;
     const picture = await drawIllustration(openai, textbookPrompt(subject, parts, corrections));
     costUsd += picture.costUsd;
-    const verdict = await checkTextbookPicture(openai, picture.jpeg, subject, parts);
+    let verdict = await checkTextbookPicture(openai, picture.jpeg, subject, parts);
     costUsd += verdict.costUsd;
-    const faults = (verdict.accurate ? 0 : 3) + verdict.missing.length + (verdict.textInImage ? 2 : 0);
-    const bestFaults = best ? (best.verdict.accurate ? 0 : 3) + best.verdict.missing.length + (best.verdict.textInImage ? 2 : 0) : Infinity;
-    if (faults < bestFaults) best = { picture, verdict };
-    if (verdict.accurate && !verdict.textInImage && verdict.missing.length <= Math.floor(parts.length / 4)) break;
+    let located: Attempt["located"];
+    if (passes(verdict)) {
+      located = await locateParts(openai, picture.jpeg, subject, parts);
+      costUsd += located.costUsd;
+      if (located.textInImage) verdict = { ...verdict, textInImage: true, problems: [...verdict.problems, "letters or numbers drawn in the picture"] };
+    }
+    if (faultsOf(verdict) < (best ? faultsOf(best.verdict) : Infinity)) best = { picture, verdict, located };
+    if (passes(verdict)) break;
     corrections = [...verdict.problems, ...verdict.missing.map((m) => `show the ${m} clearly`), ...(verdict.textInImage ? ["remove every letter, number and label"] : [])];
   }
   if (!best || !best.verdict.accurate || best.verdict.textInImage) {
     throw new Error(`no diagram passed the textbook check: ${best ? [...best.verdict.problems, ...(best.verdict.textInImage ? ["text in image"] : [])].join("; ") || "inaccurate" : "not drawn"}`);
   }
 
-  // 4. Every part located, and the points checked once more.
-  const located = await locateParts(openai, best.picture.jpeg, subject, parts);
-  costUsd += located.costUsd;
-  const checked = options.budget.left() > 40_000 ? await verifyParts(openai, best.picture.jpeg, subject, located.parts).catch(() => ({ parts: located.parts, corrected: [] as string[], costUsd: 0 })) : { parts: located.parts, corrected: [] as string[], costUsd: 0 };
-  costUsd += checked.costUsd;
-  if (checked.parts.length < Math.max(2, Math.ceil(parts.length * 0.6))) throw new Error(`only ${checked.parts.length} of ${parts.length} parts could be found on the diagram`);
+  // Every part located (already, when the editor passed it), and the points checked once more.
+  const located = best.located ?? await locateParts(openai, best.picture.jpeg, subject, parts);
+  if (!best.located) costUsd += located.costUsd;
+  if (located.textInImage) throw new Error("no diagram passed the textbook check: text in image");
+  const second = options.budget.left() > 40_000 ? await verifyParts(openai, best.picture.jpeg, subject, located.parts).catch(() => null) : null;
+  costUsd += second?.costUsd ?? 0;
+  const verified = Boolean(second?.verified);
+  // Found = placed on the picture and not rejected by the second look (the 60% rule). Of those, only
+  // the parts someone vouches for are labelled: confirmed or moved by the second look, or — when it
+  // could not run — located surely. An unfound or unvouched part is not returned, so never labelled.
+  const found = verified ? second!.parts : located.parts;
+  if (found.length < Math.max(2, Math.ceil(parts.length * 0.6))) throw new Error(`only ${found.length} of ${parts.length} parts could be found on the diagram`);
+  const placed: DiagramPart[] = trustedParts(located.parts, second).map((p) => ({ name: p.name, x: p.x, y: p.y }));
+  const dropped = found.length - placed.length;
 
-  // 5. Stored, with its verified record when it may be shared.
+  // 5. Stored, with its verified record when it may be shared. An unverified one is shown but not
+  // remembered: the next student's request gets a full check rather than this one's fewer labels.
   await options.save(key, best.picture.display);
   if (options.share) {
     await saveSharedCanvasImage(key, best.picture.display).catch(() => undefined);
-    const record: DiagramRecord = { key, subject, parts: checked.parts, check: { accurate: true, problems: best.verdict.problems }, model: illustrationImageModel(), style: TEXTBOOK_STYLE_VERSION, createdAt: new Date().toISOString() };
-    await saveSharedDiagramRecord(key, record).catch(() => undefined);
+    if (verified) {
+      const record: DiagramRecord = { key, subject, parts: placed, check: { accurate: true, problems: best.verdict.problems }, model: illustrationImageModel(), style: TEXTBOOK_STYLE_VERSION, createdAt: new Date().toISOString() };
+      await saveSharedDiagramRecord(key, record).catch(() => undefined);
+    }
   }
-  return { key, display: best.picture.display, paper: best.picture.paper, parts: checked.parts, cached: false, costUsd, log: `generated, checked${corrections.length ? " after one correction" : ""}, ${checked.parts.length}/${parts.length} parts located${checked.corrected.length ? `, corrected ${checked.corrected.join(", ")}` : ""}` };
+  const notes = [
+    `${placed.length}/${parts.length} parts located`,
+    verified ? (second!.corrected.length ? `corrected ${second!.corrected.join(", ")}` : "") : `not verified${dropped ? `, ${dropped} unsure part${dropped === 1 ? "" : "s"} left unlabelled` : ""}`,
+    verified && second!.rejected.length ? `dropped ${second!.rejected.join(", ")}` : "",
+  ].filter(Boolean);
+  return { key, display: best.picture.display, paper: best.picture.paper, parts: placed, cached: false, costUsd, log: `generated, checked${corrections.length ? " after one correction" : ""}, ${notes.join(", ")}` };
 }

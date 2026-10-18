@@ -423,6 +423,13 @@ export type CanvasPlanBeat = {
    */
   plannedFigure?: string;
   /**
+   * The KIND of visual the planner says this board needs (lib/canvas/prompts.ts), whatever the subject:
+   * a thing (a checked picture), a quantity (a graph), math, a sequence (a flow), a comparison (a
+   * table) or a concept (notes). The visual policy follows it last (owner, 2026-10-17: routing by
+   * word lists never generalised).
+   */
+  visualType?: "thing" | "quantity" | "math" | "sequence" | "comparison" | "concept";
+  /**
    * What Aria writes on the board as she speaks (owner, 2026-10-17: "whatever Aria speaks, at least
    * 60–80% should appear on the board"): the planner's short phrase for a sentence, shown on exactly
    * that sentence in the notes column.

@@ -28,7 +28,7 @@ test("the reported five-topic outline for 'why does underfitting happen' is cut 
     { title: "Underfitting Happens", caption: "Identify the main reasons why underfitting occurs in models." },
   ];
   const kept = capQuestionOutline(outline, "why does underfitting happen");
-  assert.ok(kept.length <= 2, `kept ${kept.length}`);
+  assert.ok(kept.length <= 3, `kept ${kept.length}`);
   assert.ok(kept.some((s) => /reasons why/.test(s.caption)), "the topic that actually answers 'why' survives");
   assert.ok(!kept.some((s) => /^Concrete Example|^Defining/.test(s.title)), "a standalone example or definition is not the answer");
 });

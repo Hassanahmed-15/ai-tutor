@@ -14,6 +14,7 @@ import { evalExpr } from "./expr";
 import { placeLabels } from "../figures/labels";
 import { recordFigureCut } from "../figures/cuts";
 import { trimToFit } from "../text/fit";
+import { fitText } from "./renderFit";
 import { partBodies, shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
 import type { FigureDrawing } from "../figures/types";
@@ -86,8 +87,46 @@ export function textWidth(text: string, size: number): number {
   return w * size;
 }
 
+/**
+ * A "word" wider than its whole line — working written without spaces, "0.50(4.0)+1.0(0)=0.50(−1.0)+1.0v"
+ * — ran out of its card (audit 2026-10-17). It is broken where working reads naturally: after "=",
+ * ";", "," or before "+", "−", "×"; failing that, between characters.
+ */
+export function splitLong(word: string, size: number, maxW: number): string[] {
+  if (textWidth(word, size) <= maxW) return [word];
+  const parts: string[] = [];
+  let rest = word;
+  while (rest && textWidth(rest, size) > maxW) {
+    let fit = 1;
+    while (fit < rest.length && textWidth(rest.slice(0, fit + 1), size) <= maxW) fit++;
+    let cut = -1;
+    // A natural break first: after an arrow, slash or punctuation ("Saturn→ | Uranus", not "Uran | us"),
+    // before an operator.
+    for (let i = fit; i > fit * 0.35; i--) {
+      if (/[=;,:)\]→⇒⟶\/]/.test(rest[i - 1]) || /[+−\-×÷(]/.test(rest[i])) { cut = i; break; }
+    }
+    if (cut < 0 && /[A-Za-z]/.test(rest[fit - 1] ?? "") && /[A-Za-z]/.test(rest[fit] ?? "")) {
+      // Inside a word: a proper hyphen, and never a stub of one or two letters on either side
+      // ("unbalanc | ed" read as two words on a card; 2026-10-18).
+      let at = fit - 1;
+      while (at > 3 && textWidth(`${rest.slice(0, at)}-`, size) > maxW) at--;
+      if (rest.length - at < 3) at = Math.max(3, rest.length - 3);
+      parts.push(`${rest.slice(0, at)}-`);
+      rest = rest.slice(at);
+      continue;
+    }
+    if (cut < 0) cut = fit;
+    parts.push(rest.slice(0, cut));
+    rest = rest.slice(cut);
+  }
+  if (rest) parts.push(rest);
+  return parts;
+}
+const fittedWords = (text: string, size: number, maxW: number) =>
+  text.split(/\s+/).filter(Boolean).flatMap((w) => splitLong(w, size, maxW));
+
 export function wrap(text: string, size: number, maxW: number, maxLines = 2): string[] {
-  const words = text.split(/\s+/).filter(Boolean);
+  const words = fittedWords(text, size, maxW);
   const lines: string[] = [];
   let line = "";
   for (const word of words) {
@@ -121,6 +160,15 @@ export function wrap(text: string, size: number, maxW: number, maxLines = 2): st
  * that does not fit even at 12 px is shortened, at a natural break (and recorded for a rewrite).
  */
 export function fitDetail(text: string, maxW: number, maxH: number): { lines: string[]; size: number } {
+  // Smaller before any word is broken: the largest size at which every word fits its line whole
+  // ("unbalanced", not "unbalanc | ed" on a narrow card; 2026-10-18).
+  const whole = (size: number) => text.split(/\s+/).every((w) => textWidth(w, size) <= maxW);
+  for (const size of [15, 14, 13, 12, 11]) {
+    const maxLines = Math.max(1, Math.floor(maxH / (size * 1.27)));
+    if (!whole(size)) continue;
+    const lines = wrapWhole(text, size, maxW);
+    if (lines.length <= maxLines) return { lines, size };
+  }
   for (const size of [15, 14, 13, 12]) {
     const maxLines = Math.max(1, Math.floor(maxH / (size * 1.27)));
     const lines = wrapWhole(text, size, maxW);
@@ -132,13 +180,29 @@ export function fitDetail(text: string, maxW: number, maxH: number): { lines: st
 function wrapWhole(text: string, size: number, maxW: number): string[] {
   const lines: string[] = [];
   let line = "";
-  for (const word of text.split(/\s+/).filter(Boolean)) {
+  for (const word of fittedWords(text, size, maxW)) {
     const next = line ? `${line} ${word}` : word;
     if (textWidth(next, size) <= maxW || !line) line = next;
     else { lines.push(line); line = word; }
   }
   if (line) lines.push(line);
   return lines;
+}
+
+/**
+ * Text the layout left off for want of room — an arrow's label, a node's second line, a callout, a
+ * term past the last that fits. Nothing used to report these, so a board could lose words silently;
+ * the board writer is now told (lib/canvas/generate.ts) and the bench counts them.
+ */
+let drops: string[] = [];
+export function recordLayoutDrop(what: string): void {
+  if (drops.length < 40) drops.push(what);
+}
+/** What was left off since the last call. */
+export function takeLayoutDrops(): string[] {
+  const out = drops;
+  drops = [];
+  return out;
 }
 
 const colorAt = (i: number, given?: string) => (given && /^#[0-9a-f]{3,8}$/i.test(given) ? given : PALETTE[i % PALETTE.length]);
@@ -165,7 +229,10 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   const figureWithNotes = hasNotes && (spec.stage.kind === "figure" || spec.stage.kind === "diagram");
   const stage = figureWithNotes ? FIGURE_STAGE_WITH_NOTES : hasNotes ? STAGE : STAGE_WIDE;
 
-  const headingSize = textWidth(spec.heading, HEADING_SIZE) > PANEL_W - 110 ? 28 : HEADING_SIZE;
+  // The heading steps down until it fits the board's width (a 60-character heading at 28 px reached
+  // the edge); it is never cut.
+  let headingSize = HEADING_SIZE;
+  while (headingSize > 22 && textWidth(spec.heading, headingSize) > PANEL_W - 110) headingSize -= 2;
   // s = -1: the heading is written while Aria is still bridging into the board, before sentence 0.
   marks.push({ type: "heading", id: "heading", text: spec.heading, x: 48, y: 66, size: headingSize, s: -1 });
   targets.heading = { x: 48, y: 66 - headingSize, w: Math.min(PANEL_W - 96, textWidth(spec.heading, headingSize)), h: headingSize * 1.25, s: 0 };
@@ -176,9 +243,12 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   const allNotes = hasNotes ? [...spec.notes].sort((a, b) => a.s - b.s) : [];
   const SLOTS = 4;
   const slots = Math.min(SLOTS, allNotes.length);
+  // A page wiped on the sentence it was written is never drawn: two pages due on one sentence were
+  // printed on top of each other ("Rapid, brief vs slower, lasting" over "Both coordinate responses";
+  // live test, 2026-10-17). The later page wins.
   const untilOf = (i: number) => {
     const nextPage = allNotes[(Math.floor(i / SLOTS) + 1) * SLOTS];
-    return nextPage ? Math.max(nextPage.s, allNotes[i].s + 1) : undefined;
+    return nextPage ? Math.max(nextPage.s, allNotes[i].s) : undefined;
   };
   if (figureWithNotes) {
     const gap = 18;
@@ -466,8 +536,8 @@ function arrowMarks(arrows: FlowStage["arrows"], centres: Map<string, { c: Pt; r
     let label = Math.hypot(p1.x - p0.x, p1.y - p0.y) > 110 ? arrow.label : undefined;
     if (label) {
       const spot = [0.5, 0.4, 0.6, 0.3, 0.7].flatMap((t) => [at(t, side), at(t, -side)]).find((pt) => ![...obstacles, ...placedLabels].some((r) => overlaps(r, boxAt(pt), 2)));
-      if (spot) { labelAt = spot; placedLabels.push(boxAt(spot)); } else label = undefined;
-    }
+      if (spot) { labelAt = spot; placedLabels.push(boxAt(spot)); } else { recordLayoutDrop(`the arrow label "${arrow.label}" had no free spot beside its arrow`); label = undefined; }
+    } else if (arrow.label) recordLayoutDrop(`the arrow label "${arrow.label}" sits on an arrow too short to hold it`);
     marks.push({ type: "arrow", id: arrow.id, p0, c, p1, label, labelAt, s: arrow.s, flow: arrow.flow ?? false, rate: arrow.rate, color: arrow.color ?? PALETTE[(i + 2) % PALETTE.length] });
     add(arrow.id, union([{ x: Math.min(p0.x, p1.x), y: Math.min(p0.y, p1.y), w: Math.abs(dx) || 8, h: Math.abs(dy) || 8 }, { x: labelAt.x - 40, y: labelAt.y - 16, w: 80, h: 22 }]), arrow.s);
   });
@@ -475,9 +545,10 @@ function arrowMarks(arrows: FlowStage["arrows"], centres: Map<string, { c: Pt; r
 
 function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
   const nodes = stage.nodes.slice(0, 7);
+  for (const node of stage.nodes.slice(7)) recordLayoutDrop(`the step "${node.label}" is past the seven a flow holds`);
   const centres = new Map<string, { c: Pt; r: number; below?: number; box?: Rect }>();
   const nodeMarks: Mark[] = [];
-  const place = (node: FlowStage["nodes"][number], i: number, cx: number, cy: number, r: number, maxLabelW?: number) => {
+  const place = (node: FlowStage["nodes"][number], i: number, cx: number, cy: number, r: number, maxLabelW?: number, maxH?: number) => {
     /*
      * A STEP WITH NOTHING TO PICTURE IS A CARD, NOT AN EMPTY RING. A node with no icon was drawn as
      * a circle with a dot in it — a circle-theorems board showed five of them named "Chord AB",
@@ -490,9 +561,13 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
       const room = maxLabelW ?? 2 * Math.min(cx - box.x, box.x + box.w - cx) - 10;
       const w = Math.max(110, Math.min(220, room));
       const labelSize = Math.max(13, Math.min(18, Math.floor((w - 18) / Math.max(1, textWidth(node.label, 1)))));
-      const fit = original.sub ? fitDetail(original.sub, w - 20, 3 * 19) : undefined;
+      // In a column of cards each card fits its share of the column: cards drawn as tall as their
+      // detail overlapped ("Testing" printed over "Antiretroviral drugs"; live test, 2026-10-17).
+      const detailRoom = maxH === undefined ? 3 * 19 : maxH - 48;
+      const fit = original.sub && detailRoom >= 15 ? fitDetail(original.sub, w - 20, detailRoom) : undefined;
+      if (original.sub && !fit) recordLayoutDrop(`"${original.sub}" under "${node.label}" had no room in its card`);
       const detail = fit?.lines;
-      const h = Math.max(58, 40 + (detail?.length ?? 0) * (fit?.size ?? 15) * 1.27 + 8);
+      const h = Math.min(maxH ?? Infinity, Math.max(58, 40 + (detail?.length ?? 0) * (fit?.size ?? 15) * 1.27 + 8));
       const card = { x: cx - w / 2, y: cy - h / 2, w, h };
       nodeMarks.push({ type: "box", id: node.id, rect: card, label: node.label, color: colorAt(i, node.color), s: node.s, size: labelSize, ...(detail?.length ? { detail, detailSize: fit!.size } : {}) });
       centres.set(node.id, { c: { x: cx, y: cy }, r: Math.min(w, h) / 2, box: card });
@@ -513,7 +588,9 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
       list.forEach((node, k) => {
         const cy = box.y + 20 + (span * (k + 0.5)) / list.length;
         // A second line under each node only where the column has room for it; the label carries it otherwise.
-        place(list.length >= 3 && span / list.length < 118 ? { ...node, sub: undefined } : node, nodes.indexOf(node), x, cy, r);
+        const tight = list.length >= 3 && span / list.length < 118;
+        if (tight && node.sub && (node.icon || node.becomes || node.glow)) recordLayoutDrop(`"${node.sub}" under "${node.label}" had no room in its column`);
+        place(tight ? { ...node, sub: undefined } : node, nodes.indexOf(node), x, cy, r, undefined, Math.max(52, span / list.length - 8));
       });
     };
     column(inputs, box.x + 58);
@@ -543,7 +620,10 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
       const cy = rows === 1 ? box.y + box.h / 2 - 20 : box.y + 70 + row * (box.h / 2);
       // Four or more side by side leave no room for a second line under each.
       const crowded = perRow >= 4;
-      place(crowded ? { ...node, sub: undefined } : node, i, cx, cy, rows === 1 ? 42 : 34, box.w / perRow - 14);
+      if (crowded && node.sub) recordLayoutDrop(`"${node.sub}" under "${node.label}" had no room with ${perRow} steps in a row`);
+      // Room between cards for the arrow that joins them: a 14 px gap hid every arrow of a
+      // meteoroid → meteor → meteorite chain (2026-10-18).
+      place(crowded ? { ...node, sub: undefined } : node, i, cx, cy, rows === 1 ? 42 : 34, box.w / perRow - (stage.arrows.length ? 60 : 14));
     });
   }
 
@@ -639,39 +719,60 @@ function layoutIllustration(stage: IllustrationStage, box: Rect, marks: Mark[], 
     placed.push({ x: cx - 8, y: cy - 8, w: 16, h: 16 });
   }
 
-  // Every label the board names is drawn (the validator allows 6): a student must see each part a
+  // Every label the board names is drawn (the validator allows 8): a student must see each part a
   // "label/identify" lesson asks for. Smaller type when more than three share the picture.
-  const size = stage.labels.length > 3 ? 15 : 18;
-  for (const id of stage.labels.slice(0, 6)) {
+  const baseSize = stage.labels.length > 3 ? 15 : 18;
+  const leaders: Array<[Pt, Pt]> = [];
+  const crosses = (a: Pt, b: Pt, c: Pt, d: Pt) => {
+    const o = (p: Pt, q: Pt, r: Pt) => Math.sign((q.x - p.x) * (r.y - p.y) - (q.y - p.y) * (r.x - p.x));
+    return o(a, b, c) !== o(a, b, d) && o(c, d, a) !== o(c, d, b);
+  };
+  for (const id of stage.labels.slice(0, 8)) {
     const part = parts.find((p) => p.id === id);
     const at = part && points.get(part.id);
     if (!part || !at) continue;
-    const bw = textWidth(part.name, size) + 26;
-    const bh = 32;
+    // A label with no free spot is tried smaller and further out before it is ever left off (it used
+    // to be skipped silently), and a leader that would cross another is the last choice.
     let best: Rect | null = null;
+    let size = baseSize;
     let bestScore = Infinity;
-    for (let ring = 0; ring < 3 && !best; ring++) {
-      for (let k = 0; k < 16; k++) {
-        const a = (k / 16) * Math.PI * 2;
-        const dist = 80 + ring * 45;
-        const cx = at.x + Math.cos(a) * dist;
-        const cy = at.y + Math.sin(a) * dist * 0.75;
-        const cand = { x: cx - bw / 2, y: cy - bh / 2, w: bw, h: bh };
-        if (cand.x < box.x - 20 || cand.x + cand.w > PANEL_W - 12 || cand.y < box.y - 6 || cand.y + cand.h > PANEL_H - 10) continue;
-        if (placed.some((r) => overlaps(r, cand, 6))) continue;
-        // Prefer the picture's margins over its middle, and short leaders over long ones.
-        const outside = cand.x + cand.w < rect.x + 30 || cand.x > rect.x + rect.w - 30 || cand.y + cand.h < rect.y + 30 || cand.y > rect.y + rect.h - 30;
-        const score = dist + (outside ? 0 : 60);
-        if (score < bestScore) {
-          bestScore = score;
-          best = cand;
+    for (const trySize of [baseSize, baseSize - 3]) {
+      const bw = textWidth(part.name, trySize) + 26;
+      const bh = trySize + 14;
+      // Rings outward until a spot whose leader crosses no other is found; a crossing spot is kept
+      // only as the last resort.
+      for (let ring = 0; ring < 5 && bestScore >= 400; ring++) {
+        for (let k = 0; k < 16; k++) {
+          const a = (k / 16) * Math.PI * 2;
+          const dist = 80 + ring * 45;
+          const cx = at.x + Math.cos(a) * dist;
+          const cy = at.y + Math.sin(a) * dist * 0.75;
+          const cand = { x: cx - bw / 2, y: cy - bh / 2, w: bw, h: bh };
+          if (cand.x < box.x - 20 || cand.x + cand.w > PANEL_W - 12 || cand.y < box.y - 6 || cand.y + cand.h > PANEL_H - 10) continue;
+          if (placed.some((r) => overlaps(r, cand, 6))) continue;
+          // Prefer the picture's margins over its middle, and short leaders over long ones.
+          const outside = cand.x + cand.w < rect.x + 30 || cand.x > rect.x + rect.w - 30 || cand.y + cand.h < rect.y + 30 || cand.y > rect.y + rect.h - 30;
+          const end = { x: cand.x + cand.w / 2, y: cand.y + cand.h / 2 };
+          const crossing = leaders.some(([p, q]) => crosses(at, end, p, q));
+          const score = dist + (outside ? 0 : 60) + (crossing ? 400 : 0) + (trySize < baseSize ? 30 : 0);
+          if (score < bestScore) {
+            bestScore = score;
+            best = cand;
+            size = trySize;
+          }
         }
       }
+      if (best && bestScore < 400) break;
     }
-    if (!best) continue;
-    placed.push(best);
-    marks.push({ type: "callout", id: `${part.id}-label`, partId: part.id, text: part.name, box: best, anchor: at, s: part.s, size });
-    add(`${part.id}-label`, best, part.s);
+    const spot = best as Rect | null;
+    if (!spot) {
+      recordLayoutDrop(`the label "${part.name}" found no free spot on the picture`);
+      continue;
+    }
+    leaders.push([at, { x: spot.x + spot.w / 2, y: spot.y + spot.h / 2 }]);
+    placed.push(spot);
+    marks.push({ type: "callout", id: `${part.id}-label`, partId: part.id, text: part.name, box: spot, anchor: at, s: part.s, size });
+    add(`${part.id}-label`, spot, part.s);
   }
 }
 
@@ -713,7 +814,7 @@ export function texEm(s: string, script = false): number {
       else if (name === "sqrt") {
         if (s[i] === "[") i = s.indexOf("]", i) < 0 ? s.length : s.indexOf("]", i) + 1;
         w += texEm(group()) + 0.75;
-      } else if (["text", "mathrm", "textbf", "mathbf", "operatorname", "textit"].includes(name)) w += textWidth(group(), 1);
+      } else if (["text", "mathrm", "textbf", "mathbf", "operatorname", "textit"].includes(name)) w += textWidth(group(), 1) * 1.18;
       else if (["left", "right", "big", "Big", "bigl", "bigr", "displaystyle"].includes(name)) continue;
       else if (name === "quad") w += 1;
       else if (name === "," || name === ";" || name === ":" || name === " " || name === "!") w += 0.22;
@@ -729,7 +830,9 @@ export function texEm(s: string, script = false): number {
       w += script ? 0.8 : 1.1;
       i++;
     } else {
-      w += textWidth(c, 1) * 1.05;
+      // KaTeX's italic maths letters are wider than the board font the estimate is made with: at 1.05
+      // a row of terms overprinted ("B(n, p)Binomial"; diagram lab, 2026-10-17).
+      w += textWidth(c, 1) * (/[A-Za-z]/.test(c) ? 1.25 : 1.1);
       i++;
     }
   }
@@ -756,7 +859,10 @@ function wrapRow(row: string[], width: (id: string) => number, isBreak: (id: str
 }
 
 function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add) {
-  const tokens = stage.tokens.slice(0, 16);
+  // 48 terms: a worked calculation of four lines needs more than 16, and the rows shrink to fit
+  // (a circuits board lost its "= 6 V" to the old limit of 16; 2026-10-18).
+  const tokens = stage.tokens.slice(0, 48);
+  if (stage.tokens.length > 48) recordLayoutDrop(`the equation has ${stage.tokens.length} terms; only 48 fit, so ${stage.tokens.slice(48).map((t) => t.text).join(" ")} was left off`);
   const steps = stage.steps.length ? stage.steps : [{ s: 0, order: tokens.map((t) => t.id) }];
   const hosted = new Map(tokens.filter((t) => t.on && tokens.some((h) => h.id === t.on && !h.on)).map((t) => [t.id, t.on as string]));
   const inRow = (id: string) => !hosted.has(id);
@@ -948,36 +1054,51 @@ function layoutCompare(stage: CompareStage, box: Rect, marks: Mark[], add: Add) 
     { side: stage.left, x: box.x, color: colorAt(0, stage.left.color) },
     { side: stage.right, x: box.x + colW + 70, color: colorAt(3, stage.right.color) },
   ];
-  const itemAnchors = new Map<string, { left: Pt; right: Pt; s: number }>();
+  const itemAnchors = new Map<string, { left: Pt; right: Pt; s: number; col: number }>();
   // Columns as tall as what they hold, centred: two items in full-height columns left half of each
-  // empty (audit 2026-10-17). Few items are written a little larger.
-  const most = Math.max(...sides.map(({ side }) => Math.min(4, side.items.length)), 1);
-  const size = most <= 3 ? 21 : 19;
-  const itemH = (text: string) => wrap(text, size, colW - 40, 2).length * size * 1.3 + 22;
-  const contentH = Math.max(...sides.map(({ side }) => side.items.slice(0, 4).reduce((sum, item) => sum + itemH(item.text) + 12, 0)));
+  // empty (audit 2026-10-17). Few items are written a little larger; many are written smaller until
+  // they all fit inside their column (items used to run past its bottom edge), never dropped below six.
+  const shownItems = (side: CompareStage["left"]) => side.items.slice(0, 6);
+  const most = Math.max(...sides.map(({ side }) => shownItems(side).length), 1);
+  // An item card is colW − 28 wide and its words start 16 px in on each side (CanvasPanel "item"), so
+  // they wrap to colW − 60: wrapping to colW − 40 ran lines into the card's right border (audit 2026-10-17).
+  const itemTextW = colW - 60;
+  const itemH = (text: string, size: number) => wrap(text, size, itemTextW, 2).length * size * 1.3 + 22;
+  const heightAt = (size: number) => Math.max(...sides.map(({ side }) => shownItems(side).reduce((sum, item) => sum + itemH(item.text, size) + 12, 0)));
+  let size = most <= 3 ? 21 : 19;
+  while (size > 14 && 92 + heightAt(size) + 20 > box.h - 10) size--;
+  const contentH = heightAt(size);
   const colH = Math.min(box.h - 10, Math.max(220, 92 + contentH + 20));
   const top = box.y + Math.max(0, (box.h - 10 - colH) / 2);
-  for (const { side, x, color } of sides) {
+  for (const [col, { side, x, color }] of sides.entries()) {
     const rect = { x, y: top, w: colW, h: colH };
     const firstS = Math.min(...side.items.map((i) => i.s), 99);
     marks.push({ type: "column", id: side.id, rect, title: side.title, icon: side.icon, color, s: Number.isFinite(firstS) ? Math.max(0, firstS - 1) : 0 });
     add(side.id, rect, Math.max(0, firstS - 1));
     let y = top + 92;
-    for (const item of side.items.slice(0, 4)) {
-      const lines = wrap(item.text, size, colW - 40, 2);
+    for (const item of shownItems(side)) {
+      const lines = wrap(item.text, size, itemTextW, 2);
       const h = lines.length * size * 1.3 + 22;
       const r = { x: x + 14, y, w: colW - 28, h };
       marks.push({ type: "item", id: item.id, text: lines.join("\n"), rect: r, color, s: item.s, size });
       add(item.id, r, item.s);
-      itemAnchors.set(item.id, { left: { x: r.x, y: r.y + h / 2 }, right: { x: r.x + r.w, y: r.y + h / 2 }, s: item.s });
+      itemAnchors.set(item.id, { left: { x: r.x, y: r.y + h / 2 }, right: { x: r.x + r.w, y: r.y + h / 2 }, s: item.s, col });
       y += h + 12;
     }
   }
+  // A link always runs across the gap between the columns, from the left item's right edge to the
+  // right item's left edge, whichever way the writer listed it: a link written right-to-left started
+  // at the far edge of the right column and was drawn through the words of both (audit 2026-10-17).
+  // Links inside one column, and links that would cross one already drawn, are left out.
+  const drawn: Array<{ y0: number; y1: number }> = [];
   for (const [i, link] of (stage.links ?? []).entries()) {
     const a = itemAnchors.get(link.from);
     const b = itemAnchors.get(link.to);
-    if (!a || !b) continue;
-    marks.push({ type: "link", id: `link-${i}`, p0: a.right, p1: b.left, s: Math.max(a.s, b.s) });
+    if (!a || !b || a.col === b.col) continue;
+    const [l, r] = a.col === 0 ? [a, b] : [b, a];
+    if (drawn.some((d) => (d.y0 - l.right.y) * (d.y1 - r.left.y) < 0)) continue;
+    drawn.push({ y0: l.right.y, y1: r.left.y });
+    marks.push({ type: "link", id: `link-${i}`, p0: l.right, p1: r.left, s: Math.max(a.s, b.s) });
   }
 }
 
@@ -995,18 +1116,45 @@ function layoutExam(stage: ExamStage, box: Rect, marks: Mark[], add: Add) {
   const two = points.length > 3 && stage.scheme !== "levels";
   const colGap = 16;
   const colW = two ? (box.w - colGap) / 2 : box.w;
+  const lead = (text: string) => (stage.scheme === "levels" ? `▸ ${text}` : `✓ ${text}  [1]`);
+  const lostLead = (text: string) => `✗ Loses marks: ${text}`;
+  const command = `Command word: ${stage.commandWord}`;
+  // Sizes are tried whole (nothing recorded, nothing cut) until everything fits the stage; only text
+  // that does not fit even at the smallest size is shortened — and then it is recorded WITHOUT the
+  // tick, "[1]" or "Loses marks:" around it, so the shorten pass can find it in the board and rewrite
+  // it (the decorated text matched nothing, so exam cuts were never rewritten; audit 2026-10-17).
   const fit = (size: number) => {
-    const q = wrap(`${stage.question}`, size + 1, box.w - 150, 6);
+    const q = wrapWhole(stage.question, size + 1, box.w - 150);
     const qH = q.length * (size + 1) * 1.3 + 24;
-    const rows = points.map((p) => wrap(stage.scheme === "levels" ? `▸ ${p.text}` : `✓ ${p.text}  [1]`, size, colW - 36, 3));
+    const cmd = wrapWhole(command, Math.min(16, size), box.w - 20);
+    const cmdH = cmd.length * Math.min(16, size) * 1.3 + 6;
+    const rows = points.map((p) => wrapWhole(lead(p.text), size, colW - 36));
     const rowH = rows.map((r) => r.length * size * 1.3 + 20);
     const colsH = two ? Math.max(rowH.slice(0, Math.ceil(points.length / 2)).reduce((a, b) => a + b + 10, 0), rowH.slice(Math.ceil(points.length / 2)).reduce((a, b) => a + b + 10, 0)) : rowH.reduce((a, b) => a + b + 10, 0);
-    const lost = stage.lostMarks ? wrap(`✗ Loses marks: ${stage.lostMarks.text}`, size, box.w - 36, 3) : [];
+    const lost = stage.lostMarks ? wrapWhole(lostLead(stage.lostMarks.text), size, box.w - 36) : [];
     const lostH = lost.length ? lost.length * size * 1.3 + 20 : 0;
-    return { size, q, qH, rows, rowH, lost, lostH, total: qH + 34 + colsH + (lostH ? lostH + 12 : 0) };
+    return { size, q, qH, cmd, cmdH, rows, rowH, lost, lostH, total: qH + 8 + cmdH + colsH + (lostH ? lostH + 12 : 0) };
   };
   let f = fit(21);
-  for (const size of [20, 19, 18, 17, 16, 15, 14]) if (f.total > box.h) f = fit(size);
+  for (const size of [20, 19, 18, 17, 16, 15, 14, 13]) if (f.total > box.h) f = fit(size);
+  if (f.total > box.h) {
+    // Still too tall at 13 px: the longest pieces are shortened to the lines their share of the stage
+    // holds, each recorded as its own plain text.
+    const cap = (text: string, decorated: (t: string) => string, lines: string[], maxLines: number, w: number) => {
+      if (lines.length <= maxLines) return lines;
+      const room = Math.max(12, lines.slice(0, maxLines).join(" ").length - (decorated("").length));
+      recordFigureCut(text, `${maxLines} line(s) of the exam board`, room);
+      return wrapWhole(decorated(trimToFit(text, room)), f.size, w).slice(0, maxLines);
+    };
+    f.q = cap(stage.question, (t) => t, f.q, 6, box.w - 150);
+    f.qH = f.q.length * (f.size + 1) * 1.3 + 24;
+    f.rows = f.rows.map((r, i) => cap(points[i].text, lead, r, 3, colW - 36));
+    f.rowH = f.rows.map((r) => r.length * f.size * 1.3 + 20);
+    if (stage.lostMarks) {
+      f.lost = cap(stage.lostMarks.text, lostLead, f.lost, 3, box.w - 36);
+      f.lostH = f.lost.length * f.size * 1.3 + 20;
+    }
+  }
   let y = box.y;
   // The question, with its marks at the right as the paper prints them.
   const qRect = { x: box.x, y, w: box.w, h: f.qH };
@@ -1016,10 +1164,15 @@ function layoutExam(stage: ExamStage, box: Rect, marks: Mark[], add: Add) {
   marks.push({ type: "text", id: "exam-marks", text: `[${stage.marks} mark${stage.marks === 1 ? "" : "s"}]`, rect: marksRect, color: markInk, s: 0, size: 18 });
   add("exam-marks", marksRect, 0);
   y += f.qH + 8;
-  const cmdRect = { x: box.x, y, w: Math.min(box.w, textWidth(`Command word: ${stage.commandWord}`, 16) + 20), h: 22 };
-  marks.push({ type: "text", id: "command-word", text: `Command word: ${stage.commandWord}`, rect: cmdRect, color: markInk, s: 0, size: 16 });
-  add("command-word", cmdRect, 0);
-  y += 26;
+  // The command word and what it asks for, wrapped rather than run past the board's edge.
+  const cmdSize = Math.min(16, f.size);
+  const lineH = cmdSize * 1.3;
+  f.cmd.forEach((line, i) => {
+    const w = Math.min(box.w, textWidth(line, cmdSize) + 20);
+    marks.push({ type: "text", id: i ? `command-word-${i + 1}` : "command-word", text: line, rect: { x: box.x, y: y + i * lineH, w, h: lineH + 2 }, color: markInk, s: 0, size: cmdSize });
+  });
+  add("command-word", { x: box.x, y, w: Math.min(box.w, Math.max(...f.cmd.map((l) => textWidth(l, cmdSize))) + 20), h: f.cmdH - 4 }, 0);
+  y += f.cmdH;
   // The mark scheme, one row per mark.
   const half = Math.ceil(points.length / 2);
   const colY = [y, y];
@@ -1099,7 +1252,27 @@ function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
   }
   const centres = new Map<string, { c: Pt; r: number; below?: number }>();
   const itemMarks: Mark[] = [];
-  stage.items.slice(0, 12).forEach((item, i) => {
+  // NO TWO ITEMS SHARE A CELL. The writer gave a 2x2 "Villus" card over the cell of "Central lacteal",
+  // and the two cards printed over each other (diagram lab, 2026-10-17). A card that would cover an
+  // earlier one moves to the nearest free place of its size, then shrinks to one cell if it must.
+  const taken = new Set<string>();
+  const cellsOf = (col: number, row: number, w: number, h: number) => { const out: string[] = []; for (let c = col; c < col + w; c++) for (let r = row; r < row + h; r++) out.push(`${c},${r}`); return out; };
+  const placed = stage.items.slice(0, 12).map((item) => {
+    const m = /^([A-F])([1-4])$/i.exec(item.cell.trim());
+    const col = m ? m[1].toUpperCase().charCodeAt(0) - 65 : 0, row = m ? Number(m[2]) - 1 : 0;
+    const sp = /^([1-6])x([1-4])$/.exec(item.span ?? "") ?? ["", "1", "1"];
+    const tries: Array<[number, number, number, number]> = [];
+    for (const [w, h] of [[Number(sp[1]), Number(sp[2])], [Math.min(2, Number(sp[1])), 1], [1, 1]] as Array<[number, number]>) {
+      const order: Array<[number, number]> = [];
+      for (let r = 0; r < 4; r++) for (let c = 0; c < 6; c++) order.push([c, r]);
+      order.sort((a, b) => Math.hypot(a[0] - col, a[1] - row) - Math.hypot(b[0] - col, b[1] - row));
+      for (const [c, r] of order) if (c + w <= 6 && r + h <= 4) tries.push([c, r, w, h]);
+    }
+    const spot = tries.find(([c, r, w, h]) => cellsOf(c, r, w, h).every((k) => !taken.has(k))) ?? [col, row, Number(sp[1]), Number(sp[2])];
+    for (const k of cellsOf(...spot)) taken.add(k);
+    return { ...item, cell: `${String.fromCharCode(65 + spot[0])}${spot[1] + 1}`, span: `${spot[2]}x${spot[3]}` };
+  });
+  placed.forEach((item, i) => {
     const rect = sceneCell(item.cell, item.span, box);
     const color = colorAt(i, item.color);
     if (item.kind === "icon") {
@@ -1111,11 +1284,15 @@ function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
       add(item.id, rect, item.s);
     } else if (item.kind === "box") {
       // A box with no icon is a card: its title, and its detail wrapped beneath — never an empty ring.
-      const fit = !item.icon && item.detail ? fitDetail(item.detail, rect.w - 24, rect.h - 60) : undefined;
+      // A title that wraps ("Supply / voltage" in a narrow cell) takes room from the detail below it:
+      // counted, the detail no longer spills out of the card onto the next one (2026-10-18).
+      const title = item.label ? fitText(item.label, rect.w - 16, 18, 13) : null; // as the card draws it (CanvasPanel)
+      const titleExtra = title ? (title.lines.length - 1) * title.size * 1.15 : 0;
+      const fit = !item.icon && item.detail ? fitDetail(item.detail, rect.w - 24, rect.h - 60 - titleExtra) : undefined;
       const detail = fit?.lines;
       // A card is as tall as what it says, centred in its cells: a two-row box holding one line left
       // most of itself empty (audit 2026-10-17). Icon boxes keep their room for the icon.
-      const needed = item.icon ? rect.h : Math.max(64, 46 + (detail?.length ?? 0) * (fit?.size ?? 15) * 1.27 + 14);
+      const needed = item.icon ? rect.h : Math.max(64, 46 + titleExtra + (detail?.length ?? 0) * (fit?.size ?? 15) * 1.27 + 14);
       const card = needed < rect.h - 24 ? { x: rect.x, y: rect.y + (rect.h - needed) / 2, w: rect.w, h: needed } : rect;
       itemMarks.push({ type: "box", id: item.id, rect: card, label: item.label, color, s: item.s, icon: item.icon, size: 18, ...(detail?.length ? { detail, detailSize: fit!.size } : {}) });
       centres.set(item.id, { c: { x: card.x + card.w / 2, y: card.y + card.h / 2 }, r: Math.min(card.w, card.h) / 2, ...(item.icon ? {} : { box: card }) });

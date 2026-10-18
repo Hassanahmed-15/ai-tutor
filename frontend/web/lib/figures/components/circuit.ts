@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, FigurePart, FigureShape, Pt } from "../types";
+import { fitText } from "../cuts";
 
 /**
  * CIRCUIT DIAGRAM with standard (IGCSE/AP) symbols. The model lists the components; code lays out a
@@ -46,8 +47,8 @@ function parseItem(raw: string): Item | null {
     const item: Item = { kind };
     if (kind === "switch") item.open = !/closed|on\b/i.test(rest);
     else if ((kind === "diode" || kind === "led") && /reverse/i.test(rest)) item.reverse = true;
-    else if (rest && /\d/.test(rest)) item.value = rest.replace(/\s*ohms?\b/i, " Ω").replace(/(\d)\s*(V|A|Ω|W)\b/, "$1 $2").slice(0, 10);
-    else if (rest) item.label = rest.slice(0, 30);
+    else if (rest && /\d/.test(rest)) item.value = fitText(rest.replace(/\s*ohms?\b/i, " Ω").replace(/(\d)\s*(V|A|Ω|W)\b/, "$1 $2"), 10);
+    else if (rest) item.label = fitText(rest, 30);
     return item;
   }
   return null;

@@ -1,4 +1,5 @@
 import type { FigureDrawing, FigurePart, Ink, Pt } from "../types";
+import { fitText } from "../cuts";
 import { PALETTE, Sketch, arrow, boxesOverlap, textBox, textW } from "./mathsKit";
 
 /**
@@ -149,7 +150,7 @@ export class EconGraph {
   /** Write the axis values (spread so none collide) and the horizontal title; return the drawing. */
   finish(parts: FigurePart[] = []): FigureDrawing {
     const seen = new Set<string>();
-    for (const p of parts) if (!seen.has(p.id) && Number.isFinite(p.anchor.x) && Number.isFinite(p.anchor.y)) seen.add(p.id), this.sk.part(p.id, p.name.slice(0, 34), p.anchor);
+    for (const p of parts) if (!seen.has(p.id) && Number.isFinite(p.anchor.x) && Number.isFinite(p.anchor.y)) seen.add(p.id), this.sk.part(p.id, fitText(p.name, 34), p.anchor);
     const size = 18;
     // Vertical axis values: right-aligned left of the axis, spread apart vertically.
     const ys = [...this.yTicks].sort((a, b) => a.v - b.v).map((t) => ({ ...t, y: this.Y(t.v) }));
@@ -222,7 +223,7 @@ function clipSeg(a: MPt, b: MPt, xMax: number, yMax: number): [MPt, MPt] | null 
 
 /** A string param, trimmed and capped. */
 export function txt(v: unknown, max = 400): string {
-  return typeof v === "string" ? v.trim().slice(0, max) : typeof v === "number" && Number.isFinite(v) ? String(v) : "";
+  return typeof v === "string" ? fitText(v.trim(), max) : typeof v === "number" && Number.isFinite(v) ? String(v) : "";
 }
 /** The centroid of a model polygon (for an area's anchor). */
 export function centroid(ms: MPt[]): MPt {

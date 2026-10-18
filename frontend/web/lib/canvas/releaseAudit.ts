@@ -24,7 +24,10 @@ export function auditBoardForRelease(spec: CanvasBoardSpec, beat: CanvasPlanBeat
     else if (value && typeof value === "object") Object.values(value).forEach(walk);
   };
   walk(spec.interaction);
-  const arithmetic = [...labelTexts(spec), ...interactionText].flatMap((text) => checkNumbers(text));
+  // Code is not arithmetic: "height( 42 ) = 0" in an AVL listing was failed as wrong maths and the
+  // board rebuilt without its code (PDF bench, 2026-10-18). A code board's own lines are not checked.
+  const codeLines = new Set(spec.stage.kind === "code" ? spec.stage.lines.map((l) => l.trim()) : []);
+  const arithmetic = [...labelTexts(spec).filter((t) => !codeLines.has(t.trim()) && !(spec.stage.kind === "code" && [...codeLines].some((l) => l && t.includes(l)))), ...interactionText].flatMap((text) => checkNumbers(text));
   if (arithmetic.length) add("numbers", [`wrong numbers on the board: ${numberIssuesText(arithmetic)}`]);
   if (spec.stage.kind === "molecule") add("molecule", vseprIssues(spec.stage));
   if (spec.stage.kind === "atom-map") add("atom-balance", atomMapIssues(spec.stage));

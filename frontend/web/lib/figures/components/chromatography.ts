@@ -1,5 +1,6 @@
 import { solutionColour } from "../colours";
 import type { FigureComponent, FigureParams, FigurePart, FigureShape } from "../types";
+import { fitText } from "../cuts";
 import { GLASS_W, flag, num, r1, solidColour, surface, text } from "./apparatusKit";
 
 export type Dye = { colour: `#${string}`; colourName: string; distance: number; rf: number };
@@ -26,7 +27,7 @@ export function chromatogram(params: FigureParams): Chromatogram {
   });
   const references = list(params.references).slice(0, 4).map((entry, i) => {
     const m = /^([^:]+):\s*(.+)$/.exec(entry);
-    const name = (m ? m[1] : String.fromCharCode(65 + i)).trim().slice(0, 5);
+    const name = fitText((m ? m[1] : String.fromCharCode(65 + i)).trim(), 5);
     const spec = (m ? m[2] : entry).trim();
     const dist = /(-?\d+(\.\d+)?)\s*(cm)?$/.exec(spec);
     const colourName = spec.replace(/(-?\d+(\.\d+)?)\s*(cm)?$/, "").trim().toLowerCase() || "blue";

@@ -30,20 +30,21 @@ import {
 } from "@/lib/learnerProfile";
 import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
 import { learnerInstruction } from "@/lib/learnerProfile";
-import { PROMPT_OUTLINE_RULES, capQuestionOutline, directQuestionInstruction, isBroadTopicQuestion, isDirectQuestion, isTopicRequest, outlineLearnerInstruction, topicLessonInstruction } from "@/lib/planPrompt";
+import { PROMPT_OUTLINE_RULES, QUESTION_SHAPE_PROMPT, capQuestionOutline, directQuestionInstruction, parseQuestionShape, type QuestionShape, isBroadTopicQuestion, isDirectQuestion, isTopicRequest, outlineLearnerInstruction, topicLessonInstruction } from "@/lib/planPrompt";
 import { nounTitle, polishBeatPlan } from "@/lib/beatPresentation";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
 import { focusFromTranscript, focusPassages, focusPromptSection, isPointingPhrase, subjectFromFocus } from "@/lib/pdfFocus";
 import { sourceScopeInstruction, type SourceScope } from "@/lib/sourceScope";
 import { getDocumentImages } from "@/lib/pageImageStore";
-import { CANVAS_CODE_LINES, documentForCanvas, documentListings, listingIndex, type DocumentListing } from "@/lib/canvas/documentContext";
+import { CANVAS_CODE_LINES, documentForCanvas, documentListings, documentSections, listingIndex, listingsAsked, termsNotInDocument, type DocumentListing } from "@/lib/canvas/documentContext";
 import { asksForCode, isCodeQuestion } from "@/lib/codeSpec";
 import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
 import { createOpenAI } from "@/lib/openaiClient";
 import { INTENT_SYSTEM_PROMPT, briefLine, briefSettled, curriculumInText, effectiveBrief, profileAudience, sanitizeBrief, sanitizeIntent } from "@/lib/lessonIntent";
 import { packForPrompt, uncoveredChecklist, withoutSourceTags, type LessonBrief, type SourcePack } from "@/lib/webSources";
 import { researchTopic } from "@/lib/webResearch";
+import { syllabusOutcomesFor } from "@/lib/curriculum/syllabusOutcomes";
 
 /**
  * At most this many uploaded pages ride along with a planning call. Planning needs to know what is
@@ -591,7 +592,56 @@ const outlineText = (outline: PlanOutline) => outline.subtopics.map((s) => `${s.
  * checklist the research found. An outline that leaves out more than a tenth of it is revised ONCE,
  * told exactly which points are missing, and the revision is kept only if it misses fewer.
  */
-async function coverChecklist(client: OpenAI, outline: PlanOutline, pack: SourcePack): Promise<{ outline: PlanOutline; costUsd: number; coverage: Coverage; added: string[] }> {
+/**
+ * THE SYLLABUS POINTS ONE QUESTION NEEDS. Research for a student with a syllabus returns the whole
+ * topic's checklist (10-25 points: for the heart, heart disease, exercise and the ECG too), and the
+ * planner and the lecture are told every point must be taught. A question is answered completely and
+ * with nothing more, so it is planned and checked against the points it is about — the syllabus check
+ * used to be skipped for questions altogether, and "How does the heart pump blood?" shipped without
+ * the heartbeat, the one point the question asks (prompt bench, 2026-10-18).
+ */
+const QUESTION_POINTS_PROMPT = `You pick, from a syllabus checklist, the points a complete answer to ONE student question needs at their level: the points the question is about, and nothing it did not ask. For "how does the heart pump blood?" that is the chambers, the valves, the heartbeat (contraction and valve action), wall thickness and the double circulation with its pressures — never heart disease, exercise or how the heart is monitored. Return JSON only: {"points": [number]} — the 0-based indexes of the points, at most 6, or [] when none applies.`;
+
+/** Whether a question's answer is one idea or a process of stages; null (planned as one idea) on failure. */
+async function questionShape(client: OpenAI, question: string): Promise<QuestionShape | null> {
+  try {
+    const completion = await client.chat.completions.create({
+      model: MODEL,
+      messages: [{ role: "system", content: QUESTION_SHAPE_PROMPT }, { role: "user", content: question }],
+      temperature: 0,
+      max_tokens: 20,
+      response_format: { type: "json_object" },
+    });
+    const shape = parseQuestionShape(JSON.parse(completion.choices[0]?.message?.content ?? "{}"));
+    console.log(`[plan] question shape: ${shape ?? "unknown"} — "${question.slice(0, 80)}"`);
+    return shape;
+  } catch {
+    return null;
+  }
+}
+
+async function questionPoints(client: OpenAI, question: string, checklist: string[]): Promise<{ points: string[]; costUsd: number }> {
+  try {
+    const completion = await client.chat.completions.create({
+      model: MODEL,
+      messages: [
+        { role: "system", content: QUESTION_POINTS_PROMPT },
+        { role: "user", content: JSON.stringify({ question, checklist: checklist.map((text, i) => ({ i, text })) }) },
+      ],
+      temperature: 0,
+      max_tokens: 200,
+      response_format: { type: "json_object" },
+    });
+    const raw = (JSON.parse(completion.choices[0]?.message?.content ?? "{}") as { points?: unknown }).points;
+    const picked = [...new Set((Array.isArray(raw) ? raw : []).filter((i): i is number => Number.isInteger(i) && i >= 0 && i < checklist.length))].slice(0, 6);
+    return { points: picked.sort((a, b) => a - b).map((i) => checklist[i]), costUsd: costUsd(completion.usage) };
+  } catch {
+    // No pick: the question is planned without a checklist rather than against the whole topic's.
+    return { points: [], costUsd: 0 };
+  }
+}
+
+async function coverChecklist(client: OpenAI, outline: PlanOutline, pack: SourcePack, question?: string, document = false): Promise<{ outline: PlanOutline; costUsd: number; coverage: Coverage; added: string[] }> {
   const total = pack.checklist.length;
   const missing = uncoveredChecklist(pack.checklist, outlineText(outline));
   const as = (o: PlanOutline, gaps: string[]) => ({ covered: total - gaps.length, total, missing: gaps });
@@ -605,18 +655,23 @@ async function coverChecklist(client: OpenAI, outline: PlanOutline, pack: Source
         {
           role: "user",
           content:
-            `Current outline:\n${JSON.stringify(current)}\n\nRequested change: "The student is covering this syllabus topic${pack.curriculum ? ` (${pack.curriculum})` : ""}, and the outline leaves out these points the syllabus expects: ${missing.join("; ")}. ` +
-            `Teach every one of them: fold each into the subtopic it belongs to and name it in that subtopic's caption; add a subtopic only for points that fit none. Keep everything else unchanged."${PROMPT_OUTLINE_RULES}`,
+            (document
+              ? `Current outline:\n${JSON.stringify(current)}\n\nRequested change: "The student asked to be taught their WHOLE document, and the outline leaves out these sections of it: ${missing.join("; ")}. Teach every one of them: fold each into the subtopic it belongs to and name it in that subtopic's caption; add a subtopic only for a section that fits none, and never have more than 14. Keep the document's order and everything else unchanged."`
+              : `Current outline:\n${JSON.stringify(current)}\n\nRequested change: "The student is covering this syllabus topic${pack.curriculum ? ` (${pack.curriculum})` : ""}, and the outline leaves out these points the syllabus expects: ${missing.join("; ")}. `) +
+            (document ? "" : question
+              ? `This outline answers ONE question: "${question}" — it stays an answer, never a lesson. Fold each missing point into the subtopic it belongs to and name it in that subtopic's caption; add a subtopic only for a point that fits none, and never have more than three. Add nothing the question did not ask. Keep everything else unchanged."`
+              : `Teach every one of them: fold each into the subtopic it belongs to and name it in that subtopic's caption; add a subtopic only for points that fit none. Keep everything else unchanged."${PROMPT_OUTLINE_RULES}`),
         },
       ],
       temperature: 0.3,
       max_tokens: OUTLINE_MAX_TOKENS,
       response_format: { type: "json_object" },
     });
-    const revised = sanitizeOutline(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), outline.topic);
+    // A question's titles are kept as the planner wrote them (no polishing), as in streamOutline.
+    const revised = sanitizeOutline(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), outline.topic, !question);
     const stillMissing = uncoveredChecklist(pack.checklist, outlineText(revised));
     const spent = costUsd(completion.usage);
-    if (revised.subtopics.length === 0 || stillMissing.length >= missing.length) return { outline, costUsd: spent, coverage: as(outline, missing), added: [] };
+    if (revised.subtopics.length === 0 || stillMissing.length >= missing.length || (question && revised.subtopics.length > 3) || (document && revised.subtopics.length > 14)) return { outline, costUsd: spent, coverage: as(outline, missing), added: [] };
     const added = missing.filter((m) => !stillMissing.includes(m));
     return { outline: { ...revised, ...(outline.scope ? { scope: outline.scope } : {}), ...(outline.depth ? { depth: outline.depth } : {}) }, costUsd: spent, coverage: as(revised, stillMissing), added };
   } catch {
@@ -636,16 +691,18 @@ function streamOutline(
   userContent: string | ContentPart[],
   fallbackTopic: string,
   focused = false,
-  /** Set for a direct question: its outline is held to 1-2 subtopics with the model's own titles. */
+  /** Set for a direct question: its outline is held to 1-3 subtopics with the model's own titles. */
   question?: string,
   /** A general "what is X" prompt: always a full lesson, whatever scope the model returned. */
   forceLesson = false,
   /** A typed-prompt outline: its titles are shown as noun phrases ("Light Reactions", not "… Overview"). */
   nounTitles = false,
-  /** How many subtopics a question may keep: 2, or one per code listing for a question about a PDF's code. */
-  questionMax = 2,
+  /** How many subtopics a question may keep: 3, or one per code listing for a question about a PDF's code. */
+  questionMax = 3,
   /** Read up on the web first and plan from what was found (a typed-topic lesson in the normal mode). */
   research?: OutlineResearch,
+  /** A whole reference PDF's sections (lib/canvas/documentContext.ts documentSections): the outline must cover them. */
+  documentSections?: string[],
 ): Response {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
@@ -654,9 +711,15 @@ function streamOutline(
       try {
         let content = userContent;
         let pack: SourcePack | null = null;
+        let pointsCost = 0;
         if (research) {
           send({ type: "status", text: research.label });
           pack = await research.find().catch(() => null);
+          if (pack && question && pack.checklist.length) {
+            const asked = await questionPoints(client, question, pack.checklist);
+            pointsCost = asked.costUsd;
+            pack = { ...pack, checklist: asked.points };
+          }
           if (pack) {
             content = research.contentFor(pack);
             send({ type: "thought", text: `I read ${pack.sources.length} source${pack.sources.length === 1 ? "" : "s"}${pack.curriculum ? `, including what the ${pack.curriculum.replace(/\s+syllabus$/i, "")} syllabus expects` : ""}, and I'll teach from them.` });
@@ -724,7 +787,23 @@ function streamOutline(
           coverage = checked.coverage;
           coverageCost = checked.costUsd;
           if (checked.added.length) send({ type: "thought", text: `Checked against the syllabus and added what was missing: ${checked.added.slice(0, 4).join(", ")}${checked.added.length > 4 ? "…" : "."}` });
+        } else if (pack && question && pack.checklist.length && rawOutline.subtopics.length > 0) {
+          const checked = await coverChecklist(client, rawOutline, pack, question);
+          rawOutline = { ...checked.outline, scope: "question" as const };
+          coverage = checked.coverage;
+          coverageCost = checked.costUsd;
+          if (checked.added.length) send({ type: "thought", text: `Checked the answer against the syllabus and added: ${checked.added.slice(0, 4).join(", ")}${checked.added.length > 4 ? "…" : "."}` });
         }
+        // A WHOLE PDF IS TAUGHT WHOLE: its sections are checked against the outline, which is revised once
+        // to fold in what it left out (an AVL chapter's lecture taught 1 of its 6 sections; 2026-10-18).
+        if (documentSections?.length && !question && rawOutline.subtopics.length > 0) {
+          const checked = await coverChecklist(client, rawOutline, { query: "", checklist: documentSections, points: [], sources: [] } as unknown as SourcePack, undefined, true);
+          rawOutline = { ...checked.outline, ...(rawOutline.scope ? { scope: rawOutline.scope } : {}) };
+          coverage = checked.coverage;
+          coverageCost += checked.costUsd;
+          if (checked.added.length) send({ type: "thought", text: `Checked the plan against your document and added: ${checked.added.slice(0, 4).join(", ")}${checked.added.length > 4 ? "…" : "."}` });
+        }
+        coverageCost += pointsCost;
         // The outline the student reviews shows the same titles the lecture will use.
         if (nounTitles) rawOutline.subtopics = rawOutline.subtopics.map((subtopic) => ({ ...subtopic, title: nounTitle(subtopic.title) }));
         const outline = focused
@@ -839,9 +918,13 @@ export async function POST(req: Request) {
    * is planned from the same text. Strict mode and every other upload keep the gist.
    */
   const referencePdf = sourceDocument && isPdfUpload(sourceDocument) && sanitizeSourceScope(body.sourceScope)?.fidelity === "reference" ? sourceDocument : null;
+  // A STRICT PDF is outlined from all of it too: from the gist, a 10-page chapter was outlined as 7 parts
+  // on pages 1-2, and the lecture never reached pages 3-10 (PDF bench, 2026-10-18).
+  const strictPdf = sourceDocument && isPdfUpload(sourceDocument) && sanitizeSourceScope(body.sourceScope)?.fidelity === "strict" ? sourceDocument : null;
+  const wholePdf = referencePdf ?? strictPdf;
   const referenceListings = referencePdf ? documentListings(referencePdf) : [];
-  const sourceDocLine = referencePdf
-    ? `\n\nThe student uploaded a source document to learn from. Here it is in full, page by page (ground the outline/questions in THIS, not just the topic string — do not drift to a different, more generic subject in the same general area):\n${documentForCanvas(referencePdf, 40_000)}${referenceListings.length ? `\n\nCODE LISTINGS in the document (every one of them):\n${listingIndex(referenceListings)}` : ""}`
+  const sourceDocLine = wholePdf
+    ? `\n\nThe student uploaded a source document to learn from. Here it is in full, page by page (ground the outline/questions in THIS, not just the topic string — do not drift to a different, more generic subject in the same general area):\n${documentForCanvas(wholePdf, 40_000)}${referenceListings.length ? `\n\nCODE LISTINGS in the document (every one of them):\n${listingIndex(referenceListings)}` : ""}`
     : sourceDocument
     ? `\n\nThe student uploaded a source document. Its actual content (ground the outline/questions in THIS, not just the topic string — do not drift to a different, more generic subject in the same general area):\n${summarizeSourceDocumentForPlanning(sourceDocument)}`
     : "";
@@ -1157,7 +1240,9 @@ export async function POST(req: Request) {
      * what to call it or emphasise. A direct question, or a request that narrowed the breadth to a
      * part ("explain the CNN part"), keeps the fence: that is the answer they asked for.
      */
-    const documentIsSyllabus = Boolean(sourceDocument) && scope?.fidelity === "reference" && scope.breadth.kind === "whole" && !directQuestion;
+    // Strict too: a strict 10-page chapter was outlined from its title as a photosynthesis lesson, and
+    // pages 3-10 (minerals, water, flowers, pollination) were never taught (PDF bench, 2026-10-18).
+    const documentIsSyllabus = Boolean(sourceDocument) && (scope?.fidelity === "reference" || scope?.fidelity === "strict") && scope!.breadth.kind === "whole" && !directQuestion;
     /*
      * WHAT THE STUDENT WANTS, AND WHAT THE WEB SAYS IT CONTAINS (lib/lessonIntent.ts, lib/webResearch.ts).
      * A typed-topic lesson in the normal mode (`research: true`) is planned from material Aria read up
@@ -1171,7 +1256,7 @@ export async function POST(req: Request) {
     const syllabusAsked = (pack: SourcePack | null) => !directQuestion && (brief?.goal === "exam" || Boolean(pack?.checklist.length && pack.curriculum));
     const fencedRequest = (pack: SourcePack | null) => !syllabusAsked(pack);
     const requestLineFor = (pack: SourcePack | null) => documentIsSyllabus
-      ? `\nThe student uploaded this document to learn FROM it. Plan the lesson from the document's own content listed above: every subtopic is built on material in those sections, in a sensible teaching order, and together the subtopics cover the selected pages as a whole — not one section of them.${requestText ? ` The student typed "${requestText}" — use it only as what they call the subject or as what to emphasise.` : ""} If the typed words name something the document does not cover, the document wins; never plan a subtopic the document has no material for. You may go beyond the document when TEACHING each subtopic, not when choosing them.`
+      ? `\nThe student uploaded this document to learn FROM it. Plan the lesson from the document's own content listed above: every subtopic is built on material in those sections, in a sensible teaching order, and together the subtopics cover the selected pages as a whole — not one section of them.${requestText ? ` The student typed "${requestText}" — use it only as what they call the subject or as what to emphasise.` : ""} If the typed words name something the document does not cover, the document wins; never plan a subtopic the document has no material for. ${scope?.fidelity === "strict" ? "Everything is taught from the document's pages alone, page by page: every selected page belongs to a subtopic." : "You may go beyond the document when TEACHING each subtopic, not when choosing them."}`
       // A whole-topic question is not fenced to "answer THIS and nothing beyond it": it asks for the topic.
       : topicRequest ? ""
       : requestText && requestText.toLowerCase() !== topic.toLowerCase()
@@ -1197,11 +1282,22 @@ export async function POST(req: Request) {
       : "";
     // A question about a reference PDF's code is answered with ALL the code it covers, one subtopic per listing.
     const codeQuestion = directQuestion && referenceListings.length > 0 && (asksForCode(questionText) || isCodeQuestion(questionText, referenceListings.map((l) => l.lines.join("\n")).join("\n")));
+    // The listings a code question names (lib/canvas/documentContext.ts listingsAsked): all, unless it names a routine.
+    const codeAsked = codeQuestion ? listingsAsked(questionText, referenceListings) : referenceListings;
+    const codeBoards = codeAsked.length < referenceListings.length ? Math.max(1, codeAsked.reduce((n, l) => n + Math.ceil(l.lines.length / CANVAS_CODE_LINES), 0)) : 12;
+    // One idea or a process of stages: decided on its own, before planning (lib/planPrompt.ts QuestionShape).
+    // Typed questions only: a question about a PDF keeps its short answer (one board, two at most —
+    // the supervisor's standing ask; memory pdf-concise-answer-requirement).
+    const shape = directQuestion && !codeQuestion && !sourceDocument ? await questionShape(client, questionText) : null;
     const questionLine = codeQuestion
-      ? documentCodeQuestionInstruction(questionText, referenceListings)
+      ? documentCodeQuestionInstruction(questionText, referenceListings, codeAsked)
       : directQuestion
-      ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument })
+      ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument, shape })
       : topicRequest ? topicLessonInstruction(questionText) : "";
+    // A strict question about something the document never mentions is answered by saying so — never by
+    // giving its content another name (lib/canvas/documentContext.ts termsNotInDocument).
+    const absent = strictPdf && directQuestion ? termsNotInDocument(questionText, strictPdf) : [];
+    const absentLine = absent.length ? `\nTHE DOCUMENT NEVER MENTIONS: ${absent.join(", ")}. Plan ONE subtopic: it says plainly that the document does not cover this, then — only if the document has something closely related — what it does say, never calling that by the name the document does not use.` : "";
     const listingLine = referenceListings.length && documentIsSyllabus
       ? `\nThe document's code listings are part of what it teaches: cover every one of them (a short listing can share a subtopic with the idea it implements; one longer than ${CANVAS_CODE_LINES} lines of code gets its own).`
       : "";
@@ -1211,21 +1307,40 @@ export async function POST(req: Request) {
     // A typed topic is planned — and researched — for the level on the student's profile (Study
     // level), with the request, then their answers, taking precedence (lib/lessonIntent.ts).
     if (!sourceDocument) brief = effectiveBrief(brief, requestText || topic, card);
-    const cardLine = card ? policyForPlanner(buildTeachingPolicy(card, { learner: sessionLearner, depth: sessionLearner ? resolveDepth(sessionLearner) : null })) : "";
+    const cardLine = card ? policyForPlanner(buildTeachingPolicy(card, { learner: sessionLearner, depth: sessionLearner ? resolveDepth(sessionLearner) : null }), sourceDocument ? "pdf" : undefined) : "";
     // A typed-prompt lesson (no document) titles every slide by its concept and covers each topic once.
     const promptRules = sourceDocument ? "" : PROMPT_OUTLINE_RULES;
     const contentFor = (pack: SourcePack | null) =>
-      withPages(`Topic: "${topic}"${requestLineFor(pack)}${briefLine(brief)}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${listingLine}${materialLine(pack)}${promptRules}`, pageImages);
+      withPages(`Topic: "${topic}"${requestLineFor(pack)}${briefLine(brief)}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${absentLine}${listingLine}${materialLine(pack)}${promptRules}`, pageImages);
+    /*
+     * THE OFFICIAL SYLLABUS, when the student's is known and the request names one of its topics: its
+     * outcomes are the checklist and its text names every term — web research alone stopped after the
+     * heart on "transport in animals igcse biology" and left out the vessels and the blood (student
+     * feedback, 2026-10-18; lib/curriculum/syllabusOutcomes.ts). A question keeps its own short answer.
+     */
+    const withOfficialOutcomes = async (pack: SourcePack | null): Promise<SourcePack | null> => {
+      const curriculum = brief?.curriculum && !/general|none/i.test(brief.curriculum) ? brief.curriculum : null;
+      if (directQuestion || sourceDocument || !curriculum) return pack;
+      const official = await syllabusOutcomesFor(curriculum, `${requestText} ${topic}`);
+      if (!official) return pack;
+      console.log(`[plan] official syllabus: ${official.framework} → "${official.title}", ${official.outcomes.length} outcomes${official.text ? `, ${official.text.length} chars of syllabus text` : ""}`);
+      return {
+        ...(pack ?? { query: topic, points: [], sources: [] }),
+        curriculum: official.framework.replace(/\s+syllabus\b.*$/i, ""),
+        checklist: official.outcomes,
+        syllabusText: official.text,
+      };
+    };
     const research: OutlineResearch | undefined = wantsResearch
       ? {
           label: `Reading up on ${topic}${brief?.curriculum ?? brief?.level ? ` for ${brief?.curriculum ?? brief?.level}` : ""} on the web…`,
-          find: async () => (await researchTopic({ topic, request: requestText, brief }))?.pack ?? null,
+          find: async () => withOfficialOutcomes((await researchTopic({ topic, request: requestText, brief }))?.pack ?? null),
           contentFor,
           // The syllabus check runs on lessons, not on a one-question answer.
           checkCoverage: (pack) => syllabusAsked(pack) && pack.checklist.length > 0,
         }
       : undefined;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? 12 : 2, research);
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : shape === "process" ? 3 : 2, research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined);
   }
 
   // mode === "revise"
@@ -1257,7 +1372,15 @@ function isPdfUpload(doc: SuprnotesLessonInput): boolean {
  * the first routine. Each listing (or each piece of a long one) is one subtopic, so each gets its
  * own code board, in the document's order.
  */
-function documentCodeQuestionInstruction(question: string, listings: DocumentListing[]): string {
+function documentCodeQuestionInstruction(question: string, listings: DocumentListing[], asked: DocumentListing[] = listings): string {
+  if (asked.length < listings.length) {
+    return (
+      `\n\nTHIS IS A QUESTION ABOUT ONE PART OF THE DOCUMENT'S CODE: "${question}". Set "scope": "question". Answer it ` +
+      `with ONLY ${asked.length === 1 ? "this listing" : "these listings"}: ${asked.map((l) => `listing ${l.n}${l.caption ? ` (${l.caption})` : ""}`).join("; ")} — ` +
+      `one subtopic per listing (a listing with more than ${CANVAS_CODE_LINES} lines gets one subtopic per piece). Never the ` +
+      `document's other routines: the student did not ask about them. No introduction, no separate definition or example subtopic.`
+    );
+  }
   return (
     `\n\nTHIS IS A QUESTION ABOUT THE DOCUMENT'S CODE: "${question}". Set "scope": "question". Answer it with the ` +
     `document's own code listings (CODE LISTINGS above): one subtopic per listing the question covers — EVERY listing ` +

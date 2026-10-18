@@ -8,6 +8,7 @@ import { recordAnimationTrial } from "./animationTrials";
 import type { AnimationTiming } from "./reactAnimationGen";
 import { INK_COLS, INK_ROWS, composeIllustratedBoard, type BoardNote, type LocatedPart } from "./anim/illustratedLayout";
 import { chooseFocus, lectureState, rememberPictures, withPlanLock, type BoardPictureMemory, type LecturePicture } from "./lecturePictures";
+import { partNameKey } from "./canvas/labelPolicy";
 
 /**
  * ILLUSTRATED BOARDS, the server half: plan → picture → store → locate → compose.
@@ -20,8 +21,8 @@ import { chooseFocus, lectureState, rememberPictures, withPlanLock, type BoardPi
  *
  * Locating moved from terra to luna on 2026-09-29 (the owner's cost call: "luna, not terra"). On the
  * saved heart/chloroplast/volcano pictures luna's points were as good as terra's (each had one point
- * on an edge), and `snapToInk` now moves any point that lands on bare paper onto the nearest ink,
- * so a label or ring can never end in background whichever model points.
+ * on an edge), and `snapToInk` moves a point that lands on bare paper a short way onto its own
+ * part's ink (never onto a neighbour's); a point no one can vouch for is not labelled.
  */
 
 const PLAN_MODEL = process.env.ILLUSTRATION_PLAN_MODEL ?? "gpt-5.6-luna";
@@ -168,7 +169,11 @@ async function planBoardOnPicture(client: OpenAI, beat: Beat, sentences: string[
   }
 }
 
-const STYLE = "Style: a clean, accurate modern textbook diagram — crisp controlled outlines, restrained flat scientific colours, conventional proportions, minimal shading only where it clarifies form, and no decorative scenery. The subject is centred and fills about 78% of the frame. Plain very light warm off-white background, no border. Make every named part visually distinct and easy to point to. ABSOLUTELY NO TEXT: no labels, letters, numbers, arrows, leader lines, captions or watermark anywhere.";
+/*
+ * The house style. Labels are only as accurate as the picture is separable: every part drawn whole,
+ * apart from its neighbours and in clearly different tones, so the locator's point lands on ONE part.
+ */
+const STYLE = "Style: a clean, accurate, high-contrast modern textbook illustration — crisp dark outlines, flat scientific colours with clearly different tones for neighbouring parts, minimal shading, no decorative scenery. Scientifically and anatomically correct for the subject, with correct proportions and positions. Every part fully visible and clearly separable: none hidden behind, overlapping or merged into another. The subject is centred and fills about 78% of the frame on a plain very light off-white background, no border. ABSOLUTELY NO TEXT: no labels, letters, numbers, symbols, leader lines, captions or watermark, and no arrows carrying words.";
 
 /**
  * The picture's pixels only. gpt-image-1 embeds C2PA content credentials in a `caBX` chunk, and
@@ -239,7 +244,10 @@ export async function drawIllustration(client: OpenAI, subject: string): Promise
  * put every part (thin membranes included) on its own ink, where raw fractions from the same models
  * — and gpt-4o either way — put several in blank background.
  */
-export async function locateParts(client: OpenAI, jpeg: Buffer, subject: string, names: string[]): Promise<{ parts: Array<{ name: string; x: number; y: number }>; textInImage: boolean; costUsd: number }> {
+/** A located part. `sure`: the locator was confident AND its point is on that part's ink (or within a short snap of it). */
+export type PlacedPart = { name: string; x: number; y: number; sure: boolean };
+
+export async function locateParts(client: OpenAI, jpeg: Buffer, subject: string, names: string[]): Promise<{ parts: PlacedPart[]; textInImage: boolean; costUsd: number }> {
   const image = await loadImage(jpeg);
   const canvas = createCanvas(STORE_W, STORE_H);
   const ctx = canvas.getContext("2d");
@@ -259,22 +267,47 @@ export async function locateParts(client: OpenAI, jpeg: Buffer, subject: string,
     messages: [{
       role: "user",
       content: [
-        { type: "text", text: `The image is ${STORE_W} x ${STORE_H} pixels with a faint blue grid: vertical lines every 60 px and horizontal lines every 62 px. It shows ${subject}\nFor each part below, give the pixel coordinate of ONE point that lies clearly INSIDE that part — on the part's own ink, never in the empty background. For a thin part (a membrane, a wall, a vessel) put the point exactly on its line. Use the grid to read coordinates precisely. If a part is not visible, omit it. Also report "textInImage": true if the picture itself contains ANY letters, words, numbers or chemical formulas (ignore the blue grid). Return JSON {"parts":[{"name":string,"x":number,"y":number}],"textInImage":boolean} with x, y in pixels.\nParts: ${names.join(", ")}.` },
+        { type: "text", text: `The image is ${STORE_W} x ${STORE_H} pixels with a faint blue grid: vertical lines every 60 px and horizontal lines every 62 px. It shows ${subject}\nFor each part below, give the pixel coordinate of ONE point that lies clearly INSIDE that part — in the middle of the part's own ink, away from its edges and from neighbouring parts, never in the empty background. For a thin part (a membrane, a wall, a vessel) put the point exactly on its line. Use the grid to read coordinates precisely. If a part is not visible, or you cannot tell it apart from its neighbours, omit it. "confidence": "high" only when you are sure the point is on that exact part; otherwise "low". Also report "textInImage": true if the picture itself contains ANY letters, words, numbers or chemical formulas (ignore the blue grid). Return JSON {"parts":[{"name":string,"x":number,"y":number,"confidence":"high"|"low"}],"textInImage":boolean} with x, y in pixels.\nParts: ${names.join(", ")}.` },
         { type: "image_url", image_url: { url: `data:image/jpeg;base64,${gridded}` } },
       ],
     }],
   } as OpenAI.Chat.ChatCompletionCreateParamsNonStreaming);
   const costUsd = costFor(LOCATE_MODEL, res.usage);
-  const raw = JSON.parse(res.choices[0]?.message?.content ?? "{}") as { parts?: Array<{ name?: string; x?: number; y?: number }>; textInImage?: boolean };
-  const wanted = new Set(names.map((n) => n.toLowerCase()));
-  const parts = (raw.parts ?? [])
-    .filter((p) => typeof p.name === "string" && wanted.has(p.name.toLowerCase()) && Number.isFinite(p.x) && Number.isFinite(p.y))
-    .map((p) => {
-      const snapped = snapToInk(pixels, STORE_W, STORE_H, p.x!, p.y!);
-      return { name: names.find((n) => n.toLowerCase() === p.name!.toLowerCase())!, x: snapped.x / STORE_W, y: snapped.y / STORE_H };
+  const raw = JSON.parse(res.choices[0]?.message?.content ?? "{}") as { parts?: Array<{ name?: string; x?: number; y?: number; confidence?: unknown }>; textInImage?: boolean };
+  const asked = new Map(names.map((n) => [partNameKey(n), n]));
+  // One point per asked part (the first), in the picture's pixels.
+  const points: Array<{ name: string; x: number; y: number; confident: boolean }> = [];
+  for (const p of Array.isArray(raw.parts) ? raw.parts : []) {
+    const name = typeof p?.name === "string" ? asked.get(partNameKey(p.name)) : undefined;
+    if (!name || points.some((q) => q.name === name) || !Number.isFinite(p.x) || !Number.isFinite(p.y)) continue;
+    points.push({ name, x: Number(p.x), y: Number(p.y), confident: p.confidence === "high" });
+  }
+  return { parts: placeOnInk(pixels, STORE_W, STORE_H, points), textInImage: raw.textInImage === true, costUsd };
+}
+
+/**
+ * The model's points, each snapped onto ITS OWN part's ink (snapToInk, told where every other part
+ * is), in 0..1 fractions; points at the picture's very edge are dropped. A point is `sure` when the
+ * locator said so and it is on ink after at most a short snap.
+ */
+export function placeOnInk(pixels: Uint8ClampedArray | Uint8Array, width: number, height: number, points: Array<{ name: string; x: number; y: number; confident: boolean }>): PlacedPart[] {
+  return points
+    .map((p, i) => {
+      const others = points.filter((_, j) => j !== i);
+      const snapped = snapPoint(pixels, width, height, p.x, p.y, { others });
+      return { name: p.name, x: snapped.x / width, y: snapped.y / height, sure: p.confident && snapped.onInk };
     })
     .filter((p) => p.x > 0.02 && p.x < 0.98 && p.y > 0.02 && p.y < 0.98);
-  return { parts, textInImage: raw.textInImage === true, costUsd };
+}
+
+/**
+ * The parts a label may be written on. Verified by the second look: those it confirmed or moved.
+ * Not verified (no time, an error, an unreadable answer): only the parts the locator was sure of —
+ * fewer labels that are right beat more labels that may be wrong.
+ */
+export function trustedParts(located: PlacedPart[], verified: { parts: PlacedPart[]; verified: boolean } | null): PlacedPart[] {
+  if (verified?.verified) return verified.parts;
+  return located.filter((p) => p.sure);
 }
 
 /**
@@ -287,9 +320,9 @@ export async function verifyParts(
   client: OpenAI,
   jpeg: Buffer,
   subject: string,
-  parts: Array<{ name: string; x: number; y: number }>,
-): Promise<{ parts: Array<{ name: string; x: number; y: number }>; corrected: string[]; costUsd: number }> {
-  if (!parts.length) return { parts, corrected: [], costUsd: 0 };
+  parts: PlacedPart[],
+): Promise<{ parts: PlacedPart[]; corrected: string[]; rejected: string[]; verified: boolean; costUsd: number }> {
+  if (!parts.length) return { parts, corrected: [], rejected: [], verified: true, costUsd: 0 };
   const image = await loadImage(jpeg);
   const canvas = createCanvas(STORE_W, STORE_H);
   const ctx = canvas.getContext("2d");
@@ -316,27 +349,60 @@ export async function verifyParts(
       role: "user",
       content: [
         { type: "text", text: `The image is ${STORE_W} x ${STORE_H} pixels with a faint blue grid (vertical lines every 60 px, horizontal every 62 px). It shows ${subject}
-Each numbered red dot is meant to sit ON the named part — on the part's own ink; for a thin part (a membrane, a wall, a vessel), exactly on its line; for nested layers, on the right layer. For a substance or movement (oxygen, carbon dioxide, water, blood flow, light), the dot must sit on the arrow or region that shows THAT substance moving in ITS correct direction — oxygen on the arrow going from air into blood, not on the one going out. Check each one. Return JSON {"checks":[{"n":number,"ok":boolean,"x":number,"y":number}]} — when a dot is wrong, x and y are the pixel point where it should be; when it is right, repeat its position.
+Each numbered red dot is meant to sit ON the named part — on the part's own ink; for a thin part (a membrane, a wall, a vessel), exactly on its line; for nested layers, on the right layer. For a substance or movement (oxygen, carbon dioxide, water, blood flow, light), the dot must sit on the arrow or region that shows THAT substance moving in ITS correct direction — oxygen on the arrow going from air into blood, not on the one going out. A dot on a neighbouring part, on the boundary between two parts, or on background is wrong. Check each one. Return JSON {"checks":[{"n":number,"ok":boolean,"x":number,"y":number}]} — when a dot is wrong, x and y are the pixel point where it should be (omit them if the part is not in the picture or cannot be told apart); when it is right, repeat its position.
 ${parts.map((p, i) => `${i + 1}. ${p.name} (now at ${Math.round(p.x * STORE_W)}, ${Math.round(p.y * STORE_H)})`).join("\n")}` },
         { type: "image_url", image_url: { url: `data:image/jpeg;base64,${marked}` } },
       ],
     }],
   } as OpenAI.Chat.ChatCompletionCreateParamsNonStreaming);
   const costUsd = costFor(LOCATE_MODEL, res.usage);
+  let checks: Array<{ n?: number; ok?: boolean; x?: number; y?: number }>;
   try {
-    const raw = JSON.parse(res.choices[0]?.message?.content ?? "{}") as { checks?: Array<{ n?: number; ok?: boolean; x?: number; y?: number }> };
-    const corrected: string[] = [];
-    const out = parts.map((p, i) => {
-      const check = (raw.checks ?? []).find((c) => Number(c.n) === i + 1);
-      if (!check || check.ok !== false || !Number.isFinite(check.x) || !Number.isFinite(check.y)) return p;
-      const snapped = snapToInk(pixels, STORE_W, STORE_H, check.x!, check.y!);
-      corrected.push(p.name);
-      return { name: p.name, x: snapped.x / STORE_W, y: snapped.y / STORE_H };
-    });
-    return { parts: out, corrected, costUsd };
+    const raw = JSON.parse(res.choices[0]?.message?.content ?? "{}") as { checks?: unknown };
+    checks = Array.isArray(raw.checks) ? raw.checks : [];
   } catch {
-    return { parts, corrected: [], costUsd };
+    checks = [];
   }
+  // An unreadable answer checked nothing: the caller keeps only the parts the locator was sure of.
+  if (!checks.length) return { parts, corrected: [], rejected: [], verified: false, costUsd };
+  return { ...applyChecks(pixels, STORE_W, STORE_H, parts, checks), verified: true, costUsd };
+}
+
+/**
+ * The second look's verdicts applied. Confirmed: kept. Wrong with a new point: moved there (snapped
+ * onto that part's own ink, away from every other part; dropped if no ink is near). Wrong with no
+ * point: dropped. Not checked at all: dropped only when the locator was unsure — a part no one
+ * vouches for is not labelled.
+ */
+export function applyChecks(
+  pixels: Uint8ClampedArray | Uint8Array,
+  width: number,
+  height: number,
+  parts: PlacedPart[],
+  checks: Array<{ n?: number; ok?: boolean; x?: number; y?: number }>,
+): { parts: PlacedPart[]; corrected: string[]; rejected: string[] } {
+  const corrected: string[] = [];
+  const rejected: string[] = [];
+  // First every verdict, then the snaps — each told where every OTHER part finally sits.
+  const verdicts = parts.map((p, i) => {
+    const check = checks.find((c) => Number(c?.n) === i + 1);
+    if (check?.ok === true) return { part: { ...p, sure: true }, move: false };
+    if (check?.ok === false && Number.isFinite(check.x) && Number.isFinite(check.y)) return { part: { ...p, x: Number(check.x) / width, y: Number(check.y) / height }, move: true };
+    if (check?.ok === false || !p.sure) { rejected.push(p.name); return null; }
+    return { part: p, move: false };
+  });
+  const kept = verdicts.filter((v): v is NonNullable<typeof v> => Boolean(v));
+  const out: PlacedPart[] = [];
+  kept.forEach((v, i) => {
+    if (!v.move) { out.push(v.part); return; }
+    const others = kept.filter((_, j) => j !== i).map((o) => ({ x: o.part.x * width, y: o.part.y * height }));
+    const snapped = snapPoint(pixels, width, height, v.part.x * width, v.part.y * height, { others });
+    // A corrected point with no ink of its own near it is still a guess: not labelled.
+    if (!snapped.onInk) { rejected.push(v.part.name); return; }
+    corrected.push(v.part.name);
+    out.push({ name: v.part.name, x: snapped.x / width, y: snapped.y / height, sure: true });
+  });
+  return { parts: out, corrected, rejected };
 }
 
 /**
@@ -377,34 +443,99 @@ async function inkMapOfJpeg(jpeg: Buffer): Promise<string | undefined> {
 }
 
 /**
- * A point on bare paper moves onto the nearest ink. The paper is the picture's background (its
- * corner colour); a pixel is ink when it differs from the paper clearly. Searched in rings out to
- * 70 px, and the point lands a few pixels INSIDE the ink rather than on its very edge, so a dot
- * reads as sitting on the part. A point already on ink, or with no ink near it, is left alone.
+ * A point on bare paper moves onto ITS OWN part's nearest ink. The paper is the picture's background
+ * (its corner colour); a pixel is ink when it differs from the paper clearly.
+ *
+ * The move is short (at most `maxMove`, 24 px at 1200x800) and never onto another located part's
+ * ink: a 70 px search used to carry a point off its part onto a neighbour (a thin membrane's point
+ * onto the stroma beside it). Ink is another part's when it is nearer that part's point than this
+ * one's, or when it is one colour region with that part's point (connected without a sharp colour
+ * edge). Within that, the nearest ink wins — the model's point is the best guess of where the part
+ * is — and the point lands a few pixels INSIDE the ink rather than on its edge. A point already on
+ * ink stays. `onInk` false: no ink of its own was near; the point is left where the model put it.
  */
-export function snapToInk(pixels: Uint8ClampedArray | Uint8Array, width: number, height: number, x: number, y: number): { x: number; y: number } {
+export function snapToInk(
+  pixels: Uint8ClampedArray | Uint8Array,
+  width: number,
+  height: number,
+  x: number,
+  y: number,
+  opts: { maxMove?: number; others?: Array<{ x: number; y: number }> } = {},
+): { x: number; y: number } {
+  const { x: sx, y: sy } = snapPoint(pixels, width, height, x, y, opts);
+  return { x: sx, y: sy };
+}
+
+/** snapToInk, also saying whether the point ended on ink of its own. */
+export function snapPoint(
+  pixels: Uint8ClampedArray | Uint8Array,
+  width: number,
+  height: number,
+  x: number,
+  y: number,
+  opts: { maxMove?: number; others?: Array<{ x: number; y: number }> } = {},
+): { x: number; y: number; onInk: boolean } {
   const at = (px: number, py: number) => ((Math.round(py) * width + Math.round(px)) * 4);
   const paper = [0, 1, 2].map((c) => pixels[at(6, 6) + c]);
-  const inkAt = (px: number, py: number) => {
-    if (px < 0 || py < 0 || px >= width || py >= height) return false;
-    const i = at(px, py);
-    return Math.abs(pixels[i] - paper[0]) + Math.abs(pixels[i + 1] - paper[1]) + Math.abs(pixels[i + 2] - paper[2]) > 60;
-  };
+  const inkIdx = (i: number) => Math.abs(pixels[i] - paper[0]) + Math.abs(pixels[i + 1] - paper[1]) + Math.abs(pixels[i + 2] - paper[2]) > 60;
+  const inkAt = (px: number, py: number) => px >= 0 && py >= 0 && px <= width - 1 && py <= height - 1 && inkIdx(at(px, py));
   const cx = Math.max(0, Math.min(width - 1, x));
   const cy = Math.max(0, Math.min(height - 1, y));
-  if (inkAt(cx, cy)) return { x: cx, y: cy };
-  for (let r = 3; r <= 70; r += 3) {
-    for (let k = 0; k < 24; k++) {
-      const a = (k / 24) * Math.PI * 2;
-      const px = cx + Math.cos(a) * r;
-      const py = cy + Math.sin(a) * r;
-      if (!inkAt(px, py)) continue;
-      const inside = { x: px + Math.cos(a) * 6, y: py + Math.sin(a) * 6 };
-      return inkAt(inside.x, inside.y) ? inside : { x: px, y: py };
+  if (inkAt(cx, cy)) return { x: cx, y: cy, onInk: true };
+  const maxMove = opts.maxMove ?? 24;
+  const others = (opts.others ?? []).filter((o) => Number.isFinite(o.x) && Number.isFinite(o.y) && (o.x - cx) ** 2 + (o.y - cy) ** 2 > 1);
+  const nearer = (px: number, py: number) => {
+    const d = (px - cx) ** 2 + (py - cy) ** 2;
+    return others.every((o) => d < (px - o.x) ** 2 + (py - o.y) ** 2);
+  };
+  // The colour regions met so far: 1 = no other part's point in it, 2 = another part's.
+  const region = others.length ? new Uint8Array(width * height) : null;
+  const theirs = new Set<number>();
+  for (const o of others) {
+    for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) {
+      const ox = Math.round(o.x) + dx, oy = Math.round(o.y) + dy;
+      if (ox >= 0 && oy >= 0 && ox < width && oy < height) theirs.add(oy * width + ox);
     }
   }
-  return { x: cx, y: cy };
+  const ownRegion = (px: number, py: number): boolean => {
+    if (!region) return true;
+    const seed = Math.round(py) * width + Math.round(px);
+    if (region[seed]) return region[seed] === 1;
+    // Flood the seed's colour region (bounded): ink, each step without a sharp colour change.
+    const queue = new Int32Array(FLOOD_LIMIT + 4);
+    const seen: number[] = [];
+    let head = 0, tail = 0, other = false;
+    queue[tail++] = seed; region[seed] = 3; seen.push(seed);
+    while (head < tail && !other) {
+      const i = queue[head++];
+      if (theirs.has(i)) { other = true; break; }
+      const ix = i % width, iy = (i - ix) / width;
+      for (const n of [ix > 0 ? i - 1 : -1, ix < width - 1 ? i + 1 : -1, iy > 0 ? i - width : -1, iy < height - 1 ? i + width : -1]) {
+        if (n < 0 || region[n] || tail >= FLOOD_LIMIT) continue;
+        const a = i * 4, b = n * 4;
+        if (!inkIdx(b) || Math.abs(pixels[a] - pixels[b]) + Math.abs(pixels[a + 1] - pixels[b + 1]) + Math.abs(pixels[a + 2] - pixels[b + 2]) > 36) continue;
+        region[n] = 3; seen.push(n); queue[tail++] = n;
+      }
+    }
+    for (const i of seen) region[i] = other ? 2 : 1;
+    return !other;
+  };
+  for (let r = 2; r <= maxMove; r += 2) {
+    const steps = Math.max(16, Math.ceil(r * 1.5));
+    for (let k = 0; k < steps; k++) {
+      const a = (k / steps) * Math.PI * 2;
+      const px = cx + Math.cos(a) * r;
+      const py = cy + Math.sin(a) * r;
+      if (!inkAt(px, py) || !nearer(px, py) || !ownRegion(px, py)) continue;
+      const inside = { x: px + Math.cos(a) * 4, y: py + Math.sin(a) * 4 };
+      return inkAt(inside.x, inside.y) && nearer(inside.x, inside.y) && ownRegion(inside.x, inside.y) ? { ...inside, onInk: true } : { x: px, y: py, onInk: true };
+    }
+  }
+  return { x: cx, y: cy, onInk: false };
 }
+
+/** How far a colour region is flooded looking for another part's point (a large chamber's worth). */
+const FLOOD_LIMIT = 90_000;
 
 /**
  * Every step is bounded. Without this a stalled request (this dev machine's Azure calls hang
@@ -521,9 +652,11 @@ export async function generateIllustratedBoard(
     const checked = await bounded(verifyParts(client, picture.jpeg, subject, located.parts), "locate").catch(() => null);
     if (checked) {
       costUsd += checked.costUsd;
-      located = { ...located, parts: checked.parts };
       if (checked.corrected.length) console.error(`[illustrated] beat=${beat.id} second look moved: ${checked.corrected.join(", ")}`);
+      if (checked.rejected.length) console.error(`[illustrated] beat=${beat.id} second look dropped: ${checked.rejected.join(", ")}`);
     }
+    // Not verified: only the parts the locator was sure of are kept (and labelled).
+    located = { ...located, parts: trustedParts(located.parts, checked) };
     const t2 = Date.now();
     const id = randomBytes(16).toString("hex");
     await bounded(import("./blobStorage").then(({ uploadRawBlob }) => uploadRawBlob(illustrationBlobName(id), picture.display, "image/jpeg")), "store");

@@ -3,6 +3,8 @@ import { canvasSentences } from "../canvas/plan";
 import { parseDiagramSpec, type DiagramSpec } from "./spec";
 import { checkDiagram } from "./check";
 import { compileDiagram } from "./render";
+import { drawableText } from "./glyphs";
+import { fitText } from "../figures/cuts";
 
 /**
  * The board writer's brief for a vector diagram. Code draws every primitive; the model only
@@ -57,7 +59,9 @@ export function acceptDiagram(raw: unknown, narration: string, mustShow: string[
   const stage = (body.stage && typeof body.stage === "object" ? body.stage : body) as Record<string, unknown>;
   const parsed = parseDiagramSpec(stage.spec ?? stage);
   if (!parsed) return null;
-  const checked = checkDiagram(parsed, narration, mustShow);
+  // Over-long labels stay whole here so the rewrite pass can find the writer's words; the validator's
+  // check fits and records them.
+  const checked = checkDiagram(parsed, narration, mustShow, { cutText: false });
   const drawing = compileDiagram(checked.spec);
   const parts = (Array.isArray(stage.parts) ? stage.parts : drawing.parts)
     .map((p, i) => {
@@ -65,7 +69,8 @@ export function acceptDiagram(raw: unknown, narration: string, mustShow: string[
       const id = String(r.id ?? drawing.parts[i]?.id ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
       const known = drawing.parts.find((x) => x.id === id);
       if (!known) return null;
-      return { id, name: String(r.name ?? known.name).slice(0, 34), s: Math.max(0, Number(r.s) || 0) };
+      // In glyphs the board font draws, and ended at a word (recorded), never cut mid-word.
+      return { id, name: fitText(drawableText(String(r.name ?? known.name)), 34), s: Math.max(0, Number(r.s) || 0) };
     })
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
     .slice(0, 8);

@@ -4,7 +4,7 @@ import { isDirectQuestion, isTopicRequest } from "../planPrompt";
 import { resolveDepth } from "../learnerProfile";
 import { buildTeachingPolicy, policyForCanvasPlan, type TeachingPolicy } from "../teachingPolicy";
 import type { SuprnotesLessonInput } from "../suprnotes";
-import { CANVAS_CODE_LINES, documentForCanvas, documentListings, extraBoardsForListings, listingIndex } from "./documentContext";
+import { termsNotInDocument, substantivePages, CANVAS_CODE_LINES, documentForCanvas, documentListings, extraBoardsForListings, listingIndex } from "./documentContext";
 import { strictPlanSection, videoParts, videoPlanSection } from "./sourceLessons";
 import { isVideoSource } from "../youtube/videoSource";
 import { packForPrompt } from "../webSources";
@@ -98,7 +98,7 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   lines.push(
     "",
     policy
-      ? `${policyForCanvasPlan(policy)}\nOn this topic they are ${p.expertise}. Pitch every script — its words, its examples, how much it assumes — for this student.`
+      ? `${policyForCanvasPlan(policy, referenceDocumentOf(input) || strictDocumentOf(input) ? "pdf" : curriculumDocumentOf(input) ? "course" : undefined)}\nOn this topic they are ${p.expertise}. Pitch every script — its words, its examples, how much it assumes — for this student.`
       : `THE STUDENT: ${p.expertise}, learning for ${p.goal === "curiosity" ? "curiosity" : `${p.goal} reasons`}, who learns best from ${p.preferredExamples === "mixed" ? "a mix of" : p.preferredExamples} examples. Pitch every script — its words, its examples, how much it assumes — for this student.`,
   );
   // Lessons taught strictly from a source (lib/canvas/sourceLessons.ts) — no persona: its interests
@@ -123,12 +123,16 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   const doc = referenceDocumentOf(input);
   const listings = doc ? documentListings(doc) : [];
   const splits = extraBoardsForListings(listings);
+  // A strict lecture on the whole selection teaches every page: when its outline's parts do not reach
+  // them all, boards for the remaining pages follow the parts (PDF bench, 2026-10-18: 2 of 10 pages).
+  const pageBoards = strictDoc && !question && input.sourceScope?.breadth.kind === "whole" ? Math.max(0, Math.min(14, substantivePages(strictDoc).length) - boards) : 0;
   if (parts.length > 0) {
     lines.push(
       "",
-      `THE APPROVED OUTLINE — exactly ${boards} board${boards === 1 ? "" : "s"}, one per part, in this order (ids b1 to b${boards}). Each board teaches its part — what its line below says — and nothing that belongs to another part:`,
+      `THE APPROVED OUTLINE — ${pageBoards ? `${boards} board${boards === 1 ? "" : "s"} for its parts` : `exactly ${boards} board${boards === 1 ? "" : "s"}`}, one per part, in this order (ids b1 to b${boards}). Each board teaches its part — what its line below says — and nothing that belongs to another part:`,
       ...parts.slice(0, boards).map((s, i) => `b${i + 1}. ${s.title}${s.caption ? ` — ${s.caption}` : ""}`),
     );
+    if (pageBoards > 0) lines.push(`EVERY SELECTED PAGE IS TAUGHT: after b${boards}, add up to ${pageBoards} more board${pageBoards === 1 ? "" : "s"} (b${boards + 1} on), one for each selected page the parts above do not reach, in page order, each teaching that page from its own words and naming it in "source.pages".`);
     if (splits > 0) lines.push(`The one exception: a part that teaches a code listing too long for one board (more than ${CANVAS_CODE_LINES} lines of code) takes CONSECUTIVE boards, one per piece of the listing — at most ${splits} extra board${splits === 1 ? "" : "s"} in the whole lesson for this, and none for anything else.`);
   } else if (strictDoc || video) {
     lines.push("", "HOW MANY BOARDS: as the section about the student's source below says.");
@@ -136,7 +140,7 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
     lines.push(
       "",
       question
-        ? "HOW MANY BOARDS: this is one focused question. Answer it on ONE board; use a second only if one genuinely cannot answer it completely."
+        ? "HOW MANY BOARDS: this is one focused question. Answer it completely and with nothing more: ONE board for a narrow fact, meaning or single cause; two or three for a how or why about a process, each a different step of the answer."
         : `HOW MANY BOARDS: as many as "${request.trim()}" genuinely contains — one per distinct idea, in teaching order, no padding and no maximum. A narrow topic may need two or three; a broad one more.`,
     );
   }
@@ -163,7 +167,10 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
     // The student's level from their profile's Study level (lib/lessonIntent.ts): a rule, not a hint.
     if (pack.audience) lines.push("", `THE LEVEL: ${pack.audience}. Teach exactly at this level — its depth, terms and expectations: nothing from a higher level, and nothing it takes for granted explained as if new.`);
   }
-  if (question) lines.push(`This lesson ANSWERS ONE QUESTION: "${(strictQuestion || input.focus || input.topic).trim()}". The first board answers it directly; anything after only completes the answer. No interaction unless the student asked to practise.`);
+  // Strict: a question about something the pages never mention is answered by saying so (2026-10-18).
+  const absent = strictDoc && question ? termsNotInDocument(strictQuestion || input.focus || input.topic, strictDoc) : [];
+  if (absent.length) lines.push(`THE STUDENT'S DOCUMENT NEVER MENTIONS: ${absent.join(", ")}. The first sentence says so plainly ("Your document does not mention ${absent[0]}."); then, only if its pages say something closely related, teach that from the pages — never calling it "${absent[0]}" or by any name the pages do not use. Keep it to one short board.`);
+  if (question) lines.push(`This lesson ANSWERS ONE QUESTION: "${(strictQuestion || input.focus || input.topic).trim()}". ${doc || strictDoc ? "The first board answers it directly; anything after only completes the answer." : 'Each board is one step of the answer, in order, and together they answer it completely: the first gets straight to it (no introduction), a "how" explains the mechanism itself (what moves, contracts or changes), and no board repeats another.'} No interaction unless the student asked to practise.`);
 
   // Depth buys WORDS PER BOARD, never boards (the rule the ordinary lecture planner follows too).
   const depth = p.depth;
@@ -267,6 +274,11 @@ function documentPlanSection(doc: SuprnotesLessonInput, listings: ReturnType<typ
   const lines = [
     "THE STUDENT'S DOCUMENT — they uploaded it and asked you to teach FROM it, as a reference. It is printed in full at the end of this request, page by page.",
     "- Teach what the document teaches, in its order, with its own examples, numbers, names and figures (redraw its diagrams on the board — a tree, a table, a process — with its own values). Say where it comes from when it helps (\"your notes put it like this…\", \"the example on page 4…\"). You may explain beyond the document to make an idea clear, but never contradict it and never swap its example for a different one.",
+    // Prompt bench, 2026-10-18: "In the document's example, inserting 30 into a tree rooted at 40" — the
+    // PDF had no such example; and two questions the PDF does not cover were answered with no word saying so.
+    // Trunking slides: Erlang C written without its denominator, Erlang B never shown (PDF bench, 2026-10-18).
+    "- A FORMULA THE DOCUMENT GIVES is written exactly as the document prints it — every term, the denominator included, its own symbols — never shortened or rewritten from memory; a board that names one of the document's formulas shows it, not only its shorthand.",
+    "- NEVER CREDIT THE DOCUMENT WITH WHAT IT DOES NOT SAY: \"the document's example\", \"your notes show\", \"on page 4\" only for what is really on its pages. An example of your own is yours (\"take the values 10, 20, 30\"), never the document's. When the student asks about something the document does not cover, say so in one short phrase first (\"Your notes don't cover this, but…\") and keep the answer short.",
     question
       ? "- The student's words are a QUESTION about this document: answer exactly that, completely, using everything the document says about it — every page that bears on it, not only the first."
       : "- No question was asked: the lesson covers the selected pages as a whole.",

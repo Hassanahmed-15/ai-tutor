@@ -17,13 +17,20 @@ export function textbookDiagramKey(subject: string, parts: string[]): string {
   return `asset-${createHash("sha256").update(signature).digest("hex").slice(0, 32)}`;
 }
 
-/** What the image model is asked to draw: the subject, the parts it must show, the conventions, any corrections. */
+/**
+ * What the image model is asked to draw: the subject, the parts it must show, the conventions, any
+ * corrections. Every part must be drawn apart from its neighbours: a part hidden behind another, or
+ * merged into it, is a part no label can point at correctly.
+ */
 export function textbookPrompt(subject: string, parts: string[], corrections: string[] = []): string {
   return [
     `${subject.replace(/[.\s]+$/, "")}.`,
-    parts.length ? `It must clearly show, each as a distinct, separately identifiable structure: ${parts.join("; ")}.` : "",
-    "Draw it the way a standard school science textbook (Cambridge O/A Level, IGCSE, AP) draws it: the conventional view (cross-section, cut-away or frontal as textbooks use), correct proportions and connections, and the subject's standard colour conventions (for example oxygenated blood red and deoxygenated blood blue).",
+    parts.length ? `It must clearly show each of these as its own distinct, fully visible structure, not hidden behind or merged into another: ${parts.join("; ")}.` : "",
+    // A swimmer and a man jumping off a boat, on a Newton's-laws board, came back with a heart and red and
+    // blue blood vessels drawn on their bodies (prompt bench, 2026-10-18): the style line asked every
+    // picture for a cut-away and gave blood colours as its example. Inside views and colour codes are for
+    // subjects about the inside.
+    "Draw it the way a standard school textbook (Cambridge O/A Level, IGCSE, AP) draws it: the conventional view for this subject — a cross-section or cut-away only when the subject is about what is inside something; otherwise the outside, as it is seen — physically correct, with correct proportions, positions and connections, and the subject's own standard colour conventions (oxygenated blood red and deoxygenated blood blue only for circulation). Draw nothing the subject does not ask for: a person, animal or object in a physics, chemistry, geography or everyday scene is drawn from the outside, with no organs, bones or blood vessels.",
     corrections.length ? `An earlier drawing was rejected; correct these: ${corrections.join("; ")}.` : "",
   ].filter(Boolean).join(" ");
 }
-

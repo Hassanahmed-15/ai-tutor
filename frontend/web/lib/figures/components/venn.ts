@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Pt } from "../types";
+import { fitText } from "../cuts";
 import { PALETTE, Sketch, type Box, add, boxesOverlap, dist, list, mul, optNum, polar, str, sub, textBox, unit } from "./mathsKit";
 
 /**
@@ -23,7 +24,7 @@ function elements(v: unknown): string[] | undefined {
     const [a, b] = [Number(range[1]), Number(range[2])];
     if (b >= a && b - a <= 40) return Array.from({ length: b - a + 1 }, (_, i) => String(a + i));
   }
-  return [...new Set(list(s, /[,;]/).map((e) => e.slice(0, 10)))].slice(0, 40);
+  return [...new Set(list(s, /[,;]/).map((e) => fitText(e, 10)))].slice(0, 40);
 }
 
 /** What goes in each region, from counts or from element lists. */
@@ -200,7 +201,7 @@ export const venn: FigureComponent = {
     // Anchors: each set on its outline (outer side); the intersection and the shaded region at
     // roomy points clear of the region text.
     const clearOfText = (p: Pt, gap: number) => textBoxes.every((b) => p.x < b.x - gap || p.x > b.x + b.w + gap || p.y < b.y - gap || p.y > b.y + b.h + gap);
-    const setName = (i: number) => (names[i] ? `${names[i].slice(0, 26)} (${letters[i]})` : `Set ${letters[i]}`);
+    const setName = (i: number) => (names[i] ? `${fitText(names[i], 26)} (${letters[i]})` : `Set ${letters[i]}`);
     centres.forEach((c, i) => {
       const out = unit(sub(c, mid));
       sk.part(ids[i], setName(i), add(c, mul(sets === 3 && i === 2 ? unit({ x: -0.6, y: 1 }) : unit({ x: out.x, y: 0.25 }), R)));
@@ -212,7 +213,7 @@ export const venn: FigureComponent = {
     if (shade) {
       const taken = sk.parts.map((p) => p.anchor);
       const shadedAt = bestReachable((s) => inRect(s.p) && shade(s.mask) && clearOfText(s.p, 8) && taken.every((t) => dist(t, s.p) > 30)) ?? best((s) => inRect(s.p) && shade(s.mask));
-      if (shadedAt) sk.part("shaded", `Shaded: ${shadeExpr.replace(/\s+/g, "").replace(/\bn\b/g, "∩").replace(/\bu\b/g, "∪").slice(0, 24)}`, shadedAt);
+      if (shadedAt) sk.part("shaded", `Shaded: ${fitText(shadeExpr.replace(/\s+/g, "").replace(/\bn\b/g, "∩").replace(/\bu\b/g, "∪"), 24)}`, shadedAt);
     }
     return sk.finish(10);
   },

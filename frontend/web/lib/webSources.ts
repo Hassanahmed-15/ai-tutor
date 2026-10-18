@@ -25,6 +25,8 @@ export type SourcePack = {
   audience?: string;
   /** The syllabus or learning points the lesson must cover — the outline is checked against these. */
   checklist: string[];
+  /** The official syllabus text for this topic, when the course catalogue has it (lib/curriculum/syllabusOutcomes.ts). */
+  syllabusText?: string;
   /** The material: each fact once, with the source ids that state it. */
   points: SourcePoint[];
   /** The pages, as cited by the search itself (never a URL the model typed on its own). */
@@ -261,7 +263,10 @@ export function packForPrompt(pack: SourcePack, maxChars = 9_000): string {
   const sources = pack.sources.map((s) => `[${s.id}] ${s.site}: ${s.title}`).join("\n");
   const points = pack.points.map((p) => `- ${p.text}${p.sources.length ? ` [${p.sources.join(", ")}]` : ""}`).join("\n");
   const checklist = pack.checklist.length ? `\n\nWHAT THE ${pack.curriculum ? `${pack.curriculum.toUpperCase()} ` : ""}SYLLABUS EXPECTS (every point must be taught):\n${pack.checklist.map((c) => `- ${c}`).join("\n")}` : "";
-  return `SOURCES:\n${sources}\n\nTHE MATERIAL:\n${points}${checklist}`.slice(0, maxChars);
+  const official = pack.syllabusText ? `\n\nTHE OFFICIAL SYLLABUS TEXT FOR THIS TOPIC (teach every term it names, e.g. each structure, vessel or component in a "limited to:" list; use its own words; nothing beyond its Core and Supplement):\n${pack.syllabusText}` : "";
+  // The facts are what gets cut when it is long — never what the syllabus says must be taught.
+  const head = `SOURCES:\n${sources}\n\nTHE MATERIAL:\n`;
+  return `${head}${points.slice(0, Math.max(1_000, maxChars - head.length - checklist.length - official.length))}${checklist}${official}`;
 }
 
 /**

@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, FigurePart, FigureShape } from "../types";
+import { fitText } from "../cuts";
 import { BIO, arrowShapes, capital, cleanName, r2, roundedPoly, softShape } from "./bioDraw";
 import { textW } from "./mathsKit";
 
@@ -92,7 +93,7 @@ export function pyramidData(params: FigureParams): Pyramid {
   });
   const efficiency = type === "numbers" ? [] : values.slice(1).map((v, i) => (values[i] > 0 ? (v / values[i]) * 100 : NaN));
   const loss = type === "energy" ? values.slice(1).map((v, i) => values[i] - v) : [];
-  const unit = typeof params.unit === "string" && params.unit.trim() ? params.unit.trim().slice(0, 16) : UNIT[type];
+  const unit = typeof params.unit === "string" && params.unit.trim() ? fitText(params.unit.trim(), 16) : UNIT[type];
   return { type, levels, log, unit, widths, efficiency, loss };
 }
 

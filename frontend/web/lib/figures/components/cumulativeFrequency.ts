@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Ink, Pt } from "../types";
+import { fitText } from "../cuts";
 import { Sketch, bool, optNum, textW } from "./mathsKit";
 import { betweenTicks, dimension, drawFrame, niceScale, numbers, placeFirst, title, val } from "./statsKit";
 import { parseClasses } from "./histogram";
@@ -196,8 +197,8 @@ export const cumulativeFrequency: FigureComponent = {
     if (corners["lower-quartile"]) sk.part("lower-quartile", `Lower quartile ≈ ${reading(values["lower-quartile"], span)}`, corners["lower-quartile"]);
     if (corners["upper-quartile"]) sk.part("upper-quartile", `Upper quartile ≈ ${reading(values["upper-quartile"], span)}`, corners["upper-quartile"]);
     if (iqrAnchor) sk.part("iqr", `IQR ≈ ${reading(values["upper-quartile"] - values["lower-quartile"], span)}`, iqrAnchor);
-    sk.part("cf-axis", `Cumulative frequency (n = ${val(n, 2)})`.slice(0, 34), { x: 0, y: f.Y(betweenTicks(sy, 0.85)) });
-    if (readCorner) sk.part("reading", `${reading(readValue, n)} below ${val(readAt!, 2)}`.slice(0, 34), readCorner);
+    sk.part("cf-axis", fitText(`Cumulative frequency (n = ${val(n, 2)})`, 34), { x: 0, y: f.Y(betweenTicks(sy, 0.85)) });
+    if (readCorner) sk.part("reading", fitText(`${reading(readValue, n)} below ${val(readAt!, 2)}`, 34), readCorner);
     return sk.finish(14);
   },
 };

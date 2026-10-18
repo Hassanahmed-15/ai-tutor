@@ -114,7 +114,7 @@ test("free shapes keep their meaning colours", () => {
 });
 
 test("circulation cells turn the way physics allows: up where air rises, down where it sinks", () => {
-  const c = compileDiagram({ w: 600, h: 300, elements: [{ t: "circulation", x: 20, y: 20, w: 560, h: 200, stops: [{ label: "30°N", flow: "sink" }, { label: "0°", flow: "rise" }], cells: [{ part: "hadley" }] }], parts: [{ id: "hadley", name: "Hadley cell" }] });
+  const c = compileDiagram({ w: 600, h: 300, elements: [{ t: "circulation", x: 20, y: 20, w: 560, h: 200, stops: [{ label: "30°N", flow: "sink" }, { label: "0°", flow: "rise", part: "itcz" }], cells: [{ part: "hadley" }] }], parts: [{ id: "hadley", name: "Hadley cell" }, { id: "itcz", name: "ITCZ" }] });
   assert.ok(c.drawing, c.issues.join("; "));
   // The arrowhead on the cell's right side (rising at the equator) points up: its tip is its highest point.
   const heads = c.drawing!.shapes.filter((s) => s.t === "path" && s.part === "hadley" && s.d.endsWith("Z") && !s.d.includes("Q"));

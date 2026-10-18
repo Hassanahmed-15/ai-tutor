@@ -1,5 +1,9 @@
 import { flattenElements, slug, type DiagramElement, type DiagramSpec, type LabelEl, type RepeatEl } from "./spec";
 import { validLonLat } from "./project";
+import { recordFigureCut } from "../figures/cuts";
+import { drawableText } from "./glyphs";
+import { nearestParts } from "./ink";
+import { compileDiagram } from "./render";
 
 /**
  * Deterministic checks that REPAIR. A failed check becomes a message and an automatic fix; the
@@ -23,6 +27,9 @@ function numbersIn(text: string): number[] {
 function fitText(text: string, max: number): string {
   const t = text.replace(/\s+/g, " ").trim();
   if (t.length <= max) return t;
+  // Recorded, so the rewrite pass (lib/canvas/generate.ts shortenToFit) is told and can rewrite it
+  // to fit instead of the student reading a cut phrase.
+  recordFigureCut(t, `a diagram label (${max} characters)`, max);
   const head = t.slice(0, max);
   const breaks = [" — ", " – ", "; ", ": ", ", ", " and ", " or ", " of ", " "];
   let at = -1;
@@ -55,7 +62,16 @@ function near(a: number, b: number, tol: number): boolean {
 /**
  * Repair a spec against the narration. Always returns a drawable spec.
  */
-export function checkDiagram(spec: DiagramSpec, narration: string, mustShow: string[] = []): DiagramCheck {
+/** Content words of a name, for telling which element a label names. */
+const words = (t: string) => new Set((t.toLowerCase().match(/[a-z]{3,}/g) ?? []).filter((w) => !/^(the|and|for|with|from|into|that|this|its)$/.test(w)).map((w) => w.replace(/(ies|es|s)$/, "").slice(0, 6)));
+
+/**
+ * Repair a spec against the narration. Always returns a drawable spec. `cutText: false` leaves over-long
+ * label text whole (the board writer's words, so the rewrite pass can find and rewrite them); the
+ * board validator's own check then fits and records it.
+ */
+export function checkDiagram(spec: DiagramSpec, narration: string, mustShow: string[] = [], options: { cutText?: boolean } = {}): DiagramCheck {
+  const cutText = options.cutText !== false;
   const repairs: string[] = [];
   const factIssues: string[] = [];
   const said = numbersIn(narration);
@@ -87,14 +103,19 @@ export function checkDiagram(spec: DiagramSpec, narration: string, mustShow: str
         }
       }
     }
-    if (el.t === "label") {
+    // Words the board font can draw ("OM ⟂ AB" rendered as seven boxes, QA 2026-10-17).
+    if (el.t === "label") el.text = drawableText(el.text);
+    if (el.t === "arrow" && el.label) el.label = drawableText(el.label);
+    if (el.t === "map-mark" && el.label) el.label = drawableText(el.label);
+    if (el.t === "bands") for (const b of el.bands) b.name = drawableText(b.name);
+    if (el.t === "label" && cutText) {
       const fitted = fitText(el.text, 34);
       if (fitted !== el.text) {
         repairs.push(`label "${el.text}" rewritten to fit (${fitted.length} chars)`);
         el.text = fitted;
       }
     }
-    if (el.t === "arrow" && el.label) {
+    if (el.t === "arrow" && el.label && cutText) {
       const fitted = fitText(el.label, 28);
       if (fitted !== el.label) {
         repairs.push(`arrow label "${el.label}" rewritten to fit`);
@@ -179,8 +200,37 @@ export function checkDiagram(spec: DiagramSpec, narration: string, mustShow: str
     clone.elements.forEach(walk);
   }
 
-  // Labels stay inside the canvas and do not overlap. Positions we can edit are explicit {x,y}.
+  // A free label must point at the thing it names. Its {x, y} is the writer's guess; the element
+  // drawn nearest that point is compared with the label's words. A label nearer another element than
+  // the one it names is re-pointed at its own element (by id); one that names nothing and lands on
+  // nothing is flagged.
+  {
+    const drawing = compileDiagram(clone);
+    const named = flattenElements(clone.elements).filter((el) => el.t !== "label");
+    for (const el of flattenElements(clone.elements)) {
+      if (el.t !== "label" || !("x" in el.at) || "lon" in el.at || "id" in el.at) continue;
+      const want = words(el.text);
+      if (!want.size) continue;
+      const score = (other: DiagramElement) => { const have = words(`${other.part ?? ""} ${other.id.replace(/-/g, " ")}`); return [...want].filter((w) => have.has(w)).length; };
+      const owner = named.map((other) => ({ other, hits: score(other) })).filter((m) => m.hits > 0).sort((a, b) => b.hits - a.hits)[0]?.other;
+      const near = nearestParts(drawing, el.at.x, el.at.y).filter((n) => n.part !== el.id);
+      const nearest = near[0];
+      if (owner && nearest && nearest.part !== owner.id && !(nearest.part.startsWith(`${owner.id}-`)) && (near.find((n) => n.part === owner.id)?.distance ?? Infinity) > nearest.distance + 4) {
+        repairs.push(`label "${el.text}" pointed at "${nearest.part}", not at the "${owner.id}" it names — re-pointed at it`);
+        el.at = { id: owner.id };
+      } else if (!owner && (!nearest || nearest.distance > 40)) {
+        repairs.push(`label "${el.text}" points at nothing drawn — give it "at": {"id"} of the part it names`);
+      }
+    }
+  }
+
+  // On-diagram words (no leader) stay inside the canvas and do not overlap. A margin label's {x, y}
+  // is not text but the point its leader touches: moving it to clear another label's box drifted
+  // the dot off its part (it was nudged down up to 12 times). On-diagram text tries the other side
+  // and left/right before moving at all, never moves more than 24 px from its point, and becomes a
+  // margin label with a leader when it cannot fit near it.
   const boxes: Array<{ x: number; y: number; w: number; h: number; el: LabelEl }> = [];
+  const MAX_DRIFT = 24;
   const place = (el: LabelEl) => {
     if (!("x" in el.at) || "lon" in el.at || "id" in el.at) return;
     const at = clampXY(el.at.x, el.at.y);
@@ -188,20 +238,24 @@ export function checkDiagram(spec: DiagramSpec, narration: string, mustShow: str
       el.at = at;
       repairs.push(`label "${el.text}" moved onto the canvas`);
     }
+    if (el.leader !== false) return;
     const w = Math.min(clone.w * 0.4, estimateWidth(el.text) + 8);
     const h = 16;
-    let box = { x: at.x - w / 2, y: at.y - h, w, h, el };
-    for (let k = 0; k < 12; k++) {
-      const hit = boxes.find((b) => box.x < b.x + b.w && box.x + box.w > b.x && box.y < b.y + b.h && box.y + box.h > b.y);
-      if (!hit) break;
-      box = { ...box, y: hit.y + hit.h + 4 };
-      if (box.y + box.h > clone.h) box = { ...box, y: Math.max(0, hit.y - h - 4) };
-      repairs.push(`label "${el.text}" nudged so it does not overlap`);
+    const clear = (b: { x: number; y: number; w: number; h: number }) => b.x >= 0 && b.y >= 0 && b.x + b.w <= clone.w && b.y + b.h <= clone.h
+      && !boxes.some((o) => b.x < o.x + o.w && b.x + b.w > o.x && b.y < o.y + o.h && b.y + b.h > o.y);
+    const tries: Array<[number, number]> = [[0, 0], [0, h + 4], [0, -(h + 4)], [w / 2 + 4, 0], [-(w / 2 + 4), 0], [w / 2 + 4, h + 4], [-(w / 2 + 4), h + 4], [w / 2 + 4, -(h + 4)], [-(w / 2 + 4), -(h + 4)]];
+    // How far the words end up from their point: the gap between the point and the text's box.
+    const gap = (b: { x: number; y: number; w: number; h: number }) => Math.hypot(Math.max(b.x - at.x, 0, at.x - (b.x + b.w)), Math.max(b.y - (at.y - h / 2), 0, at.y - h / 2 - (b.y + b.h)));
+    const fit = tries.map(([dx, dy]) => ({ dx, dy, box: { x: at.x - w / 2 + dx, y: at.y - h + dy, w, h } })).find((c) => clear(c.box) && gap(c.box) <= MAX_DRIFT);
+    if (!fit) {
+      // No room beside its point: a margin label whose leader keeps the point exact.
+      el.leader = true;
+      repairs.push(`label "${el.text}" had no room beside its point — drawn in the margin with a leader`);
+      return;
     }
-    box.x = Math.max(0, Math.min(clone.w - box.w, box.x));
-    box.y = Math.max(12, Math.min(clone.h - 4, box.y + h)) - h;
-    el.at = { x: box.x + box.w / 2, y: box.y + h };
-    boxes.push(box);
+    if (fit.dx || fit.dy) repairs.push(`label "${el.text}" set beside its point so it does not overlap`);
+    el.at = { x: fit.box.x + w / 2, y: fit.box.y + h };
+    boxes.push({ ...fit.box, el });
   };
   flattenElements(clone.elements).filter((el): el is LabelEl => el.t === "label").forEach(place);
 
@@ -211,13 +265,15 @@ export function checkDiagram(spec: DiagramSpec, narration: string, mustShow: str
     clone.elements = dropExtraLabels(clone.elements, 8, repairs);
   }
 
-  // Syllabus mustShow names that never appear become a repair note, not a rejection.
+  // A part the syllabus requires that the diagram does not name is a reason to write it again (the
+  // writer's one retry), not a note: the board's labels — not the narration — must name it.
+  const namedText = flattenElements(clone.elements).map((el) => `${el.part ?? ""} ${el.t === "label" ? el.text : ""} ${el.t === "bands" ? el.bands.map((b) => `${b.name} ${b.part ?? ""}`).join(" ") : ""}`).join(" ").toLowerCase();
   for (const need of mustShow) {
     const word = need.toLowerCase().replace(STOP, " ").replace(/[^a-z0-9]+/g, " ").trim();
     if (word.length < 3) continue;
-    const hay = JSON.stringify(clone).toLowerCase() + narration.toLowerCase();
-    if (!word.split(/\s+/).every((w) => w.length < 4 || hay.includes(w))) {
-      repairs.push(`syllabus part "${need}" is not yet labelled — name it if the diagram shows it`);
+    const key = word.split(/\s+/).filter((w) => w.length >= 4);
+    if (key.length && !key.some((w) => namedText.includes(w.replace(/(ies|es|s)$/, "")))) {
+      factIssues.push(`the syllabus requires "${need}" but no part or label names it — draw it and label it`);
     }
   }
 

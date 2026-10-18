@@ -52,7 +52,7 @@ export function scoreLesson(args: {
   });
   const coverage = outcomes.length ? taught.length / outcomes.length : 0.5;
   const quizish = (issue: string) => /^quiz:/.test(issue);
-  const layoutish = (issue: string) => /^(layout:|student-view:)/.test(issue);
+  const layoutish = (issue: string) => /^(layout:|student-view:|text-cut:|text-dropped:)/.test(issue);
   const factualRate = boards.length ? boards.filter((b) => b.issues.some((i) => !quizish(i) && !layoutish(i))).length / boards.length : 1;
   const layoutRate = boards.length ? boards.filter((b) => b.issues.some(layoutish)).length / boards.length : 1;
   const visual = new Set(["figure", "diagram", "graph", "equation", "molecule", "atom-map", "flow", "compare", "illustration", "code"]);

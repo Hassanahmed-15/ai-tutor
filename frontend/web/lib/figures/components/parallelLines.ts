@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Pt } from "../types";
+import { fitWithin } from "../cuts";
 import { PALETTE, Sketch, add, angleMark, bool, fmt, mul, num, rad, str } from "./mathsKit";
 
 /**
@@ -104,7 +105,7 @@ export const parallelLines: FigureComponent = {
     sk.part("parallel-lines", "Parallel lines (arrow marks)", { x: xR, y: 0 });
     sk.part("transversal", "Transversal", sk.clearAnchor([add(P, mul(u, along * 0.75)), add(Q, mul(u, -along * 0.75))]));
     sk.part("given-angle", `Given angle ${fmt(given)}°`, gA);
-    sk.part("unknown-angle", `${sym} (${NAMES[pair]})${solve ? ` = ${fmt(found)}°` : ""}`.slice(0, 34), uA);
+    sk.part("unknown-angle", fitWithin("", sym, ` (${NAMES[pair]})${solve ? ` = ${fmt(found)}°` : ""}`, 34), uA);
     return sk.finish(14);
   },
 };

@@ -6,7 +6,7 @@ import { loadSharedDiagramRecord, saveSharedDiagramRecord } from "../canvas/stor
 import type { FigureDrawing } from "../figures/types";
 import { costFor } from "../modelPricing";
 import { diagramIssues } from "./grammarCheck";
-import { compileDiagram } from "./grammar";
+import { compileDiagram, fitCompiledDiagram } from "./grammar";
 import { diagramPng } from "./grammarRender";
 
 /**
@@ -34,6 +34,9 @@ CHOOSE THE VIEW A TEXTBOOK USES for this idea:
 - a relationship or data (how one thing changes with another, a table of values, shares of a total): a "plot";
 - a cross-section (soil, rock strata, the atmosphere, a leaf, skin, a tissue): "layers", with details on top;
 - an exact number of things (23 pairs, 8 electrons, 4 chambers): "repeat" — the count must be exact;
+- a geometry construction (a circle theorem, chords and tangents, a triangle, similar shapes, a locus, vectors): "geometry" — never boxes or icons;
+- a collision, momentum along a line, an impact or an explosion: "collision" — the bodies before and after with their velocity arrows;
+- a graph of how a quantity varies (a potential or field against distance r, a projectile's height against distance): a "plot" of the lesson's numbers or of the curve's shape;
 - a structure, an organ, an apparatus, a force diagram, a circuit, a cycle of real places: shapes.
 
 ELEMENTS (x right, y down, on the w×h canvas, w 200-900, h 150-640):
@@ -44,15 +47,17 @@ ELEMENTS (x right, y down, on the w×h canvas, w 200-900, h 150-640):
 - {"t": "plot", "x", "y", "w", "h" (the axes box; leave 60 left and 44 below for ticks and titles), "xAxis": {"label", "min", "max", "step"} or {"label", "categories": [...]} for bars, "yAxis": {"label", "min", "max", "step"}, "series": [{"kind": "line"|"points"|"area", "points": [[x, y], …], "color", "part"} | {"kind": "bars", "values": [one per category], "color", "part"}]} — code draws the axes, ticks and gridlines. Plot the lesson's OWN numbers; when it gives none, show the shape of the relationship with round values.
   A plot's "intersections": [{"of": [partA, partB], "part", "xPart", "yPart"}] — code finds where two line series cross (an equilibrium, a break-even point) and draws dashed guides to both axes; name the crossing and its axis readings (P2, Q2) as parts there. Never draw guide lines yourself.
 - {"t": "loop", "x", "y", "w", "h", "direction": "clockwise"|"anticlockwise", "color", "part"} — a circulation loop with arrowheads: a Hadley/Ferrel/polar cell, a convection current, a sea breeze. Draw a cell model as adjacent loops turning the right way, with the ground as a line and "H"/"L" texts where air sinks and rises.
-- {"t": "circulation", "x", "y", "w", "h", "stops": [{"label": "90°N", "flow": "sink"|"rise", "at"?: 0-1}, …] (left to right), "cells": [{"part", "color"}, …] (one per gap between stops), "pressure": true} — convection or circulation cells (the three-cell model, a sea breeze, convection currents): say only where air rises and sinks; code turns every cell the right way and writes L/H at the ground. Use this — never loops or arrows — for any circulation model.
+- {"t": "circulation", "x", "y", "w", "h", "stops": [{"label": "90°N", "flow": "sink"|"rise", "at"?: 0-1}, …] (left to right), "cells": [{"part", "color"}, …] (one per gap between stops), "pressure": true} — convection or circulation cells (the three-cell model, a sea breeze, convection currents): say only where air rises and sinks; code turns every cell the right way, writes L/H at the ground and writes each cell's part name INSIDE its loop (no margin label) — so also give a stop a "part" for the place a label should point at (the ITCZ, a subtropical high). Use this — never loops or arrows — for any circulation model.
 - {"t": "rays", "angle" (direction of travel: 0 right, 90 down), "length", "hits": [[x, y], …] (where each ray lands, on the surface you drew), "color", "part", "reflect"?: {"angle", "length", "part"}} — parallel rays (sunlight, light on a surface) that end exactly on their hit points; reflections leave from them.
 - {"t": "beam", "from": [x, y], "at": [x, y], "groups": [{"count", "turn" (0 straight on … 180 straight back), "part", "color"}, …], "spread"} — particles fired at a target, in the lesson's proportions (most → the largest count): alpha scattering, a beam through a slit.
 - {"t": "layers", "x", "y", "w", "layers": [{"h", "fill", "texture": "dots"|"lines"|"none", "part"}, …] (top first), "wavy": true|false}.
 - {"t": "repeat", "count", "shape": <one shape>, "dx", "dy", "cols", "part"} — copies laid out in rows of "cols", dx apart, rows dy apart.
+- {"t": "geometry", "circle"?: {"cx", "cy", "r", "part"}, "points": [{"id": "A", "deg": 210} (on the circle; degrees anticlockwise from the right) | {"id": "O", "centre": true} | {"id": "P", "x", "y"} | {"id": "M", "mid": ["A", "B"]} | {"id": "M", "foot": ["O", "A", "B"]} (foot of the perpendicular from O to AB) | {"id": "T", "tangentFrom": "P", "which": 1|2} | {"id": "X", "along": ["A", "B"], "t": 0-1}, each optionally "part"], "segments": [{"from", "to", "part", "dash"?, "arrow"?, "extend"? (px past both ends, for a tangent line), "text"? (a length the lesson states, "7 cm")}], "polygons"?: [{"points": ["A", "B", "C"], "fill", "part"}], "rightAngles"?: [["O", "M", "A"]] (vertex in the middle), "angles"?: [{"at", "from", "to", "text"?: "40°", "part"?}], "ticks"?: [{"segments": [["A", "M"], ["M", "B"]], "count": 1}]} — code places every point exactly (a foot really is on the chord, a tangent really touches) and writes each point's letter; refer only to points listed before.
+- {"t": "collision", "x", "y", "w" ≥ 300, "h" ≥ 230, "positive": "right"|"left", "unit"?: "m/s", "before": [{"name": "A", "mass": "2.0 kg", "v": 3.0, "part", "vPart"}, …], "after": [{"name", "mass", "v", "part", "vPart"}, …]} — bodies on a line before and after impact: "v" is the signed velocity (positive = the positive direction; 0 = at rest) or the unknown's symbol ("v"); code draws each arrow the way its sign says, as long as its speed. Bodies that coalesce are ONE body after, with the combined mass. A "vPart" is written on its arrow (its value), not as a margin label; name the bodies as parts.
 - shapes: {"t": "rect", "x", "y", "w", "h", "rx"} | {"t": "ellipse", "cx", "cy", "rx", "ry"} | {"t": "circle", "cx", "cy", "r"} | {"t": "line"|"arrow", "x1", "y1", "x2", "y2"} | {"t": "polyline"|"polygon", "points": [[x, y], …]} | {"t": "curve", "points": [[x, y], …], "closed"} (a smooth outline — cells, organs, rivers, landforms) | {"t": "text", "x", "y", "text"} (≤12 characters: a sign, a symbol or a value the narration states — "+", "N", "H₂O", "30°C" — never a part's name; at most 10).
   Style on shapes: "fill": blue|green|red|yellow|orange|purple|pink|cyan|brown|grey|sand|sky|white|none, "stroke": ink|muted|none|red|blue|green|orange|purple|brown, "width" 1-4, "dash": true, "part".
 
-PARTS — what the labels point at: 2-8 {"id", "name", "anchor"?: {"x", "y"}, "at"?: [lon, lat]}. Every part's elements carry "part": its id; code puts the label's dot on the part (give "anchor" only to choose the exact point ON the part; on a map, name a region with "at"). Names use the narration's own words, at most 34 characters. Labels are written by code beside the diagram — never write a name into the art.
+PARTS — what the labels point at: 2-8 {"id", "name", "anchor"?: {"x", "y"}, "at"?: [lon, lat]}. Every part's elements carry "part": its id; code puts the label's dot on the part. A part drawn by world, plot, layers, circulation, rays, beam, loop, geometry or collision is located by code (any anchor you give is ignored); for a part made of plain shapes, "anchor" may choose a point that is ON its lines or inside its outline — anywhere else is rejected. On a map, name a region with "at". Names use the narration's own words, at most 34 characters, in plain words (write "perpendicular to", not a symbol). Labels are written by code beside the diagram — never write a name into the art.
 
 RULES: parallel things are drawn parallel (the Sun's rays: "repeat" one arrow); a lining faces the space it lines (cilia point into the lumen); flows point from where they start to where they end; draw the standard textbook view, correct in every position and direction a teacher would check (which way each arrow points, which layer is on top, where each place is); fill most of the canvas; every number written or plotted is one the lesson states (axis scales excepted); show every required part; keep it uncluttered — only what this board teaches.`;
 
@@ -110,7 +115,7 @@ export async function vectorDiagram(openai: OpenAI, req: VectorDiagramRequest, o
   if (options.share) {
     const record = await loadSharedDiagramRecord<StoredDiagram>(key).catch(() => null);
     const again = record?.style === DIAGRAM_STYLE_VERSION ? compileDiagram(record.raw) : undefined;
-    if (again?.drawing) return { diagram: { drawing: again.drawing, raw: record!.raw, cached: true }, costUsd: 0, log: "verified diagram reused" };
+    if (again?.drawing) return { diagram: { drawing: fitCompiledDiagram(again.drawing), raw: record!.raw, cached: true }, costUsd: 0, log: "verified diagram reused" };
   }
   const user = [
     req.topic ? `Lesson: ${req.topic}` : "",
@@ -144,22 +149,30 @@ export async function vectorDiagram(openai: OpenAI, req: VectorDiagramRequest, o
       messages.push({ role: "user", content: `That diagram cannot be used yet: ${last}. Return the whole corrected diagram.` });
       continue;
     }
-    const png = await diagramPng(compiled.drawing);
+    const drawing = fitCompiledDiagram(compiled.drawing);
+    const png = await diagramPng(drawing);
+    // UNCHECKED IS NOT VERIFIED. A vision call that errors (timeout, bad JSON) used to count as an
+    // accurate verdict, and the diagram was stored as verified for every later student. Now it ships
+    // on its deterministic checks alone, is logged as unchecked, and is not shared.
+    let seen: "seen" | "unchecked" | "not seen" = "not seen";
     if (png && options.timeLeft() > 70_000) {
-      const verdict = await checkRendered(openai, png, req).catch((error: Error) => ({ accurate: true, problems: [] as string[], costUsd: (error as { costUsd?: number }).costUsd ?? 0, skipped: error.message }));
+      const verdict = await checkRendered(openai, png, req).then((v) => ({ ...v, error: "" })).catch((error: Error) => ({ accurate: false, problems: [] as string[], costUsd: (error as { costUsd?: number }).costUsd ?? 0, error: error.message || "the check failed" }));
       costUsd += verdict.costUsd;
-      if (!verdict.accurate) {
+      if (verdict.error) {
+        seen = "unchecked";
+        console.warn(`[diagram] vision check failed (${verdict.error.slice(0, 120)}) — "${req.title}" ships on its code checks only, unverified and not shared`);
+      } else if (!verdict.accurate) {
         last = `the textbook check rejected it: ${verdict.problems.join("; ") || "inaccurate"}`;
         if (++visionRounds >= 2) break;
         messages.push({ role: "user", content: `A textbook editor looked at your diagram as drawn and rejected it: ${verdict.problems.join("; ") || "it is inaccurate"}. Return the whole corrected diagram.` });
         continue;
-      }
+      } else seen = "seen";
     }
-    if (options.share) {
+    if (options.share && seen !== "unchecked") {
       const record: StoredDiagram = { key, raw, title: req.title, style: DIAGRAM_STYLE_VERSION, createdAt: new Date().toISOString() };
       await saveSharedDiagramRecord(key, record).catch(() => undefined);
     }
-    return { diagram: { drawing: compiled.drawing, raw, cached: false }, costUsd, log: `vector diagram written, checked${png ? " and seen" : ""} (attempt ${attempt}, ${compiled.facts.kinds.join("+") || "shapes"})` };
+    return { diagram: { drawing, raw, cached: false }, costUsd, log: `vector diagram written, checked${seen === "seen" ? " and seen" : seen === "unchecked" ? " (vision check failed: UNCHECKED, not shared)" : ""} (attempt ${attempt}, ${compiled.facts.kinds.join("+") || "shapes"})` };
   }
   return { diagram: null, costUsd, log: `no vector diagram — ${last.slice(0, 220)}` };
 }

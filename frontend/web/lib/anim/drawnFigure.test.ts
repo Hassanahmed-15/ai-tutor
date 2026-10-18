@@ -50,15 +50,16 @@ test("the checks: an anchor off its part, a name written into the art (removed),
   assert.match(drawnFigure(unsafe).issues.join(" "), /path data/);
 });
 
-test("every physical topic without a component or library diagram is routed to a vector diagram", () => {
+test("a life-science topic without a component or library diagram is never a vector or scene-grammar diagram", () => {
   // (A leaf and a root hair cell now have components; a skeleton has none.)
   const beat = (id: string, title: string, stage: CanvasPlanBeat["stage"]): CanvasPlanBeat => ({ id, title, script: `${title}. Predict: what happens next? It changes.`, stage, brief: title, objects: [], inside: null, carry: [], interaction: "quiz", overview: false });
   const out = applyLessonVisualPolicy([
     beat("b1", "The structure of a skeleton: the skull, ribs and pelvis", "illustration"),
     beat("b2", "Compare inflation and deflation", "compare"),
   ], { mode: "course", aiPictures: false });
-  assert.equal(out.beats[0].stage, "diagram");
-  assert.notEqual(out.beats[0].figure, "shapes3d");
+  // Life science is never the coordinate vector diagram (owner, 2026-10-17): with pictures off it is a plain board.
+  assert.notEqual(out.beats[0].figure, "drawn");
+  assert.notEqual(out.beats[0].stage, "diagram");
   assert.equal(out.beats[1].stage, "compare", "abstract boards keep their native board");
   const strict = applyLessonVisualPolicy([beat("b1", "The structure of a leaf: the midrib and veins", "illustration")], { mode: "strict", aiPictures: false });
   assert.notEqual(strict.beats[0].stage, "diagram", "strict mode never invents a diagram");

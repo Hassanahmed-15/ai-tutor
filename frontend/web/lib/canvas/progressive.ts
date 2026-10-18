@@ -3,13 +3,15 @@ import "server-only";
 
 import type { Beat } from "../lessonContent";
 import type { ProgressiveBeatPlan, ProgressiveLectureInput } from "../progressiveLectureTypes";
+import { chooseVisuals } from "./visualChoice";
 import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, plainRebuild, validatePlan, type Clock } from "./generate";
 import { withRefresherOnlyIfOffered } from "./plan";
 import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
+import { repairCues } from "./cueRepair";
 import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
 import { codeSentenceBlocks, groundSourcePlan, strictBoardLines, ungroundedInPlan, videoBoardLines, videoParts } from "./sourceLessons";
-import { assignListings, documentBoardLines, documentListings, faithfulCodeLines, overlongCodeBoards, uncoveredPages } from "./documentContext";
+import { assignListings, documentBoardLines, documentListings, faithfulCodeLines, listingGaps, overlongCodeBoards, substantivePages, uncoveredPages } from "./documentContext";
 import type { SuprnotesLessonInput } from "../suprnotes";
 import { policyForBoards } from "../teachingPolicy";
 import { applyConceptColours, planConceptColours, recapTour } from "./lessonPasses";
@@ -55,7 +57,10 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
   // The approved outline sized the lecture; the plan may not grow it (only a refresher may be added).
   const outlined = canvasBoardCount(input);
   // A document's long code listings may each take consecutive boards (lib/canvas/documentContext.ts).
-  const allowed = outlined > 0 ? outlined + documentExtraBoards(input) + (canvasRefresherAllowed(input, knowledge) ? 1 : 0) : 0;
+  // A strict lecture on the whole selection may add a board per page its outline missed (up to 14):
+  // capped at the outline's count, the page check could never be met (pages 3-10 of 10; 2026-10-18).
+  const strictWhole = strictDocumentOf(input) && input.sourceScope?.breadth.kind === "whole" ? Math.min(14, substantivePages(strictDocumentOf(input)!).length) : 0;
+  const allowed = outlined > 0 ? Math.max(outlined + documentExtraBoards(input) + (canvasRefresherAllowed(input, knowledge) ? 1 : 0), strictWhole) : 0;
   // The whole document travels in the request: more to read, and code boards with longer scripts.
   const reference = referenceDocumentOf(input);
   // Taught strictly from a source (lib/canvas/sourceLessons.ts): a strict-mode PDF or a video.
@@ -70,7 +75,9 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
   let lastError = "";
   // A strict lecture on the selected pages (no question) must teach every one of them: a plan that
   // leaves a page out is sent back, naming it — one more try than other lectures get.
-  const covering = Boolean(strictDoc) && input.sourceScope?.breadth.kind === "whole";
+  // So must a REFERENCE lecture on the whole PDF: its outline fixed the boards, so a page left out is
+  // folded into the board it belongs to (AVL chapter: 1 of 6 sections taught; PDF bench, 2026-10-18).
+  const covering = Boolean(strictDoc || reference) && input.sourceScope?.breadth.kind === "whole";
   const maxAttempts = covering ? 3 : 2;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
@@ -131,19 +138,22 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         if (attempt < maxAttempts) continue;
         plan = { ...plan, beats: plan.beats.slice(0, videoBoards) };
       }
-      const overlong = plan && document ? overlongCodeBoards(document, plan.beats) : [];
+      const overlong = plan && document ? [...overlongCodeBoards(document, plan.beats), ...listingGaps(document, plan.beats)] : [];
       if (overlong.length && attempt < maxAttempts) {
         lastError = overlong.join("; ");
         console.log(`[canvas] plan sent back: ${lastError}`);
         continue;
       }
-      const missing = plan && covering && strictDoc ? uncoveredPages(strictDoc, plan.beats) : [];
+      const coveredDoc = strictDoc ?? reference;
+      const missing = plan && covering && coveredDoc ? uncoveredPages(coveredDoc, plan.beats) : [];
       if (missing.length && attempt < maxAttempts) {
-        lastError = `page${missing.length === 1 ? "" : "s"} ${missing.join(", ")} ${missing.length === 1 ? "is" : "are"} not taught by any board — this lecture covers EVERY selected page: keep the boards you have and add the ones these pages need, in page order, each naming its pages in "source.pages"`;
+        lastError = strictDoc
+          ? `page${missing.length === 1 ? "" : "s"} ${missing.join(", ")} ${missing.length === 1 ? "is" : "are"} not taught by any board — this lecture covers EVERY selected page: keep the boards you have and add the ones these pages need, in page order, each naming its pages in "source.pages"`
+          : `page${missing.length === 1 ? "" : "s"} ${missing.join(", ")} of the student's PDF ${missing.length === 1 ? "is" : "are"} taught by no board — this lecture teaches the WHOLE document: keep the same boards, and fold each missing page's points (its examples, activities, figures and numbers) into the board whose part it belongs to, naming the page in that board's "source.pages"`;
         console.log(`[canvas] plan sent back: ${lastError}`);
         continue;
       }
-      if (missing.length) console.warn(`[canvas] strict plan still leaves out page(s) ${missing.join(", ")}`);
+      if (missing.length) console.warn(`[canvas] ${strictDoc ? "strict" : "reference"} plan still leaves out page(s) ${missing.join(", ")}`);
       if (plan) {
         // WORKED NUMBERS ARE CHECKED BY CODE (lib/canvas/numberCheck.ts): a script that says
         // "−(8π)²(0.060) = −121" goes back with the right value named (it is −37.9).
@@ -175,6 +185,12 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
           };
         }
         const visualMode: VisualPolicyMode = sourceMode ? "strict" : reference ? "reference" : curriculum ? "course" : "prompt";
+        // What each board shows is chosen by one focused call (lib/canvas/visualChoice.ts), not by the
+        // long planning prompt, which reached for tables (owner, 2026-10-17: "fix the weak link").
+        if (visualMode !== "strict" && process.env.CANVAS_VISUAL_CHOICE !== "off") {
+          const chosen = await bounded(chooseVisuals((system, user, max) => jsonCall(openai, PLAN_MODEL, system, user, max), input.topic, plan.beats), 30_000, "visual choice").catch((error: Error) => { console.warn(`[canvas] visual choice skipped: ${error.message}`); return null; });
+          if (chosen) { plan = { ...plan, beats: chosen.beats }; costUsd += chosen.costUsd; console.log(`[canvas] visual choice: ${chosen.log}`); }
+        }
         const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: findLibraryFigure });
         plan = { ...plan, beats: visualPolicy.beats };
         if ((visualMode === "course" || visualMode === "prompt") && visualPolicy.audit.meaningfulVisuals < visualPolicy.audit.targetMeaningfulVisuals && attempt < maxAttempts) {
@@ -199,6 +215,10 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
           const audience = policyForBoards(policy);
           for (const beat of plan.beats) beat.audience = audience;
         }
+        // CHECK THE FACTS (prompt bench, 2026-10-18: "motion includes stillness", "antigens cause no
+        // disease" reached students). One call reads every sentence; a wrong one is corrected in place.
+        // Not on a PDF lesson: there the document is the authority, not a model's general knowledge.
+        if (!sourceMode && !referenceDocumentOf(input)) costUsd += (await factCheckScripts(openai, input.topic, plan.beats)).costUsd;
         // STRICT: every sentence checked against its passages before any board is drawn, and each
         // sentence given the passage the PDF panel boxes while it is spoken.
         const source = strictDoc ?? video;
@@ -342,6 +362,13 @@ export async function writeCanvasBoard(args: {
   if (beat.overview && !spec.cues.some((c) => c.action === "visit")) spec.cues = [...spec.cues, ...recapTour(beat, plan.slice(0, index))];
   spec.cues = spec.cues.map((c) => (c.action === "visit" ? { ...c, beat: canvasBeatId(sessionId, c.beat!) } : c));
 
+  // The pen never points at nothing (lib/canvas/cueRepair.ts): checked on the board as it ships.
+  const shipped = layoutPanel(spec);
+  const onBoard = new Set([...Object.keys(shipped.targets), ...shipped.marks.flatMap((m) => (m.type === "graph" ? (m.spec.markers ?? []).map((k) => k.id) : []))]);
+  const pen = repairCues(spec, beat, onBoard);
+  if (pen.moved || pen.dropped) log.push(`${beat.id}: pen cues — ${pen.moved} moved to what the sentence names, ${pen.dropped} dropped`);
+  spec.cues = pen.cues;
+
   log.unshift(`${beat.id}: ${spec.stage.kind} in ${Math.round((Date.now() - started) / 1000)}s, ${made.attempts < 0 ? "FALLBACK board" : `${made.attempts} attempt(s)`}`);
   const written = canvasBeat(canvasBeatId(sessionId, beat.id), beat, index, spec);
   // The passages this board teaches, and the one each sentence is about: the PDF panel's box.
@@ -372,7 +399,7 @@ async function pitchScripts(openai: ReturnType<typeof client>, beats: CanvasPlan
   for (let pass = 1; pass <= 2; pass++) {
     const tooHard = beats.filter((b) => readingGrade(b.script) > grade + 2);
     if (tooHard.length === 0) break;
-    const system = `You rewrite a teacher's spoken narration so a student reading at GRADE ${grade} follows every word. For each script: keep every fact and idea, the same order, and EXACTLY the same number of sentences — each sentence is timed to a drawing. Aim for grade ${Math.max(2, grade - 1)}: sentences of at most ${rules.sentenceWords} words, mostly short everyday words of one or two syllables ("main government", not "central authority"; "fights inside", not "internal conflicts"). A technical term the lesson needs stays, followed by a few plain words saying what it means. Never add new content. Return JSON only: {"scripts": {"<id>": "<rewritten script>"}}.`;
+    const system = `You rewrite a teacher's spoken narration so a student reading at GRADE ${grade} follows every word. For each script: keep every fact and idea, the same order, and EXACTLY the same number of sentences — each sentence is timed to a drawing. Aim for grade ${Math.max(2, grade - 1)}: sentences of at most ${rules.sentenceWords} words, mostly short everyday words of one or two syllables ("main government", not "central authority"; "fights inside", not "internal conflicts"). A technical term the lesson needs stays, followed by a few plain words saying what it means. Never add new content. SIMPLER NEVER MEANS WRONG: a plainer sentence must stay exactly as true as the original — never turn "vaccine antigens come from a harmless or killed form of the germ" into "antigens cause no disease", or "Newton's laws describe objects at rest and in motion" into "motion includes staying still". Return JSON only: {"scripts": {"<id>": "<rewritten script>"}}.`;
     const user = tooHard.map((b) => `${b.id} (${canvasSentences(b.script).length} sentences, reads at grade ${readingGrade(b.script)}):\n${b.script}`).join("\n\n");
     try {
       const { json, costUsd: c } = await bounded(jsonCall(openai, PITCH_MODEL, system, user, 5000), 45_000, "pitch");
@@ -394,6 +421,39 @@ async function pitchScripts(openai: ReturnType<typeof client>, beats: CanvasPlan
 }
 
 const PITCH_MODEL = process.env.CANVAS_PITCH_MODEL ?? "gpt-5.6-luna";
+
+/**
+ * Every sentence of the lesson read once by a careful subject teacher; a sentence that is false, or
+ * misleading enough that a student would learn something wrong, is replaced by ONE corrected sentence
+ * making the same point (each sentence is timed to a drawing, so the count never changes). Best
+ * effort: on any failure the plan stands.
+ */
+async function factCheckScripts(openai: ReturnType<typeof client>, topic: string, beats: CanvasPlanBeat[]): Promise<{ costUsd: number }> {
+  const sentences = beats.flatMap((b) => canvasSentences(b.script).map((text, i) => ({ key: `${b.id}.${i}`, text })));
+  if (!sentences.length) return { costUsd: 0 };
+  const system = `You are a careful subject teacher checking a lesson's narration for factual errors before students hear it. Lesson: "${topic}". Flag ONLY a sentence that is false, or misleading enough that a student would learn something wrong (a wrong definition, a wrong cause, an example that shows a different law, a number or unit that is wrong). Never flag simplification, style, missing detail or a debatable emphasis. For each flagged sentence give ONE corrected sentence that makes the same teaching point, as plainly worded as the original and about as long. Return JSON only: {"fixes": {"<key>": "<corrected sentence>"}} — an empty object when every sentence is right.`;
+  const user = sentences.map((s) => `${s.key}: ${s.text}`).join("\n");
+  try {
+    const { json, costUsd } = await bounded(jsonCall(openai, PITCH_MODEL, system, user, 3000), 40_000, "fact-check");
+    const fixes = (json && typeof json === "object" ? (json as Record<string, unknown>).fixes : null) as Record<string, unknown> | null;
+    for (const b of beats) {
+      const said = canvasSentences(b.script);
+      let changed = false;
+      said.forEach((text, i) => {
+        const next = fixes?.[`${b.id}.${i}`];
+        if (typeof next !== "string" || !next.trim() || canvasSentences(next.trim()).length !== 1) return;
+        console.log(`[fact-check] ${b.id}.${i}: "${text}" -> "${next.trim()}"`);
+        said[i] = next.trim();
+        changed = true;
+      });
+      if (changed) b.script = said.join(" ");
+    }
+    return { costUsd };
+  } catch (error) {
+    console.warn(`[fact-check] skipped: ${(error as Error).message}`);
+    return { costUsd: 0 };
+  }
+}
 
 /**
  * Rewrites, in place, the sentences of a strict lesson that bring in material their passages lack:

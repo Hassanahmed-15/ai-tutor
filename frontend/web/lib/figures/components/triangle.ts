@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Pt } from "../types";
+import { fitText } from "../cuts";
 import { PALETTE, Sketch, add, angleMark, clamp, deg, dist, fmt, lerp, list, mul, optNum, perp, rad, str, sub, textBox, unit } from "./mathsKit";
 
 /**
@@ -123,8 +124,8 @@ export const triangle: FigureComponent = {
     for (const item of list(params.unknown)) {
       const [key, sym] = item.split(/\s*[=:]\s*/);
       const si = sideIndex(key, L), ai = angleIndex(key, L);
-      if (si >= 0 && !(ai >= 0 && key === L[ai])) unknownSide.set(si, sym?.slice(0, 4) || (unknownSide.size ? "y" : "x"));
-      else if (ai >= 0) unknownAngle.set(ai, sym?.slice(0, 4) || (unknownAngle.size ? "α" : "θ"));
+      if (si >= 0 && !(ai >= 0 && key === L[ai])) unknownSide.set(si, (sym && fitText(sym, 4)) || (unknownSide.size ? "y" : "x"));
+      else if (ai >= 0) unknownAngle.set(ai, (sym && fitText(sym, 4)) || (unknownAngle.size ? "α" : "θ"));
     }
     const sideTicks = new Map<number, number>();
     String(params.equalSides ?? "").split(";").forEach((group, g) => list(group, /,/).forEach((t) => {

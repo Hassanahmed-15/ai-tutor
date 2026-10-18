@@ -33,7 +33,7 @@ export function items(v: unknown, max: number, maxLen = 90, sep: RegExp = /\s*(?
 
 /**
  * Wrap text into lines no wider than maxW (words longer than a line are broken with a hyphen). When
- * maxLines is given, the last line ends in "…" if the text did not fit.
+ * maxLines is given, text that does not fit is recorded and ends at a natural break (never "…").
  */
 export function wrap(text: string, size: number, maxW: number, maxLines = Infinity): string[] {
   const words = text.split(/\s+/).filter(Boolean);

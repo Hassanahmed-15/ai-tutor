@@ -231,3 +231,51 @@ test("a plan's source is read however the model wrote its numbers", () => {
   assert.deepEqual(plan.beats[0].source, { pages: [14], listing: 6, lines: [7, 17] });
   assert.deepEqual(plan.beats[1].source, { pages: [12], listing: 3 });
 });
+
+test("a code question that names a routine is answered with that routine's listing only (PDF bench, 2026-10-18)", async () => {
+  const { listingsAsked, documentListings } = await import("../canvas/documentContext");
+  const { readFileSync } = await import("node:fs");
+  const path = await import("node:path");
+  const doc = JSON.parse(readFileSync(path.join(__dirname, "..", "..", "..", "lib", "anim", "fixtures", "avlCodePages.json"), "utf8"));
+  const all = documentListings(doc);
+  assert.deepEqual(listingsAsked("Explain the code for a single rotation", all).map((l) => l.n), [4]);
+  assert.deepEqual(listingsAsked("How does the deletion code work?", all).map((l) => l.n), [6]);
+  assert.equal(listingsAsked("explain the code", all).length, all.length, "no routine named: every listing");
+});
+
+test("a whole PDF's sections are its real headings and named listings, not page markers (PDF bench, 2026-10-18)", async () => {
+  const { documentSections } = await import("../canvas/documentContext");
+  const doc = JSON.parse(readFileSync(join(__dirname, "..", "..", "..", "lib", "anim", "fixtures", "avlCodePages.json"), "utf8"));
+  const sections = documentSections(doc);
+  assert.ok(sections.includes("Routine to perform single rotation"));
+  assert.ok(sections.includes("Deletion in an AVL tree"));
+  assert.ok(!sections.some((s) => /^page \d+$/i.test(s)));
+  const noisy = { contentBlocks: [
+    { id: "a", heading: "Activity 1.1", text: "Testing a leaf for starch You will need" }, { id: "b", heading: "Activity 1.1", text: "3" },
+    { id: "c", heading: "6 1Plants", text: "x" }, { id: "d", heading: "• CV can harm: biased systems", text: "x" }, { id: "e", heading: "Energy transfer", text: "x" },
+  ] };
+  assert.deepEqual(documentSections(noisy as never), ["Activity 1.1: Testing a leaf for starch You will need", "Energy transfer"]);
+});
+
+test("a taught listing's lines that no code board shows are named (PDF bench, 2026-10-18)", async () => {
+  const { listingGaps, documentListings } = await import("../canvas/documentContext");
+  const doc = JSON.parse(readFileSync(join(__dirname, "..", "..", "..", "lib", "anim", "fixtures", "avlCodePages.json"), "utf8"));
+  const insert = documentListings(doc).find((l) => l.n === 3)!;
+  const half = Math.floor(insert.lines.length / 2);
+  const beats = [{ id: "b4", stage: "code" as const, source: { pages: [insert.page], listing: 3, lines: [1, half] as [number, number] } }];
+  const gaps = listingGaps(doc, beats);
+  assert.equal(gaps.length, 1);
+  assert.match(gaps[0], /LISTING 3 lines/);
+  const whole = [...beats, { id: "b5", stage: "code" as const, source: { pages: [insert.page], listing: 3, lines: [half + 1, insert.lines.length] as [number, number] } }];
+  assert.deepEqual(listingGaps(doc, whole), [], "every line shown: no gap");
+});
+
+test("strict: the question's key words the document never uses are named (PDF bench, 2026-10-18)", async () => {
+  const { termsNotInDocument } = await import("../canvas/documentContext");
+  const doc = { contentBlocks: [
+    { id: "a", heading: "Photosynthesis", text: "Plants use carbon dioxide and water to make glucose and oxygen, using light energy." },
+    { id: "b", heading: "Storing carbohydrates", text: "Glucose is changed to starch, which is insoluble." },
+  ] };
+  assert.deepEqual(termsNotInDocument("What happens in the Calvin cycle?", doc as never), ["Calvin", "cycle"]);
+  assert.deepEqual(termsNotInDocument("Why do plants store glucose as starch?", doc as never), []);
+});

@@ -198,6 +198,23 @@ function whoLine(p: TeachingPolicy): string {
   return `THE STUDENT: ${c.level ? `${c.level}${where}` : `a student${where}`}${c.curricula.length ? ` (${c.curricula.join(", ")})` : ""}.`;
 }
 
+/**
+ * HOW DEEP, AND NO DEEPER. An A Level student who asked for a stretch got a five-board overview of
+ * Newton's laws that read at grade 8.7, and a First World War lesson with no alliance members; an O
+ * Level circuits lesson taught Kirchhoff's laws (prompt bench, 2026-10-18). Senior and university
+ * students are taught to the top of their level; every student stays inside it.
+ */
+// A PDF's depth is the document's (and its answers stay short: the supervisor's standing ask); a
+// course lesson's is its official outcomes, so it is never stretched past them.
+export type PolicySource = "pdf" | "course";
+function depthLine(p: TeachingPolicy, source?: PolicySource): string {
+  const level = p.card.level ?? `grade ${p.conceptGrade}`;
+  const stretch = p.card.preferences?.challenge === "stretch" && source !== "course";
+  const within = `Stay inside what ${level} covers: nothing a later level teaches.`;
+  if (source === "pdf" || (p.conceptGrade < 11 && !stretch)) return within;
+  return `TEACH TO THE TOP OF ${level.toUpperCase()}: the subject's precise terms, each idea in its quantitative or formal form (its equation and units, its mechanism, its named evidence — the members, figures and dates an exam at this level asks for), never a simplified overview.${stretch ? " They asked to be stretched: take each idea one step past the minimum — a harder case, a limit or an exception." : ""} ${within}`;
+}
+
 function syllabusLine(p: TeachingPolicy): string {
   const c = p.card;
   if (c.inSubject) {
@@ -208,10 +225,15 @@ function syllabusLine(p: TeachingPolicy): string {
   return "";
 }
 
-function examplesLine(p: TeachingPolicy): string {
+function examplesLine(p: TeachingPolicy, source?: PolicySource): string {
+  // A PDF lesson teaches with the document's own examples: a Checkpoint photosynthesis chapter was
+  // retold with "a plant in a Manchester garden" and "a United Kingdom classroom window" (2026-10-18).
+  if (source === "pdf") return "Examples: the document's own — its examples, numbers, figures and code. Add one of your own only where the document gives none, and never set it somewhere just because of where the student lives.";
   const e = p.examples;
   const local = e.local ? `, set in ${e.local} — its places, its money, its everyday life — unless the topic is about somewhere else` : "";
-  const parts = [`Examples from ${e.fromInterests ? "what they are into" : "their own life"} (${e.from.join("; ")})${local}.`];
+  // "Valves prevent backflow, such as during cycling to school" (prompt bench, 2026-10-17): a setting
+  // tacked onto a fact that is true everywhere teaches nothing and reads as wrong.
+  const parts = [`Examples from ${e.fromInterests ? "what they are into" : "their own life"} (${e.from.join("; ")})${local}. An example shows where they really meet THIS idea (their pulse racing after running up the stairs, for the heart pumping faster) — never a setting tacked onto a fact that is true everywhere; leave a sentence without one rather than force it.`];
   if (e.realLife) parts.push("Tie each idea to where they meet it in real life.");
   if (e.second) parts.push("Give the key idea a second, different example.");
   return parts.join(" ");
@@ -231,24 +253,25 @@ function questionsLine(p: TeachingPolicy): string {
 }
 
 /** The lecture writer: the whole policy. A strict lesson keeps only the words — its content is its source. */
-export function policyForWriter(p: TeachingPolicy, options: { strict?: boolean } = {}): string {
+export function policyForWriter(p: TeachingPolicy, options: { strict?: boolean; source?: PolicySource } = {}): string {
   if (options.strict) return wordsLine(p);
   return [
     `${whoLine(p)} HOW TO TEACH THEM — their Teaching Policy; follow every line:`,
     syllabusLine(p),
+    depthLine(p, options.source),
     wordsLine(p),
     `Assume ${p.language.assume}.`,
     ABSTRACTION_LINE[p.abstraction],
     GUIDANCE_LINE[p.guidance],
     pacingLine(p),
-    examplesLine(p),
+    examplesLine(p, options.source),
     questionsLine(p),
     p.goal ? GOAL_LINE[p.goal] : "",
   ].filter(Boolean).join("\n");
 }
 
 /** The outline planner: who it is for and how far it goes — not how to write. */
-export function policyForPlanner(p: TeachingPolicy): string {
+export function policyForPlanner(p: TeachingPolicy, source?: PolicySource): string {
   const c = p.card;
   const who = `${c.level ?? "A student"}${c.country ? ` in ${c.country}` : ""}${c.curricula.length ? ` (${c.curricula.join(", ")})` : ""}`;
   const scope = c.inSubject
@@ -258,17 +281,17 @@ export function policyForPlanner(p: TeachingPolicy): string {
       : "Pitch the plan for their level.";
   const steps = p.pacing.ideasPerBoard === 1 ? " Plan small steps: one idea per part." : "";
   const goal = p.goal === "exams" ? " They are preparing for exams: cover what their exam asks." : p.goal === "homework" ? " They want homework help: plan the method, then an example like theirs." : p.goal === "curious" ? " They are learning for curiosity: plan the surprising, interesting parts too." : "";
-  return `\nWHO THE LESSON IS FOR: ${who}. ${scope}${steps}${goal}`;
+  return `\nWHO THE LESSON IS FOR: ${who}. ${scope}${steps}${goal} ${depthLine(p, source)}`;
 }
 
 /** The canvas planner writes every script AND picks each board's stage, so it gets the boards too. */
-export function policyForCanvasPlan(p: TeachingPolicy): string {
+export function policyForCanvasPlan(p: TeachingPolicy, source?: PolicySource): string {
   const boards: string[] = [];
   if (p.visuals.lead === "pictures") boards.push("Lean on pictures: where an idea has something to see — a thing, a process, a change — choose a stage that shows it (illustration, flow, scene, graph) rather than a wordy one. Still choose by content.");
   if (p.visuals.keyNotes) boards.push("Each board's brief asks for its key point written as a short note they can keep.");
   if (p.practice === "often") boards.push("They like to practise: where a quantity can vary, a board carries a try.");
   if (p.practice === "light") boards.push("Keep interaction light: only where it genuinely helps.");
-  return [policyForWriter(p), boards.length ? `THE BOARDS: ${boards.join(" ")}` : ""].filter(Boolean).join("\n");
+  return [policyForWriter(p, { source }), boards.length ? `THE BOARDS: ${boards.join(" ")}` : ""].filter(Boolean).join("\n");
 }
 
 /** The board generators: presentation only — never what the board depicts. */
@@ -302,5 +325,5 @@ export function policyNote(p: TeachingPolicy | null | undefined): string {
   if (!p || !p.card.level) return "";
   const parts = [p.card.level, p.card.country, p.card.inSubject ? p.card.subjectCurricula[0] ?? p.card.curricula[0] : null].filter(Boolean);
   const leaning = p.because.slice(1, 3);
-  return `Pitched for ${parts.join(" · ")}${leaning.length ? ` · ${leaning.join(", ")}` : ""}`;
+  return `Explained for ${parts.join(" · ")}${leaning.length ? ` · ${leaning.join(", ")}` : ""}`;
 }

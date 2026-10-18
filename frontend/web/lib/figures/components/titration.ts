@@ -1,7 +1,8 @@
 import { solutionColour } from "../colours";
+import { fitText } from "../cuts";
 import type { FigureComponent, FigureParams, FigureShape } from "../types";
 
-const text = (v: unknown, fallback: string) => (typeof v === "string" && v.trim() ? v.trim().slice(0, 40) : fallback);
+const text = (v: unknown, fallback: string) => (typeof v === "string" && v.trim() ? fitText(v.trim(), 40) : fallback);
 const level = (v: unknown, fallback: number) => (Number.isFinite(Number(v)) ? Math.max(0.05, Math.min(1, Number(v))) : fallback);
 
 /**

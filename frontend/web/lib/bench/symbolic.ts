@@ -1,5 +1,6 @@
 import { auditBoardForRelease, type BoardReleaseFinding } from "../canvas/releaseAudit";
-import { layoutPanel } from "../canvas/layout";
+import { layoutPanel, takeLayoutDrops } from "../canvas/layout";
+import { takeFigureCutItems } from "../figures/cuts";
 import { figurePartObligations, isCurriculumProseMustShow } from "../curriculum/visualContract";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "../canvas/types";
 
@@ -11,7 +12,13 @@ const PLACEHOLDER = /\b(todo|tbd|lorem|placeholder|xxx+|label \d+|part \d+)\b/i;
  */
 export function symbolicBoardIssues(spec: CanvasBoardSpec, beat: CanvasPlanBeat): string[] {
   const issues = auditBoardForRelease(spec, beat).map((f: BoardReleaseFinding) => `${f.gate}: ${f.message}`);
+  // Text the board could not show whole — shortened to fit, or left off for want of room. The scorer
+  // used to see neither, so a board could lose words and still score full marks (2026-10-17).
+  takeFigureCutItems();
+  takeLayoutDrops();
   const layout = layoutPanel(spec);
+  for (const cut of takeFigureCutItems()) issues.push(`text-cut: "${cut.text.slice(0, 80)}" shortened to ${cut.max} characters`);
+  for (const drop of takeLayoutDrops()) issues.push(`text-dropped: ${drop}`);
   for (const mark of layout.marks) {
     const text = mark.type === "text" ? mark.text
       : mark.type === "box" ? mark.label ?? ""

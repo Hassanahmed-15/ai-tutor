@@ -35,8 +35,37 @@ export function stripLineMarks(value: string): string {
     .trim();
 }
 
+/**
+ * A FORMULA IN A TITLE IS KEPT WHOLE OR LEFT OUT, never cut: counting its symbols as words made
+ * "Newton's Second Law: F = ma" into "Newton's Second Law: F" and "Solve x² − 5x + 6 = 0" into
+ * "Solve X² − 5X +" (prompt bench, 2026-10-18). The whole title when it fits, else the name before its
+ * colon, else the text up to the end of the formula, else the words before it.
+ */
+const FORMULA = /[A-Za-z0-9²³⁴()]+(?:\s*[=+−×÷<>≤≥]\s*[A-Za-z0-9²³⁴().\/]+)+/;
+export function hasFormula(value: string): boolean {
+  return FORMULA.test(value) && /[=+−×÷<>≤≥]/.test(value);
+}
+function formulaTitle(value: string): string | null {
+  const text = compact(stripLineMarks(value).replace(/[.!]+$/, ""));
+  const found = FORMULA.exec(text);
+  if (!found || !/[=+−×÷<>≤≥]/.test(found[0])) return null;
+  if (text.length <= MAX_TITLE_CHARS) return text;
+  const colon = text.indexOf(":");
+  if (colon > 2 && colon < found.index + 1) return text.slice(0, colon).trim();
+  const upToFormula = text.slice(0, found.index + found[0].length).trim();
+  if (upToFormula.length <= MAX_TITLE_CHARS) return upToFormula;
+  return text.slice(0, found.index).replace(DANGLING_TAIL, "").trim() || null;
+}
+
 function trimTitle(value: string, maxWords = MAX_TITLE_WORDS): string {
-  const words = trimWords(stripLineMarks(value).replace(/[.!]+$/, ""), maxWords);
+  const withFormula = formulaTitle(value);
+  if (withFormula) return withFormula.replace(/^[a-z]/, (letter) => letter.toUpperCase());
+  const whole = compact(stripLineMarks(value).replace(/[.!]+$/, ""));
+  const words = trimWords(whole, maxWords);
+  // A cut that lands after a colon leaves half a subtitle ("Newton's Third Law: Action"): the name
+  // before the colon is the title instead.
+  const colon = whole.indexOf(":");
+  if (words !== whole && colon > 2 && words.length > colon) return whole.slice(0, colon).trim().replace(/[A-Za-z]/, (letter) => letter.toUpperCase());
   let fitted = words.length <= MAX_TITLE_CHARS
     ? words
     : words.slice(0, MAX_TITLE_CHARS + 1).replace(/\s+\S*$/, "").trim();
@@ -68,6 +97,8 @@ export function topicKeywords(value: string, maxWords = MAX_TITLE_WORDS): string
     .map((word, index) => {
       if (/^(?:a|an|and|as|at|by|for|in|of|on|or|the|to|vs\.?)$/i.test(word) && index > 0) return word.toLowerCase();
       if (/[A-Z].*[A-Z]|[a-z][A-Z]/.test(word)) return word;
+      // Maths keeps its case: "x²", "5x", "ma", a lone variable.
+      if (/[\d²³⁴=+−×÷^()]/.test(word) || (hasFormula(subject) && /^[a-z]{1,2}$/.test(word))) return word;
       return word.replace(/[A-Za-z]/, (letter) => letter.toUpperCase());
     })
     .join(" ");

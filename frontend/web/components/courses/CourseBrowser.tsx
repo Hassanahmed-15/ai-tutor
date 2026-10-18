@@ -41,6 +41,12 @@ const TONE: Partial<Record<SubjectIcon, string>> = {
 };
 const tone = (i: SubjectIcon) => TONE[i] ?? "var(--accent)";
 
+/** The "Unit checkpoint" card under every unit (off by the owner's choice; the code stays). */
+const SHOW_UNIT_CHECKPOINTS = false;
+
+/** Regions hidden from the course menu. */
+const HIDDEN_REGIONS = new Set<string>(["PK"]);
+
 function gradeLabel(region: Region, g: string): string {
   if (g === "all") return "All grades";
   if (/^\d+$/.test(g)) return region === "PK" ? `Class ${g}` : `Grade ${g}`;
@@ -90,7 +96,10 @@ export function CourseBrowser() {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    fetch(MENU_URL).then((r) => r.json()).then((d: { menu: CourseMenu }) => {
+    fetch(MENU_URL).then((r) => r.json()).then((raw: { menu: CourseMenu }) => {
+      // Regions not offered (owner, 2026-10-17: "hide Pakistan"); International first.
+      const regions = raw.menu.regions.filter((x) => !HIDDEN_REGIONS.has(x.region)).sort((a, b) => (a.region === "INTL" ? -1 : b.region === "INTL" ? 1 : 0));
+      const d = { menu: { ...raw.menu, regions } };
       setMenu(d.menu);
       let w = readWhere();
       if (!w.r) {
@@ -423,7 +432,8 @@ function CourseView({ region, standardName, level, subject, onBack }: { region: 
                     </ul>
                   </section>
                 ))}
-                {!SHOWCASE && (() => {
+                {/* Unit checkpoints are hidden (owner, 2026-10-17: "remove these checkpoints from the UI"). */}
+                {SHOW_UNIT_CHECKPOINTS && !SHOWCASE && (() => {
                   const best = progress.checkpoints[checkpointKey(block.grade, unit.id)];
                   return (
                     <button type="button" onClick={() => setCheckpoint({ unitId: unit.id, title: `Checkpoint: ${clean(unit.title)}` })}

@@ -232,10 +232,12 @@ function parseElement(raw: unknown, fallback: string, depth: number): DiagramEle
     const from = anchor(r.from);
     const to = anchor(r.to);
     if (!from || !to) return null;
-    return { t: "arrow", ...common(r, fallback, depth), ...styleOf(r), from, to, curved: bool(r.curved), ...(str(r.label, 28) ? { label: str(r.label, 28) } : {}) };
+    return { t: "arrow", ...common(r, fallback, depth), ...styleOf(r), from, to, curved: bool(r.curved), ...(str(r.label, 120) ? { label: str(r.label, 120) } : {}) };
   }
   if (t === "label") {
-    const text = str(r.text ?? r.name, 34);
+    // Kept whole here: lib/diagrams/check.ts fits it to 34 and records the cut for the rewrite pass
+    // (a slice here cut labels mid-word, unrecorded).
+    const text = str(r.text ?? r.name, 120);
     const at = anchor(r.at ?? r.anchor);
     if (!text || !at) return null;
     return { t: "label", ...common(r, fallback, depth), text, at, leader: r.leader !== false };

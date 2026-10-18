@@ -47,7 +47,7 @@ test("the grade applies in every subject; the subject list decides only the syll
   assert.match(studentCardInstruction(history), /History is not one of their school subjects, so treat it as new ground — but they are still Grade 8/);
   assert.match(studentCardInstruction(history), /READING LEVEL OF GRADE 8: sentences of at most 16 words/);
   assert.match(studentCardInstruction(history), /set in Pakistan/, "local examples");
-  assert.equal(studentCardNote(history), "Pitched for Grade 8 · Pakistan");
+  assert.equal(studentCardNote(history), "Explained for Grade 8 · Pakistan");
   assert.match(studentCardPlanningLine(bio), /WHO THE LESSON IS FOR: Grade 8 in Pakistan\. Biology is one of their school subjects/);
   assert.doesNotMatch(studentReadingRule(bio), /syllabus|Pakistan/, "a strict lesson keeps only the reading level");
   assert.equal(buildStudentCard(null, "anything"), null);

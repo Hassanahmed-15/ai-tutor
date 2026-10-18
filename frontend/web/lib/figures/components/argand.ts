@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Ink, Pt } from "../types";
+import { fitText } from "../cuts";
 import { PALETTE, Sketch, arrow, bool, fmt, list, mul, polar, unit } from "./mathsKit";
 import { normalizeExpr } from "./calculusKit";
 import { parseAngle } from "./unitCircle";
@@ -100,7 +101,7 @@ export function argandData(params: FigureParams): ComplexPoint[] {
   raw.forEach((item, k) => {
     // The name is everything before the last "=" ("2iz = −4 + 2i", "z + (3 − i) = 4 + i").
     const eq = item.lastIndexOf("=");
-    const m = eq > 0 && eq < item.length - 1 ? ["", item.slice(0, eq).trim().slice(0, 16), item.slice(eq + 1)] : null;
+    const m = eq > 0 && eq < item.length - 1 ? ["", fitText(item.slice(0, eq).trim(), 16), item.slice(eq + 1)] : null;
     const name = m ? m[1] : raw.length === 1 ? "z" : `z${"₁₂₃₄"[k]}`;
     const c = parseComplex(m ? m[2] : item);
     if (!c) return;

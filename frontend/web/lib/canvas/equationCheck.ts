@@ -91,6 +91,27 @@ export function equationProblem(raw: unknown, stage: EquationStage, script: stri
   // Every term carries its LaTeX; a word written small over the arrow ("light", "heat") need not.
   const bare = stage.tokens.find((t) => !t.tex && !t.on && /[0-9a-z]/i.test(t.text));
   if (bare) return `the term "${bare.text}" has no "tex": every term of the maths carries its LaTeX ("tex"), so it is typeset properly`;
+  // Maths, not sentences: a term that is words ("unknown rightward = known leftward", "horizontal:
+  // right +") and a row that sets values side by side with nothing between them ("ΣFx 0 ΣFy 0",
+  // "12 N 9 N") read as word salad on a forces board (live test, 2026-10-17).
+  // A word equation's terms ("Expected frequency", "Net radiation") are fine; a sentence is not.
+  const words = (t: string) => (t.match(/[A-Za-z]{3,}/g) ?? []).filter((w) => !/^(sin|cos|tan|log|exp|lim|max|min|mod|arg|det)$/i.test(w)).length;
+  const prose = stage.tokens.find((t) => !t.on && (words(t.text) >= 5 || (words(t.text) >= 1 && /:/.test(t.text)) || (words(t.text) >= 2 && /[=≈<>]/.test(t.text))));
+  if (prose) return `the term "${prose.text}" is words, not maths: keep the equation to symbols, numbers and units, and say or caption the words instead`;
+  const op = /^[\s=≠≈<>≤≥+\-−–×÷·*/→⇒⇌±^(){}[\],;:]*$/;
+  const endsOpen = /[=≠≈<>≤≥+\-−–×÷·*/→⇒(\[,]\s*$/;
+  const startsOpen = /^\s*[=≠≈<>≤≥+\-−–×÷·*/→⇒)\],^]/;
+  const termOf = new Map(stage.tokens.filter((t) => !t.on).map((t) => [t.id, t.text.trim()]));
+  for (const [i, st] of stage.steps.entries()) {
+    const row = st.order.map((id) => termOf.get(id)).filter((t): t is string => t !== undefined && t !== "");
+    for (let k = 1; k < row.length; k++) {
+      const a = row[k - 1], b = row[k];
+      if (op.test(a) || op.test(b) || endsOpen.test(a) || startsOpen.test(b)) continue;
+      // A coefficient and what it multiplies ("2", "x" or "3", "(x + 1)") are one product.
+      if (/^[\d.]+$/.test(a) && (/^[a-zα-ω]$/i.test(b) || b.startsWith("("))) continue;
+      return `step ${i + 1} writes "${a}" then "${b}" with nothing between them: put the relation or operator (=, +, ×) between them as its own term, or write them in separate steps`;
+    }
+  }
   // Every equation the narration says is written, whole, by one step.
   const text = new Map(stage.tokens.filter((t) => !t.on).map((t) => [t.id, t.text]));
   const written = stage.steps.map((st) => normalizeMath(st.order.map((id) => text.get(id) ?? "").join("")));

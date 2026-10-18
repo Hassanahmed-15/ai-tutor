@@ -30,28 +30,33 @@ test("pictures and diagrams combine: a labelled structure is a diagram, what a t
   const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
   // A structure with no exact diagram is GENERATED as a checked textbook diagram (lib/canvas/textbookDiagram.ts),
   // not described as line art by the board writer.
-  // A labelled structure with no kit is a vector diagram; a habitat view is still a photograph.
-  assert.deepEqual(out.beats.map((b) => b.stage), ["diagram", "atom-map", "equation", "graph", "compare", "illustration"]);
-  assert.equal(out.audit.illustrations, 1);
+  // A cell, organ, plant or animal with no kit is a checked picture (owner, 2026-10-17: pictures for
+  // what image models draw well, ahead of the generic vector diagram); a habitat view is a picture too.
+  assert.deepEqual(out.beats.map((b) => b.stage), ["illustration", "atom-map", "equation", "graph", "compare", "illustration"]);
+  assert.equal(out.audit.illustrations, 2);
 });
 
-test("generated pictures are capped at four; over the cap a physical subject becomes a plain board, never line art", () => {
+test("generated pictures are capped at eight; over the cap a physical subject becomes a plain board, never line art", () => {
   const input = [
     beat("b1", "A volcano erupting", "illustration", "What an erupting volcano looks like"),
     beat("b2", "The planet Venus", "illustration", "What the planet Venus looks like through a telescope"),
     beat("b3", "The planet Mars", "illustration", "What the planet Mars looks like from orbit"),
     beat("b4", "A glacier valley", "illustration", "What a glacier valley looks like"),
     beat("b5", "A river delta", "illustration", "What a river delta looks like from above"),
+    beat("b7", "A coral reef", "illustration", "What a coral reef looks like"),
+    beat("b8", "A rainforest canopy", "illustration", "What a rainforest canopy looks like"),
+    beat("b9", "A sand dune", "illustration", "What a sand dune looks like"),
+    beat("b10", "A sea cliff", "illustration", "What a sea cliff looks like"),
     beat("b6", "Blood flow sequence", "flow"),
   ];
   const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
-  assert.equal(out.beats.filter((b) => b.stage === "illustration").length, 4);
+  assert.equal(out.beats.filter((b) => b.stage === "illustration").length, 8);
   const over = out.beats.find((b) => b.stage !== "illustration" && b.id !== "b6")!;
   assert.notEqual(over.figure, "drawn");
 
   const required = input.map((b) => ({ ...b, requiredVisual: b.stage === "illustration" ? { stages: ["illustration"], mustShow: ["distinct visible parts"] } : undefined }));
   const exception = applyLessonVisualPolicy(required, { mode: "course", aiPictures: true });
-  assert.equal(exception.beats.filter((b) => b.stage === "illustration").length, 5, "distinct assessed pictures are a justified exception");
+  assert.equal(exception.beats.filter((b) => b.stage === "illustration").length, 9, "distinct assessed pictures are a justified exception");
 });
 
 test("strict mode never invents a generated textbook picture", () => {
@@ -149,11 +154,18 @@ test("geography boards that need a map or model become vector diagrams, never sh
   ];
   input[3].script = "Incoming solar radiation exceeds outgoing between 40 degrees north and 40 degrees south, a surplus of 80 units. Poleward of 40 degrees there is a deficit of 100 units.";
   const out = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
-  assert.equal(out.beats[0].stage, "diagram");
-  assert.notEqual(out.beats[0].figure, "shapes3d");
-  assert.equal(out.beats[1].stage, "diagram");
-  assert.equal(out.beats[2].stage, "diagram");
+  // Maps and circulation models go to the coordinate grammar FIRST (figure "drawn": real coastlines,
+  // cells that turn the right way); the scene grammar ("diagram") is the fallback when it cannot pass.
+  for (const i of [0, 1, 2]) assert.deepEqual([out.beats[i].stage, out.beats[i].figure], ["figure", "drawn"]);
   assert.equal(out.beats[3].stage, "graph");
+  // With the coordinate grammar switched off they are plain boards (scene-grammar diagrams retired).
+  process.env.CANVAS_VECTOR_DIAGRAMS = "off";
+  try {
+    const off = applyLessonVisualPolicy(input, { mode: "course", aiPictures: true });
+    assert.deepEqual(off.beats.slice(0, 3).map((b) => b.stage), ["scene", "scene", "scene"]);
+  } finally {
+    delete process.env.CANVAS_VECTOR_DIAGRAMS;
+  }
 });
 
 test("the exam board is never routed to a diagram", () => {
@@ -169,7 +181,13 @@ test("a real process stays an icon flow; a labelled structure does not", () => {
   structure.script = "Alpha particles from a source strike a thin gold foil. Most pass straight through. Some are deflected.";
   const out = applyLessonVisualPolicy([process, structure], { mode: "course", aiPictures: false });
   assert.equal(out.beats[0].stage, "flow");
-  assert.equal(out.beats[1].stage, "diagram");
+  // Free-form vector and scene diagrams are retired (owner, 2026-10-17): with pictures off, a labelled
+  // set-up that is not exact geometry is a plain board; with pictures on, it is a checked picture.
+  assert.notEqual(out.beats[1].stage, "diagram");
+  assert.notEqual(out.beats[1].figure, "drawn");
+  const fresh = beat("b2", "Alpha-particle scattering", "flow", "The set-up with a source, gold foil and the paths of alpha particles");
+  fresh.script = structure.script;
+  assert.equal(applyLessonVisualPolicy([fresh], { mode: "course", aiPictures: true }).beats[0].stage, "illustration");
 });
 
 test("a titration board is drawn as the apparatus by code, whatever stage the planner chose", () => {

@@ -11,7 +11,7 @@ import { isAdhdLearner } from "@/lib/adhd/gate";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 import { LectureHistory, type ReplayPackage } from "@/components/lecture/LectureHistory";
 import { GuideSheet, guideSeen } from "@/components/pages/GuideSheet";
-import { LibraryDoor, MapDoor } from "@/components/pages/HomeDoors";
+import { CoursesDoor, LibraryDoor, MapDoor } from "@/components/pages/HomeDoors";
 import { setPendingLecture } from "@/lib/pendingLecture";
 import { peekPendingCurriculum, peekPendingTopic, takePendingCurriculum, takePendingTopic } from "@/lib/pendingTopic";
 import { PromptTiles } from "@/components/pages/PromptTiles";
@@ -211,6 +211,9 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
             </div>
           </div>
         </form>
+
+        {/* Courses first and full width: the way in for most students. */}
+        {user && <div className="hud-materialize"><CoursesDoor /></div>}
 
         {/* The two doors, for anyone: the Library (your lectures) and the Map (what you know). */}
         {user && (

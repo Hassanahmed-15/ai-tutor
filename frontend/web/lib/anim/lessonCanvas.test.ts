@@ -398,7 +398,8 @@ test("the planner's outline decides how many boards — never a template", () =>
   assert.match(oneQuestion, /complete on this one board/, "a one-board answer is allowed to be a whole answer");
   const twelve = { topic: "ML evaluation", scope: "lesson" as const, subtopics: Array.from({ length: 12 }, (_, i) => ({ title: `Part ${i + 1}`, caption: "" })) };
   assert.match(canvasPlanRequest(promptInput({ outline: twelve })), /exactly 12 boards/, "a big topic may be long");
-  assert.match(canvasPlanRequest(promptInput({ topic: "Why is the sky blue?" })), /Answer it on ONE board/, "no outline: a question is one board");
+  assert.match(canvasPlanRequest(promptInput({ topic: "Why is the sky blue?" })), /ONE board for a narrow fact/, "no outline: a narrow question is one board");
+  assert.match(canvasPlanRequest(promptInput({ topic: "Why is the sky blue?" })), /two or three for a how or why about a process/, "no outline: a process question is answered completely");
   assert.match(canvasPlanRequest(promptInput({ outline: two, learnerProfile: { ...promptInput().learnerProfile, depth: "deep" } })), /6 to 8 sentences/, "depth buys words per board");
   assert.ok(canvasBoardDurationMs("one two three four five") > 3000);
 });

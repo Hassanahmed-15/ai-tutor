@@ -26,7 +26,8 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
   const last = Math.max(0, sentences.length - 1);
   const words = (name: string) => {
     const t = name.replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim();
-    return (t.charAt(0).toUpperCase() + t.slice(1)).slice(0, 24);
+    // Whole: the layout fits a name to its box (a 24-character cap cut names mid-word).
+    return t.charAt(0).toUpperCase() + t.slice(1);
   };
   // A library diagram needs no model: the parts the narration names, in the order it names them
   // (then the parts named in the plan's objects, to make three), labelled one per sentence.
@@ -37,8 +38,8 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
     const said = asset.parts.map((p) => ({ p, at: at(p.name) })).filter((x) => x.at < Infinity).sort((a, b) => a.at - b.at).map((x) => x.p);
     const extra = beat.objects.map((id) => asset.parts.find((p) => p.id === id)).filter((p): p is NonNullable<typeof p> => Boolean(p));
     const chosen = [...new Set([...said, ...(said.length >= 3 ? [] : extra), ...(said.length + extra.length >= 3 ? [] : asset.parts)])].slice(0, 5);
-    const parts = chosen.map((p, i, all) => ({ id: p.id, name: p.name.slice(0, 34), s: Math.min(last, Math.round((i * last) / Math.max(1, all.length - 1))) }));
-    return { v: 1, heading: beat.title.slice(0, 40), notes: [], stage: { kind: "figure", component: "library", params: {}, parts, asset }, cues: [], ...(beat.overview ? { overview: true } : {}) };
+    const parts = chosen.map((p, i, all) => ({ id: p.id, name: p.name, s: Math.min(last, Math.round((i * last) / Math.max(1, all.length - 1))) }));
+    return { v: 1, heading: beat.title.trim(), notes: [], stage: { kind: "figure", component: "library", params: {}, parts, asset }, cues: [], ...(beat.overview ? { overview: true } : {}) };
   }
   // A code-drawn figure needs no model either: its parts, labelled one per sentence.
   const component = beat.figure ? figureComponent(beat.figure) : undefined;
@@ -63,7 +64,7 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
       .slice(0, 6)
       .map((x) => x.p);
     const parts = chosen.map((p, i, all) => ({ id: p.id, name: p.name, s: Math.min(last, Math.round((i * last) / Math.max(1, all.length - 1))) }));
-    return { v: 1, heading: beat.title.slice(0, 40), notes: [], stage: { kind: "figure", component: component.name, params: backupParams, parts }, cues: [], ...(beat.overview ? { overview: true } : {}) };
+    return { v: 1, heading: beat.title.trim(), notes: [], stage: { kind: "figure", component: component.name, params: backupParams, parts }, cues: [], ...(beat.overview ? { overview: true } : {}) };
   }
   // The wired electrolytic cell (lib/canvas/visualPolicy.ts) needs no model: its four parts are the board.
   if (["power-supply", "electrolyte", "anode", "cathode"].every((id) => beat.objects.includes(id))) {
@@ -74,7 +75,7 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
       { id: "anode", kind: "box" as const, label: "Anode (+)", cell: "B3", s: at(2) },
       { id: "cathode", kind: "box" as const, label: "Cathode (−)", cell: "E3", s: at(3) },
     ];
-    return { v: 1, heading: beat.title.slice(0, 40), notes: [], stage: { kind: "scene", items, arrows: [] }, cues: [], ...(beat.overview ? { overview: true } : {}) };
+    return { v: 1, heading: beat.title.trim(), notes: [], stage: { kind: "scene", items, arrows: [] }, cues: [], ...(beat.overview ? { overview: true } : {}) };
   }
   // The backup is built from what Aria SAYS, not from bare ids: it once read "Dna → Rna polymerase →
   // Mrna", three empty circles (audit 2026-10-17). Names keep the narration's own spelling ("mRNA"),
@@ -92,22 +93,26 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
       return { id: slug(label, `step-${i + 1}`), label: atWord(label, 18), ...(sub ? { sub } : {}), s: Math.min(last, Math.round((i * last) / Math.max(1, names.length - 1))) };
     });
     const arrows = nodes.slice(1).map((n, i) => ({ id: `${nodes[i].id}-to-${n.id}`, from: nodes[i].id, to: n.id, s: n.s }));
-    return { v: 1, heading: beat.title.slice(0, 40), notes, stage: { kind: "flow", arrangement: "chain", nodes, arrows }, cues: [], ...(beat.overview ? { overview: true } : {}) };
+    return { v: 1, heading: beat.title.trim(), notes, stage: { kind: "flow", arrangement: "chain", nodes, arrows }, cues: [], ...(beat.overview ? { overview: true } : {}) };
   }
   if (names.length >= 2) {
     const items = names.map((label, i) => {
       const sub = detailFor(label, sentences);
       return { id: slug(label, `box-${i + 1}`), kind: "box" as const, label: atWord(label, 22), ...(sub ? { detail: sub } : {}), cell: `${"BD"[i % 2]}${1 + Math.floor(i / 2) * 2}`, span: "2x1", s: Math.min(last, Math.round((i * last) / Math.max(1, names.length - 1))) };
     });
-    return { v: 1, heading: beat.title.slice(0, 40), notes, stage: { kind: "scene", items, arrows: [] }, cues: [], ...(beat.overview ? { overview: true } : {}) };
+    return { v: 1, heading: beat.title.trim(), notes, stage: { kind: "scene", items, arrows: [] }, cues: [], ...(beat.overview ? { overview: true } : {}) };
   }
   // No named objects: the board is its key points.
   // A box's detail line holds up to 80 characters: the point is written whole where it fits.
   const points = keyPoints(sentences, 4, 80);
-  // A box's title is cut at a word, never inside one ("Employment structure m", audit 2026-10-17);
-  // the whole point is its detail line.
-  const items = (points.length ? points : [beat.title]).map((label, i) => ({ id: `point-${i + 1}`, kind: "box" as const, label: atWord(label.split(/[:—–]/)[0], 22), ...(label.length > 22 ? { detail: label } : {}), cell: `${"BD"[i % 2]}${1 + Math.floor(i / 2) * 2}`, span: "2x1", s: Math.min(last, i) }));
-  return { v: 1, heading: beat.title.slice(0, 40), notes: [], stage: { kind: "scene", items, arrows: [] }, cues: [], ...(beat.overview ? { overview: true } : {}) };
+  // A box's title is what the point is ABOUT ("Direct impact" from "A direct impact is a collision…"),
+  // never the point's first words cut short ("A direct impact is", "For an isolated" — audit
+  // 2026-10-17); a point with no clear subject is written as the card's text alone.
+  const items = (points.length ? points : [beat.title]).map((label, i) => {
+    const title = pointTitle(label);
+    return { id: `point-${i + 1}`, kind: "box" as const, label: title ?? (label.length <= 22 ? label : ""), ...(title || label.length > 22 ? { detail: label } : {}), cell: `${"BD"[i % 2]}${1 + Math.floor(i / 2) * 2}`, span: "2x1", s: Math.min(last, i) };
+  });
+  return { v: 1, heading: beat.title.trim(), notes: [], stage: { kind: "scene", items, arrows: [] }, cues: [], ...(beat.overview ? { overview: true } : {}) };
 }
 
 /** The few parameters a backup figure can read off the board's words without a model. */
@@ -127,6 +132,20 @@ export function asSaid(id: string, script: string): string | undefined {
   if (!found) return undefined;
   // Keep a spelling that carries its own capitals ("mRNA", "ATP"); otherwise capitalise the first letter.
   return /[A-Z]/.test(found.slice(1)) ? found : found.charAt(0).toUpperCase() + found.slice(1);
+}
+
+/**
+ * The subject a key point is about, as a card title: "A direct impact is a collision…" → "Direct
+ * impact"; "Momentum: mass × velocity" → "Momentum". Undefined when the point has no short subject.
+ */
+export function pointTitle(point: string): string | undefined {
+  const t = point.replace(/\s+/g, " ").trim();
+  const head = /^(.{3,26}?)\s*(?::|—|–| - )\s*\S/.exec(t)?.[1] ?? /^(.{3,26}?)\s+(?:is|are|was|were|means|measures|equals|=)\s/i.exec(t)?.[1];
+  if (!head) return undefined;
+  const subject = head.replace(/^(?:the|a|an|for|in|so|this|that|these|those|each|every|both)\s+/i, "").replace(/[,;.]+$/, "").trim();
+  // A clause, not a subject ("when it is heated", "if you take"): no title.
+  if (subject.length < 3 || /^(?:when|if|because|so|then|it|they|we|you|this|there)\b/i.test(subject) || subject.split(" ").length > 4) return undefined;
+  return subject.charAt(0).toUpperCase() + subject.slice(1);
 }
 
 /** The words that fit in max characters, whole words only and no ellipsis (a box title). */
@@ -153,11 +172,12 @@ function detailFor(name: string, sentences: string[]): string | undefined {
   const at = sentences.find((s) => s.toLowerCase().includes(name.toLowerCase()) && !/\?\s*$/.test(s));
   if (!at) return undefined;
   const rest = at.slice(at.toLowerCase().indexOf(name.toLowerCase()) + name.length).replace(/^[\s,:;–—-]+(is|are|was|were|then|which|that)?\s*/i, "");
-  return rest.length >= 6 ? shorten(rest, 22) : undefined;
+  // The card's detail shrinks to fit whole (layout fitDetail); 22 characters cut most of them short.
+  return rest.length >= 6 ? shorten(rest, 70) : undefined;
 }
 
 /** The board's teaching statements — not its prediction question, not the closing transfer prompt. */
-function keyPoints(sentences: string[], n: number, max = 44): string[] {
+function keyPoints(sentences: string[], n: number, max = 60): string[] {
   const body = sentences.slice(0, Math.max(1, sentences.length - 1)).filter((s) => !/\?\s*$/.test(s) && !/^\s*(predict|now try|now apply|as an exam)/i.test(s));
   return body.slice(0, n).map((s) => shorten(s, max));
 }

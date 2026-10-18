@@ -3,6 +3,10 @@ import { project } from "./project";
 import type { DiagramAnchor, DiagramElement, DiagramSpec, RegionEl } from "./spec";
 import { flattenElements } from "./spec";
 import type { FigureDrawing, FigurePart, FigureShape, Ink } from "../figures/types";
+import { trimToFit } from "../text/fit";
+import { drawableText } from "./glyphs";
+import { clearAnchor, cropToInk, inkIndex } from "./ink";
+import { untangleLeaders } from "./leaders";
 
 /**
  * Compile a DiagramSpec into a FigureDrawing. Positions, colours, counts and text are decided here
@@ -133,7 +137,7 @@ function repeatPlacements(n: number, layout: "row" | "grid" | "ring", box: { x: 
 
 function addPart(parts: FigurePart[], id: string, name: string, anchor: { x: number; y: number }) {
   if (!id || parts.some((p) => p.id === id)) return;
-  parts.push({ id, name: name.slice(0, 34), anchor });
+  parts.push({ id, name: trimToFit(drawableText(name), 34), anchor });
 }
 
 export function compileDiagram(spec: DiagramSpec): FigureDrawing {
@@ -311,7 +315,13 @@ export function compileDiagram(spec: DiagramSpec): FigureDrawing {
     }
   }
   if (!parts.length) addPart(parts, "diagram", "Diagram", { x: spec.w / 2, y: spec.h / 2 });
-  return { w: spec.w, h: spec.h, shapes, parts: parts.slice(0, 12) };
+  for (const sh of shapes) if (sh.t === "text") sh.text = drawableText(sh.text);
+  // Each label point where a margin leader reaches it cleanly (a region's centre under a chromosome
+  // row sent the "2n = 46" leader through the other set).
+  const index = inkIndex(shapes);
+  for (const p of parts) if (shapes.some((sh) => sh.part === p.id)) p.anchor = clearAnchor(index, p.id, p.anchor, spec.w);
+  // Cropped to its art, so a diagram drawn in part of its canvas fills the frame (QA 2026-10-17).
+  return untangleLeaders(cropToInk({ w: spec.w, h: spec.h, shapes, parts: parts.slice(0, 12) }));
 }
 
 export { repeatPlacements };

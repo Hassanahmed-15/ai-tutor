@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Pt } from "../types";
+import { fitText, fitWithin } from "../cuts";
 import { PALETTE, Sketch, add, arrow, bool, clamp, deg, dist, fmt, lerp, mul, perp, polar, rad, sub, unit } from "./mathsKit";
 
 /**
@@ -77,7 +78,8 @@ const PARTS = [
   { id: "place-c", name: "Third place" },
 ];
 
-const cap = (s: string, n = 34) => (s.length <= n ? s : s.slice(0, n - 1) + "…");
+/** A label kept to `n` characters: ended at a word break and recorded for the rewrite pass, never "…". */
+const cap = (s: string, n = 34) => fitText(s, n);
 
 export const bearings: FigureComponent = {
   name: "bearings",
@@ -173,7 +175,7 @@ export const bearings: FigureComponent = {
     if (first) sk.part("bearing", cap(`Bearing of ${letter(first.to)} from ${letter(first.from)}: ${bearingText(first.bearing)}`), anchors.bearing);
     if (first && showBack) sk.part("back-bearing", cap(`Back bearing (${letter(first.from)} from ${letter(first.to)}) ${bearingText(backBearing(first.bearing))}`), anchors["back-bearing"]);
     if (L[1]) sk.part("bearing-2", cap(`Bearing of ${letter(L[1].to)} from ${letter(L[1].from)}: ${bearingText(L[1].bearing)}`), anchors["bearing-2"]);
-    places.slice(0, 3).forEach((name, i) => sk.part(`place-${"abc"[i]}`, cap(name.length <= 2 ? `Place ${name}` : `${name} (${letter(name)})`), at(name)));
+    places.slice(0, 3).forEach((name, i) => sk.part(`place-${"abc"[i]}`, name.length <= 2 ? `Place ${name}` : fitWithin("", name, ` (${letter(name)})`, 34), at(name)));
     return sk.finish(14);
   },
 };

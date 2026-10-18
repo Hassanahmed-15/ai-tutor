@@ -95,7 +95,9 @@ export function checkNumbers(text: string): NumberIssue[] {
     let computed = evalExpr(toExpr(calc), {});
     if (!Number.isFinite(computed)) continue;
     // "420/600 = 70%": a stated percentage is the fraction × 100.
-    if (/^\s*%/.test(after)) computed *= 100;
+    // Only when the working has not already multiplied by 100: "(3.0 ÷ 12.0) × 100 = 25%" is right, and
+    // scaling it again made it 2500 and failed correct boards (diagram lab, 2026-10-17).
+    if (/^\s*%/.test(after) && !(Math.abs(computed - stated) <= Math.max(0.005, Math.abs(stated) * 0.02))) computed *= 100;
     const ok = chained ? Math.abs(computed - stated) <= Math.max(0.005, Math.abs(stated) * 0.02) : agrees(computed, stated, m[1], exp);
     if (!ok) issues.push({ calculation: `${calc} = ${m[0].trim()}`, stated, computed });
   }

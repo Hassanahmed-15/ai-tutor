@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, FigurePart, FigureShape, Ink, Pt } from "../types";
+import { fitText } from "../cuts";
 import { arrowShapes, r2, roundedPoly } from "./bioDraw";
 
 /**
@@ -70,7 +71,7 @@ export const geneticTech: FigureComponent = {
   name: "geneticTech",
   title: "Genetic technology: making a recombinant plasmid (plasmid with a marker gene cut at a restriction site, a gene with matching sticky ends, joined by DNA ligase), or one PCR cycle (denature, anneal primers, extend with Taq polymerase)",
   params: `view ("plasmid" default | "pcr"); enzyme (restriction enzyme name, default EcoRI — EcoRI, BamHI, HindIII, NotI and XbaI show their sticky-end bases); gene (inserted gene label, default "insulin gene").`,
-  match: /\b(genetic technolog\w*|recombinant DNA|restriction (enzymes?|endonucleases?|sites?)|sticky ends?|plasmids?|gene (cloning|insertion|transfer)|PCR|polymerase chain reaction|denatur(e|ation)[^.]{0,40}(anneal|primer)|DNA ligase|vectors? (in|for) (gene|cloning))\b/i,
+  match: /\b(genetic technolog\w*|recombinant DNA|restriction (enzymes?|endonucleases?|sites?)|sticky ends?|(?:recombinant|modified|engineered) plasmids?|plasmids? (?:as|used as|is used as|are used as) (?:a |the )?vectors?|insert\w* (?:\w+ ){0,4}into (?:a |the )?plasmids?|gene (cloning|insertion|transfer)|PCR|polymerase chain reaction|denatur(e|ation)[^.]{0,40}(anneal|primer)|DNA ligase|vectors? (in|for) (gene|cloning))\b/i,
   parts: [
     { id: "plasmid", name: "Plasmid" },
     { id: "restriction-site", name: "Restriction site" },
@@ -86,8 +87,8 @@ export const geneticTech: FigureComponent = {
   build(params: FigureParams) {
     const p = params ?? {};
     const view = viewOf(p.view ?? p.stage ?? p.kind);
-    const enzyme = String(p.enzyme ?? "EcoRI").replace(/[^A-Za-z0-9]/g, "").slice(0, 10) || "EcoRI";
-    const gene = String(p.gene ?? p.insert ?? "insulin gene").replace(/[^\p{L}\p{N} '\-()]/gu, "").trim().slice(0, 20) || "insulin gene";
+    const enzyme = fitText(String(p.enzyme ?? "EcoRI").replace(/[^A-Za-z0-9]/g, ""), 10) || "EcoRI";
+    const gene = fitText(String(p.gene ?? p.insert ?? "insulin gene").replace(/[^\p{L}\p{N} '\-()]/gu, "").trim(), 20) || "insulin gene";
     const geneName = gene[0].toUpperCase() + gene.slice(1);
     return view === "pcr" ? pcr() : recombinant(enzyme, geneName);
   },

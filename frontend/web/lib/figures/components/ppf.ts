@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, FigurePart, Ink } from "../types";
+import { fitText } from "../cuts";
 import { bool, fmt, optNum } from "./mathsKit";
 import { EconGraph, PALETTE, SUBS, txt, type MPt } from "./econKit";
 
@@ -105,8 +106,10 @@ export const ppf: FigureComponent = {
       const mid = g.span({ q: 0, p: m.A.p }, { q: 0, p: m.B.p }, PALETTE.red, "opportunity-cost", { x: 14, y: 0 });
       const gainMid = g.span({ q: m.A.q, p: 0 }, { q: m.B.q, p: 0 }, PALETTE.green, "opportunity-cost", { x: 0, y: -14 });
       void gainMid;
-      const amount = valued ? `${fmt(m.opportunityCost, 1)} ${yGood.toLowerCase()}` : yGood.toLowerCase();
-      parts.push({ id: "opportunity-cost", name: `Opportunity cost: ${amount}`.slice(0, 34), anchor: mid });
+      // The good is fitted in the room the label leaves it (its whole text, so the rewrite pass can find it).
+      const before = `Opportunity cost: ${valued ? `${fmt(m.opportunityCost, 1)} ` : ""}`;
+      const good = fitText(txt(params.yGood ?? params.goodY) || "Capital goods", Math.min(24, 34 - before.length));
+      parts.push({ id: "opportunity-cost", name: `${before}${good.toLowerCase()}`, anchor: mid });
     } else if (valued) {
       // values for the points when the opportunity cost is not drawn are left off (keeps the axes clean)
     }

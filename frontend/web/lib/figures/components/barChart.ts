@@ -1,4 +1,6 @@
 import type { FigureComponent, FigureParams, Pt } from "../types";
+import { fitWithin, recordFigureCut } from "../cuts";
+import { trimToFit } from "../../text/fit";
 import { Sketch, bool, textW } from "./mathsKit";
 import { SERIES, TICK, betweenTicks, drawFrame, names, niceScale, numbers, raw, title, val } from "./statsKit";
 
@@ -13,13 +15,18 @@ import { SERIES, TICK, betweenTicks, drawFrame, names, niceScale, numbers, raw, 
 const DEFAULT_CATS = ["Walk", "Bus", "Car", "Cycle", "Train"];
 const DEFAULT_VALS = [12, 18, 9, 5, 6];
 
-/** Fit a category name into `room` units: shrink to 11, then shorten with an ellipsis. */
-export function fitName(t: string, room: number, size = TICK): { text: string; size: number } {
+/**
+ * Fit a category name into `room` units: shrink to 11, then end at a word break, never "…". The cut is
+ * recorded for the rewrite pass under `whole` (the board's own words, when `t` is already shortened).
+ */
+export function fitName(t: string, room: number, size = TICK, whole = t): { text: string; size: number } {
   let s = size;
   while (s > 11 && textW(t, s) > room) s -= 0.5;
-  let out = t;
-  while (out.length > 2 && textW(out, s) > room) out = out.slice(0, -2).trimEnd() + "…";
-  return { text: out, size: s };
+  if (textW(t, s) <= room) return { text: t, size: s };
+  let n = t.length - 1;
+  while (n > 3 && textW(trimToFit(t, n), s) > room) n--;
+  recordFigureCut(whole, `${n} characters`, n);
+  return { text: trimToFit(t, n), size: s };
 }
 
 export const barChart: FigureComponent = {
@@ -37,6 +44,8 @@ export const barChart: FigureComponent = {
   ],
   build(params: FigureParams) {
     let cats = names(params.categories, 12, 22);
+    // The board's whole category names: a label that fits one is recorded with the board's own words.
+    const fullCats = names(params.categories, 12, 400);
     let v1 = numbers(params.values, 12);
     if (!cats.length && v1.length) cats = v1.map((_, i) => String.fromCharCode(65 + i));
     if (!cats.length || !v1.length) (cats = DEFAULT_CATS), (v1 = DEFAULT_VALS);
@@ -92,11 +101,12 @@ export const barChart: FigureComponent = {
     // Category names, centred on their slots.
     cats.forEach((name, c) => {
       const mid = (c + 0.5) * slot;
+      const whole = fullCats.length === n ? fullCats[c] : name;
       if (horizontal) {
-        const fit = fitName(name, 130);
+        const fit = fitName(name, 130, TICK, whole);
         sk.text({ x: -11 - textW(fit.text, fit.size) / 2, y: mid }, fit.text, fit.size, "ink");
       } else {
-        const fit = fitName(name, slot - 6);
+        const fit = fitName(name, slot - 6, TICK, whole);
         sk.text({ x: mid, y: H + 19 }, fit.text, fit.size, "ink");
       }
       sk.line(horizontal ? [{ x: -6, y: mid }, { x: 0, y: mid }] : [{ x: mid, y: H }, { x: mid, y: H + 6 }], { stroke: "ink", width: 1.6, part: "category-axis" }, false);
@@ -133,7 +143,7 @@ export const barChart: FigureComponent = {
     const plainIdx = v1.map((_, i) => i).filter((i) => !(i === tallest && tallestTies === 1 && v1[i] > 0));
     const pick = plainIdx.sort((a, b) => v1[b] - v1[a])[0] ?? -1;
     if (pick >= 0) sk.part("bars", two ? title(params.series1, "Bars", 30) : "Bars", ends[0][pick]);
-    if (tallestTies === 1 && v1[tallest] > 0) sk.part("tallest", `Tallest bar: ${cats[tallest]} (${val(v1[tallest], 2)})`.slice(0, 34), ends[0][tallest]);
+    if (tallestTies === 1 && v1[tallest] > 0) sk.part("tallest", fitWithin("Tallest bar: ", fullCats.length === n ? fullCats[tallest] : cats[tallest], ` (${val(v1[tallest], 2)})`, 34, 22), ends[0][tallest]);
     if (two) {
       let j = 0;
       v2.forEach((v, i) => (v > v2[j] ? (j = i) : 0));
@@ -141,7 +151,7 @@ export const barChart: FigureComponent = {
       if (keyAnchor) sk.part("key", "Key", keyAnchor);
     }
     const valueAxisAt = horizontal ? { x: f.X(betweenTicks(sv, 0.6)), y: H } : { x: 0, y: f.Y(betweenTicks(sv, 0.6)) };
-    sk.part("value-axis", valueTitle.slice(0, 34), valueAxisAt);
+    sk.part("value-axis", valueTitle, valueAxisAt);
     sk.part("category-axis", catTitle || "Categories", horizontal ? { x: 0, y: (n - 0.5) * slot + Math.min(slot / 2, 14) } : { x: (n - 0.5) * slot + Math.min(slot / 2 - 2, 20), y: H });
     return sk.finish(14);
   },

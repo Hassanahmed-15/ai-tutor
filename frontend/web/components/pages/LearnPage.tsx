@@ -184,6 +184,14 @@ type LecturePayload = {
   /** "What Aria thinks about this student" from earlier lessons — see personaField(). */
   learnerPersona?: string;
 };
+
+/** "Explained for an undergraduate student", "Explained for a Grade 10 student" (owner, 2026-10-17: not "Pitched for"). */
+function explainedFor(level: string): string {
+  const l = level.trim();
+  const shown = /^(undergraduate|postgraduate|graduate|beginner|intermediate|advanced|university|college|high school|school)/i.test(l) ? l.toLowerCase() : l;
+  const student = /\bstudent\b/i.test(shown) ? "" : " student";
+  return `Explained for ${/^[aeiou]/i.test(shown) ? "an" : "a"} ${shown}${student}`;
+}
 export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: () => void }) {
   const [topic, setTopic] = useState("");
   const [input, setInput] = useState("");
@@ -2401,8 +2409,8 @@ type BuildCost =
       const leaning = card ? buildTeachingPolicy(card).because.slice(1, 3) : [];
       const leaningLine = leaning.length ? ` Leaning on ${leaning.join(" and ")}, as you asked.` : "";
       setMemoryNote(known.subject
-        ? `Pitched at your ${known.level.label} level in ${known.subject.label}, from your profile.${leaningLine} Say "simpler" or "deeper" any time.`
-        : `Pitched for your ${known.level.label} level. This isn't one of your subjects, so Aria starts from the basics.${leaningLine} Say "simpler" or "deeper" any time.`);
+        ? `${explainedFor(known.level.label)} in ${known.subject.label}, from your profile.${leaningLine} Say "simpler" or "deeper" any time.`
+        : `${explainedFor(known.level.label)}. This isn't one of your subjects, so Aria starts from the basics.${leaningLine} Say "simpler" or "deeper" any time.`);
       setAutoDepth({ answer: option.label, question: depthQuestion(trimmed) });
       return;
     }
@@ -2410,7 +2418,7 @@ type BuildCost =
     const told = settledByIntent ? briefRef.current?.curriculum ?? briefRef.current?.level : undefined;
     if (told) {
       const option = DEPTH_OPTIONS[2];
-      setMemoryNote(`Pitched for ${told}, as you told Aria. Say "simpler" or "deeper" any time.`);
+      setMemoryNote(`${explainedFor(told)}, as you told Aria. Say "simpler" or "deeper" any time.`);
       setAutoDepth({ answer: option.label, question: depthQuestion(trimmed) });
       return;
     }
@@ -5402,7 +5410,7 @@ function OutlineReviewState({
         )}
 
         <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
-          {/* The pitch in one clause ("Pitched at your Grade 10 level in Biology"), not a paragraph. */}
+          {/* The pitch in one clause ("Explained for a Grade 10 student in Biology"), not a paragraph. */}
           <p className="min-w-0 flex-1 truncate text-[0.75rem] text-[var(--hud-text-faint)]">
             {memoryNote ? memoryNote.split(/(?<=\.)\s/)[0].replace(/, from your profile\.?$/, "").replace(/\.$/, "") : ""}
           </p>

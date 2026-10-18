@@ -33,8 +33,8 @@ test("a part's words said in different places do not name it", () => {
   assert.ok(namedIn("Blood enters the right ventricle next.", "Right ventricle"));
 });
 
-test("a figure keeps at least three labels even when Aria names fewer (one label failed every attempt)", () => {
+test("a figure keeps at least two labels even when Aria names fewer (one label failed every attempt; owner 2026-10-17: label only what is taught)", () => {
   const spec = { v: 1, heading: "DNA", notes: [], cues: [], stage: { kind: "figure", component: "heart", params: {}, parts: [{ id: "aorta", name: "Aorta", s: 0 }, { id: "left-ventricle", name: "Left ventricle", s: 0 }, { id: "septum", name: "Septum", s: 0 }, { id: "right-atrium", name: "Right atrium", s: 0 }] } } as never;
   const out = withMandatoryLabels(spec, { script: "Blood leaves the heart. It goes to the body.", requiredVisual: undefined } as never) as { stage: { parts: unknown[] } };
-  assert.equal(out.stage.parts.length, 3);
+  assert.equal(out.stage.parts.length, 2);
 });
