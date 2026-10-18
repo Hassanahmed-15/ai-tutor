@@ -278,4 +278,19 @@ test("strict: the question's key words the document never uses are named (PDF be
   ] };
   assert.deepEqual(termsNotInDocument("What happens in the Calvin cycle?", doc as never), ["Calvin", "cycle"]);
   assert.deepEqual(termsNotInDocument("Why do plants store glucose as starch?", doc as never), []);
+  // A document with no code does not have what "coding" asks for.
+  assert.deepEqual(termsNotInDocument("explain the coding of photosynthesis", doc as never), ["coding"]);
+});
+
+test("strict: asking for the coding of a document whose pages print code is not 'never mentioned' (owner, AVL Tree.pdf, 2026-10-18)", async () => {
+  const { termsNotInDocument } = await import("../canvas/documentContext");
+  const doc = { contentBlocks: [
+    { id: "p1-b1", pageNumber: 1, heading: "AVL Trees", text: "An AVL tree is a binary search tree with a balance condition. We show some of the code here." },
+    { id: "p2-b1", pageNumber: 2, text: "1 void rotateWithLeftChild( AvlNode * & k2 )\n2 {\n3 AvlNode *k1 = k2->left;\n4 k2->left = k1->right;\n5 k1->right = k2;\n6 k2->height = max( height( k2->left ), height( k2->right ) ) + 1;\n7 k2 = k1;\n8 }" },
+    { id: "p2-b2", pageNumber: 2, text: "Figure 4.44 Routine to perform single rotation" },
+  ] };
+  assert.deepEqual(termsNotInDocument("explain me AVL tree coding", doc as never), []);
+  assert.deepEqual(termsNotInDocument("explain the implementation of AVL rotations", doc as never), []);
+  // A word the pages really never use is still named.
+  assert.deepEqual(termsNotInDocument("explain AVL tree coding in Python", doc as never), ["Python"]);
 });

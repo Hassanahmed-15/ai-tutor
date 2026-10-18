@@ -1,5 +1,6 @@
 import type { SuprnotesContentBlock, SuprnotesLessonInput } from "../suprnotes";
 import { looksLikeCode } from "../codeSpec";
+import { contentStems } from "../sourceGrounding";
 import type { CanvasPlanBeat } from "./types";
 
 /**
@@ -460,12 +461,23 @@ export function documentSections(doc: SuprnotesLessonInput): string[] {
  * so the lecture says plainly that the document does not cover it.
  */
 const QUESTION_WORDS = new Set("what which when where why how does do did is are was were happen happens happened explain describe tell about mean means work works between difference different compare their there this that these those with from into your notes document page pages section chapter".split(" "));
+/*
+ * Asking for the CODE is asked of the listings. "explain me AVL tree coding" of a chapter whose last
+ * pages are C++ was told "your document does not mention coding" — the pages say "code", never
+ * "coding" (owner, 2026-10-18, AVL Tree.pdf). A document with listings has what such a word asks for.
+ */
+const CODE_WORDS = /^(?:cod(?:e|es|ed|ing)|program(?:s|med|ming)?|implement(?:s|ed|ing|ation|ations)?|routines?|functions?|pseudo-?code|listings?|snippets?|syntax)$/i;
 export function termsNotInDocument(question: string, doc: SuprnotesLessonInput): string[] {
   const text = (doc.contentBlocks ?? []).map((b) => [b.heading, b.text, ...(b.items ?? [])].filter(Boolean).join(" ")).join(" ").toLowerCase();
   // The word's root, so "store" finds "storing" and "fertilisers" finds "fertiliser".
   const stem = (w: string) => { const l = w.toLowerCase().replace(/(?:ies|es|s)$/, ""); return l.slice(0, Math.max(4, l.length - 2)); };
+  // And the stemmer the strict checks use, so "coding" finds "code" (both "cod").
+  const stems = new Set(contentStems(text));
+  const hasCode = documentListings(doc).length > 0;
   return [...new Set((question.match(/[A-Za-z][A-Za-z-]{3,}/g) ?? []).filter((w) => !QUESTION_WORDS.has(w.toLowerCase())))]
-    .filter((w) => !text.includes(stem(w)));
+    .filter((w) => !text.includes(stem(w)))
+    .filter((w) => !contentStems(w).some((s) => stems.has(s)))
+    .filter((w) => !(hasCode && CODE_WORDS.test(w)));
 }
 
 export function substantivePages(doc: SuprnotesLessonInput): number[] {
