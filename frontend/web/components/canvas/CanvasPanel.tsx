@@ -9,6 +9,8 @@ import { graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt,
 import { edgeCurve } from "@/lib/canvas/structure";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
+import type { CardStyle } from "@/lib/canvas/cardStyle";
+import { cardNumbersOf } from "@/lib/canvas/cardOrder";
 import { IconGlyph } from "./icons";
 import { figureAssetHref } from "@/lib/figures/assetHref";
 import { fitText } from "@/lib/canvas/renderFit";
@@ -52,16 +54,30 @@ type PanelProps = {
   theme?: BoardTheme;
   /** Prediction-first boards keep the answer-bearing diagram hidden until the student commits. */
   concealStage?: boolean;
+  /** How text cards are drawn: today's hand-drawn outline, or the sticker redesign (paper boards only; lib/canvas/cardStyle.ts). */
+  cards?: CardStyle;
+  /** Cards whose close-up has been taught (lib/canvas/cardDives.ts): a sticker card shows a tick for its number. */
+  doneIds?: Set<string>;
+  /** The card whose close-up is playing now: drawn without its words, so the close-up sits inside it. */
+  openId?: string;
+  /** Aria has finished this board: sticky notes give a quick wave in teaching order (a recap, no new content). */
+  recap?: boolean;
 };
 
-export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live, vars, ghostVars, focusId, carryFrom, reducedMotion, theme = "paper", concealStage = false }: PanelProps) {
+export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live, vars, ghostVars, focusId, carryFrom, reducedMotion, theme = "paper", concealStage = false, cards = "classic", doneIds, openId, recap = false }: PanelProps) {
   const chalk = theme === "chalk";
+  // Sticker cards are numbered in the order Aria reaches them, so the student can follow "card 2".
+  const cardNumbers = cards !== "classic" && !chalk ? cardNumbersOf(layout) : null;
+  // Sticky notes: while Aria is on one note, the others step back.
+  const spot = cards === "sticky" && Boolean(focusId && cardNumbers?.has(focusId));
+  // Arrows between sticky notes are drawn in pencil, to match the paper (owner: the arrows did not match).
+  const pencil = cards === "sticky" && Boolean(cardNumbers?.size);
   // A note rolls off the notes column when a later note takes its slot (lib/canvas/layout.ts).
   const visible = layout.marks.filter((m) => m.s <= shownThrough && !(m.type === "note" && m.until !== undefined && shownThrough >= m.until) && (!concealStage || m.type === "heading" || m.type === "note"));
   const headingW = layout.targets.heading?.w ?? 200;
   return (
     <InkDrawing.Provider value={live && !reducedMotion}>
-    <g className={live && !reducedMotion ? "cv-live" : "cv-settled"}>
+    <g className={`${live && !reducedMotion ? "cv-live" : "cv-settled"}${spot ? " cv-spot" : ""}${recap && pencil && !reducedMotion ? " cv-recap" : ""}`}>
       <g className="cv-lift">
         {/* The shadow is a picture baked once (LessonCanvas paperShadow): a live blur filter under
             every board was re-blurred on every frame of a camera flight, and the flights stuttered. */}
@@ -73,7 +89,7 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
         <Ink points={[{ x: 48, y: 88 }, { x: 48 + (headingW + 20) * 0.5, y: 86.5 }, { x: Math.min(PANEL_W - 48, 48 + headingW + 20), y: 88.5 }]} width={4.2} color="#f59e0b" opacity={0.6} />
         {spec.visualFallback && <title>{spec.visualFallback.message}</title>}
         {visible.map((mark) => (
-          <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} chalk={chalk} />
+          <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} chalk={chalk} cardLook={cards} cardNo={cardNumbers ? (cardNumbers.get(mark.id) ?? 0) : undefined} cardDone={doneIds?.has(mark.id)} cardOpen={openId === mark.id} pencil={pencil} />
         ))}
         {/* Chalk never lays down solid: a fine speckle of the slate over the writing breaks every
             stroke up the way chalk skips over a board — one rectangle, not a filter per stroke. */}
@@ -82,6 +98,213 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
     </g>
     </InkDrawing.Provider>
   );
+}
+
+/**
+ * A STICKER CARD (owner, 2026-10-19: "very clean, very cute, an upgrade"): a soft pastel card with big
+ * round corners, a coloured edge, a little drop shadow, a number chip on its corner and a title in the
+ * card's own deep colour. Same rect as today's card (layout, arrows and timing untouched); a hair of
+ * tilt, fixed per card, makes it feel stuck on rather than printed.
+ */
+function StickerCard({ mark, no, focused, done, open }: { mark: Extract<Mark, { type: "box" }>; no: number; focused: boolean; done: boolean; open: boolean }) {
+  const { x, y, w, h } = mark.rect;
+  const deep = shade(mark.color, 0.32);
+  const fit = mark.label ? fitText(mark.label, w - 24, mark.size, Math.max(12, Math.round(mark.size * 0.72))) : null;
+  const extra = fit ? (fit.lines.length - 1) * fit.size * 1.15 : 0;
+  const detailSize = mark.detailSize ?? 15;
+  const top = y + (mark.detail?.length ? 28 : h / 2 + 6 - extra / 2);
+  const tilt = ((hashOf(mark.id) % 5) - 2) * 0.35;
+  const cx = x + w / 2;
+  return (
+    <g className={`cv-in cv-sticker${focused ? " cv-focus" : ""}`}>
+      <g transform={`rotate(${tilt} ${cx} ${y + h / 2})`}>
+        <rect x={x + 1} y={y + 5} width={w} height={h} rx={20} fill={mark.color} opacity={0.16} />
+        <rect x={x} y={y} width={w} height={h} rx={20} fill={tint(mark.color, 0.1)} stroke={tint(mark.color, 0.55)} strokeWidth={2.4} />
+        {open ? null : <>
+        <rect x={x + 10} y={y + 6} width={w - 20} height={5} rx={2.5} fill="#ffffff" opacity={0.7} />
+        {fit && <FitLines fit={fit} x={cx} y={top} lead={1.15} textAnchor="middle" fontWeight={800} fill={deep} />}
+        {mark.detail?.length ? <rect x={cx - 16} y={top + extra + 8} width={32} height={3.5} rx={1.75} fill={mark.color} opacity={0.35} /> : null}
+        {mark.detail?.map((line, i) => (
+          <text key={i} x={cx} y={top + extra + 28 + i * detailSize * 1.27} textAnchor="middle" fontSize={detailSize} fontWeight={600} fill={INK} opacity={0.82}>
+            {line}
+          </text>
+        ))}
+        {done ? (
+          <g className="cv-in">
+            <circle cx={x + 2} cy={y - 3} r={13} fill="#16a34a" stroke="#ffffff" strokeWidth={3} />
+            <path d={`M ${x - 4} ${y - 3} l 4 4.5 l 7.5 -8`} fill="none" stroke="#ffffff" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
+          </g>
+        ) : no > 0 ? (
+          <g>
+            <circle cx={x + 2} cy={y - 3} r={13} fill={mark.color} stroke="#ffffff" strokeWidth={3} />
+            <text x={x + 2} y={y + 2} textAnchor="middle" fontSize={13} fontWeight={800} fill="#ffffff">{no}</text>
+          </g>
+        ) : null}
+        {focused && <rect x={x - 5} y={y - 5} width={w + 10} height={h + 10} rx={24} fill="none" stroke={ARIA_INK} strokeWidth={3} opacity={0.75} className="cv-sticker-ring" />}
+        </>}
+      </g>
+    </g>
+  );
+}
+
+type CardProps = { mark: Extract<Mark, { type: "box" }>; no: number; focused: boolean; done: boolean; open: boolean };
+
+/** The number (or tick) beside a card, in a hand-drawn ring. */
+function CardMark({ cx, cy, no, done, color, r = 13 }: { cx: number; cy: number; no: number; done: boolean; color: string; r?: number }) {
+  if (done) return (
+    <g className="cv-in">
+      <circle cx={cx} cy={cy} r={r} fill="#16a34a" />
+      <path d={`M ${cx - 6} ${cy} l 4 4.5 l 7.5 -8`} fill="none" stroke="#ffffff" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
+    </g>
+  );
+  if (no <= 0) return null;
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r={r} fill={color} />
+      <text x={cx} y={cy + 5} textAnchor="middle" fontSize={r + 1} fontWeight={800} fill="#ffffff">{no}</text>
+    </g>
+  );
+}
+
+/**
+ * MARKER NOTE (prototype, 2026-10-19): no box at all — the way a teacher writes a key word on a
+ * whiteboard. The title in its colour over a highlighter swipe, the caption under it in ink, a
+ * numbered dot beside it. Arrows still meet the (invisible) card edge.
+ */
+function MarkerCard({ mark, no, focused, done, open }: CardProps) {
+  const { x, y, w, h } = mark.rect;
+  if (open) return null;
+  const deep = shade(mark.color, 0.25);
+  const size = Math.min(mark.size + 3, 24);
+  const fit = mark.label ? fitText(mark.label, w - 8, size, 13) : null;
+  const extra = fit ? (fit.lines.length - 1) * fit.size * 1.15 : 0;
+  const detailSize = (mark.detailSize ?? 15) + 1;
+  const lines = mark.detail?.length ?? 0;
+  const block = (fit ? fit.size + extra : 0) + (lines ? 10 + lines * detailSize * 1.27 : 0);
+  const top = y + h / 2 - block / 2 + (fit ? fit.size * 0.8 : 0);
+  const cx = x + w / 2;
+  const widest = fit ? Math.max(...fit.lines.map((l) => textWidth(l, fit.size))) : 0;
+  const tilt = ((hashOf(mark.id) % 3) - 1) * 0.8;
+  return (
+    <g className={`cv-in${focused ? " cv-focus" : ""}`}>
+      {fit && <rect x={cx - widest / 2 - 8} y={top - fit.size * 0.42} width={widest + 16} height={fit.size * 0.62 + extra} rx={6} fill={mark.color} opacity={focused ? 0.38 : 0.2} transform={`rotate(${tilt} ${cx} ${top})`} />}
+      {fit && <FitLines fit={fit} x={cx} y={top} lead={1.15} textAnchor="middle" fontWeight={800} fill={deep} />}
+      {mark.detail?.map((line, i) => (
+        <text key={i} x={cx} y={top + extra + 12 + (i + 1) * detailSize * 1.2} textAnchor="middle" fontSize={detailSize} fontWeight={600} fill={INK} opacity={0.78}>{line}</text>
+      ))}
+      {fit && <CardMark cx={cx - widest / 2 - 26} cy={top - fit.size * 0.32} no={no} done={done} color={mark.color} r={12} />}
+    </g>
+  );
+}
+
+/** Words → one of the board's own icons, for an icon-led card (none when nothing fits). */
+const CARD_ICON_WORDS: Array<[RegExp, string]> = [
+  [/\b(sun|sunlight|light|photon)/i, "sun"], [/\b(water|h2o|rain|liquid)/i, "water"], [/\b(oxygen|o2)\b/i, "oxygen"],
+  [/\b(carbon dioxide|co2|gas|air)\b/i, "gas"], [/\bchloroplast|thylakoid|stroma|grana/i, "chloroplast"], [/\b(glucose|sugar|starch|carbohydrate)/i, "sugar"],
+  [/\b(energy|atp|calorie|power)/i, "energy"], [/\b(cell|nucleus|membrane|neurone|neuron)/i, "cell"], [/\b(leaf|leaves)\b/i, "leaf"],
+  [/\b(plant|flower|tree|crop)/i, "plant"], [/\broot/i, "root"], [/\b(cloud|weather|climate)/i, "cloud"], [/\b(heat|fire|burn|combust|temperature)/i, "flame"],
+  [/\b(atom|electron|proton|ion|molecule|nucle)/i, "atom"], [/\b(battery|cell voltage|circuit|current|voltage)/i, "battery"], [/\b(person|human|people|patient|student|you)\b/i, "person"],
+  [/\b(earth|planet|world|global)/i, "earth"], [/\b(enzyme|process|mechanism|machine|system|stage|step)/i, "gear"], [/\b(heart|blood|pulse|artery|vein|circulat)/i, "heart"],
+  [/\b(lung|breath|respir|alveol)/i, "lungs"], [/\bstomat/i, "stomata"], [/\b(animal|mammal|fish|bird|organism)/i, "animal"], [/\b(factory|industry|production|manufactur)/i, "factory"],
+  [/\b(force|push|pull|newton|pressure)/i, "force"], [/\bmagnet/i, "magnet"], [/\b(idea|bulb|lamp|think)/i, "bulb"], [/\b(wave|signal|impulse|sound|frequency)/i, "wave"],
+  [/\b(ice|freez|cold)/i, "ice"], [/\b(steam|vapour|vapor|evaporat|boil)/i, "steam"], [/\b(law|act|bill|book|rule|reading|parliament)/i, "book"],
+];
+function cardIcon(text: string): string | null {
+  return CARD_ICON_WORDS.find(([re]) => re.test(text))?.[1] ?? null;
+}
+
+/**
+ * ICON NODE (prototype): a round picture badge — the card's icon from its own words, or its number —
+ * with the title and caption beneath, no box. Matches the board's existing icon nodes (the sun).
+ */
+function BadgeCard({ mark, no, focused, done, open }: CardProps) {
+  const { x, y, w, h } = mark.rect;
+  if (open) return null;
+  const icon = cardIcon(`${mark.label ?? ""} ${(mark.detail ?? []).join(" ")}`);
+  const r = Math.min(30, h * 0.3, w * 0.16);
+  const fit = mark.label ? fitText(mark.label, w - 6, Math.min(mark.size, 19), 12) : null;
+  const extra = fit ? (fit.lines.length - 1) * fit.size * 1.15 : 0;
+  const detailSize = mark.detailSize ?? 14;
+  const lines = mark.detail?.length ?? 0;
+  const block = r * 2 + 10 + (fit ? fit.size + extra : 0) + (lines ? 4 + lines * detailSize * 1.25 : 0);
+  const cy = y + h / 2 - block / 2 + r;
+  const cx = x + w / 2;
+  const titleY = cy + r + 10 + (fit ? fit.size * 0.85 : 0);
+  return (
+    <g className={`cv-in${focused ? " cv-focus" : ""}`}>
+      <circle cx={cx} cy={cy + 3} r={r} fill={mark.color} opacity={0.18} />
+      <circle cx={cx} cy={cy} r={r} fill={tint(mark.color, 0.16)} stroke={mark.color} strokeWidth={3} />
+      {icon ? (
+        <g transform={`translate(${cx},${cy}) scale(${(r * 1.5) / 110})`}><IconGlyph name={icon as never} color={mark.color} /></g>
+      ) : (
+        <text x={cx} y={cy + r * 0.36} textAnchor="middle" fontSize={r} fontWeight={800} fill={mark.color}>{no > 0 ? no : (mark.label ?? "?").charAt(0).toUpperCase()}</text>
+      )}
+      {icon && <CardMark cx={cx + r * 0.78} cy={cy - r * 0.78} no={no} done={done} color={mark.color} r={10} />}
+      {!icon && done && <CardMark cx={cx + r * 0.78} cy={cy - r * 0.78} no={0} done color={mark.color} r={10} />}
+      {fit && <FitLines fit={fit} x={cx} y={titleY} lead={1.15} textAnchor="middle" fontWeight={800} fill={INK} />}
+      {mark.detail?.map((line, i) => (
+        <text key={i} x={cx} y={titleY + extra + 4 + (i + 1) * detailSize * 1.25} textAnchor="middle" fontSize={detailSize} fontWeight={600} fill={MUTED}>{line}</text>
+      ))}
+    </g>
+  );
+}
+
+const STICKY_PAPER = ["#fff3b0", "#ffd9e0", "#d6ecff", "#d9f5d6", "#ece0ff", "#ffe2c7"];
+
+/** STICKY NOTE (prototype): a square of pastel paper, taped on, its corner folded, a little tilted. */
+function StickyCard({ mark, no, focused, done, open }: CardProps) {
+  const { x, y, w, h } = mark.rect;
+  const paper = STICKY_PAPER[(no > 0 ? no - 1 : hashOf(mark.id)) % STICKY_PAPER.length];
+  const tilt = ((hashOf(mark.id) % 5) - 2) * 0.9;
+  const cx = x + w / 2;
+  const fold = 16;
+  const fit = mark.label ? fitText(mark.label, w - 24, mark.size, 12) : null;
+  const extra = fit ? (fit.lines.length - 1) * fit.size * 1.15 : 0;
+  const detailSize = mark.detailSize ?? 15;
+  const top = y + (mark.detail?.length ? 30 : h / 2 + 6 - extra / 2);
+  // Motion (CANVAS_CSS .cv-sticky-*): stuck on with a slap, lifted and straightened while Aria is on
+  // it (the others dim), its tick pops when its close-up is done.
+  return (
+    <g className={`cv-sticky-note${focused ? " is-focus" : ""}${done ? " is-done" : ""}`} style={{ ["--order" as string]: Math.max(0, no - 1) }}>
+      <g className="cv-sticky-slap">
+      <g className="cv-sticky-body" style={{ ["--tilt" as string]: `${tilt}deg` }}>
+        <path className="cv-sticky-shadow" d={`M ${x + 2} ${y + 6} h ${w} v ${h - fold} l ${-fold} ${fold} h ${-(w - fold)} z`} fill="#000000" opacity={0.08} />
+        <path d={`M ${x} ${y} h ${w} v ${h - fold} l ${-fold} ${fold} h ${-(w - fold)} z`} fill={paper} />
+        <path d={`M ${x + w} ${y + h - fold} l ${-fold} ${fold} v ${-fold} z`} fill="#000000" opacity={0.1} />
+        <rect x={cx - 26} y={y - 9} width={52} height={18} rx={3} fill="#ffffff" opacity={0.6} transform={`rotate(${-tilt * 2} ${cx} ${y})`} />
+        {open ? null : <>
+          {fit && <FitLines fit={fit} x={cx} y={top} lead={1.15} textAnchor="middle" fontWeight={800} fill={INK} />}
+          {mark.detail?.map((line, i) => (
+            <text key={i} x={cx} y={top + extra + 24 + i * detailSize * 1.27} textAnchor="middle" fontSize={detailSize} fontWeight={600} fill={INK} opacity={0.75}>{line}</text>
+          ))}
+          <g className={done ? "cv-pop" : undefined}><CardMark cx={x + 2} cy={y + 2} no={no} done={done} color={shade(mark.color, 0.1)} r={11} /></g>
+        </>}
+      </g>
+      </g>
+    </g>
+  );
+}
+
+/** A colour mixed toward white (t = how much of the colour is kept). */
+function tint(hex: string, t: number): string {
+  return mixHex(hex, "#ffffff", t);
+}
+
+/** A colour mixed toward near-black ink (t = how much ink is added). */
+function shade(hex: string, t: number): string {
+  return mixHex("#111827", hex, t);
+}
+
+function mixHex(a: string, b: string, t: number): string {
+  const rgb = (h: string) => { const m = /^#?([0-9a-f]{6})$/i.exec(h.trim()); const n = m ? parseInt(m[1], 16) : 0x64748b; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+  const [p, q] = [rgb(a), rgb(b)];
+  return `#${p.map((v, i) => Math.round(v * t + q[i] * (1 - t)).toString(16).padStart(2, "0")).join("")}`;
+}
+
+function hashOf(text: string): number {
+  let h = 0;
+  for (let i = 0; i < text.length; i++) h = (h * 31 + text.charCodeAt(i)) >>> 0;
+  return h;
 }
 
 /**
@@ -231,6 +454,12 @@ type MarkProps = {
   targetRect?: Rect;
   reducedMotion: boolean;
   chalk?: boolean;
+  /** Set for sticker cards: this card's number (0 = unnumbered); undefined draws today's card. */
+  cardNo?: number;
+  cardLook?: CardStyle;
+  cardDone?: boolean;
+  cardOpen?: boolean;
+  pencil?: boolean;
 };
 
 function MarkView(props: MarkProps) {
@@ -246,7 +475,7 @@ function MarkView(props: MarkProps) {
   return <g data-mark={mark.id}>{body}</g>;
 }
 
-function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, ghostVars, focused, focusId, reducedMotion, chalk }: MarkProps) {
+function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, ghostVars, focused, focusId, reducedMotion, chalk, cardNo, cardLook, cardDone, cardOpen, pencil }: MarkProps) {
   const focus = focused ? " cv-focus" : "";
   switch (mark.type) {
     case "heading": {
@@ -271,6 +500,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
     case "node":
       return <NodeView mark={mark} vars={vars} focused={focused} shownThrough={shownThrough} />;
     case "arrow":
+      if (pencil) return <PencilArrow mark={mark} vars={vars} focused={focused} reducedMotion={reducedMotion} />;
       return <ArrowView mark={mark} vars={vars} focused={focused} reducedMotion={reducedMotion} />;
     case "picture":
       return (
@@ -371,6 +601,10 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       return <Ink points={pts} width={2.6} color={MUTED} opacity={0.75} dash />;
     }
     case "box":
+      if (!mark.icon && cardNo !== undefined && cardLook === "marker") return <MarkerCard mark={mark} no={cardNo} focused={focused} done={Boolean(cardDone)} open={Boolean(cardOpen)} />;
+      if (!mark.icon && cardNo !== undefined && cardLook === "badge") return <BadgeCard mark={mark} no={cardNo} focused={focused} done={Boolean(cardDone)} open={Boolean(cardOpen)} />;
+      if (!mark.icon && cardNo !== undefined && cardLook === "sticky") return <StickyCard mark={mark} no={cardNo} focused={focused} done={Boolean(cardDone)} open={Boolean(cardOpen)} />;
+      if (!mark.icon && cardNo !== undefined) return <StickerCard mark={mark} no={cardNo} focused={focused} done={Boolean(cardDone)} open={Boolean(cardOpen)} />;
       if (!mark.icon) {
         // A card: a hand-drawn outline, its title, and its content lines. A title wider than the card
         // is set smaller, then on two lines (the detail moves down for the second), never past the edge.
@@ -1180,6 +1414,41 @@ function ArrowView({ mark, vars, focused, reducedMotion }: { mark: Extract<Mark,
   );
 }
 
+const PENCIL = "#57534e";
+
+/**
+ * A PENCIL ARROW between sticky notes: a thin hand-drawn graphite line, an open arrowhead and a pencil
+ * label — what a teacher would draw between notes stuck on a board. Same path, label and timing as
+ * the ink arrow; only the look changes. Particles stay only where they carry a slider's rate.
+ */
+function PencilArrow({ mark, vars, focused, reducedMotion }: { mark: Extract<Mark, { type: "arrow" }>; vars: Record<string, number>; focused: boolean; reducedMotion: boolean }) {
+  const { p0, c, p1 } = mark;
+  const points = useMemo(() => quadPoints(p0, c, p1, 22), [p0, c, p1]);
+  const head = useMemo(() => {
+    const from = bezier(p0, c, p1, 0.88);
+    const a = Math.atan2(p1.y - from.y, p1.x - from.x);
+    const arm = (t: number) => `${p1.x - Math.cos(a + t) * 13},${p1.y - Math.sin(a + t) * 13}`;
+    return `M ${arm(0.5)} L ${p1.x},${p1.y} L ${arm(-0.5)}`;
+  }, [p0, c, p1]);
+  const rate = mark.rate ? Math.max(0, Math.min(1, evalExpr(mark.rate, vars, 1))) : 1;
+  const ink = focused ? ARIA_INK : PENCIL;
+  return (
+    <g data-arrow="">
+      <Ink points={points} width={2.6} color={ink} opacity={0.8} />
+      <path d={head} fill="none" stroke={ink} strokeWidth={2.6} strokeLinecap="round" strokeLinejoin="round" opacity={0.85} className="cv-in cv-late" />
+      {mark.flow && mark.rate && !reducedMotion && <FlowParticles p0={p0} c={c} p1={p1} color={mark.color} rate={rate} />}
+      {mark.label && (
+        <g className="cv-in cv-late">
+          <rect x={mark.labelAt.x - textWidth(mark.label, 14) / 2 - 6} y={mark.labelAt.y - 14} width={textWidth(mark.label, 14) + 12} height={20} rx={4} fill={PAPER} opacity={0.9} />
+          <text x={mark.labelAt.x} y={mark.labelAt.y + 1} textAnchor="middle" fontSize={14} fontWeight={600} fontStyle="italic" fill={ink}>
+            {mark.label}
+          </text>
+        </g>
+      )}
+    </g>
+  );
+}
+
 const MAX_PARTICLES = 6;
 const TRAIL = [0, 0.018, 0.036];
 
@@ -1642,5 +1911,18 @@ export const CANVAS_CSS = `
 .cv-outline { animation: cv-outline 260ms ease-out both; }
 @keyframes cv-hotspot { 0% { transform: scale(.8); opacity: .95; } 100% { transform: scale(2.3); opacity: 0; } }
 .cv-hotspot { transform-box: fill-box; transform-origin: center; animation: cv-hotspot 1600ms ease-out infinite; }
+.cv-sticky-body { transform: rotate(var(--tilt, 0deg)); transform-box: fill-box; transform-origin: 50% 40%; transition: transform 320ms cubic-bezier(.05,.7,.1,1); }
+.cv-sticky-shadow { transform-box: fill-box; transition: transform 320ms cubic-bezier(.05,.7,.1,1), opacity 300ms ease; }
+.cv-sticky-note { transition: opacity 360ms ease; }
+.cv-sticky-note.is-focus .cv-sticky-body { transform: translateY(-6px) rotate(0deg) scale(1.05); }
+.cv-sticky-note.is-focus .cv-sticky-shadow { transform: translate(5px, 12px); opacity: .16; }
+.cv-spot .cv-sticky-note:not(.is-focus) { opacity: .5; }
+.cv-live .cv-sticky-slap { animation: cv-slap 400ms cubic-bezier(.05,.7,.1,1) both; transform-box: fill-box; transform-origin: 50% 0%; }
+@keyframes cv-slap { 0% { opacity: 0; transform: translateY(-14px) rotate(-4deg) scale(1.1); } 60% { opacity: 1; transform: translateY(1px) scale(1.02, .97); } 100% { opacity: 1; transform: none; } }
+.cv-recap .cv-sticky-note { animation: cv-recap 560ms cubic-bezier(.05,.7,.1,1) calc(var(--order, 0) * 170ms + 250ms) both; transform-box: fill-box; transform-origin: 50% 60%; }
+@keyframes cv-recap { 0% { transform: none; } 40% { transform: translateY(-7px) scale(1.05); } 100% { transform: none; } }
+.cv-pop { transform-box: fill-box; transform-origin: center; animation: cv-pop 460ms cubic-bezier(.34,1.8,.64,1) both; }
+@keyframes cv-pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .cv-live .cv-sticky-slap, .cv-pop, .cv-recap .cv-sticky-note { animation: none !important; } .cv-sticky-body, .cv-sticky-shadow, .cv-sticky-note { transition: none !important; } }
 @media (prefers-reduced-motion: reduce) { .cv-live .cv-in, .cv-live .cv-write, .cv-live .cv-stroke, .cv-live .cv-morph-in, .cv-ring, .cv-swipe, .cv-tap, .cv-outline, .cv-hotspot { animation: none !important; } .cv-morph-out, .cv-morph-ring { display: none; } }
 `;

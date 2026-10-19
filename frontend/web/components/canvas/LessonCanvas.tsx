@@ -16,6 +16,7 @@ import { quadPoints } from "@/lib/canvas/ink";
 import { cardSideView, textRows, underlineY } from "@/lib/canvas/renderFit";
 import { playScratch, playTick, playWhoosh, setSoundEnabled, soundEnabled } from "./sound";
 import { Confetti } from "./Confetti";
+import { preferredCardStyle, type CardStyle } from "@/lib/canvas/cardStyle";
 
 /**
  * THE LESSON CANVAS — every board of the lecture on one world, taught by a camera and a pen.
@@ -115,6 +116,12 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       observer.disconnect();
     };
   }, []);
+  // Text card design (lib/canvas/cardStyle.ts): read after mount, so the server render always matches.
+  const [cardStyle, setCardStyle] = useState<CardStyle>("sticky");
+  useEffect(() => {
+    const t = window.setTimeout(() => setCardStyle(preferredCardStyle()), 0);
+    return () => window.clearTimeout(t);
+  }, []);
   const themes = useMemo((): BoardTheme[] => panels.map((p) => panelTheme(themeChoice, p.spec.stage.kind)), [panels, themeChoice]);
   // A chalk board's own colours are lifted to chalk pastels before it is laid out (theme.ts).
   const specs = useMemo(() => panels.map((p, i) => (themes[i] === "chalk" ? recolour(p.spec, chalkTint) : p.spec)), [panels, themes]);
@@ -130,6 +137,17 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const [furthest, setFurthest] = useState(shownIndex);
   if (shownIndex > furthest) setFurthest(shownIndex);
   const reachedIndex = completed ? Math.max(0, panels.length - 1) : Math.max(furthest, shownIndex);
+  // Cards whose close-up Aria has finished (lib/canvas/cardDives.ts): a sticker card shows a tick.
+  const divedCards = useMemo(() => {
+    const out: Record<string, Set<string>> = {};
+    panels.forEach((p, j) => {
+      const inside = p.spec.inside;
+      if (inside && (j < shownIndex || (completed && j <= reachedIndex))) (out[inside.beat] ??= new Set()).add(inside.id);
+    });
+    return out;
+  }, [panels, shownIndex, reachedIndex, completed]);
+  // The card Aria is inside right now: drawn empty, so the close-up sits inside its colour, not over its words.
+  const openCard = panels[shownIndex]?.spec.inside;
   const current = panels[shownIndex];
   const currentLayout = layouts[shownIndex];
   const currentPlace = current ? placements[current.key] : undefined;
@@ -241,6 +259,17 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       const y = Math.max(0, Math.min(PANEL_H - h, t.y + t.h / 2 - h / 2));
       return fitView(toWorld({ x, y, w, h }, currentPlace), aspect, 0.06);
     }
+    // Sticky notes (lib/canvas/cardStyle.ts): the camera leans gently toward the note Aria is on —
+    // most of the board stays in view, so the note is in its context and nobody feels the motion.
+    const note = cardStyle === "sticky" && focusId && !taskOpen ? currentLayout.marks.find((m) => m.type === "box" && !m.icon && m.id === focusId) : undefined;
+    if (note) {
+      const t = (note as { rect: Rect }).rect;
+      const w = PANEL_W * 0.9;
+      const h = PANEL_H * 0.9;
+      const x = Math.max(0, Math.min(PANEL_W - w, PANEL_W / 2 + (t.x + t.w / 2 - PANEL_W / 2) * 0.35 - w / 2));
+      const y = Math.max(0, Math.min(PANEL_H - h, PANEL_H / 2 + (t.y + t.h / 2 - PANEL_H / 2) * 0.35 - h / 2));
+      return fitView(toWorld({ x, y, w, h }, currentPlace), aspect, 0.03);
+    }
     // A task card sits to the right of the board: the camera slides the board left to make room —
     // the board as large as the space left of the card's column allows. A fixed half-board of room
     // shrank it to ~60% with the next board's giant text showing under it (audit 2026-10-17).
@@ -248,7 +277,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     if (beside) return beside;
     const room = taskOpen ? PANEL_W * 0.52 : 0;
     return fitView(toWorld({ x: 0, y: 0, w: PANEL_W + room, h: PANEL_H }, currentPlace), aspect, 0.035);
-  }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, boxSize, taskOpen, visitIndex, shownIndex, worldRects]);
+  }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, boxSize, taskOpen, visitIndex, shownIndex, worldRects, cardStyle, focusId]);
 
   const viewRef = useRef<View>(followView);
   const flightRef = useRef(0);
@@ -532,6 +561,10 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 layout={(tapHidden || orderOpen) && panel.key === current?.key ? quizLayout(layouts[i], tapHidden ?? new Set(), orderOpen, orderOpen && interaction?.kind === "quiz" ? (interaction.steps ?? []).map((st) => st.text) : []) : layouts[i]}
                 spec={specs[i]}
                 theme={themes[i]}
+                cards={cardStyle}
+                doneIds={divedCards[panel.key]}
+                openId={openCard?.beat === panel.key ? openCard.id : undefined}
+                recap={live && finished}
                 shownThrough={live && !finished ? sentence : Infinity}
                 sentenceProgress={live ? sentenceProgress : 0}
                 live={live}
@@ -543,7 +576,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               />
               <Corrections layout={layouts[i]} check={corrections[panel.key]} />
               <Strokes strokes={strokes[panel.key] ?? []} live={live && drawing ? liveStroke : null} />
-              {live && penCue && <Pen cue={penCue} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
+              {live && penCue && <Pen cue={penCue} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} lifts={cardStyle === "sticky" && themes[i] !== "chalk"} />}
               {!live && reactionPoint?.key === panel.key && <Pen cue={{ s: 0, action: "point", target: reactionPoint.target }} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
               {/* The explore layer's rings stay off a board while its tap card is open: they sat over the
                   tap rings and caught the student's tap (water-cycle test, 2026-10-18). */}
@@ -809,7 +842,7 @@ function initialVars(panels: CanvasPanelInput[]): Record<string, Record<string, 
 
 /* ── Aria's pen ───────────────────────────────────────────────────────────────────────────── */
 
-function Pen({ cue: given, layout, vars }: { cue: CanvasCue; layout: PanelLayout; vars: Record<string, number> }) {
+function Pen({ cue: given, layout, vars, lifts = false }: { cue: CanvasCue; layout: PanelLayout; vars: Record<string, number>; lifts?: boolean }) {
   // No rings (owner, 2026-10-17: "I don't like the red circle"): a "circle" cue — including one in a
   // lesson saved before — is drawn as a point.
   const cue: CanvasCue = given.action === "circle" ? { ...given, action: "point" } : given;
@@ -890,8 +923,9 @@ function Pen({ cue: given, layout, vars }: { cue: CanvasCue; layout: PanelLayout
           );
         });
       })()}
-      {cue.action === "point" && dot && (
+      {cue.action === "point" && dot && !(lifts && layout.marks.some((m) => m.id === cue.target && m.type === "box" && !m.icon)) && (
         // Dot points from beside it; the thing itself gets a soft outline, never something on top.
+        // A sticky note lifts itself instead (CanvasPanel StickyCard), so it gets no outline.
         <rect key={`o${key}`} x={r.x - 7} y={r.y - 5} width={r.w + 14} height={r.h + 10} rx={9} fill={ARIA} fillOpacity={0.07} stroke={ARIA} strokeOpacity={0.85} strokeWidth={2.6} className="cv-outline" />
       )}
       {cue.action === "point" && !dot && <circle key={`p${key}`} cx={tip.x} cy={tip.y} r={12} fill="none" stroke={ARIA} strokeWidth={3} className="cv-tap" />}

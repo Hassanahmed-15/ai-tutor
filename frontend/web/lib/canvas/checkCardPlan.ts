@@ -14,7 +14,8 @@ export const CHECK_CARDS_MAX = 3;
 
 /** A board a check card can follow: a teaching board, not a refresher, a recap overview or an exam. */
 function teaches(beat: CanvasPlanBeat): boolean {
-  return !beat.refresher && !beat.overview && beat.stage !== "exam";
+  // A card's close-up (lib/canvas/cardDives.ts) is part of its board: the count and the cards skip it.
+  return !beat.refresher && !beat.overview && beat.stage !== "exam" && !beat.dive;
 }
 
 /**

@@ -27,6 +27,7 @@ import { boardNotesOf } from "./plan";
 import { examBoardSpec } from "./examBoard";
 import { writeCheckCard } from "./checkCard";
 import { checkCardBoards, tasksGiveWay } from "./checkCardPlan";
+import { DIVE_PROMPT, diveCandidate, parseDives, withDives } from "./cardDives";
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -234,6 +235,14 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
           const grounded = groundSourcePlan(source, plan.beats, sourceMode);
           plan = { ...plan, beats: grounded.beats };
           console.log(`[canvas] ${sourceMode} grounding: ${grounded.removed} sentence(s) dropped${grounded.log.length ? ` — ${grounded.log.slice(0, 6).join(" | ")}` : ""}`);
+        }
+        // CARD DIVES (lib/canvas/cardDives.ts): each board of cards becomes a tour and a close-up inside
+        // every card. Off unless CANVAS_CARD_DIVES=1; never for a strict PDF or a video.
+        if (process.env.CANVAS_CARD_DIVES === "1" && !sourceMode) {
+          const dived = await addCardDives(openai, input.topic, plan.beats, Number(process.env.CANVAS_CARD_DIVES_MAX) || 12);
+          costUsd += dived.costUsd;
+          if (dived.boards) plan = { ...plan, beats: dived.beats };
+          console.log(`[canvas] card dives: ${dived.boards} board(s) of cards, ${dived.dives} close-up(s) added`);
         }
         return {
           costUsd,
@@ -497,6 +506,30 @@ async function repairSentences(
 export function canvasSpecOf(beat: Beat | null | undefined): CanvasBoardSpec | undefined {
   const op = beat?.draw?.ops.find((o) => (o as { kind: string }).kind === "canvasBoard") as { spec?: CanvasBoardSpec } | undefined;
   return op?.spec;
+}
+
+/**
+ * Every board of cards (up to `max` close-ups in all) becomes a tour plus close-ups. One small call per
+ * board; a board whose answer does not check out is kept exactly as it was.
+ */
+async function addCardDives(openai: ReturnType<typeof client>, topic: string, beats: CanvasPlanBeat[], max = 12): Promise<{ beats: CanvasPlanBeat[]; boards: number; dives: number; costUsd: number }> {
+  let room = max;
+  const chosen = beats.filter((b) => diveCandidate(b) && (room -= b.objects.length) >= 0);
+  let costUsd = 0;
+  const answers = new Map<string, NonNullable<ReturnType<typeof parseDives>>>();
+  await Promise.all(chosen.map(async (beat) => {
+    try {
+      const user = `Lesson: ${topic}${beat.audience ? `\nThe student: ${beat.audience}` : ""}\n\nBoard: ${beat.title}\nWhat it shows: ${beat.brief}\nIts cards, in order (objects): ${beat.objects.join(", ")}\n\nWhat Aria says over it now:\n${beat.script}`;
+      const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, DIVE_PROMPT, user, 5000), 60_000, `dives ${beat.id}`);
+      costUsd += c;
+      const parsed = parseDives(beat, json);
+      if (parsed) answers.set(beat.id, parsed);
+    } catch (error) {
+      costUsd += (error as { costUsd?: number }).costUsd ?? 0;
+    }
+  }));
+  const dives = [...answers.values()].reduce((n, a) => n + a.dives.length, 0);
+  return { beats: answers.size ? withDives(beats, answers) : beats, boards: answers.size, dives, costUsd };
 }
 
 const REPAIR_PROMPT = `You revise what Aria says over ONE board of a school lesson so it teaches every key point it is missing. Return JSON only: {"script": string, "board": [{"s": number, "text": string}]}.
