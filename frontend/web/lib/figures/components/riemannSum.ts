@@ -76,7 +76,7 @@ export const riemannSum: FigureComponent = {
     const win = windowFrom(params, { x0: defX.x0, x1: defX.x1, y0: yr.y0, y1: yr.y1 });
     const P = makePlot(win, 430, 300);
     const sk = new Sketch();
-    const { axY } = drawAxes(sk, P, { grid: true });
+    const { axY } = drawAxes(sk, P, { grid: true, avoid: [f] });
     const cy = (y: number) => clamp(P.Y(y), 0, P.H);
 
     // The exact area: the region between the curve and the axis on [a, b], drawn first, under the strips.

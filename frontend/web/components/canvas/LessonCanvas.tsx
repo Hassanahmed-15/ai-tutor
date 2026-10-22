@@ -1,19 +1,22 @@
 "use client";
 
-import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import { Compass, Crosshair, Eraser, Loader2, Palette, PenLine, Play, Sparkles, Volume2, VolumeX, X } from "lucide-react";
-import { fitView, flightMs, unionRects, viewAt, type View } from "@/lib/canvas/camera";
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { Compass, Crosshair, Eraser, Loader2, PenLine, Play, Sparkles, Volume2, VolumeX, X } from "lucide-react";
+import { directFocus, directInk, fitView, flightMs, unionRects, viewAt, type Shot, type View } from "@/lib/canvas/camera";
 import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
-import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type TryItInteraction } from "@/lib/canvas/types";
+import { isLabLookTopic } from "@/lib/canvas/subjectLook";
+import { MarkerWriter } from "./MarkerWriter";
+import { TextDeconflict } from "./TextDeconflict";
+import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type QuizInteraction, type TryItInteraction } from "@/lib/canvas/types";
 import { activeCues, targetVisible } from "@/lib/canvas/cues";
-import { dotPointer, onDotPointer, setPointTarget } from "@/lib/avatar/pointTarget";
-import { CANVAS_THEMES, CHALK, chalkCss, chalkTint, panelTheme, recolour, THEME_LABEL, type BoardTheme, type CanvasThemeChoice } from "@/lib/canvas/theme";
+import { setPointTarget } from "@/lib/avatar/pointTarget";
+import { CHALK, chalkCss, chalkTint, panelTheme, recolour, type BoardTheme } from "@/lib/canvas/theme";
 import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "@/lib/anim/boardFont";
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
 import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint } from "./CanvasPanel";
 import { quadPoints } from "@/lib/canvas/ink";
-import { cardSideView, textRows, underlineY } from "@/lib/canvas/renderFit";
+import { cardSideView } from "@/lib/canvas/renderFit";
 import { playScratch, playTick, playWhoosh, setSoundEnabled, soundEnabled } from "./sound";
 import { Confetti } from "./Confetti";
 import { preferredCardStyle, type CardStyle } from "@/lib/canvas/cardStyle";
@@ -76,6 +79,11 @@ type Props = {
    * a wrong one is explained and the right option shown. Off: the card as other profiles have it.
    */
   checkFlow?: boolean;
+  /**
+   * A maths/CS "predict before the reveal" card (lib/canvas/predictCard.ts), open while the player
+   * holds the board just before the sentence that gives the answer. Other subjects never get one.
+   */
+  predictCard?: QuizInteraction;
 };
 
 export type EarlierBoard = { lectureId: string; sequence: number; beatId: string; title: string; topic: string };
@@ -88,7 +96,7 @@ export type CanvasKnowledge = {
 const ARIA = ARIA_INK;
 const STUDENT = "#2563eb";
 
-export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, onTaskResult, completed = false, taskDone = false, checkFlow = false }: Props) {
+export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, onTaskResult, completed = false, taskDone = false, checkFlow = false, predictCard }: Props) {
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -100,35 +108,37 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const [moleculeRotation, setMoleculeRotation] = useState(0);
 
   /**
-   * THE BOARD IS MADE OF THE APP'S MATERIAL: paper when the app is light, chalk when it is dark
-   * (app/globals.css; Settings → Appearance). A choice stored by an earlier build's Paper/Chalk/Mix
-   * pill still wins for that browser; the pill itself is gone from the lesson, so a student is never
-   * asked to style a board mid-lesson.
+   * THE BOARD IS ONE SLATE for every lecture and every subject (owner, 2026-10-20, from the Visuals
+   * Lab: "replace my chalkboard completely for every topic… only the board"). It replaces the
+   * paper / chalk / mix choice: no picker, nothing stored. The colours are the chalk palette
+   * (theme.ts), the surface is the lab's clean slate (CanvasPanel SlateSurface).
    */
-  const [themeChoice, setThemeChoice] = useState<CanvasThemeChoice>(DEFAULT_THEME);
-  useEffect(() => {
-    const apply = () => setThemeChoice(storedTheme());
-    const t = window.setTimeout(apply, 0);
-    const observer = new MutationObserver(apply);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-    return () => {
-      window.clearTimeout(t);
-      observer.disconnect();
-    };
-  }, []);
+  // Owner, 2026-10-21 (later): a pure black board, #000000, with white and colourful writing.
+  const themeChoice = "chalk" as const;
   // Text card design (lib/canvas/cardStyle.ts): read after mount, so the server render always matches.
   const [cardStyle, setCardStyle] = useState<CardStyle>("sticky");
+  /**
+   * MATHS AND COMPUTER SCIENCE ARE TAUGHT THE VISUALS LAB'S WAY (owner, 2026-10-20: "you haven't
+   * really replaced maths and computer science, I don't see the marker"): the marker writes every
+   * word, term and line as Aria says it (MarkerWriter), and cards are drawn in chalk on the slate, not
+   * stuck-on paper notes. Every other subject keeps its sticky notes and plays exactly as before.
+   */
+  // Read from the lecture itself (its topic and its boards' headings), never the typed words alone.
+  const labLook = useMemo(() => panels.some((p) => p.spec.stage.kind === "sketch") || isLabLookTopic([topic, ...panels.map((p) => p.spec.heading)].join(" ")), [topic, panels]);
   useEffect(() => {
-    const t = window.setTimeout(() => setCardStyle(preferredCardStyle()), 0);
+    const t = window.setTimeout(() => setCardStyle(labLook ? "classic" : preferredCardStyle()), 0);
     return () => window.clearTimeout(t);
-  }, []);
+  }, [labLook]);
   const themes = useMemo((): BoardTheme[] => panels.map((p) => panelTheme(themeChoice, p.spec.stage.kind)), [panels, themeChoice]);
   // A chalk board's own colours are lifted to chalk pastels before it is laid out (theme.ts).
   const specs = useMemo(() => panels.map((p, i) => (themes[i] === "chalk" ? recolour(p.spec, chalkTint) : p.spec)), [panels, themes]);
   const layouts = useMemo(() => specs.map((spec, i) => (themes[i] === "chalk" ? recolour(layoutPanel(spec), chalkTint) : layoutPanel(spec))), [specs, themes]);
   const placements = useMemo(
-    () => placePanels(panels.map((p, i) => ({ key: p.key, inside: p.spec.inside, layout: layouts[i] }))),
-    [panels, layouts],
+    // A maths/CS lecture keeps its boards side by side: no dive inside an earlier board (calm camera).
+    // Maths/CS boards never dive inside an earlier one: the earlier board's labels stood huge and faint
+    // around the new one, read as writing behind writing (maths benchmark, 2026-10-21).
+    () => placePanels(panels.map((p, i) => ({ key: p.key, inside: labLook ? undefined : p.spec.inside, layout: layouts[i] }))),
+    [panels, layouts, labLook],
   );
   const shownIndex = currentIndex >= 0 ? currentIndex : Math.max(0, panels.length - 1);
   // The furthest board the student has reached (every board once the lecture is complete). The
@@ -182,14 +192,10 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   /** Paper grain, baked ONCE into a small image (a live turbulence filter would re-render every camera frame). */
   const [grainUrl, setGrainUrl] = useState<string | null>(null);
   const [shadowUrl, setShadowUrl] = useState<string | null>(null);
-  const [dustUrl, setDustUrl] = useState<string | null>(null);
-  const [speckleUrl, setSpeckleUrl] = useState<string | null>(null);
   useEffect(() => {
     const t = window.setTimeout(() => {
       setGrainUrl(paperGrain());
       setShadowUrl(paperShadow());
-      setDustUrl(chalkDust());
-      setSpeckleUrl(chalkSpeckle());
     }, 0);
     return () => window.clearTimeout(t);
   }, []);
@@ -199,18 +205,22 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   // or waited for — the board plays straight through. Try and draw tasks are unchanged.
   // An old mid-board "Predict it" quiz is never shown (owner, 2026-10-16). A verified "Check it" card
   // (lib/canvas/checkCard.ts) opens when Aria finishes the board, with the board's other tasks.
-  const interaction = current?.spec.interaction?.kind === "quiz" && !current.spec.interaction.check ? undefined : current?.spec.interaction;
-  const taskOpen = Boolean(interaction) && currentIndex >= 0 && (waitingForStudent || (finished && !taskDone));
+  // A maths/CS prediction card, while the board is held before its reveal, stands in for the board's task.
+  const predicting = Boolean(predictCard && current && currentIndex >= 0);
+  const interaction = predicting ? predictCard : current?.spec.interaction?.kind === "quiz" && !current.spec.interaction.check ? undefined : current?.spec.interaction;
+  const taskOpen = Boolean(interaction) && currentIndex >= 0 && (predicting || waitingForStudent || (finished && !taskDone));
+  /** One card per board, and the prediction its own: answering it never marks the end-of-board card done. */
+  const cardKey = current ? `${current.key}${predicting ? ":predict" : ""}` : "";
   const drawing = taskOpen && interaction?.kind === "draw";
   // A "tap the board" card: the student answers on the board, the asked parts' names hidden as "?"
   // until they have answered (owner, 2026-10-18: "tap the board").
   const [tapPick, setTapPick] = useState<{ key: string; index: number; at: number } | null>(null);
   const [cardAnswered, setCardAnswered] = useState<Record<string, boolean>>({});
   const tapCard = taskOpen && checkFlow && interaction?.kind === "quiz" && interaction.mode === "tap" && current ? interaction : undefined;
-  const tapHidden = useMemo(() => (tapCard && current && !cardAnswered[current.key] ? new Set(tapCard.options.map((o) => o.target).filter((t): t is string => Boolean(t))) : null), [tapCard, current, cardAnswered]);
+  const tapHidden = useMemo(() => (tapCard && current && !cardAnswered[cardKey] ? new Set(tapCard.options.map((o) => o.target).filter((t): t is string => Boolean(t))) : null), [tapCard, current, cardAnswered, cardKey]);
   // An "order the steps" card: the board's arrows would show the answer, so they are taken off until
   // the student has answered — then they draw back in.
-  const orderOpen = Boolean(taskOpen && checkFlow && interaction?.kind === "quiz" && interaction.mode === "order" && current && !cardAnswered[current.key]);
+  const orderOpen = Boolean(taskOpen && checkFlow && interaction?.kind === "quiz" && interaction.mode === "order" && current && !cardAnswered[cardKey]);
 
   /* ── the pen: which cue is live ───────────────────────────────────────────────────────── */
 
@@ -243,22 +253,87 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const overviewView = useMemo(() => fitView(unionRects(worldRects.slice(0, reachedIndex + 1)), aspect, 0.05), [worldRects, reachedIndex, aspect]);
 
   const visitIndex = cueState.visit ? panels.findIndex((p) => p.key === cueState.visit) : -1;
+
+  /*
+   * THE CAMERA DIRECTOR (maths/CS, lib/canvas/camera.ts): the marker says where it is about to draw,
+   * and the shot holds, moves in, or moves at once when the pen or Aria's pointing would be off screen.
+   * A shot belongs to its board: a new board opens wide, and only zooms after holding a while.
+   */
+  const [director, setDirector] = useState<Shot & { board: string }>({ shot: null, changedAt: 0, board: "" });
+  const directorRef = useRef(director);
+  const boardKey = current?.key ?? "";
+  const boardStartRef = useRef({ key: "", at: 0 });
+  useEffect(() => {
+    boardStartRef.current = { key: boardKey, at: performance.now() };
+  }, [boardKey]);
+  const directingRef = useRef(false);
+  useEffect(() => {
+    directingRef.current = labLook && !taskOpen && !finished;
+  }, [labLook, taskOpen, finished]);
+  const stateFor = useCallback((): Shot => {
+    const d = directorRef.current;
+    return d.board === boardStartRef.current.key ? d : { shot: null, changedAt: boardStartRef.current.at };
+  }, []);
+  const applyShot = useCallback((next: Shot, was: Shot) => {
+    if (next === was) return false;
+    const d = { ...next, board: boardStartRef.current.key };
+    directorRef.current = d;
+    setDirector(d);
+    return true;
+  }, []);
+  /** MarkerWriter: about to draw `box`; answers how long the pen should wait for the camera. */
+  /** Where the camera is and how the board sits, for timing a move (set below, read by the director). */
+  const camRef = useRef<{ view: () => View; place?: PanelPlacement; aspect: number }>({ view: () => ({ x: 0, y: 0, w: 1, h: 1 }), aspect: 1 });
+  const onInkRegion = useCallback((box: Rect | null, ms: number, drawing: boolean) => {
+    if (!directingRef.current) return 0;
+    const was = stateFor();
+    const next = directInk(was, box, performance.now(), { w: PANEL_W, h: PANEL_H }, undefined, drawing, ms);
+    const qa = window as unknown as { __qaMarker?: boolean; __dirLog?: unknown[] };
+    if (qa.__qaMarker) (qa.__dirLog ??= []).push({ t: Math.round(performance.now()), box: box && [box.x, box.y, box.w, box.h].map(Math.round), ms: Math.round(ms), drawing, was: was.shot && [was.shot.x, was.shot.w].map(Math.round), next: next.shot && [next.shot.x, next.shot.w].map(Math.round) });
+    if (!applyShot(next, was)) return 0;
+    // The pen waits for the whole flight: a flat 1.3 s left it writing off screen while the camera
+    // was still pulling out of a close-up (maths benchmark, 2026-10-21).
+    const { view, place, aspect } = camRef.current;
+    if (!place) return 1300;
+    const target = next.shot ? fitView(toWorld(next.shot, place), aspect, 0.03) : fitView(toWorld({ x: 0, y: 0, w: PANEL_W, h: PANEL_H }, place), aspect, 0.035);
+    return flightMs(view(), target) + 150;
+  }, [stateFor, applyShot]);
+  // What Aria points at must be in the shot.
+  const focusBox = focusId ? currentLayout?.targets[focusId] : undefined;
+  const focusKey = focusBox ? `${boardKey}|${focusId}|${Math.round(focusBox.x)},${Math.round(focusBox.y)}` : "";
+  useEffect(() => {
+    if (!focusKey || !directingRef.current || !focusBox) return;
+    const was = stateFor();
+    applyShot(directFocus(was, focusBox, performance.now()), was);
+    // Keyed on the target only.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [focusKey]);
+  const directorShot = director.board === boardKey ? director.shot : null;
+  useEffect(() => {
+    const qa = window as unknown as { __qaMarker?: boolean; __director?: unknown };
+    if (qa.__qaMarker) qa.__director = { ...director, boardKey, place: currentPlace, directing: directingRef.current };
+  }, [director, boardKey, currentPlace]);
+
   const followView = useMemo((): View => {
     if (!current || !currentPlace) return overviewView;
     if (current.spec.overview && finished) return overviewView;
     // The recap's tour: while a sentence recalls an earlier board, the camera is back on it.
     if (visitIndex >= 0 && visitIndex < shownIndex) return fitView(worldRects[visitIndex], aspect, 0.06);
-    const zoomTarget = cueState.zoom ? currentLayout.targets[cueState.zoom] : undefined;
+    // Maths/CS: the director's shot (above) is the camera; the writer's own zoom cues are not used.
+    const zoomTarget = cueState.zoom && !labLook ? currentLayout.targets[cueState.zoom] : undefined;
     // Zooming onto something that already fills most of the board only crops it.
-    if (zoomTarget && zoomTarget.w * zoomTarget.h < PANEL_W * PANEL_H * 0.28 && !taskOpen) {
+    const zoomLimit = 0.28;
+    const nearest = 0.55;
+    if (zoomTarget && zoomTarget.w * zoomTarget.h < PANEL_W * PANEL_H * zoomLimit && !taskOpen) {
       const t = zoomTarget;
       // Never closer than about half the board: a zoom shows a detail in its context, not a texture.
-      const w = Math.max(t.w, PANEL_W * 0.55);
-      const h = Math.max(t.h, PANEL_H * 0.55);
+      const w = Math.max(t.w, PANEL_W * nearest);
+      const h = Math.max(t.h, PANEL_H * nearest);
       const x = Math.max(0, Math.min(PANEL_W - w, t.x + t.w / 2 - w / 2));
       const y = Math.max(0, Math.min(PANEL_H - h, t.y + t.h / 2 - h / 2));
       return fitView(toWorld({ x, y, w, h }, currentPlace), aspect, 0.06);
     }
+    if (labLook && !taskOpen && !finished && directorShot) return fitView(toWorld(directorShot, currentPlace), aspect, 0.03);
     // Sticky notes (lib/canvas/cardStyle.ts): the camera leans gently toward the note Aria is on —
     // most of the board stays in view, so the note is in its context and nobody feels the motion.
     const note = cardStyle === "sticky" && focusId && !taskOpen ? currentLayout.marks.find((m) => m.type === "box" && !m.icon && m.id === focusId) : undefined;
@@ -277,9 +352,12 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     if (beside) return beside;
     const room = taskOpen ? PANEL_W * 0.52 : 0;
     return fitView(toWorld({ x: 0, y: 0, w: PANEL_W + room, h: PANEL_H }, currentPlace), aspect, 0.035);
-  }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, boxSize, taskOpen, visitIndex, shownIndex, worldRects, cardStyle, focusId]);
+  }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, boxSize, taskOpen, visitIndex, shownIndex, worldRects, cardStyle, focusId, labLook, directorShot]);
 
   const viewRef = useRef<View>(followView);
+  useEffect(() => {
+    camRef.current = { view: () => viewRef.current, place: currentPlace, aspect };
+  }, [currentPlace, aspect]);
   const flightRef = useRef(0);
   /*
    * The camera writes the viewBox itself, every frame, and React never does: a viewBox rendered by
@@ -338,6 +416,10 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   }, []);
 
   const followKey = `${Math.round(followView.x)}:${Math.round(followView.y)}:${Math.round(followView.w)}`;
+  useEffect(() => {
+    const qa = window as unknown as { __qaMarker?: boolean; __camera?: unknown };
+    if (qa.__qaMarker) qa.__camera = { followView, mode, taskOpen, finished };
+  }, [followView, mode, taskOpen, finished]);
   useEffect(() => {
     if (mode === "follow") flyTo(followView);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -525,22 +607,11 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               <image href={grainUrl} width={220} height={220} />
             </pattern>
           )}
-          {/* The chalkboard: room light across the slate, old eraser smudges, and the speckle that
-              breaks chalk strokes up — all baked once (see chalkDust / chalkSpeckle). */}
+          {/* The slate: room light falling across it (CanvasPanel SlateSurface). */}
           <radialGradient id="cv-slate-light" cx="45%" cy="30%" r="75%">
             <stop offset="0%" stopColor="#ffffff" stopOpacity={0.07} />
             <stop offset="100%" stopColor="#000000" stopOpacity={0.12} />
           </radialGradient>
-          {dustUrl && (
-            <pattern id="cv-dust" width={600} height={350} patternUnits="userSpaceOnUse">
-              <image href={dustUrl} width={600} height={350} />
-            </pattern>
-          )}
-          {speckleUrl && (
-            <pattern id="cv-speckle" width={160} height={160} patternUnits="userSpaceOnUse">
-              <image href={speckleUrl} width={160} height={160} />
-            </pattern>
-          )}
           <radialGradient id="cv-glow">
             <stop offset="0%" stopColor="#fbbf24" stopOpacity={0.85} />
             <stop offset="100%" stopColor="#fbbf24" stopOpacity={0} />
@@ -553,7 +624,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
             <g
               key={panel.key}
               data-panel={panel.key}
-              className={themes[i] === "chalk" ? "cv-chalk" : undefined}
+              // cv-marked: the marker writes this board, so new equation terms skip their own fade-in.
+              className={[themes[i] === "chalk" ? "cv-chalk" : "", labLook ? "cv-marked" : ""].filter(Boolean).join(" ") || undefined}
               data-live={live ? "true" : undefined}
               transform={`translate(${at.x},${at.y}) scale(${at.scale})`}
             >
@@ -574,9 +646,12 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 carryFrom={carryFrom[panel.key] ?? EMPTY_RECTS}
                 reducedMotion={reducedMotion}
               />
+              {live && labLook && <MarkerWriter key={panel.key} onRegion={onInkRegion} finished={finished} />}
+              {/* No writing on writing, on every board (owner, 2026-10-21: the most important fix). */}
+              {live && <TextDeconflict key={`tx-${panel.key}`} />}
               <Corrections layout={layouts[i]} check={corrections[panel.key]} />
               <Strokes strokes={strokes[panel.key] ?? []} live={live && drawing ? liveStroke : null} />
-              {live && penCue && <Pen cue={penCue} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} lifts={cardStyle === "sticky" && themes[i] !== "chalk"} />}
+              {live && penCue && <Pen cue={penCue} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
               {!live && reactionPoint?.key === panel.key && <Pen cue={{ s: 0, action: "point", target: reactionPoint.target }} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
               {/* The explore layer's rings stay off a board while its tap card is open: they sat over the
                   tap rings and caught the student's tap (water-cycle test, 2026-10-18). */}
@@ -645,30 +720,6 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
       {/* Camera controls: see the whole lesson, or go back to following Aria. */}
       <div className="absolute right-3 top-3 z-10 flex gap-2" onPointerDown={(e) => e.stopPropagation()}>
-        {/* The board's surface, chosen by the student: three named swatches, so it reads as a choice
-            at a glance (restored 2026-10-07). Until one is picked the board follows the app's theme. */}
-        <div role="radiogroup" aria-label="Board style" className="flex items-center gap-0.5 rounded-full border border-white/15 bg-black/60 p-0.5 backdrop-blur">
-          <Palette size={13} className="mx-1.5 text-white/60" aria-hidden="true" />
-          {CANVAS_THEMES.map((choice) => (
-            <button
-              key={choice}
-              type="button"
-              role="radio"
-              aria-checked={themeChoice === choice}
-              onClick={() => {
-                storeTheme(choice);
-                setThemeChoice(choice);
-              }}
-              title={THEME_HINT[choice]}
-              className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white ${
-                themeChoice === choice ? "bg-white/90 text-black" : "text-white/80 hover:bg-white/10"
-              }`}
-            >
-              <span aria-hidden="true" className="h-3 w-3 rounded-full border border-black/30" style={{ background: THEME_SWATCH[choice] }} />
-              {choice === "chalk" ? "Chalk" : THEME_LABEL[choice]}
-            </button>
-          ))}
-        </div>
         <button
           onClick={() => {
             const next = !soundOn;
@@ -727,13 +778,13 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       )}
       {taskOpen && interaction?.kind === "quiz" && current && !checkFlow && (
         <CheckCard
-          key={current.key}
+          key={cardKey}
           question={interaction.question}
           options={interaction.options}
           onAnswer={(i) => {
             const o = interaction.options[i];
-            if (!reported.current.has(`quiz:${current.key}`)) {
-              reported.current.add(`quiz:${current.key}`);
+            if (!reported.current.has(`quiz:${cardKey}`)) {
+              reported.current.add(`quiz:${cardKey}`);
               onTaskResult?.("quiz", o.correct, interaction.options.length);
             }
             if (o.correct) setCelebration(Date.now());
@@ -745,7 +796,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       )}
       {taskOpen && interaction?.kind === "quiz" && current && checkFlow && (
         <QuestionCard
-          key={current.key}
+          key={cardKey}
           question={interaction.question}
           options={interaction.options}
           mode={interaction.mode ?? "choice"}
@@ -763,10 +814,10 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           } : undefined}
           onAsk={() => onSpeak(interaction.question)}
           onAnswer={(i, done) => {
-            setCardAnswered((prev) => ({ ...prev, [current.key]: true }));
+            setCardAnswered((prev) => ({ ...prev, [cardKey]: true }));
             const o = interaction.options[i];
-            if (!reported.current.has(`quiz:${current.key}`)) {
-              reported.current.add(`quiz:${current.key}`);
+            if (!reported.current.has(`quiz:${cardKey}`)) {
+              reported.current.add(`quiz:${cardKey}`);
               onTaskResult?.("quiz", o.correct, interaction.options.length);
             }
             if (o.correct) {
@@ -842,158 +893,30 @@ function initialVars(panels: CanvasPanelInput[]): Record<string, Record<string, 
 
 /* ── Aria's pen ───────────────────────────────────────────────────────────────────────────── */
 
-function Pen({ cue: given, layout, vars, lifts = false }: { cue: CanvasCue; layout: PanelLayout; vars: Record<string, number>; lifts?: boolean }) {
-  // No rings (owner, 2026-10-17: "I don't like the red circle"): a "circle" cue — including one in a
-  // lesson saved before — is drawn as a point.
+function Pen({ cue: given, layout, vars }: { cue: CanvasCue; layout: PanelLayout; vars: Record<string, number> }) {
+  // Nothing coral is drawn any more (owner, 2026-10-21): the cue still names what Aria is talking
+  // about, so Dot (components/avatar/BoardAvatar.tsx) can fly beside it and the camera can lean in.
   const cue: CanvasCue = given.action === "circle" ? { ...given, action: "point" } : given;
   const rect = cue.target ? layout.targets[cue.target] : undefined;
   const marker = cue.target ? markerPoint(layout, cue.target, vars) : null;
   const key = `${cue.s}-${cue.action}-${cue.target}`;
-  // Dot (components/avatar/BoardAvatar.tsx) stands in for the pen when she can: she flies beside the
-  // target and points; the ring / highlighter / outline stay, the pen body goes.
-  const dot = useSyncExternalStore(onDotPointer, dotPointer, () => false);
   const targetRef = useRef<SVGRectElement>(null);
-  const penRef = useRef<SVGGElement>(null);
   const shown = Boolean(rect || marker);
   useEffect(() => {
     const el = targetRef.current;
     if (!el || !shown) return;
-    setPointTarget({ el, action: cue.action === "circle" || cue.action === "underline" ? cue.action : "point", key });
+    setPointTarget({ el, action: cue.action === "underline" ? "underline" : "point", key });
     return () => setPointTarget(null);
   }, [key, cue.action, shown]);
-  // THE UNDERLINE GOES UNDER THE WORDS AS DRAWN. Guessing the lines from the box's height put three
-  // strokes across a padded two-line card, through its words (audit 2026-10-17); the lines are read
-  // off the rendered text instead, and again once its entrance animation has settled.
-  const [rows, setRows] = useState<{ key: string; rows: UnderRow[] } | null>(null);
-  useLayoutEffect(() => {
-    if (cue.action !== "underline" || !cue.target) return;
-    const target = cue.target;
-    const measure = () => {
-      const pen = penRef.current;
-      if (pen) setRows({ key, rows: measureRows(pen, target) });
-    };
-    const first = requestAnimationFrame(measure);
-    const settled = [window.setTimeout(measure, 520), window.setTimeout(measure, 1100)];
-    return () => {
-      cancelAnimationFrame(first);
-      settled.forEach((t) => window.clearTimeout(t));
-    };
-  }, [key, cue.action, cue.target]);
   if (!rect && !marker) return null;
   const r = marker ? { x: marker.x - 16, y: marker.y - 16, w: 32, h: 32 } : rect!;
-  const cx = r.x + r.w / 2;
-  const cy = r.y + r.h / 2;
-  // The pen rests just OFF the element's lower-right corner, pointing in, so it never covers what it
-  // shows (a "point" used to put the tip 82% of the way into the element, right on its last word).
-  const tip: Pt =
-    cue.action === "circle" ? { x: cx + (r.w / 2 + 16) * 0.72, y: cy + (r.h / 2 + 14) * 0.72 }
-    : cue.action === "underline" ? { x: r.x + r.w + 8, y: r.y + r.h * 0.62 }
-    : { x: r.x + r.w + 7, y: r.y + r.h + 5 };
   return (
-    <g ref={penRef} pointerEvents="none">
-      {/* What is pointed at, for Dot to measure (invisible): the element plus its ring or outline,
-          so she keeps clear of the mark as well as the thing. */}
-      {cue.action === "circle" ? (
-        <rect ref={targetRef} x={cx - r.w / 2 - 18} y={cy - r.h / 2 - 16} width={r.w + 36} height={r.h + 32} fill="none" stroke="none" />
-      ) : cue.action === "point" ? (
-        <rect ref={targetRef} x={r.x - 8} y={r.y - 6} width={r.w + 16} height={r.h + 12} fill="none" stroke="none" />
-      ) : (
-        <rect ref={targetRef} x={r.x} y={r.y} width={r.w} height={r.h} fill="none" stroke="none" />
-      )}
-      {cue.action === "underline" && rows?.key === key && (() => {
-        // An underline beneath each line, not a band across it: on the chalk board a wide band over pale
-        // writing washed the words out ("Government-owned railway" was hard to read, audit 2026-10-17).
-        // Each one sits just below its line's lowest glyph. When the words cannot be measured (a part
-        // of a picture, a curve), one line goes just under the whole box — never through it.
-        const lines: UnderRow[] = rows.rows.length ? rows.rows : [{ x0: r.x, x1: r.x + r.w, y: r.y + r.h + 4, h: 26 }];
-        return lines.map(({ x0, x1, y, h: lineH }, k) => {
-          return (
-            <path
-              key={`u${key}-${k}`}
-              d={`M${x0} ${y} Q ${(x0 + x1) / 2} ${y + 2} ${x1} ${y - 1}`}
-              fill="none"
-              stroke={ARIA}
-              strokeOpacity={0.85}
-              strokeWidth={Math.max(2.5, Math.min(4.5, lineH * 0.11))}
-              strokeLinecap="round"
-              className="cv-swipe"
-              pathLength={1}
-              style={{ animationDelay: `${k * 220}ms` }}
-            />
-          );
-        });
-      })()}
-      {cue.action === "point" && dot && !(lifts && layout.marks.some((m) => m.id === cue.target && m.type === "box" && !m.icon)) && (
-        // Dot points from beside it; the thing itself gets a soft outline, never something on top.
-        // A sticky note lifts itself instead (CanvasPanel StickyCard), so it gets no outline.
-        <rect key={`o${key}`} x={r.x - 7} y={r.y - 5} width={r.w + 14} height={r.h + 10} rx={9} fill={ARIA} fillOpacity={0.07} stroke={ARIA} strokeOpacity={0.85} strokeWidth={2.6} className="cv-outline" />
-      )}
-      {cue.action === "point" && !dot && <circle key={`p${key}`} cx={tip.x} cy={tip.y} r={12} fill="none" stroke={ARIA} strokeWidth={3} className="cv-tap" />}
-      {!dot && <g style={{ transform: `translate(${tip.x}px, ${tip.y}px)`, transition: "transform 650ms cubic-bezier(.65,0,.25,1)" }}>
-        <circle r={14} fill={ARIA} opacity={0.12} />
-        <g transform="rotate(140)">
-          <path d="M0 0 L -6 -14 L -6 -52 L 6 -52 L 6 -14 Z" fill="#fff" stroke={ARIA} strokeWidth={2.5} strokeLinejoin="round" />
-          <path d="M0 0 L -6 -14 L 6 -14 Z" fill={ARIA} />
-          <rect x={-6} y={-60} width={12} height={9} rx={2} fill={ARIA} />
-        </g>
-        <circle r={4.5} fill={ARIA} />
-      </g>}
+    <g pointerEvents="none">
+      <rect ref={targetRef} x={r.x - 8} y={r.y - 6} width={r.w + 16} height={r.h + 12} fill="none" stroke="none" />
     </g>
   );
 }
 
-/** One underline: from x0 to x1 at y, under a line of writing `h` tall. */
-type UnderRow = { x0: number; x1: number; y: number; h: number };
-
-/**
- * The lines of writing of the element `target` on the pen's own board, in the board's units: every
- * <text> line (each <tspan> of a wrapped one) and every typeset term, grouped into rows. Empty when
- * nothing can be measured.
- */
-function measureRows(pen: SVGGElement, target: string): UnderRow[] {
-  const board = pen.closest("[data-panel]");
-  const ctm = pen.getScreenCTM?.();
-  if (!board || !ctm) return [];
-  const sel = typeof CSS !== "undefined" && CSS.escape ? CSS.escape(target) : target.replace(/["\\]/g, "");
-  const el = board.querySelector(`[data-mark="${sel}"], [data-target="${sel}"]`);
-  if (!el) return [];
-  const inv = ctm.inverse();
-  const toBoard = (r: DOMRect) => {
-    const a = new DOMPoint(r.left, r.top).matrixTransform(inv);
-    const b = new DOMPoint(r.right, r.bottom).matrixTransform(inv);
-    return { x: Math.min(a.x, b.x), y: Math.min(a.y, b.y), w: Math.abs(b.x - a.x), h: Math.abs(b.y - a.y) };
-  };
-  const boxes: Array<Rect & { under?: number }> = [];
-  el.querySelectorAll("text").forEach((t) => {
-    const spans = Array.from(t.querySelectorAll("tspan"));
-    // A wrapped text's lines are its tspans (each moved down by dy); coloured runs of one line are one line.
-    const lines: SVGTextContentElement[] = spans.length > 1 && spans.some((n) => n.hasAttribute("dy")) ? spans : [t];
-    const tctm = t.getScreenCTM();
-    for (const n of lines) {
-      const box = toBoard(n.getBoundingClientRect());
-      let under: number | undefined;
-      try {
-        // The line's own baseline and size, so the stroke goes below its descenders and above the next line.
-        if (tctm && n.getNumberOfChars() > 0) {
-          const rel = inv.multiply(tctm);
-          const start = n.getStartPositionOfChar(0);
-          const base = new DOMPoint(start.x, start.y).matrixTransform(rel).y;
-          const size = parseFloat(getComputedStyle(n).fontSize) * Math.hypot(rel.a, rel.b);
-          if (Number.isFinite(base) && size > 0) under = underlineY(base, size);
-        }
-      } catch {
-        // Not laid out yet: underlined just below its box.
-      }
-      boxes.push({ ...box, under });
-    }
-  });
-  // A typeset term (KaTeX in a foreignObject): the typeset formula's own box.
-  el.querySelectorAll("foreignObject").forEach((fo) => {
-    const tex = fo.querySelector(".katex") ?? fo.firstElementChild;
-    if (tex) boxes.push(toBoard(tex.getBoundingClientRect()));
-  });
-  return textRows(boxes).map((row) => ({ x0: row.x0, x1: row.x1, y: row.under, h: row.bottom - row.top }));
-}
 
 /* ── the student's ink and Aria's corrections ─────────────────────────────────────────────── */
 
@@ -1206,7 +1129,9 @@ function DrawCard({ prompt, hasInk, checking, check, onClear, onCheck, onContinu
 function onBoardNow(layout: PanelLayout | undefined, target: string): boolean {
   if (!layout?.targets[target]) return false;
   const note = layout.marks.find((m) => m.type === "note" && m.id === target) as Extract<Mark, { type: "note" }> | undefined;
-  return !(note && note.until !== undefined);
+  // A line of working on a wiped page is not on the finished board either.
+  const wiped = layout.marks.some((m) => m.type === "equation" && m.until !== undefined && m.tokens.some((t) => t.id === target));
+  return !(note && note.until !== undefined) && !wiped;
 }
 
 /** The board with the asked parts' names shown as "?" — a label quiz — while a tap card is open. */
@@ -1589,98 +1514,6 @@ function paperShadow(): string | null {
 }
 
 const CHALK_CSS = chalkCss();
-// v2: the whiteboard became the default (owner, 2026-10-17); choices stored under the old key, mostly
-// the automatic chalk of the dark app, start again on the whiteboard.
-const THEME_KEY = "aria.canvas.theme.v2";
-const THEME_HINT: Record<CanvasThemeChoice, string> = {
-  paper: "Every board on paper",
-  chalk: "Every board on a chalkboard",
-  mix: "Equations, graphs and processes on the chalkboard; pictures on paper",
-};
-/** The student's pick, kept in this browser; it outranks the app theme from then on. */
-function storeTheme(choice: CanvasThemeChoice) {
-  try {
-    localStorage.setItem(THEME_KEY, choice);
-  } catch {
-    // Storage unavailable: the choice still applies for this visit.
-  }
-}
-/** A whiteboard by default (owner, 2026-10-17: "turn off the chalk board, switch to whiteboard"); chalk and mix stay a choice. */
-const DEFAULT_THEME: CanvasThemeChoice = "paper";
-const THEME_SWATCH: Record<CanvasThemeChoice, string> = {
-  paper: "#fbfaf6",
-  chalk: CHALK.slate,
-  mix: `linear-gradient(135deg, #fbfaf6 50%, ${CHALK.slate} 50%)`,
-};
-
-/** A choice this browser stored, else the whiteboard — on a dark app too. */
-function storedTheme(): CanvasThemeChoice {
-  const fromApp = (): CanvasThemeChoice => DEFAULT_THEME;
-  try {
-    const v = localStorage.getItem(THEME_KEY);
-    return (CANVAS_THEMES as readonly string[]).includes(v ?? "") ? (v as CanvasThemeChoice) : fromApp();
-  } catch {
-    return fromApp();
-  }
-}
-
-
-/** Old eraser smudges on a chalkboard: soft, wide, barely-there swirls of white. */
-function chalkDust(): string | null {
-  try {
-    const w = 300;
-    const h = 175;
-    const canvas = document.createElement("canvas");
-    canvas.width = w;
-    canvas.height = h;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return null;
-    ctx.filter = "blur(6px)";
-    for (let i = 0; i < 7; i++) {
-      const x = Math.random() * w;
-      const y = Math.random() * h;
-      const r = 30 + Math.random() * 60;
-      const from = Math.random() * Math.PI;
-      const to = from + Math.PI * (0.6 + Math.random() * 0.8);
-      ctx.strokeStyle = `rgba(255,255,255,${0.025 + Math.random() * 0.035})`;
-      ctx.lineWidth = 14 + Math.random() * 18;
-      // Drawn again one tile over in every direction, so the pattern repeats without a seam.
-      for (const dx of [-w, 0, w]) {
-        for (const dy of [-h, 0, h]) {
-          ctx.beginPath();
-          ctx.arc(x + dx, y + dy, r, from, to);
-          ctx.stroke();
-        }
-      }
-    }
-    return canvas.toDataURL("image/png");
-  } catch {
-    return null;
-  }
-}
-
-/** Tiny flecks of the slate's colour, laid over chalk writing so each stroke skips like chalk. */
-function chalkSpeckle(): string | null {
-  try {
-    const size = 160;
-    const canvas = document.createElement("canvas");
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return null;
-    for (let i = 0; i < 900; i++) {
-      ctx.fillStyle = `rgba(34,48,42,${0.25 + Math.random() * 0.45})`;
-      const r = 0.4 + Math.random() * 1.1;
-      ctx.beginPath();
-      ctx.arc(Math.random() * size, Math.random() * size, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    return canvas.toDataURL("image/png");
-  } catch {
-    return null;
-  }
-}
-
 /** The background dot grid's spacing, in world units. */
 const DOT_CELL = 48;
 

@@ -82,7 +82,22 @@ function sideTerms(raw: string): { x2: number; x: number; y: number; c: number }
 /** "y = 2x + 1", "y = x² − 4", "x = 3", "2x + 3y = 6", "the y-axis" → a curve (null if unreadable). */
 export function parseCurve(v: unknown, linearOnly = false): Curve | null {
   if (typeof v !== "string" || !v.trim()) return null;
-  const s = v.toLowerCase().replace(/\b(the|line|mirror|of)\b/g, " ").trim();
+  // One curve written two ways ("y = x^2 - 8x + 11; y = (x - 4)^2 - 5") drew nothing (maths benchmark
+  // round 2): the first form that reads is the curve.
+  const forms = v.split(/\s*;\s*|\s+(?:or|and)\s+/).filter(Boolean);
+  if (forms.length > 1) {
+    for (const f of forms) { const c = parseCurve(f, linearOnly); if (c) return c; }
+    return null;
+  }
+  // Completed-square form "y = a(x − h)² + k" is expanded first, so the turning point's curve is drawn.
+  const s = v.toLowerCase().replace(/\b(the|line|mirror|of)\b/g, " ").trim()
+    .replace(/[−–]/g, "-").replace(/²/g, "^2")
+    .replace(/(-?\d*\.?\d*)\s*\*?\s*\(\s*x\s*([+-])\s*(\d+(?:\.\d+)?)\s*\)\s*\^\s*2/g, (_m, a: string, sign: string, p: string) => {
+      const k = a === "" || a === "+" ? 1 : a === "-" ? -1 : Number(a);
+      const q = (sign === "+" ? 1 : -1) * Number(p);
+      const t = (n: number) => (n < 0 ? `- ${-n}` : `+ ${n}`);
+      return `${k}x^2 ${t(2 * k * q)}x ${t(k * q * q)}`;
+    });
   if (/^y[- ]?axis$/.test(s.trim())) return { kind: "vertical", x: 0 };
   if (/^x[- ]?axis$/.test(s.trim())) return { kind: "fn", a: 0, b: 0, c: 0 };
   const sides = s.split("=");

@@ -33,7 +33,7 @@ const SEARCH_CALL_USD = Number(process.env.WEB_SEARCH_CALL_USD) || 0.025;
 const TIMEOUT_MS = Number(process.env.WEB_RESEARCH_TIMEOUT_MS) || 45_000;
 
 const JSON_SHAPE = `Return ONLY a JSON object — no prose before or after it, no markdown fence:
-{"curriculum": string|null, "checklist": [string], "points": [{"text": string, "urls": [string]}]}`;
+{"curriculum": string|null, "checklist": [string], "points": [{"text": string, "urls": [string]}], "worked": [{"title": string, "steps": [string], "urls": [string]}]}`;
 
 const NAMED_TERMS = `EVERY checklist item names the specific structures, terms, processes or quantities a student must know — never a broad heading. Good: "limiting factors of photosynthesis: light intensity, carbon dioxide concentration, temperature". Bad: "factors affecting photosynthesis". Good: "the stages of mitosis: prophase, metaphase, anaphase, telophase". Bad: "cell division".`;
 
@@ -50,10 +50,11 @@ ${JSON_SHAPE}
 - "curriculum": the curriculum these pages are for, or null.
 - "checklist": the key ideas a good lesson on this request must cover — 6 to 15 for a topic, 1 to 4 for one specific question. ${NAMED_TERMS}
 - "points": 15 to 30 facts to teach from, one accurate sentence each at the student's level, that together explain every checklist item using its exact terms. Each lists the URLs of the pages that state it — only pages you found in this search — spread across your sources.
+- "worked": for maths, physics, chemistry calculations or computer science, up to 4 worked examples, derivations or proofs exactly as the pages set them out — EVERY line, in order, nothing skipped or merged (each expansion, substitution, cancelling, rearrangement and the result), one line each, at most 120 characters, in maths symbols ("(2 + h)² − 4 = 4h + h²"); with the URLs of the pages that show them. An empty list for other subjects.
 THE STUDENT'S LEVEL IS NOT NEGOTIABLE: every search you run includes the level or curriculum words given below, and you cite only pages written for that level — never a page for a lower or higher one (no GCSE page for an A Level student, no university textbook for an O Level student). The facts go exactly as deep as that level does.`;
 
 /** Bumped whenever the research changes, so older, thinner research is not reused from the cache. */
-const RESEARCH_VERSION = "v13";
+const RESEARCH_VERSION = "v14";
 
 type Found = { pack: SourcePack; costUsd: number; cached: boolean };
 type Searched = { json: Record<string, unknown> | null; cited: Array<{ url: string; title: string; cited: boolean }>; costUsd: number; searches: number };
@@ -130,7 +131,8 @@ async function search(openai: OpenAI, instructions: string, input: string, label
         include: ["web_search_call.action.sources" as unknown as OpenAI.Responses.ResponseIncludable],
         instructions,
         input,
-        max_output_tokens: 5_000,
+        // Room for the worked steps as well as the facts.
+        max_output_tokens: 7_000,
       },
       { timeout: TIMEOUT_MS, maxRetries: 0 },
     );
@@ -199,6 +201,7 @@ export async function researchTopic(args: { topic: string; request?: string; bri
         curriculum: syllabus?.json?.curriculum ?? content.json?.curriculum ?? null,
         checklist: betterChecklist(syllabus?.json?.checklist, content.json?.checklist ?? encyclopaedia.json?.checklist),
         points: [...list(content.json?.points), ...list(encyclopaedia.json?.points), ...list(syllabus?.json?.points)],
+        worked: [...list(content.json?.worked), ...list(encyclopaedia.json?.worked)],
       }
     : null;
   const found = packFromResearch(merged ? { ...merged, audience: levelWords } : null, [...(syllabus?.cited ?? []), ...content.cited, ...encyclopaedia.cited], query);
@@ -206,7 +209,7 @@ export async function researchTopic(args: { topic: string; request?: string; bri
   const levelled = found ? dropOffLevelSources(found, levelWords) : null;
   const pack = levelled?.pack ?? null;
   const searches = (syllabus?.searches ?? 0) + content.searches + encyclopaedia.searches;
-  console.log(`[research] "${args.topic}" for ${levelWords ?? "no level"}: ${pack ? `${pack.sources.length} sources, ${pack.points.length} points, ${pack.checklist.length} checklist` : "nothing usable"}${levelled?.dropped.length ? `, dropped off-level: ${levelled.dropped.map((s) => s.url).join(" ")}` : ""} in ${Math.round((Date.now() - started) / 1000)}s, ${searches} search(es), $${costUsd.toFixed(4)}`);
+  console.log(`[research] "${args.topic}" for ${levelWords ?? "no level"}: ${pack ? `${pack.sources.length} sources, ${pack.points.length} points, ${pack.worked?.length ?? 0} worked, ${pack.checklist.length} checklist` : "nothing usable"}${levelled?.dropped.length ? `, dropped off-level: ${levelled.dropped.map((s) => s.url).join(" ")}` : ""} in ${Math.round((Date.now() - started) / 1000)}s, ${searches} search(es), $${costUsd.toFixed(4)}`);
   if (!pack) return null;
   await cachePut(key, pack);
   return { pack, costUsd, cached: false };

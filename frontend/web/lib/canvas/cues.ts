@@ -1,5 +1,8 @@
 import type { CanvasBoardSpec, CanvasCue } from "./types";
 
+/** How far into the next sentence (0–1) a pen cue still holds. */
+export const PEN_CARRY = 0.15;
+
 /** The cue the pen is showing now, and the element the camera is zoomed on (if any). */
 export function activeCues(cues: CanvasCue[], sentence: number, progress: number, done: boolean, visible: (target: string, sentence: number) => boolean = () => true): { pen?: CanvasCue; zoom?: string; visit?: string } {
   if (done) return {};
@@ -7,10 +10,12 @@ export function activeCues(cues: CanvasCue[], sentence: number, progress: number
   const pen = [...passed].reverse().find((c) => c.action === "point" || c.action === "circle" || c.action === "underline");
   const cam = [...passed].reverse().find((c) => c.action === "zoom" || c.action === "unzoom" || c.action === "visit");
   return {
-    // The pen stays on its last target through the next sentence, then lifts.
-    // A pen carried into the next sentence lifts if its target is gone: an equation step that hid
-    // "$1,050 billion" left the highlighter swiping over "$80 billion" in its old place (audit 2026-10-15).
-    pen: pen && (pen.s === sentence || (pen.s === sentence - 1 && (!pen.target || visible(pen.target, sentence)))) ? pen : undefined,
+    // The pen stays on its target for its sentence and only the first moment of the next, then lifts:
+    // Dot flies to it (components/avatar/BoardAvatar.tsx), and held through a whole next sentence she
+    // stood beside the last thing while Aria talked about the next one (owner, 2026-10-21: "Dot points
+    // wrong"). A pen carried into the next sentence lifts if its target is gone: an equation step that
+    // hid "$1,050 billion" left the highlighter swiping over "$80 billion" (audit 2026-10-15).
+    pen: pen && (pen.s === sentence || (pen.s === sentence - 1 && progress < PEN_CARRY && (!pen.target || visible(pen.target, sentence)))) ? pen : undefined,
     // A zoom holds for its own sentence and the next, then the camera pulls back on its own — a
     // forgotten "unzoom" must not keep the rest of the board out of view.
     zoom: cam?.action === "zoom" && cam.s >= sentence - 1 ? cam.target : undefined,

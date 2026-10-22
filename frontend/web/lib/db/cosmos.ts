@@ -1,4 +1,4 @@
-import { CosmosClient, type Container } from "@azure/cosmos";
+import { CosmosClient, PluginOn, type Container, type CosmosClientOptions, type Plugin, type PluginConfig } from "@azure/cosmos";
 
 /**
  * Cosmos DB data layer, replacing Postgres/Drizzle.
@@ -365,12 +365,53 @@ export type ViewerDocumentDoc = {
 
 const globalForCosmos = globalThis as unknown as { ariaCosmos?: CosmosClient };
 
+/*
+ * A STALLED REQUEST IS TRIED AGAIN, NOT WAITED OUT. A Cosmos call normally takes tens of milliseconds,
+ * but a dead socket (a laptop waking from sleep, a dropped connection) hangs until the SDK's 60 s
+ * timeout — and the SDK retries a timed-out READ only, never a write. A new lecture waited the full
+ * 60 s on one write and the student watched "Analyzing your material" (owner, 2026-10-21). Each
+ * request now gives up after REQUEST_TIMEOUT_MS and is sent once more on a fresh connection.
+ */
+const REQUEST_TIMEOUT_MS = 10_000;
+
+export const retryStalled: Plugin<unknown> = async (context, diagnosticNode, next) => {
+  try {
+    return await next(context);
+  } catch (error) {
+    if ((error as { code?: unknown }).code !== "TimeoutError") throw error;
+    console.warn(`[cosmos] ${context.method} ${context.path} stalled ${REQUEST_TIMEOUT_MS / 1000}s — trying once more`);
+    try {
+      return await next(context);
+    } catch (again) {
+      // The first create did land, only its answer was lost: the document is there, as asked.
+      if (context.operationType === "create" && (again as { code?: unknown }).code === 409 && typeof context.body === "string") {
+        return { headers: {}, result: JSON.parse(context.body), code: 201 };
+      }
+      throw again;
+    }
+  }
+};
+
+function fromConnectionString(conn: string): { endpoint: string; key: string } {
+  const parts = Object.fromEntries(conn.split(";").filter(Boolean).map((p) => [p.slice(0, p.indexOf("=")).trim(), p.slice(p.indexOf("=") + 1).trim()]));
+  if (!parts.AccountEndpoint || !parts.AccountKey) throw new Error("COSMOS_CONNECTION_STRING needs AccountEndpoint and AccountKey.");
+  return { endpoint: parts.AccountEndpoint, key: parts.AccountKey };
+}
+
 function client(): CosmosClient {
   const conn = process.env.COSMOS_CONNECTION_STRING;
   if (!conn) throw new Error("COSMOS_CONNECTION_STRING is not set.");
   // Cached across hot reloads: a new client per reload leaks sockets in dev and wastes
   // connections in production, where replicas share a modest budget.
-  if (!globalForCosmos.ariaCosmos) globalForCosmos.ariaCosmos = new CosmosClient(conn);
+  if (!globalForCosmos.ariaCosmos) {
+    // `plugins` is read by the SDK (ClientContext) though its public options type leaves it out.
+    const options: CosmosClientOptions & { plugins: PluginConfig[] } = {
+      ...fromConnectionString(conn),
+      connectionPolicy: { requestTimeout: REQUEST_TIMEOUT_MS },
+      plugins: [{ on: PluginOn.request, plugin: retryStalled }],
+    };
+    globalForCosmos.ariaCosmos = new CosmosClient(options);
+  }
   return globalForCosmos.ariaCosmos;
 }
 

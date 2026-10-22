@@ -35,6 +35,42 @@ export function normalizeExpr(src: unknown): string {
 }
 
 /** A formula in x as a function (NaN wherever it is undefined), or null when it does not parse. */
+/** A "× π/180" the writer added to make radians read as degrees ("cos(x*pi/180)"), or a "°" sign. */
+const DEGREE_FACTOR = /\s*\*?\s*(?:pi|π)\s*\/\s*180|\s*\/\s*180\s*\*\s*(?:pi|π)|°/gi;
+
+export function hasDegreeFactor(src: string): boolean {
+  return new RegExp(DEGREE_FACTOR.source, "i").test(src);
+}
+
+/** The formula as the student writes it in degrees: "cos(x*pi/180)" → "cos(x)", "sin(x°)" → "sin(x)". */
+export function withoutDegreeFactor(src: string): string {
+  return src.replace(DEGREE_FACTOR, "").replace(/\(\(([^()]*)\)\)/g, "($1)");
+}
+
+/**
+ * A normalised expression whose trig functions take DEGREES: each argument is scaled by π/180
+ * ("2*sin(2*x)" → "2*sin((2*x)*pi/180)"), so y = 2 sin 2x over 0°–360° is two waves, not dozens.
+ */
+export function degreesExpr(expr: string): string {
+  let out = "";
+  let i = 0;
+  const fn = /\b(?:sin|cos|tan|sec|csc|cosec|cot)\(/g;
+  for (let m = fn.exec(expr); m; m = fn.exec(expr)) {
+    const open = m.index + m[0].length - 1;
+    let depth = 0;
+    let close = -1;
+    for (let k = open; k < expr.length; k++) {
+      if (expr[k] === "(") depth++;
+      else if (expr[k] === ")" && --depth === 0) { close = k; break; }
+    }
+    if (close < 0) break;
+    out += expr.slice(i, open + 1) + `(${degreesExpr(expr.slice(open + 1, close))})*pi/180)`;
+    i = close + 1;
+    fn.lastIndex = close + 1;
+  }
+  return out + expr.slice(i);
+}
+
 export function fn1(src: unknown, v = "x"): ((x: number) => number) | null {
   if (typeof src !== "string" && typeof src !== "number") return null;
   const c = compileExpr(normalizeExpr(src));
@@ -270,8 +306,11 @@ function snapAsym(x: number): number {
 /** y = L as x → ±∞ (when f settles), else undefined. */
 export function horizontalAsymptote(f: (x: number) => number, dir: 1 | -1): number | undefined {
   const v = [3, 4, 5, 6].map((k) => f(dir * Math.pow(10, k)));
-  if (!v.every(Number.isFinite)) return undefined;
-  if (Math.abs(v[3] - v[2]) < 1e-4 && Math.abs(v[2] - v[1]) < 1e-3 && Math.abs(v[3]) < 1e6) {
+  // Off the round numbers too: 10⁴, 10⁵ and 10⁶ are all 280° on from a multiple of 360°, so cos in
+  // degrees "settled" at 0.174 and drew a dashed asymptote through the wave.
+  const w = [4, 5, 6].map((k) => f(dir * Math.pow(10, k) * 1.0731));
+  if (!v.every(Number.isFinite) || !w.every(Number.isFinite)) return undefined;
+  if (Math.abs(v[3] - v[2]) < 1e-4 && Math.abs(v[2] - v[1]) < 1e-3 && Math.abs(v[3]) < 1e6 && w.every((y) => Math.abs(y - v[3]) < 1e-3 * (1 + Math.abs(v[3])))) {
     const L = Math.round(v[3] * 1000) / 1000;
     return Object.is(L, -0) ? 0 : L;
   }
@@ -343,12 +382,27 @@ function piLabel(k: number): string {
  * Light grid, axes with arrowheads (through the origin when it is in view, else along the edge),
  * tick marks and numbers, x / y letters and O. Returns where the axes sit (screen units).
  */
-export function drawAxes(sk: Sketch, P: Plot, opts: { grid?: boolean; pi?: boolean; xName?: string; yName?: string; tickSize?: number; xTarget?: number; yTarget?: number } = {}) {
+export function drawAxes(sk: Sketch, P: Plot, opts: { grid?: boolean; pi?: boolean; degrees?: boolean; xName?: string; yName?: string; tickSize?: number; xTarget?: number; yTarget?: number; avoid?: Array<(x: number) => number> } = {}) {
   const ts = opts.tickSize ?? 16;
+  // An axis number a curve passes through is left out, as a textbook does (its tick stays): the
+  // curve of y = x³ − 2x ran through "1.4" (maths benchmark, 2026-10-21).
+  const crossed = (box: { x: number; y: number; w: number; h: number }) =>
+    (opts.avoid ?? []).some((fn) => {
+      for (let i = 0; i <= 10; i++) {
+        const sx = box.x + (box.w * i) / 10;
+        const y = fn(P.x0 + (sx / P.W) * (P.x1 - P.x0));
+        if (!Number.isFinite(y)) continue;
+        const sy = P.Y(y);
+        if (sy > box.y && sy < box.y + box.h) return true;
+      }
+      return false;
+    });
   const axY = P.Y(clampTo(0, P.y0, P.y1));
   const axX = P.X(clampTo(0, P.x0, P.x1));
   const piStep = opts.pi && P.x1 - P.x0 > 2.5 ? (P.x1 - P.x0 > 9 * Math.PI ? 2 * Math.PI : P.x1 - P.x0 > 4.5 * Math.PI ? Math.PI : Math.PI / 2) : 0;
-  const xs = piStep ? ticks(P.x0, P.x1, piStep) : ticks(P.x0, P.x1, niceStep(P.x1 - P.x0, opts.xTarget ?? 6));
+  // Degrees are marked every 90° (45° on a short window, 180° on a long one), "90°".
+  const degStep = opts.degrees ? (P.x1 - P.x0 > 720 ? 180 : P.x1 - P.x0 < 200 ? 45 : 90) : 0;
+  const xs = piStep ? ticks(P.x0, P.x1, piStep) : degStep ? ticks(P.x0, P.x1, degStep) : ticks(P.x0, P.x1, niceStep(P.x1 - P.x0, opts.xTarget ?? 6));
   const yStep = niceStep(P.y1 - P.y0, opts.yTarget ?? 6);
   const ys = ticks(P.y0, P.y1, yStep);
   if (opts.grid !== false) {
@@ -364,7 +418,9 @@ export function drawAxes(sk: Sketch, P: Plot, opts: { grid?: boolean; pi?: boole
     if (Math.abs(x) < 1e-12 && axX > 0 && axX < P.W && axY > 0 && axY < P.H) continue;
     const at = { x: P.X(x), y: axY };
     sk.line([{ x: at.x, y: at.y - 4 }, { x: at.x, y: at.y + 4 }], { stroke: "ink", width: 1.5 }, false);
-    const text = piStep ? piLabel(Math.round(x / (Math.PI / 2))) : fmt(x, dec(niceStep(P.x1 - P.x0, opts.xTarget ?? 6)));
+    const text = piStep ? piLabel(Math.round(x / (Math.PI / 2))) : degStep ? `${Math.round(x)}°` : fmt(x, dec(niceStep(P.x1 - P.x0, opts.xTarget ?? 6)));
+    const w = text.length * ts * 0.58;
+    if (crossed({ x: at.x - w / 2 - 2, y: at.y + 14 - ts * 0.85, w: w + 4, h: ts * 1.1 })) continue;
     sk.text({ x: at.x, y: at.y + (axY > P.H - 22 ? 14 : 14) }, text, ts, "muted");
   }
   for (const y of ys) {
@@ -372,6 +428,8 @@ export function drawAxes(sk: Sketch, P: Plot, opts: { grid?: boolean; pi?: boole
     const at = { x: axX, y: P.Y(y) };
     sk.line([{ x: at.x - 4, y: at.y }, { x: at.x + 4, y: at.y }], { stroke: "ink", width: 1.5 }, false);
     const text = fmt(y, dec(yStep));
+    const w = text.length * ts * 0.58;
+    if (crossed({ x: at.x - 8 - w - 2, y: at.y - ts * 0.6, w: w + 4, h: ts * 1.1 })) continue;
     sk.text({ x: at.x - 8 - (text.length * ts * 0.29), y: at.y }, text, ts, "muted");
   }
   if (P.x0 < 0 && P.x1 > 0 && P.y0 < 0 && P.y1 > 0) sk.text({ x: axX - 11, y: axY + 13 }, "O", ts, "muted");

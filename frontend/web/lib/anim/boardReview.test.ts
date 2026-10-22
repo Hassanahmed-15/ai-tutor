@@ -51,3 +51,11 @@ test("protein synthesis is computed from the sequence: codons, anticodons, amino
   assert.deepEqual(fromMrna.aminoAcids, ["Met", "Glu", "Ser", "Stop"]);
   assert.deepEqual(proteinSynthesisData({ dna: "ATG TTT TGA", strand: "coding" }).aminoAcids, ["Met", "Phe", "Stop"]);
 });
+
+test("a maths figure is named, not given the catalogue's list of what it can draw (maths benchmark)", () => {
+  const grid = { v: 1, heading: "Collinear points", notes: [], cues: [], stage: { kind: "figure", component: "coordinateGrid", params: { points: "P(-2,1); Q(1,5); R(7,13)", segments: "PQ; PR" }, parts: [] } } as unknown as CanvasBoardSpec;
+  const facts = boardFacts(grid);
+  assert.match(facts, /a code-drawn figure, coordinate grid on equal-scaled axes/);
+  assert.doesNotMatch(facts, /transformation|A′B′C′|quadratic/);
+  assert.match(facts, /points = P\(-2,1\)/);
+});

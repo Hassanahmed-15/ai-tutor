@@ -13,13 +13,18 @@ import { type DesignProgress } from "@/components/design/LessonDesignMode";
 import { LessonBuildScreen } from "@/components/design/LessonBuildScreen";
 import { applyDiagnostic, conceptMap, emptyProfile, hasEnoughSignal, learnerInstruction, profileSummary, resolveDepth, DEPTH_NAMES, type ConceptMapEntry, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
 import { verdictNote, verdictOfAnswer, verdictVoiceLine, type AnswerVerdict } from "@/lib/planningFeedback";
-import { memoryWasUsed, personaForPrompt, profileHasSignal, rememberedLine, seedProfile, snapshotFrom, type LearnerMemory } from "@/lib/learnerModel";
+import { personaForPrompt, profileHasSignal, snapshotFrom, type LearnerMemory } from "@/lib/learnerModel";
 import { PLAN_CHOICES, planMessage, shouldAddVoiceLine } from "@/lib/planningTranscript";
 import { openingSentence, topicKeywords } from "@/lib/beatPresentation";
 import { warmNarration } from "@/lib/useNarrationPrefetch";
 import { splitNarrationSentences } from "@/lib/voice";
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
-import { DEPTH_OPTIONS, depthQuestion, openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
+import { DEPTH_OPTIONS, openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
+import { ALL_NEW, gradeCard, intakeCard, markOf, matchSpokenParts, NOT_SURE, profileFromIntake, readParts, typedParts, type CheckOutcome, type IntakePart, type PartMark } from "@/lib/intake";
+import { QuestionCard } from "@/components/planning/QuestionCard";
+
+/** The intake card's state (lib/intake.ts): the parts, which are ticked, each check's pick, the open tab. */
+type IntakeState = { stage: "loading" | "card"; parts: IntakePart[]; known: string[]; answers: Record<string, string>; tab: string; allNew?: boolean; other?: string };
 import { profileLevelForTopic } from "@/lib/learnerBasics";
 import { buildStudentCard } from "@/lib/studentCard";
 import { buildTeachingPolicy, policyForVoice } from "@/lib/teachingPolicy";
@@ -65,6 +70,7 @@ import { addCost, recordJsonCost, resetCostLedger, setCost } from "@/lib/costLed
 import { LectureCostBadge } from "@/components/LectureCostBadge";
 import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
 import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnotes";
+import { documentSections } from "@/lib/canvas/documentContext";
 import { mergeSourceDocuments } from "@/lib/mergeSourceDocuments";
 import { readStreamedPages } from "@/lib/streamedPages";
 import { emptySourceScope, type PdfFidelity, type SourceScope } from "@/lib/sourceScope";
@@ -129,7 +135,7 @@ type PlanOutline = {
   scope?: "question" | "lesson";
   depth?: "quick" | "deep";
   topic: string;
-  subtopics: { title: string; caption: string; reason?: string; confidence?: "low"; safetyNet?: PlanSafetyNet; scopingQuestion?: ScopingQuestion }[];
+  subtopics: { title: string; caption: string; reason?: string; confidence?: "low"; safetyNet?: PlanSafetyNet; scopingQuestion?: ScopingQuestion; status?: "new" | "shaky" | "known" }[];
   angle?: PlanningAngleId;
   /** The web material this outline was planned from (lib/webSources.ts). */
   research?: SourcePack;
@@ -331,6 +337,21 @@ type BuildCost =
   const [learnerProfile, setLearnerProfile] = useState<LearnerProfile | null>(null);
   const [learnerDepth, setLearnerDepth] = useState<DepthLevel | null>(null);
   const [diagnosticQuestion, setDiagnosticQuestion] = useState<{ question: string; options: string[] } | null>(null);
+  /*
+   * THE INTAKE (lib/intake.ts, owner 2026-10-20): the topic's parts as chips the student marks, then
+   * up to three very basic checks on the parts marked "I know this" (asked as ordinary questions on
+   * the same screen, graded locally). Replaces the level question and the hard diagnostic questions.
+   */
+  const [intake, setIntake] = useState<IntakeState | null>(null);
+  const intakeRef = useRef<(IntakeState & { topic: string }) | null>(null);
+  const intakeStageRef = useRef<"loading" | "card" | null>(null);
+  /** The intake fetched early (as soon as the topic is named), so the parts screen rarely waits. */
+  const intakePrefetchRef = useRef<{ key: string; promise: Promise<IntakePart[]> } | null>(null);
+  /** The document this planning is about (fresh from the parse; page state lags it by a tick). */
+  const intakeDocRef = useRef<SuprnotesLessonInput | null>(null);
+  /** What follows the intake when it is not the plan: a strict PDF builds straight away. */
+  const intakeThenRef = useRef<(() => void) | null>(null);
+  const intakeActionsRef = useRef<{ heard: (text: string) => void }>({ heard: () => {} });
   /** True while `diagnosticQuestion` IS the depth-preference question — answering it is handled
    *  locally (no model round-trip needed for a fixed set of chip options) rather than through
    *  submitDiagnosticAnswer. See startPlanning, where it is always asked first. */
@@ -531,6 +552,11 @@ type BuildCost =
        * screen is the only question, Aria speaks exactly that question, and whichever way the
        * student answers, it advances the same conversation.
        */
+      // The parts screen (lib/intake.ts): parts named aloud are marked; "all new" or "done" moves on.
+      if (planningPhase && intakeStageRef.current === "card") {
+        intakeActionsRef.current.heard(text);
+        return;
+      }
       // "Which one do you mean?" — answered like any other question on screen.
       const ambiguity = ambiguityQuestionRef.current;
       if (planningPhase && ambiguity && !diagnosticQuestionRef.current) {
@@ -578,7 +604,8 @@ type BuildCost =
         void runDiagnosticRef.current(meant.text);
         return;
       }
-      if (planningPhase && !hasEnoughSignal(learnerProfileRef.current ?? emptyProfile(topic))) {
+      // The intake decides what they know now; a stray sentence is no longer graded on the side.
+      if (planningPhase && !learnerProfileRef.current?.parts && !intakeRef.current && !hasEnoughSignal(learnerProfileRef.current ?? emptyProfile(topic))) {
         const question = lastVoiceQuestionRef.current || openingQuestion(topic);
         void submitDiagnosticAnswer(question, text.trim(), "voice");
       }
@@ -595,7 +622,7 @@ type BuildCost =
     alwaysOn: true,
     // While a question is on screen (or the next one is being chosen), Aria speaks only what she is
     // handed via say(): the question the student can see. See holdUnpromptedReplies in the hook.
-    holdUnpromptedReplies: () => Boolean(diagnosticQuestionRef.current) || diagnosticBusyRef.current || Boolean(ambiguityQuestionRef.current),
+    holdUnpromptedReplies: () => Boolean(diagnosticQuestionRef.current) || diagnosticBusyRef.current || Boolean(ambiguityQuestionRef.current) || Boolean(intakeStageRef.current),
     onSessionEnded: (reason) => {
       // Surfaced rather than swallowed: a dropped socket and a deliberate stop look identical on
       // screen otherwise, which is what made the idle teardown so hard to see.
@@ -655,6 +682,23 @@ type BuildCost =
     // Said once: the next question's answer brings its own verdict.
     lastVerdictRef.current = null;
   }, [diagnosticQuestion, initialAmbiguityQuestions, intentQuestion, outline, voiceLive, voiceSay]);
+
+  // The parts screen is spoken too: the question, then the parts by name, so a listener can answer.
+  useEffect(() => {
+    intakeStageRef.current = intake?.stage ?? null;
+    if (intake?.stage !== "card" || !voiceLive) return;
+    const open = intakeCard(intake.parts, intake.known).find((q) => q.id === intake.tab);
+    const key = open ? `${open.id}:${open.question}` : `submit:${intake.known.join(",")}`;
+    if (spokenQuestionRef.current === key) return;
+    spokenQuestionRef.current = key;
+    if (!open) {
+      voiceSay("In ONE short sentence, say their answers are on screen and ask them to press Submit, or say submit, when they are ready. Nothing else.");
+      return;
+    }
+    voiceSay(open.id === "parts"
+      ? `Ask warmly, in your own words, which parts of ${topic} they have met before. Then name the parts on screen briefly: ${intake.parts.map((p) => p.label).join("; ")}. Say they can tick the ones they know, tell you, or say it is all new. Nothing else.`
+      : `Ask exactly this question, warmly: "${open.question}" Then name the choices briefly: ${open.options.filter((o) => o.label !== NOT_SURE).map((o, i) => `${i + 1}: ${o.label}`).join("; ")}. Nothing else.`);
+  }, [intake, voiceLive, voiceSay, topic]);
 
   /*
    * WHAT ARIA ALREADY KNOWS ABOUT THIS STUDENT, from earlier lectures (lib/learnerModel.ts).
@@ -748,7 +792,7 @@ type BuildCost =
    * plan is being drafted, an open mic transcribed the room into chat bubbles nobody asked for.
    */
   const outlineReady = Boolean(outline);
-  const questionOpen = Boolean(diagnosticQuestion) || diagnosticBusy || initialAmbiguityQuestions.length > 0 || Boolean(intentQuestion);
+  const questionOpen = Boolean(diagnosticQuestion) || diagnosticBusy || initialAmbiguityQuestions.length > 0 || Boolean(intentQuestion) || intake?.stage === "card";
   /*
    * AND ON THE PLAN ITSELF (2026-09-29, "the voice input doesn't really work nicely while
    * planning"). The plan screen closed the mic, so the revise_plan and approve_plan tools Aria was
@@ -1449,6 +1493,22 @@ type BuildCost =
           : await nameSubject("Teach me everything in these pages of this document", next.fresh.sourceDocument, next.fresh.documentId)
             .then((named) => (named && !/^teach|everything in these pages/i.test(named) ? named : next.subject));
         setTopic(subject);
+        /*
+         * WHAT THEY ALREADY KNOW OF THESE PAGES FIRST (lib/intake.ts, owner 2026-10-20): the PDF's
+         * own sections as chips and up to three basic checks from its words, then the build. The
+         * lesson still teaches every page and only what the pages say; the answers decide where it
+         * goes from scratch and where it only recaps.
+         */
+        const doc = next.fresh.sourceDocument;
+        if (doc && !question) {
+          const seeded = emptyProfile(subject);
+          setLearnerProfile(seeded);
+          learnerProfileRef.current = seeded;
+          setDiagnosticRemark(null);
+          setPhase("outline");
+          void startIntake(subject, { doc, strict: true, then: () => void build(subject, undefined, next.fresh, []) });
+          return;
+        }
         void build(subject, undefined, next.fresh, []);
       })();
     } else {
@@ -2196,11 +2256,8 @@ type BuildCost =
     const data = await callPlanApi({ mode: "intent", topic: subject, request: requestTextRef.current || subject, exchanges: intentExchangesRef.current, ...(profile?.learner ? { learnerBasics: profile.learner } : {}) });
     setPlanLoading(false);
     if (data?.brief && typeof data.brief === "object") briefRef.current = data.brief as LessonBrief;
-    const asked = data?.question as IntentQuestion | null | undefined;
-    if (data && data.complete === false && asked?.question) {
-      setIntentQuestion({ question: asked.question, options: Array.isArray(asked.options) ? asked.options : [] });
-      return;
-    }
+    // No question is asked here any more (owner, 2026-10-20: the intake asks only what the student
+    // knows). The brief is still read from the request: an exam board or level they named still counts.
     setIntentQuestion(null);
     await beginLearnerConversation(subject, intentExchangesRef.current.length > 0);
   }
@@ -2258,6 +2315,10 @@ type BuildCost =
     const trimmed = (referenceNamesDocument && firstPageTitle(planningDocument))
       || await nameSubject(referenceNamesDocument ? "explain this document" : raw, planningDocument, fresh?.documentId ?? documentId);
     setTopic(trimmed);
+    // The parts and checks are written while the topic is checked for ambiguity (lib/intake.ts).
+    const prefetchDoc = isSuprnotesLessonInput(planningDocument) ? planningDocument : null;
+    intakeDocRef.current = prefetchDoc;
+    if (!prefetchDoc || referenceChosen) prefetchIntake(trimmed, prefetchDoc);
 
     if (referenceChosen) {
       /*
@@ -2393,69 +2454,175 @@ type BuildCost =
    */
   async function beginLearnerConversation(trimmed: string, settledByIntent: boolean) {
     /*
-     * Ask who this is for before planning what to teach.
+     * GETTING TO KNOW THE STUDENT, simply (lib/intake.ts, owner 2026-10-20). The old conversation
+     * asked their level, then hard "why" questions only someone who had mastered the topic could
+     * answer. Now: the topic's parts as chips they mark, then up to three very basic checks.
      *
-     * Only on the typed-topic path: an uploaded document returns above with its own planning, and a
-     * demo/skip path never reaches here. Both questions here are asked locally rather than by a
-     * round-trip, so the conversation starts the instant the screen does. This is the ONE pre-draft
-     * conversation for a typed topic now — the old "planningQuestions" chip questionnaire (prior
-     * knowledge / focus / structure dropdowns) has been retired in favor of this adaptive diagnostic;
-     * see CLARIFY_TOPIC_SYSTEM_PROMPT's doc comment for why it no longer proposes those.
-     *
-     * THE DEPTH QUESTION COMES FIRST, ALWAYS. Everything else in this conversation deliberately
-     * avoids asking the student to self-report their level (see diagnosticPrompt.ts's own doc
-     * comment on why recognition is not evidence) — but "how deep do you want this" is a
-     * preference, not a competence claim, the same category as the existing "goal" question kind.
-     * Asking it directly and up front, every time, means depth is never left to an implicit read
-     * of phrasing; runDiagnostic still lets the rest of the conversation's evidence override it.
+     * Past lessons are NOT read here (owner: what Aria learns is for this lesson only). The account's
+     * Study level still words everything, and the note says so.
      */
-    // Never let a slow network hold up the conversation: memory gets a moment, then we go without.
-    const memory = await Promise.race([
-      loadLearnerMemory(),
-      new Promise<null>((resolve) => setTimeout(() => resolve(null), 1500)),
-    ]);
-    const seeded = memory ? seedProfile(memory, trimmed, emptyProfile(trimmed)) : emptyProfile(trimmed);
+    const seeded = emptyProfile(trimmed);
     setLearnerProfile(seeded);
     learnerProfileRef.current = seeded;
-    setMemoryNote(memoryWasUsed(seeded) ? rememberedLine(seeded) : null);
+    setMemoryNote(null);
     lastStudentAnswerRef.current = "";
     spokenQuestionRef.current = "";
-    isDepthQuestionRef.current = true;
-    /*
-     * NOT ASKING WHAT THE PROFILE ALREADY SAYS (owner's spec, 2026-09-30: personalise "without
-     * repeatedly asking the user for information it already knows"). A topic in one of the student's
-     * subjects, whose level is on their profile, is answered from the profile — through the same path
-     * a clicked answer takes — and the note says so, so "simpler" or "deeper" is one sentence away.
-     * A topic outside their subjects is new ground, and the question is asked.
-     */
-    // The grade applies in EVERY subject (lib/studentCard.ts): a topic outside their subjects is new
-    // ground at the same grade, not a reason to ask their level again.
+    isDepthQuestionRef.current = false;
+    setDiagnosticRemark(null);
     const known = profileLevelForTopic(profile?.learner ?? null, trimmed);
-    if (known) {
-      const option = DEPTH_OPTIONS.find((o) => o.level === known.depth) ?? DEPTH_OPTIONS[2];
-      // What the lesson will lean on, from "How do you like to learn?" (lib/teachingPolicy.ts).
-      const card = buildStudentCard(profile?.learner ?? null, trimmed, {}, profile);
-      const leaning = card ? buildTeachingPolicy(card).because.slice(1, 3) : [];
-      const leaningLine = leaning.length ? ` Leaning on ${leaning.join(" and ")}, as you asked.` : "";
-      setMemoryNote(known.subject
-        ? `${explainedFor(known.level.label)} in ${known.subject.label}, from your profile.${leaningLine} Say "simpler" or "deeper" any time.`
-        : `${explainedFor(known.level.label)}. This isn't one of your subjects, so Aria starts from the basics.${leaningLine} Say "simpler" or "deeper" any time.`);
-      setAutoDepth({ answer: option.label, question: depthQuestion(trimmed) });
-      return;
-    }
-    // The student just told Aria their course or level: not asked again as a depth question.
-    const told = settledByIntent ? briefRef.current?.curriculum ?? briefRef.current?.level : undefined;
-    if (told) {
-      const option = DEPTH_OPTIONS[2];
-      setMemoryNote(`${explainedFor(told)}, as you told Aria. Say "simpler" or "deeper" any time.`);
-      setAutoDepth({ answer: option.label, question: depthQuestion(trimmed) });
-      return;
-    }
-    setDiagnosticQuestion({
-      question: depthQuestion(trimmed),
-      options: DEPTH_OPTIONS.map((o) => o.label),
-    });
+    const told = settledByIntent ? briefRef.current?.curriculum ?? briefRef.current?.level : briefRef.current?.curriculum ?? briefRef.current?.level;
+    if (known) setMemoryNote(known.subject ? `${explainedFor(known.level.label)} in ${known.subject.label}, from your profile.` : `${explainedFor(known.level.label)}.`);
+    else if (told) setMemoryNote(`${explainedFor(told)}, as you asked.`);
+    await startIntake(trimmed);
   }
+
+  /** The parts of the topic, written for this student (one call), then shown as chips. */
+  /**
+   * The intake call on its own fetch (callPlanApi aborts whatever call came before it, and this one
+   * runs alongside the others). A PDF's parts are its own sections (lib/canvas/documentContext.ts):
+   * the chips name what the lesson will really teach, and the checks ask only what the pages say.
+   */
+  function fetchIntake(subject: string, opts: { doc?: SuprnotesLessonInput | null; strict?: boolean; note?: string } = {}): Promise<IntakePart[]> {
+    const doc = opts.doc ?? null;
+    const given = doc ? documentSections(doc) : [];
+    return fetch("/api/plan-lesson", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        mode: "intake",
+        topic: subject,
+        request: `${requestTextRef.current || subject}${opts.note ? ` (${opts.note})` : ""}`,
+        ...(given.length ? { parts: given } : {}),
+        ...(doc ? { sourceDocument: doc } : {}),
+        ...(opts.strict ? { strict: true } : {}),
+      }),
+    })
+      .then((r) => r.json())
+      .then((data: { parts?: IntakePart[] }) => (Array.isArray(data.parts) ? data.parts : []))
+      .catch(() => []);
+  }
+  const intakeKey = (subject: string, doc: SuprnotesLessonInput | null | undefined, strict?: boolean) => `${subject}|${doc ? (doc.contentBlocks ?? []).length : 0}|${strict ? "strict" : ""}`;
+  function prefetchIntake(subject: string, doc: SuprnotesLessonInput | null | undefined, strict?: boolean) {
+    intakePrefetchRef.current = { key: intakeKey(subject, doc, strict), promise: fetchIntake(subject, { doc, strict }) };
+  }
+
+  async function startIntake(subject: string, opts: { doc?: SuprnotesLessonInput | null; strict?: boolean; then?: () => void } = {}) {
+    intakeRef.current = null;
+    intakeThenRef.current = opts.then ?? null;
+    setIntake({ stage: "loading", parts: [], known: [], answers: {}, tab: "parts" });
+    const doc = opts.doc ?? intakeDocRef.current ?? (isSuprnotesLessonInput(sourceDocument) ? sourceDocument : null);
+    const early = intakePrefetchRef.current;
+    intakePrefetchRef.current = null;
+    // A topic made clear by the student ("CNN": the neural network) asks again, with their answer.
+    const note = clarifyAnswers.map((a) => a.answer).join("; ");
+    const parts = early && early.key === intakeKey(subject, doc, opts.strict) && !note ? await early.promise : await fetchIntake(subject, { doc, strict: opts.strict, note });
+    if (parts.length < 2) {
+      // No parts (a failed call): plan straight away, as for a beginner. Never back to the old questions.
+      finishIntake(subject, [], {}, {});
+      return;
+    }
+    updateIntake({ stage: "card", parts, known: [], answers: {}, tab: "parts" }, subject);
+  }
+
+  /** The card's state, kept in a ref too (the voice callbacks read it). */
+  function updateIntake(next: IntakeState, subject = intakeRef.current?.topic ?? topic) {
+    intakeRef.current = { ...next, topic: subject };
+    setIntake(next);
+  }
+
+  /** An answer on the card: the parts' ticks (one multi-select), or a check's one pick. */
+  function answerIntakeCard(questionId: string, labels: string[]) {
+    const st = intakeRef.current;
+    if (!st) return;
+    if (questionId === "parts") {
+      // What the student typed in the Other box: the one label that is not a part's or "all new". The
+      // parts it names are ticked (they can untick them), and its words go to the planner as they are.
+      const isOption = (l: string) => l === ALL_NEW || st.parts.some((p) => p.label === l);
+      const other = labels.find((l) => !isOption(l));
+      const typed = other && other !== st.other ? typedParts(other, st.parts) : null;
+      // "It's all new" and the parts' ticks exclude each other, whichever was picked last.
+      const picked = labels.filter(isOption).pop();
+      const ticked = picked === ALL_NEW && !typed?.known.length ? [] : st.parts.filter((p) => labels.includes(p.label) || typed?.known.includes(p.id)).map((p) => p.id);
+      const allNew = ticked.length === 0 && ((picked === ALL_NEW && labels.includes(ALL_NEW)) || Boolean(typed?.allNew));
+      updateIntake({ ...st, known: ticked, allNew, other });
+      return;
+    }
+    const partId = questionId.replace(/^check-/, "");
+    updateIntake({ ...st, answers: { ...st.answers, [partId]: labels[0] ?? "" } });
+  }
+
+  function intakeTab(tab: string) {
+    const st = intakeRef.current;
+    if (st) updateIntake({ ...st, tab });
+  }
+
+  /** Submit: the checks are graded and the plan is made from every part's status. */
+  function submitIntakeCard() {
+    const st = intakeRef.current;
+    if (!st) return;
+    finishIntake(st.topic, st.parts, markOf(st.known), gradeCard(st.parts, st.known, st.answers), st.other);
+  }
+
+  /** What the student said aloud, on whichever tab is open. */
+  function hearIntake(text: string) {
+    const st = intakeRef.current;
+    if (!st) return;
+    const card = intakeCard(st.parts, st.known);
+    const open = card.find((q) => q.id === st.tab);
+    if (!open) {
+      if (/\b(submit|done|yes|go|start|ready|that'?s (it|all)|let'?s go)\b/i.test(text)) submitIntakeCard();
+      return;
+    }
+    if (open.id === "parts") {
+      const heard = matchSpokenParts(text, st.parts);
+      const known = heard.allNew ? [] : [...new Set([...st.known, ...Object.entries(heard.marks).filter(([, m]) => m === "know").map(([id]) => id)])];
+      const next = { ...st, known, allNew: heard.allNew };
+      if (heard.allNew || heard.done) next.tab = intakeCard(st.parts, known)[1]?.id ?? "submit";
+      updateIntake(next);
+      return;
+    }
+    const meant = matchSpokenAnswer(text, open.options.map((o) => o.label), lastVoiceQuestionRef.current);
+    if (!meant || meant.kind !== "option") return;
+    setVoicePick(meant.option);
+    window.setTimeout(() => {
+      setVoicePick(null);
+      answerIntakeCard(open.id, [meant.option]);
+      const after = intakeRef.current;
+      if (!after) return;
+      const tabs = intakeCard(after.parts, after.known).map((q) => q.id);
+      intakeTab(tabs[tabs.indexOf(open.id) + 1] ?? "submit");
+    }, 650);
+  }
+
+  /** Every part's status into the profile the plan reads, then the plan. */
+  function finishIntake(subject: string, parts: IntakePart[], marks: Record<string, PartMark>, outcomes: Record<string, CheckOutcome>, ownWords = "") {
+    const base = learnerProfileRef.current ?? emptyProfile(subject);
+    const next: LearnerProfile = parts.length
+      ? profileFromIntake(subject, readParts(parts, marks, outcomes), base, ownWords)
+      : { ...base, claimedLevel: 2, confidence: "medium" };
+    setLearnerProfile(next);
+    learnerProfileRef.current = next;
+    setLearnerDepth(resolveDepth(next));
+    intakeRef.current = null;
+    setIntake(null);
+    setDiagnosticQuestion(null);
+    if (lastVerdictRef.current && lastStudentAnswerRef.current) {
+      lastVerdictHeardRef.current = false;
+      setSayingLastVerdict(true);
+      voiceSay(`The student just answered: "${lastStudentAnswerRef.current.slice(0, 200)}". ${verdictVoiceLine(lastVerdictRef.current)} Then say you are putting their plan together. Nothing else.`);
+      lastVerdictRef.current = null;
+    }
+    const then = intakeThenRef.current;
+    intakeThenRef.current = null;
+    if (then) {
+      then();
+      return;
+    }
+    requestOutline(subject, clarifyAnswers, planAngle);
+  }
+  useEffect(() => {
+    intakeActionsRef.current = { heard: hearIntake };
+  });
 
   /**
    * One turn of the pre-lesson conversation.
@@ -2691,6 +2858,11 @@ type BuildCost =
     const next = [...clarifyAnswers, { question, answer }];
     setClarifyAnswers(next);
     setInitialAmbiguityQuestions([]);
+    // Then the same questions as any typed topic (it used to skip them and plan at once).
+    if (!sourceDocument && !uploadedFile) {
+      void beginLearnerConversation(topic, false);
+      return;
+    }
     requestOutline(topic, next, planAngle);
   }
 
@@ -3076,7 +3248,8 @@ type BuildCost =
     // Remember what the conversation established, for the next lecture, along with the student's
     // own words from it — the material the portrait is written from. Best effort: never awaited.
     // Once it is saved, the portrait is rewritten (the server skips this when nothing is new).
-    if (hasConversation && conversationProfile) {
+    // Not when the intake ran (lib/intake.ts): what it learns is for this lesson only (owner, 2026-10-20).
+    if (hasConversation && conversationProfile && !conversationProfile.parts?.length) {
       const conversation = [
         ...diagnosticExchanges.map((exchange) => exchange.answer),
         ...voiceLinesRef.current.filter((line) => line.role === "you").map((line) => line.text),
@@ -3820,7 +3993,7 @@ type BuildCost =
             >
               <span className="text-[1.0625rem] font-medium text-[var(--hud-text)]">Yes — strict source</span>
               <span className="mt-2 block text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">
-                Cover every selected page in source order. Clarify and illustrate it, but do not add unrelated material or ask planning questions.
+                Cover every selected page in source order, built around what you already know. Clarify and illustrate it, but add nothing the pages do not say.
               </span>
             </button>
             <button
@@ -4159,6 +4332,10 @@ type BuildCost =
           diagnosticBusy={diagnosticBusy}
           diagnosticRemark={diagnosticRemark}
           onAnswerDiagnostic={runDiagnostic}
+          intake={intake}
+          onIntakeAnswer={answerIntakeCard}
+          onIntakeTab={intakeTab}
+          onIntakeSubmit={submitIntakeCard}
           voicePick={voicePick}
           learnerSummary={learnerProfile && learnerDepth ? profileSummary(learnerProfile, learnerDepth) : ""}
           learnerProfile={learnerProfile}
@@ -4971,8 +5148,17 @@ function OutlineReviewState({
   voiceLines,
   memoryNote,
   voicePick,
+  intake,
+  onIntakeAnswer,
+  onIntakeTab,
+  onIntakeSubmit,
 }: {
   topic: string;
+  /** The parts screen (lib/intake.ts): the topic's parts as chips the student marks. */
+  intake?: IntakeState | null;
+  onIntakeAnswer?: (questionId: string, labels: string[]) => void;
+  onIntakeTab?: (tab: string) => void;
+  onIntakeSubmit?: () => void;
   /** The answer card a spoken answer just picked, lit before the next question. */
   voicePick?: string | null;
   /** Aria's live session state, owned by LearnPage so it survives into the build screen. */
@@ -5392,6 +5578,44 @@ function OutlineReviewState({
   }
 
   /*
+   * THE PARTS SCREEN (lib/intake.ts, owner 2026-10-20): "which parts have you met before?" The
+   * topic's parts as chips; a tap moves one through new to me, heard of it, I know this. Nothing is
+   * graded here: parts marked "I know this" get one very basic check next, the rest are taught.
+   */
+  function renderIntakeParts() {
+    if (!intake || intake.stage === "loading") {
+      return (
+        <div className="mx-auto flex w-full max-w-2xl flex-col pb-10 pt-[12vh]">
+          <span className="mb-4 truncate font-[family-name:var(--font-hud-mono)] text-[0.6875rem] uppercase tracking-[0.1em] text-[var(--hud-text-faint)]">{topic}</span>
+          <div className="flex items-center gap-3 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-6 py-8 text-[var(--hud-text-dim)]">
+            <span className="aria-breathe size-2.5 rounded-full bg-[var(--hud-cyan)]" />
+            <span className="text-[1rem]">Getting a few quick questions ready…</span>
+          </div>
+        </div>
+      );
+    }
+    const questions = intakeCard(intake.parts, intake.known);
+    const answers: Record<string, string[]> = {
+      parts: [...(intake.allNew ? [ALL_NEW] : intake.parts.filter((p) => intake.known.includes(p.id)).map((p) => p.label)), ...(intake.other ? [intake.other] : [])],
+      ...Object.fromEntries(Object.entries(intake.answers).map(([id, label]) => [`check-${id}`, label ? [label] : []])),
+    };
+    return (
+      <QuestionCard
+        questions={questions}
+        answers={answers}
+        tab={questions.some((q) => q.id === intake.tab) ? intake.tab : "submit"}
+        onTab={(tab) => onIntakeTab?.(tab)}
+        onAnswer={(id, labels) => onIntakeAnswer?.(id, labels)}
+        onSubmit={() => { voice.interrupt(); onIntakeSubmit?.(); }}
+        topic={topic}
+        note={memoryNote ? memoryNote.replace(/\.$/, "") : null}
+        voice={voice.status === "live" ? { live: true, muted: voice.muted, toggleMute: voice.toggleMute } : undefined}
+        heard={voicePick}
+      />
+    );
+  }
+
+  /*
    * THE QUESTION SCREEN.
    *
    * It was a dashboard of profile columns above a chat transcript, a memory paragraph, a voice
@@ -5430,7 +5654,7 @@ function OutlineReviewState({
           </span>
         </div>
 
-        {remark && answered > 0 && (
+        {remark && (answered > 0 || !ask) && (
           <p className="beat-fade-in mb-4 text-[0.95rem] leading-relaxed text-[var(--hud-text-dim)]">{remark}</p>
         )}
 
@@ -5645,6 +5869,8 @@ function OutlineReviewState({
              * answers, spoken or typed, in order, with the quick answers under her question.
              */
             renderDiagnosticFocus()
+          ) : !outline && intake ? (
+            renderIntakeParts()
           ) : !outline && initialPlanningQuestions.length > 0 ? (
             renderPlanningQuestionsPanel()
           ) : !outline && initialAmbiguityQuestions.length > 0 ? (
@@ -5776,6 +6002,12 @@ function OutlineReviewState({
                         placeholder="What this part teaches"
                         className="mt-0.5 w-full bg-transparent text-sm text-[var(--hud-text-dim)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
                       />
+                      {/* What the student told Aria about this part (lib/intake.ts): how deep it is built. */}
+                      {s.status && (
+                        <span className={`mt-1.5 inline-block rounded-full px-2 py-0.5 text-[0.7rem] font-semibold ${s.status === "known" ? "bg-emerald-400/15 text-emerald-300" : s.status === "shaky" ? "bg-amber-400/15 text-amber-300" : "bg-[var(--hud-cyan)]/15 text-[var(--hud-cyan)]"}`}>
+                          {s.status === "known" ? "Quick recap, you know this" : s.status === "shaky" ? "Refresh, step by step" : "From scratch, step by step"}
+                        </span>
+                      )}
                     </div>
                     <div className="flex shrink-0 items-center gap-0.5 opacity-0 transition focus-within:opacity-100 group-focus-within:opacity-100 group-hover:opacity-100">
                       <button onClick={() => move(i, -1)} disabled={i === 0} className="grid size-7 place-items-center rounded-full text-[var(--hud-text-faint)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move up"><ChevronUp size={14} /></button>

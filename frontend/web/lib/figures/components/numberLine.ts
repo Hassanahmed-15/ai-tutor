@@ -1,4 +1,5 @@
 import type { FigureComponent, FigureParams, Pt } from "../types";
+import { fn1 } from "./calculusKit";
 import { fitText } from "../cuts";
 import { PALETTE, Sketch, arrow, bool, clamp, fmt, list, str } from "./mathsKit";
 import { parseNum } from "./coordinateGrid";
@@ -64,6 +65,41 @@ export function union(xs: Interval[]): Interval[] {
  * Parse (and solve) an inequality into intervals. Clauses join with "or"/"∪" (union) and
  * "and"/","/"∩" (intersection); each clause is a chain like "a < 2x + 1 ≤ b". Null if unreadable.
  */
+/**
+ * f(x) op g(x) for curves: the roots of f − g (sampled over −60..60 and refined by bisection) split the
+ * line; each gap is tested at its middle. Endpoints are included only for ≤ and ≥.
+ */
+export function solveCurveInequality(left: string, right: string, op: "<" | ">" | "≤" | "≥" | "=", v: string): Interval[] | null {
+  const f = fn1(`(${left.replace(/−/g, "-")}) - (${right.replace(/−/g, "-")})`, v);
+  if (!f) return null;
+  const roots: number[] = [];
+  const nice = (r: number) => { for (const d of [1, 2, 3, 4, 5, 6, 8, 10]) { const q = Math.round(r * d) / d; if (Math.abs(q - r) < 1e-7) return q; } return r; };
+  const step = 0.0137;
+  for (let x = -60; x < 60; x += step) {
+    const a = f(x), b = f(x + step);
+    if (!Number.isFinite(a) || !Number.isFinite(b)) continue;
+    if (a === 0) { roots.push(nice(x)); continue; }
+    if (a * b < 0) {
+      let lo = x, hi = x + step;
+      for (let k = 0; k < 60; k++) { const m = (lo + hi) / 2; if (f(lo) * f(m) <= 0) hi = m; else lo = m; }
+      roots.push(nice((lo + hi) / 2));
+    }
+  }
+  const rs = [...new Set(roots.map((r) => Math.round(r * 1e9) / 1e9))].sort((a, b) => a - b);
+  if (rs.length > 6) return null;
+  const holds = (x: number) => { const y = f(x); return op === "<" ? y < 0 : op === ">" ? y > 0 : op === "≤" ? y <= 1e-12 : op === "≥" ? y >= -1e-12 : Math.abs(y) < 1e-12; };
+  const closed = op === "≤" || op === "≥" || op === "=";
+  const edges = [-Infinity, ...rs, Infinity];
+  const out: Interval[] = [];
+  for (let k = 0; k + 1 < edges.length; k++) {
+    const lo = edges[k], hi = edges[k + 1];
+    const mid = !Number.isFinite(lo) && !Number.isFinite(hi) ? 0.37 : !Number.isFinite(lo) ? hi - 1 : !Number.isFinite(hi) ? lo + 1 : (lo + hi) / 2;
+    if (op !== "=" && holds(mid)) out.push({ lo, hi, loClosed: closed && Number.isFinite(lo), hiClosed: closed && Number.isFinite(hi) });
+  }
+  if (closed) for (const r of rs) if (!out.some((i) => i.lo <= r && r <= i.hi)) out.push({ lo: r, hi: r, loClosed: true, hiClosed: true });
+  return union(out);
+}
+
 export function parseInequality(raw: unknown, variable = "x"): Interval[] | null {
   if (typeof raw !== "string" || !raw.trim()) return null;
   const v = (/[a-z]/i.exec(raw.replace(/\b(or|and)\b/gi, ""))?.[0] ?? variable).replace(/[^a-z]/i, "x");
@@ -77,6 +113,14 @@ export function parseInequality(raw: unknown, variable = "x"): Interval[] | null
       if (pieces.length < 3 || pieces.length % 2 === 0) return null;
       for (let i = 0; i + 2 < pieces.length; i += 2) {
         const L = linear(pieces[i], v), R = linear(pieces[i + 2], v), op = OPS[pieces[i + 1]];
+        if ((!L || !R) && op && pieces.length === 3) {
+          // A quadratic (or any curve) inequality is solved by code: "(x − 1)(x + 4) ≤ 0" fell back to
+          // the example "−2 < x ≤ 3" and drew a false solution set (maths benchmark round 3).
+          const solved = solveCurveInequality(pieces[0], pieces[2], op, v);
+          if (!solved) return null;
+          acc = intersect(acc, solved);
+          continue;
+        }
         if (!L || !R || !op) return null;
         // (kL − kR)·x  op  mR − mL
         const K = L.k - R.k, M = R.m - L.m;
@@ -152,7 +196,13 @@ export const numberLine: FigureComponent = {
   build(params: FigureParams) {
     const variable = str(params.variable, "x", 2);
     const given = parseInequality(params.inequality ?? params.inequalities, variable);
-    const sets = given ?? parseInequality("-2 < x <= 3")!;
+    // The example set only for a figure with no inequality at all (previews): an inequality the code
+    // cannot read draws no solution set, never another one.
+    const asked = params.inequality ?? params.inequalities;
+    // …and only for a figure given nothing at all: points with no inequality drew the example's
+    // "−2 < x ≤ 3" on a standard-deviation board (maths benchmark R6).
+    const bare = Object.values(params).every((v) => v === undefined || String(v).trim() === "");
+    const sets = given ?? (bare ? parseInequality("-2 < x <= 3")! : []);
     const v = typeof params.variable === "string" && params.variable.trim() ? variable : (/[a-z]/i.exec(String(params.inequality ?? "").replace(/\b(or|and)\b/gi, ""))?.[0] ?? "x");
     const marked: Array<{ name: string; x: number }> = [];
     let letter = 65;

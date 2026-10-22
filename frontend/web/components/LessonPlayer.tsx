@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { asksForPrediction } from "@/lib/canvas/predict";
+import { predictCardFor } from "@/lib/canvas/predictCard";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
@@ -1284,9 +1285,19 @@ export function LessonPlayer({
   const canvasTask = canvasIndex >= 0 ? canvasPanels[canvasIndex].spec.interaction : undefined;
   const canvasTaskRef = useRef(false);
   const canvasMidBoardTaskRef = useRef(false);
+  /**
+   * MATHS AND CS: PREDICT BEFORE THE REVEAL (owner, 2026-10-20; lib/canvas/predictCard.ts). A code
+   * or maths-equation board gets a card built by code from its own values; the lecture holds before
+   * the sentence that reveals the answer. Every other subject gets null here and plays as before.
+   */
+  const canvasPredict = useMemo(() => (canvasIndex >= 0 ? predictCardFor(canvasPanels[canvasIndex].spec, title) : null), [canvasIndex, canvasPanels, title]);
+  const canvasPredictRef = useRef(canvasPredict);
+  /** Boards whose maths/CS prediction has been asked (separate from the old script predictions). */
+  const cardPredictDoneRef = useRef(new Set<string>());
   /** The last prediction question Aria asked, for the thinking pause before its reveal. */
   const lastQuestionRef = useRef("");
   useEffect(() => {
+    canvasPredictRef.current = canvasPredict;
     canvasTaskRef.current = Boolean(canvasTask);
     // A "Check it" card waits for the end of the board; only a try or draw task may stop mid-board.
     canvasMidBoardTaskRef.current = Boolean(canvasTask) && !(canvasTask?.kind === "quiz" && canvasTask.check);
@@ -1301,7 +1312,7 @@ export function LessonPlayer({
    * opened after the whole script, so the answer had always been said first (audit 2026-10-15).
    * `predictHold` = the beat held mid-script and the board sentence the drawing stops at.
    */
-  const [predictHold, setPredictHold] = useState<{ index: number; boardSentence: number } | null>(null);
+  const [predictHold, setPredictHold] = useState<{ index: number; boardSentence: number; card?: boolean } | null>(null);
   const predictDoneRef = useRef(new Set<string>());
   /** Boards whose prediction was answered mid-script (state, for rendering; the ref is for the voice callbacks). */
   const [answeredPredictions, setAnsweredPredictions] = useState<string[]>([]);
@@ -2149,6 +2160,15 @@ export function LessonPlayer({
         // none, Aria leaves a few seconds to think before she gives it (owner, 2026-10-18: "it never
         // really waits for me and tells the answers").
         holdBefore: (sentenceIndex) => {
+          // A maths/CS board's own prediction card: held before its reveal sentence, whatever was said.
+          const mathsPredict = canvasPredictRef.current;
+          if (mathsPredict && sentenceIndex - bridge === mathsPredict.at && sentenceIndex > bridge && !cardPredictDoneRef.current.has(beat.id)) {
+            cardPredictDoneRef.current.add(beat.id);
+            setPredictHold({ index, boardSentence: Math.max(0, mathsPredict.at - 1), card: true });
+            setCanvasHoldIndex(index);
+            lesson.holdForStudent();
+            return true;
+          }
           if (!previousAskedPrediction || sentenceIndex <= bridge || predictDoneRef.current.has(beat.id)) return false;
           predictDoneRef.current.add(beat.id);
           if (canvasMidBoardTaskRef.current) {
@@ -3353,6 +3373,7 @@ export function LessonPlayer({
                   completed={summaryUnlocked}
                   finished={narrationDoneIndex === index}
                   waitingForStudent={canvasHoldIndex === index}
+                  predictCard={predictHold?.index === index && predictHold.card ? canvasPredict?.card : undefined}
                   playing={lesson.playing}
                   topic={title}
                   onSpeak={speakCanvasLine}
@@ -3369,6 +3390,12 @@ export function LessonPlayer({
                   onContinue={() => {
                     setCanvasHoldIndex(null);
                     bumpInteraction();
+                    // Answered a maths/CS prediction card: on to the reveal; the board's own check card stays.
+                    if (predictHold?.index === index && predictHold.card) {
+                      setPredictHold(null);
+                      lesson.requestResume({ explicit: true });
+                      return;
+                    }
                     // Answered at the prediction: the narration goes on to the reveal, same board.
                     if (predictHold?.index === index) {
                       setPredictHold(null);

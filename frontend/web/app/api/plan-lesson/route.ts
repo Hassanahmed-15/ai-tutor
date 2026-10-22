@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth";
 import { studentCardFor } from "@/lib/learnerBasicsStore";
 import { buildTeachingPolicy, policyForPlanner, policyForQuestions } from "@/lib/teachingPolicy";
+import { INTAKE_PROMPT, sanitizeIntake } from "@/lib/intake";
+import { ladderOutlineInstruction, withPartStatuses } from "@/lib/canvas/conceptLadder";
+import type { PartReading } from "@/lib/learnerProfile";
+import { client as canvasClient, jsonCall, PLAN_MODEL } from "@/lib/canvas/generate";
 import { buildStudentCard, type StudentCard } from "@/lib/studentCard";
 import { mergeLearnerBasics } from "@/lib/learnerBasics";
 import OpenAI from "openai";
@@ -368,7 +372,8 @@ function sanitizeOutline(raw: unknown, fallbackTopic: string, polish = true): Pl
     const scopingQuestion = scopingQuestionCount < 3 ? sanitizeScopingQuestion(rec.scopingQuestion) : undefined;
     if (scopingQuestion) scopingQuestionCount++;
     // The research material's [S1] tags are for the planner only (lib/webSources.ts withoutSourceTags).
-    if (title.trim()) subtopics.push({ title: withoutSourceTags(title).slice(0, 80), caption: withoutSourceTags(caption).slice(0, 240), reason: reason.trim().slice(0, 140), confidence, safetyNet, scopingQuestion });
+    const status = rec.status === "new" || rec.status === "shaky" || rec.status === "known" ? rec.status : undefined;
+    if (title.trim()) subtopics.push({ title: withoutSourceTags(title).slice(0, 80), caption: withoutSourceTags(caption).slice(0, 240), reason: reason.trim().slice(0, 140), confidence, safetyNet, scopingQuestion, ...(status ? { status } : {}) });
   }
   if (!polish) return { topic, ...intent, subtopics };
   const polished = polishBeatPlan(
@@ -703,6 +708,8 @@ function streamOutline(
   research?: OutlineResearch,
   /** A whole reference PDF's sections (lib/canvas/documentContext.ts documentSections): the outline must cover them. */
   documentSections?: string[],
+  /** The student's parts from the intake (lib/intake.ts): each subtopic gets its status, by code. */
+  parts?: PartReading[],
 ): Response {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
@@ -806,6 +813,9 @@ function streamOutline(
         coverageCost += pointsCost;
         // The outline the student reviews shows the same titles the lecture will use.
         if (nounTitles) rawOutline.subtopics = rawOutline.subtopics.map((subtopic) => ({ ...subtopic, title: nounTitle(subtopic.title) }));
+        // Every subtopic carries where the student stands on it (lib/canvas/conceptLadder.ts), so the
+        // lesson is built on the concept ladder; a syllabus or a document keeps everything it needs.
+        if (parts?.length && !question) rawOutline = { ...rawOutline, subtopics: withPartStatuses(rawOutline.subtopics, parts, { keepAll: Boolean(coverage && pack?.syllabusText) || Boolean(documentSections?.length) }) };
         const outline = focused
           ? {
               topic: rawOutline.topic || fallbackTopic,
@@ -844,7 +854,7 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const mode = typeof body.mode === "string" ? body.mode : "";
-  if (mode !== "subject" && mode !== "clarify" && mode !== "intent" && mode !== "diagnose" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
+  if (mode !== "subject" && mode !== "clarify" && mode !== "intent" && mode !== "diagnose" && mode !== "intake" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
     return NextResponse.json({ error: "mode must be subject, clarify, intent, diagnose, document-scope, document-question, outline, or revise" }, { status: 400 });
   }
 
@@ -923,6 +933,10 @@ export async function POST(req: Request) {
   const strictPdf = sourceDocument && isPdfUpload(sourceDocument) && sanitizeSourceScope(body.sourceScope)?.fidelity === "strict" ? sourceDocument : null;
   const wholePdf = referencePdf ?? strictPdf;
   const referenceListings = referencePdf ? documentListings(referencePdf) : [];
+  // A question about the code is answered from the listings in STRICT mode too: the code is on the pages.
+  // "explain me AVL tree coding" (strict) was outlined as one subtopic, and its 7 code boards were cut
+  // to the first — the node and height setup — with insert, balance and the rotations never shown (PDF bench, 2026-10-18).
+  const codeListings = wholePdf ? documentListings(wholePdf) : [];
   const sourceDocLine = wholePdf
     ? `\n\nThe student uploaded a source document to learn from. Here it is in full, page by page (ground the outline/questions in THIS, not just the topic string — do not drift to a different, more generic subject in the same general area):\n${documentForCanvas(wholePdf, 40_000)}${referenceListings.length ? `\n\nCODE LISTINGS in the document (every one of them):\n${listingIndex(referenceListings)}` : ""}`
     : sourceDocument
@@ -1016,6 +1030,50 @@ export async function POST(req: Request) {
    * Cheap on purpose: the same gpt-4o-mini as the other planning calls, a few hundredths of a cent
    * per turn against the lecture's own gpt-4o call.
    */
+  /*
+   * THE INTAKE (lib/intake.ts, owner 2026-10-20): the topic's parts, in teaching order and the
+   * student's words, each with ONE very basic check. The client shows the parts as chips, checks
+   * only the ones marked "I know this" (at most three), and grades them locally: one call, then no
+   * waiting between questions. A PDF or course lesson hands its own parts (headings, syllabus
+   * points), so the chips name what will really be taught.
+   */
+  if (mode === "intake") {
+    const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
+    if (!topic) return NextResponse.json({ error: "topic is required" }, { status: 400 });
+    const request = typeof body.request === "string" ? body.request.trim().slice(0, 400) : "";
+    const given = Array.isArray(body.parts) ? (body.parts as unknown[]).filter((x): x is string => typeof x === "string" && x.trim().length > 0).map((x) => x.trim().slice(0, 120)).slice(0, 24) : [];
+    const card = await signedInCard(`${topic} ${request}`);
+    const wording = card ? policyForQuestions(buildTeachingPolicy(card)) : "\nThe student's level is not known: word the parts and checks so a 13-year-old could follow them, keeping the topic's real key terms where they are needed.";
+    const level = card?.level ? `\nThe student: ${card.level}.` : "";
+    // A document's sections are the parts. More than six are grouped HERE, in order, into at most
+    // six runs of neighbours: asked to group 20 sections itself, the model dropped half the
+    // document (water, flowers, pollination; probe 2026-10-20). The model only names each group.
+    const groups = groupSections(given, 6);
+    const fromSource = !groups.length
+      ? ""
+      : `\nUSE EXACTLY THESE ${groups.length} PARTS, in this order (each is what that part of the lesson will teach; name each with a short label in the student's words that covers ALL of its sections, never add, drop or merge one): ${groups.map((g, i) => `${i + 1}. ${g.join("; ")}`).join(" | ")}`;
+    const strict = body.strict === true && sourceDocument ? "\nEvery check must be answerable from the document's own words: ask only what it says." : "";
+    // A check is read WITHOUT the document in front of the student ("Which two roles are named?" made
+    // no sense; probe 2026-10-20): it asks about the subject itself, plainly, and every option is true to it.
+    const standalone = sourceDocument ? "\nEach check must make sense on its own, without the document in front of the student: about the subject itself, never \"named\", \"shown\", \"listed\", \"in the text\" or \"the activity\". Every right option must be exactly true (you look at pollen grains WITH a microscope; you do not collect a microscope)." : "";
+    try {
+      // The planning model, not the small one: a "right" answer that is wrong tells a student who
+      // knows the part that they do not (the small model said electrolysis breaks down "water";
+      // probe 2026-10-20). Started early by the page, so its few seconds are mostly hidden.
+      const { json, costUsd: spent } = await jsonCall(canvasClient(), PLAN_MODEL, INTAKE_PROMPT, `Topic: "${topic}"${request && request.toLowerCase() !== topic.toLowerCase() ? `\nWhat the student asked: "${request}"` : ""}${level}${wording}${fromSource}${strict}${standalone}${sourceDocument && given.length ? `\n\nThe document (for the checks):\n${summarizeSourceDocumentForPlanning(sourceDocument).slice(0, 6000)}` : ""}`, 1800);
+      const named = sanitizeIntake(json);
+      // A document's parts are exactly its groups: if the model named fewer, the missing ones keep
+      // their first section's heading (unchecked) so no page is left out of what the student is asked.
+      const parts = groups.length && named.length !== groups.length
+        ? groups.map((g, i) => named[i] ?? { id: `part-${i + 1}`, label: g[0].slice(0, 48), check: null })
+        : named;
+      return NextResponse.json({ parts, costUsd: spent });
+    } catch (err) {
+      // Never blocks the lesson: no parts means the client plans straight away, as for a beginner.
+      return NextResponse.json({ parts: [], costUsd: 0, degraded: err instanceof Error ? err.message : "intake unavailable" });
+    }
+  }
+
   if (mode === "diagnose") {
     const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
     if (!topic) return NextResponse.json({ error: "topic is required" }, { status: 400 });
@@ -1212,12 +1270,15 @@ export async function POST(req: Request) {
     const topicRequest = !scopedQuestion && (isTopicRequest(questionText) || broadTopic);
     const directQuestion = (Boolean(scopedQuestion) || isDirectQuestion(questionText)) && !broadTopic;
     const sessionLearner = body.learnerProfile ? sanitizeLearnerProfile(body.learnerProfile, topic) : null;
-    const learnerLine = sessionLearner
+    const learnerLine = (sessionLearner
       ? outlineLearnerInstruction(
           learnerInstruction(sessionLearner, topicComplexity(body.depth)),
           { question: directQuestion },
         )
-      : "";
+      : "")
+      // The student's parts and what they know of each (lib/intake.ts): a lesson is planned FROM
+      // them, each subtopic carrying its status for the concept ladder (lib/canvas/conceptLadder.ts).
+      + (sessionLearner?.parts?.length && !directQuestion ? ladderOutlineInstruction(sessionLearner.parts) : "");
 
     /*
      * The chosen source scope reaches the PLANNER, not only the lecture writer — same reasoning
@@ -1280,17 +1341,17 @@ export async function POST(req: Request) {
     const preference = typeof body.teachingPreference === "string" && ["quick", "balanced", "deep"].includes(body.teachingPreference)
       ? `\nThe student's saved teaching preference is "${body.teachingPreference}"; their words in the request override it.`
       : "";
-    // A question about a reference PDF's code is answered with ALL the code it covers, one subtopic per listing.
-    const codeQuestion = directQuestion && referenceListings.length > 0 && (asksForCode(questionText) || isCodeQuestion(questionText, referenceListings.map((l) => l.lines.join("\n")).join("\n")));
+    // A question about a PDF's code is answered with ALL the code it covers, one subtopic per listing.
+    const codeQuestion = directQuestion && codeListings.length > 0 && (asksForCode(questionText) || isCodeQuestion(questionText, codeListings.map((l) => l.lines.join("\n")).join("\n")));
     // The listings a code question names (lib/canvas/documentContext.ts listingsAsked): all, unless it names a routine.
-    const codeAsked = codeQuestion ? listingsAsked(questionText, referenceListings) : referenceListings;
-    const codeBoards = codeAsked.length < referenceListings.length ? Math.max(1, codeAsked.reduce((n, l) => n + Math.ceil(l.lines.length / CANVAS_CODE_LINES), 0)) : 12;
+    const codeAsked = codeQuestion ? listingsAsked(questionText, codeListings) : codeListings;
+    const codeBoards = codeAsked.length < codeListings.length ? Math.max(1, codeAsked.reduce((n, l) => n + Math.ceil(l.lines.length / CANVAS_CODE_LINES), 0)) : 12;
     // One idea or a process of stages: decided on its own, before planning (lib/planPrompt.ts QuestionShape).
     // Typed questions only: a question about a PDF keeps its short answer (one board, two at most —
     // the supervisor's standing ask; memory pdf-concise-answer-requirement).
     const shape = directQuestion && !codeQuestion && !sourceDocument ? await questionShape(client, questionText) : null;
     const questionLine = codeQuestion
-      ? documentCodeQuestionInstruction(questionText, referenceListings, codeAsked)
+      ? documentCodeQuestionInstruction(questionText, codeListings, codeAsked)
       : directQuestion
       ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument, shape })
       : topicRequest ? topicLessonInstruction(questionText) : "";
@@ -1340,7 +1401,7 @@ export async function POST(req: Request) {
           checkCoverage: (pack) => syllabusAsked(pack) && pack.checklist.length > 0,
         }
       : undefined;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : shape === "process" ? 3 : shape === "fact" ? 1 : 2, research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined);
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : shape === "process" ? 3 : shape === "fact" ? 1 : 2, research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined, !directQuestion ? sessionLearner?.parts : undefined);
   }
 
   // mode === "revise"
@@ -1402,3 +1463,10 @@ function undash(text: string): string {
     .trim();
 }
 
+
+/** Sections into at most `max` runs of neighbours, in order, as even as possible (lib/intake.ts). */
+function groupSections(sections: string[], max: number): string[][] {
+  if (sections.length <= max) return sections.map((s) => [s]);
+  const size = sections.length / max;
+  return Array.from({ length: max }, (_, i) => sections.slice(Math.round(i * size), Math.round((i + 1) * size))).filter((g) => g.length);
+}

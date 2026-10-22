@@ -12,7 +12,8 @@
  * `&fixture=dsa` loads hand-written data-structure boards (lib/canvas/dsaFixtures.ts) instead (`&fixture=math`: equation boards, lib/canvas/equationFixtures.ts), and
  * `&session=<id>` one of the student's real typed-prompt lectures (the boards it has so far).
  */
-import { useCallback, useEffect, useState } from "react";
+import { predictCardFor } from "@/lib/canvas/predictCard";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Loader2, Play, Sparkles } from "lucide-react";
 import { LessonPlayer } from "@/components/LessonPlayer";
@@ -21,6 +22,7 @@ import type { Beat } from "@/lib/lessonContent";
 import type { CanvasBoardSpec } from "@/lib/canvas/types";
 import { DSA_FIXTURES } from "@/lib/canvas/dsaFixtures";
 import { EQUATION_FIXTURES } from "@/lib/canvas/equationFixtures";
+import { CS_VISUAL_FIXTURES, LOGIC_FIXTURES, MATHS_VISUAL_FIXTURES, SKETCH_FIXTURES } from "@/lib/canvas/mathsVisualFixtures";
 import { canvasSentences } from "@/lib/canvas/plan";
 import { validateCanvasSpec } from "@/lib/canvas/validate";
 
@@ -59,7 +61,9 @@ export default function CanvasLab() {
     const id = params.get("id");
     const session = params.get("session");
     const fixture = params.get("fixture");
-    if ((fixture === "dsa" || fixture === "math") && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(fixture === "math" ? EQUATION_FIXTURES : DSA_FIXTURES)));
+    if (fixture === "sketch" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(SKETCH_FIXTURES, "Completing the square, graphs and sorting algorithms")));
+    else if (fixture === "logic" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(LOGIC_FIXTURES, "Logic gates and truth tables")));
+    else if ((fixture === "dsa" || fixture === "math" || fixture === "visuals") && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixture === "visuals" ? fixtureLecture([...MATHS_VISUAL_FIXTURES, ...CS_VISUAL_FIXTURES], "Algebra, Pythagoras and recursion: solving equations") : fixtureLecture(fixture === "math" ? EQUATION_FIXTURES : DSA_FIXTURES)));
     else if (session && process.env.NODE_ENV !== "production") {
       fetch(`/api/progressive-lectures/${encodeURIComponent(session)}`)
         .then((r) => r.json())
@@ -246,12 +250,12 @@ function ApparatusFixture() {
 }
 
 /** The hand-written DSA boards as a lecture, each validated exactly as a generated board is. */
-function fixtureLecture(fixtures: typeof DSA_FIXTURES): Lecture {
+function fixtureLecture(fixtures: typeof DSA_FIXTURES, topic = "Data structures"): Lecture {
   const beats = fixtures.flatMap((f) => {
     const spec = validateCanvasSpec(f.raw, canvasSentences(f.script).length);
     return spec ? [{ id: f.id, script: f.script, draw: { ops: [{ kind: "canvasBoard", spec, at: 0, endAt: 1 }] } } as unknown as Beat] : [];
   });
-  return { id: "fixture-dsa", title: "DSA boards", topic: "Data structures", beats, costUsd: 0, ms: 0, log: [] };
+  return { id: "fixture-dsa", title: "DSA boards", topic, beats, costUsd: 0, ms: 0, log: [] };
 }
 
 /**
@@ -267,8 +271,15 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
   const [sentence, setSentence] = useState(0);
   const [progress, setProgress] = useState(0.5);
   const [finished, setFinished] = useState(false);
+  // ?predict=1: the board held before its maths/CS prediction's reveal, with the card open.
+  const [showPredict, setShowPredict] = useState(false);
+  const predict = showPredict ? predictCardFor(panels[board]?.spec, lecture.topic) : null;
   const script = lecture.beats.find((b) => b.id === panels[board]?.key)?.script ?? "";
-  const sentences = script.split(/(?<=[.!?])\s+/).filter(Boolean);
+  const sentences = useMemo(() => canvasSentences(script), [script]);
+  // ?play=1: the lecture plays on a speaking clock (≈150 words a minute, as Aria's voice runs) with no
+  // voice — every board, sentence by sentence, the way a student sees it. For recording real playback
+  // (scripts/qa/playback-qa.mts) without paying for narration.
+  const [play, setPlay] = useState(false);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     queueMicrotask(() => {
@@ -276,8 +287,35 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
       if (params.get("s")) setSentence(Number(params.get("s")));
       if (params.get("p")) setProgress(Number(params.get("p")));
       if (params.get("done") === "1") setFinished(true);
+      if (params.get("predict") === "1") setShowPredict(true);
+      if (params.get("play") === "1") { setProgress(0); setPlay(true); }
     });
   }, []);
+  useEffect(() => {
+    if (!play || finished) return;
+    const words = (sentences[sentence] ?? "").split(/\s+/).filter(Boolean).length;
+    const ms = Math.max(1800, words * 400);
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / ms);
+      setProgress(t);
+      if (t < 1) raf = requestAnimationFrame(tick);
+      else if (sentence < sentences.length - 1) setSentence(sentence + 1);
+      else setFinished(true);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [play, finished, sentence, sentences]);
+  useEffect(() => {
+    if (!play || !finished) return;
+    // The finished board stays up a moment, as it does after Aria's last word; then the next board.
+    const t = window.setTimeout(() => {
+      if (board < panels.length - 1) { setBoard(board + 1); setSentence(0); setProgress(0); setFinished(false); }
+      else (window as unknown as { __playDone?: boolean }).__playDone = true;
+    }, 3000);
+    return () => window.clearTimeout(t);
+  }, [play, finished, board, panels.length]);
   return (
     <main className="flex h-screen flex-col bg-black text-white">
       <div className="flex flex-wrap items-center gap-3 border-b border-white/10 px-4 py-2 text-xs font-bold">
@@ -294,7 +332,7 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
         <span className="min-w-0 flex-1 truncate font-normal text-white/60">{sentences[sentence]}</span>
       </div>
       <div className="relative min-h-0 flex-1">
-        <LessonCanvas panels={panels} currentIndex={board} sentence={sentence} sentenceProgress={progress} finished={finished} waitingForStudent={finished} playing={!finished} topic={lecture.topic} onSpeak={(t) => console.log("[speak]", t)} onTellAria={(t) => console.log("[aria]", t)} onContinue={() => { setBoard((b) => Math.min(panels.length - 1, b + 1)); setSentence(0); setFinished(false); }} />
+        <LessonCanvas panels={panels} currentIndex={board} sentence={predict ? predict.at - 1 : sentence} sentenceProgress={predict ? 1 : progress} finished={predict ? false : finished} waitingForStudent={predict ? true : finished} predictCard={predict?.card} checkFlow={Boolean(predict)} playing={!finished} topic={lecture.topic} onSpeak={(t) => console.log("[speak]", t)} onTellAria={(t) => console.log("[aria]", t)} onContinue={() => { setBoard((b) => Math.min(panels.length - 1, b + 1)); setSentence(0); setFinished(false); }} />
       </div>
     </main>
   );

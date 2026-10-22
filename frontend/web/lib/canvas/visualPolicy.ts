@@ -1,8 +1,13 @@
-import { figureComponent, figureFor } from "../figures/registry";
+import { isMathsTopic } from "./predictCard";
+import { spokenEquations } from "./equationCheck";
+import { canvasSentences } from "./plan";
+import { isCsTopic, isLabLookTopic } from "./subjectLook";
+import { FIGURE_COMPONENTS, figureComponent, figureFor } from "../figures/registry";
 import { classifyInstructionalTask } from "./instructionalTask";
 import { namedIn } from "./labelPolicy";
-import { boardWords, componentFitsSubject, GEOMETRY_FORM, hasVisualForm, isCircleGeometry, isGeometryOrMechanics, MECHANICS_FORM, isPhotographicAppearance, isPictureSubject, isPictureWorthy, isRealProcess, needsVectorDiagram } from "../diagrams/visualForm";
+import { boardWords, componentFitsSubject, GEOMETRY_FORM, hasVisualForm, isGeometryOrMechanics, MECHANICS_FORM, isPhotographicAppearance, isPictureSubject, isPictureWorthy, isRealProcess, needsVectorDiagram } from "../diagrams/visualForm";
 import type { CanvasPlanBeat, CanvasStage } from "./types";
+import type { FigureComponent } from "../figures/types";
 
 /** How freely the lesson may add visuals beyond a supplied source. */
 export type VisualPolicyMode = "course" | "prompt" | "reference" | "strict";
@@ -76,21 +81,45 @@ function processKitOffSubject(beat: CanvasPlanBeat, kit: string): boolean {
   return !component || !component.match.test(beat.title);
 }
 
+/** How many of a figure's parts the board's narration names. */
+function partsNamed(beat: CanvasPlanBeat, component: FigureComponent): number {
+  return component.parts.filter((p) => namedIn(beat.script, p.name)).length;
+}
+
+/** A maths figure the board's words describe better than `picked`: its trigger matches, more parts named. */
+function describedFigure(beat: CanvasPlanBeat, picked: FigureComponent): FigureComponent | undefined {
+  const text = boardText(beat);
+  const floor = Math.max(2, partsNamed(beat, picked) + 1);
+  let best: FigureComponent | undefined;
+  let bestNamed = 0;
+  for (const c of FIGURE_COMPONENTS) {
+    if (c === picked || !MATH_KITS.has(c.name) || !c.match.test(text) || !componentFitsSubject(c.name, text)) continue;
+    const n = partsNamed(beat, c);
+    if (n >= floor && n > bestNamed) {
+      best = c;
+      bestNamed = n;
+    }
+  }
+  return best;
+}
+
 /**
  * The component this board is about. One its title names wins over words its script mentions in
  * passing: "Water moves by osmosis" is a membrane board even though it describes the water molecule's
  * covalent bonds and lone pairs (audit replay 2026-10-17).
  */
 function figureForBoard(beat: CanvasPlanBeat) {
-  // A board about a circle's chords, tangents or angles is the circle theorem diagram, even when its
-  // proof says "triangle" more often than "chord" ("The centre bisects a chord" was drawn as a bare
-  // right triangle and rejected twice, QA 2026-10-17).
-  const circle = figureComponent("circleTheorem");
-  if (circle && isCircleGeometry(boardText(beat)) && circle.match.test(boardText(beat))) return circle;
   // What the board is ABOUT picks its diagram first. The narration may pick one only when it names
   // that subject at least twice: one passing word put a plasmid on "Risks and balanced discussion"
   // (audit 2026-10-17), while a terse title ("Transformations") still needs its script.
   const byTitle = figureFor(`${beat.title} ${beat.brief}`);
+  // THE FIGURE THE BOARD DESCRIBES BEATS THE ONE A TITLE WORD PICKED. When the title picks a maths
+  // figure, another maths figure whose own trigger matches the whole board and whose parts the
+  // narration names more often (at least two) is what the board is about: "Arranging four triangles
+  // inside a square" picked a bare triangle by its title word while its narration described the four
+  // triangles and the large square of a rearrangement proof (2026-10-21).
+  const described = byTitle && MATH_KITS.has(byTitle.name) ? describedFigure(beat, byTitle) : undefined;
+  if (described) return described;
   if (byTitle && componentFitsSubject(byTitle.name, boardText(beat)) && !processKitOffSubject(beat, byTitle.name)) return byTitle;
   // A board about a cell, organ, plant or animal is drawn as itself: its narration naming a process
   // ("ribosomes carry out protein synthesis") put the protein-synthesis figure on an animal-cell board
@@ -217,13 +246,24 @@ function meaningful(stage: CanvasStage, apparatus = false): boolean {
  * when separate syllabus contracts explicitly require labelled physical structures. The remaining
  * visual load is carried by deterministic renderers: flows, graphs, equations, molecules and code.
  */
-export const GRAPH_LIKE = new Set(["supplyDemand", "ppf", "adAs", "costRevenue", "scatterPlot", "histogram", "boxPlot", "cumulativeFrequency", "barChart", "pieChart", "inferenceDistribution", "motionGraph", "rateGraph", "decayCurve", "energyProfile", "functionGraph", "riemannSum", "slopeField", "coordinateGrid", "numberLine", "unitCircle", "argand", "punnettSquare", "probabilityTree", "venn", "sankey", "ecologicalPyramid", "sequences", "oxygenDebt", "sectorArc", "gelElectrophoresis", "oxygenDissociation", "microscopeGraticule"]);
+export const GRAPH_LIKE = new Set(["supplyDemand", "ppf", "adAs", "costRevenue", "scatterPlot", "histogram", "boxPlot", "dotPlot", "cumulativeFrequency", "barChart", "pieChart", "inferenceDistribution", "motionGraph", "rateGraph", "decayCurve", "energyProfile", "functionGraph", "riemannSum", "slopeField", "coordinateGrid", "numberLine", "unitCircle", "argand", "punnettSquare", "probabilityTree", "venn", "sankey", "ecologicalPyramid", "sequences", "oxygenDebt", "sectorArc", "gelElectrophoresis", "oxygenDissociation", "microscopeGraticule"]);
 /** Structures drawn differently per board from their params: a haploid view, then a diploid one. */
 // Geometry kits draw a different construction per board from their params (one circle theorem per
 // board): "circleTheorem is drawn on b1" turned the chord-bisector and tangent boards of a circle
 // theorems lesson into a scene and an equation (QA 2026-10-17).
-const MATH_KITS = new Set(["circleTheorem", "triangle", "vectors", "parallelLines", "bearings", "shapes3d"]);
-const REPEATABLE = new Set(["chromosomeSets", "cellDivision", "punnettSquare", "pedigree", "electromagnetism", "titration", "circleTheorem", "triangle", "vectors", "parallelLines", "bearings", "shapes3d"]);
+const MATH_KITS = new Set(["circleTheorem", "triangle", "vectors", "parallelLines", "bearings", "shapes3d", "pythagorasProof", "areaModel", "logicCircuit"]);
+/** Code-drawn maths figures that working can be written beside (lib/canvas/layout.ts). */
+const WORKING_FIGURES = new Set([...MATH_KITS, "functionGraph", "coordinateGrid", "numberLine", "unitCircle", "sectorArc", "argand", "calculusKit", "riemannSum", "dotPlot", "boxPlot", "cumulativeFrequency", "probabilityTree", "venn", "sequences"]);
+
+/** Does this narration work something out — two or more equations said, or three sentences of numbers and operations? */
+function worksSomethingOut(script: string): boolean {
+  if (spokenEquations(script).length >= 2) return true;
+  return canvasSentences(script).filter((s) => /\d/.test(s) && /[=+×÷−\-^²³√]|\b(times|plus|minus|divided by|squared|equals|gives)\b/i.test(s)).length >= 3;
+}
+
+/** Maths figures whose shapes move with the narration (lib/figures/types.ts ShapeTiming). */
+const MOTION_MATHS = new Set(["pythagorasProof", "areaModel"]);
+const REPEATABLE = new Set(["logicCircuit", "chromosomeSets", "cellDivision", "punnettSquare", "pedigree", "electromagnetism", "titration", "circleTheorem", "triangle", "vectors", "parallelLines", "bearings", "shapes3d"]);
 export const HUMANITIES = new Set(["timeline", "causeConsequence", "sourceCard", "evaluationScale", "conceptTable", "circularFlow"]);
 
 const DATA_STRUCTURE_WORDS = /\b(?:linked list|binary (?:search )?tree|bst|avl|heap|stack|queue|array|hash ?(?:table|map)|node|pointer|vertex|vertices|adjacency|traversal|bfs|dfs|algorithm|data structure|binary search|sorting|sort)\b/i;
@@ -233,6 +273,8 @@ export function applyLessonVisualPolicy(
   options: {
     mode: VisualPolicyMode;
     aiPictures?: boolean;
+    /** The lecture's topic: a maths or computer-science lecture never gets a generated picture (owner, 2026-10-20). */
+    topic?: string;
     /**
      * The textbook diagram library (lib/figures/library.ts findLibraryFigure), passed in so this
      * policy stays pure: a board's words (and what the syllabus says it must show) → a diagram, or null.
@@ -259,7 +301,13 @@ export function applyLessonVisualPolicy(
   // AI pictures (gpt-image-1-mini) are ON and work alongside the diagrams (owner, 2026-10-17: "a
   // combination of gpt image 1 mini and diagrams"): a picture shows what something looks like; a
   // board whose job is labelling a structure gets an exactly-labelled diagram. CANVAS_AI_PICTURES=off disables them.
-  const aiPictures = options.aiPictures ?? !(typeof process !== "undefined" && process.env?.CANVAS_AI_PICTURES === "off");
+  // Generated pictures do not suit maths or computer science (owner, 2026-10-20: "gpt image generated
+  // pics won't look good for computer science and mathematics"): those lectures draw everything by code.
+  // The subject is read from the lecture itself — the student's words AND the planner's board titles
+  // and briefs: a student who typed "pythogaras theorm" still gets a maths lecture (owner, 2026-10-20:
+  // "can't see the change locally" — the misspelt topic matched no maths word).
+  const labLecture = options.topic !== undefined && isLabLookTopic([options.topic, ...input.map((b) => `${b.title} ${b.brief}`)].join(" "));
+  const aiPictures = labLecture ? false : options.aiPictures ?? !(typeof process !== "undefined" && process.env?.CANVAS_AI_PICTURES === "off");
   // Pictures are generated, checked by a textbook editor and remembered (lib/canvas/textbookDiagram.ts),
   // so a lesson may show up to four; a verified one costs nothing the next time it is used.
   // Up to six checked pictures a lesson (owner, 2026-10-17: "AI generated images would be better").
@@ -372,9 +420,24 @@ export function applyLessonVisualPolicy(
     // A data graph needs its own trigger in the board's words: a title word shared with its description
     // ("different", "conditions", "against") put the chemistry rate-of-reaction graph on photoelectric
     // and enzyme boards (2026-10-18). A structure may still be matched by its subject in the title.
-    const byTitle = !GRAPH_LIKE.has(component.name) && titleWords.some((w) => component.title.toLowerCase().includes(w));
+    // A shared title word counts only when no other diagram's own trigger claims the board: "square"
+    // (square-based pyramid) put the 3D-solids cube on "Arranging four triangles inside a square", the
+    // Pythagoras rearrangement proof; rejected twice, it shipped as a bare text board (2026-10-21).
+    const rival = component.match.test(text) ? undefined : figureForBoard(beat);
+    const byTitle = !GRAPH_LIKE.has(component.name) && (!rival || rival.name === component.name) && titleWords.some((w) => component.title.toLowerCase().includes(w));
     const fits = (component.match.test(text) || byTitle) && componentFitsSubject(component.name, text);
     if (!fits) {
+      // The planner wanted a diagram here and named the wrong one: the maths kit that draws this
+      // board's words takes its place (the Pythagoras proof for the cube above).
+      const better = figureForBoard(beat);
+      if (better && better.name !== component.name && MATH_KITS.has(better.name) && componentFitsSubject(better.name, text)) {
+        changes.push(`${beat.id}: planner's ${component.name} → ${better.name} (it fits the board's words)`);
+        beat.stage = "figure";
+        beat.figure = better.name;
+        beat.objects = labelledFigureParts(better, beat.requiredVisual?.mustShow ?? []);
+        if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
+        continue;
+      }
       changes.push(`${beat.id}: planner's ${component.name} ignored (it does not fit the board's words)`);
       continue;
     }
@@ -410,6 +473,10 @@ export function applyLessonVisualPolicy(
     const replaces = GRAPH_LIKE.has(component.name) ? ["illustration", "scene", "flow", "graph", "compare", "equation"]
       : HUMANITIES.has(component.name) ? ["illustration", "scene", "flow", "compare"]
       : ["illustration", "scene", "flow"];
+    // Maths figures whose shapes move with the narration (MOTION_MATHS) carry the algebra themselves:
+    // one replaces an equation or comparison board whose title asks for the picture ("Completing the
+    // square as an area") or whose narration describes it (two or more of its parts named).
+    if (MOTION_MATHS.has(component.name) && (component.match.test(`${beat.title} ${beat.brief}`) || partsNamed(beat, component) >= 2)) replaces.push("equation", "compare");
     // (see below for atom maps that no component title names)
     // An atom-count board that is not about conserving atoms ("catalysts speed reactions" drew A×2,
     // B×2 → A×2, B×2; audit 2026-10-17) gives way to the diagram its subject has.
@@ -933,6 +1000,9 @@ export function applyLessonVisualPolicy(
     const contract = beat.requiredVisual?.stages ?? [];
     if (contract.length && !contract.every((st) => ["compare", "scene", "flow", "illustration", "figure", "diagram"].includes(st))) continue;
     const kit = beat.stage === "figure" && beat.figure && beat.figure !== "drawn" ? beat.figure : undefined;
+    // The Visuals Lab maths figures ARE the board's diagram, sequence and maths at once (the proof's
+    // triangles slide, the square is completed as you watch): whatever the label, a fitting one stays.
+    if (kit && MOTION_MATHS.has(kit) && figureComponent(kit)?.match.test(boardText(beat))) continue;
     const tb = `${beat.title} ${beat.brief}`;
     const kitFits = kit === "library" || Boolean(kit && figureComponent(kit)?.match.test(tb));
     let next: CanvasStage = beat.stage;
@@ -984,6 +1054,113 @@ export function applyLessonVisualPolicy(
     changes.push(`${beat.id}: equation → flow (biology words, not a calculation)`);
     beat.stage = "flow";
     if (beat.requiredVisual) beat.requiredVisual.stages = ["flow"];
+  }
+
+  // MATHS AND COMPUTER SCIENCE ARE DRAWN AS SKETCH BOARDS (owner, 2026-10-20: "why can't I get these
+  // visuals generated live"): every board that would be cards, a scene, a comparison table, a picture
+  // or a described diagram is drawn the Visuals Lab's way instead — writing, worked maths, shapes that
+  // move, graphs, tables and code, placed by code and written by the marker (lib/canvas/sketch.ts).
+  // Equation, graph, code, data-structure, exam and exact figure boards keep their own renderers.
+  if (labLecture) {
+    for (const beat of beats) {
+      if (examIds.has(beat.id) || beat.overview) continue;
+      // A maths lesson that is not about programming has no code board: a probability lecture's third
+      // board was planned as "code" (maths benchmark R7). Its working is an equation board.
+      if (beat.stage === "code" && isMathsTopic(`${options.topic ?? ""} ${beat.title}`) && !/\b(code|coding|program\w*|python|java\w*|pseudo-?code|algorithm|function\s+in|loop|variable|array|recursion|computer)\b/i.test(`${options.topic ?? ""} ${beat.title} ${beat.brief}`)) {
+        changes.push(`${beat.id}: code → equation (a maths lesson, not programming)`);
+        Object.assign(beat, { stage: "equation", figure: undefined, figureAsset: undefined });
+        if (beat.requiredVisual) beat.requiredVisual.stages = ["equation"];
+        continue;
+      }
+      // Named points with coordinates (three or more, or a collinearity proof) are plotted where they
+      // are: free vectors drawn from O showed neither A(1, 2), B(3, 5) nor C(5, 8) on "proving three
+      // points are collinear" (maths benchmark, 2026-10-21).
+      const named = (boardText(beat).match(/\b[A-Z]\s*\(\s*[−-]?\d+(?:\.\d+)?\s*,\s*[−-]?\d+(?:\.\d+)?\s*\)/g) ?? []).length;
+      const grid = figureComponent("coordinateGrid");
+      if (grid && (named >= 3 || (/\bcollinear\b/i.test(boardText(beat)) && named >= 2)) && !(beat.stage === "figure" && beat.figure === "coordinateGrid") && !beat.rejectedFigures?.includes("coordinateGrid") && ["figure", "flow", "compare", "scene", "illustration", "diagram", "sketch"].includes(beat.stage)) {
+        changes.push(`${beat.id}: ${beat.stage}${beat.figure ? ` (${beat.figure})` : ""} → figure (coordinateGrid: named points are plotted)`);
+        Object.assign(beat, { stage: "figure", figure: "coordinateGrid", figureAsset: undefined, objects: labelledFigureParts(grid, beat.requiredVisual?.mustShow ?? []) });
+        if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
+        continue;
+      }
+      // History and essay figures (cause and consequence, timelines, sources) never teach maths or CS:
+      // a logic-gates board was given "cause and consequence" (QA batch 2, 2026-10-21).
+      const essayFigure = beat.stage === "figure" && Boolean(beat.figure && HUMANITIES.has(beat.figure));
+      const drawnFigure = beat.stage === "figure" && (beat.figure === "drawn" || !beat.figure || essayFigure);
+      // A board about what a graph shows is drawn with its graph, not as lines of algebra: "The
+      // graphical meaning" of simultaneous equations shipped with no graph (QA batch 1, 2026-10-21).
+      const graphBoard = beat.stage === "equation" && /\bgraph(?:s|ical(?:ly)?)?\b|\bplot(?:s|ted|ting)?\b|\bintersect\w*|\bstraight lines?\b|\bcross(?:es|ing)? at\b/i.test(`${beat.title} ${beat.brief}`);
+      // Flows (a route, a process, a sequence of steps) and comparison tables keep their own boards:
+      // those lay out every box and fit every word inside it by code. As free sketches the writer hand-
+      // placed tiny circles holding "advanced methods" and "complex numbers" with arrows through them —
+      // the owner's "a lot of text overlap" (2026-10-21, a 15-board Pythagoras lecture).
+      // A free graph of a data set invents its curves: "A (SD 0.71)" and "B (SD 2.83)" came out as one
+      // curve twice, and the board fell back (maths benchmark round 1). The data's own figure draws it.
+      const dataBoard = beat.stage === "graph" && ["dotPlot", "boxPlot", "histogram", "cumulativeFrequency"].includes(figureForBoard(beat)?.name ?? "");
+      // A sketch planned for a figure the catalogue draws exactly (the angle in a semicircle) uses it:
+      // a hand-drawn semicircle came out as a polygon (maths benchmark round 2).
+      if (!["flow", "compare", "scene", "illustration", "diagram", "sketch"].includes(beat.stage) && !drawnFigure && !graphBoard && !dataBoard) continue;
+      // An exact maths figure that fits the board beats free drawing: a live vectors sketch drew
+      // b = (−2, 5) as an arrow 2 right and 3 up, and a probability tree came out in two loose
+      // pieces (QA batch 2, 2026-10-21). Code computes every point of a catalogue figure.
+      // The board's own words first, then the lecture's topic with the board's title ("Building the
+      // tree" in a lecture on probability tree diagrams) when the board's script backs it up.
+      const byTopic = figureFor(`${options.topic ?? ""} ${beat.title}`);
+      const backed = byTopic && new RegExp(byTopic.match.source, byTopic.match.flags).test(`${options.topic ?? ""} ${boardText(beat)}`) && /\b(tree|branch|vector|graph|curve|axis|axes|triangle|circle|angle|line|grid|plot|chart|gates?\b|circuit|truth table|logic)/i.test(boardText(beat));
+      // The planner's own choice of catalogue figure first ("diagram:triangle" was sketched by hand).
+      const planned = beat.plannedFigure ? figureComponent(beat.plannedFigure) : undefined;
+      const exact = [planned, figureForBoard(beat), backed ? byTopic : undefined].find((c) => c && (GRAPH_LIKE.has(c.name) || MATH_KITS.has(c.name)) && componentFitsSubject(c.name, boardText(beat)) && !beat.rejectedFigures?.includes(c.name));
+      if (exact) {
+        changes.push(`${beat.id}: ${beat.stage} → figure (${exact.name}, exact maths figure)`);
+        Object.assign(beat, { stage: "figure", figure: exact.name, figureAsset: undefined, objects: labelledFigureParts(exact, beat.requiredVisual?.mustShow ?? []) });
+        if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
+        continue;
+      }
+      // No exact figure: a flow or a comparison keeps its own board (it lays out and fits every word).
+      if (beat.stage === "flow" || beat.stage === "compare" || beat.stage === "sketch") continue;
+      changes.push(`${beat.id}: ${beat.stage}${beat.figure ? ` (${beat.figure})` : ""} → sketch (maths/CS, drawn live)`);
+      Object.assign(beat, { stage: "sketch", figure: undefined, figureAsset: undefined });
+      if (beat.requiredVisual) beat.requiredVisual.stages = ["sketch"];
+    }
+  }
+
+  // WORKING BESIDE ITS FIGURE (owner, 2026-10-22: "there are no graphs or images or drawings on the
+  // screen that should be shown while showing the working"). In a maths lesson a figure board whose
+  // narration works a calculation writes that working beside the figure, and a working board whose
+  // words a maths figure draws gets that figure beside its lines (lib/canvas/layout.ts). A figure that
+  // is drawn once per lesson (not a graph, not a construction kit) is not added to a second board.
+  if (options.mode !== "strict" && isMathsTopic([options.topic ?? "", ...beats.map((b) => `${b.title} ${b.brief}`)].join(" "))) {
+    const used = new Set(beats.map((b) => b.figure).filter(Boolean));
+    for (const beat of beats) {
+      if (beat.refresher || beat.overview || examIds.has(beat.id)) continue;
+      const text = boardText(beat);
+      if (beat.stage === "figure" && beat.figure && WORKING_FIGURES.has(beat.figure) && worksSomethingOut(beat.script)) {
+        changes.push(`${beat.id}: figure (${beat.figure}) → working beside the figure`);
+        beat.stage = "equation";
+        if (beat.requiredVisual) beat.requiredVisual.stages = [...new Set([...beat.requiredVisual.stages, "equation" as CanvasStage])];
+      } else if (beat.stage === "equation" && !beat.figure && worksSomethingOut(beat.script)) {
+        const c = figureForBoard(beat);
+        if (!c || !WORKING_FIGURES.has(c.name) || !componentFitsSubject(c.name, text) || beat.rejectedFigures?.includes(c.name)) continue;
+        if (!REPEATABLE.has(c.name) && !GRAPH_LIKE.has(c.name) && used.has(c.name)) continue;
+        changes.push(`${beat.id}: equation → working beside the ${c.name} figure`);
+        beat.figure = c.name;
+        used.add(c.name);
+      }
+    }
+  }
+
+  // CODE IS WRITTEN ON A CODE BOARD (CS round 4): a board that writes or traces code — "we now express
+  // that pattern as pseudocode and trace it" — went on a sketch, where no line is ever lit as Aria speaks.
+  if (options.mode !== "strict" && isCsTopic([options.topic ?? "", ...beats.map((b) => b.title)].join(" "))) {
+    for (const beat of beats) {
+      if (beat.refresher || beat.overview || examIds.has(beat.id) || (beat.stage !== "sketch" && beat.stage !== "flow" && beat.stage !== "scene")) continue;
+      const text = `${beat.title} ${beat.brief} ${beat.script}`;
+      if (/\b(?:pseudocode|python|code|function|procedure)\b/i.test(text) && /\b(?:writ\w*|trac\w*|line (?:\d+|one|two|three|four|five)|the \w+ line)\b/i.test(beat.script)) {
+        changes.push(`${beat.id}: ${beat.stage} → code (it writes or traces code)`);
+        beat.stage = "code";
+        beat.figure = undefined;
+      }
+    }
   }
 
   const meaningfulVisuals = beats.filter((beat) => meaningful(beat.stage, apparatus.has(beat.id))).length;

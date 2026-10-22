@@ -8,10 +8,11 @@ import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpe
 import { withRefresherOnlyIfOffered } from "./plan";
 import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
+import { canvasBeatId, connectToEarlier } from "./connect";
 import { repairCues } from "./cueRepair";
 import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
 import { codeSentenceBlocks, groundSourcePlan, strictBoardLines, ungroundedInPlan, videoBoardLines, videoParts } from "./sourceLessons";
-import { assignListings, documentBoardLines, documentListings, faithfulCodeLines, listingGaps, overlongCodeBoards, substantivePages, uncoveredPages } from "./documentContext";
+import { assignListings, documentBoardLines, documentListings, extraBoardsForListings, faithfulCodeLines, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredPages, type DocumentListing } from "./documentContext";
 import type { SuprnotesLessonInput } from "../suprnotes";
 import { policyForBoards } from "../teachingPolicy";
 import { applyConceptColours, planConceptColours, recapTour } from "./lessonPasses";
@@ -20,14 +21,20 @@ import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 import type { PlanningKnowledge } from "../knowledge/graph";
 import { slug } from "./validate";
 import { sourcesForText, type SourcePack } from "../webSources";
+import { splitLongWorking } from "./splitWorking";
+import type { ExaminerSubject } from "./mathsCheck";
+import { isCsTopic, isLabLookTopic } from "./subjectLook";
+import { applySplits, SQUEEZE_PROMPT, squeezedInPlan } from "./squeeze";
 import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
 import { findLibraryFigure } from "../figures/library";
 import { courseCoverageGaps, coverageMessage, requiredTermsOf, type CoverageGap } from "./courseCoverage";
-import { boardNotesOf } from "./plan";
+import { boardNotesOf, mathsEllipsis } from "./plan";
+import { formulaNotes, narrationArithmetic } from "./equationCheck";
 import { examBoardSpec } from "./examBoard";
 import { writeCheckCard } from "./checkCard";
 import { checkCardBoards, tasksGiveWay } from "./checkCardPlan";
 import { DIVE_PROMPT, diveCandidate, parseDives, withDives } from "./cardDives";
+import { isLadder, ladderBoardBudget } from "./conceptLadder";
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -47,16 +54,14 @@ import { DIVE_PROMPT, diveCandidate, parseDives, withDives } from "./cardDives";
 
 const BOARD_BUDGET_MS = Number(process.env.CANVAS_BOARD_BUDGET_MS) || 170_000;
 
-/** The Beat id of a canvas board — deterministic, so the recap can name boards not yet written. */
-export function canvasBeatId(sessionId: string, planId: string): string {
-  return `cv-${sessionId}-${planId}`;
-}
+export { canvasBeatId, connectToEarlier };
 
 export async function planCanvasLecture(input: ProgressiveLectureInput, knowledge?: PlanningKnowledge): Promise<{ plan: ProgressiveBeatPlan[]; costUsd: number }> {
   const openai = client();
   const request = canvasPlanRequest(input, knowledge);
   // The approved outline sized the lecture; the plan may not grow it (only a refresher may be added).
   const outlined = canvasBoardCount(input);
+  const ladder = isLadder(input.outline?.subtopics) ? ladderBoardBudget(input.outline!.subtopics) : null;
   // A document's long code listings may each take consecutive boards (lib/canvas/documentContext.ts).
   // A strict lecture on the whole selection may add a board per page its outline missed (up to 14):
   // capped at the outline's count, the page check could never be met (pages 3-10 of 10; 2026-10-18).
@@ -71,6 +76,9 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
   const videoBoards = video ? videoParts(video).length : 0;
   // The document whose code listings the boards copy: a reference or strict PDF.
   const document = reference ?? strictDoc;
+  // The listings this lecture must show when it teaches code: the ones a question asks for, or all of them.
+  const codeAsk = input.sourceScope && input.sourceScope.breadth.kind !== "whole" ? input.sourceScope.breadth.focus : null;
+  const wantedListings = document ? (codeAsk ? listingsAsked(codeAsk, documentListings(document)) : documentListings(document)) : [];
   const fromDocument = Boolean(reference || strictDoc || video);
   let costUsd = 0;
   let lastError = "";
@@ -118,8 +126,17 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
           if (repaired.count) { plan = { ...plan, beats: repaired.beats }; console.log(`[canvas] ${repaired.count} board script(s) rewritten to teach their missing key points`); }
         } else console.log(`[canvas] plan covers every key point${gaps.terms.length ? ` (terms not used: ${gaps.terms.join(", ")})` : ""}`);
       }
+      // THE CONCEPT LADDER (lib/canvas/conceptLadder.ts): each new part climbs its rungs over several
+      // boards, so a plan of one board per part goes back once, saying why.
+      if (plan && ladder && plan.beats.length < ladder.min && attempt < maxAttempts) {
+        lastError = `it had ${plan.beats.length} boards; the concept ladder needs at least ${ladder.min}: each NEW part climbs its rungs over 2 to 4 boards, each SHAKY part over 1 to 2, and a KNOWN part is only a recap sentence`;
+        console.log(`[canvas] plan sent back: ${lastError}`);
+        continue;
+      }
       if (plan && allowed > 0 && plan.beats.length > allowed) {
-        lastError = `it had ${plan.beats.length} boards; the outline has exactly ${outlined}${allowed > outlined ? ` (at most ${allowed} with the extra boards allowed)` : ""}`;
+        lastError = ladder
+          ? `it had ${plan.beats.length} boards; the concept ladder allows at most ${allowed}`
+          : `it had ${plan.beats.length} boards; the outline has exactly ${outlined}${allowed > outlined ? ` (at most ${allowed} with the extra boards allowed)` : ""}`;
         if (attempt < maxAttempts) continue;
         // Still over: keep the refresher (if first) and the outline's boards, drop the extras.
         const keep = plan.beats.filter((b, i) => (b.refresher && i === 0) || !b.refresher).slice(0, allowed);
@@ -139,11 +156,18 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         if (attempt < maxAttempts) continue;
         plan = { ...plan, beats: plan.beats.slice(0, videoBoards) };
       }
-      const overlong = plan && document ? [...overlongCodeBoards(document, plan.beats), ...listingGaps(document, plan.beats)] : [];
+      const overlong = plan && document ? [...overlongCodeBoards(document, plan.beats), ...listingGaps(document, plan.beats), ...listingsLeftOut(document, plan.beats, wantedListings)] : [];
       if (overlong.length && attempt < maxAttempts) {
         lastError = overlong.join("; ");
         console.log(`[canvas] plan sent back: ${lastError}`);
         continue;
+      }
+      // Still cut off on the last try: the listing is split by code and each piece narrated (splitCodeBoards).
+      if (overlong.length && plan && document) {
+        const split = await splitCodeBoards(openai, document, plan.beats, Boolean(strictDoc), wantedListings);
+        costUsd += split.costUsd;
+        if (split.count) { plan = { ...plan, beats: split.beats }; console.log(`[canvas] ${split.count} code listing(s) split over consecutive boards by code: ${split.beats.length} board(s) now`); }
+        else console.warn(`[canvas] code plan kept with gaps: ${overlong.join("; ").slice(0, 400)}`);
       }
       const coveredDoc = strictDoc ?? reference;
       const missing = plan && covering && coveredDoc ? uncoveredPages(coveredDoc, plan.beats) : [];
@@ -158,7 +182,7 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
       if (plan) {
         // WORKED NUMBERS ARE CHECKED BY CODE (lib/canvas/numberCheck.ts): a script that says
         // "−(8π)²(0.060) = −121" goes back with the right value named (it is −37.9).
-        const arithmetic = plan.beats.flatMap((beat) => checkNumbers(beat.script));
+        const arithmetic = plan.beats.flatMap((beat) => narrationArithmetic(beat.script));
         if (arithmetic.length && attempt < maxAttempts) {
           lastError = `worked calculations are wrong: ${numberIssuesText(arithmetic)}. Recompute every number, fix those sentences and anything that depends on them (later steps, the quiz answer)`;
           console.log(`[canvas] plan sent back: ${lastError}`);
@@ -186,13 +210,39 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
           };
         }
         const visualMode: VisualPolicyMode = sourceMode ? "strict" : reference ? "reference" : curriculum ? "course" : "prompt";
+        // A CS sentence that packs several lines or steps is split into one per line or step, in the plan,
+        // so each board is written once for the narration it plays with (lib/canvas/squeeze.ts).
+        if (visualMode !== "strict" && isCsTopic([input.topic, ...plan.beats.map((b) => b.title)].join(" "))) {
+          const squeezed = squeezedInPlan(plan.beats).slice(0, 24);
+          if (squeezed.length) {
+            try {
+              const user = squeezed.map((x, i) => `[${i}] ${x.text}`).join("\n");
+              const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, SQUEEZE_PROMPT, user, 3000), 30_000, "split squeezed sentences");
+              costUsd += c;
+              const raw = Array.isArray((json as { splits?: unknown }).splits) ? (json as { splits: Array<{ id?: unknown; sentences?: unknown }> }).splits : [];
+              const splits = raw.flatMap((r) => {
+                const at = squeezed[Number(r.id)];
+                return at && Array.isArray(r.sentences) ? [{ beat: at.beat, sentence: at.sentence, sentences: r.sentences.map(String) }] : [];
+              });
+              const n = applySplits(plan.beats, splits);
+              console.log(`[canvas] ${n} of ${squeezed.length} squeezed sentence(s) split into one per line or step`);
+            } catch (error) {
+              console.warn(`[canvas] squeezed sentences left as they are: ${(error as Error).message}`);
+            }
+          }
+        }
+        // A maths or CS board says every step of its working; one longer than a board continues on the next.
+        if (visualMode !== "strict" && isLabLookTopic([input.topic, ...plan.beats.map((b) => b.title)].join(" "))) {
+          const split = splitLongWorking(plan.beats);
+          if (split.count) { plan = { ...plan, beats: split.beats }; console.log(`[canvas] ${split.count} long piece(s) of working continued on a second board: ${split.beats.length} board(s) now`); }
+        }
         // What each board shows is chosen by one focused call (lib/canvas/visualChoice.ts), not by the
         // long planning prompt, which reached for tables (owner, 2026-10-17: "fix the weak link").
         if (visualMode !== "strict" && process.env.CANVAS_VISUAL_CHOICE !== "off") {
           const chosen = await bounded(chooseVisuals((system, user, max) => jsonCall(openai, PLAN_MODEL, system, user, max), input.topic, plan.beats), 30_000, "visual choice").catch((error: Error) => { console.warn(`[canvas] visual choice skipped: ${error.message}`); return null; });
           if (chosen) { plan = { ...plan, beats: chosen.beats }; costUsd += chosen.costUsd; console.log(`[canvas] visual choice: ${chosen.log}`); }
         }
-        const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: findLibraryFigure });
+        const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: findLibraryFigure, topic: input.topic });
         plan = { ...plan, beats: visualPolicy.beats };
         if ((visualMode === "course" || visualMode === "prompt") && visualPolicy.audit.meaningfulVisuals < visualPolicy.audit.targetMeaningfulVisuals && attempt < maxAttempts) {
           lastError = `only ${visualPolicy.audit.meaningfulVisuals} of ${plan.beats.length} boards used purpose-built visuals; use at least ${visualPolicy.audit.targetMeaningfulVisuals} appropriate stages such as illustration, flow, graph, equation, compare, molecule, atom-map or code instead of generic scenes`;
@@ -291,11 +341,21 @@ export async function writeCanvasBoard(args: {
   strictSource?: { mode: "strict" | "video"; doc: SuprnotesLessonInput } | null;
   /** What Aria read up on (lib/webResearch.ts): the board's Beat cites the pages its material came from. */
   webSources?: SourcePack | null;
+  /** The maths examiner reads this board before it ships (lib/canvas/mathsCheck.ts). */
+  mathsCheck?: boolean;
+  /** Which examiner reads the board when mathsCheck is on (lib/canvas/mathsCheck.ts examinerFor). */
+  examiner?: ExaminerSubject;
+  /** Faults a later read found on an earlier version of this board, for the writer to correct. */
+  feedback?: string[];
+  /** True while the student is about to reach this board: polish passes are skipped (generateSpec). */
+  hurry?: () => boolean;
 }): Promise<{ beat: Beat; costUsd: number; fallback: boolean; log: string[] }> {
   const { plan, index, sessionId } = args;
   const beat = plan[index];
   const started = Date.now();
-  const clock: Clock = { left: () => BOARD_BUDGET_MS - (Date.now() - started) };
+  // An examined board may need one rewrite: it gets a minute more (boards 2+ are written while earlier ones play).
+  const budget = BOARD_BUDGET_MS + (args.mathsCheck ? 60_000 : 0);
+  const clock: Clock = { left: () => budget - (Date.now() - started) };
   const log: string[] = [];
   const colours = planConceptColours(plan);
 
@@ -304,6 +364,7 @@ export async function writeCanvasBoard(args: {
   if (shared.length) extra.push(`Lesson colours — these things appear on several boards, so give them exactly these colours: ${shared.map((o) => `${o} ${colours[o]}`).join(", ")}.`);
   if (beat.audience) extra.push(`How to pitch this board for the student (presentation only — never change what it depicts): ${beat.audience}`);
   if (args.notes.length) extra.push(`What the student has shown so far (pitch the notes, cues and any interaction to it): ${args.notes.slice(-3).join(" ")}`);
+  if (args.feedback?.length) extra.push(`CORRECT THESE — ${args.feedback.join(" ")}`);
   if (args.document) extra.push(...documentBoardLines(args.document, beat));
   if (args.strictSource) extra.push(...(args.strictSource.mode === "video" ? videoBoardLines(args.strictSource.doc, beat) : strictBoardLines(args.strictSource.doc, beat)));
   const codeDoc = args.document ?? (args.strictSource?.mode === "strict" ? args.strictSource.doc : null);
@@ -316,7 +377,7 @@ export async function writeCanvasBoard(args: {
     const openai = client();
     if (exam) made = { spec: examBoardSpec(beat, exam), costUsd: 0, attempts: 1 };
     else if (beat.stage === "exam") throw new Error("an exam board needs the lesson's mark scheme");
-    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra);
+    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry });
     pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra));
   } catch (error) {
     log.push(`${beat.id}: ${(error as Error).message}`);
@@ -351,20 +412,7 @@ export async function writeCanvasBoard(args: {
   }
   applyConceptColours(spec, colours);
 
-  // "Inside" an earlier board: checked against that board when it is written.
-  const parentIndex = beat.inside ? plan.findIndex((b) => b.id === beat.inside!.beat) : -1;
-  const parent = parentIndex >= 0 && parentIndex < index ? args.earlier[parentIndex] : undefined;
-  const insideOk = parentIndex >= 0 && parentIndex < index && (!parent || Boolean(layoutPanel(parent).targets[beat.inside!.object]));
-  if (insideOk) spec.inside = { beat: canvasBeatId(sessionId, beat.inside!.beat), id: beat.inside!.object };
-  else delete spec.inside;
-
-  // "Carry" from the previous board: only a whole element of the same kind flies across.
-  const previous = index > 0 ? args.earlier[index - 1] : undefined;
-  const typesHere = new Map(layoutPanel(spec).marks.map((m) => [m.id, m.type]));
-  const typesBefore = previous ? new Map(layoutPanel(previous).marks.map((m) => [m.id, m.type])) : null;
-  const carry = (spec.carry ?? beat.carry).filter((id) => index > 0 && typesHere.has(id) && (!typesBefore || typesBefore.get(id) === typesHere.get(id)));
-  if (carry.length) spec.carry = carry;
-  else delete spec.carry;
+  connectToEarlier(spec, plan, index, args.earlier, sessionId);
 
   // The recap's visits go back to boards the student has seen, by their deterministic ids.
   if (beat.overview) spec.overview = true;
@@ -418,7 +466,7 @@ async function pitchScripts(openai: ReturnType<typeof client>, beats: CanvasPlan
       costUsd += c;
       const out = (json && typeof json === "object" ? (json as Record<string, unknown>).scripts : null) as Record<string, unknown> | null;
       for (const b of tooHard) {
-        const next = typeof out?.[b.id] === "string" ? (out[b.id] as string).replace(/\s+/g, " ").trim() : "";
+        const next = typeof out?.[b.id] === "string" ? mathsEllipsis((out[b.id] as string).replace(/\s+/g, " ").trim()) : "";
         if (!next || canvasSentences(next).length !== canvasSentences(b.script).length) continue;
         if (readingGrade(next) >= readingGrade(b.script)) continue;
         console.log(`[pitch] ${b.id} pass ${pass}: grade ${readingGrade(b.script)} -> ${readingGrade(next)} (target ${grade})`);
@@ -455,7 +503,7 @@ async function factCheckScripts(openai: ReturnType<typeof client>, topic: string
         const next = fixes?.[`${b.id}.${i}`];
         if (typeof next !== "string" || !next.trim() || canvasSentences(next.trim()).length !== 1) return;
         console.log(`[fact-check] ${b.id}.${i}: "${text}" -> "${next.trim()}"`);
-        said[i] = next.trim();
+        said[i] = mathsEllipsis(next.trim());
         changed = true;
       });
       if (changed) b.script = said.join(" ");
@@ -491,7 +539,7 @@ async function repairSentences(
       if (!beat) continue;
       const sentences = canvasSentences(beat.script);
       if (sentences[f.index] !== f.sentence) continue;
-      sentences[f.index] = next;
+      sentences[f.index] = mathsEllipsis(next);
       beat.script = sentences.join(" ");
       fixed++;
     }
@@ -532,6 +580,71 @@ async function addCardDives(openai: ReturnType<typeof client>, topic: string, be
   return { beats: answers.size ? withDives(beats, answers) : beats, boards: answers.size, dives, costUsd };
 }
 
+const SPLIT_PROMPT = `You split what Aria says about ONE code listing over CONSECUTIVE code boards of a lesson, one board per piece of the listing. Return JSON only: {"boards": [{"title": string, "script": string, "board": [{"s": number, "text": string}]}]} with exactly one entry per piece, in order.
+- Each board's script walks through ITS piece's lines in order (what each part does and why), 4 to 8 spoken sentences ending in . ! or ?, one idea each, at most about 25 words. Keep what the existing narration says about those lines, in its words where it can; explain any line it never explained. Say only what the code and the existing narration say: no outside facts.
+- NEVER say a line number aloud; name the code instead ("the null check", "the call to balance").
+- "title": what that piece does, at most 6 words ("The balance routine"), no two alike.
+- "board": for at least 7 in 10 sentences, the short phrase written on the board as that sentence is said (s = 0-based sentence number, at most 34 characters).`;
+
+/**
+ * A LISTING NO PLAN COULD SPLIT IS SPLIT BY CODE. "explain me AVL tree coding" (strict) planned the
+ * 37-line insert listing on one board three times over; the board showed its first 18 lines and
+ * balance() stopped mid-function (PDF bench, 2026-10-19). Each listing whose boards still show more
+ * lines than a board holds, or leave lines on no board, is cut into pieces where statements end
+ * (splitListing), and one small call narrates each piece from what the boards said about it.
+ */
+async function splitCodeBoards(openai: ReturnType<typeof client>, doc: SuprnotesLessonInput, beats: CanvasPlanBeat[], strict = false, wanted: DocumentListing[] = []): Promise<{ beats: CanvasPlanBeat[]; count: number; costUsd: number }> {
+  const listings = documentListings(doc);
+  let costUsd = 0;
+  let out = [...beats];
+  let count = 0;
+  const template = out.find((b) => b.stage === "code");
+  if (!template) return { beats, count, costUsd };
+  for (const listing of listings) {
+    const showing = out.filter((b) => b.stage === "code" && b.source?.listing === listing.n);
+    const leftOut = !showing.length && wanted.some((l) => l.n === listing.n);
+    if (!leftOut && (!showing.length || (!overlongCodeBoards(doc, showing).length && !listingGaps(doc, showing).length))) continue;
+    const pieces = splitListing(listing, extraBoardsForListings([listing]) + 1);
+    if (!leftOut && pieces.length < 2 && !listingGaps(doc, showing).length) continue;
+    try {
+      // Strict: the narration says what the pages say about this code, and reads each line plainly — nothing more.
+      const pageText = strict ? (doc.contentBlocks ?? []).filter((x) => x.pageNumber === listing.page || x.pageNumber === listing.page - 1).map((x) => [x.heading, x.text].filter(Boolean).join(" ")).join("\n").slice(0, 4000) : "";
+      const strictLine = strict ? `\n\nSTRICT: the student is taught ONLY from their document. Every sentence either says what the DOCUMENT TEXT below says about this code, or reads a line in plain words (what it checks, assigns, calls or returns). Never a reason, purpose, example or fact the document text does not give.\n\nDOCUMENT TEXT:\n${pageText}` : "";
+      const said = showing.length ? showing.map((b) => `${b.title}: ${b.script}`).join("\n") : "(nothing yet: this listing is new to the lesson)";
+      const user = `Listing ${listing.n}${listing.caption ? ` (${listing.caption})` : ""}.${strictLine}\n\nWhat Aria says over it now:\n${said}\n\n${pieces.map(([a, z], k) => `PIECE ${k + 1} (lines ${a} to ${z}):\n${listingText(listing, a, z)}`).join("\n\n")}`;
+      const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, SPLIT_PROMPT, user, 4000), 60_000, `split listing ${listing.n}`);
+      costUsd += c;
+      const boards = Array.isArray((json as { boards?: unknown }).boards) ? ((json as { boards: Array<Record<string, unknown>> }).boards) : [];
+      const written = boards.map((b) => ({ title: typeof b.title === "string" ? b.title.trim() : "", script: typeof b.script === "string" ? mathsEllipsis(b.script.replace(/\s+/g, " ").trim()) : "", board: b.board }));
+      if (written.length !== pieces.length || written.some((w) => !w.title || canvasSentences(w.script).length < 3)) continue;
+      const first = showing[0] ?? { ...template, brief: listing.caption || `Listing ${listing.n}`, objects: [], inside: null, carry: [], interaction: null, source: { pages: [listing.page] } };
+      const replaced = pieces.map(([a, z], k): CanvasPlanBeat => ({
+        ...first,
+        title: written[k].title,
+        script: written[k].script,
+        boardNotes: formulaNotes(boardNotesOf(written[k].board, canvasSentences(written[k].script).length).boardNotes, written[k].script),
+        interaction: k === 0 ? first.interaction : null,
+        teachingCycle: undefined,
+        source: { pages: first.source?.pages ?? [listing.page], ...(first.source?.blocks ? { blocks: first.source.blocks } : {}), listing: listing.n, lines: [a, z] },
+      }));
+      // A listing left out goes after the last code board of an earlier listing (before the first code board otherwise).
+      const after = out.reduce((last, b, i) => (b.stage === "code" && (b.source?.listing ?? 0) < listing.n ? i : last), -1);
+      const at = showing.length ? out.indexOf(first) : after >= 0 ? after + 1 : out.indexOf(template);
+      out = showing.length ? [...out.slice(0, at), ...replaced, ...out.slice(at + 1).filter((b) => !showing.includes(b))] : [...out.slice(0, at), ...replaced, ...out.slice(at)];
+      count++;
+    } catch (error) {
+      costUsd += (error as { costUsd?: number }).costUsd ?? 0;
+    }
+  }
+  // Boards are numbered again in order (b1, b2, …); a board "inside" another follows its new id.
+  if (count) {
+    const ids = new Map(beats.map((b) => [b.id, b.id]));
+    out = out.map((b, i) => { ids.set(b.id, `b${i + 1}`); return { ...b, id: `b${i + 1}` }; });
+    out = out.map((b) => (b.inside ? { ...b, inside: { ...b.inside, beat: ids.get(b.inside.beat) ?? b.inside.beat } } : b));
+  }
+  return { beats: out, count, costUsd };
+}
+
 const REPAIR_PROMPT = `You revise what Aria says over ONE board of a school lesson so it teaches every key point it is missing. Return JSON only: {"script": string, "board": [{"s": number, "text": string}]}.
 - Keep every sentence already there, in its order and style; add the missing key points where they belong, one sentence each, with the reason or mechanism when the point is a how or why. Spoken sentences ending in . ! or ?, one idea each, at most about 25 words; at most 13 sentences in all.
 - "board": for at least 7 in 10 sentences, the short phrase written on the board as that sentence is said (s = 0-based sentence number, at most 34 characters).`;
@@ -551,9 +664,12 @@ async function repairBoardScripts(openai: ReturnType<typeof client>, beats: Canv
       const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, REPAIR_PROMPT, user, 2500), 40_000, `repair ${beat.id}`);
       costUsd += c;
       const r = json as { script?: unknown; board?: unknown };
-      const script = typeof r.script === "string" ? r.script.replace(/\s+/g, " ").trim() : "";
+      const script = typeof r.script === "string" ? mathsEllipsis(r.script.replace(/\s+/g, " ").trim()) : "";
       if (canvasSentences(script).length < canvasSentences(beat.script).length) return;
-      out[at] = { ...beat, script, ...boardNotesOf(r.board, canvasSentences(script).length) };
+      // The rewrite's notes get the same formula notes as a planned board (a repaired board shipped
+      // with no planned notes, and the writer's own left its answer out; maths benchmark round 1).
+      const notes = formulaNotes(boardNotesOf(r.board, canvasSentences(script).length).boardNotes, script);
+      out[at] = { ...beat, script, boardNotes: notes };
       count++;
     } catch (error) {
       costUsd += (error as { costUsd?: number }).costUsd ?? 0;

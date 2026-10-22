@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { arcPoint, beam, covers, distanceTo, GAP, gazeAt, parkingSpot } from "../avatar/dotFlight";
+import { arcPoint, beam, covers, distanceTo, GAP, gazeAt, parkingSpot, union } from "../avatar/dotFlight";
 
 const BOARD = { x: 0, y: 0, w: 1200, h: 700 };
 
@@ -50,4 +50,13 @@ test("the beam runs from her rim to just short of the target; eyes look at it", 
   assert.ok(distanceTo(bm.to, t) <= 10, "stops just short");
   const g = gazeAt(c, t);
   assert.ok(g.x < -0.9, "looks left");
+});
+
+test("a part sticking out of its figure: the spot beside both never covers the part (no step-aside loop)", () => {
+  const figure = { x: 100, y: 200, w: 300, h: 300 };
+  const label = { x: 360, y: 320, w: 80, h: 24 }; // a margin label past the figure's right edge
+  const beside = parkingSpot(figure, 102, BOARD, [], { x: 1100, y: 600 })!;
+  assert.ok(covers(beside, 102, label), "beside the figure alone covers the label (the old loop)");
+  const spot = parkingSpot(union(figure, label), 102, BOARD, [], { x: 1100, y: 600 })!;
+  assert.ok(spot && !covers(spot, 102, label), "beside figure + label: clear of the label");
 });

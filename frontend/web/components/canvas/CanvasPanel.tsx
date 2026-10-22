@@ -9,6 +9,8 @@ import { graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt,
 import { edgeCurve } from "@/lib/canvas/structure";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
+import { stackAt } from "@/lib/canvas/callStack";
+import { SketchView } from "./SketchView";
 import type { CardStyle } from "@/lib/canvas/cardStyle";
 import { cardNumbersOf } from "@/lib/canvas/cardOrder";
 import { IconGlyph } from "./icons";
@@ -30,6 +32,7 @@ import { fitText } from "@/lib/canvas/renderFit";
  * exact — precision is their content.
  */
 
+/** The board's own colour as drawn; on the (black) chalk board it becomes the slate (lib/canvas/theme.ts). */
 export const PAPER = "#fbfaf6";
 const MUTED = "#64748b";
 /** Aria's own colour: her pen, her highlighter, her corrections. */
@@ -67,13 +70,15 @@ type PanelProps = {
 export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live, vars, ghostVars, focusId, carryFrom, reducedMotion, theme = "paper", concealStage = false, cards = "classic", doneIds, openId, recap = false }: PanelProps) {
   const chalk = theme === "chalk";
   // Sticker cards are numbered in the order Aria reaches them, so the student can follow "card 2".
-  const cardNumbers = cards !== "classic" && !chalk ? cardNumbersOf(layout) : null;
+  // Sticky notes are paper stuck on the slate, so they stay on every board (owner, 2026-10-20).
+  const cardNumbers = cards !== "classic" ? cardNumbersOf(layout) : null;
   // Sticky notes: while Aria is on one note, the others step back.
   const spot = cards === "sticky" && Boolean(focusId && cardNumbers?.has(focusId));
   // Arrows between sticky notes are drawn in pencil, to match the paper (owner: the arrows did not match).
   const pencil = cards === "sticky" && Boolean(cardNumbers?.size);
   // A note rolls off the notes column when a later note takes its slot (lib/canvas/layout.ts).
-  const visible = layout.marks.filter((m) => m.s <= shownThrough && !(m.type === "note" && m.until !== undefined && shownThrough >= m.until) && (!concealStage || m.type === "heading" || m.type === "note"));
+  // A rolled-off note, or a page of working wiped for the next one (lib/canvas/layout.ts), is gone.
+  const visible = layout.marks.filter((m) => m.s <= shownThrough && !((m.type === "note" || m.type === "equation") && m.until !== undefined && shownThrough >= m.until) && (!concealStage || m.type === "heading" || m.type === "note"));
   const headingW = layout.targets.heading?.w ?? 200;
   return (
     <InkDrawing.Provider value={live && !reducedMotion}>
@@ -82,18 +87,16 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
         {/* The shadow is a picture baked once (LessonCanvas paperShadow): a live blur filter under
             every board was re-blurred on every frame of a camera flight, and the flights stuttered. */}
         <use href="#cv-shadow-img" />
-        <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill={PAPER} stroke="#e7e2d6" strokeWidth={2} />
+        <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill={PAPER} stroke={chalk ? "#e7e2d6" : "#cfd6de"} strokeWidth={chalk ? 2 : 3} />
         {/* Paper grain: a faint, soft texture baked once into an image pattern — no blend mode, which
             forced the whole board through an extra compositing pass per frame. */}
-        {chalk ? <ChalkSurface /> : <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-grain)" pointerEvents="none" />}
+        {/* A whiteboard is clean: no paper grain. The slate stays for the chalk theme. */}
+        {chalk ? <SlateSurface /> : null}
         <Ink points={[{ x: 48, y: 88 }, { x: 48 + (headingW + 20) * 0.5, y: 86.5 }, { x: Math.min(PANEL_W - 48, 48 + headingW + 20), y: 88.5 }]} width={4.2} color="#f59e0b" opacity={0.6} />
         {spec.visualFallback && <title>{spec.visualFallback.message}</title>}
         {visible.map((mark) => (
           <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} chalk={chalk} cardLook={cards} cardNo={cardNumbers ? (cardNumbers.get(mark.id) ?? 0) : undefined} cardDone={doneIds?.has(mark.id)} cardOpen={openId === mark.id} pencil={pencil} />
         ))}
-        {/* Chalk never lays down solid: a fine speckle of the slate over the writing breaks every
-            stroke up the way chalk skips over a board — one rectangle, not a filter per stroke. */}
-        {chalk && <ChalkSpeckle layout={layout} />}
       </g>
     </g>
     </InkDrawing.Provider>
@@ -308,42 +311,13 @@ function hashOf(text: string): number {
 }
 
 /**
- * A chalkboard's surface over the slate: the light from the room falling across it, old eraser
- * smudges, a wooden frame and the chalk tray along the bottom. All baked or plain shapes — nothing
- * here is recomputed on a camera frame.
+ * THE SLATE (owner, 2026-10-20, from the Visuals Lab): a clean dark board with the room's light
+ * falling across it and a slim wooden edge. No tray, eraser smudges or speckle over the writing:
+ * every stroke stays crisp. Plain shapes and one baked gradient, nothing recomputed per frame.
  */
-function ChalkSurface() {
-  return (
-    <>
-      <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-slate-light)" pointerEvents="none" />
-      <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-dust)" pointerEvents="none" />
-      <rect x={-7} y={-7} width={PANEL_W + 14} height={PANEL_H + 14} rx={27} fill="none" stroke={CHALK.frame} strokeWidth={14} />
-      <rect x={-1} y={-1} width={PANEL_W + 2} height={PANEL_H + 2} rx={22} fill="none" stroke={CHALK.frameLight} strokeWidth={2} opacity={0.7} />
-      <rect x={-14} y={PANEL_H + 6} width={PANEL_W + 28} height={16} rx={4} fill={CHALK.frame} />
-      <rect x={-14} y={PANEL_H + 6} width={PANEL_W + 28} height={4} rx={2} fill={CHALK.frameLight} opacity={0.8} />
-      <rect x={PANEL_W - 230} y={PANEL_H - 2} width={58} height={11} rx={5} fill="#f6f3ea" />
-      <rect x={PANEL_W - 160} y={PANEL_H - 1} width={40} height={10} rx={5} fill="#f6d77a" />
-      <rect x={110} y={PANEL_H - 4} width={96} height={13} rx={3} fill="#3b2a1d" />
-      <rect x={110} y={PANEL_H - 4} width={96} height={5} rx={2} fill="#cfcac0" />
-    </>
-  );
-}
-
-/** The speckle over chalk writing — everywhere but a taped-up photo, which is paper, not chalk. */
-function ChalkSpeckle({ layout }: { layout: PanelLayout }) {
-  const id = useId().replace(/:/g, "");
-  const photos = layout.marks.filter((m): m is Extract<Mark, { type: "picture" }> => m.type === "picture");
-  if (!photos.length) return <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-speckle)" pointerEvents="none" />;
-  // A clip with holes (even-odd) is plain geometry — no offscreen mask.
-  const holes = photos.map((p) => `M${p.rect.x - 12} ${p.rect.y - 26} h${p.rect.w + 24} v${p.rect.h + 38} h${-(p.rect.w + 24)} Z`).join(" ");
-  return (
-    <>
-      <clipPath id={`spk${id}`}>
-        <path d={`M0 0 H${PANEL_W} V${PANEL_H} H0 Z ${holes}`} clipRule="evenodd" />
-      </clipPath>
-      <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-speckle)" pointerEvents="none" clipPath={`url(#spk${id})`} />
-    </>
-  );
+function SlateSurface() {
+  // Pure black, a thin dark edge so the board reads against the page (owner, 2026-10-21).
+  return <rect x={-1.5} y={-1.5} width={PANEL_W + 3} height={PANEL_H + 3} rx={23} fill="none" stroke={CHALK.frame} strokeWidth={3} pointerEvents="none" />;
 }
 
 /**
@@ -468,11 +442,15 @@ function MarkView(props: MarkProps) {
   if (carry && targetRect) {
     return (
       <Carry id={mark.id} from={carry} to={targetRect} reducedMotion={reducedMotion}>
-        {body}
+        <g data-kind={mark.type}>{body}</g>
       </Carry>
     );
   }
-  return <g data-mark={mark.id}>{body}</g>;
+  return (
+    <g data-mark={mark.id} data-kind={mark.type}>
+      {body}
+    </g>
+  );
 }
 
 function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, ghostVars, focused, focusId, reducedMotion, chalk, cardNo, cardLook, cardDone, cardOpen, pencil }: MarkProps) {
@@ -500,7 +478,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
     case "node":
       return <NodeView mark={mark} vars={vars} focused={focused} shownThrough={shownThrough} />;
     case "arrow":
-      if (pencil) return <PencilArrow mark={mark} vars={vars} focused={focused} reducedMotion={reducedMotion} />;
+      if (pencil) return <PencilArrow mark={mark} vars={vars} focused={focused} reducedMotion={reducedMotion} chalk={Boolean(chalk)} />;
       return <ArrowView mark={mark} vars={vars} focused={focused} reducedMotion={reducedMotion} />;
     case "picture":
       return (
@@ -636,7 +614,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
         </g>
       );
     case "figure":
-      return <FigureView mark={mark} chalk={Boolean(chalk)} focusId={focusId} />;
+      return <FigureView mark={mark} chalk={Boolean(chalk)} focusId={focusId} shownThrough={shownThrough} />;
     case "figure-label":
       return <FigureLabelView mark={mark} chalk={Boolean(chalk)} shownThrough={shownThrough} focused={focusId === mark.part} />;
     case "free-body":
@@ -654,6 +632,10 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       return <TraceView mark={mark} shownThrough={shownThrough} />;
     case "structure":
       return <StructureView mark={mark} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} />;
+    case "stack":
+      return <CallStackView mark={mark} shownThrough={shownThrough} />;
+    case "sketch":
+      return <SketchView mark={mark} shownThrough={shownThrough} />;
     case "state":
       return <StateView mark={mark} shownThrough={shownThrough} />;
     case "output":
@@ -679,29 +661,50 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
 /** Figure colours by meaning, for paper and for the chalkboard. */
 function figureInk(ink: string | undefined, chalk: boolean): string {
   if (!ink || ink === "none") return "none";
-  if (ink.startsWith("#")) return ink;
+  if (/^(#|rgb|hsl)/.test(ink)) return ink;
   const paper: Record<string, string> = { ink: INK, glass: "rgba(186,230,253,0.28)", metal: "#9ca3af", wood: "#a8a29e", muted: MUTED, paper: "#ffffff" };
   const slate: Record<string, string> = { ink: "#f1eee4", glass: "rgba(241,238,228,0.10)", metal: "#94a3b8", wood: "#78716c", muted: "#b9c3be", paper: "#e8e4d8" };
   return (chalk ? slate : paper)[ink] ?? INK;
 }
 
 /** A code-drawn textbook figure (lib/figures): its shapes, scaled into place; the focused part is drawn bolder. */
-function FigureView({ mark, chalk, focusId }: { mark: Extract<Mark, { type: "figure" }>; chalk: boolean; focusId?: string }) {
+function FigureView({ mark, chalk, focusId, shownThrough = Infinity }: { mark: Extract<Mark, { type: "figure" }>; chalk: boolean; focusId?: string; shownThrough?: number }) {
   const { rect, scale, drawing } = mark;
   if (mark.asset) return <LibraryFigureView mark={mark} chalk={chalk} />;
+  // A timed shape follows the sentence that reveals its part; an untimed part counts as revealed.
+  const reached = (part: string) => (mark.timing?.[part] ?? 0) <= shownThrough;
   return (
     <g className="cv-in" role="img" data-figure="" aria-label={`Figure with parts: ${drawing.parts.map((p) => p.name).join(", ")}`}>
       <g transform={`translate(${rect.x},${rect.y}) scale(${scale})`}>
         {drawing.shapes.map((sh, i) => {
+          if (sh.show && !(Array.isArray(sh.show) ? sh.show : [sh.show]).every(reached)) return null;
           const focused = Boolean(sh.part && sh.part === focusId);
-          const common = { fill: figureInk(sh.fill ?? "none", chalk), stroke: focused ? ARIA_INK : figureInk(sh.stroke ?? "none", chalk), strokeWidth: (sh.width ?? 1) * (focused ? 1.6 : 1), strokeDasharray: sh.dash, opacity: sh.opacity, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-          if (sh.t === "path") return <path key={i} d={sh.d} {...common} />;
-          if (sh.t === "circle") return <circle key={i} cx={sh.cx} cy={sh.cy} r={sh.r} {...common} />;
-          return (
-            <text key={i} x={sh.x} y={sh.y} fontSize={sh.size} textAnchor={sh.anchor ?? "start"} fill={figureInk(sh.fill ?? "ink", chalk)} fontWeight={600}>
-              {sh.text}
-            </text>
-          );
+          // A focused part keeps its own colour (a coral curve contradicted its blue legend on the black
+          // board, QA 2026-10-21): it is drawn thicker, with a glow of that colour.
+          const stroke = figureInk(sh.stroke ?? "none", chalk);
+          const common = { fill: figureInk(sh.fill ?? "none", chalk), stroke, strokeWidth: (sh.width ?? 1) * (focused ? 1.8 : 1), strokeDasharray: sh.dash, opacity: sh.opacity, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, ...(focused && stroke !== "none" ? { filter: `drop-shadow(0 0 5px ${stroke})` } : {}) };
+          const moved = sh.move && reached(sh.move.on);
+          const gone = Boolean(sh.hide && reached(sh.hide));
+          const timed = sh.show || sh.hide || sh.move;
+          const style = timed
+            ? {
+                transformBox: "fill-box" as const,
+                transformOrigin: "center",
+                transform: moved ? `translate(${sh.move!.dx}px, ${sh.move!.dy}px) rotate(${sh.move!.rotate ?? 0}deg)` : "translate(0px, 0px) rotate(0deg)",
+                transition: `transform 1100ms cubic-bezier(.65,0,.25,1) ${sh.move?.delay ?? 0}ms, opacity 450ms ease`,
+                opacity: gone ? 0 : undefined,
+              }
+            : undefined;
+          const body =
+            sh.t === "path" ? <path key={i} d={sh.d} {...common} style={style} />
+            : sh.t === "circle" ? <circle key={i} cx={sh.cx} cy={sh.cy} r={sh.r} {...common} style={style} />
+            : (
+              <text key={i} x={sh.x} y={sh.y} fontSize={sh.size} textAnchor={sh.anchor ?? "start"} fill={figureInk(sh.fill ?? "ink", chalk)} fontWeight={600} style={style}>
+                {sh.text}
+              </text>
+            );
+          // A shape that appears on its sentence springs in like everything else Aria writes.
+          return sh.show ? <g key={i} className="cv-in">{body}</g> : body;
         })}
       </g>
       {drawing.credit && (
@@ -744,11 +747,11 @@ function FigureLabelView({ mark, chalk, shownThrough, focused }: { mark: Extract
   const d = mark.leader.map((p, i) => `${i ? "L" : "M"}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
   return (
     <g className="cv-in" opacity={earlier ? 0.62 : 1}>
-      <path d={d} fill="none" stroke={chalk ? "rgba(34,48,42,0.9)" : "#ffffff"} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" opacity={0.45} />
-      <path d={d} fill="none" stroke={focused ? ARIA_INK : ink} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="cv-stroke" pathLength={1} />
-      <circle cx={end.x} cy={end.y} r={4.2} fill={focused ? ARIA_INK : ink} stroke={chalk ? "#22302a" : "#ffffff"} strokeWidth={1.5} />
+      <path d={d} fill="none" stroke={chalk ? "#000000" : "#ffffff"} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" opacity={0.45} />
+      <path d={d} fill="none" stroke={ink} strokeWidth={focused ? 2.6 : 1.8} strokeLinecap="round" strokeLinejoin="round" className="cv-stroke" pathLength={1} />
+      <circle cx={end.x} cy={end.y} r={focused ? 5.5 : 4.2} fill={ink} stroke={chalk ? "#000000" : "#ffffff"} strokeWidth={1.5} />
       {mark.lines.map((line, i) => (
-        <text key={i} x={mark.at.x} y={mark.at.y + i * mark.size * 1.25} textAnchor={mark.side === "left" ? "end" : "start"} fontSize={mark.size} fontWeight={focused ? 800 : 700} fill={focused ? ARIA_INK : ink}>
+        <text key={i} x={mark.at.x} y={mark.at.y + i * mark.size * 1.25} textAnchor={mark.side === "left" ? "end" : "start"} fontSize={mark.size} fontWeight={focused ? 800 : 700} fill={ink}>
           {line}
         </text>
       ))}
@@ -963,15 +966,16 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
                 <Ink points={[{ x: p.x + layout.w * 0.18 + 6, y: p.y + layout.h / 2 - 6 }, { x: p.x + layout.w / 2 - 6, y: p.y - layout.h / 2 + 6 }]} width={2.8} color="#475569" />
               )}
               {changed && <circle key={`flash-${shown.to}`} cx={p.x} cy={p.y} r={Math.max(layout.w, layout.h) * 0.62} fill="#fbbf24" fillOpacity={0.25} className="cv-in" />}
-              <text key={`v-${n.value}`} x={valueX(p)} y={p.y + layout.size * 0.36} textAnchor="middle" fontSize={layout.size} fontWeight={800} fill="#0f172a" className={changed ? "cv-in" : undefined}>
-                {n.value}
-              </text>
+              {/* Ruled out: crossed under its value, lighter, so the number stays readable (QA 2026-10-21). */}
               {state === "remove" && (
-                <g className="cv-in">
+                <g className="cv-in" opacity={0.55}>
                   <Ink points={[{ x: p.x - layout.w * 0.55, y: p.y - layout.h * 0.55 }, { x: p.x + layout.w * 0.55, y: p.y + layout.h * 0.55 }]} width={4} color="#be123c" />
                   <Ink points={[{ x: p.x + layout.w * 0.55, y: p.y - layout.h * 0.55 }, { x: p.x - layout.w * 0.55, y: p.y + layout.h * 0.55 }]} width={4} color="#be123c" />
                 </g>
               )}
+              <text key={`v-${n.value}`} x={valueX(p)} y={p.y + layout.size * 0.36} textAnchor="middle" fontSize={layout.size} fontWeight={800} fill="#0f172a" className={changed ? "cv-in" : undefined}>
+                {n.value}
+              </text>
             </g>
           </g>
         );
@@ -1177,16 +1181,17 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
   // The step being explained: the latest one whose sentence has come. A finished board rests on its last.
   const reached = mark.steps.filter((st) => st.s <= shownThrough);
   const step = reached.at(-1);
-  const last = mark.steps.at(-1);
   const lit = new Set(step?.lines ?? []);
   const top = rect.y + 14;
   const baseline = (i: number) => top + i * lineH + lineH * 0.7;
   const textX = rect.x + gutter + 14;
   const first = step ? Math.min(...step.lines) : 0;
-  // BUILD-UP: the code writes itself as Aria reaches each line (Code Hike's scrollycoding); the last
-  // step, or a finished board, shows it whole. "all" shows the listing from the start.
+  // BUILD-UP: the code writes itself as Aria reaches each line (Code Hike's scrollycoding); a finished
+  // board shows it whole. "all" shows the listing from the start.
   const upTo = (steps: typeof reached) => Math.max(0, ...steps.flatMap((st) => st.lines));
-  const shown = mark.reveal === "all" || !step || step === last || shownThrough === Infinity ? mark.lines.length : upTo(reached);
+  // Before its first line is reached the card is empty: the whole listing stood on the board while Aria
+  // was still introducing it (owner, 2026-10-22: "it writes everything on the board before it even speaks").
+  const shown = mark.reveal === "all" || shownThrough === Infinity ? mark.lines.length : !step ? 0 : upTo(reached);
   const before = mark.reveal === "all" ? mark.lines.length : upTo(reached.slice(0, -1));
   const textOf = (i: number) => {
     const edit = mark.edits.find((e) => e.line === i + 1);
@@ -1276,6 +1281,7 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
  * Tutor) shows it: it follows the execution pointer, and a value that just changed flashes.
  */
 function StateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "state" }>; shownThrough: number }) {
+  if (mark.pencil) return <PencilStateView mark={mark} shownThrough={shownThrough} />;
   const { rect } = mark;
   const withState = mark.steps.filter((st) => st.state && st.s <= shownThrough);
   const now = withState.at(-1)?.state ?? [];
@@ -1296,6 +1302,154 @@ function StateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "state"
             <text x={rect.x + rect.w - 16} y={y} textAnchor="end" fontSize={15} fontWeight={700} fontFamily={MONO_FONT} fill={v ? "#1f2937" : "#cbd5e1"} key={`v-${v?.value ?? "none"}`} className="cv-in">
               {v ? v.value : "—"}
             </text>
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+/**
+ * THE VARIABLES AS A TEACHER DRAWS THEM (owner, 2026-10-22: pencil sketches alongside the code): each
+ * variable a pencil-drawn memory box beside its name, holding what it holds now; the values it held
+ * before stay beside it, crossed out, so the student sees the whole history of the run — the way a
+ * program is traced by hand on a board. The newest value is written in Aria's colour.
+ */
+function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "state" }>; shownThrough: number }) {
+  const { rect } = mark;
+  const shown = mark.steps.filter((st) => st.state && st.s <= shownThrough);
+  // Only the variables that exist by now: a box for one the code creates later is a spoiler.
+  const names = [...new Set(shown.flatMap((st) => (st.state ?? []).map((v) => v.name)))];
+  const last = shown.at(-1);
+  const rowH = Math.min(46, (rect.h - 34) / Math.max(1, names.length));
+  // Names are set in the code font: measured as monospace (0.6 em a character), with a gap.
+  const nameW = Math.min(rect.w * 0.36, Math.max(...names.map((n) => n.length * 16 * 0.6)) + 18);
+  const boxW = Math.min(rect.w * 0.3, Math.max(64, ...mark.steps.flatMap((st) => (st.state ?? []).map((v) => textWidth(v.value, 17) + 22))));
+  return (
+    <g className="cv-in" data-mark="state">
+      <text x={rect.x} y={rect.y + 16} fontSize={15} fontWeight={700} fill="#64748b">variables</text>
+      {names.map((name, i) => {
+        const values: string[] = [];
+        for (const st of shown) {
+          const v = st.state!.find((x) => x.name === name)?.value;
+          if (v !== undefined && values.at(-1) !== v) values.push(v);
+        }
+        const now = values.at(-1);
+        // Lit in Aria's colour on the sentence that changed it.
+        const before = shown.slice(0, -1).reverse().find((st) => st.state!.some((x) => x.name === name))?.state!.find((x) => x.name === name)?.value;
+        const justChanged = now !== undefined && last?.s === shownThrough && last.state!.some((x) => x.name === name) && before !== now;
+        const y = rect.y + 30 + i * rowH;
+        const h = rowH - 10;
+        const bx = rect.x + nameW;
+        let ox = bx + boxW + 14;
+        // A list, queue, stack or set is drawn as its cells in pencil — BFS's queue as boxes that fill and
+        // empty (CS round, 2026-10-22) — with its front or top marked; the history is in the cells.
+        const items = now !== undefined ? listItems(now) : null;
+        if (items) {
+          // Cells at full size, else compact; a set too long for either is written as text that fits.
+          const room = rect.x + rect.w - bx;
+          const full = items.map((it) => Math.max(34, textWidth(it, 16) + 18));
+          const compact = items.map((it) => Math.max(24, textWidth(it, 13) + 10));
+          const cellW = full.reduce((a, b) => a + b, 0) <= room ? full : compact;
+          const cellFont = cellW === full ? 16 : 13;
+          const total = cellW.reduce((a, b) => a + b, 0);
+          if (total > room) {
+            const size = Math.max(11, Math.min(16, Math.floor((16 * room) / Math.max(1, textWidth(now!, 16)))));
+            return (
+              <g key={name}>
+                <text x={rect.x} y={y + h * 0.68} fontSize={16} fontFamily={MONO_FONT} fill={INK}>{name}</text>
+                <text key={`v-${now}`} x={bx} y={y + h * 0.68} fontSize={size} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged ? ARIA_INK : INK} className="cv-in">{now}</text>
+              </g>
+            );
+          }
+          {
+            let cx = bx;
+            const end = /stack/i.test(name) ? "top" : /queue/i.test(name) ? "front" : "";
+            return (
+              <g key={name}>
+                <text x={rect.x} y={y + h * 0.68} fontSize={16} fontFamily={MONO_FONT} fill={INK}>{name}</text>
+                {items.length === 0 && <text x={bx + 4} y={y + h * 0.68} fontSize={15} fill="#94a3b8">empty</text>}
+                {items.map((it, k) => {
+                  const x = cx;
+                  cx += cellW[k];
+                  return (
+                    <g key={`${k}-${it}`} className="cv-in">
+                      <Sketch d={roughRect(`cell-${mark.id}-${name}-${k}`, x, y, cellW[k], h, 4)} color={INK} width={2} />
+                      <text x={x + cellW[k] / 2} y={y + h * 0.7} textAnchor="middle" fontSize={cellFont} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged && k === items.length - 1 ? ARIA_INK : INK}>{it}</text>
+                    </g>
+                  );
+                })}
+                {end && items.length > 0 && <text x={end === "front" ? bx + cellW[0] / 2 : cx - cellW[items.length - 1] / 2} y={y + h + 13} textAnchor="middle" fontSize={12} fill="#94a3b8">{end}</text>}
+              </g>
+            );
+          }
+        }
+        return (
+          <g key={name}>
+            <text x={rect.x} y={y + h * 0.68} fontSize={16} fontFamily={MONO_FONT} fill={INK}>{name}</text>
+            <Sketch d={roughRect(`var-${mark.id}-${name}`, bx, y, boxW, h, 6)} color={INK} width={2} />
+            {now !== undefined && (
+              // A long value shrinks to fit its box, never spills over its name or its history.
+              <text key={`v-${now}`} x={bx + boxW / 2} y={y + h * 0.7} textAnchor="middle" fontSize={Math.max(10, Math.min(17, Math.floor((17 * (boxW - 12)) / Math.max(1, now.length * 17 * 0.6))))} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged ? ARIA_INK : INK} className="cv-in">
+                {now}
+              </text>
+            )}
+            {/* Oldest first, as a teacher crosses them out: 3̶ 2̶ 1̶. */}
+            {values.slice(-4, -1).map((old, k) => {
+              const w = textWidth(old, 14) + 4;
+              const x = ox;
+              ox += w + 12;
+              if (x + w > rect.x + rect.w) return null;
+              return (
+                <g key={`old-${k}-${old}`} className="cv-in" opacity={0.6}>
+                  <text x={x} y={y + h * 0.7} fontSize={14} fontFamily={MONO_FONT} fill={INK}>{old}</text>
+                  <Sketch d={`M${x - 2} ${y + h * 0.48} L${x + w + 1} ${y + h * 0.4}`} color={INK} width={1.6} />
+                </g>
+              );
+            })}
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+/** The items of a list, tuple or set value ("[B, C]", "{A, B}", "[]"), or null when it is not one. */
+function listItems(value: string): string[] | null {
+  const m = /^\s*[[{(]\s*(.*?)\s*[\]})]\s*$/.exec(value);
+  if (!m) return null;
+  return m[1] ? m[1].split(/\s*,\s*/).filter((x) => x !== "") : [];
+}
+
+/**
+ * THE CALL STACK (2026-10-20, from the Visuals Lab): one box per call of a recursive function, in the
+ * order they were made, newest at the bottom. The running call's box is lit; a call that has returned
+ * stays, dimmed and crossed out, with what it gave back — the student keeps the whole history.
+ */
+function CallStackView({ mark, shownThrough }: { mark: Extract<Mark, { type: "stack" }>; shownThrough: number }) {
+  const { rect } = mark;
+  const frames = stackAt(mark.view, shownThrough);
+  if (!frames.length) return null;
+  return (
+    <g className="cv-in" data-mark="stack">
+      <text x={rect.x + 4} y={rect.y + 16} fontSize={15} fontWeight={700} fill="#64748b">call stack</text>
+      {frames.map((f, i) => {
+        const b = mark.boxes[f.id];
+        const next = frames[i + 1] ? mark.boxes[frames[i + 1].id] : undefined;
+        return (
+          <g key={f.id} className="cv-in" data-target={f.id}>
+            {next && <path d={`M${b.x + 28} ${b.y + b.h + 3} V ${next.y - 4} M${b.x + 22} ${next.y - 10} L${b.x + 28} ${next.y - 3} L${b.x + 34} ${next.y - 10}`} fill="none" stroke="#64748b" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />}
+            <g opacity={f.done ? 0.5 : 1} style={{ transition: "opacity 400ms ease" }}>
+              {/* Pencil frames, as a teacher draws the stack (owner, 2026-10-22); the running call in Aria's colour. */}
+              <Sketch d={roughRect(`frame-${f.id}`, b.x, b.y, b.w, b.h, 10)} color={f.top ? ARIA_INK : INK} width={f.top ? 2.6 : 2} />
+              <text x={b.x + 12} y={b.y + Math.min(25, b.h * 0.42)} fontSize={15} fontWeight={800} fontFamily={MONO_FONT} fill="#1f2937">{f.call}</text>
+              {f.value && (
+                <text key={`v-${f.value}`} x={b.x + 12} y={b.y + b.h - Math.max(10, b.h * 0.2)} fontSize={14} fontFamily={MONO_FONT} fill="#1f2937" className="cv-in">
+                  {f.value}
+                </text>
+              )}
+              {f.done && <path d={`M${b.x + 10} ${b.y + b.h - 8} L${b.x + b.w - 10} ${b.y + 8}`} stroke="#64748b" strokeWidth={2.5} strokeLinecap="round" className="cv-in" />}
+            </g>
           </g>
         );
       })}
@@ -1415,13 +1569,14 @@ function ArrowView({ mark, vars, focused, reducedMotion }: { mark: Extract<Mark,
 }
 
 const PENCIL = "#57534e";
+const PENCIL_ON_SLATE = "#d6d1c4";
 
 /**
  * A PENCIL ARROW between sticky notes: a thin hand-drawn graphite line, an open arrowhead and a pencil
  * label — what a teacher would draw between notes stuck on a board. Same path, label and timing as
  * the ink arrow; only the look changes. Particles stay only where they carry a slider's rate.
  */
-function PencilArrow({ mark, vars, focused, reducedMotion }: { mark: Extract<Mark, { type: "arrow" }>; vars: Record<string, number>; focused: boolean; reducedMotion: boolean }) {
+function PencilArrow({ mark, vars, focused, reducedMotion, chalk = false }: { mark: Extract<Mark, { type: "arrow" }>; vars: Record<string, number>; focused: boolean; reducedMotion: boolean; chalk?: boolean }) {
   const { p0, c, p1 } = mark;
   const points = useMemo(() => quadPoints(p0, c, p1, 22), [p0, c, p1]);
   const head = useMemo(() => {
@@ -1431,7 +1586,8 @@ function PencilArrow({ mark, vars, focused, reducedMotion }: { mark: Extract<Mar
     return `M ${arm(0.5)} L ${p1.x},${p1.y} L ${arm(-0.5)}`;
   }, [p0, c, p1]);
   const rate = mark.rate ? Math.max(0, Math.min(1, evalExpr(mark.rate, vars, 1))) : 1;
-  const ink = focused ? ARIA_INK : PENCIL;
+  // On the slate the "pencil" is a stick of chalk: graphite would vanish on the dark board.
+  const ink = focused ? ARIA_INK : chalk ? PENCIL_ON_SLATE : PENCIL;
   return (
     <g data-arrow="">
       <Ink points={points} width={2.6} color={ink} opacity={0.8} />
@@ -1562,6 +1718,10 @@ function EquationView({ mark, stage, shownThrough, focusId, reducedMotion }: { m
       {mark.tokens.map((t) => {
         const at = placeOf(t.id);
         if (!at) return null;
+        // A term is put on the board on the step that first writes it — not waiting unseen from the
+        // start, where the marker wrote it across empty board (playback QA, 2026-10-21).
+        const first = mark.steps.findIndex((st) => st.place[t.id]);
+        if (first < 0 || stepIndex < first) return null;
         const shown = Boolean(step.place[t.id]);
         const lit = step.highlight.includes(t.id) || focusId === t.id;
         // A fraction or root stands taller than a line of text: its highlight and underline follow it.
@@ -1569,7 +1729,9 @@ function EquationView({ mark, stage, shownThrough, focusId, reducedMotion }: { m
         const top = -t.size * (tall ? 1.45 : 0.95);
         const under = t.size * (tall ? 0.95 : 0.24);
         return (
-          <g key={t.id} data-target={t.id} ref={(el) => { groups.current[t.id] = el; }} style={{ transform: `translate(${at.x}px, ${at.y}px)`, transition: "opacity 600ms", opacity: shown ? 1 : 0 }}>
+          // A leaving term is gone (0.2 s) before a returning one fades in: the two used to cross-fade in
+          // the same spot — "four triangle areas" over "(a + b)²" for half a second (playback QA).
+          <g key={t.id} data-target={t.id} ref={(el) => { groups.current[t.id] = el; }} className={first > 0 && stepIndex === first ? "cv-eq-new" : undefined} style={{ transform: `translate(${at.x}px, ${at.y}px)`, transition: shown ? "opacity 420ms ease-out 240ms" : "opacity 200ms ease-in", opacity: shown ? 1 : 0 }}>
             {lit && (
               <g className="cv-in">
                 <path d={roughRect(`hl-${t.id}-${stepIndex}`, -7, top, t.w + 14, under - top + t.size * 0.12, 10)} fill={t.color} fillOpacity={0.14} stroke={t.color} strokeOpacity={0.35} strokeWidth={1.5} />
@@ -1888,8 +2050,15 @@ export const CANVAS_CSS = `
 .cv-live .cv-in { animation: cv-in 480ms cubic-bezier(.2,.8,.2,1) both; transform-box: fill-box; transform-origin: center; }
 .cv-live .cv-late { animation-delay: 520ms; }
 .cv-live .cv-write { animation: cv-write 900ms steps(24, end) both; }
+/* A free label's halo (TextDeconflict): board colour behind its letters, so a line passing behind stops short. */
+text[data-halo] { paint-order: stroke fill; stroke: ${PAPER}; stroke-width: 4.5px; stroke-linejoin: round; }
+.cv-chalk text[data-halo] { stroke: #000000; }
+.cv-chalk foreignObject[data-halo] [data-ink-content], .cv-chalk foreignObject[data-halo] .katex { text-shadow: 0 0 2px #000, 0 0 4px #000, 0 0 7px #000; }
 .cv-live .cv-stroke { stroke-dasharray: 1; animation: cv-stroke 850ms cubic-bezier(.45,0,.25,1) both; }
 .cv-live .cv-slow { animation-duration: 1800ms; }
+.cv-live .cv-eq-new { animation: cv-eq-in 420ms ease-out 240ms both; }
+.cv-marked .cv-eq-new { animation: none; }
+@keyframes cv-eq-in { from { opacity: 0; } to { opacity: 1; } }
 .cv-live .cv-morph-out { animation: cv-morph-out 600ms cubic-bezier(.5,0,.75,0) both; transform-box: fill-box; transform-origin: center; }
 .cv-live .cv-morph-in { animation: cv-morph-in 700ms cubic-bezier(.2,.9,.3,1.3) 380ms both; transform-box: fill-box; transform-origin: center; }
 .cv-live .cv-morph-ring { animation: cv-morph-ring 900ms ease-out 300ms both; transform-box: fill-box; transform-origin: center; }

@@ -7,8 +7,9 @@
  * what its stage needs to draw anything returns null, and the caller retries or falls back.
  */
 
-import { repairEquationRows } from "./equationRepair";
+import { bracketDivisions, dropBrokenClauses, dropFalseIdentities, dropFalseWorking, dropGoalRow, dropWordClauses, dropWordSteps, dropWrongArithmetic, givensFirst, trimRowJoins, repairEquationRows, dropRepeatedRows, revealWhenSaid, splitFalseChains, splitSideCalculations, writeSpokenEquations } from "./equationRepair";
 import { takeFigureCutItems, takeFigureCuts } from "../figures/cuts";
+import { orderNotesAsSaid, tidyNotes } from "./equationCheck";
 import { compileExpr, evalExpr, exprUsesOnly } from "./expr";
 import { figureComponent } from "../figures/registry";
 import { isCompiledDiagram } from "../diagrams/grammar";
@@ -18,6 +19,8 @@ import { checkDiagram } from "../diagrams/check";
 import { compileDiagram } from "../diagrams/render";
 import { snapEquilibrium } from "./graphCheck";
 import { DS_MAX_STEPS, parseOps, parseStructure } from "./structure";
+import { MAX_FRAMES, stackIsConsistent, stackView } from "./callStack";
+import { validateSketch } from "./sketch";
 import { repairTex } from "../equationSpec";
 import {
   CANVAS_ICONS,
@@ -78,7 +81,13 @@ export { trimToFit };
 const shown = (v: unknown, max = 80): string => {
   // An ellipsis on a board reads as text cut off, and the writer (or the shorten pass) sometimes
   // ends a phrase with one ("OA ⊥ PA; angle...", QA 2026-10-17). Board text is a whole phrase.
-  const text = str(v, 4000).replace(/\s*(?:\.{3,}|…)+\s*$/u, "").replace(/\s*(?:\.{3,}|…)\s*/gu, " ").trim();
+  // An ellipsis IN maths stays: "5, 9, 13, …, 41" became "5, 9, 13, , 41" on a check card, and
+  // "1 + 2 + 3 + …" would lose its "…" (maths benchmark, 2026-10-21). Only one after a word goes.
+  const word = (c: string | undefined) => Boolean(c && /\p{L}/u.test(c));
+  const text = str(v, 4000)
+    .replace(/\s*(?:\.{3,}|…)+\s*$/u, (m, at: number, all: string) => (word(all.slice(0, at).trimEnd().slice(-1)) ? "" : m.replace(/\.{3,}/g, "…")))
+    .replace(/\s*(?:\.{3,}|…)\s*/gu, (m, at: number, all: string) => (word(all.slice(0, at).trimEnd().slice(-1)) && word(all.slice(at + m.length).trimStart()[0]) ? " " : m.replace(/\.{3,}/g, "…")))
+    .trim();
   // Powers are printed as superscripts ("m s⁻¹"); a cut is recorded as the writer wrote it, so the
   // shorten pass can find it in the board's JSON.
   const pretty = prettyPowers(text);
@@ -179,14 +188,14 @@ export function validateCanvasSpec(raw: unknown, sentenceCount: number, vars: st
   const heading = shown(r.heading, 60);
   if (!heading) return null;
 
-  const notes = arr(r.notes)
+  const notes = orderNotesAsSaid(tidyNotes(arr(r.notes)
     .map((n, i) => {
       const o = typeof n === "string" ? { text: n } : obj(n);
       const text = shown(o.text, 48).replace(/\.$/, "");
       return text ? { id: unique(o.id ?? `note-${i + 1}`, `note-${i + 1}`), text, s: sentence(o.s ?? o.sentence, i) } : null;
     })
     .filter((n): n is NonNullable<typeof n> => Boolean(n))
-    .slice(0, 12);
+    .slice(0, 12)), script);
 
   const interaction = validateInteraction(r.interaction);
   const knownVars = interaction?.kind === "try" ? interaction.controls.map((c) => c.var) : vars;
@@ -265,6 +274,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
   if (!(CANVAS_STAGES as readonly string[]).includes(kind)) return null;
 
   if (kind === "code") return validateCode(r, sentence, unique);
+  if (kind === "sketch") return validateSketch(r, sentence, unique);
   if (kind === "structure") return validateStructureStage(r, sentence, unique);
 
   if (kind === "molecule") {
@@ -431,7 +441,8 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       })
       .filter((p): p is NonNullable<typeof p> => Boolean(p))
       .slice(0, 8);
-    if (!parts.length) return null;
+    // A figure beside working may go unlabelled: the working names what it shows.
+    if (!parts.length && r.besideWorking !== true) return null;
     const stage: FigureStage = { kind, component: component.name, params, parts };
     return stage;
   }
@@ -512,13 +523,15 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       .map((t, i) => {
         // Never cut short: a term longer than this is reported (lib/canvas/equationCheck.ts) and the
         // board written again, because half a term shows a student half an equation.
-        const text = str(t.text ?? t.tex, EQ_TOKEN_MAX);
-        const tex = typeof t.tex === "string" && t.tex.trim() ? tokenTex(t.tex) : null;
+        // "2 factorial" copied from the narration is "2!" on a board (maths benchmark round 4).
+        const fact = (v: string) => v.replace(/(\d+|\b[a-zA-Z]|\))\s+factorial\b/g, "$1!").replace(/\\text\{\s*factorial\s*\}/g, "!");
+        const text = fact(str(t.text ?? t.tex, EQ_TOKEN_MAX));
+        const tex = typeof t.tex === "string" && t.tex.trim() ? tokenTex(fact(t.tex)) : null;
         return text ? { id: unique(t.id ?? `t${i + 1}`, `t${i + 1}`), text, ...(tex ? { tex } : {}), color: color(t.color), on: t.on === undefined ? undefined : slug(t.on, "") } : null;
       })
       .filter((t): t is NonNullable<typeof t> => Boolean(t))
       // 24, not 16: a circuits board's 17th and 18th terms were "=" and its answer, cut silently (2026-10-18).
-      .slice(0, 24)
+      .slice(0, 64)
       .map((t, _, all) => (t.on && all.some((h) => h.id === t.on && h.id !== t.id) ? t : { ...t, on: undefined }));
     if (tokens.length < 2) return null;
     // An operator the writer used but never defined ("equals-5", "multiply-2", "plus") is restored as
@@ -529,7 +542,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       for (const raw of arr(st.order)) {
         const id = slug(raw, "");
         const op = /^([a-z]+)(?:-?\d+)?$/.exec(id)?.[1];
-        if (!id || known.has(id) || !op || !OPS[op] || tokens.length >= 32) continue;
+        if (!id || known.has(id) || !op || !OPS[op] || tokens.length >= 80) continue;
         tokens.push({ id, text: OPS[op][0], ...(OPS[op][1] ? { tex: OPS[op][1] } : {}), color: color(undefined), on: undefined });
         known.add(id);
       }
@@ -560,13 +573,41 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       })
       .filter((st): st is NonNullable<typeof st> => Boolean(st))
       .sort((a, b) => a.s - b.s)
-      .slice(0, 6);
+      // Up to 12 lines: a derivation written one line per step goes over pages (lib/canvas/layout.ts).
+      .slice(0, 12);
     const kept = tokens.filter((t) => tokenIds.has(t.id) || t.on);
     if (kept.length < 2) return null;
     const cutSteps = new Set(steps.map((st, i) => (st.cut ? i : -1)).filter((i) => i >= 0));
     const stage: EquationStage = { kind, tokens: kept, steps: steps.length ? steps.map(({ cut: _cut, ...st }) => st) : [{ s: 0, order: kept.filter((t) => !t.on).map((t) => t.id), highlight: [] }] };
     // Every row of working written whole, from what its caption or Aria's sentence states (lib/canvas/equationRepair.ts).
     if (script) repairEquationRows(stage, script, cutSteps);
+    dropWordSteps(stage);
+    dropGoalRow(stage, script);
+    splitSideCalculations(stage);
+    splitFalseChains(stage);
+    bracketDivisions(stage);
+    if (script) {
+      writeSpokenEquations(stage, script);
+      // The goal again, now the line that proves it is on the board ("∠ACB = 90°" first, its proof after).
+      dropGoalRow(stage, script);
+      givensFirst(stage);
+      dropWordClauses(stage);
+      dropWrongArithmetic(stage);
+      trimRowJoins(stage);
+      dropFalseIdentities(stage, script);
+      dropFalseWorking(stage, script);
+      dropBrokenClauses(stage);
+      dropRepeatedRows(stage, script);
+      // Each row written when Aria says it, the answer below its working.
+      revealWhenSaid(stage, script);
+    }
+    // The figure the working is about, checked exactly as a figure board's (registered components only).
+    if (r.figure && typeof r.figure === "object") {
+      const raw = obj(r.figure);
+      const name = str(raw.component, 40);
+      const figure = name && name !== "library" && name !== "drawn" ? validateStage({ ...raw, kind: "figure", besideWorking: true }, sentence, unique, vars, script) : null;
+      if (figure?.kind === "figure") stage.figure = figure;
+    }
     return stage;
   }
 
@@ -592,12 +633,26 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       .filter((c): c is NonNullable<typeof c> => Boolean(c))
       .slice(0, 3);
     if (!curves.length) return null;
+    // A second curve that is the first again ("Horizontal shift = cos(x·π/180)" drawn over y = cos x,
+    // maths benchmark R7) shows one line under two names: it goes, and its markers move to the first.
+    const xa = axis(r.x, "x");
+    const at = (expr: string) => Array.from({ length: 9 }, (_, i) => evalExpr(expr, { x: xa.min + ((i + 0.37) / 9) * (xa.max - xa.min) }, NaN));
+    const twinOf = new Map<string, string>();
+    for (let k = curves.length - 1; k > 0; k--) {
+      if (!exprUsesOnly(curves[k].expr, ["x"])) continue;
+      const mine = at(curves[k].expr);
+      const twin = curves.slice(0, k).find((c) => exprUsesOnly(c.expr, ["x"]) && at(c.expr).every((y, i) => (Number.isFinite(y) && Number.isFinite(mine[i]) ? Math.abs(y - mine[i]) <= 1e-6 * (1 + Math.abs(y)) : Number.isFinite(y) === Number.isFinite(mine[i]))));
+      if (!twin) continue;
+      twinOf.set(curves[k].id, twin.id);
+      curves.splice(k, 1);
+    }
     const curveIds = new Set(curves.map((c) => c.id));
     const markers = arr(r.markers)
       .map((m) => obj(m))
       .map((m, i) => {
         const x = str(m.x, 80) || String(num(m.x, NaN));
-        const curve = slug(m.curve, curves[0].id);
+        const named = slug(m.curve, curves[0].id);
+        const curve = twinOf.get(named) ?? named;
         if (!compileExpr(x) || !exprUsesOnly(x, vars) || !curveIds.has(curve)) return null;
         return { id: unique(m.id ?? `marker-${i + 1}`, `marker-${i + 1}`), x, curve, label: shown(m.label, 32) || undefined, s: sentence(m.s ?? m.sentence) };
       })
@@ -737,14 +792,13 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
       const picked = (Array.isArray(st.lines) ? st.lines : [st.lines ?? st.line]).map(lineNo).filter(Boolean);
       if (picked.length === 0) return null;
       const note = shown(st.note, 48);
-      // What the variables hold after these lines: an object {"count": 1} or a list of {name, value}.
-      const rawState = st.state ?? st.vars;
-      const stateList = Array.isArray(rawState)
-        ? rawState.map((v) => obj(v)).map((v) => ({ name: str(v.name, 14), value: cell(v.value) }))
-        : Object.entries(obj(rawState)).map(([name, value]) => ({ name: str(name, 14), value: cell(value) }));
-      const state = stateList.filter((v) => v.name && /^[A-Za-z_][\w.\[\]]*$/.test(v.name)).slice(0, 5);
+      const state = stateOf(st.state ?? st.vars);
       const ops = structure ? parseOps(st.ops) : [];
-      return { s: sentence(st.s ?? st.sentence, i), lines: [...new Set(picked)].slice(0, 6), ...(note ? { note } : {}), ...(state.length ? { state } : {}), ...(ops.length ? { ops } : {}) };
+      // A recursive function's calls still running after these lines, first call first (lib/canvas/callStack.ts).
+      const stack = structure || !Array.isArray(st.stack)
+        ? []
+        : st.stack.map((f) => obj(f)).map((f) => ({ call: str(f.call, 26), value: shown(f.value, 30) })).filter((f) => f.call).map((f) => (f.value ? f : { call: f.call }));
+      return { s: sentence(st.s ?? st.sentence, i), lines: [...new Set(picked)].slice(0, 6), ...(note ? { note } : {}), ...(state.length ? { state } : {}), ...(ops.length ? { ops } : {}), ...(Array.isArray(st.stack) && !structure && stack.length <= MAX_FRAMES ? { stack } : {}) };
     })
     .filter((st): st is NonNullable<typeof st> => Boolean(st))
     .sort((a, b) => a.s - b.s)
@@ -787,6 +841,15 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
   if (groups.length) groups.forEach((_, i) => unique(`group-${i + 1}`, `group-${i + 1}`));
   if (steps.some((st) => st.state)) unique("state", "state");
   if (structure) registerStructureIds(structure, steps, unique);
+  // A call stack that no program could make is dropped: the board is drawn as plain code.
+  if (steps.some((st) => st.stack)) {
+    const view = stackIsConsistent(steps) ? stackView(steps) : null;
+    if (!view) for (const st of steps) delete (st as { stack?: unknown }).stack;
+    else {
+      unique("stack", "stack");
+      view.frames.forEach((f) => unique(f.id, f.id));
+    }
+  }
   return {
     kind: "code",
     ...(structure ? { structure } : {}),
@@ -822,7 +885,10 @@ function validateStructureStage(r: Raw, sentence: (v: unknown, f?: number) => nu
     .map((st, i) => {
       const ops = parseOps(st.ops);
       const note = shown(st.note, 48);
-      return { s: sentence(st.s ?? st.sentence, i), ...(ops.length ? { ops } : {}), ...(note ? { note } : {}) };
+      // The algorithm's own bookkeeping beside the structure: BFS talked through its queue while only
+      // the graph was drawn (CS round, 2026-10-22).
+      const state = stateOf(st.state ?? st.vars);
+      return { s: sentence(st.s ?? st.sentence, i), ...(ops.length ? { ops } : {}), ...(note ? { note } : {}), ...(state.length ? { state } : {}) };
     })
     .sort((a, b) => a.s - b.s)
     .slice(0, DS_MAX_STEPS);
@@ -857,10 +923,24 @@ function tokenTex(raw: string): string | null {
   return "tex" in fixed ? fixed.tex : null;
 }
 
+/** What the variables hold after a step: an object {"count": 1} or a list of {name, value}; at most 5. */
+function stateOf(rawState: unknown): Array<{ name: string; value: string }> {
+  const stateList = Array.isArray(rawState)
+    // Up to 28 characters: "account_a.balance" was cut to "account_a.bala" (CS round, 2026-10-22).
+    ? rawState.map((v) => obj(v)).map((v) => ({ name: str(v.name, 28), value: cell(v.value) }))
+    : Object.entries(obj(rawState)).map(([name, value]) => ({ name: str(name, 28), value: cell(value) }));
+  return stateList.filter((v) => v.name && /^[A-Za-z_][\w.\[\]]*$/.test(v.name)).slice(0, 5);
+}
+
 /** One trace cell as text: a number, boolean or string, capped. */
 function cell(v: unknown): string {
   if (typeof v === "number" || typeof v === "boolean") return String(v);
-  return str(v, 14);
+  // A list or set keeps its closing bracket (it is drawn as cells): a list of moves cut at 22 lost it
+  // and overflowed its box. Anything else 22 characters ("BankAccount object" was cut at 14).
+  if (Array.isArray(v)) return str(`[${v.map((x) => String(x)).join(", ")}]`, 64);
+  const text = typeof v === "string" ? v.trim() : "";
+  if (/^[[{(].*[\]})]$/.test(text)) return text.length <= 64 ? text : `${text.slice(0, 60).replace(/,[^,]*$/, "")}, …${text.slice(-1)}`;
+  return str(v, 22);
 }
 
 function becomesOf(raw: unknown, sentence: (v: unknown, f?: number) => number): { icon?: CanvasIcon; label?: string; s: number } | undefined {

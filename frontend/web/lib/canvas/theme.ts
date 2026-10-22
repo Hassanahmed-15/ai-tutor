@@ -31,13 +31,14 @@ export function panelTheme(choice: CanvasThemeChoice, stage: CanvasStage): Board
 
 /** The chalkboard's own colours. */
 export const CHALK = {
-  slate: "#22302a",
-  card: "#2c3b34",
+  // Pure black (owner, 2026-10-21: "complete dark black board #000000, colourful and white text").
+  slate: "#000000",
+  card: "#141414",
   chalk: "#f1eee4",
   muted: "#b9c3be",
   line: "rgba(241,238,228,0.22)",
-  frame: "#6b4423",
-  frameLight: "#9a6a3c",
+  frame: "#262626",
+  frameLight: "#3a3a3a",
 };
 
 function hexToHsl(hex: string): [number, number, number] | null {
@@ -126,6 +127,11 @@ export function chalkCss(): string {
     `.cv-chalk rect[fill="#fef3c7"]{fill:rgba(245,158,11,.16)}`,
     // The highlighter multiplies on paper; on a dark board multiply would erase it.
     `.cv-chalk .cv-swipe{stroke-opacity:.9}`,
+    // A sticky note is paper stuck on the slate: its ink, tape and fold stay as on paper (owner,
+    // 2026-10-20: the slate replaced every board, the sticky notes stay exactly as they were).
+    `.cv-chalk .cv-sticky-note [fill="#1f2937"]{fill:#1f2937}`,
+    `.cv-chalk .cv-sticky-note [stroke="#1f2937"]{stroke:#1f2937}`,
+    `.cv-chalk .cv-sticky-note rect[fill="#fff"],.cv-chalk .cv-sticky-note rect[fill="#ffffff"]{fill:#ffffff}`,
   );
   return rules.join("");
 }

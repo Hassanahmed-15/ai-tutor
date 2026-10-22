@@ -14,6 +14,7 @@ import { fillManimSceneOps } from "./manimSceneGen";
 import { costFor, isModernModel } from "./modelPricing";
 import { dispatchProgressiveTasks } from "./progressiveLectureQueue";
 import { dispatchDueBeats } from "./progressiveDispatch";
+import { CANVAS_OPENING_BOARDS, STALE_GENERATION_MS } from "./progressiveWindow";
 import { learnerBrief } from "./learnerBrief";
 import { buildTeachingPolicy, policyForBoards, policyForWriter } from "./teachingPolicy";
 import { learnerInstruction, resolveDepth } from "./learnerProfile";
@@ -52,7 +53,10 @@ import { depthBudget, strictDepthBudget } from "./lectureDepth";
 import { buildBeatScriptMessages, keyClaimsFrom, type GeneratedBeatPayload } from "./beatScriptPrompt";
 import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
 import { buildProgressivePlan, clean, isReferenceLesson, questionScoped, sourceRoleFor } from "./progressivePlan";
-import { canvasSpecOf, planCanvasLecture, writeCanvasBoard } from "./canvas/progressive";
+import { canvasSpecOf, connectToEarlier, planCanvasLecture, writeCanvasBoard } from "./canvas/progressive";
+import { examinerFor, mathsCheck, mathsFixes, type ExaminerSubject } from "./canvas/mathsCheck";
+import { isMissingLine, writeMissingLines } from "./canvas/writeMissing";
+import { canvasSentences } from "./canvas/plan";
 import { curriculumDocumentOf, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./canvas/lessonRequest";
 import { extractLectureKnowledge } from "./knowledge/extract";
 import { knowledgeForPlanning, NO_PLANNING_KNOWLEDGE } from "./knowledge/planning";
@@ -133,8 +137,11 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
     const input = await progressiveInput(session);
     if (session.boardEngine === "canvas") {
       // What the student already knows about this topic, from the knowledge graph — bounded, so a
-      // slow lookup only costs the plan its personal touches, never the lecture.
-      const known = await Promise.race([
+      // slow lookup only costs the plan its personal touches, never the lecture. Not read when the
+      // intake ran (lib/intake.ts): what this lesson learned decides, and past lessons are not
+      // carried over (owner, 2026-10-20: "past lesson memory is off").
+      const fromIntake = Boolean(input.learner?.parts?.length) || Boolean(input.outline?.subtopics.some((s) => s.status));
+      const known = fromIntake ? NO_PLANNING_KNOWLEDGE : await Promise.race([
         knowledgeForPlanning(userId, input).catch((error) => {
           console.warn(`[knowledge] planning lookup failed for ${sessionId}: ${messageFor(error)}`);
           return NO_PLANNING_KNOWLEDGE;
@@ -232,6 +239,9 @@ async function generateBeat(userId: string, sessionId: string, sequence: number,
   const existing = await progressiveBeat(sessionId, sequence);
   if (existing && existing.revision > revision) return;
   if (existing?.beat && existing.revision === revision && ["playable", "ready"].includes(existing.state)) return;
+  // Two boards finishing at the same moment can each queue the next one; the second copy finds the
+  // first already writing it ("running", recently stamped) and stops, instead of paying twice.
+  if (session.boardEngine === "canvas" && existing?.state === "generating" && existing.enrichmentState === "running" && Date.now() - Date.parse(existing.updatedAt) < STALE_GENERATION_MS) return;
   if (session.boardEngine === "canvas") return generateCanvasBoard(session, sequence, revision, existing, queuedMs);
 
   const now = new Date().toISOString();
@@ -346,16 +356,50 @@ async function generateCanvasBoard(
     const strictSource = strictDoc ? { mode: "strict" as const, doc: strictDoc } : video ? { mode: "video" as const, doc: video } : null;
     // Taught from web research (lib/webResearch.ts): each slide cites the pages it drew on.
     const webSources = !document && !strictSource ? input.webSources ?? null : null;
-    let written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources });
-    // A board that fell back to the plain backup is written once more instead of shipped as
-    // "ready" (audit 2026-10-15) — only from the third board on, which is written while the
-    // student is still watching earlier ones, so the retry never holds up the start.
-    if (written.fallback && sequence >= 2) {
-      const again = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources }).catch(() => null);
-      if (again) {
-        console.log(`[canvas] session=${sessionId} board ${sequence} fell back; rewrite ${again.fallback ? "fell back too" : "succeeded"}`);
-        written = again.fallback ? { ...written, costUsd: written.costUsd + again.costUsd } : { ...again, costUsd: written.costUsd + again.costUsd, log: [...written.log, ...again.log] };
+    // The maths examiner reads boards 2 onwards before they ship (written while earlier ones play, so the
+    // student never waits for it); the first board is read in the background once it is ready (below).
+    // The maths or the CS examiner (lib/canvas/mathsCheck.ts) reads each board; never on a strict-source lesson.
+    const examiner = strictSource ? null : examinerFor(session.topic, plan);
+    const mathsOn = examiner !== null;
+    /*
+     * THE STUDENT IS CLOSE: once the lecture has started, a board whose student is already on the board
+     * before it skips the polish passes (lib/canvas/generate.ts generateSpec `hurry`). The playhead is
+     * read every 5 s while the board is written; a slow read just leaves the last answer in place.
+     */
+    const isNear = (playhead: number) => sequence >= CANVAS_OPENING_BOARDS && playhead >= 0 && playhead >= sequence - 1;
+    let near = isNear(session.playhead);
+    let reading = false;
+    const watch = setInterval(() => {
+      if (reading) return;
+      reading = true;
+      void requiredSession(userId, sessionId).then((s) => { near = isNear(s.playhead); }).catch(() => undefined).finally(() => { reading = false; });
+    }, 5_000);
+    watch.unref?.();
+    let hurried = false;
+    const hurry = () => { if (near) hurried = true; return near; };
+    let written: Awaited<ReturnType<typeof writeCanvasBoard>>;
+    try {
+      written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources, mathsCheck: mathsOn && sequence >= 1, examiner: examiner ?? undefined, hurry });
+      // A board that fell back to the plain backup is written once more instead of shipped as
+      // "ready" (audit 2026-10-15) — only from the third board on, which is written while the
+      // student is still watching earlier ones, so the retry never holds up the start.
+      if (written.fallback && sequence >= 2) {
+        const again = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources, mathsCheck: mathsOn, examiner: examiner ?? undefined }).catch(() => null);
+        if (again) {
+          console.log(`[canvas] session=${sessionId} board ${sequence} fell back; rewrite ${again.fallback ? "fell back too" : "succeeded"}`);
+          written = again.fallback ? { ...written, costUsd: written.costUsd + again.costUsd } : { ...again, costUsd: written.costUsd + again.costUsd, log: [...written.log, ...again.log] };
+        }
       }
+    } finally {
+      clearInterval(watch);
+    }
+    if (hurried) written.log.push(`board ${sequence}: written in a hurry — the student reached the board before it`);
+    // Boards are written three at a time: an earlier board finished while this one was written is
+    // read now, so this board connects to it (what carries across, a close-up inside it).
+    const spec = canvasSpecOf(written.beat);
+    if (spec && sequence > 0) {
+      const docsNow = await progressiveBeats(sessionId).catch(() => null);
+      if (docsNow) connectToEarlier(spec, plan, sequence, plan.map((_, i) => (i < sequence ? canvasSpecOf(docsNow.find((d) => d.sequence === i && d.state === "ready")?.beat) : undefined)), sessionId);
     }
     beat = written.beat;
     costUsd = written.costUsd;
@@ -375,8 +419,82 @@ async function generateCanvasBoard(
     costUsd: baseDoc.costUsd + costUsd,
     timing: { queuedMs, textMs: ms, premiumMs: ms, enrichMs: ms, visualKind: "canvas", readyAt: new Date().toISOString() },
   });
+  await reconnectLaterBoards(sessionId, plan, sequence).catch((error) => console.warn(`[canvas] session=${sessionId} reconnecting after board ${sequence} failed: ${(error as Error).message}`));
   await dispatchDueBeats(await requiredSession(userId, sessionId));
   await maybeFinalize(userId, sessionId);
+  // The first board, read by the maths examiner AFTER it is ready: the student never waits for it. A board
+  // with faults is written again with them named, and takes the first board's place only while the
+  // student has not started — never under them mid-play.
+  const firstExaminer = examinerFor(session.topic, plan);
+  if (sequence === 0 && beat && !existing?.beat && firstExaminer) {
+    void recheckFirstBoard(userId, sessionId, session.topic, plan, beat, revision, firstExaminer).catch((error) => console.warn(`[canvas] session=${sessionId} first-board maths check failed: ${(error as Error).message}`));
+  }
+}
+
+/**
+ * A board finished AFTER a later one (boards are written three at a time): the later boards that hang
+ * on it — the next board, for what carries across, and any close-up inside it — are connected to it
+ * now (lib/canvas/progressive.ts connectToEarlier). Code only; a board is saved again only if a tie
+ * changed. The later board has not been played: the student is at most on the board just finished.
+ */
+async function reconnectLaterBoards(sessionId: string, plan: CanvasPlanBeat[], sequence: number): Promise<void> {
+  const docs = await progressiveBeats(sessionId);
+  const specs = plan.map((_, i) => canvasSpecOf(docs.find((d) => d.sequence === i && d.state === "ready")?.beat));
+  for (const doc of docs) {
+    const j = doc.sequence;
+    if (j <= sequence || doc.state !== "ready" || !doc.beat) continue;
+    if (j !== sequence + 1 && plan[j]?.inside?.beat !== plan[sequence]?.id) continue;
+    const spec = canvasSpecOf(doc.beat);
+    if (!spec || !connectToEarlier(spec, plan, j, specs.map((s, i) => (i < j ? s : undefined)), sessionId)) continue;
+    await upsertProgressiveBeat({ ...doc, updatedAt: new Date().toISOString() });
+    console.log(`[canvas] session=${sessionId} board ${j} reconnected to board ${sequence}, finished after it`);
+  }
+}
+
+async function recheckFirstBoard(userId: string, sessionId: string, topic: string, plan: Parameters<typeof writeCanvasBoard>[0]["plan"], beat: Beat, revision: number, subject: ExaminerSubject = "maths"): Promise<void> {
+  const spec = canvasSpecOf(beat);
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!spec || !apiKey) return;
+  const openai = createOpenAI({ apiKey });
+  const script = beat.script ?? plan[0].script;
+  const verdict = await mathsCheck(openai, topic, spec, { title: plan[0].title, script }, 90_000, subject);
+  // Working Aria says that the board does not show is written in by code (lib/canvas/writeMissing.ts);
+  // only other faults need the board written again.
+  const missing = verdict.problems.filter((p) => isMissingLine(p.kind));
+  const drawn = verdict.problems.filter((p) => p.where === "board" && !isMissingLine(p.kind));
+  console.log(`[canvas] session=${sessionId} first board: maths examiner (${Math.round(verdict.ms / 1000)}s, $${verdict.costUsd.toFixed(4)}) — ${verdict.problems.length ? verdict.problems.map((p) => `${p.where}/${p.kind}: ${p.detail}`).join(" | ").slice(0, 400) : "ships"}`);
+  const record = async (extra: number) => {
+    const doc = await progressiveBeat(sessionId, 0);
+    if (doc) await upsertProgressiveBeat({ ...doc, costUsd: (doc.costUsd ?? 0) + extra, updatedAt: new Date().toISOString() });
+  };
+  if (!drawn.length && !missing.length) return record(verdict.costUsd);
+  if ((await requiredSession(userId, sessionId)).playhead >= 0) {
+    console.log(`[canvas] session=${sessionId} first board kept: playback had started`);
+    return record(verdict.costUsd);
+  }
+  const docs = await progressiveBeats(sessionId);
+  if (!drawn.length) {
+    const latest = docs.find((d) => d.sequence === 0);
+    if (!latest?.beat || latest.revision !== revision) return record(verdict.costUsd);
+    const next = structuredClone(latest.beat);
+    const target = canvasSpecOf(next);
+    const wrote = target ? writeMissingLines(target, missing, script, canvasSentences(script).length) : { written: 0, left: missing };
+    if (wrote.written) {
+      await upsertProgressiveBeat({ ...latest, beat: next, revision: latest.revision + 1, costUsd: (latest.costUsd ?? 0) + verdict.costUsd, updatedAt: new Date().toISOString() });
+      console.log(`[canvas] session=${sessionId} first board: wrote ${wrote.written} line(s) of working Aria says that the board did not show`);
+      return;
+    }
+    if (!wrote.left.length) return record(verdict.costUsd);
+  }
+  const earlier = plan.map(() => undefined);
+  const again = await writeCanvasBoard({ userId, sessionId, topic, plan, index: 0, earlier, notes: [], feedback: [mathsFixes([...drawn, ...missing])] }).catch(() => null);
+  const latest = docs.find((d) => d.sequence === 0);
+  if (!again || again.fallback || !latest || latest.revision !== revision || (await requiredSession(userId, sessionId)).playhead >= 0) {
+    console.log(`[canvas] session=${sessionId} first board kept: ${!again || again.fallback ? "the rewrite fell back" : "playback had started"}`);
+    return record(verdict.costUsd + (again?.costUsd ?? 0));
+  }
+  await upsertProgressiveBeat({ ...latest, beat: again.beat, revision: latest.revision + 1, costUsd: (latest.costUsd ?? 0) + verdict.costUsd + again.costUsd, updatedAt: new Date().toISOString() });
+  console.log(`[canvas] session=${sessionId} first board replaced with the examiner's corrections`);
 }
 
 /** The "How to teach them" sentence of the portrait block, for the board brief. */

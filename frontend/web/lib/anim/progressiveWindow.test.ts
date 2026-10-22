@@ -73,3 +73,19 @@ test("with nothing else to do, the rest of the lecture is finished one beat at a
   const all = [0, 1, 2, 3, 4, 5, 6, 7].map((s) => beat(s, "ready"));
   assert.deepEqual(dueSequences({ planLength: 8, playhead: 1, isAnimation: noAnimations, beats: all, now: NOW }), []);
 });
+
+test("a canvas lecture: three boards written at a time, always the earliest unfinished ones", async () => {
+  const { canvasDueSequences } = await import("../progressiveWindow");
+  const now = Date.parse("2026-10-21T12:00:00Z");
+  const at = new Date(now - 5_000).toISOString();
+  const b = (sequence: number, state: "generating" | "ready" | "failed" | "planned") => ({ sequence, state, updatedAt: at });
+  assert.deepEqual(canvasDueSequences({ planLength: 8, beats: [], now }), [0, 1, 2], "the plan exists: the opening three");
+  assert.deepEqual(canvasDueSequences({ planLength: 8, beats: [b(0, "ready"), b(1, "generating"), b(2, "ready")], now }), [3, 4], "three in flight: board 1 and the next two");
+  assert.deepEqual(canvasDueSequences({ planLength: 8, beats: [b(0, "ready"), b(1, "ready"), b(2, "ready")], now }), [3, 4, 5], "the opening is ready: the next three, in order");
+  assert.deepEqual(canvasDueSequences({ planLength: 8, beats: [b(0, "ready"), b(1, "ready"), b(2, "ready"), b(3, "generating"), b(4, "generating"), b(5, "generating")], now }), [], "never more than three at once");
+  assert.deepEqual(canvasDueSequences({ planLength: 8, beats: [b(0, "ready"), b(1, "ready"), b(2, "ready"), b(3, "generating"), b(4, "ready"), b(5, "generating")], now }), [6], "a finished board frees a place for the next");
+  assert.deepEqual(canvasDueSequences({ planLength: 8, beats: [0, 1, 2, 3, 4, 5].map((i) => b(i, "ready")).concat([b(6, "failed")]), now }), [7], "a failed board does not stall the rest");
+  const stale = { sequence: 3, state: "generating" as const, updatedAt: new Date(now - 11 * 60_000).toISOString() };
+  assert.deepEqual(canvasDueSequences({ planLength: 8, beats: [b(0, "ready"), b(1, "ready"), b(2, "ready"), stale], now }), [3, 4, 5], "a dead generation is picked up again, with the next two");
+  assert.deepEqual(canvasDueSequences({ planLength: 2, beats: [], now }), [0, 1]);
+});

@@ -1,3 +1,4 @@
+import { isLadder, ladderBoardBudget, ladderCanvasSection, strictLadderSection } from "./conceptLadder";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
 import type { PlanningKnowledge } from "../knowledge/graph";
 import { isDirectQuestion, isTopicRequest } from "../planPrompt";
@@ -9,6 +10,7 @@ import { strictPlanSection, videoParts, videoPlanSection } from "./sourceLessons
 import { isVideoSource } from "../youtube/videoSource";
 import { packForPrompt } from "../webSources";
 import { isDataStructureTopic } from "./structure";
+import { isCsTopic, isLabLookTopic } from "./subjectLook";
 
 /**
  * WHICH LECTURES ARE TAUGHT ON THE LESSON CANVAS, and what its planner is told about them.
@@ -126,7 +128,10 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // A strict lecture on the whole selection teaches every page: when its outline's parts do not reach
   // them all, boards for the remaining pages follow the parts (PDF bench, 2026-10-18: 2 of 10 pages).
   const pageBoards = strictDoc && !question && input.sourceScope?.breadth.kind === "whole" ? Math.max(0, Math.min(14, substantivePages(strictDoc).length) - boards) : 0;
-  if (parts.length > 0) {
+  if (parts.length > 0 && isLadder(input.outline?.subtopics)) {
+    // THE CONCEPT LADDER (owner, 2026-10-20): what the student does not know is built from scratch.
+    lines.push(...ladderCanvasSection(input.outline!.subtopics));
+  } else if (parts.length > 0) {
     lines.push(
       "",
       `THE APPROVED OUTLINE — ${pageBoards ? `${boards} board${boards === 1 ? "" : "s"} for its parts` : `exactly ${boards} board${boards === 1 ? "" : "s"}`}, one per part, in this order (ids b1 to b${boards}). Each board teaches its part — what its line below says — and nothing that belongs to another part:`,
@@ -181,26 +186,71 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
     // (coverage audit 2026-10-17). Each board's own length is given in its plan block.
     : course
     ? "as long as its key points need — the sentence count given for each board in THE LESSON PLAN below"
+    : isLadder(input.outline?.subtopics)
+    ? "4 to 7 sentences (60 to 120 words): the rungs it climbs, each step said plainly, never rushed"
     : boards === 1
     ? "5 to 8 sentences (80 to 140 words) — the whole answer, complete on this one board"
     : depth === "concise" ? "3 or 4 sentences (45 to 70 words)"
     : depth === "deep" ? "6 to 8 sentences (90 to 140 words), going further than a first introduction would"
     : "4 to 6 sentences (60 to 100 words)";
   lines.push("", `SCRIPT LENGTH: each board's script is ${length}.`);
+  // WORKING IS NEVER SQUEEZED (owner, 2026-10-22: "it shows direct steps"). The length above made
+  // the writer compress an eight-step derivation into "this gives the result"; working boards are as
+  // long as their steps — the board wipes when full and a longer one continues on the next board
+  // (lib/canvas/splitWorking.ts).
+  if (!strictDoc && !video && isLabLookTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) {
+    lines.push("A board that WORKS something out — a proof, a derivation, a worked example, a rearrangement — is as long as its steps, past the length above: ONE sentence per step, every step a textbook shows (each expansion, substitution, cancelling, rearrangement and the result), with its reason, up to 10 sentences; longer working continues on the next board by itself. Never compress working to fit a length (\"this gives the result\", \"simplifying, we get\" with the line missing).");
+  }
   // DATA STRUCTURES are taught with the structure itself on the board (owner's direction, 2026-10-15).
   // A source lesson keeps its own rules: its boards follow the document or the video.
   if (!strictDoc && !video && isDataStructureTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) {
     lines.push(
       "",
-      "THIS IS A DATA STRUCTURES / ALGORITHMS LESSON: every board that runs an operation (insert, search, delete, traverse, rotate, push, pop, swap, BFS, DFS) is a \"code\" board in pseudocode (unless the student named a language) with the structure drawn beside it, changing line by line; a board that explains the structure itself is a \"structure\" board; never illustration, flow or scene for a data structure. Each brief names the starting values and the operation, and the script walks it one step per sentence with those same values — a board that runs an operation may take up to 8 sentences for that.",
+      "THIS IS A DATA STRUCTURES / ALGORITHMS LESSON: every board that runs an operation (insert, search, delete, traverse, rotate, push, pop, swap, BFS, DFS) is a \"code\" board in REAL code — Python, or the exam board's pseudocode when the syllabus uses it — every line a statement, never a description (\"shift 7 right\", \"search cost: inspect up to n nodes\") — with the structure drawn beside it, changing line by line; a board that explains the structure itself is a \"structure\" board; never illustration, flow or scene for a data structure. Each brief names the starting values and the operation, and the script walks it one step per sentence with those same values — a board that runs an operation may take up to 10 sentences for that.",
     );
   }
+  // MATHS AND COMPUTER SCIENCE are taught in a visible structure (owner, 2026-10-21: "keep your
+  // intentions clear and teach in a structured way — I really don't get how you teach"; "if there is
+  // any proof it should build step by step"). Not for a lesson strictly from a source: its order is the source's.
+  if (!strictDoc && !video && isLabLookTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) lines.push("", MATHS_CS_TEACHING);
+  // COMPUTER SCIENCE is taught as a CS teacher teaches it (owner's manager, a CS teacher, 2026-10-22:
+  // the visuals and code were nice but it "never really teaches" and did not explain its visuals).
+  if (!strictDoc && !video && isCsTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) lines.push("", CS_TEACHING);
   if (doc) lines.push("", documentPlanSection(doc, listings, Boolean(question)));
   if (strictDoc) lines.push("", strictPlanSection(strictDoc, strictQuestion));
+  // What the student already knows of these pages (lib/intake.ts): how deep each part goes.
+  if (strictDoc && !strictQuestion && input.learner?.parts?.length) lines.push(...strictLadderSection(input.learner.parts));
   if (video) lines.push("", videoPlanSection(video));
   if (course) lines.push("", curriculumPlanSection(course));
   return lines.join("\n");
 }
+
+/** How a maths or computer-science lesson is taught: its structure said out loud, proofs built step by step. */
+export const MATHS_CS_TEACHING = [
+  "THIS IS A MATHS / COMPUTER SCIENCE LESSON — TEACH IT IN A STRUCTURE THE STUDENT CAN SEE:",
+  "- Each board's FIRST sentence says what this board is going to do, in plain words, and how it follows from the last board (\"We found the gradient; now we use it to find the tangent.\"). Never open with a bare fact.",
+  "- Each new idea is taught in this order — what it is, a picture of it, a worked example with real numbers or values, then the general rule or a quick check for the student — on one board or over several, as the boards above are sized. A board never starts a second new idea.",
+  "- Each step is said with its PURPOSE first, then the step: \"To get x on its own, we subtract 3 from both sides.\" Never a step without its reason.",
+  "- A PROOF is built step by step, never stated whole: first say what will be proved; then draw the figure; then ONE step per sentence, each saying what we do and why it is allowed; the result is said only at the end (\"So a² + b² = c².\"), earned by the steps before it. Never skip a line of algebra: each rearrangement is its own sentence (\"so 360° − 2x − 2y = 180°, so 2x + 2y = 180°, so x + y = 90°\"). A general proof stays general — letters, no example numbers. A long proof takes consecutive boards, each continuing the same figure.",
+  "- Say a matrix by its rows, never as brackets read aloud (\"the matrix with rows 1, 2 and 3, 4\", not \"[[1, 2], [3, 4]]\"); the board writes it as a matrix. Say every answer as an equation (\"so c = 10 centimetres\", \"so f′(x) = 2x\"): the board writes what is said.",
+  "- Never skip a line of algebra — in a proof, a derivation or a worked example: each expansion, cancellation or rearrangement is said (\"(2 + h)² − 4 = 4h + h², and dividing by h gives 4 + h\"). Rearranging a formula, each operation on both sides is its own line, and the operation named is the one that gives that line (\"a ÷ sin A = b ÷ sin B; multiplying both sides by sin A sin B gives a sin B = b sin A; dividing by a gives sin B = b sin A ÷ a\") — never one named step that actually needs two.",
+  "- State every condition a conclusion needs, as a mark scheme does: parallel vectors AND a shared point for collinear points; a ≠ 0 for a quadratic; a right-angled triangle for Pythagoras.",
+  "- The standard case comes first: a normal worked example before any special case (an impossible or ambiguous triangle, a zero denominator, no real roots).",
+  "- Code: say what the code is for, then what each line does, then trace it with real values, one step per sentence.",
+  "- Each board's LAST sentence says what we now know — the result the next board builds on.",
+].join("\n");
+
+/** How a computer-science lesson is taught: as a CS teacher teaches, explaining everything it draws. */
+export const CS_TEACHING = [
+  "THIS IS A COMPUTER SCIENCE LESSON — TEACH IT AS A GOOD CS TEACHER DOES. A student who has never seen the topic must understand WHAT it is, WHY it works and HOW to write and trace it.",
+  "- Each concept, over as many boards as it needs, in this order: WHY (the problem it solves, in one concrete situation) → THE IDEA (a real-world analogy, then a pencil \"sketch\" board of the idea with real values: boxes for memory and variables, arrows for references and pointers, the structure itself) → HOW IT WORKS (the rule or algorithm in plain steps, done by hand on that sketch with small real values, one step per sentence) → THE CODE (each line written and explained in its own sentence) → THE TRACE (the code run on concrete input, one executed line per sentence) → EDGE CASES AND MISTAKES (the empty input, the boundary, the classic bug and its fix) → COST (time and space complexity, with the reason, when the level includes it) → a CHECK (predict what a small change does).",
+  "- THE CODE is real and runnable — Python unless the student or the syllabus names another language or the exam board's pseudocode, which then follows that board's conventions. Never prose dressed as code (\"push(stack, item): add item to top\"). Each line gets its OWN sentence saying what it does and WHY it is needed (\"Line 2 checks for the base case, because without it the calls would never stop\"); never \"the rest of the code\", never several lines in one sentence.",
+  "- THE TRACE says, one executed line per sentence, what changes: each variable's new value, each call pushed or returned on the call stack, each node, pointer or element added, moved or removed, and what is printed. The values are the ones the code really produces. One loop pass or one call per sentence at least — never a whole loop in one sentence (\"the loop compares 9, then 2 and 7, and returns 9\"); a long run traces its first passes in full, then says the rest briefly.",
+  "- ONE FUNCTION PER CODE BOARD, at most about 10 lines. A board about boundary cases or mistakes shows only the lines it adds or changes (the guard, the fixed line), never every function again.",
+  "- EXPLAIN THE VISUAL AS IT IS DRAWN: every box, arrow, pointer, value, label and line of code on a board is named in the sentence that draws or lights it, and what it MEANS is said (\"this arrow is next — the address of the following node\"). Nothing appears on a board that Aria does not say.",
+  "- Every term is defined in plain words the first time it is used (stack frame, pointer, index, base case, LIFO, mutable), with what it looks like on the board.",
+  "- A code board shows the program working beside the code — the data structure it changes, the call stack for recursion (one frame per call, pushed and popped), or the variables with their values — so the student sees each line's effect as it is said. A code board is as long as its lines and its trace need (one sentence each, up to 10); a longer one continues on the next board by itself.",
+].join("\n");
 
 /** The steps of a block's worked example ("Worked example: 1. … 2. …" or sentences), at most 6. */
 export function workedSteps(text = ""): number {
@@ -302,9 +352,9 @@ function documentPlanSection(doc: SuprnotesLessonInput, listings: ReturnType<typ
   return lines.join("\n");
 }
 
-/** How many boards beyond the outline a reference document's long code listings may add. */
+/** How many boards beyond the outline a PDF's long code listings may add (reference or strict: the code is on its pages). */
 export function documentExtraBoards(input: ProgressiveLectureInput): number {
-  const doc = referenceDocumentOf(input);
+  const doc = referenceDocumentOf(input) ?? strictDocumentOf(input);
   return doc ? extraBoardsForListings(documentListings(doc)) : 0;
 }
 
@@ -329,6 +379,8 @@ export function canvasRefresherAllowed(_input: ProgressiveLectureInput, _knowled
 }
 
 export function canvasBoardCount(input: ProgressiveLectureInput): number {
+  // A lesson on the concept ladder (lib/canvas/conceptLadder.ts) may take up to its ladder's boards.
+  if (isLadder(input.outline?.subtopics)) return ladderBoardBudget(input.outline!.subtopics).max;
   const course = curriculumDocumentOf(input);
   const parts = course && !input.outline ? curriculumParts(course).length : input.outline?.subtopics.filter((s) => s.title.trim()).length ?? 0;
   if (parts > 0) return Math.min(14, parts);

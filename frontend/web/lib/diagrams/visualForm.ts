@@ -13,7 +13,9 @@ const DATA = /\b(graphs?|charts?|plots?|axis|axes|curves?|surplus|deficit|supply
 const COUNTS = /\b(\d{1,3}\s*(chromosomes?|pairs?|cells?|copies)|n\s*=\s*\d+|2n\s*=\s*\d+|haploid|diploid|exact counts?|sets? of chromosomes?)\b/i;
 const EXPERIMENT = /\b(scattering|gold foil|alpha particles?|apparatus|set[- ]?up|paths? of|deflect)\b/i;
 const MATH_ONLY = new Set(["shapes3d", "triangle", "vectors", "parallelLines", "bearings", "unitCircle", "fractionModel", "sectorArc", "argand"]);
-const MATHS = /\b(cuboids?|cubes?|prisms?|pyramids?|nets? of|volume of|surface area|3[- ]?d (shapes?|solids?)|complex numbers?|argand|unit circle|bearings?|vectors?|parallel lines|fractions? of a (shape|bar|circle)|sector|arc length)\b/i;
+// Triangle words too: without them the planner's own "triangle" was refused on "Parts of a right
+// triangle" and the board was sketched by hand (playback QA, 2026-10-21).
+const MATHS = /\b(cuboids?|cubes?|prisms?|pyramids?|nets? of|volume of|surface area|3[- ]?d (shapes?|solids?)|complex numbers?|argand|unit circle|bearings?|vectors?|parallel lines|fractions? of a (shape|bar|circle)|sector|arc length|triangles?|hypotenuse|right[- ]angled?|pythagor\w*|trigonometr\w*|sine rule|cosine rule|sohcahtoa)\b/i;
 
 export function boardWords(beat: Pick<CanvasPlanBeat, "title" | "brief" | "script" | "objects">): string {
   return `${beat.title} ${beat.brief} ${beat.script} ${(beat.objects ?? []).join(" ")}`;

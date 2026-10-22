@@ -109,15 +109,22 @@ test("probability tree: branches sum to 1, leaves multiply and sum to 1", () => 
   const fr = branchProbs(["1/3", ""], 2);
   assert.deepEqual(fr[1].frac, { n: 2, d: 3 });
   const norm = branchProbs(["2", "2"], 2);
-  assert.ok(Math.abs(norm[0].value + norm[1].value - 1) < 1e-12, "out-of-range values become equal shares");
+  assert.ok(Math.abs(norm[0].value + norm[1].value - 1) < 1e-12, "counts become shares of their total");
+  assert.deepEqual(branchProbs(["3", "2"], 2).map((p) => p.text), ["3/5", "2/5"]);
   const odd = branchProbs(["0.2", "0.2"], 2);
   assert.ok(Math.abs(odd[0].value - 0.5) < 1e-12, "a set not summing to 1 is normalised");
   const { leaves } = buildTree({ first: "Red,Blue", firstP: "3/5,2/5", secondP: "2/4,2/4|3/4,1/4" });
   assert.deepEqual(leaves.map((l) => l.text), ["3/10", "3/10", "3/10", "1/10"], "without replacement, exactly");
   assert.ok(Math.abs(leaves.reduce((t, l) => t + l.p, 0) - 1) < 1e-12);
-  const three = buildTree({ stages: 3 });
+  const three = buildTree({ stages: 3, firstP: "1/2,1/2" });
   assert.equal(three.leaves.length, 8);
-  assert.ok(three.leaves.every((l) => l.text === "1/8"));
+  assert.ok(three.leaves.every((l) => l.text === ""), "later stages given no probability stay blank");
+  // Never an invented probability (maths benchmark, 2026-10-21): only P(art | music) was given.
+  const part = buildTree({ first: "Music,Not music", second: "Art,No art", firstP: "0.6,0.4", secondP: "0.3,?|" });
+  assert.deepEqual(part.leaves.map((l) => l.text), ["0.18", "0.42", "", ""]);
+  assert.deepEqual(branchProbs(["0.2", "?", "?"], 3).map((p) => p.text), ["0.2", "", ""], "two gaps stay blank");
+  const drawn = probabilityTree.build({ first: "Music,Not music", second: "Art,No art", firstP: "0.6,0.4", secondP: "0.3,?|" });
+  assert.ok(!drawn.shapes.some((s) => s.t === "text" && /^1\/2$|^0\.5$/.test(s.text)), "no ½ appears");
   const dec = buildTree({ first: "Rain,Dry", firstP: "0.3,?", secondP: "0.4,0.6|0.1,0.9" });
   assert.deepEqual(dec.leaves.map((l) => l.text), ["0.12", "0.18", "0.07", "0.63"]);
   const d = probabilityTree.build({ first: "Red,Blue", firstP: "3/5,2/5", secondP: "2/4,2/4|3/4,1/4", working: true });
@@ -187,4 +194,62 @@ test("circle chord and tangent theorems: lengths completed by Pythagoras, drawn 
   assert.ok(circleTheorem.match.test("The perpendicular from the centre bisects a chord"));
   // An alias in the writer's own words still finds the theorem.
   assert.ok(circleTheorem.build({ theorem: "perpendicular bisects chord" }).parts.some((p) => p.name === "AM = MB"));
+});
+
+test("function graph: a secant between two points, with its gradient and both coordinates (maths benchmark)", async () => {
+  const { functionGraph, parseSecants } = await import("../figures/components/functionGraph");
+  assert.deepEqual(parseSecants("1,2|1,1.5|1, 1.1"), [[1, 2], [1, 1.5], [1, 1.1]]);
+  assert.deepEqual(parseSecants("2,2|x,1"), []);
+  const d = functionGraph.build({ f: "x^2", features: "none", secant: "1,2", tangentAt: 1 });
+  const texts = d.shapes.filter((s) => s.t === "text").map((s) => String((s as { text: unknown }).text));
+  for (const t of ["gradient = 3", "(1, 1)", "(2, 4)", "gradient = 2"]) assert.ok(texts.includes(t), t);
+  assert.ok(d.parts.some((p) => p.id === "secant" && /\(1, 1\) and \(2, 4\)/.test(p.name)));
+});
+
+test("function graph: no repeated second curve; no antiderivative drawn through an area (maths benchmark)", async () => {
+  const { functionGraph } = await import("../figures/components/functionGraph");
+  const curves = (d: ReturnType<typeof functionGraph.build>) => d.shapes.filter((s) => (s as { part?: string }).part === "second-curve").length;
+  assert.equal(curves(functionGraph.build({ f: "x - 2", g: "x - 2", shade: "under", shadeFrom: 0, shadeTo: 4 })), 0, "g = f is not drawn twice");
+  assert.equal(curves(functionGraph.build({ f: "x^2", g: "x^3/3", shade: "under", shadeFrom: 1, shadeTo: 3 })), 0, "F is not drawn on the area graph");
+  assert.ok(curves(functionGraph.build({ f: "x^2", g: "x^3/3" })) > 0, "f and F side by side, with no area, stay");
+  assert.ok(curves(functionGraph.build({ f: "x^2", g: "x + 2", shade: "between" })) > 0, "a real second curve stays");
+});
+
+test("dot plot: stacked values, the mean and σ computed, two spreads on one scale (maths benchmark)", async () => {
+  const { dotPlot, spreadOf } = await import("../figures/components/dotPlot");
+  assert.ok(Math.abs(spreadOf([4, 5, 5, 6]).sd - Math.SQRT1_2) < 1e-12);
+  assert.ok(Math.abs(spreadOf([1, 5, 5, 9]).sd - Math.sqrt(8)) < 1e-12);
+  assert.equal(spreadOf([2, 4, 4, 4, 5, 5, 7, 9]).sd, 2);
+  assert.ok(Math.abs(spreadOf([2, 4, 4, 4, 5, 5, 7, 9], true).sd - Math.sqrt(32 / 7)) < 1e-12, "sample SD divides by n − 1");
+  const d = dotPlot.build({ data: "4, 5, 5, 6", data2: "1, 5, 5, 9", group1: "A", group2: "B", sd: true });
+  const texts = d.shapes.filter((s) => s.t === "text").map((s) => String((s as { text: unknown }).text));
+  for (const t of ["σ = 0.71", "σ = 2.83", "x̄ = 5", "A", "B"]) assert.ok(texts.includes(t), t);
+  assert.equal(d.shapes.filter((s) => s.t === "circle").length, 8, "every value is a dot");
+  const s = dotPlot.build({ data: "2, 4, 4, 4, 5, 5, 7, 9", sd: "sample" });
+  assert.ok(s.shapes.some((x) => x.t === "text" && String((x as { text: unknown }).text) === "s = 2.14"));
+});
+
+test("a trig graph in degrees is evaluated in degrees, written without π/180 and marked in degrees", async () => {
+  const { functionGraph } = await import("../figures/components/functionGraph");
+  const { degreesExpr, withoutDegreeFactor } = await import("../figures/components/calculusKit");
+  assert.equal(degreesExpr("2*sin(2*x)"), "2*sin((2*x)*pi/180)");
+  assert.equal(degreesExpr("sin(x)+cos(x - 30)"), "sin((x)*pi/180)+cos((x - 30)*pi/180)");
+  assert.equal(withoutDegreeFactor("cos(x*pi/180)"), "cos(x)");
+  assert.equal(withoutDegreeFactor("sin((x+90)*pi/180)"), "sin(x+90)");
+  // y = 2 sin 2x over 0°–360°: two waves, peaks at 45° and 225° (R7 drew dozens of waves in radians).
+  const twoWaves = JSON.stringify(functionGraph.build({ f: "2sin(2x)", xmin: 0, xmax: 360, features: "turning points" }));
+  assert.ok(twoWaves.includes("(45°, 2)") && twoWaves.includes("(225°, 2)"), "peaks at 45° and 225°");
+  // The writer's workaround reads as the student writes it, and no false asymptote crosses the wave.
+  const cos = JSON.stringify(functionGraph.build({ f: "cos(x*pi/180)", xmin: 0, xmax: 360 }));
+  assert.ok(cos.includes("y = cos(x)") && !cos.includes("pi/180") && !cos.includes("π/180"));
+  assert.ok(!/y = 0\.17/.test(cos), "no asymptote at 0.174");
+  // Radians are unchanged.
+  assert.ok(JSON.stringify(functionGraph.build({ f: "sin(x)" })).includes("π/2"));
+});
+
+test("a tangent asked for on a straight line is sent back: f must be the curve it touches", async () => {
+  const { functionGraphProblem } = await import("../figures/components/functionGraph");
+  assert.match(functionGraphProblem({ f: "3x + 4", tangentAt: 1 }) ?? "", /straight line/);
+  assert.equal(functionGraphProblem({ f: "x^2 + x + 2", tangentAt: 1 }), null);
+  assert.equal(functionGraphProblem({ f: "2x + 1" }), null, "a straight line on its own is fine");
 });

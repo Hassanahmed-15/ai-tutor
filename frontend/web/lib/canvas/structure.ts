@@ -636,3 +636,116 @@ export function withoutStructure(spec: CanvasBoardSpec): CanvasBoardSpec | null 
   void _drop;
   return { ...spec, stage: { ...code, steps: code.steps.map(({ ops: _ops, ...step }) => (void _ops, step)) } };
 }
+
+/**
+ * The picture and the Variables panel must agree (QA batch 5, 2026-10-21: a bubble sort's array
+ * ended as [2, 3, 1] while its Variables panel said A = [1, 2, 3]). For an array, list, stack or
+ * queue drawn beside code: at each step that gives a list value with the same items, the drawing must
+ * hold them in the same order. Null when they agree, or when nothing comparable is stated.
+ */
+export function structureStateMismatch(start: DsStart, steps: Array<{ s: number; ops?: DsOp[]; state?: Array<{ name: string; value: string }> }>): string | null {
+  if (!["array", "list", "stack", "queue"].includes(start.kind)) return null;
+  const { frames } = runStructure(start, steps);
+  const items = (v: string) => (/^\s*\[(.*)\]\s*$/.exec(v)?.[1] ?? "").split(",").map((x) => x.trim().replace(/^["']|["']$/g, "")).filter(Boolean);
+  const sorted = (a: string[]) => [...a].sort().join("|");
+  for (const st of steps) {
+    const frame = [...frames].reverse().find((f) => f.s <= st.s);
+    if (!frame || !st.state) continue;
+    const drawn = frame.nodes.map((n) => String(n.value).trim());
+    for (const v of st.state) {
+      const said = items(v.value);
+      if (said.length !== drawn.length || sorted(said) !== sorted(drawn)) continue;
+      if (said.join("|") !== drawn.join("|")) return `on sentence ${st.s} the Variables panel says ${v.name} = [${said.join(", ")}] but the ${start.kind} drawn beside the code is [${drawn.join(", ")}]: make the ops move the cells so the drawing matches the variable at every step`;
+    }
+  }
+  return null;
+}
+
+/**
+ * WHAT ARIA SAYS IS WHAT IS DRAWN. A bubble-sort board said "we have fixed 5 … swap to get [1, 2, 4,
+ * 5] … so the list is sorted" over an array drawn as [5, 1, 2, 4] (QA 2026-10-21): it restarted from
+ * the original list instead of continuing from the last board. On each sentence, the structure as
+ * drawn when the sentence ends must be the last whole list the sentence reads out (same values, so
+ * a partial list like "[1, 4]" is not compared), and in order when the sentence says it is sorted.
+ * `sentences` are the board's narration sentences, s = 0, 1, ….
+ */
+export function narratedStructureMismatch(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>, sentences: string[]): string | null {
+  if (!["array", "list", "stack", "queue"].includes(start.kind)) return null;
+  const { frames } = runStructure(start, steps);
+  if (!frames.length) return null;
+  const key = (a: string[]) => [...a].sort().join("|");
+  for (const [s, sentence] of sentences.entries()) {
+    const frame = [...frames].reverse().find((f) => f.s <= s) ?? frames[0];
+    const drawn = frame.nodes.map((n) => String(n.value).trim());
+    const lists = [...sentence.matchAll(/\[([^[\]]+)\]/g)].map((m) => m[1].split(",").map((x) => x.trim().replace(/^["']|["']$/g, "")).filter(Boolean));
+    const whole = lists.filter((l) => l.length === drawn.length && key(l) === key(drawn));
+    const said = whole[whole.length - 1];
+    if (said && said.join("|") !== drawn.join("|")) return `sentence ${s} says the ${start.kind} is [${said.join(", ")}] but it is drawn as [${drawn.join(", ")}] when that sentence ends: start from the state the lesson has reached (continue from the previous board) and give ops that make the drawing match what each sentence says`;
+    const nums = drawn.map(Number);
+    const claimsSorted = /\b(?:is|are|now|fully|completely)\s+(?:all\s+)?sorted\b|\bsorted (?:list|array)\b/i.test(sentence) && !/\b(?:not|unsorted|until|unless|if|whether)\b/i.test(sentence);
+    if (claimsSorted && nums.every(Number.isFinite) && !nums.every((v, i) => i === 0 || v >= nums[i - 1]) && !nums.every((v, i) => i === 0 || v <= nums[i - 1])) return `sentence ${s} says it is sorted but the ${start.kind} is drawn as [${drawn.join(", ")}]: the drawing must be in order by then`;
+  }
+  return null;
+}
+
+/**
+ * POSITIONAL IDS. The board writer names an array's cells by position ("n0" … "n3") and keeps using
+ * "n1" for "the second cell" after a swap, while the drawing follows each value by its id — so after
+ * the first swap every later step compared and swapped the wrong cells (5 of 9 sort boards, QA
+ * 2026-10-21). When the ids are positions and reading them as positions makes the drawing agree with
+ * the narration (where reading them as values does not), the ops are rewritten to the ids of the
+ * cells at those positions. Arrays with swaps, marks, pointers and set only. Returns true when it rewrote.
+ */
+export function repairPositionalIds(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>, sentences: string[]): boolean {
+  if (start.kind !== "array" || !steps.some((st) => st.ops?.some((o) => o.op === "swap"))) return false;
+  if (steps.some((st) => st.ops?.some((o) => !["swap", "mark", "point", "set"].includes(o.op)))) return false;
+  const pattern = /^([a-z_-]*?)(\d+)$/i;
+  const nums = start.nodes.map((n) => pattern.exec(n.id));
+  if (nums.some((m) => !m) || new Set(nums.map((m) => m![1])).size !== 1) return false;
+  const base = Number(nums[0]![2]);
+  if (!nums.every((m, k) => Number(m![2]) === base + k)) return false;
+  if (!narratedStructureMismatch(start, steps, sentences)) return false;
+  const order = start.nodes.map((n) => n.id);
+  const at = (id: string) => {
+    const m = pattern.exec(id);
+    return m && m[1] === nums[0]![1] ? order[Number(m[2]) - base] ?? id : id;
+  };
+  const rewritten = steps.map((st) => ({
+    ...st,
+    ops: st.ops?.map((o): DsOp => {
+      if (o.op === "swap") {
+        const a = at(o.a), b = at(o.b);
+        const i = order.indexOf(a), j = order.indexOf(b);
+        if (i >= 0 && j >= 0) [order[i], order[j]] = [order[j], order[i]];
+        return { ...o, a, b };
+      }
+      if (o.op === "point") return { ...o, to: o.to === null ? null : at(o.to) };
+      if (o.op === "mark" || o.op === "set") return { ...o, id: at(o.id) };
+      return o;
+    }),
+  }));
+  if (narratedStructureMismatch(start, rewritten, sentences)) return false;
+  steps.forEach((st, i) => (st.ops = rewritten[i].ops));
+  return true;
+}
+
+/**
+ * A SEARCH NEVER DELETES CELLS. A binary-search board removed the discarded half, so the array
+ * re-numbered itself 0–2 under code that said left = 0, right = 6 (QA 2026-10-21). On an array that
+ * is being searched (it has a "mid", "low" or "high" pointer), a removal is drawn as a crossed-out
+ * cell instead, and every index stays where the code says it is. Returns how many ops it changed.
+ */
+export function keepSearchedCells(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>): number {
+  if (start.kind !== "array") return 0;
+  const names = new Set([...(start.pointers ?? []).map((p) => p.name.toLowerCase()), ...steps.flatMap((st) => (st.ops ?? []).flatMap((o) => (o.op === "point" ? [o.name.toLowerCase()] : [])))]);
+  if (!["mid", "low", "high", "lo", "hi"].some((n) => names.has(n))) return 0;
+  let changed = 0;
+  for (const st of steps) {
+    st.ops = st.ops?.map((o): DsOp => {
+      if (o.op !== "remove") return o;
+      changed++;
+      return { op: "mark", id: o.id, as: "remove" };
+    });
+  }
+  return changed;
+}

@@ -19,6 +19,7 @@
  *   short rather than teach a new topic.
  * Needs the dev server on :3000. Render the boards afterwards with diagram-lab-render.mts on <outDir>/runs.
  */
+import { runIntake, intakeReport, type Student, type IntakeRun } from "./intakeSim.mts";
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { signAccessToken } from "../../lib/auth.ts";
@@ -35,7 +36,8 @@ import { createOpenAI } from "../../lib/openaiClient.ts";
 import { PROFILES, checkBoard, scorecard, voiceCheck, repeats, type Profile, type BoardReport } from "./lectureChecks.mts";
 
 // "mode": "strict" teaches only from the pages (lib/canvas/sourceLessons.ts); the default is "reference".
-type Run = { id: string; question?: string; expect?: "in" | "out"; mode?: "reference" | "strict" };
+// "student": the intake runs first (lib/intake.ts, scripts/bench/intakeSim.mts) and the lesson is built from it.
+type Run = { id: string; question?: string; expect?: "in" | "out"; mode?: "reference" | "strict"; student?: Student };
 // "doc" instead of "pdf": an already-parsed document (a saved parse, e.g. lib/anim/fixtures/avlCodePages.json) — no parse cost.
 type PdfPlan = { id: string; pdf?: string; doc?: string; pages?: string; profile: string; runs: Run[] };
 
@@ -91,12 +93,12 @@ async function parsePdf(p: PdfPlan): Promise<Parsed> {
 
 const scopeFor = (run: Run): SourceScope => ({ fidelity: run.mode ?? "reference", breadth: run.question ? { kind: "section", focus: run.question.slice(0, 240) } : { kind: "whole" }, documentLabels: [] });
 
-async function outlineFor(parsed: Parsed, run: Run, p: Profile) {
+async function outlineFor(parsed: Parsed, run: Run, p: Profile, learner?: Record<string, unknown>) {
   const topic = String(parsed.doc.lesson?.title ?? "This document").slice(0, 200);
   const res = await fetch(`${BASE}/api/plan-lesson`, {
     method: "POST",
     headers: { "Content-Type": "application/json", cookie: await freshCookie() },
-    body: JSON.stringify({ mode: "outline", topic, clarifications: [], angle: "standard", sourceDocument: parsed.doc, sourceScope: scopeFor(run), ...(parsed.documentId ? { documentId: parsed.documentId } : {}), ...(run.question ? { request: run.question } : {}), learnerBasics: p.basics }),
+    body: JSON.stringify({ mode: "outline", topic, clarifications: [], angle: "standard", sourceDocument: parsed.doc, sourceScope: scopeFor(run), ...(parsed.documentId ? { documentId: parsed.documentId } : {}), ...(run.question ? { request: run.question } : {}), learnerBasics: p.basics, ...(learner ? { learnerProfile: learner, depth: learner.claimedLevel } : {}) }),
   });
   const lines = (await res.text()).split("\n").filter(Boolean).map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean) as Array<Record<string, unknown>>;
   const done = lines.find((l) => l.type === "outline");
@@ -188,12 +190,24 @@ async function runOne(pp: PdfPlan, run: Run) {
   try {
     const parsed = await parsePdf(pp);
     usd += parsed.costUsd;
-    const o = await outlineFor(parsed, run, p);
+    // THE INTAKE: the PDF's sections as parts, a scripted student's marks and checks (intakeSim.mts).
+    let intake: IntakeRun | null = null;
+    if (run.student) {
+      const topic = String(parsed.doc.lesson?.title ?? "This document").slice(0, 200);
+      intake = await runIntake(BASE, await freshCookie(), { topic, doc: parsed.doc, strict: run.mode === "strict" }, run.student);
+      usd += intake.costUsd;
+      console.log(`[intake] ${id} (${intake.secs}s, $${intake.costUsd.toFixed(4)})\n${intakeReport(intake)}`);
+    }
+    // A strict lesson has no outline in the app: it goes from the intake straight to the build.
+    const o = intake && run.mode === "strict"
+      ? { topic: String(parsed.doc.lesson?.title ?? "This document").slice(0, 200), outline: undefined, costUsd: 0 }
+      : await outlineFor(parsed, run, p, intake ? { ...intake.profile } : undefined);
     usd += o.costUsd;
+    if (intake && o.outline) console.log(`[outline] ${id}\n${o.outline.subtopics.map((s, i) => `   ${i + 1}. ${s.title} [${(s as { status?: string }).status ?? "no status"}] — ${s.caption}`).join("\n")}`);
     const card = buildStudentCard(p.basics, o.topic, {}, p.support);
     const input: ProgressiveLectureInput = {
       topic: o.topic, mood: "", sourceType: "pdf", mode: "standard", suprnotes: parsed.doc, sourceScope: scopeFor(run), outline: o.outline,
-      learnerProfile: p.snapshot, ...(card ? { studentCard: card } : {}), ...(run.question ? { focus: run.question } : {}), ...(parsed.documentId ? { documentId: parsed.documentId } : {}),
+      learnerProfile: p.snapshot, ...(card ? { studentCard: card } : {}), ...(intake ? { learner: intake.profile } : {}), ...(run.question ? { focus: run.question } : {}), ...(parsed.documentId ? { documentId: parsed.documentId } : {}),
     } as ProgressiveLectureInput;
     const document = referenceDocumentOf(input);
     const strictDoc = strictDocumentOf(input);
@@ -202,6 +216,7 @@ async function runOne(pp: PdfPlan, run: Run) {
     const canvas = await planCanvasLecture(input);
     usd += canvas.costUsd;
     const beatsPlan = canvas.plan.map((x) => x.canvas).filter((b): b is CanvasPlanBeat => Boolean(b));
+    if (intake) console.log(`[plan] ${id} ${beatsPlan.length} board(s)\n${beatsPlan.map((b) => `   ${b.id} ${b.title} (${b.stage}, ${canvasSentences(b.script).length} sentences)`).join("\n")}`);
     const earlier: Array<CanvasBoardSpec | undefined> = beatsPlan.map(() => undefined);
     const specs: CanvasBoardSpec[] = [];
     const logs: string[] = [];
@@ -219,8 +234,8 @@ async function runOne(pp: PdfPlan, run: Run) {
     const judged = judge ? await judgeLecture(parsed, run, p, beats, kept) : null;
     usd += judged?.costUsd ?? 0;
     spent += usd;
-    writeFileSync(path.join(outDir, "runs", `${id}-snapshot.json`), JSON.stringify({ topic: `${run.question ?? "Whole document"} — ${path.basename(pp.pdf ?? pp.doc ?? pp.id)} — ${p.label}`, usd, beats: beats.map((b, i) => ({ title: b.title, plannedStage: b.stage, script: b.script, brief: b.brief, objects: b.objects, draw: { ops: [{ kind: "canvasBoard", spec: kept[i] }] } })) }, null, 1));
-    return { id, pdf: path.basename(pp.pdf ?? pp.doc ?? pp.id), profile: p.id, question: run.question ?? null, expect: run.expect ?? (run.question ? "in" : "whole"), scope: o.outline.scope, outline: o.outline.subtopics.map((s) => s.title), usd: Math.round(usd * 1000) / 1000, secs: Math.round((Date.now() - t0) / 1000), boards, scores: scorecard(boards, card, p, voiceRes), doc: docCheck, judge: judged, pictures: logs.filter((l) => /textbook diagram|picture failed/.test(l)).map((l) => l.slice(0, 200)), pen: logs.filter((l) => /pen cues/.test(l)), repeats: repeats(beats), voice: voiceRes, parseWarnings: parsed.warnings.slice(0, 5) };
+    writeFileSync(path.join(outDir, "runs", `${id}-snapshot.json`), JSON.stringify({ topic: `${run.question ?? "Whole document"} — ${path.basename(pp.pdf ?? pp.doc ?? pp.id)} — ${p.label}`, usd, intake, beats: beats.map((b, i) => ({ title: b.title, plannedStage: b.stage, script: b.script, brief: b.brief, objects: b.objects, draw: { ops: [{ kind: "canvasBoard", spec: kept[i] }] } })) }, null, 1));
+    return { id, pdf: path.basename(pp.pdf ?? pp.doc ?? pp.id), profile: p.id, question: run.question ?? null, expect: run.expect ?? (run.question ? "in" : "whole"), scope: o.outline?.scope, outline: (o.outline?.subtopics ?? []).map((s) => s.title), usd: Math.round(usd * 1000) / 1000, secs: Math.round((Date.now() - t0) / 1000), boards, scores: scorecard(boards, card, p, voiceRes), doc: docCheck, judge: judged, pictures: logs.filter((l) => /textbook diagram|picture failed/.test(l)).map((l) => l.slice(0, 200)), pen: logs.filter((l) => /pen cues/.test(l)), repeats: repeats(beats), voice: voiceRes, parseWarnings: parsed.warnings.slice(0, 5) };
   } catch (e) {
     spent += usd;
     return { id, pdf: path.basename(pp.pdf ?? pp.doc ?? pp.id), profile: p.id, question: run.question ?? null, usd, error: (e as Error).message.slice(0, 300) };

@@ -89,10 +89,11 @@ export const DSA_FIXTURES: Array<{ id: string; script: string; raw: Record<strin
         kind: "structure",
         structure: { kind: "graph", nodes: ["A", "B", "C", "D", "E", "F"], edges: [{ from: "A", to: "B" }, { from: "A", to: "C" }, { from: "B", to: "D" }, { from: "C", to: "E" }, { from: "E", to: "F" }] },
         steps: [
-          { s: 0, ops: [{ op: "mark", id: "a", as: "found" }], note: "start at A" },
-          { s: 1, ops: [{ op: "mark", id: "b", as: "visit" }, { op: "mark", id: "c", as: "visit" }], note: "level 1: B, C" },
-          { s: 2, ops: [{ op: "mark", id: "d", as: "visit" }, { op: "mark", id: "e", as: "visit" }], note: "level 2: D, E" },
-          { s: 3, ops: [{ op: "mark", id: "f", as: "visit" }], note: "level 3: F" },
+          // The queue and the visited set drawn beside the graph (CS round, 2026-10-22).
+          { s: 0, ops: [{ op: "mark", id: "a", as: "found" }], note: "start at A", state: { queue: "[A]", visited: "{A}" } },
+          { s: 1, ops: [{ op: "mark", id: "b", as: "visit" }, { op: "mark", id: "c", as: "visit" }], note: "level 1: B, C", state: { queue: "[B, C]", visited: "{A, B, C}" } },
+          { s: 2, ops: [{ op: "mark", id: "d", as: "visit" }, { op: "mark", id: "e", as: "visit" }], note: "level 2: D, E", state: { queue: "[D, E]", visited: "{A, B, C, D, E}" } },
+          { s: 3, ops: [{ op: "mark", id: "f", as: "visit" }], note: "level 3: F", state: { queue: "[]", visited: "{A, B, C, D, E, F}" } },
         ],
       },
       cues: [{ s: 0, action: "circle", target: "ds-a" }],

@@ -126,8 +126,23 @@ export type LearnerProfile = {
    * within. See wantsToRedirect in diagnosticPrompt.ts for how this is detected.
    */
   redirectedFocus: string | null;
+  /**
+   * THE PARTS OF THIS TOPIC AND WHERE THE STUDENT STANDS ON EACH (lib/intake.ts, owner 2026-10-20):
+   * the student marked the parts they know, and up to three very basic checks confirmed them. A new
+   * or shaky part is built from scratch in the lesson; a known one gets a one-line recap. In the
+   * lesson's teaching order. Absent when the intake did not run.
+   */
+  parts?: PartReading[];
+  /**
+   * What the student TYPED in answer to "which parts do you know" (the card's Other box, owner
+   * 2026-10-22), in their own words: "I know the formula but not where it comes from".
+   */
+  ownWords?: string | null;
   updatedAt: string;
 };
+
+/** One part of the topic: its name in the student's words and where the student stands on it. */
+export type PartReading = { label: string; status: "new" | "shaky" | "known" };
 
 export function emptyProfile(topic: string): LearnerProfile {
   return {
@@ -344,6 +359,12 @@ export function learnerInstruction(profile: LearnerProfile, depth: DepthLevel, o
     parts.push(
       `TEACHING HYPOTHESIS, FORMED DURING THE DIAGNOSTIC: ${profile.teachingHypothesis} ` +
         `Teach this lesson as the confirmation or correction of that read — it is your best current theory of this student, not a fact to restate.`,
+    );
+  }
+  if (profile.ownWords) {
+    parts.push(
+      `WHAT THEY TOLD YOU ABOUT WHAT THEY KNOW, IN THEIR OWN WORDS: "${profile.ownWords}". Take it at its word: ` +
+        `build from scratch what they say they do not know, only recap what they say they know, and follow any focus they ask for.`,
     );
   }
   if (profile.redirectedFocus) {
@@ -585,6 +606,7 @@ export function sanitizeLearnerProfile(raw: unknown, topic: string): LearnerProf
     background: typeof rec.background === "string" ? rec.background.trim().slice(0, 300) || null : null,
     teachingHypothesis: typeof rec.teachingHypothesis === "string" ? rec.teachingHypothesis.trim().slice(0, 400) || null : null,
     redirectedFocus: typeof rec.redirectedFocus === "string" ? rec.redirectedFocus.trim().slice(0, 200) || null : null,
+    ...(typeof rec.ownWords === "string" && rec.ownWords.trim() ? { ownWords: rec.ownWords.replace(/\s+/g, " ").trim().slice(0, 300) } : {}),
     diagnostics: Array.isArray(rec.diagnostics)
       ? (rec.diagnostics as unknown[])
           .filter((d): d is Record<string, unknown> => Boolean(d) && typeof d === "object")
@@ -600,5 +622,17 @@ export function sanitizeLearnerProfile(raw: unknown, topic: string): LearnerProf
           }))
           .slice(0, MAX_DIAGNOSTIC_QUESTIONS)
       : [],
+    ...(Array.isArray(rec.parts)
+      ? {
+          parts: (rec.parts as unknown[])
+            .filter((p): p is Record<string, unknown> => Boolean(p) && typeof p === "object" && typeof (p as Record<string, unknown>).label === "string")
+            .map((p) => ({
+              label: String(p.label).trim().slice(0, 80),
+              status: (["new", "shaky", "known"] as const).includes(p.status as never) ? (p.status as PartReading["status"]) : "new",
+            }))
+            .filter((p) => p.label)
+            .slice(0, 8),
+        }
+      : {}),
   };
 }

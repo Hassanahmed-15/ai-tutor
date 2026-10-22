@@ -3,7 +3,7 @@ import "server-only";
 import { dispatchProgressiveTasks } from "./progressiveLectureQueue";
 import { progressiveBeats, upsertProgressiveBeat } from "./progressiveLectureStore";
 import type { ProgressiveBeatDoc, ProgressiveLectureSessionDoc } from "./progressiveLectureTypes";
-import { dueSequences, lookaheadFromEnv } from "./progressiveWindow";
+import { canvasDueSequences, dueSequences, lookaheadFromEnv } from "./progressiveWindow";
 
 /**
  * Queue every beat that has come within reach of the student (lib/progressiveWindow.ts).
@@ -22,19 +22,18 @@ import { dueSequences, lookaheadFromEnv } from "./progressiveWindow";
 export async function dispatchDueBeats(session: ProgressiveLectureSessionDoc): Promise<number[]> {
   if (session.status === "failed" || session.plan.length === 0) return [];
   const docs = await progressiveBeats(session.id);
-  const ordinary = lookaheadFromEnv();
-  // A canvas lecture's boards are cheap and refer to each other (the recap visits them all), so
-  // every one is queued as soon as the plan exists.
-  const { lookahead, animationLookahead } = session.boardEngine === "canvas" ? { lookahead: session.plan.length, animationLookahead: session.plan.length } : ordinary;
-  const due = dueSequences({
-    planLength: session.plan.length,
-    playhead: session.playhead,
-    isAnimation: (sequence) => session.plan[sequence]?.visualKind === "react-animation",
-    beats: docs.map((doc) => ({ sequence: doc.sequence, state: doc.state, updatedAt: doc.updatedAt })),
-    now: Date.now(),
-    lookahead,
-    animationLookahead,
-  });
+  const beats = docs.map((doc) => ({ sequence: doc.sequence, state: doc.state, updatedAt: doc.updatedAt }));
+  // A canvas lecture: three boards written at a time, always the earliest unfinished ones.
+  const due = session.boardEngine === "canvas"
+    ? canvasDueSequences({ planLength: session.plan.length, beats, now: Date.now() })
+    : dueSequences({
+      planLength: session.plan.length,
+      playhead: session.playhead,
+      isAnimation: (sequence) => session.plan[sequence]?.visualKind === "react-animation",
+      beats,
+      now: Date.now(),
+      ...lookaheadFromEnv(),
+    });
   if (due.length === 0) return [];
 
   const now = new Date().toISOString();

@@ -1,0 +1,14 @@
+import { readFileSync } from "node:fs";
+import { SignJWT } from "jose";
+import { equationProblem } from "../../../lib/canvas/equationCheck";
+import { bracketDivisions, dropBrokenClauses, dropFalseWorking, splitFalseChains, splitSideCalculations, writeSpokenEquations } from "../../../lib/canvas/equationRepair";
+const env = Object.fromEntries(readFileSync("/Users/hassanahmed/ai-tutor/frontend/web/.env.local", "utf8").split("\n").filter((l) => /^[A-Z_]+=/.test(l)).map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1).replace(/^"|"$/g, "")]));
+const token = await new SignJWT({ email: "x@example.com" }).setProtectedHeader({ alg: "HS256" }).setSubject("local-dev-canvas").setIssuedAt().setExpirationTime("1h").sign(new TextEncoder().encode(env.AUTH_SECRET));
+const [session, board] = process.argv.slice(2);
+const snap = await (await fetch(`http://localhost:3000/api/progressive-lectures/${session}`, { headers: { cookie: `aria_access=${token}` } })).json();
+const beat = snap.beats[Number(board)];
+const st = beat.draw.ops.find((o: { kind: string }) => o.kind === "canvasBoard").spec.stage;
+console.log("side", splitSideCalculations(st), "chains", splitFalseChains(st), "brackets", bracketDivisions(st), "said", writeSpokenEquations(st, beat.script), "dropped", dropFalseWorking(st, beat.script), "broken", dropBrokenClauses(st));
+const text = new Map(st.tokens.map((t: { id: string; text: string }) => [t.id, t.text]));
+for (const s of st.steps) console.log(`s${s.s}:`, s.order.map((i: string) => text.get(i)).join(" "));
+console.log("problem:", equationProblem(st, st, beat.script));

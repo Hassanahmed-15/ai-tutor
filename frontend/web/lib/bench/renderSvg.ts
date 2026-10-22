@@ -35,10 +35,27 @@ function shapeSvg(sh: FigureShape, ox: number, oy: number, k: number): string {
   })}" transform="translate(${ox} ${oy}) scale(${k})" fill="${fill}" stroke="${stroke}" stroke-width="${(Number(("width" in sh ? sh.width : 1.6)) || 1.6)}"${op}${dash} fill-rule="evenodd"/>`;
 }
 
+/**
+ * A timed figure shape (lib/figures/types.ts ShapeTiming) in the figure's FINISHED form, the way a
+ * student sees it once Aria has said everything: hidden shapes gone, moved shapes in their new place.
+ */
+function finishedShapeSvg(sh: FigureShape, ox: number, oy: number, k: number): string {
+  if (sh.hide) return "";
+  if (!sh.move) return shapeSvg(sh, ox, oy, k);
+  const { dx, dy, rotate } = sh.move;
+  const moved = shapeSvg(sh, ox + dx * k, oy + dy * k, k);
+  if (!rotate) return moved;
+  const pts = sh.t === "path" ? [...sh.d.matchAll(/(-?\d+\.?\d*)[ ,](-?\d+\.?\d*)/g)].map((p) => ({ x: Number(p[1]), y: Number(p[2]) })) : sh.t === "circle" ? [{ x: sh.cx, y: sh.cy }] : [{ x: sh.x, y: sh.y }];
+  if (!pts.length) return moved;
+  const cx = ox + (dx + (Math.min(...pts.map((p) => p.x)) + Math.max(...pts.map((p) => p.x))) / 2) * k;
+  const cy = oy + (dy + (Math.min(...pts.map((p) => p.y)) + Math.max(...pts.map((p) => p.y))) / 2) * k;
+  return `<g transform="rotate(${rotate} ${cx} ${cy})">${moved}</g>`;
+}
+
 function markSvg(m: Mark): string {
   if (m.type === "heading") return `<text x="${m.x}" y="${m.y}" font-size="${m.size}" font-weight="700" fill="${INK}" font-family="DejaVu Sans, sans-serif">${esc(m.text)}</text>`;
   if (m.type === "note") return m.lines.map((line, i) => `<text x="${m.x}" y="${m.y + i * (m.size + 4)}" font-size="${m.size}" fill="${INK}" font-family="DejaVu Sans, sans-serif">${esc(line)}</text>`).join("");
-  if (m.type === "figure") return m.drawing.shapes.map((sh) => shapeSvg(sh, m.rect.x, m.rect.y, m.scale)).join("");
+  if (m.type === "figure") return m.drawing.shapes.map((sh) => finishedShapeSvg(sh, m.rect.x, m.rect.y, m.scale)).join("");
   if (m.type === "figure-label") {
     const d = m.leader.map((p, i) => `${i ? "L" : "M"}${p.x} ${p.y}`).join(" ");
     const lines = m.lines.map((line, i) => `<text x="${m.at.x}" y="${m.at.y + i * (m.size + 2)}" font-size="${m.size}" text-anchor="${m.side === "left" ? "end" : "start"}" fill="${INK}" font-family="DejaVu Sans, sans-serif">${esc(line)}</text>`).join("");
@@ -60,7 +77,7 @@ export function boardSvg(spec: CanvasBoardSpec): string {
   const layout = layoutPanel(spec);
   // Complete-board snapshot: the notes column keeps four at a time and wipes; expired
   // notes (until set) would otherwise stack on the last page.
-  const body = layout.marks.filter((m) => m.type !== "note" || m.until === undefined).map(markSvg).join("");
+  const body = layout.marks.filter((m) => !((m.type === "note" || m.type === "equation") && m.until !== undefined)).map(markSvg).join("");
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><rect width="${W}" height="${H}" rx="22" fill="#fbfaf6"/>${body}</svg>`;
 }
 

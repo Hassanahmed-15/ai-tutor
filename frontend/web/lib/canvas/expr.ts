@@ -31,6 +31,8 @@ const FUNCTIONS: Record<string, (...args: number[]) => number> = {
   ceil: Math.ceil,
   round: Math.round,
   pow: Math.pow,
+  // n! for whole n (printed maths: "6! ÷ (2! × 4!) = 15"; lib/canvas/numberCheck.ts toExpr).
+  fact: (n) => (Number.isInteger(n) && n >= 0 && n <= 170 ? Array.from({ length: n }, (_, i) => i + 1).reduce((a, b) => a * b, 1) : NaN),
   clamp: (v, lo, hi) => Math.min(hi, Math.max(lo, v)),
 };
 const CONSTANTS: Record<string, number> = { pi: Math.PI, e: Math.E };
@@ -76,15 +78,18 @@ function parse(tokens: string[]): Node | null {
       return a;
     };
   }
+  // "−x^2" is −(x²), as printed maths reads it: the minus wraps the power, not its base (it was (−x)²,
+  // and "y = −x² + 4x + 5" was drawn opening upwards; maths benchmark round 3). An exponent may carry its
+  // own sign ("2^-x").
   const power = (): Node => {
-    const a = unary();
+    const a = atom();
     if (peek() === "^") {
       take();
-      return { t: "bin", op: "^", a, b: power() };
+      return { t: "bin", op: "^", a, b: unary() };
     }
     return a;
   };
-  const mul = binary(power, ["*", "/", "%"]);
+  const mul = binary(unary, ["*", "/", "%"]);
   const add = binary(mul, ["+", "-"]);
   const cmp = binary(add, ["<", ">", "<=", ">=", "==", "!="]);
   const and = binary(cmp, ["&&"]);
@@ -99,7 +104,7 @@ function parse(tokens: string[]): Node | null {
       take();
       return unary();
     }
-    return atom();
+    return power();
   }
   function atom(): Node {
     const tok = take();

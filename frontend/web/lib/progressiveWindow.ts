@@ -112,3 +112,42 @@ export function dueSequences(input: WindowInput): number[] {
   }
   return due;
 }
+
+/**
+ * A CANVAS LECTURE IS BUILT IN ORDER, THREE BOARDS AT A TIME (owner, 2026-10-21: "after the first three
+ * are built let the lecture start … every slide should be connected"; 2026-10-22: "the board is finished
+ * before the next board is written and then the user has to wait"). Its first three boards are written
+ * together, and the lecture starts once all three are ready (lib/progressiveLectureStore.ts
+ * starterBeatCount). From then on the three earliest unfinished boards are always being written: when one
+ * finishes, the next in order starts.
+ *
+ * One at a time could not keep up: a board took 78 s to write (34-203 s, CS round 4) and 40-80 s to play,
+ * so from about the sixth board on every board made the student wait longer. Writing ahead loses nothing:
+ * the writer reads the plan, which holds every board's narration, never an earlier board's drawing — the
+ * one step that does (what carries across, a close-up inside an earlier board) is code, and runs again
+ * when an earlier board is finished later (lib/progressiveLectureWorker.ts reconnectLaterBoards).
+ *
+ * A board that failed for good counts as finished, so one failure never stalls the rest; a board
+ * whose generation went silent past `staleMs` is due again, as in dueSequences.
+ */
+export const CANVAS_OPENING_BOARDS = 3;
+/** Boards being written at once, always the earliest unfinished ones. */
+export const CANVAS_IN_FLIGHT = 3;
+
+export function canvasDueSequences(input: Pick<WindowInput, "planLength" | "beats" | "now" | "staleMs">): number[] {
+  const staleMs = input.staleMs ?? STALE_GENERATION_MS;
+  const bySequence = new Map(input.beats.map((beat) => [beat.sequence, beat]));
+  const due: number[] = [];
+  let inFlight = 0;
+  for (let sequence = 0; sequence < input.planLength && inFlight < CANVAS_IN_FLIGHT; sequence += 1) {
+    const beat = bySequence.get(sequence);
+    if (beat?.state === "ready" || beat?.state === "failed") continue;
+    if (!beat || beat.state === "planned") due.push(sequence);
+    else if (beat.state === "generating") {
+      const age = input.now - Date.parse(beat.updatedAt);
+      if (Number.isFinite(age) && age > staleMs) due.push(sequence);
+    }
+    inFlight += 1;
+  }
+  return due;
+}

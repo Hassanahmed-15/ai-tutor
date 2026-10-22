@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type 
 import { AriaAvatar } from "./AriaAvatar";
 import { DotAvatar, type DotGaze } from "./DotAvatar";
 import type { AvatarState } from "@/lib/avatar/face";
-import { arcPoint, beam, covers, distanceTo, FLIGHT_GAP_S, FLY_S, gazeAt, HOP_GAP_S, LINGER_S, parkingSpot, REACH, RETURN_S, type Pt, type Rect } from "@/lib/avatar/dotFlight";
+import { arcPoint, beam, covers, distanceTo, FLIGHT_GAP_S, FLY_S, gazeAt, HOP_GAP_S, LINGER_S, parkingSpot, REACH, RETURN_S, union, type Pt, type Rect } from "@/lib/avatar/dotFlight";
 import { pointTarget, setDotPointer } from "@/lib/avatar/pointTarget";
 import { restSpot } from "@/lib/canvas/renderFit";
 
@@ -173,6 +173,10 @@ function DotAtBoard({
     let to: Pt = { x: 0, y: 0 };
     let rel: Pt = { x: 0, y: 0 };       // parked spot relative to the target's centre (follows the camera)
     let started = 0;
+    let pending = false;                // a target named whose flight is still to be decided
+    let flightKey = "";                 // the target the current flight set off for
+    let shown = 1;                      // the size she was last drawn at
+    let fromScale = 1;                  // her size when the current flight began
     let lastDepart = -Infinity;
     let lastMove = -Infinity;
     let lostAt: number | null = null;
@@ -268,14 +272,20 @@ function DotAtBoard({
       // A part inside a figure: she parks beside the whole figure (still pointing at the part).
       const figures = figuresOn(root, bounds);
       const cx = target.x + target.w / 2, cy = target.y + target.h / 2;
-      const around = figures.find((r) => cx >= r.x && cx <= r.x + r.w && cy >= r.y && cy <= r.y + r.h) ?? target;
-      return parkingSpot(around, HOME_PX * AWAY_SCALE, bounds, [...inkOn(root).filter(mine), ...figures.filter((r) => r !== around)], near, cardsOn(root, bounds).filter(mine));
+      const figure = figures.find((r) => cx >= r.x && cx <= r.x + r.w && cy >= r.y && cy <= r.y + r.h);
+      // The figure and the part together: a part whose box sticks out of its figure (a margin label)
+      // was covered by a spot beside the figure, so every frame she stepped aside to the same spot
+      // and pulsed big-small-big (owner, 2026-10-21).
+      const around = figure ? union(figure, target) : target;
+      return parkingSpot(around, HOME_PX * AWAY_SCALE, bounds, [...inkOn(root).filter(mine), ...figures.filter((r) => r !== figure)], near, cardsOn(root, bounds).filter(mine));
     };
     const flyTo = (dest: Pt, now: number, target: Rect) => {
       from = pos ?? rest ?? homeCentre();
       to = dest;
       rel = { x: dest.x - (target.x + target.w / 2), y: dest.y - (target.y + target.h / 2) };
       started = now;
+      fromScale = shown;
+      flightKey = key;
       phase = "fly";
     };
 
@@ -327,30 +337,33 @@ function DotAtBoard({
       const target = t ? rectOf(t.el) : null;
       const allowed = fliesRef.current && modeRef.current === "board" && !reduced && target !== null && target.w > 0;
 
-      // A new thing named.
+      // A new thing named — or one named while a hop was too soon, retried until she may go: she used
+      // to point at it from wherever she stood for the whole sentence (owner, 2026-10-21).
       if (t && t.key !== key) {
         key = t.key;
         lostAt = null;
-        if (allowed && target) {
-          if ((phase === "parked" || phase === "fly") && pos && !covers(pos, HOME_PX * AWAY_SCALE, target) && distanceTo(pos, target) < REACH) {
-            // She can point at it from where she stands: a new beam, not another flight.
+        pending = true;
+      }
+      if (t && pending && allowed && target) {
+        pending = false;
+        if ((phase === "parked" || phase === "fly") && pos && !covers(pos, HOME_PX * AWAY_SCALE, target) && distanceTo(pos, target) < REACH) {
+          // She can point at it from where she stands: a new beam, not another flight.
+          rel = { x: pos.x - (target.x + target.w / 2), y: pos.y - (target.y + target.h / 2) };
+          if (phase === "fly") to = pos;
+        } else {
+          const away = phase === "parked" || phase === "fly";
+          // From her corner at most every FLIGHT_GAP_S; a hop while out at most every HOP_GAP_S,
+          // unless she would be standing on the new target (she never covers what is named).
+          const due = away ? now - lastMove >= HOP_GAP_S || (pos !== null && covers(pos, HOME_PX * AWAY_SCALE, target)) : now - lastDepart >= FLIGHT_GAP_S;
+          const spot = due ? spotFor(target, pos ?? home, t.el) : null;
+          if (!due) pending = true;
+          if (spot) {
+            if (!away) lastDepart = now;
+            lastMove = now;
+            flyTo(spot, now, target);
+          } else if (phase === "parked" && pos) {
+            // Too soon to hop: point from where she stands until she may go (mid-flight she lands first).
             rel = { x: pos.x - (target.x + target.w / 2), y: pos.y - (target.y + target.h / 2) };
-            if (phase === "fly") to = pos;
-          } else {
-            const away = phase === "parked" || phase === "fly";
-            // From her corner at most every FLIGHT_GAP_S; a hop while out at most every HOP_GAP_S,
-            // unless she would be standing on the new target (she never covers what is named).
-            const due = away ? now - lastMove >= HOP_GAP_S || (pos !== null && covers(pos, HOME_PX * AWAY_SCALE, target)) : now - lastDepart >= FLIGHT_GAP_S;
-            const spot = due ? spotFor(target, pos ?? home, t.el) : null;
-            if (spot) {
-              if (!away) lastDepart = now;
-              lastMove = now;
-              flyTo(spot, now, target);
-            } else if (away && pos) {
-              // Too soon to hop: point from where she stands.
-              rel = { x: pos.x - (target.x + target.w / 2), y: pos.y - (target.y + target.h / 2) };
-              if (phase === "fly") to = pos;
-            }
           }
         }
       }
@@ -376,10 +389,13 @@ function DotAtBoard({
       let scale = 1;
       if (phase === "fly") {
         // The target may move under the camera mid-flight: aim at where her spot is now.
-        if (target && t?.key === key) to = { x: target.x + target.w / 2 + rel.x, y: target.y + target.h / 2 + rel.y };
+        // Only the target she set off for: a newer one waiting its turn would get the old offset.
+        if (target && t?.key === key && key === flightKey) to = { x: target.x + target.w / 2 + rel.x, y: target.y + target.h / 2 + rel.y };
         const k = (now - started) / FLY_S;
         pos = arcPoint(from, to, k);
-        scale = restScale - (restScale - AWAY_SCALE) * Math.min(1, k * 1.4);
+        // Shrinks from the size she had when she set off: a hop while out stays small, never a jump
+        // back to her corner size.
+        scale = fromScale - (fromScale - AWAY_SCALE) * Math.min(1, k * 1.4);
         if (k >= 1) {
           phase = "parked";
           arrivedAt = now;
@@ -391,7 +407,10 @@ function DotAtBoard({
           if (covers(want, HOME_PX * AWAY_SCALE, target)) {
             // The camera zoomed and her spot now covers the target: step aside.
             const spot = t ? spotFor(target, want, t.el) : null;
-            if (spot) flyTo(spot, now, target);
+            // Only to somewhere new: stepping "aside" to the spot she already stands on restarted
+            // her flight every frame.
+            if (spot && Math.hypot(spot.x - want.x, spot.y - want.y) > 4) flyTo(spot, now, target);
+            else pos = want;
           } else pos = want;
         }
       } else if (phase === "return") {
@@ -403,6 +422,7 @@ function DotAtBoard({
           pos = null;
         }
       } else scale = restScale;
+      shown = scale;
       const at = pos ?? home;
       // Moved from where her corner really is (`raw`): measured from her resting spot instead, a
       // moved resting spot was never drawn at all and her flights landed off by the difference.

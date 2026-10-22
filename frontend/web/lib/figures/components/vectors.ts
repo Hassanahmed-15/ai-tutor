@@ -46,7 +46,9 @@ export const vectors: FigureComponent = {
     const b = bGiven ? (subtract ? mul(bGiven, -1) : bGiven) : undefined;
     const showResultant = Boolean(b) && layout !== "origin" && bool(params.resultant, true);
     const showComponents = bool(params.components, false);
-    const ticks = bool(params.ticks, !bool(params.components, false));
+    // Components and axis numbers never together: "3", "6" beside the ticks "4", "6" read as one
+    // number line "3 6 4 6" (maths benchmark, 2026-10-21).
+    const ticks = showComponents ? false : bool(params.ticks, true);
     const multiple = parseMultiple(params.multiple);
     const r = b ? add(a, b) : a;
     const bName = subtract ? `−${nb}` : nb;

@@ -1,0 +1,22 @@
+import { readFileSync } from "node:fs";
+import { chromium } from "playwright";
+import { SignJWT } from "jose";
+const env = Object.fromEntries(readFileSync("/Users/hassanahmed/ai-tutor/frontend/web/.env.local", "utf8").split("\n").filter((l) => /^[A-Z_]+=/.test(l)).map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1).replace(/^"|"$/g, "")]));
+const sub = process.env.QA_USER ?? "local-dev-canvas";
+const token = await new SignJWT({ email: `${sub}@example.com` }).setProtectedHeader({ alg: "HS256" }).setSubject(sub).setIssuedAt().setExpirationTime("1h").sign(new TextEncoder().encode(env.AUTH_SECRET));
+const [session, board, needle] = process.argv.slice(2);
+const b = await chromium.launch(); const ctx = await b.newContext({ viewport: { width: 1440, height: 860 } });
+await ctx.addInitScript("window.__name = (f) => f;");
+await ctx.addCookies([{ name: "aria_access", value: token, domain: "localhost", path: "/" }]);
+const p = await ctx.newPage();
+await p.goto(`http://localhost:3000/canvas-lab?session=${session}&scrub=1&board=${board}&done=1`, { timeout: 90000 });
+await p.waitForTimeout(6000);
+const out = await p.evaluate((needle) => {
+  const live = document.querySelector('[data-panel][data-live="true"]')!;
+  const inv = (live as SVGGraphicsElement).getScreenCTM()!.inverse();
+  const box = (el: Element) => { const r = el.getBoundingClientRect(); const a = new DOMPoint(r.left, r.top).matrixTransform(inv), c = new DOMPoint(r.right, r.bottom).matrixTransform(inv); return [a.x, a.y, c.x - a.x, c.y - a.y].map((v) => Math.round(v)); };
+  const hits = [...live.querySelectorAll("text, foreignObject")].filter((t) => (t.textContent ?? "").includes(needle));
+  return { moved: (window as unknown as { __cvDeconflict?: number }).__cvDeconflict ?? 0, hits: hits.map((t) => ({ tag: t.tagName, text: t.textContent?.slice(0, 30), box: box(t), kind: t.closest("[data-kind]")?.getAttribute("data-kind"), unit: t.closest("[data-text-unit]")?.getAttribute("data-text-unit") ?? null, halo: t.hasAttribute("data-halo"), translate: (t as SVGElement).style.translate, stroke: getComputedStyle(t).stroke })) };
+}, needle);
+console.log(JSON.stringify(out, null, 1));
+await b.close();

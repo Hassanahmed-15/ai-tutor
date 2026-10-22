@@ -16,17 +16,20 @@ export type Rect = { x: number; y: number; w: number; h: number };
 
 /** Clear space kept between Dot and what she points at. */
 export const GAP = 16;
+// The owner found her pointing wrong (2026-10-21): with 8 s between departures, 4 s between hops and
+// a 260 px reach she mostly stood beside the LAST thing named and sent only a thin beam to the new one.
+// She now stands beside what Aria is saying; the gaps only stop her flickering between two targets.
 /** Seconds between two departures from her corner. */
-export const FLIGHT_GAP_S = 8;
-/** Seconds between two hops while she is out (successive targets closer than this get a new beam). */
-export const HOP_GAP_S = 4;
-/** A new target this close (px, edge to her centre) is pointed at from where she stands. */
-export const REACH = 260;
+export const FLIGHT_GAP_S = 2.5;
+/** Seconds between two hops while she is out; a hop that comes too soon is made once it is allowed. */
+export const HOP_GAP_S = 1.2;
+/** A new target this close (px, edge to her centre) is pointed at from where she stands: right beside it. */
+export const REACH = 110;
 /** Flight and return durations (s). */
 export const FLY_S = 0.5;
 export const RETURN_S = 0.65;
 /** How long she stays after the target lifts before flying home (s). */
-export const LINGER_S = 1.4;
+export const LINGER_S = 0.5;
 
 const area = (a: Rect, b: Rect) => Math.max(0, Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x)) * Math.max(0, Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y));
 const boxAt = (c: Pt, size: number): Rect => ({ x: c.x - size / 2, y: c.y - size / 2, w: size, h: size });
@@ -73,6 +76,12 @@ export function parkingSpot(target: Rect, size: number, bounds: Rect, ink: Rect[
   // where she stands rather than land on the text ("…or omit the direction" was hidden under her
   // on two exam boards; live test, 2026-10-17).
   return bestCovered > 0.03 ? null : best;
+}
+
+/** The smallest rectangle holding both. */
+export function union(a: Rect, b: Rect): Rect {
+  const x = Math.min(a.x, b.x), y = Math.min(a.y, b.y);
+  return { x, y, w: Math.max(a.x + a.w, b.x + b.w) - x, h: Math.max(a.y + a.h, b.y + b.h) - y };
 }
 
 /** Distance from a point to a rectangle's edge (0 inside). */

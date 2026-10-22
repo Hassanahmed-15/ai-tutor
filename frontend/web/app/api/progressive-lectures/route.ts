@@ -43,6 +43,8 @@ export async function POST(request: Request) {
         title: typeof item.title === "string" ? item.title.slice(0, 100) : "",
         caption: typeof item.caption === "string" ? item.caption.slice(0, 240) : "",
         reason: typeof item.reason === "string" ? item.reason.slice(0, 240) : undefined,
+        // Where the student stands on this part: the concept ladder builds on it (lib/canvas/conceptLadder.ts).
+        ...(item.status === "new" || item.status === "shaky" || item.status === "known" ? { status: item.status as "new" | "shaky" | "known" } : {}),
       }))
       .filter((item) => item.title),
   } : undefined;

@@ -9,6 +9,7 @@
  * A panel is 1000 x 560: heading across the top, a notes column on the left, the stage on the right.
  */
 
+import { stackView, type StackView } from "./callStack";
 import { layoutStructure, runStructure, type DsFrame, type DsLayout } from "./structure";
 import { evalExpr } from "./expr";
 import { placeLabels } from "../figures/labels";
@@ -19,7 +20,7 @@ import { partBodies, shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
 import type { FigureDrawing } from "../figures/types";
 import { compileDiagram } from "../diagrams/render";
-import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type DiagramStage, type EquationStage, type ExamStage, type FigureStage, type FlowNode, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage, type StructureStage } from "./types";
+import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type DiagramStage, type EquationStage, type ExamStage, type FigureStage, type FlowNode, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage, type SketchItem, type SketchShape as SketchShapeT, type SketchStage, type StructureStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Pt = { x: number; y: number };
@@ -32,19 +33,21 @@ export type Mark =
   | { type: "picture"; id: string; rect: Rect; src?: string; paper?: string; s: number; subject: string }
   | { type: "part"; id: string; cx: number; cy: number; name: string; s: number }
   | { type: "callout"; id: string; partId: string; text: string; box: Rect; anchor: Pt; s: number; size: number }
-  | { type: "equation"; id: string; tokens: Array<{ id: string; text: string; tex?: string; color: string; w: number; size: number }>; steps: Array<{ s: number; place: Record<string, Pt>; highlight: string[]; caption?: string }>; size: number; captionY: number; center: number; s: number }
+  | { type: "equation"; id: string; tokens: Array<{ id: string; text: string; tex?: string; color: string; w: number; size: number }>; steps: Array<{ s: number; place: Record<string, Pt>; highlight: string[]; caption?: string }>; size: number; captionY: number; center: number; s: number; /** Wiped with its page of working when the next page starts (sentence number). */ until?: number }
   | { type: "graph"; id: string; plot: Rect; spec: GraphStage; s: number; /** A stacked panel: its curve's name as a title; x axis printed on the bottom panel only. */ stacked?: { title: string; showX: boolean } }
   | { type: "column"; id: string; rect: Rect; title: string; icon?: CanvasIcon; color: string; s: number }
   | { type: "item"; id: string; text: string; rect: Rect; color: string; s: number; size: number }
   | { type: "link"; id: string; p0: Pt; p1: Pt; s: number }
   | { type: "box"; id: string; rect: Rect; label?: string; color: string; s: number; icon?: CanvasIcon; size: number; /** Wrapped content lines on a card (a box with no icon). */ detail?: string[]; /** The detail's font size when it was set smaller to fit whole (15 otherwise). */ detailSize?: number }
   | { type: "text"; id: string; rect: Rect; text: string; color: string; s: number; size: number }
-  | { type: "figure"; id: string; rect: Rect; scale: number; drawing: FigureDrawing; s: number; asset?: string }
+  | { type: "figure"; id: string; rect: Rect; scale: number; drawing: FigureDrawing; s: number; asset?: string; timing?: Record<string, number> }
   | { type: "figure-label"; id: string; part: string; lines: string[]; side: "left" | "right"; at: Pt; leader: Pt[]; size: number; s: number }
   | { type: "free-body"; id: string; body: SceneStage["items"][number]; bodyRect: Rect; forces: FreeBodyForce[]; s: number }
   | { type: "electrolytic-cell"; id: string; rect: Rect; parts: { power: SceneStage["items"][number]; electrolyte: SceneStage["items"][number]; anode: SceneStage["items"][number]; cathode: SceneStage["items"][number] }; s: number }
   | { type: "code"; id: string; rect: Rect; lines: string[]; language: string; size: number; lineH: number; gutter: number; steps: CodeStage["steps"]; reveal: "build" | "all"; groups: Array<{ from: number; to: number; label: string; s: number; x: number }>; edits: NonNullable<CodeStage["edits"]>; s: number }
-  | { type: "state"; id: string; rect: Rect; steps: CodeStage["steps"]; s: number }
+  | { type: "state"; id: string; rect: Rect; steps: CodeStage["steps"]; s: number; /** Drawn beside the code as pencil memory boxes. */ pencil?: boolean }
+  | { type: "stack"; id: string; rect: Rect; view: StackView; boxes: Record<string, Rect>; s: number }
+  | { type: "sketch"; id: string; rect: Rect; items: SketchPlaced[]; s: number }
   | { type: "trace"; id: string; rect: Rect; vars: string[]; rows: Array<{ s: number; values: string[] }>; size: number; s: number }
   | { type: "output"; id: string; rect: Rect; text: string; size: number; s: number }
   | { type: "molecule"; id: string; rect: Rect; molecule: MoleculeStage["molecules"][number]; s: number }
@@ -69,6 +72,12 @@ const NOTES_W = 268;
 const STAGE: Rect = { x: 352, y: 108, w: 612, h: 424 };
 const STAGE_WIDE: Rect = { x: 56, y: 108, w: 908, h: 424 };
 const FIGURE_STAGE_WITH_NOTES: Rect = { x: 56, y: 108, w: 908, h: 318 };
+/** A maths/CS figure at full height, its notes in a column on the right (owner, 2026-10-21: "diagrams big enough"). */
+const FIGURE_BESIDE_NOTES: Rect = { x: 40, y: 96, w: 652, h: 452 };
+const RIGHT_NOTES_X = 716;
+const RIGHT_NOTES_W = 248;
+/** Maths and computer-science figures, which may take the full-height layout when it draws them bigger. */
+const MATHS_FIGURES = new Set(["circleTheorem", "dotPlot", "triangle", "vectors", "parallelLines", "bearings", "shapes3d", "pythagorasProof", "areaModel", "logicCircuit", "coordinateGrid", "functionGraph", "calculusKit", "argand", "boxPlot", "cumulativeFrequency", "fractionModel"]);
 
 /** Average advance of the board font (Nunito SemiBold), in em. Close enough to lay text out. */
 const EM = 0.54;
@@ -220,14 +229,27 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   const marks: Mark[] = [];
   const targets: PanelLayout["targets"] = {};
   // Code beside its data structure needs the whole width: that board writes no notes column.
-  const split = spec.stage.kind === "code" && Boolean(spec.stage.structure);
-  const hasNotes = spec.notes.length > 0 && !split;
+  // So does code with its working beside it (the call stack, the pencil variables): with a notes column
+  // too, a four-line loop was written at 12 px (CS round, 2026-10-22).
+  const split = spec.stage.kind === "code" && (Boolean(spec.stage.structure) || spec.stage.steps.some((p) => p.stack?.length || p.state?.length));
+  // Working beside its figure needs the whole width too: its lines are the notes (no notes column).
+  const working = spec.stage.kind === "equation" && Boolean(spec.stage.figure);
+  const hasNotes = spec.notes.length > 0 && !split && !working;
   // Labelled textbook figures need horizontal room for the drawing and two boundary-label columns.
   // Putting their notes in the normal left rail made a correct 440 px scientific figure render at
   // roughly 150 CSS pixels. Figure boards therefore use the wide stage and place supporting facts
   // in a compact evidence strip below it.
   const figureWithNotes = hasNotes && (spec.stage.kind === "figure" || spec.stage.kind === "diagram");
-  const stage = figureWithNotes ? FIGURE_STAGE_WITH_NOTES : hasNotes ? STAGE : STAGE_WIDE;
+  // A square or tall maths figure under a heading and a notes strip came out a quarter of the board
+  // wide (QA 2026-10-21): it takes the full height, notes on the right, when that draws it at least
+  // 12% bigger. Other subjects' figures keep the strip.
+  const besideNotes = (() => {
+    if (!figureWithNotes || spec.stage.kind !== "figure" || !MATHS_FIGURES.has(spec.stage.component)) return false;
+    const strip = figureFit(spec.stage, FIGURE_STAGE_WITH_NOTES);
+    const beside = figureFit(spec.stage, FIGURE_BESIDE_NOTES);
+    return Boolean(strip && beside && beside.scale > strip.scale * 1.12);
+  })();
+  const stage = besideNotes ? FIGURE_BESIDE_NOTES : figureWithNotes ? FIGURE_STAGE_WITH_NOTES : hasNotes ? STAGE : STAGE_WIDE;
 
   // The heading steps down until it fits the board's width (a 60-character heading at 28 px reached
   // the edge); it is never cut.
@@ -250,29 +272,31 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
     const nextPage = allNotes[(Math.floor(i / SLOTS) + 1) * SLOTS];
     return nextPage ? Math.max(nextPage.s, allNotes[i].s) : undefined;
   };
-  if (figureWithNotes) {
+  if (figureWithNotes && !besideNotes) {
     const gap = 18;
     const noteW = (STAGE_WIDE.w - gap * Math.max(0, slots - 1)) / Math.max(1, slots);
     const noteSize = slots >= 4 ? 15 : 17;
     allNotes.forEach((note, i) => {
       const x = STAGE_WIDE.x + (i % SLOTS) * (noteW + gap);
       const y = 474;
-      const lines = wrap(note.text, noteSize, noteW - 24, 2);
+      const { lines, size: sz } = noteLines(note.text, noteSize, noteW - 24);
       const until = untilOf(i);
-      marks.push({ type: "note", id: note.id, lines, x: x + 22, y, size: noteSize, s: note.s, bullet: { x: x + 7, y: y - noteSize * 0.34 }, ...(until !== undefined ? { until } : {}) });
-      const h = lines.length * noteSize * 1.28;
+      marks.push({ type: "note", id: note.id, lines, x: x + 22, y, size: sz, s: note.s, bullet: { x: x + 7, y: y - sz * 0.34 }, ...(until !== undefined ? { until } : {}) });
+      const h = lines.length * sz * 1.28;
       targets[note.id] = { x, y: y - noteSize, w: noteW, h: h + 6, s: note.s };
     });
   } else {
     // Fixed slots, each room for two lines, so a note never moves once written.
     const slotH = 2 * NOTE_SIZE * 1.28 + 30;
+    const nx = besideNotes ? RIGHT_NOTES_X : NOTES_X;
+    const nw = besideNotes ? RIGHT_NOTES_W : NOTES_W;
     allNotes.forEach((note, i) => {
       const y = 140 + (i % SLOTS) * slotH;
-      const lines = wrap(note.text, NOTE_SIZE, NOTES_W - 26, 2);
+      const { lines, size: sz } = noteLines(note.text, NOTE_SIZE, nw - 26);
       const until = untilOf(i);
-      marks.push({ type: "note", id: note.id, lines, x: NOTES_X + 24, y, size: NOTE_SIZE, s: note.s, bullet: { x: NOTES_X + 7, y: y - NOTE_SIZE * 0.34 }, ...(until !== undefined ? { until } : {}) });
-      const h = lines.length * NOTE_SIZE * 1.28;
-      targets[note.id] = { x: NOTES_X, y: y - NOTE_SIZE, w: NOTES_W, h: h + 6, s: note.s };
+      marks.push({ type: "note", id: note.id, lines, x: nx + 24, y, size: sz, s: note.s, bullet: { x: nx + 7, y: y - sz * 0.34 }, ...(until !== undefined ? { until } : {}) });
+      const h = lines.length * sz * 1.28;
+      targets[note.id] = { x: nx, y: y - NOTE_SIZE, w: nw, h: h + 6, s: note.s };
     });
   }
 
@@ -293,7 +317,14 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
       layoutDiagram(spec.stage, stage, marks, add);
       break;
     case "equation":
-      layoutEquation(spec.stage, stage, marks, add);
+      if (spec.stage.figure) {
+        // WORKING BESIDE ITS FIGURE: the figure on the left, the lines of working written on the right
+        // as Aria says them (owner, 2026-10-22: a graph or drawing while the working is shown).
+        const gap = 24;
+        const figW = Math.round(stage.w * 0.5);
+        layoutFigure(spec.stage.figure, { x: stage.x, y: stage.y, w: figW, h: stage.h }, marks, add);
+        layoutEquation(spec.stage, { x: stage.x + figW + gap, y: stage.y, w: stage.w - figW - gap, h: stage.h }, marks, add);
+      } else layoutEquation(spec.stage, stage, marks, add);
       break;
     case "graph":
       layoutGraph(spec.stage, stage, marks, add, spec.interaction?.kind === "try" ? Object.fromEntries(spec.interaction.controls.map((c) => [c.var, c.value])) : {});
@@ -320,6 +351,9 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
       break;
     case "structure":
       layoutStructureStage(spec.stage, stage, marks, add);
+      break;
+    case "sketch":
+      layoutSketch(spec.stage, stage, marks, add, spec.notes.map((n) => n.text));
       break;
   }
   targets.stage = { ...stage, s: 0 };
@@ -351,22 +385,81 @@ const MONO = 0.6;
 function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
   let st = stage;
   let area = fullArea;
+  // A recursive function: the code on the left, its call stack beside it — one box per call, newest at
+  // the bottom, a finished call crossed out (lib/canvas/callStack.ts). The boxes show what each call
+  // holds, so the Variables panel gives way to them.
+  const calls = !stage.structure && stage.steps.some((p) => p.stack) ? stackView(stage.steps) : null;
+  if (calls) {
+    const longest = Math.max(8, ...calls.frames.map((f) => f.call.length), ...calls.snaps.flatMap((sn) => sn.active.map((a) => (a.value ?? "").length)));
+    const colW = Math.round(Math.min(fullArea.w * 0.38, Math.max(200, longest * MONO * 15 + 36)));
+    const rect = { x: fullArea.x + fullArea.w - colW, y: fullArea.y, w: colW, h: fullArea.h };
+    const head = 26;
+    const gap = 20;
+    const n = calls.frames.length;
+    const boxH = Math.max(44, Math.min(70, (rect.h - head - gap * (n - 1)) / n));
+    const boxes: Record<string, Rect> = {};
+    calls.frames.forEach((f, i) => (boxes[f.id] = { x: rect.x, y: rect.y + head + i * (boxH + gap), w: colW, h: boxH }));
+    const s0 = calls.snaps[0].s;
+    marks.push({ type: "stack", id: "stack", rect, view: calls, boxes, s: s0 });
+    add("stack", rect, s0);
+    for (const f of calls.frames) add(f.id, boxes[f.id], calls.snaps.find((sn) => sn.active.some((a) => a.id === f.id))?.s ?? s0);
+    area = { ...fullArea, w: fullArea.w - colW - 22 };
+    // The code must stay readable beside the stack: when the subgoal labels would squeeze it below its
+    // natural size, they give way (as they do beside a data structure).
+    const groupW = stage.groups?.length ? Math.max(...stage.groups.map((g) => g.label.length * 7.6 + 34)) : 0;
+    const natural = 38 + Math.max(8, ...stage.lines.map((l) => l.length)) * MONO * 15 + 48;
+    st = { ...stage, steps: stage.steps.map((p) => ({ ...p, state: undefined })), ...(area.w - groupW < natural ? { groups: undefined } : {}) };
+  }
   if (stage.structure) {
     // The code on the left, as wide as its longest line needs at a readable size (40-58% of the
     // board); the structure it changes on the right. The trace table and the subgoal labels give
     // way: the structure shows what the trace would, and the labels would crowd the code.
     const longest = Math.max(8, ...stage.lines.map((l) => l.length));
     const codeW = Math.round(Math.max(fullArea.w * 0.4, Math.min(fullArea.w * 0.58, 38 + longest * MONO * 15 + 48)));
-    layoutStructureMark(stage.structure, stage.steps, { x: fullArea.x + codeW + 18, y: fullArea.y, w: fullArea.w - codeW - 18, h: fullArea.h }, marks, add, []);
+    const side = { x: fullArea.x + codeW + 18, y: fullArea.y, w: fullArea.w - codeW - 18, h: fullArea.h };
+    // The algorithm's bookkeeping (its stack, visited set) goes under the structure it describes: under
+    // a sixteen-line listing it ran off the board (CS round, 2026-10-22).
+    const names = [...new Set(stage.steps.flatMap((p) => (p.state ?? []).map((v) => v.name)))];
+    const stateH = names.length ? Math.min(side.h * 0.42, names.length * 46 + 40) : 0;
+    layoutStructureMark(stage.structure, stage.steps, { ...side, h: side.h - stateH - (stateH ? 12 : 0) }, marks, add, []);
+    if (stateH) {
+      const rect = { x: side.x, y: side.y + side.h - stateH, w: side.w, h: stateH };
+      const s0 = stage.steps.find((p) => p.state)?.s ?? (stage.steps[0]?.s ?? 0);
+      marks.push({ type: "state", id: "state", rect, steps: stage.steps, s: s0, pencil: true });
+      add("state", rect, s0);
+    }
     area = { ...fullArea, w: codeW };
-    st = { ...stage, trace: undefined, groups: undefined };
+    st = { ...stage, trace: undefined, groups: undefined, steps: stage.steps.map((p) => ({ ...p, state: undefined })) };
+  }
+  // THE VARIABLES BESIDE THE CODE (owner, 2026-10-22: pencil "sketches … alongside the code"): with no
+  // call stack or structure there, the variables stand in that column as pencil memory boxes, each with
+  // the values it held before crossed out beside it — the way a teacher traces a program on the board
+  // (components/canvas/CanvasPanel.tsx StateView). Too little room, and they stay under the code.
+  const sideNames = !calls && !stage.structure ? [...new Set(st.steps.flatMap((p) => (p.state ?? []).map((v) => v.name)))] : [];
+  if (sideNames.length) {
+    const longestName = Math.max(...sideNames.map((n) => n.length));
+    const longestValue = Math.max(1, ...st.steps.flatMap((p) => (p.state ?? []).map((v) => v.value.length)));
+    const colW = Math.round(Math.min(fullArea.w * 0.42, Math.max(240, (longestName + 3 * longestValue + 6) * MONO * 16 + 60)));
+    const natural = 38 + Math.max(8, ...stage.lines.map((l) => l.length)) * MONO * 15 + 48;
+    if (fullArea.w - colW - 22 >= Math.min(natural, fullArea.w * 0.55)) {
+      const rowsH = sideNames.length * 46 + 40;
+      const rect = { x: fullArea.x + fullArea.w - colW, y: fullArea.y + Math.max(0, Math.round((fullArea.h - rowsH) * 0.3)), w: colW, h: Math.min(fullArea.h, rowsH) };
+      const s0 = st.steps.find((q) => q.state)?.s ?? (st.steps[0]?.s ?? 0);
+      marks.push({ type: "state", id: "state", rect, steps: st.steps, s: s0, pencil: true });
+      add("state", rect, s0);
+      area = { ...area, w: area.w - colW - 22 };
+      // The subgoal labels give way when they would squeeze the code below its natural size.
+      const groupW = st.groups?.length ? Math.max(...st.groups.map((g) => g.label.length * 7.6 + 34)) : 0;
+      st = { ...st, steps: st.steps.map((p) => ({ ...p, state: undefined })), ...(area.w - groupW < natural ? { groups: undefined } : {}) };
+    }
   }
   const rowH = 24;
   // The bottom row: the Variables panel, the trace, the output — whichever the board has, packed left
   // to right. Short of room, the trace goes first (the live Variables panel says more).
   const stateNames = [...new Set(st.steps.flatMap((p) => (p.state ?? []).map((v) => v.name)))];
   const stateW = stateNames.length ? Math.max(170, ...st.steps.flatMap((p) => (p.state ?? []).map((v) => (v.name.length + v.value.length + 4) * MONO * 16 + 40))) : 0;
-  const stateH = stateNames.length ? stateNames.length * 26 + 44 : 0;
+  // Pencil memory boxes need taller rows than the old table (components/canvas/CanvasPanel.tsx PencilStateView).
+  const stateH = stateNames.length ? stateNames.length * 46 + 40 : 0;
   const traceW = st.trace ? Math.min(area.w, Math.max(64, ...st.trace.vars.map((v) => v.length * MONO * 16 + 24), ...st.trace.rows.flatMap((r) => r.values.map((v) => v.length * MONO * 16 + 24))) * st.trace.vars.length + 16) : 0;
   const traceH = st.trace ? (st.trace.rows.length + 1) * rowH + 22 : 0;
   const outputLines = st.output ? st.output.text.split("\n").length : 0;
@@ -385,10 +478,13 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
   // Subgoal labels sit in a column to the right of the card.
   const groups = st.groups ?? [];
   const groupW = groups.length ? Math.max(...groups.map((g) => g.label.length * 7.6 + 34)) : 0;
-  const codeArea = { x: area.x, y: area.y, w: area.w - groupW, h: area.h - bottomH - gap };
+  // A step's note can be shown as a pill above the listing: room is kept for it, so it never sits on
+  // the heading's rule (QA batch 5, 2026-10-21).
+  const notePill = st.steps.some((p) => p.note) ? 30 : 0;
+  const codeArea = { x: area.x, y: area.y + notePill, w: area.w - groupW, h: area.h - bottomH - gap - notePill };
   const maxLen = Math.max(8, ...st.lines.map((l) => l.length), ...(st.edits ?? []).map((e) => e.from.length));
   const gutter = st.lines.length >= 10 ? 46 : 38;
-  const size = Math.max(12, Math.min(20, Math.floor(Math.min((codeArea.w - gutter - 36) / (maxLen * MONO), (codeArea.h - 28) / (st.lines.length * 1.5)))));
+  const size = Math.max(12, Math.min(22, Math.floor(Math.min((codeArea.w - gutter - 36) / (maxLen * MONO), (codeArea.h - 28) / (st.lines.length * 1.5)))));
   const lineH = Math.round(size * 1.5);
   // Wide enough for the longest line, and for each step's note written beside the line it explains.
   const noteRoom = Math.max(0, ...st.steps.filter((p) => p.note).map((p) => gutter + 14 + (st.lines[Math.min(...p.lines) - 1]?.length ?? 0) * MONO * size + 22 + (p.note!.length + 2) * Math.max(12, size * 0.78) * 0.56 + 14));
@@ -415,7 +511,7 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
     const prect = { x, y: by, w: p.w, h: p.h };
     if (p.kind === "state") {
       const s0 = st.steps.find((q) => q.state)?.s ?? first;
-      marks.push({ type: "state", id: "state", rect: prect, steps: st.steps, s: s0 });
+      marks.push({ type: "state", id: "state", rect: prect, steps: st.steps, s: s0, pencil: true });
       add("state", prect, s0);
     } else if (p.kind === "trace" && st.trace) {
       marks.push({ type: "trace", id: "trace", rect: prect, vars: st.trace.vars, rows: st.trace.rows, size: 16, s: st.trace.rows[0]?.s ?? 0 });
@@ -428,11 +524,501 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
   }
 }
 
+/* ── sketch boards ─────────────────────────────────────────────────────────────────────────── */
+
+/** One sketch item where it is drawn: its box, and the sizes code chose for its writing. */
+export type SketchPlaced = {
+  item: SketchItem;
+  rect: Rect;
+  /** Font size of its writing (text, math, table, code, box). */
+  size: number;
+  /** Wrapped lines (text and box). */
+  lines?: string[];
+  /** Math: height of one worked line and the width of its subgoal-label column. */
+  lineH?: number;
+  labelW?: number;
+};
+
+const SKETCH_SIZES = { big: 30, normal: 24, small: 19 } as const;
+/** "half of $\\orange{6}$" → its width at `size`: TeX by its em estimate, the rest by the font. */
+function writingWidth(t: string, size: number): number {
+  let w = 0;
+  t.split(/(\$[^$]+\$)/).forEach((part) => {
+    if (/^\$[^$]+\$$/.test(part)) w += texEm(part.slice(1, -1).replace(/\\(?:blue|orange|green|pink|yellow|muted)\b/g, "")) * size * 1.05;
+    else w += textWidth(part, size);
+  });
+  return w;
+}
+function wrapWriting(t: string, size: number, width: number): string[] {
+  const words = t.split(/(\$[^$]+\$|\s+)/).filter((w) => w && !/^\s+$/.test(w));
+  const lines: string[] = [];
+  let line = "";
+  for (const w of words) {
+    const next = line ? `${line} ${w}` : w;
+    if (line && writingWidth(next, size) > width) {
+      lines.push(line);
+      line = w;
+    } else line = next;
+  }
+  if (line) lines.push(line);
+  return lines.length ? lines : [t];
+}
+
+/** The natural size of one item at column width `w` (font scale k). */
+function sketchSize(item: SketchItem, w: number, k: number): { h: number; size: number; lines?: string[]; lineH?: number; labelW?: number; w?: number } {
+  switch (item.type) {
+    case "text": {
+      const size = SKETCH_SIZES[item.size ?? "normal"] * k;
+      const lines = wrapWriting(item.text, size, w);
+      return { h: lines.length * size * 1.32, size, lines };
+    }
+    case "math": {
+      const labels = item.lines.some((l) => l.label);
+      const widest = Math.max(...item.lines.map((l) => texEm(l.tex.replace(/\\(?:blue|orange|green|pink|yellow|muted)\b/g, ""))));
+      const fitSize = (room: number) => {
+        let sz = (item.size === "big" ? 34 : 28) * k;
+        while (sz > 16 && widest * sz * 1.05 > room) sz -= 1;
+        return sz;
+      };
+      // Step labels sit beside the working when both fit at a readable size; otherwise each label goes
+      // on its own line above its step (a long line once shrank its label to unreadable, 2026-10-20).
+      // Measured at the size it is drawn (19), with room to spare; a label wider than its column, or
+      // one that squeezes the maths, goes above its step instead (a long label was written over its
+      // maths, QA batch 4, 2026-10-21).
+      const labelNeed = labels ? Math.max(...item.lines.map((l) => (l.label ? writingWidth(l.label, 19) * 1.15 : 0))) + 22 : 0;
+      let labelW = labels ? Math.min(w * 0.42, labelNeed) : 0;
+      let size = fitSize(w - labelW);
+      const stacked = labels && (size < 24 * k || labelNeed > w * 0.42);
+      if (stacked) {
+        labelW = 0;
+        size = fitSize(w);
+      }
+      // A fraction stands a full line taller than text: its denominator hung into the next step's
+      // label ("S = n(a + l)/2" over "four-term example"; maths benchmark, 2026-10-21).
+      const frac = item.lines.some((l) => /\\[dt]?frac/.test(l.tex));
+      const tall = frac || item.lines.some((l) => /\\sqrt|\^/.test(l.tex));
+      const lineH = size * (frac ? 2.45 : tall ? 1.95 : 1.7) + (stacked ? 30 * k : 0);
+      return { h: item.lines.length * lineH, size, lineH, labelW };
+    }
+    case "shapes": {
+      const aspect = item.grid.h / item.grid.w;
+      const h = Math.min(w * aspect, 400 * k);
+      return { h, size: 18 * k, w: h / aspect };
+    }
+    case "graph":
+      return { h: Math.min(w * 0.72, 360 * k), size: 14 * k };
+    case "table": {
+      let size = 18 * k;
+      const colW = w / item.headers.length;
+      const widest = Math.max(...item.headers.map((h) => writingWidth(h, size)), ...item.rows.flatMap((r) => r.cells.map((c) => writingWidth(c, size))));
+      while (size > 12 && widest > colW - 14) { size -= 1; }
+      return { h: (item.rows.length + 1) * size * 1.95 + 4, size };
+    }
+    case "box": {
+      const size = 21 * k;
+      const lines = wrapWriting(item.text, size, w - 30);
+      return { h: 22 + (item.title ? 22 * k : 0) + lines.length * size * 1.38 + 8, size, lines };
+    }
+    case "code": {
+      const longest = Math.max(8, ...item.lines.map((l) => l.length));
+      const size = Math.max(12, Math.min(20 * k, (w - 70) / (longest * MONO)));
+      const lineH = size * 1.55;
+      return { h: item.lines.length * lineH + 26, size, lineH };
+    }
+  }
+}
+
+/**
+ * A sketch board's items placed in code: "full" items take a whole row; the others share a band of a
+ * left and a right column (writing left, drawings right unless the writer said otherwise). A board
+ * that would not fit is scaled down as one, never cropped, never overlapped.
+ */
+/**
+ * FREE PLACEMENT (owner, 2026-10-21: "draw anywhere on the board"): every item at the spot the writer
+ * gave on a 12 × 8 grid. Each fits inside its spot (a drawing keeps its proportions, writing shrinks
+ * only as needed); an item that would land on another moves to the nearest free spot, else shrinks.
+ */
+/** Each item where the writer put it, or null when something would have to be left off. */
+function placeSketchFreely(stage: SketchStage, area: Rect): SketchPlaced[] | null {
+  const gx = area.w / 12;
+  const gy = area.h / 8;
+  const placed: SketchPlaced[] = [];
+  const hits = (r: Rect) => placed.some((p) => r.x < p.rect.x + p.rect.w + 8 && p.rect.x < r.x + r.w + 8 && r.y < p.rect.y + p.rect.h + 8 && p.rect.y < r.y + r.h + 8);
+  const inside = (r: Rect) => r.x >= area.x - 0.5 && r.y >= area.y - 0.5 && r.x + r.w <= area.x + area.w + 0.5 && r.y + r.h <= area.y + area.h + 0.5;
+  for (const item of stage.items) {
+    const at = item.at!;
+    const box = { x: area.x + at.x * gx, y: area.y + at.y * gy, w: at.w * gx, h: at.h * gy };
+    let k = 1;
+    let sz = sketchSize(item, box.w, k);
+    const floor = item.type === "text" || item.type === "box" || item.type === "table" ? 0.8 : 0.5;
+    while (sz.h > box.h && k > floor) {
+      k -= 0.05;
+      sz = sketchSize(item, box.w, k);
+    }
+    let w = sz.w ?? box.w;
+    let h = Math.min(sz.h, box.h);
+    if (sz.w !== undefined && sz.h > box.h) {
+      // A drawing taller than its spot: scaled down as one, keeping its shape.
+      const f = box.h / sz.h;
+      w = sz.w * f;
+      h = box.h;
+    }
+    let rect: Rect = { x: box.x + (box.w - w) / 2, y: box.y, w, h };
+    // A drawing that only touches its neighbour (writing in the next grid cell) is drawn a little
+    // smaller in its own spot — it was halved, a proof's circle shrank to an eighth of the board.
+    if ((item.type === "shapes" || item.type === "graph") && (hits(rect) || !inside(rect))) {
+      for (const f of [0.94, 0.88, 0.8, 0.72]) {
+        const cand = { x: rect.x + (rect.w * (1 - f)) / 2, y: rect.y, w: rect.w * f, h: rect.h * f };
+        if (!hits(cand) && inside(cand)) {
+          rect = cand;
+          k *= f;
+          break;
+        }
+      }
+    }
+    if (hits(rect) || !inside(rect)) {
+      // The nearest free spot: rings of grid steps around where it was asked to go.
+      let best: Rect | null = null;
+      for (let ring = 1; ring <= 10 && !best; ring++)
+        for (const [dx, dy] of [[0, ring], [ring, 0], [-ring, 0], [0, -ring], [ring, ring], [-ring, ring], [ring, -ring], [-ring, -ring]]) {
+          const cand = { ...rect, x: rect.x + dx * gx * 0.5, y: rect.y + dy * gy * 0.5 };
+          if (!hits(cand) && inside(cand)) { best = cand; break; }
+        }
+      if (best) rect = best;
+      else {
+        // Nowhere free. Writing is left off rather than printed over something (the board is drawing
+        // first; Aria says it). A drawing is halved and put at the first free spot down the board.
+        // Never silently: a proof's worked lines were left off this way (maths benchmark, 2026-10-21) —
+        // the sketch is laid out in bands instead (layoutSketch), where everything is fitted.
+        if (item.type === "text" || item.type === "box" || item.type === "math" || item.type === "table") return null;
+        rect = { ...rect, w: rect.w / 2, h: rect.h / 2 };
+        k *= 0.5;
+        let free = false;
+        for (let y = area.y; y + rect.h <= area.y + area.h; y += gy / 2) {
+          const cand = { ...rect, y };
+          if (!hits(cand)) { rect = cand; free = true; break; }
+        }
+        if (!free) return null;
+      }
+    }
+    const final = sketchSize(item, rect.w, k);
+    placed.push({ item, rect: { ...rect, h: Math.min(rect.h, Math.max(final.h, item.type === "shapes" || item.type === "graph" ? rect.h : 0)) }, size: final.size, lines: final.lines, lineH: final.lineH, labelW: final.labelW });
+  }
+  return placed;
+}
+
+/** Letters, digits and maths only, for comparing two pieces of writing. */
+const gist = (t: string) => t.toLowerCase().replace(/\$|\\[a-z]+/g, "").replace(/[^a-z0-9∠°=+−\-×÷²³]/g, "");
+
+/**
+ * A sketch's writing that only repeats a note is left off ("Goal: ∠ACB = 90°" was written twice on one
+ * board), and a line labelled with nothing but its two end letters ("OA", "CB") is left unlabelled when
+ * those points are lettered — it said nothing and crowded the drawing (maths benchmark, 2026-10-21).
+ */
+function tidySketch(stage: SketchStage, notes: string[]): SketchStage {
+  const said = notes.map(gist).filter((n) => n.length >= 4);
+  const items = stage.items
+    .filter((it) => !(it.type === "text" && said.some((n) => { const g = gist(it.text); return g.length >= 4 && (n.includes(g) || g.includes(n)); })))
+    .map((it) => {
+      if (it.type !== "shapes") return it;
+      const letters = new Set(it.shapes.filter((sh) => sh.kind === "label" && sh.label && /^[A-Z]$/.test(sh.label.trim())).map((sh) => sh.label!.trim()));
+      const shapes = it.shapes.map((sh) => {
+        const name = sh.label?.trim() ?? "";
+        if ((sh.kind === "line" || sh.kind === "arrow") && /^[A-Z]{2}$/.test(name) && letters.has(name[0]) && letters.has(name[1])) return { ...sh, label: undefined };
+        return sh;
+      });
+      return { ...it, shapes };
+    });
+  return items.length ? { ...stage, items } : stage;
+}
+
+function layoutSketch(rawStage: SketchStage, area: Rect, marks: Mark[], add: Add, notes: string[] = []) {
+  const stage = tidySketch(rawStage, notes);
+  const freely = stage.items.length && stage.items.every((it) => it.at) ? placeSketchFreely(stage, area) : null;
+  if (freely) {
+    const placed = freely;
+    for (const p of placed) if (p.item.type === "shapes") p.item = { ...p.item, shapes: clearSketchLabels(p.item, p.rect, p.size) };
+    const first = Math.min(...stage.items.map((it) => it.s));
+    marks.push({ type: "sketch", id: "sketch", rect: area, items: placed, s: first });
+    add("sketch", area, first);
+    registerSketchTargets(placed, add);
+    return;
+  }
+  const visual = (it: SketchItem) => it.type === "shapes" || it.type === "graph" || it.type === "code";
+  const colOf = (it: SketchItem) => it.col ?? (visual(it) ? "right" : "left");
+  type Band = { full?: SketchItem; left: SketchItem[]; right: SketchItem[] };
+  const bands: Band[] = [];
+  for (const it of stage.items) {
+    if (colOf(it) === "full") bands.push({ full: it, left: [], right: [] });
+    else {
+      let band = bands[bands.length - 1];
+      if (!band || band.full) bands.push((band = { left: [], right: [] }));
+      band[colOf(it) as "left" | "right"].push(it);
+    }
+  }
+  const gap = 20;
+  const colGap = 30;
+  const plan = (k: number) => {
+    const placed: SketchPlaced[] = [];
+    let y = 0;
+    for (const band of bands) {
+      if (band.full) {
+        const sz = sketchSize(band.full, area.w, k);
+        const w = sz.w ?? area.w;
+        placed.push({ item: band.full, rect: { x: area.x + (area.w - w) / 2, y, w, h: sz.h }, size: sz.size, lines: sz.lines, lineH: sz.lineH, labelW: sz.labelW });
+        y += sz.h + gap;
+        continue;
+      }
+      const both = band.left.length && band.right.length;
+      // A drawing gets the wider column; writing alone takes the board.
+      const leftW = both ? (band.right.some(visual) ? area.w * 0.44 : area.w * 0.5) - colGap / 2 : area.w;
+      const rightW = both ? area.w - leftW - colGap : area.w;
+      let bottom = y;
+      for (const [list, x0, w] of [[band.left, area.x, leftW], [band.right, both ? area.x + leftW + colGap : area.x, rightW]] as Array<[SketchItem[], number, number]>) {
+        let cy = y;
+        for (const it of list) {
+          const sz = sketchSize(it, w, k);
+          const iw = sz.w ?? w;
+          placed.push({ item: it, rect: { x: x0 + (w - iw) / 2, y: cy, w: iw, h: sz.h }, size: sz.size, lines: sz.lines, lineH: sz.lineH, labelW: sz.labelW });
+          cy += sz.h + gap;
+        }
+        bottom = Math.max(bottom, cy);
+      }
+      y = bottom;
+    }
+    return { placed, h: Math.max(0, y - gap) };
+  };
+  let k = 1;
+  let result = plan(k);
+  while (result.h > area.h && k > 0.55) {
+    k -= 0.05;
+    result = plan(k);
+  }
+  // Still too tall: the whole board shrinks as one, about its top-left — nothing is ever drawn off the
+  // board (a vectors sketch lost its last two items below the board's edge, QA batch 2, 2026-10-21).
+  if (result.h > area.h) {
+    const f = area.h / result.h;
+    for (const p of result.placed) {
+      p.rect = { x: area.x + (p.rect.x - area.x) * f + (area.w * (1 - f)) / 2, y: p.rect.y * f, w: p.rect.w * f, h: p.rect.h * f };
+      p.size *= f;
+      if (p.lineH) p.lineH *= f;
+      if (p.labelW) p.labelW *= f;
+    }
+    result = { ...result, h: area.h };
+  }
+  // A short board sits a little above the middle of its area, like a teacher's writing.
+  const top = area.y + Math.max(0, (area.h - result.h) * 0.35);
+  for (const p of result.placed) p.rect = { ...p.rect, y: p.rect.y + top };
+  // Free labels never sit on a line or on another label: each is nudged to the nearest clear spot.
+  for (const p of result.placed) if (p.item.type === "shapes") p.item = { ...p.item, shapes: clearSketchLabels(p.item, p.rect, p.size) };
+  const first = Math.min(...stage.items.map((it) => it.s));
+  marks.push({ type: "sketch", id: "sketch", rect: area, items: result.placed, s: first });
+  add("sketch", area, first);
+  registerSketchTargets(result.placed, add);
+}
+
+/** Every sketch item, worked line and shape as a target the camera and Dot can find. */
+function registerSketchTargets(placedItems: SketchPlaced[], add: Add) {
+  for (const p of placedItems) {
+    add(p.item.id, p.rect, p.item.s);
+    if (p.item.type === "math") p.item.lines.forEach((l, i) => add(`${p.item.id}-l${i + 1}`, { x: p.rect.x, y: p.rect.y + i * (p.lineH ?? 40), w: p.rect.w, h: p.lineH ?? 40 }, l.s));
+    if (p.item.type === "shapes") {
+      const it = p.item;
+      const kx = p.rect.w / it.grid.w;
+      const ky = p.rect.h / it.grid.h;
+      for (const sh of it.shapes) {
+        const pts = sh.points ?? (sh.kind === "circle" ? [[sh.x! - sh.r!, sh.y! - sh.r!], [sh.x! + sh.r!, sh.y! + sh.r!]] : sh.kind === "rect" ? [[sh.x!, sh.y!], [sh.x! + sh.w!, sh.y! + sh.h!]] : [[sh.x! - 0.5, sh.y! - 0.4], [sh.x! + 0.5, sh.y! + 0.4]]);
+        const xs = pts.map((q) => q[0]);
+        const ys = pts.map((q) => q[1]);
+        const at = { x: p.rect.x + Math.min(...xs) * kx, y: p.rect.y + Math.min(...ys) * ky, w: Math.max(8, (Math.max(...xs) - Math.min(...xs)) * kx), h: Math.max(8, (Math.max(...ys) - Math.min(...ys)) * ky) };
+        add(sh.id, at, sh.s);
+        // Where it travels, on the sentence it moves: the camera frames the motion (camera.ts).
+        if (sh.move) add(`${sh.id}-move`, union([at, { ...at, x: at.x + sh.move.dx * kx, y: at.y + sh.move.dy * ky }]), sh.move.s);
+      }
+    }
+  }
+}
+
+type Seg = [number, number, number, number];
+/** The outline segments of a sketch shape, in grid units (where it starts and where it ends up). */
+function sketchSegments(sh: SketchShapeT): Seg[] {
+  const pts: Array<[number, number]> | null =
+    sh.kind === "rect" ? [[sh.x!, sh.y!], [sh.x! + sh.w!, sh.y!], [sh.x! + sh.w!, sh.y! + sh.h!], [sh.x!, sh.y! + sh.h!]]
+    : sh.kind === "circle" ? Array.from({ length: 16 }, (_, i) => [sh.x! + Math.cos((i / 16) * 2 * Math.PI) * sh.r!, sh.y! + Math.sin((i / 16) * 2 * Math.PI) * sh.r!] as [number, number])
+    : sh.points ?? null;
+  if (!pts || pts.length < 2) return [];
+  const closed = sh.kind === "rect" || sh.kind === "circle" || sh.kind === "poly";
+  const segs: Seg[] = [];
+  const shifts: Array<[number, number]> = [[0, 0], ...(sh.move && !sh.move.rotate ? [[sh.move.dx, sh.move.dy] as [number, number]] : [])];
+  for (const [dx, dy] of shifts)
+    for (let i = 0; i < pts.length - (closed ? 0 : 1); i++) {
+      const a = pts[i], b = pts[(i + 1) % pts.length];
+      segs.push([a[0] + dx, a[1] + dy, b[0] + dx, b[1] + dy]);
+    }
+  return segs;
+}
+function segHitsBox(g: Seg, b: Rect): boolean {
+  // Sampled: exact enough at board scale, and simple.
+  for (let t = 0; t <= 1.0001; t += 0.05) {
+    const x = g[0] + (g[2] - g[0]) * t, y = g[1] + (g[3] - g[1]) * t;
+    if (x > b.x && x < b.x + b.w && y > b.y && y < b.y + b.h) return true;
+  }
+  return false;
+}
+/**
+ * EVERY LABEL ON A SKETCH HAS ITS OWN CLEAR SPOT (owner, 2026-10-21: "a lot of text overlap"). One
+ * pass places them all, each kept off every line, every other shape's body and every label placed
+ * before it (grid units; `labelAt` on each labelled shape, read by SketchView):
+ *   1. a shape's label inside it, when it fits at a readable size (13 px or more);
+ *   2. a line's or arrow's label beside its longest stretch, never across it;
+ *   3. a label too big for its shape OUTSIDE it — below, above, right or left — not written across
+ *      its outline ("advanced methods" in a circle a third its width, with arrows through it);
+ *   4. free labels where the writer put them, or the nearest clear spot.
+ * Nothing clear within reach: the label keeps its first spot (the live board's TextDeconflict is the
+ * last word).
+ */
+function clearSketchLabels(item: Extract<SketchItem, { type: "shapes" }>, rect: Rect, size: number): SketchShapeT[] {
+  const kx = rect.w / item.grid.w;
+  const ky = rect.h / item.grid.h;
+  const labelSize = Math.max(13, Math.min(22, size * (rect.w / 420 + 0.4)));
+  const segs = item.shapes.filter((sh) => sh.kind !== "label").map((sh) => ({ id: sh.id, segs: sketchSegments(sh) }));
+  const bodyOf = (sh: SketchShapeT): Rect | null => {
+    if (sh.kind === "rect") return { x: sh.x!, y: sh.y!, w: sh.w!, h: sh.h! };
+    if (sh.kind === "circle") return { x: sh.x! - sh.r!, y: sh.y! - sh.r!, w: sh.r! * 2, h: sh.r! * 2 };
+    if (sh.kind === "poly" && sh.points?.length) {
+      const xs = sh.points.map((q) => q[0]), ys = sh.points.map((q) => q[1]);
+      return { x: Math.min(...xs), y: Math.min(...ys), w: Math.max(...xs) - Math.min(...xs), h: Math.max(...ys) - Math.min(...ys) };
+    }
+    return null;
+  };
+  const bodies = item.shapes.flatMap((sh) => { const b = bodyOf(sh); return b ? [{ id: sh.id, b }] : []; });
+  const boxAt = (x: number, y: number, label: string, px: number): Rect => {
+    const w = (writingWidth(label, px) + 8) / kx;
+    const h = (px * 1.3) / ky;
+    return { x: x - w / 2, y: y - h / 2, w, h };
+  };
+  const hit = (a: Rect, b: Rect) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
+  const taken: Rect[] = [];
+  /**
+   * Clear of every line but `own`'s and every label, inside the grid. A label written OUTSIDE its
+   * shape also keeps off its own outline and off every shape's body; a label over a filled area is
+   * otherwise fine (in a square tiled by triangles, every spot is inside some body).
+   */
+  const free = (b: Rect, own: string, outside = false) =>
+    b.x >= 0 && b.y >= 0 && b.x + b.w <= item.grid.w && b.y + b.h <= item.grid.h &&
+    !segs.some((s) => (outside || s.id !== own) && s.segs.some((g) => segHitsBox(g, b))) &&
+    !(outside && bodies.some((o) => hit(b, o.b))) &&
+    !taken.some((t) => hit(b, t));
+  const within = (b: Rect, body: Rect) => b.x >= body.x && b.y >= body.y && b.x + b.w <= body.x + body.w && b.y + b.h <= body.y + body.h;
+  const ringSearch = (x: number, y: number, label: string, px: number, own: string, outside = false): [number, number] | null => {
+    const step = Math.max(0.3, (px * 0.6) / ky);
+    for (let ring = 0; ring <= 7; ring++) {
+      const tries = ring === 0 ? [[0, 0]] : Array.from({ length: 12 }, (_, i) => [Math.cos((i / 12) * 2 * Math.PI) * ring * step, Math.sin((i / 12) * 2 * Math.PI) * ring * step]);
+      for (const [dx, dy] of tries) if (free(boxAt(x + dx, y + dy, label, px), own, outside)) return [x + dx, y + dy];
+    }
+    return null;
+  };
+  const at = new Map<string, { x: number; y: number; size: number }>();
+  const put = (id: string, x: number, y: number, label: string, px: number) => {
+    at.set(id, { x, y, size: px });
+    taken.push(boxAt(x, y, label, px));
+  };
+  const outsideLater: SketchShapeT[] = [];
+  // 1. Inside its shape, when it fits.
+  for (const sh of item.shapes) {
+    if (!sh.label || sh.kind === "label" || sh.kind === "line" || sh.kind === "arrow") continue;
+    const body = bodyOf(sh);
+    if (!body) continue;
+    const room = (sh.kind === "poly" ? 0.55 : 0.84) * body.w * kx;
+    const fit = Math.min(labelSize, room / Math.max(0.5, writingWidth(sh.label, 1)));
+    const tallEnough = body.h * ky >= fit * 1.25;
+    if (fit >= 13 && tallEnough) {
+      const cx = sh.kind === "poly" ? sh.points!.reduce((a, q) => a + q[0], 0) / sh.points!.length : body.x + body.w / 2;
+      const cy = sh.kind === "poly" ? sh.points!.reduce((a, q) => a + q[1], 0) / sh.points!.length : body.y + body.h / 2;
+      // Its centre may have another shape's line through it (an altitude, a smaller triangle's edge):
+      // then the nearest clear spot still inside the shape, else outside it.
+      const step = Math.max(0.2, (fit * 0.5) / ky);
+      let spot: [number, number] | null = null;
+      for (let ring = 0; ring <= 5 && !spot; ring++) {
+        const tries = ring === 0 ? [[0, 0]] : Array.from({ length: 12 }, (_, i) => [Math.cos((i / 12) * 2 * Math.PI) * ring * step, Math.sin((i / 12) * 2 * Math.PI) * ring * step]);
+        for (const [dx, dy] of tries) {
+          const b = boxAt(cx + dx, cy + dy, sh.label, fit);
+          if (within(b, body) && free(b, sh.id)) { spot = [cx + dx, cy + dy]; break; }
+        }
+      }
+      if (spot) put(sh.id, spot[0], spot[1], sh.label, fit);
+      else outsideLater.push(sh);
+    } else outsideLater.push(sh);
+  }
+  // 2. Beside its line.
+  for (const sh of item.shapes) {
+    if (!sh.label || (sh.kind !== "line" && sh.kind !== "arrow") || !sh.points || sh.points.length < 2) continue;
+    let best = 0, bl = -1;
+    for (let i = 0; i < sh.points.length - 1; i++) {
+      const l = Math.hypot((sh.points[i + 1][0] - sh.points[i][0]) * kx, (sh.points[i + 1][1] - sh.points[i][1]) * ky);
+      if (l > bl) { bl = l; best = i; }
+    }
+    const [a, b] = [sh.points[best], sh.points[best + 1]];
+    let nx = -((b[1] - a[1]) * ky), ny = (b[0] - a[0]) * kx;
+    const nl = Math.hypot(nx, ny) || 1;
+    nx /= nl; ny /= nl;
+    if (ny > 0) { nx = -nx; ny = -ny; }
+    const off = labelSize * 0.95;
+    const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
+    const sides: Array<[number, number]> = [[mx + (nx * off) / kx, my + (ny * off) / ky], [mx - (nx * off) / kx, my - (ny * off) / ky]];
+    const spot = sides.find(([x, y]) => free(boxAt(x, y, sh.label!, labelSize), sh.id)) ?? ringSearch(sides[0][0], sides[0][1], sh.label, labelSize, sh.id);
+    if (!spot) recordLayoutDrop(`the label "${sh.label}" has no clear room beside its line (the drawing is too crowded: space the shapes further apart)`);
+    put(sh.id, (spot ?? sides[0])[0], (spot ?? sides[0])[1], sh.label, labelSize);
+  }
+  // 3. Too big for its shape: outside it.
+  for (const sh of outsideLater) {
+    const body = bodyOf(sh)!;
+    const px = Math.max(13, Math.min(labelSize, 18));
+    const half = boxAt(0, 0, sh.label!, px);
+    const cx = body.x + body.w / 2, cy = body.y + body.h / 2, gap = 0.12;
+    const sides: Array<[number, number]> = [
+      [cx, body.y + body.h + gap - half.y],
+      [cx, body.y - gap + half.y],
+      [body.x + body.w + gap - half.x, cy],
+      [body.x - gap + half.x, cy],
+    ];
+    const spot = sides.find(([x, y]) => free(boxAt(x, y, sh.label!, px), sh.id, true)) ?? ringSearch(sides[0][0], sides[0][1], sh.label!, px, sh.id, true);
+    if (spot) put(sh.id, spot[0], spot[1], sh.label!, px);
+    else {
+      // Sent back to the writer (generate.ts "text-dropped"), so a cramped drawing is redrawn.
+      recordLayoutDrop(`the label "${sh.label}" does not fit in its shape and has no clear room beside it (make the shape bigger, the label shorter, or space the shapes further apart)`);
+      put(sh.id, cx, cy, sh.label!, 11);
+    }
+  }
+  // 4. Free labels: where asked, or the nearest clear spot.
+  for (const sh of item.shapes) {
+    if (sh.kind !== "label" || !sh.label) continue;
+    const spot = ringSearch(sh.x!, sh.y!, sh.label, labelSize, sh.id);
+    if (!spot) recordLayoutDrop(`the label "${sh.label}" has no clear room near where it was put (the drawing is too crowded there)`);
+    put(sh.id, (spot ?? [sh.x!, sh.y!])[0], (spot ?? [sh.x!, sh.y!])[1], sh.label, labelSize);
+  }
+  return item.shapes.map((sh) => (at.has(sh.id) ? { ...sh, labelAt: at.get(sh.id) } : sh));
+}
+
 /* ── data structures ──────────────────────────────────────────────────────────────────────── */
 
 /** A structure board: the structure across the stage, each step's note written under it. */
 function layoutStructureStage(st: StructureStage, area: Rect, marks: Mark[], add: Add) {
   const captions = st.steps.filter((p) => p.note).map((p) => ({ s: p.s, text: p.note! }));
+  // What the algorithm keeps beside the structure (BFS's queue, the visited set), drawn in pencil in a
+  // column on the right as it changes (CS round, 2026-10-22: the queue was talked about, never drawn).
+  const names = [...new Set(st.steps.flatMap((p) => (p.state ?? []).map((v) => v.name)))];
+  if (names.length) {
+    const longest = Math.max(1, ...st.steps.flatMap((p) => (p.state ?? []).map((v) => v.value.length)));
+    const colW = Math.round(Math.min(area.w * 0.45, Math.max(240, longest * MONO * 17 + 140)));
+    const rowsH = names.length * 46 + 40;
+    const rect = { x: area.x + area.w - colW, y: area.y + Math.max(0, Math.round((area.h - rowsH) * 0.3)), w: colW, h: Math.min(area.h, rowsH) };
+    const s0 = st.steps.find((p) => p.state)?.s ?? 0;
+    marks.push({ type: "state", id: "state", rect, steps: st.steps.map((p) => ({ s: p.s, lines: [], ...(p.state ? { state: p.state } : {}) })), s: s0, pencil: true });
+    add("state", rect, s0);
+    layoutStructureMark(st.structure, st.steps, { ...area, w: area.w - colW - 22 }, marks, add, captions);
+    return;
+  }
   layoutStructureMark(st.structure, st.steps, area, marks, add, captions);
 }
 
@@ -677,11 +1263,12 @@ function layoutDiagram(stage: DiagramStage, box: Rect, marks: Mark[], add: Add) 
   layoutFigure({ kind: "figure", component: "drawn", params: {}, parts: stage.parts, drawing }, box, marks, add);
 }
 
-function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
+/** How big a figure is drawn in `box`, its label margins taken off (the sizing half of layoutFigure). */
+function figureFit(stage: FigureStage, box: Rect) {
   // A library diagram (lib/figures/library.ts) is a picture with exact anchors: the same label path
   // as a code-drawn figure, with the art drawn from its file instead of from shapes.
   const component = stage.asset || stage.drawing ? undefined : figureComponent(stage.component);
-  if (!stage.asset && !stage.drawing && !component) return;
+  if (!stage.asset && !stage.drawing && !component) return null;
   const drawing: FigureDrawing = stage.asset
     ? { w: stage.asset.w, h: stage.asset.h, shapes: [], parts: stage.asset.parts, credit: stage.asset.credit }
     : stage.drawing ?? component!.build(stage.params);
@@ -697,13 +1284,26 @@ function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
     from.sort((a, b) => Math.abs(anchors.get(a.id)!.x - drawing.w / 2) - Math.abs(anchors.get(b.id)!.x - drawing.w / 2));
     to.push(from.shift()!);
   }
-  const marginFor = (list: typeof shown) => (list.length ? Math.min(220, Math.max(...list.map((p) => Math.min(textWidth(p.name, size), 190))) + 46) : 16);
+  // In a narrow box (a figure beside its working) the labels wrap rather than take the drawing's room:
+  // two 220 px margins left a function graph a speck under its own labels (live test, 2026-10-22).
+  const cap = box.w < 600 ? Math.max(80, Math.round(box.w * 0.18)) : 220;
+  const marginFor = (list: typeof shown) => (list.length ? Math.min(cap, Math.max(...list.map((p) => Math.min(textWidth(p.name, size), 190))) + 46) : 16);
   const left = component?.selfLabelled ? 16 : marginFor(leftSide), right = component?.selfLabelled ? 16 : marginFor(rightSide);
   const room = { w: box.w - left - right, h: box.h - 24 };
   const scale = Math.min(room.w / drawing.w, room.h / drawing.h);
+  return { component, drawing, anchors, shown, size, left, right, room, scale };
+}
+
+function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
+  const fit = figureFit(stage, box);
+  if (!fit) return;
+  const { component, drawing, anchors, shown, size, left, room, scale } = fit;
   const rect = { x: box.x + left + (room.w - drawing.w * scale) / 2, y: box.y + 4 + (room.h - drawing.h * scale) / 2, w: drawing.w * scale, h: drawing.h * scale };
   const onBoard = (p: Pt): Pt => ({ x: rect.x + p.x * scale, y: rect.y + p.y * scale });
-  marks.push({ type: "figure", id: "figure", rect, scale, drawing, s: 0, ...(stage.asset ? { asset: stage.asset.id } : {}) });
+  // A figure whose shapes change with the narration (lib/figures/types.ts ShapeTiming) carries each
+  // part's sentence; others carry nothing new.
+  const timed = drawing.shapes.some((sh) => sh.show || sh.hide || sh.move);
+  marks.push({ type: "figure", id: "figure", rect, scale, drawing, s: 0, ...(stage.asset ? { asset: stage.asset.id } : {}), ...(timed ? { timing: Object.fromEntries(stage.parts.map((p) => [p.id, p.s])) } : {}) });
   add("figure", rect, 0);
   // Every other part's outline is an obstacle a leader must not cross (lib/figures/bounds.ts); parts
   // that span most of the figure (wires, a stand) are left out, or nothing could reach in.
@@ -812,11 +1412,45 @@ function layoutIllustration(stage: IllustrationStage, box: Rect, marks: Mark[], 
 /* ── equation ─────────────────────────────────────────────────────────────────────────────── */
 
 /**
+ * A note's lines. A formula is never broken mid-expression ("SD = √[∑(x − mean)² ÷" over "n]"; maths
+ * benchmark round 3): it is set a little smaller to fit one line, else broken at an "=" so each line
+ * is whole; other notes wrap at words as before.
+ */
+export function noteLines(text: string, size: number, width: number): { lines: string[]; size: number } {
+  const formula = /[=≈]/.test(text) && /[\d+\-−×÷/^²³√()∑]/.test(text);
+  const plain = wrap(text, size, width, 2);
+  if (!formula || plain.length === 1) return { lines: plain, size };
+  for (const k of [0.9, 0.82]) {
+    const small = Math.round(size * k);
+    if (textWidth(text, small) <= width) return { lines: [text], size: small };
+  }
+  const at = [...text.matchAll(/\s[=≈]\s/g)].map((m) => m.index ?? -1).filter((i) => i > 0);
+  for (const i of at.reverse()) {
+    const head = text.slice(0, i).trim(), tail = text.slice(i).trim();
+    for (const k of [1, 0.9, 0.82]) {
+      const sz = Math.round(size * k);
+      if (textWidth(head, sz) <= width && textWidth(tail, sz) <= width) return { lines: [head, tail], size: sz };
+    }
+  }
+  return { lines: plain, size };
+}
+
+/**
  * A LaTeX term's width in em, estimated (KaTeX lays it out only in a browser, and layout is pure):
  * a fraction is as wide as its wider part, a power or index is small, a command is one symbol, and
  * the operators carry KaTeX's spacing. The renderer fits the real typesetting into this slot.
  */
 export function texEm(s: string, script = false): number {
+  // A matrix is as wide as its widest cell in each column, plus the brackets (maths benchmark round 2:
+  // matrices measured as one long line of text overlapped the rows around them).
+  const env = /\\begin\{([pbvBV]?matrix)\}([\s\S]*?)\\end\{\1\}/.exec(s);
+  if (env) {
+    const rows = env[2].split(/\\\\/).map((r) => r.split("&").map((c) => texEm(c.trim(), script)));
+    const cols = Math.max(1, ...rows.map((r) => r.length));
+    let mw = 0.9;
+    for (let c = 0; c < cols; c++) mw += Math.max(0, ...rows.map((r) => r[c] ?? 0)) + 0.55;
+    return mw + texEm(s.slice(0, env.index) + s.slice(env.index + env[0].length), script);
+  }
   let w = 0;
   let i = 0;
   const group = (): string => {
@@ -844,6 +1478,7 @@ export function texEm(s: string, script = false): number {
       const name = m ? m[1] : "";
       i += m ? m[0].length : 1;
       if (name === "frac" || name === "dfrac" || name === "tfrac") w += Math.max(texEm(group(), true), texEm(group(), true)) * 0.72 + 0.25;
+      else if (name === "binom") w += Math.max(texEm(group(), true), texEm(group(), true)) * 0.72 + 0.9;
       else if (name === "sqrt") {
         if (s[i] === "[") i = s.indexOf("]", i) < 0 ? s.length : s.indexOf("]", i) + 1;
         w += texEm(group()) + 0.75;
@@ -894,8 +1529,9 @@ function wrapRow(row: string[], width: (id: string) => number, isBreak: (id: str
 function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add) {
   // 48 terms: a worked calculation of four lines needs more than 16, and the rows shrink to fit
   // (a circuits board lost its "= 6 V" to the old limit of 16; 2026-10-18).
-  const tokens = stage.tokens.slice(0, 48);
-  if (stage.tokens.length > 48) recordLayoutDrop(`the equation has ${stage.tokens.length} terms; only 48 fit, so ${stage.tokens.slice(48).map((t) => t.text).join(" ")} was left off`);
+  // 96 terms: a derivation written one line per step runs to ten lines, over pages (below).
+  const tokens = stage.tokens.slice(0, 96);
+  if (stage.tokens.length > 96) recordLayoutDrop(`the equation has ${stage.tokens.length} terms; only 96 fit, so ${stage.tokens.slice(96).map((t) => t.text).join(" ")} was left off`);
   const steps = stage.steps.length ? stage.steps : [{ s: 0, order: tokens.map((t) => t.id) }];
   const hosted = new Map(tokens.filter((t) => t.on && tokens.some((h) => h.id === t.on && !h.on)).map((t) => [t.id, t.on as string]));
   const inRow = (id: string) => !hosted.has(id);
@@ -905,7 +1541,27 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
   const gapEm = 12 / 44;
   const rows = steps.map((step) => step.order.filter((id) => em.has(id) && inRow(id)));
   const rowEm = (row: string[]) => row.reduce((w, id) => w + em.get(id)!, 0) + gapEm * Math.max(0, row.length - 1);
-  const widest = Math.max(1, ...rows.map(rowEm));
+  // ONE EQUATION PER LINE (QA batch 4, 2026-10-21: "x + y = 10, y = 10 and y = 2x + 1, x + 2x + 1 = 10"
+  // on one line): where a step joins whole equations with ",", ";", "and", "so", "then", each equation
+  // starts its own line — the comma stays at the end of a line, the joining word starts the next.
+  const textOf = (id: string) => (tokens.find((t) => t.id === id)?.text ?? "").trim();
+  const clauses = (row: string[]): string[][] => {
+    const out: string[][] = [];
+    let cur: string[] = [];
+    row.forEach((id, i) => {
+      const t = textOf(id);
+      const restHasEq = row.slice(i + 1).some((r) => /^[=≈]$/.test(textOf(r)));
+      const curHasEq = cur.some((c) => /^[=≈]$/.test(textOf(c)));
+      // The comma that joined two equations is not written once each has its own line (a line ending
+      // in "," read as unfinished; maths benchmark R5).
+      if (/^[,;]$/.test(t) && curHasEq && restHasEq) { out.push(cur); cur = []; return; }
+      if (/^(?:and|so|then|therefore|hence|giving|gives)$/i.test(t) && curHasEq && restHasEq) { out.push(cur); cur = [id]; return; }
+      cur.push(id);
+    });
+    if (cur.length) out.push(cur);
+    return out.filter((c) => c.length);
+  };
+  const widest = Math.max(1, ...rows.flatMap(clauses).map(rowEm));
   // One line as large as fits (down to 26); a step still too wide goes onto two lines, and the size
   // then fits the widest LINE (down to 18) — a long equation shrinks or wraps, never overflows.
   let size = Math.max(26, Math.min(46, Math.floor(maxW / widest)));
@@ -913,7 +1569,7 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
     const text = tokens.find((t) => t.id === id)?.text ?? "";
     return /^[=→⇌]$/.test(text) ? 2 : /^[+−-]$/.test(text) ? 1 : 0;
   };
-  const wrapAt = (sz: number) => rows.map((row) => wrapRow(row, (id) => em.get(id)! * sz, breakOf, maxW, gapEm * sz));
+  const wrapAt = (sz: number) => rows.map((row) => clauses(row).flatMap((c) => wrapRow(c, (id) => em.get(id)! * sz, breakOf, maxW, gapEm * sz)));
   let lined = wrapAt(size);
   const widestLine = Math.max(1, ...lined.flat().map(rowEm));
   if (widestLine * size > maxW) {
@@ -923,8 +1579,11 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
   const gap = gapEm * size;
   const small = Math.round(size * 0.5);
   const center = box.x + box.w / 2;
-  const tall = tokens.some((t) => /\\[dt]?frac|\\sqrt/.test(t.tex ?? ""));
-  const lineGap = size * (tall ? 1.95 : 1.6);
+  const tall = tokens.some((t) => /\\[dt]?frac|\\sqrt|\\binom|matrix\}/.test(t.tex ?? ""));
+  // A matrix row is two or three lines high: its rows need that much room (maths benchmark round 2).
+  const matrixRows = Math.max(0, ...tokens.map((t) => (/matrix\}/.test(t.tex ?? "") ? (t.tex!.match(/\\\\/g)?.length ?? 0) + 1 : 0)));
+  const tallK = matrixRows >= 2 ? 1.15 + 0.85 * matrixRows : tall ? 1.95 : 0;
+  const lineGap = size * (tallK || 1.6);
   const twoLines = lined.some((l) => l.length > 1);
   const baseY = box.y + box.h * 0.44;
   const measured = tokens.map((t, i) => {
@@ -939,34 +1598,91 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
   const fresh = steps.slice(1).map((step, k) => { const prev = new Set(steps[k].order); const own = step.order.filter(inRow); return own.length ? own.filter((id) => !prev.has(id)).length / own.length : 0; });
   if (steps.length > 1 && fresh.reduce((a, b) => a + b, 0) / fresh.length >= 0.5) {
     const rowsN = lined.reduce((n, l) => n + l.length, 0);
-    const rowSize = Math.max(16, Math.min(size, Math.floor((box.h - 20) / (rowsN * (tall ? 1.95 : 1.55)))));
-    const rowGap = rowSize * (tall ? 1.95 : 1.55);
-    const rowGapEm = gapEm * rowSize;
+    const rowSize = Math.max(16, Math.min(size, Math.floor((box.h - 20) / (rowsN * (tallK || 1.55)))));
     // A step that adds no new term (the same "−GM/r" again, for "Earth values") is not written out
     // again: the working showed one line three times (QA 2026-10-17). It highlights its terms instead.
     const seenIds = new Set<string>();
     const writes = steps.map((step) => { const own = step.order.filter(inRow); const adds = own.some((id) => !seenIds.has(id)); own.forEach((id) => seenIds.add(id)); return adds; });
-    const relined = rows.map((row, k) => (writes[k] ? wrapRow(row, (id) => em.get(id)! * rowSize, breakOf, maxW, rowGapEm) : []));
-    const height = relined.reduce((n, l) => n + l.length, 0) * rowGap;
-    let y = box.y + Math.max(rowSize, (box.h - height) / 2 + rowSize);
-    const sized = tokens.map((t, i) => ({ ...measured[i], w: (em.get(t.id) ?? 0) * (hosted.has(t.id) ? Math.round(rowSize * 0.5) : rowSize), size: hosted.has(t.id) ? Math.round(rowSize * 0.5) : rowSize }));
-    steps.forEach((step, k) => {
-      if (!writes[k]) return;
-      const place: Record<string, Pt> = {};
-      for (const line of relined[k]) {
-        const total = line.reduce((w, id) => w + sized.find((t) => t.id === id)!.w, 0) + rowGapEm * Math.max(0, line.length - 1);
-        let x = center - total / 2;
-        for (const id of line) { place[id] = { x, y }; x += sized.find((m) => m.id === id)!.w + rowGapEm; }
-        y += rowGap;
+    // A step that repeats the line before and adds to it ("log₂(32 ÷ 4) = … = 3", then the same line
+    // ", log_b(M/N) = …") writes only what it adds: the line was written twice (maths benchmark V4).
+    const added = rows.map((row, k) => {
+      const prev = k > 0 ? rows[k - 1] : [];
+      if (!prev.length || row.length <= prev.length || !prev.every((id, i) => row[i] === id)) return row;
+      const rest = row.slice(prev.length);
+      while (rest.length && /^[,;]$/.test(textOf(rest[0]))) rest.shift();
+      return rest.length ? rest : row;
+    });
+    // THE BOARD IS WIPED WHEN FULL (owner, 2026-10-22: "clear that board to fit it in"). Every line of
+    // a long derivation is written at a readable size: when the working no longer fits at PAGE_MIN,
+    // it goes over pages — a page is wiped when the next one starts, like a teacher's board, and the
+    // lines of one sentence always share a page. Shrinking everything onto one page wrote ten lines
+    // of working at 16 px.
+    // Beside a figure the column is half the board: a little smaller text keeps the working on one page.
+    const PAGE_MIN = box.w < 600 ? 22 : 26;
+    const linesAt = (sz: number) => added.map((row, k) => (writes[k] ? clauses(row).flatMap((c) => wrapRow(c, (id) => em.get(id)! * sz, breakOf, maxW, gapEm * sz)) : []));
+    type Page = { steps: number[]; size: number };
+    let pages: Page[];
+    // One page whenever some readable size fits it: lines wrapped at the largest size counted too many
+    // (a four-line calculation beside its triangle was paged and ended showing only "A = 27.0").
+    const k1 = tallK || 1.55;
+    const fitsAt = (sz: number) => linesAt(sz).reduce((n, l) => n + l.length, 0) * sz * k1 <= box.h - 20;
+    let onePage = rowSize >= PAGE_MIN ? rowSize : 0;
+    for (let sz = Math.min(size, 46); !onePage && sz >= PAGE_MIN; sz -= 2) if (fitsAt(sz)) onePage = sz;
+    if (onePage || steps.length < 2) pages = [{ steps: steps.map((_, k) => k), size: onePage || rowSize }];
+    else {
+      // Pages at the smallest readable size hold the most lines: at 34 px a long line wrapped to fill a
+      // page by itself, and a seven-line proof became six pages (live test, 2026-10-22).
+      const pageSize = PAGE_MIN;
+      const perPage = Math.max(1, Math.floor((box.h - 20) / (pageSize * (tallK || 1.55))));
+      const at = linesAt(pageSize);
+      pages = [];
+      let cur: number[] = [];
+      let used = 0;
+      // Steps of one sentence go together: a page wiped on the sentence it is written is never seen.
+      const blocks: number[][] = [];
+      steps.forEach((st, k) => (k > 0 && steps[k - 1].s === st.s ? blocks[blocks.length - 1].push(k) : blocks.push([k])));
+      for (const block of blocks) {
+        const n = block.reduce((t, k) => t + at[k].length, 0);
+        if (cur.length && used + n > perPage) { pages.push({ steps: cur, size: pageSize }); cur = []; used = 0; }
+        cur.push(...block);
+        used += n;
       }
-      for (const id of step.order.filter((o) => hosted.has(o))) {
-        const host = place[hosted.get(id)!];
-        const t = sized.find((m) => m.id === id)!;
-        if (host) place[id] = { x: host.x + sized.find((m) => m.id === hosted.get(id))!.w / 2 - t.w / 2, y: host.y - rowSize * 1.05 };
+      if (cur.length) pages.push({ steps: cur, size: pageSize });
+      // A page with more lines than fit (one sentence's long working) shrinks to fit, never below 18.
+      for (const page of pages) {
+        const n = page.steps.reduce((t, k) => t + at[k].length, 0);
+        if (n * pageSize * (tallK || 1.55) > box.h - 20) page.size = Math.max(18, Math.floor((box.h - 20) / (n * (tallK || 1.55))));
       }
-      const own = sized.filter((t) => place[t.id]);
-      marks.push({ type: "equation", id: k ? `equation-${k + 1}` : "equation", tokens: own, steps: [{ s: step.s, place, highlight: [] }], size: rowSize, captionY: box.y + box.h + 400, center, s: step.s });
-      for (const t of own) if (!(t.id in place) || k === steps.findIndex((st) => st.order.includes(t.id))) add(t.id, { x: place[t.id].x - 4, y: place[t.id].y - t.size, w: t.w + 8, h: t.size * 1.3 }, step.s);
+    }
+    pages.forEach((page, p) => {
+      const pSize = page.size;
+      const pGap = pSize * (tallK || 1.55);
+      const pGapEm = gapEm * pSize;
+      const lines = linesAt(pSize);
+      const next = pages[p + 1];
+      const until = next ? steps[next.steps[0]].s : undefined;
+      const height = page.steps.reduce((n, k) => n + lines[k].length, 0) * pGap;
+      let y = box.y + (pages.length > 1 ? pSize : Math.max(pSize, (box.h - height) / 2 + pSize));
+      const sized = tokens.map((t, i) => ({ ...measured[i], w: (em.get(t.id) ?? 0) * (hosted.has(t.id) ? Math.round(pSize * 0.5) : pSize), size: hosted.has(t.id) ? Math.round(pSize * 0.5) : pSize }));
+      for (const k of page.steps) {
+        const step = steps[k];
+        if (!writes[k]) continue;
+        const place: Record<string, Pt> = {};
+        for (const line of lines[k]) {
+          const total = line.reduce((w, id) => w + sized.find((t) => t.id === id)!.w, 0) + pGapEm * Math.max(0, line.length - 1);
+          let x = center - total / 2;
+          for (const id of line) { place[id] = { x, y }; x += sized.find((m) => m.id === id)!.w + pGapEm; }
+          y += pGap;
+        }
+        for (const id of step.order.filter((o) => hosted.has(o))) {
+          const host = place[hosted.get(id)!];
+          const t = sized.find((m) => m.id === id)!;
+          if (host) place[id] = { x: host.x + sized.find((m) => m.id === hosted.get(id))!.w / 2 - t.w / 2, y: host.y - pSize * 1.05 };
+        }
+        const own = sized.filter((t) => place[t.id]);
+        marks.push({ type: "equation", id: k ? `equation-${k + 1}` : "equation", tokens: own, steps: [{ s: step.s, place, highlight: [] }], size: pSize, captionY: box.y + box.h + 400, center, s: step.s, ...(until !== undefined && until > step.s ? { until } : {}) });
+        for (const t of own) if (!(t.id in place) || k === steps.findIndex((st) => st.order.includes(t.id))) add(t.id, { x: place[t.id].x - 4, y: place[t.id].y - t.size, w: t.w + 8, h: t.size * 1.3 }, step.s);
+      }
     });
     add("equation", { x: box.x + 10, y: box.y, w: box.w - 20, h: box.h }, steps[0].s);
     return;
@@ -978,7 +1694,9 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
     lines.forEach((line, n) => {
       const total = line.reduce((w, id) => w + measured.find((t) => t.id === id)!.w, 0) + gap * Math.max(0, line.length - 1);
       let x = center - total / 2;
-      const y = lines.length > 1 ? baseY + (n - 0.5) * lineGap : baseY;
+      // Centred on the base line however many lines the step has; the caption goes under the last
+      // (a three-line step had its caption written over its third line; maths benchmark round 4).
+      const y = baseY + (n - (lines.length - 1) / 2) * lineGap;
       for (const id of line) {
         place[id] = { x, y };
         x += measured.find((m) => m.id === id)!.w + gap;
@@ -993,7 +1711,7 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
     }
     return { s: step.s, place, highlight: step.highlight ?? [], caption: step.caption };
   });
-  const below = twoLines ? lineGap / 2 : 0;
+  const below = twoLines ? ((Math.max(1, ...lined.map((l) => l.length)) - 1) / 2) * lineGap : 0;
   marks.push({ type: "equation", id: "equation", tokens: measured, steps: laidSteps, size, captionY: baseY + below + Math.max(70, size * (tall ? 1.6 : 1.3) + 30), center, s: laidSteps[0]?.s ?? 0 });
   const first = laidSteps[0];
   for (const t of measured) {

@@ -96,6 +96,7 @@ THE ONE EXCEPTION — A SYLLABUS TOPIC: when the input says the student is cover
 "confidence": set to "low" ONLY on a subtopic where you genuinely had to guess at scope, audience level, or whether it belongs at all (e.g. you weren't sure if the student already knows a prerequisite, or whether a topic is too advanced/basic for this lesson). Omit it entirely on subtopics you're confident about — do not mark more than 1-2 subtopics low-confidence.
 Order subtopics in a natural teaching sequence unless a different pedagogical angle is specified below.
 EACH SUBTOPIC TEACHES SOMETHING THE OTHERS DO NOT. When a lesson needs several rungs — hook, core definition (once), mechanism, examples, implications, pitfalls — they go in that order and never descend (no definition after a mechanism, no basics after an example). Use ONLY the rungs the request needs: a question about why something happens needs the cause, not a hook, a definition section, applications and pitfalls. Never plan two subtopics that explain the same idea in different ways ("another way to see X", "X explained with an analogy", "X revisited"); depth comes from new mechanisms, relationships, consequences and uses, not from rewording. Each "caption" must name the NEW information that subtopic adds.
+A COMPUTER-SCIENCE LESSON ON AN ALGORITHM, A DATA STRUCTURE OR A PROGRAMMING CONSTRUCT is taught as a CS teacher teaches it, each stage its own subtopic: the problem it solves and the idea (drawn, with an analogy); the method done by hand on a small example; the code, written and explained line by line; a trace of that code on real input; then the edge cases, the classic mistake and the cost. Leave out a stage only when the request clearly does not need it (a one-line question), never to save boards — the code and its trace never share a subtopic with the idea.
 Ground the outline in the given topic and any clarification the student provided — do not drift to a different subject than what was clarified.
 
 "safetyNet" (OPTIONAL, adaptive teaching route): attach one to exactly 1-2 genuinely difficult subtopics, never every subtopic. Choose concepts with a real prerequisite bottleneck where an experienced teacher would check readiness before continuing. This is an invisible Plan B, NOT extra syllabus content:
@@ -153,7 +154,8 @@ export type PlanOutline = {
   scope?: "question" | "lesson";
   /** Depth the student's own words asked for ("quickly", "in depth"); overrides any saved preference. */
   depth?: "quick" | "deep";
-  subtopics: { title: string; caption: string; reason?: string; confidence?: "low"; safetyNet?: PlanSafetyNet; scopingQuestion?: PlanOutlineScopingQuestion }[];
+  /** `status`: where the student stands on this part (lib/intake.ts) — the canvas builds it on the concept ladder (lib/canvas/conceptLadder.ts). */
+  subtopics: { title: string; caption: string; reason?: string; confidence?: "low"; safetyNet?: PlanSafetyNet; scopingQuestion?: PlanOutlineScopingQuestion; status?: "new" | "shaky" | "known" }[];
   angle?: PlanningAngleId;
   /** What the web research found (lib/webSources.ts): the lecture is taught from it and cites it per slide. */
   research?: SourcePack;

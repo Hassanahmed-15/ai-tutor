@@ -22,7 +22,7 @@ export const CANVAS_ICONS = [
 ] as const;
 export type CanvasIcon = (typeof CANVAS_ICONS)[number];
 
-export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure", "structure", "exam", "diagram"] as const;
+export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure", "structure", "exam", "diagram", "sketch"] as const;
 export type CanvasStage = (typeof CANVAS_STAGES)[number];
 
 /** A written key note in the notes column, revealed on the sentence that says it. */
@@ -146,6 +146,12 @@ export type EquationStage = {
   kind: "equation";
   tokens: EquationToken[];
   steps: EquationStep[];
+  /**
+   * WORKING BESIDE ITS FIGURE (owner, 2026-10-22: "no graphs or drawings … while showing the working"):
+   * the code-drawn figure the working is about, drawn on the left while the lines are written on the
+   * right (lib/canvas/layout.ts). Only a registered component.
+   */
+  figure?: FigureStage;
 };
 
 export type GraphCurve = { id: string; expr: string; label?: string; color?: string; s: number };
@@ -244,6 +250,14 @@ export type AtomMapStage = {
  * about while an execution pointer moves to them, so the narration and the code advance together.
  * A trace shows what the variables hold as it runs; the output is what it prints.
  */
+/**
+ * ONE CALL ON THE CALL STACK (2026-10-20, from the Visuals Lab): a recursive function's calls drawn as
+ * one box each, newest at the bottom, finished ones crossed out. `value` is what the call is doing or
+ * gives back: "n = 4 · waits for 4 × ?" then "returns 24". A step's `stack` lists the calls still
+ * running after its lines, first call first (lib/canvas/validate.ts checks one push or pop at a time).
+ */
+export type StackFrame = { call: string; value?: string };
+
 export type CodeStage = {
   kind: "code";
   language: string;
@@ -253,7 +267,7 @@ export type CodeStage = {
    * On sentence `s`, lines (1-based) are lit and the pointer sits on the first; `note` is said beside
    * it; `state` is what the variables hold once those lines have run (the Variables panel).
    */
-  steps: Array<{ s: number; lines: number[]; note?: string; state?: Array<{ name: string; value: string }>; ops?: DsOp[] }>;
+  steps: Array<{ s: number; lines: number[]; note?: string; state?: Array<{ name: string; value: string }>; ops?: DsOp[]; stack?: StackFrame[] }>;
   /**
    * A DATA STRUCTURE beside the code (2026-10-15): the tree, list or array the program works on, in
    * its starting form; each step's `ops` are what those lines just did to it, so the structure changes
@@ -321,10 +335,67 @@ export type DsOp =
 export type StructureStage = {
   kind: "structure";
   structure: DsStart;
-  steps: Array<{ s: number; ops?: DsOp[]; note?: string }>;
+  /** `state`: what the algorithm keeps beside the structure (the queue, the visited set) after that step, drawn in pencil. */
+  steps: Array<{ s: number; ops?: DsOp[]; note?: string; state?: Array<{ name: string; value: string }> }>;
 };
 
-export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage | StructureStage | ExamStage | DiagramStage;
+export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage | StructureStage | ExamStage | DiagramStage | SketchStage;
+
+/**
+ * A SKETCH BOARD (owner, 2026-10-20: "why can't I get these visuals generated live"): a maths or
+ * computer-science board written the Visuals Lab's way, live for any topic. The model says WHAT goes
+ * on the board and on which sentence — lines of writing, worked maths, shapes on a small grid that can
+ * appear, move and turn, a graph whose curve can slide, a table, a box, code — and code decides where
+ * everything goes (lib/canvas/layout.ts layoutSketch) and the marker writes it (MarkerWriter).
+ * Colours are names, one per quantity, so the same thing is the same colour everywhere.
+ */
+export type SketchColor = "ink" | "muted" | "blue" | "orange" | "green" | "pink" | "yellow";
+export type SketchCol = "left" | "right" | "full";
+export type SketchShape = {
+  id: string;
+  kind: "rect" | "poly" | "circle" | "line" | "arrow" | "label";
+  s: number;
+  /** Grid points for poly, line and arrow. */
+  points?: Array<[number, number]>;
+  /** rect: corner x, y and size w, h; circle: centre x, y and radius r; label: where it is written. */
+  x?: number;
+  y?: number;
+  w?: number;
+  h?: number;
+  r?: number;
+  color?: SketchColor;
+  fill?: boolean;
+  dashed?: boolean;
+  /** Written at the shape's centre (or at x, y for a label). */
+  label?: string;
+  /** On sentence s the shape slides by (dx, dy) grid units, turning `rotate` degrees about its centre. */
+  move?: { s: number; dx: number; dy: number; rotate?: number };
+  /** The sentence on which it fades away (a gap that is filled, a step that is replaced). */
+  hide?: number;
+  /**
+   * Set by layout, never by the writer: where its label is written (grid units, the label's centre)
+   * and how big (px) — inside the shape, beside a line, or outside a shape too small to hold it.
+   */
+  labelAt?: { x: number; y: number; size: number };
+};
+/** Where an item sits on the board, on a 12 × 8 grid (x, y = top-left; w, h = size). Code keeps items apart. */
+export type SketchAt = { x: number; y: number; w: number; h: number };
+type SketchBase = { id: string; s: number; col?: SketchCol; at?: SketchAt };
+export type SketchItem =
+  | (SketchBase & { type: "text"; text: string; size?: "big" | "normal" | "small"; color?: SketchColor })
+  | (SketchBase & { type: "math"; lines: Array<{ s: number; tex: string; label?: string }>; size?: "big" | "normal" })
+  | (SketchBase & { type: "shapes"; grid: { w: number; h: number }; shapes: SketchShape[]; showGrid?: boolean })
+  | (SketchBase & {
+      type: "graph";
+      x: [number, number];
+      y: [number, number];
+      curves: Array<{ id: string; expr: string; color?: SketchColor; s: number; dashed?: boolean; label?: string; shift?: { s: number; dx: number; dy: number } }>;
+      points?: Array<{ id: string; x: number; y: number; label?: string; color?: SketchColor; s: number }>;
+    })
+  | (SketchBase & { type: "table"; headers: string[]; rows: Array<{ s: number; cells: string[] }> })
+  | (SketchBase & { type: "box"; title?: string; text: string; color?: SketchColor })
+  | (SketchBase & { type: "code"; language: string; lines: string[]; steps?: Array<{ s: number; line: number; note?: string }> });
+export type SketchStage = { kind: "sketch"; items: SketchItem[] };
 
 /** What the pointer (Aria's pen) or the camera does on a sentence. */
 export type CanvasCue = {

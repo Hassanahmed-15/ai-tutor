@@ -1,3 +1,5 @@
+import { sketchGraphIssues } from "./sketch";
+import { figureComponent } from "../figures/registry";
 import { graphIssues } from "./graphCheck";
 import { layoutPanel } from "./layout";
 import { layoutIssues } from "./layoutQa";
@@ -9,13 +11,14 @@ import { critiqueStudentBoard, labelTexts } from "./studentCritic";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 import { vseprIssues } from "./vsepr";
 
-export type BoardReleaseFinding = { gate: "semantic" | "student-view" | "numbers" | "molecule" | "prediction" | "graph" | "quiz" | "layout" | "atom-balance"; message: string };
+export type BoardReleaseFinding = { gate: "semantic" | "student-view" | "numbers" | "molecule" | "prediction" | "graph" | "quiz" | "layout" | "atom-balance" | "language"; message: string };
 
 /** One authoritative release audit, used for generated boards and deterministic fallbacks alike. */
 export function auditBoardForRelease(spec: CanvasBoardSpec, beat: CanvasPlanBeat): BoardReleaseFinding[] {
   const findings: BoardReleaseFinding[] = [];
   const add = (gate: BoardReleaseFinding["gate"], messages: string[]) => messages.forEach((message) => findings.push({ gate, message }));
   add("semantic", semanticBoardIssues(spec, beat));
+  add("language", languageIssues(spec, beat.script));
   add("student-view", critiqueStudentBoard(spec, beat).issues);
   const interactionText: string[] = [];
   const walk = (value: unknown) => {
@@ -37,6 +40,7 @@ export function auditBoardForRelease(spec: CanvasBoardSpec, beat: CanvasPlanBeat
     const match = quizMatchesPrediction(spec.interaction.question, sentences[beat.teachingCycle.predict] ?? "");
     if (!match.ok) add("prediction", [match.why ?? "the quiz asks a different question from the spoken prediction"]);
   }
+  if (spec.stage.kind === "sketch") add("graph", sketchGraphIssues(spec.stage));
   if (spec.stage.kind === "graph") add("graph", graphIssues(spec.stage, spec.interaction?.kind === "try" ? Object.fromEntries(spec.interaction.controls.map((control) => [control.var, control.value])) : {}));
   add("quiz", quizIssues(spec.interaction, `${beat.title} ${beat.brief} ${beat.script}`));
   if (spec.stage.kind === "scene" || spec.stage.kind === "flow") add("layout", layoutIssues(layoutPanel(spec), spec));
@@ -63,7 +67,22 @@ const numbersIn = (text: string) => new Set((text.replace(/(\d),(\d{3})/g, "$1$2
  * take most of them from what Aria says.
  */
 export function figureDataIssues(spec: CanvasBoardSpec, script: string): string[] {
-  if (spec.stage.kind !== "figure" || !spec.stage.params || spec.stage.component === "drawn" || spec.stage.component === "library") return [];
+  if (spec.stage.kind !== "figure" || spec.stage.component === "drawn" || spec.stage.component === "library") return [];
+  // An angle a geometry figure WRITES must be one Aria says: "35°" stood on a proof done in x and y
+  // (maths benchmark, 2026-10-21) — a number the student never hears, contradicting a general proof.
+  const component = figureComponent(spec.stage.component);
+  if (component && GEOMETRY_FIGURES.has(component.name)) {
+    try {
+      const drawing = component.build(spec.stage.params ?? {});
+      const said = numbersIn(script);
+      const shown = drawing.shapes.flatMap((sh) => (sh.t === "text" ? [...String(sh.text).matchAll(/(\d+(?:\.\d+)?)\s*°/g)].map((m) => m[1]) : []));
+      const unsaid = [...new Set(shown)].filter((n) => !said.has(n) && !(n === "90" && /\bright[- ]angle|perpendicular|90/i.test(script)));
+      if (unsaid.length) return [`the figure writes ${unsaid.map((n) => `${n}°`).join(", ")}, which Aria never says: give the figure the angle values the narration uses — for a general proof in letters, leave "angle" out (and use "givenSymbol") so no number is drawn`];
+    } catch {
+      // A figure that cannot be built is reported elsewhere.
+    }
+  }
+  if (!spec.stage.params) return [];
   const values = Object.entries(spec.stage.params).filter(([k]) => !/^(title|units?|label|caption)$/i.test(k)).map(([, v]) => String(v)).join(" ");
   const drawn = [...numbersIn(values)].filter((n) => Math.abs(Number(n)) > 1);
   if (drawn.length < 3) return [];
@@ -71,6 +90,25 @@ export function figureDataIssues(spec: CanvasBoardSpec, script: string): string[
   const missing = drawn.filter((n) => !said.has(n));
   return missing.length > drawn.length / 2 ? [`the figure is drawn from numbers the narration never says (${missing.slice(0, 6).join(", ")}): use the data and values Aria states in this board's script`] : [];
 }
+
+/**
+ * THE BOARD IS IN THE NARRATION'S LANGUAGE. An English logarithms lecture's first board came out with
+ * an Urdu heading and Urdu step captions (maths benchmark, 2026-10-21). Judged by script: board words
+ * in Arabic script on a narration in Latin script, or the other way round, send the board back.
+ */
+export function languageIssues(spec: CanvasBoardSpec, script: string): string[] {
+  const arabic = (t: string) => (t.match(/[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]/g) ?? []).length;
+  const latin = (t: string) => (t.match(/[A-Za-z]/g) ?? []).length;
+  const said = { arabic: arabic(script), latin: latin(script) };
+  const board = [spec.heading, ...labelTexts(spec), ...(spec.stage.kind === "equation" ? spec.stage.steps.map((st) => st.caption ?? "") : [])].join(" ");
+  const shown = { arabic: arabic(board), latin: latin(board.replace(/\b[a-zA-Z]\b|\b(?:log|ln|sin|cos|tan|sqrt|lim|max|min|dx|dy)\b/g, "")) };
+  if (said.latin > said.arabic * 3 && shown.arabic > 6) return ["the board's words are in Urdu/Arabic script but the narration is in English: write the heading, captions and labels in English"];
+  if (said.arabic > said.latin * 3 && shown.latin > 40 && shown.arabic < shown.latin) return ["the board's words are in English but the narration is in Urdu: write the heading, captions and labels in the narration's language"];
+  return [];
+}
+
+/** Geometry figures whose written angles must come from the narration. */
+const GEOMETRY_FIGURES = new Set(["circleTheorem", "triangle", "parallelLines", "bearings", "pythagorasProof"]);
 
 /**
  * An atom map is ONE balanced reaction. Boards drew complete and incomplete combustion together

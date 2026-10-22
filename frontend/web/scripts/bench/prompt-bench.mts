@@ -39,6 +39,7 @@ import { labelMatchesPart } from "../../lib/canvas/labelMatch.ts";
 import { rubricLines } from "../../lib/bench/rubric.ts";
 import { BENCH_CRITERIA } from "../../lib/bench/criteria.ts";
 import { createOpenAI } from "../../lib/openaiClient.ts";
+import { runIntake, intakeReport, type Student, type IntakeRun } from "./intakeSim.mts";
 import { PROFILES, checkBoard, scorecard, voiceCheck, repeats, type Profile, type BoardReport, type VoiceResult } from "./lectureChecks.mts";
 
 /* ── the students ─────────────────────────────────────────────────────────────────────────────── */
@@ -52,9 +53,13 @@ const opt = (name: string) => { const i = args.indexOf(name); return i >= 0 ? ar
 // --rescore <dir>: check lectures already saved (bench runs or Diagram Lab snapshots) again, for free.
 const rescore = opt("--rescore");
 // Each entry is a prompt (run for every --profiles student) or {"prompt", "profiles": ["grade6"]}.
-type PromptEntry = string | { prompt: string; profiles?: string[] };
+// "student" runs the intake first (lib/intake.ts, scripts/bench/intakeSim.mts) and plans from it.
+type PromptEntry = string | { prompt: string; profiles?: string[]; student?: Student };
 const entries: PromptEntry[] = rescore ? [] : JSON.parse(readFileSync(opt("--prompts") ?? path.join(outDir, "prompts.json"), "utf8"));
 const prompts = entries.map((e) => (typeof e === "string" ? e : e.prompt));
+const students = entries.map((e) => (typeof e === "string" ? undefined : e.student));
+// --planOnly: the intake, the outline and the board plan, no boards written (cheap A/B of structure).
+const planOnly = args.includes("--planOnly");
 const wanted = (opt("--profiles") ?? "grade6,olevel").split(",").map((s) => s.trim());
 const profiles = PROFILES.filter((p) => wanted.includes(p.id));
 const judge = args.includes("--judge");
@@ -88,12 +93,12 @@ function diagnosis(p: Profile) {
 }
 
 type OutlineResult = { outline: ProgressiveLectureInput["outline"]; research?: unknown; costUsd: number; checklist: string[]; coverage?: { covered: number; total: number; missing: string[] }; thoughts: string[]; secs: number };
-async function outlineFor(prompt: string, p: Profile): Promise<OutlineResult> {
+async function outlineFor(prompt: string, p: Profile, learner?: Record<string, unknown>): Promise<OutlineResult> {
   const t0 = Date.now();
   const res = await fetch(`${BASE}/api/plan-lesson`, {
     method: "POST",
     headers: { "Content-Type": "application/json", cookie: await freshCookie() },
-    body: JSON.stringify({ mode: "outline", topic: prompt.slice(0, 200), request: prompt, clarifications: [], depth: diagnosis(p).claimedLevel, research: !args.includes("--no-research"), learnerBasics: p.basics, learnerProfile: diagnosis(p) }),
+    body: JSON.stringify({ mode: "outline", topic: prompt.slice(0, 200), request: prompt, clarifications: [], depth: (learner ?? diagnosis(p)).claimedLevel, research: !args.includes("--no-research"), learnerBasics: p.basics, learnerProfile: learner ?? diagnosis(p) }),
   });
   const lines = (await res.text()).split("\n").filter(Boolean).map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean) as Array<Record<string, unknown>>;
   const done = lines.find((l) => l.type === "outline");
@@ -147,12 +152,28 @@ async function runOne(prompt: string, pi: number, p: Profile) {
   try {
     const card = buildStudentCard(p.basics, prompt, {}, p.support);
     const logFrom = serverLogSize();
-    const o = await outlineFor(prompt, p);
+    // THE INTAKE (lib/intake.ts): a scripted student marks parts and answers checks; the plan reads it.
+    const student = students[pi];
+    let intake: IntakeRun | null = null;
+    if (student) {
+      intake = await runIntake(BASE, await freshCookie(), { topic: prompt, request: prompt }, student);
+      usd += intake.costUsd;
+      console.log(`[intake] ${id} ${prompt} (${intake.secs}s, $${intake.costUsd.toFixed(4)})\n${intakeReport(intake)}`);
+    }
+    const learner = intake ? { ...diagnosis(p), ...intake.profile, topic: prompt } : undefined;
+    const o = await outlineFor(prompt, p, learner);
     usd += o.costUsd + researchCost(prompt, logFrom);
-    const input: ProgressiveLectureInput = { topic: o.outline?.topic ?? prompt, mood: "", sourceType: "prompt", mode: "standard", outline: o.outline, learnerProfile: p.snapshot, ...(card ? { studentCard: card } : {}), ...(o.research ? { webSources: o.research as ProgressiveLectureInput["webSources"] } : {}) };
+    if (intake) console.log(`[outline] ${id}\n${(o.outline?.subtopics ?? []).map((s, i) => `   ${i + 1}. ${s.title} [${(s as { status?: string }).status ?? "no status"}] — ${s.caption}`).join("\n")}`);
+    const input: ProgressiveLectureInput = { topic: o.outline?.topic ?? prompt, mood: "", sourceType: "prompt", mode: "standard", outline: o.outline, learnerProfile: p.snapshot, ...(learner ? { learner: learner as unknown as ProgressiveLectureInput["learner"] } : {}), ...(card ? { studentCard: card } : {}), ...(o.research ? { webSources: o.research as ProgressiveLectureInput["webSources"] } : {}) };
     const canvas = await planCanvasLecture(input);
     usd += canvas.costUsd;
     const plan = canvas.plan.map((x) => x.canvas).filter((b): b is CanvasPlanBeat => Boolean(b));
+    if (intake || planOnly) console.log(`[plan] ${id} ${plan.length} board(s)\n${plan.map((b) => `   ${b.id} ${b.title} (${b.stage}, ${canvasSentences(b.script).length} sentences)`).join("\n")}`);
+    if (planOnly) {
+      spent += usd;
+      writeFileSync(path.join(outDir, "runs", `${id}-plan.json`), JSON.stringify({ prompt, profile: p.id, student, intake, outline: o.outline, plan: plan.map((b) => ({ id: b.id, title: b.title, stage: b.stage, script: b.script, brief: b.brief })), usd }, null, 1));
+      return { id, prompt, profile: p.id, profileLabel: p.label, usd: Math.round(usd * 1000) / 1000, secs: Math.round((Date.now() - t0) / 1000), planOnly: true, boardsPlanned: plan.length };
+    }
     const earlier: Array<CanvasBoardSpec | undefined> = plan.map(() => undefined);
     const specs: CanvasBoardSpec[] = [];
     const logs: string[] = [];
@@ -169,7 +190,7 @@ async function runOne(prompt: string, pi: number, p: Profile) {
     const judged = judge ? await judgeLecture(prompt, p, beats, kept, o.checklist) : null;
     usd += judged?.costUsd ?? 0;
     spent += usd;
-    writeFileSync(path.join(outDir, "runs", `${id}-snapshot.json`), JSON.stringify({ topic: `${prompt} — ${p.label}`, usd, beats: beats.map((b, i) => ({ title: b.title, plannedStage: b.stage, visualType: b.visualType, script: b.script, brief: b.brief, objects: b.objects, draw: { ops: [{ kind: "canvasBoard", spec: kept[i] }] } })) }, null, 1));
+    writeFileSync(path.join(outDir, "runs", `${id}-snapshot.json`), JSON.stringify({ topic: `${prompt} — ${p.label}`, usd, intake, outline: o.outline, beats: beats.map((b, i) => ({ title: b.title, plannedStage: b.stage, visualType: b.visualType, script: b.script, brief: b.brief, objects: b.objects, draw: { ops: [{ kind: "canvasBoard", spec: kept[i] }] } })) }, null, 1));
     const labelsShown = kept.map((sp) => { const st = sp.stage as { kind: string; parts?: Array<{ id: string; name: string }>; labels?: string[] }; return st.kind === "illustration" ? (st.parts ?? []).filter((x) => (st.labels ?? []).includes(x.id)).map((x) => x.name) : st.kind === "figure" || st.kind === "diagram" ? (st.parts ?? []).map((x) => x.name) : []; });
     return { id, prompt, profile: p.id, profileLabel: p.label, usd: Math.round(usd * 1000) / 1000, secs: Math.round((Date.now() - t0) / 1000), scope: o.outline?.scope, outline: o.outline?.subtopics.map((s) => s.title), checklist: o.checklist, coverage: o.coverage, planThoughts: o.thoughts, boards, scores, judge: judged, pictures: logs.filter((l) => /textbook diagram|picture failed/.test(l)).map((l) => l.slice(0, 200)), pen: logs.filter((l) => /pen cues/.test(l)), labelsShown, repeats: repeats(beats), voice: voiceRes };
   } catch (e) {

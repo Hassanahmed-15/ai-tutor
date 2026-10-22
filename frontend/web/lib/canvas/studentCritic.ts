@@ -1,3 +1,4 @@
+import { sketchPlainTexts } from "./sketch";
 import { layoutPanel } from "./layout";
 import { slug } from "./validate";
 import { figureComponent } from "../figures/registry";
@@ -103,6 +104,7 @@ export function labelTexts(spec: CanvasBoardSpec): string[] {
     if (Array.isArray(v)) { for (const x of v) walk(x, key); return; }
     if (v && typeof v === "object") for (const [k, x] of Object.entries(v)) walk(x, k);
   };
-  walk(spec.stage);
+  if (spec.stage.kind === "sketch") out.push(...sketchPlainTexts(spec.stage));
+  else walk(spec.stage);
   return out.filter((s) => typeof s === "string" && s.trim().length > 0);
 }

@@ -254,3 +254,13 @@ test("every fixture and saved diagram: no label dot on a word, no leader along a
   }
   assert.deepEqual(problems, []);
 });
+
+test("the planner's 3D solid is not put on the Pythagoras rearrangement proof by a shared title word", () => {
+  // Live 2026-10-21: "square" (square-based pyramid) let shapes3d draw a cube here; rejected twice, a bare text board.
+  const plan = [
+    beat("b1", "Arranging four triangles inside a square", "diagram", "We now seek a visual proof that compares areas. Place four identical right triangles with legs a and b inside a large square of side a + b. The large square has area (a + b)². The four triangles leave a central square whose side is c.", { plannedFigure: "shapes3d" }),
+  ];
+  const out = applyLessonVisualPolicy(plan, { mode: "course", aiPictures: true });
+  assert.notEqual(out.beats[0].figure, "shapes3d");
+  assert.equal(out.beats[0].figure, "pythagorasProof");
+});

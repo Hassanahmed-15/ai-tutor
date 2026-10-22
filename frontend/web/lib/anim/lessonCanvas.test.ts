@@ -276,6 +276,8 @@ test("the pen follows the latest cue and lifts; a zoom lets go after the next se
   assert.equal(activeCues(cues, 1, 0.5, false).zoom, "x", "the zoom holds through the next sentence");
   assert.equal(activeCues(cues, 2, 0.1, false).zoom, undefined, "then the camera pulls back by itself");
   assert.equal(activeCues(cues, 2, 0.1, false).pen, undefined, "the pen lifts after the sentence following its cue");
+  assert.equal(activeCues(cues, 1, 0.05, false).pen?.target, "a", "it holds for the first moment of the next sentence");
+  assert.equal(activeCues(cues, 1, 0.5, false).pen, undefined, "not through it: Dot would stand by the last thing while Aria talks about the next");
   assert.equal(activeCues(cues, 2, 0.4, false).pen?.action, "circle");
   assert.deepEqual(activeCues(cues, 2, 0.4, true), {}, "a finished board has no pen");
 });
@@ -521,4 +523,48 @@ test("a failed electrolytic-cell board still draws the wired cell", async () => 
   const spec = fallbackSpec({ id: "b1", title: "The electrolysis cell", script: "A power supply drives current. Ions move. Anode attracts anions. Cathode attracts cations.", stage: "scene", brief: "", objects: ["power-supply", "electrolyte", "anode", "cathode"], inside: null, carry: [], interaction: null, overview: false });
   assert.equal(spec.stage.kind, "scene");
   if (spec.stage.kind === "scene") assert.ok(electrolyticCellParts(spec.stage));
+});
+
+test("the camera director holds steady and follows the marker, never the clock", async () => {
+  const { directInk, directFocus, DIRECTOR_HOLD_MS } = await import("../canvas/camera");
+  const board = { w: 1000, h: 560 };
+  const wide = { shot: null, changedAt: 0 };
+  const tri = { x: 600, y: 300, w: 160, h: 120 };
+  // A board opens wide: no close-up before the shot has held.
+  assert.equal(directInk(wide, tri, 1000, board), wide, "too soon to zoom");
+  const s1 = directInk(wide, tri, DIRECTOR_HOLD_MS + 10, board);
+  assert.ok(s1.shot && s1.shot.w < 1000 && s1.shot.w >= 700, "then a real close-up, never closer than 70% of the board");
+  assert.ok(s1.shot.x <= 600 && s1.shot.x + s1.shot.w >= 760 && s1.shot.y <= 300 && s1.shot.y + s1.shot.h >= 420, "the ink is in the frame");
+  assert.ok(Math.abs(s1.shot.w / s1.shot.h - 1000 / 560) < 1e-6, "board aspect");
+  // More ink inside the frame: the shot holds, however much is drawn.
+  assert.equal(directInk(s1, { x: 640, y: 320, w: 40, h: 30 }, s1.changedAt + 500, board), s1);
+  // The marker goes off screen soon after a move: the camera must follow at once — to the whole board.
+  const away = directInk(s1, { x: 60, y: 120, w: 120, h: 40 }, s1.changedAt + 1200, board);
+  assert.equal(away.shot, null, "too soon for another close-up: wide, so the pen is seen");
+  // Held long enough: straight to a close-up of where the pen is.
+  const later = directInk(s1, { x: 60, y: 120, w: 120, h: 40 }, s1.changedAt + DIRECTOR_HOLD_MS + 1, board);
+  assert.ok(later.shot && later.shot.x === 0, "a close-up on the far side");
+  // Ink that fills the board is never cropped.
+  assert.equal(directInk(s1, { x: 40, y: 100, w: 900, h: 420 }, s1.changedAt + DIRECTOR_HOLD_MS + 1, board).shot, null);
+  // Aria points outside the frame: back to the whole board; inside it: nothing changes.
+  assert.equal(directFocus(s1, { x: 50, y: 470, w: 200, h: 40 }, s1.changedAt + 100).shot, null);
+  assert.equal(directFocus(s1, { x: 650, y: 330, w: 40, h: 30 }, s1.changedAt + 100), s1);
+});
+
+test("a note or heading never earns a close-up, but is never written off screen", async () => {
+  const { directInk, DIRECTOR_HOLD_MS } = await import("../canvas/camera");
+  const board = { w: 1000, h: 560 };
+  const wide = { shot: null, changedAt: 0 };
+  const note = { x: 48, y: 120, w: 260, h: 60 };
+  assert.equal(directInk(wide, note, DIRECTOR_HOLD_MS * 3, board, undefined, false), wide, "a note stays in the wide shot");
+  const close = { shot: { x: 290, y: 200, w: 700, h: 392 }, changedAt: 0 };
+  assert.equal(directInk(close, note, DIRECTOR_HOLD_MS * 3, board, undefined, false).shot, null, "a note outside a close-up: back to the whole board");
+});
+
+test("one quick stroke never zooms the camera in", async () => {
+  const { directInk, DIRECTOR_HOLD_MS } = await import("../canvas/camera");
+  const wide = { shot: null, changedAt: 0 };
+  const tick = { x: 600, y: 300, w: 30, h: 10 };
+  assert.equal(directInk(wide, tick, DIRECTOR_HOLD_MS * 2, { w: 1000, h: 560 }, undefined, true, 400), wide);
+  assert.ok(directInk(wide, tick, DIRECTOR_HOLD_MS * 2, { w: 1000, h: 560 }, undefined, true, 3200).shot, "a drawing that takes a while does");
 });

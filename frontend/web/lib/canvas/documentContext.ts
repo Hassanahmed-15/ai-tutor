@@ -100,13 +100,17 @@ export function numberedLines(stream: string): string[] {
  * and the names in its code ("rotateWithLeftChild" → rotate, with, left, child): the best-matching
  * listings are the answer. A question that names nothing in particular ("explain the code") gets all.
  */
-const GENERIC_CODE_WORDS = /^(?:expla|code|codes|routi|funct|metho|progr|imple|algor|works|work|does|what|how|show|tell|about|this|that|the|for|and|with|step|steps|line|lines|each|happe|write|writt)$/;
+const GENERIC_CODE_WORDS = /^(?:expla|code|codes|codin|routi|funct|metho|progr|imple|algor|works|work|does|what|how|show|tell|about|this|that|the|for|and|with|step|steps|line|lines|each|happe|write|writt)$/;
 export function listingsAsked(question: string, listings: DocumentListing[]): DocumentListing[] {
   const stem = (w: string) => w.toLowerCase().slice(0, 5);
   const asked = [...new Set((question.match(/[A-Za-z]{4,}/g) ?? []).map(stem).filter((w) => !GENERIC_CODE_WORDS.test(w)))];
   if (!asked.length || listings.length <= 1) return listings;
   const words = (l: DocumentListing) => new Set(`${l.caption} ${l.lines.join(" ")}`.replace(/([a-z])([A-Z])/g, "$1 $2").match(/[A-Za-z]{4,}/g)?.map(stem) ?? []);
-  const scored = listings.map((l) => { const w = words(l); return { l, score: asked.filter((a) => w.has(a)).length }; });
+  const sets = listings.map(words);
+  // A word in half the listings or more is the document's subject, not a pick: "explain me AVL tree
+  // coding" was narrowed to the four listings whose captions say "tree", dropping the node and height code.
+  const picking = asked.filter((a) => sets.filter((w) => w.has(a)).length * 2 < listings.length);
+  const scored = listings.map((l, i) => ({ l, score: picking.filter((a) => sets[i].has(a)).length }));
   const best = Math.max(...scored.map((x) => x.score));
   // Only a clear pick narrows the answer: the best listings must match more of the question than the rest.
   const picked = scored.filter((x) => x.score === best).map((x) => x.l);
@@ -283,6 +287,18 @@ export function listingGaps(doc: SuprnotesLessonInput, beats: Array<Pick<CanvasP
     gaps.push(`LISTING ${n} lines ${spans.map(([a, b]) => (a === b ? `${a}` : `${a} to ${b}`)).join(", ")} are on no code board — the student would see the routine stop mid-way: give them a code board (the next one after the board showing the lines before them), naming its "lines"`);
   }
   return gaps;
+}
+
+/**
+ * A LISTING THE LESSON MUST SHOW IS ON A BOARD. "explain me AVL tree coding" was outlined with the
+ * rotations and deletion, and the plan taught insertion and one rotation (PDF bench, 2026-10-19). For a
+ * plan that teaches code, each wanted listing no code board shows is named, so the plan is sent back.
+ */
+export function listingsLeftOut(doc: SuprnotesLessonInput, beats: Array<Pick<CanvasPlanBeat, "stage" | "source">>, wanted: DocumentListing[]): string[] {
+  if (!beats.some((b) => b.stage === "code")) return [];
+  const shown = new Set(beats.filter((b) => b.stage === "code").map((b) => b.source?.listing));
+  const out = wanted.filter((l) => !shown.has(l.n));
+  return out.length ? [`LISTING${out.length === 1 ? "" : "S"} ${out.map((l) => `${l.n}${l.caption ? ` (${l.caption})` : ""}`).join(", ")} ${out.length === 1 ? "is" : "are"} on no code board — the student asked for this code: give ${out.length === 1 ? "it its" : "each its"} own code board${out.length === 1 ? "" : "s"}, in the document's order`] : [];
 }
 
 /** Two short texts' likeness, 0..1: shared character pairs (Dice). */

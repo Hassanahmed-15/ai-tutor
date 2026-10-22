@@ -1,7 +1,11 @@
+import { describeSketch } from "./sketch";
 import { evalExpr } from "./expr";
 import { layoutPanel } from "./layout";
 import { figureComponent } from "../figures/registry";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
+
+/** Maths and statistics figures (they draw only what their parameters give). */
+const MATHS_REVIEW_FIGURES = new Set(["argand", "areaModel", "bearings", "boxPlot", "circleTheorem", "coordinateGrid", "cumulativeFrequency", "dotPlot", "fractionModel", "functionGraph", "histogram", "inferenceDistribution", "logicCircuit", "numberLine", "parallelLines", "probabilityTree", "pythagorasProof", "riemannSum", "sectorArc", "sequences", "shapes3d", "slopeField", "triangle", "unitCircle", "vectors", "venn"]);
 
 /**
  * THE BOARD REVIEW: the last check before a board reaches a student.
@@ -27,6 +31,9 @@ export function boardFacts(spec: CanvasBoardSpec): string {
   if (spec.notes.length) lines.push(`Notes written beside it: ${spec.notes.map((n) => `"${n.text}"`).join(", ")}`);
   const stage = spec.stage;
   switch (stage.kind) {
+    case "sketch":
+      lines.push(`Main visual: a board written and drawn live (a sketch board):\n${describeSketch(stage)}`);
+      break;
     case "diagram": {
       lines.push(`Main visual: a vector textbook diagram (${stage.spec.base ?? "drawn"}).`);
       const figure = layoutPanel(spec).marks.find((m) => m.type === "figure");
@@ -39,7 +46,11 @@ export function boardFacts(spec: CanvasBoardSpec): string {
     }
     case "figure": {
       const component = stage.component === "library" || stage.component === "drawn" ? undefined : figureComponent(stage.component);
-      const what = stage.asset ? `a textbook diagram (${stage.asset.credit})` : stage.component === "drawn" ? "a line diagram drawn from a description" : `a code-drawn ${component?.title ?? stage.component}`;
+      // A maths figure is named, not given its catalogue title: "a coordinate grid … and a transformation
+      // whose image A′B′C′ …" lists what the grid CAN draw, and a plain plot of P, Q and R was rejected
+      // for a transformation and a line it never drew (maths benchmark, 2026-10-21).
+      const mathsFigure = component && MATHS_REVIEW_FIGURES.has(component.name);
+      const what = stage.asset ? `a textbook diagram (${stage.asset.credit})` : stage.component === "drawn" ? "a line diagram drawn from a description" : mathsFigure ? `a code-drawn figure, ${component.title.split(":")[0].trim().replace(/^(?:A|An|The) /, "").replace(/^\w/, (c) => c.toLowerCase())} — it shows only what the parameters and the drawn words below give, nothing else the component could draw` : `a code-drawn ${component?.title ?? stage.component}`;
       lines.push(`Main visual: ${what}.`);
       const figure = layoutPanel(spec).marks.find((m) => m.type === "figure");
       if (figure?.type === "figure") {
@@ -83,7 +94,9 @@ export function boardFacts(spec: CanvasBoardSpec): string {
       break;
     case "equation": {
       const text = new Map(stage.tokens.map((t) => [t.id, t.text]));
-      lines.push(`Main visual: an equation, step by step: ${stage.steps.map((s) => `${s.order.map((id) => text.get(id)).join(" ")}${s.caption ? ` (${s.caption})` : ""}`).join("  ⟶  ")}`);
+      lines.push(`Main visual: ${stage.figure ? "working written line by line beside a figure" : "an equation, step by step"}: ${stage.steps.map((s) => `${s.order.map((id) => text.get(id)).join(" ")}${s.caption ? ` (${s.caption})` : ""}`).join("  ⟶  ")}`);
+      // The figure the working is written beside is judged as a figure board's would be.
+      if (stage.figure) lines.push(...boardFacts({ ...spec, notes: [], stage: stage.figure }).split("\n").slice(1).map((l) => l.replace(/^Main visual:/, "Beside the working:")));
       break;
     }
     case "scene":
@@ -92,9 +105,26 @@ export function boardFacts(spec: CanvasBoardSpec): string {
     case "illustration":
       lines.push(`Main visual: a generated picture of ${stage.subject}`, `Labels: ${stage.parts.filter((p) => !stage.labels.length || stage.labels.includes(p.id)).map((p) => `"${p.name}"`).join(", ")}`);
       break;
-    case "code":
-      lines.push(`Main visual: ${stage.language} code:\n${stage.lines.join("\n")}`);
+    case "code": {
+      // What the student SEES as each sentence plays — the lines lit, the variables, the call stack,
+      // the structure's changes and the output — so a reviewer can judge the sync, not only the listing.
+      lines.push(`Main visual: ${stage.language} code (numbered):\n${stage.lines.map((l, i) => `${i + 1}| ${l}`).join("\n")}`);
+      if (stage.structure) lines.push(`Beside the code: a ${stage.structure.variant ? `${stage.structure.variant} ` : ""}${stage.structure.kind} starting as ${stage.structure.nodes.map((n) => n.value).join(", ") || "empty"}.`);
+      if (stage.steps.length) {
+        lines.push("As Aria speaks:");
+        for (const st of stage.steps) {
+          const parts = [`sentence ${st.s}: lights line${st.lines.length === 1 ? "" : "s"} ${st.lines.join(", ")}`];
+          if (st.note) parts.push(`note "${st.note}"`);
+          if (st.state?.length) parts.push(`variables ${st.state.map((v) => `${v.name} = ${v.value}`).join(", ")}`);
+          if (st.stack?.length) parts.push(`call stack ${st.stack.map((f) => `${f.call}${f.value ? ` (${f.value})` : ""}`).join(" → ")}`);
+          if (st.ops?.length) parts.push(`structure: ${st.ops.map((o) => JSON.stringify(o)).join(", ")}`);
+          lines.push(`- ${parts.join("; ")}`);
+        }
+      }
+      if (stage.trace) lines.push(`Trace table (${stage.trace.vars.join(", ")}): ${stage.trace.rows.map((r) => `sentence ${r.s}: ${r.values.join(", ")}`).join(" | ")}`);
+      if (stage.output) lines.push(`Output shown on sentence ${stage.output.s}: ${stage.output.text}`);
       break;
+    }
     case "molecule":
       lines.push(`Main visual: 3-D molecules: ${stage.molecules.map((m) => `${m.label} (${m.geometry}${m.bondAngle ? `, ${m.bondAngle}` : ""})`).join("; ")}.`);
       break;

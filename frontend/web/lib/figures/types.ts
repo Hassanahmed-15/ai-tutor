@@ -12,7 +12,23 @@ export type Pt = { x: number; y: number };
 /** Colours by meaning, so one figure reads on paper and on the chalkboard (CanvasPanel maps them). */
 export type Ink = "ink" | "glass" | "metal" | "wood" | "muted" | "paper" | `#${string}`;
 
-type Style = { part?: string; fill?: Ink | "none"; stroke?: Ink | "none"; width?: number; dash?: string; opacity?: number };
+type Style = { part?: string; fill?: Ink | "none"; stroke?: Ink | "none"; width?: number; dash?: string; opacity?: number } & ShapeTiming;
+
+/**
+ * A SHAPE THAT CHANGES WITH THE NARRATION (opt-in, 2026-10-20, from the Visuals Lab: "the motion is
+ * the maths"). Times are part ids: a shape follows the sentence on which the board reveals that part
+ * (FigureStage.parts[].s). A part the board never times counts as revealed from the start, so the
+ * figure always ends in its finished form. Figures without these fields draw exactly as before.
+ *   show — drawn from that part's sentence (every listed part, when several);
+ *   hide — fades away on that part's sentence;
+ *   move — slides by (dx, dy) in figure units, optionally turning by `rotate` degrees about its own
+ *          centre, on that part's sentence; `delay` (ms) staggers several moves on one sentence.
+ */
+export type ShapeTiming = {
+  show?: string | string[];
+  hide?: string;
+  move?: { on: string; dx: number; dy: number; rotate?: number; delay?: number };
+};
 export type FigureShape =
   | ({ t: "path"; d: string } & Style)
   | ({ t: "circle"; cx: number; cy: number; r: number } & Style)
@@ -47,4 +63,11 @@ export type FigureComponent = {
    * still pen targets, revealed on their sentences.
    */
   selfLabelled?: boolean;
+  /**
+   * A figure whose shapes move with the narration (ShapeTiming) times its own steps from what Aria
+   * says, in teaching order: part id → sentence index. The board writer often leaves a step part
+   * ("step-slide") untimed or puts every part on sentence 0, and the figure would then appear
+   * already finished (live Pythagoras lecture, 2026-10-20). Parts it cannot place are left alone.
+   */
+  timeFromScript?: (sentences: string[], params: FigureParams) => Record<string, number>;
 };

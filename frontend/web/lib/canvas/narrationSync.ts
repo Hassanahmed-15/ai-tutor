@@ -1,3 +1,4 @@
+import { figureComponent } from "../figures/registry";
 import { prettyPowers } from "../text/fit";
 import { canvasSentences } from "./plan";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
@@ -68,6 +69,23 @@ export function alignToNarration(spec: CanvasBoardSpec, beat: Pick<CanvasPlanBea
   for (const { holder, text } of timedElements(spec)) {
     const at = firstSentenceNaming(text, said);
     if (at >= 0 && holder.s !== at) { holder.s = at; moved++; }
+  }
+  // A figure whose shapes move with the narration times its own steps (lib/figures/types.ts
+  // timeFromScript), in teaching order — the slide on the sentence that says "rearranging".
+  if (spec.stage.kind === "figure") {
+    const stage = spec.stage;
+    const component = figureComponent(stage.component);
+    const timing = component?.timeFromScript?.(sentences, stage.params) ?? {};
+    for (const [id, at] of Object.entries(timing)) {
+      if (!(at >= 0 && at < sentences.length)) continue;
+      const part = stage.parts.find((p) => p.id === id);
+      if (part) {
+        if (part.s !== at) { part.s = at; moved++; }
+      } else {
+        const known = component!.parts.find((p) => p.id === id);
+        if (known) { stage.parts.push({ id, name: known.name, s: at }); moved++; }
+      }
+    }
   }
   // An equation builds step by step as Aria works it: each step appears on the sentence that says
   // what it adds (its new terms or numbers), never before the step it follows.

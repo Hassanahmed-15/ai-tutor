@@ -29,9 +29,18 @@ export type SourcePack = {
   syllabusText?: string;
   /** The material: each fact once, with the source ids that state it. */
   points: SourcePoint[];
+  /**
+   * WORKED STEPS AS THE PAGES SET THEM OUT (owner, 2026-10-22: "even in the links all the steps are
+   * there but you are doing it directly"). Facts were boiled down to one sentence each, so a page's
+   * derivation reached the planner as its result. Each worked example, derivation or proof the pages
+   * show is kept here line by line, with the pages it is on.
+   */
+  worked?: WorkedSteps[];
   /** The pages, as cited by the search itself (never a URL the model typed on its own). */
   sources: WebSource[];
 };
+
+export type WorkedSteps = { title: string; steps: string[]; sources: string[] };
 
 /** What the student wants, as the intent conversation settled it (lib/lessonIntent.ts). */
 export type LessonBrief = {
@@ -158,7 +167,17 @@ export function sanitizeSourcePack(raw: unknown): SourcePack | null {
   if (points.length === 0 && checklist.length === 0) return null;
   const curriculum = text(obj.curriculum, 120);
   const audience = text(obj.audience, 120);
-  return { query: text(obj.query, 300), ...(curriculum ? { curriculum } : {}), ...(audience ? { audience } : {}), checklist, points, sources };
+  const worked: WorkedSteps[] = [];
+  for (const w of Array.isArray(obj.worked) ? obj.worked : []) {
+    if (!w || typeof w !== "object") continue;
+    const rec = w as Record<string, unknown>;
+    const steps = (Array.isArray(rec.steps) ? rec.steps : []).map((x) => text(x, 160)).filter(Boolean).slice(0, 16);
+    const title = text(rec.title, 120);
+    if (!title || steps.length < 2) continue;
+    worked.push({ title, steps, sources: [...new Set((Array.isArray(rec.sources) ? rec.sources : []).map((x) => text(x, 8)).filter((x) => ids.has(x)))] });
+    if (worked.length >= 8) break;
+  }
+  return { query: text(obj.query, 300), ...(curriculum ? { curriculum } : {}), ...(audience ? { audience } : {}), checklist, points, ...(worked.length ? { worked } : {}), sources };
 }
 
 /**
@@ -193,7 +212,8 @@ export function dropOffLevelSources(pack: SourcePack, target: string | null | un
   const points = pack.points
     .map((p) => ({ ...p, sources: p.sources.filter((id) => !gone.has(id)) }))
     .filter((p, i) => p.sources.length > 0 || pack.points[i].sources.length === 0);
-  return { pack: { ...pack, sources: pack.sources.filter((s) => !gone.has(s.id)), points }, dropped: off };
+  const worked = pack.worked?.filter((w) => !w.sources.length || w.sources.some((id) => !gone.has(id))).map((w) => ({ ...w, sources: w.sources.filter((id) => !gone.has(id)) }));
+  return { pack: { ...pack, sources: pack.sources.filter((s) => !gone.has(s.id)), points, ...(worked?.length ? { worked } : {}) }, dropped: off };
 }
 
 const STOP = new Set(
@@ -265,8 +285,11 @@ export function packForPrompt(pack: SourcePack, maxChars = 9_000): string {
   const checklist = pack.checklist.length ? `\n\nWHAT THE ${pack.curriculum ? `${pack.curriculum.toUpperCase()} ` : ""}SYLLABUS EXPECTS (every point must be taught):\n${pack.checklist.map((c) => `- ${c}`).join("\n")}` : "";
   const official = pack.syllabusText ? `\n\nTHE OFFICIAL SYLLABUS TEXT FOR THIS TOPIC (teach every term it names, e.g. each structure, vessel or component in a "limited to:" list; use its own words; nothing beyond its Core and Supplement):\n${pack.syllabusText}` : "";
   // The facts are what gets cut when it is long — never what the syllabus says must be taught.
+  const worked = pack.worked?.length
+    ? `\n\nWORKED STEPS FROM THE SOURCES — when a board works one of these (a derivation, proof or worked example), it says EVERY line below, in order, one sentence per line; numbers may differ, steps may not be dropped or merged:\n${pack.worked.map((w) => `${w.title}${w.sources.length ? ` [${w.sources.join(", ")}]` : ""}:\n${w.steps.map((st, i) => `  ${i + 1}. ${st}`).join("\n")}`).join("\n").slice(0, 3_500)}`
+    : "";
   const head = `SOURCES:\n${sources}\n\nTHE MATERIAL:\n`;
-  return `${head}${points.slice(0, Math.max(1_000, maxChars - head.length - checklist.length - official.length))}${checklist}${official}`;
+  return `${head}${points.slice(0, Math.max(1_000, maxChars - head.length - checklist.length - official.length - worked.length))}${worked}${checklist}${official}`;
 }
 
 /**
@@ -384,7 +407,12 @@ export function packFromResearch(json: Record<string, unknown> | null, cited: Ar
     const ids = cited.slice(0, 3).map(add).filter((id): id is string => Boolean(id));
     points = points.map((p) => ({ ...p, sources: ids }));
   }
-  return sanitizeSourcePack({ query, curriculum: json.curriculum, audience: json.audience, checklist: json.checklist, points, sources });
+  const worked = (Array.isArray(json.worked) ? json.worked : []).map((w) => {
+    const rec = w && typeof w === "object" ? (w as Record<string, unknown>) : {};
+    const ids = (Array.isArray(rec.urls) ? rec.urls : []).map(idFor).filter((id): id is string => Boolean(id));
+    return { title: rec.title, steps: rec.steps, sources: [...new Set(ids)] };
+  });
+  return sanitizeSourcePack({ query, curriculum: json.curriculum, audience: json.audience, checklist: json.checklist, points, worked, sources });
 }
 
 /** The cache key of a research run: the same topic, for the same curriculum, level, goal and part, is read once. */

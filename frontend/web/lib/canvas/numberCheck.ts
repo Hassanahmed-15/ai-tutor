@@ -13,16 +13,22 @@ import { evalExpr } from "./expr";
  */
 export type NumberIssue = { calculation: string; stated: number; computed: number };
 
-const SUPER: Record<string, string> = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "⁻": "-" };
+const SUPER: Record<string, string> = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "⁻": "-", "⁺": "+" };
 
 /** Calculation as printed → the evaluator's syntax ("(8π)²(0.060)" → "(8*pi)^(2)*(0.060)"). */
 export function toExpr(printed: string): string {
   let s = printed
+    // Factorials: "6!" and "(6 − 2)!" (maths benchmark round 2: "6! ÷ 2! × 4! = 15" went unchecked).
+    .replace(/\(([^()]+)\)!/g, "fact($1)")
+    .replace(/(\d+)!/g, "fact($1)")
     .replace(/[−–]/g, "-")
     .replace(/[×·]/g, "*")
     .replace(/÷/g, "/")
     .replace(/(\d+(?:\.\d+)?)\s*°/g, "($1*pi/180)")
-    .replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+/g, (m) => `^(${[...m].map((c) => SUPER[c]).join("")})`)
+    .replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+/g, (m) => `^(${[...m].map((c) => SUPER[c]).join("")})`)
+    // Printed school maths: "log" with no base is base 10 ("log(100) = 2"); "ln" is the natural log.
+    .replace(/\blog₁₀\s*\(/g, "LOGTEN(")
+    .replace(/\blog(?![₀-₉\d])\s*\(/g, "LOGTEN(")
     .replace(/π/g, " pi ")
     .replace(/√\s*\(/g, "sqrt(")
     .replace(/√\s*(\d+(?:\.\d+)?)/g, "sqrt($1)");
@@ -37,8 +43,9 @@ export function toExpr(printed: string): string {
       .replace(/\bpi\s*(\d)/g, "pi*$1")
       .replace(/\bpi\s*\(/g, "pi*(")
       .replace(/\)\s*pi\b/g, ")*pi")
-      .replace(/(\d|\))\s*(sqrt|sin|cos|tan|ln|log)\s*\(/g, "$1*$2(");
+      .replace(/(\d|\))\s*(sqrt|sin|cos|tan|ln|log|LOGTEN)\s*\(/g, "$1*$2(");
   }
+  s = s.replace(/LOGTEN\(/g, "log10(");
   s = s.replace(/\s+/g, " ").replace(/\(\s+/g, "(").replace(/\s+\)/g, ")").trim();
   // A negative exponent written "10^-11" stays one exponent: "^(-11)", not "^-1 × 11".
   s = s.replace(/\^\s*-\s*(\d+(?:\.\d+)?)/g, "^(-$1)");
@@ -47,7 +54,7 @@ export function toExpr(printed: string): string {
   return s.replace(/(^|[(*/+^,-]\s*)-\s*(?=[\d.(a-z])/g, "$1-1*");
 }
 
-const CALC_CHARS = "[\\s\\d.()+\\-−–×*/·÷^°π√⁰¹²³⁴⁵⁶⁷⁸⁹⁻]";
+const CALC_CHARS = "[\\s\\d.()+\\-−–×*/·÷^°π√⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺!]";
 const CALC = new RegExp(`^(?:${CALC_CHARS}|sin|cos|tan|sqrt|ln|log)+$`);
 // The stated answer, with its power of ten when written in standard form ("2.00 × 10^-10", "4.1 × 10⁶").
 const NUMBER = /^\s*([-−–]?\s*\d[\d,]*(?:\.\d+)?)(?:\s*[×x*·]\s*10\s*(?:\^\s*\(?\s*([-−–]?\s*\d+)\s*\)?|([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)))?/;
@@ -70,12 +77,17 @@ export function checkNumbers(text: string): NumberIssue[] {
     if (/^(?:[π√a-zA-Zα-ω(])|^\s*[π√]|^\s*[×x*·]\s*[a-zA-Zπ√(]/.test(after) && !/^\s*[×x*·]\s*10\b/.test(after)) continue;
     const exp = exponentOf(m);
     let stated = Number(m[1].replace(/[−–]/g, "-").replace(/[\s,]/g, "")) * 10 ** exp;
-    // A chain of working ("4(4) − 7(2) − 2 = 16 − 14 − 2 = 0"): the right side is itself an
-    // expression, so its value is what the left must equal — not its first number.
-    const chained = /^\s*[+\-−–×*/÷^·]\s*[\d(√π]/.test(after);
+    // "= 13²" is 169, not 13 (a correct Pythagoras board was failed as "5² + 12² = 13", QA 2026-10-21).
+    // "= 2³⁺²" is 2 to the power 3 + 2 (maths benchmark, 2026-10-21: "8 × 4 = 2³ × 2² = 2³⁺² = 2⁵"
+    // was failed as "8 × 4 is 32, not 8").
+    const power = !exp && /^[⁰¹²³⁴⁵⁶⁷⁸⁹][⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]*/.exec(after);
+    if (power) stated = stated ** evalExpr(toExpr([...power[0]].map((c) => SUPER_DIGITS[c] ?? (c === "⁺" ? "+" : c)).join("")), {});
+    // A chain of working ("4(4) − 7(2) − 2 = 16 − 14 − 2 = 0", "= 2³ × 2²"): the right side is itself
+    // an expression, so its value is what the left must equal — not its first number (or power).
+    const chained = /^\s*[+\-−–×*/÷^·]\s*[\d(√π]/.test(power ? after.slice(power[0].length) : after);
     if (chained) {
-      const rhs = (m[0] + after).split(/[=≈]/)[0].match(/^[\s\d.()+\-−–×*/·÷^°π√⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+/)?.[0] ?? "";
-      const value = rhs.trim() ? evalExpr(toExpr(rhs.trim()), {}) : NaN;
+      const rhs = (m[0] + after).split(/[=≈]/)[0].match(/^[\s\d.()+\-−–×*/·÷^°π√⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+/)?.[0] ?? "";
+      const value = rhs.trim() ? evalExpr(toExpr(/\b(sin|cos|tan)\b/.test(rhs) ? rhs.trim() : rhs.trim().replace(/°/g, "")), {}) : NaN;
       if (!Number.isFinite(value)) continue;
       stated = value;
     }
@@ -86,13 +98,25 @@ export function checkNumbers(text: string): NumberIssue[] {
     const start = Math.max(before.lastIndexOf("="), before.lastIndexOf("≈")) + 1;
     const tail = before.slice(start);
     let calc = "";
+    let leading = "";
     for (let i = 0; i < tail.length; i++) {
       const cand = tail.slice(i);
-      if (/^[\s]*(?:[\d(−–\-π√]|(?:sin|cos|tan|sqrt|ln|log)\b)/.test(cand) && CALC.test(cand)) { calc = cand.trim(); break; }
+      if (/^[\s]*(?:[\d(−–\-π√]|(?:sin|cos|tan|sqrt|ln|log)\b)/.test(cand) && CALC.test(cand)) { calc = cand.trim(); leading = tail.slice(0, i); break; }
     }
+    // A function's value ("factorial(4) = 24", "f(3) = 11", "sum_list([4, 5]) = 9") is not the
+    // bracket's arithmetic: "(4) = 24" was failed as wrong maths on a recursion board (QA 2026-10-21).
+    // …and a logarithm's ("log₂(8 × 4) = 5": the subscript base ends the function's name).
+    // …and a derivative's ("f′(1) = 8": the prime ends the name too; maths benchmark R5).
+    if (calc.startsWith("(") && /[A-Za-z_\]₀-₉′'’]\s*$/.test(leading)) continue;
+    // Only part of a bigger term ("b ÷ sin 72° = 6 ÷ sin 35°": "sin 72°" is divided INTO b): not a sum
+    // of its own — the sine rule was failed as "sin 72° is 0.95, not 6" (maths benchmark, 2026-10-21).
+    if (/[×*/÷·^+\-−–]\s*$/.test(leading) && /[A-Za-zα-ω]/.test(leading)) continue;
     // A bare number ("x = 0.060") is a statement, not a calculation.
-    if (!calc || !/[+\-−–×*/·÷^√π²³⁰¹⁴⁵⁶⁷⁸⁹(]|sin|cos|tan|sqrt|ln|log/.test(calc.replace(/^[-−–]/, "")) || !/\d/.test(calc)) continue;
-    let computed = evalExpr(toExpr(calc), {});
+    if (!calc || !/[+\-−–×*/·÷^√π²³⁰¹⁴⁵⁶⁷⁸⁹(!]|sin|cos|tan|sqrt|ln|log/.test(calc.replace(/^[-−–]/, "")) || !/\d/.test(calc)) continue;
+    // Angles: "100° ÷ 2 = 50" is arithmetic in degrees. Only inside sin/cos/tan does ° convert to
+    // radians — read as radians, every correct circle-theorem board was failed (QA batch 5, 2026-10-21).
+    const angles = (x: string) => (/\b(sin|cos|tan)\b/.test(x) ? x : x.replace(/°/g, ""));
+    let computed = evalExpr(toExpr(angles(calc)), {});
     if (!Number.isFinite(computed)) continue;
     // "420/600 = 70%": a stated percentage is the fraction × 100.
     // Only when the working has not already multiplied by 100: "(3.0 ÷ 12.0) × 100 = 25%" is right, and

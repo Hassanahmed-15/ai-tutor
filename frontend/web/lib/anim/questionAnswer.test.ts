@@ -103,6 +103,16 @@ test("a cue already on the board, an unzoom and a recap visit are left alone", (
   assert.deepEqual(repairCues(spec, { script: HEART.script }, onBoard).cues, spec.cues);
 });
 
+test("a pen cue at something its sentence does not name goes to what it does name (Dot points where Aria is)", () => {
+  const spec = withMandatoryLabels(heartSpec([]), { script: HEART.script });
+  // Sentence 5 is about the left ventricle; the writer left the pen on the right atrium.
+  spec.cues = [{ s: 2, action: "point", target: "right-atrium" }, { s: 5, action: "point", target: "right-atrium" }];
+  const onBoard = new Set(Object.keys(layoutPanel(spec).targets));
+  const { cues, moved } = repairCues(spec, { script: HEART.script }, onBoard);
+  assert.equal(moved, 1);
+  assert.deepEqual(cues.map((c) => [c.s, c.target]), [[2, "right-atrium"], [5, "left-ventricle"]]);
+});
+
 test("a unit, formula, symbol or value of something is a question, not the whole topic", () => {
   for (const q of ["What is the unit of power?", "what is the formula for density", "What is the symbol of resistance?", "what is the value of g"]) assert.equal(isDirectQuestion(q), true, q);
   for (const t of ["what is the theory of evolution", "what is the law of demand", "what is photosynthesis"]) assert.equal(isDirectQuestion(t), false, t);

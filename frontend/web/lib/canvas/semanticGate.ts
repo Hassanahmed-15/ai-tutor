@@ -12,6 +12,9 @@ export function semanticBoardIssues(spec: CanvasBoardSpec, beat: Pick<CanvasPlan
   const decision = classifyInstructionalTask(beat);
   const issues: string[] = [];
   if (!decision.figure) return issues;
+  // A maths/CS sketch board was chosen over the catalogue on purpose (lib/canvas/visualPolicy.ts): it
+  // draws what the board needs live, so no fixed renderer is demanded back.
+  if (spec.stage.kind === "sketch") return issues;
   // The board review judged this diagram wrong for this board (it saw what was drawn); a keyword
   // rule must not demand it back — that contradiction sent rebuilt boards to the bare backup.
   if (beat.rejectedFigures?.includes(decision.figure)) return issues;

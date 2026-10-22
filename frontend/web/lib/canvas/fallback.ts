@@ -29,6 +29,14 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
     // Whole: the layout fits a name to its box (a 24-character cap cut names mid-word).
     return t.charAt(0).toUpperCase() + t.slice(1);
   };
+  // A maths/CS sketch that could not be drawn is still WRITTEN on the board, line by line as Aria says
+  // it — never swapped for cards the lecture's look does not use (lib/canvas/sketch.ts).
+  if (beat.stage === "sketch") {
+    // Drawing first (owner, 2026-10-21: "too much text"): at most two short lines.
+    const points = keyPoints(sentences, 2, 50);
+    const items = points.map((text, i) => ({ id: `line-${i + 1}`, type: "text" as const, text, s: Math.min(last, i * 2), col: "full" as const, ...(i === 0 ? { size: "big" as const } : {}) }));
+    return { v: 1, heading: beat.title.trim(), notes: [], stage: { kind: "sketch", items }, cues: [], ...(beat.overview ? { overview: true } : {}) };
+  }
   // A library diagram needs no model: the parts the narration names, in the order it names them
   // (then the parts named in the plan's objects, to make three), labelled one per sentence.
   if (beat.figure === "library" && beat.figureAsset) {

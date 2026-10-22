@@ -85,7 +85,7 @@ const PARTS = [
 export const circleTheorem: FigureComponent = {
   name: "circleTheorem",
   title: "Circle theorem diagram drawn exactly: circle, centre O, the chords/tangent of one theorem, the given angle and the angle the theorem gives (values at the arcs)",
-  params: `theorem: "angle-at-centre" (angle at centre = 2 × angle at circumference) | "semicircle" (angle in a semicircle = 90°) | "same-segment" (angles in the same segment are equal) | "cyclic-quadrilateral" (opposite angles sum to 180°) | "tangent-radius" (tangent perpendicular to radius) | "alternate-segment" (tangent–chord angle = angle in the alternate segment); default "angle-at-centre". angle: the given angle in degrees — angle-at-centre: the angle at the circumference (12-84, default 50); semicircle: angle CAB (15-75); same-segment: angle ACB (15-80); cyclic-quadrilateral: angle A (40-140; angle2 = angle B, default 95); tangent-radius: angle OPT at the outside point P (18-70); alternate-segment: angle between the tangent and chord TA (15-80). givenAt ("circumference" default | "centre", angle-at-centre only: the angle given is the one at the centre). show ("both" default: write the found angle's value | "given": write the found angle as the unknown symbol); unknown (symbol for it, default "x"); letters (point letters in order, e.g. "A,B,C,D"; tangent-radius uses "T,P", alternate-segment "T,A,B"); centre (centre letter, default "O"). Parts that name lines get the theorem's name: chord AB, diameter AB, tangent at T.
+  params: `theorem: "angle-at-centre" (angle at centre = 2 × angle at circumference) | "semicircle" (angle in a semicircle = 90°) | "same-segment" (angles in the same segment are equal) | "cyclic-quadrilateral" (opposite angles sum to 180°) | "tangent-radius" (tangent perpendicular to radius) | "alternate-segment" (tangent–chord angle = angle in the alternate segment); default "angle-at-centre". angle: the given angle in degrees — angle-at-centre: the angle at the circumference (12-84, default 50); semicircle: angle CAB (15-75); same-segment: angle ACB (15-80); cyclic-quadrilateral: angle A (40-140; angle2 = angle B, default 95); tangent-radius: angle OPT at the outside point P (18-70); alternate-segment: angle between the tangent and chord TA (15-80). givenAt ("circumference" default | "centre", angle-at-centre only: the angle given is the one at the centre). show ("both" default: write the found angle's value | "given": write the found angle as the unknown symbol); unknown (symbol for it, default "x"); givenSymbol (a general proof with no angle: the symbol written at the given angle, e.g. "x" — leave angle out and nothing numeric is drawn); letters (point letters in order, e.g. "A,B,C,D"; tangent-radius uses "T,P", alternate-segment "T,A,B"); centre (centre letter, default "O"). Parts that name lines get the theorem's name: chord AB, diameter AB, tangent at T.
 CHORD AND TANGENT THEOREMS (lengths, not angles): theorem "chord-bisector" (the perpendicular from the centre to a chord bisects it: chord AB, OM perpendicular to AB, AM = MB) | "equal-chords" (equal chords are equidistant from the centre: chords AB and CD, OM = ON) | "tangents-from-point" (tangents from an outside point are equal: PA = PB, each perpendicular to its radius). Lengths, all optional, in the board's own numbers: radius, chord (chord length), distance (perpendicular distance from the centre), op (distance from the centre to the outside point), tangent (tangent length); code completes the rest by Pythagoras and writes them on the lines; units (e.g. "cm"). Letters: chord-bisector "A,B,M", equal-chords "A,B,C,D,M,N", tangents-from-point "A,B,P".`,
   match: /\bequal chords?\b|\bperpendicular (from|bisector of) (the )?(centre|center|a chord)\b|\bbisects? (the|a) chord\b|\btangents? from (an? )?(external|outside|one|the same)? ?point\b|\bcircle theorems?\b|\b(angle|angles) (at|in) the (centre|center|circumference)\b|\bangle in a semicircle\b|\bsame segment\b|\bcyclic quadrilateral\b|\balternate segment\b|\btangents? (to a circle|and radius|meets? the radius)\b|\bsubtended\b/i,
   parts: PARTS,
@@ -114,8 +114,14 @@ CHORD AND TANGENT THEOREMS (lengths, not angles): theorem "chord-bisector" (the 
     sk.circle(O, 4, { fill: "ink", stroke: "ink", width: 1, part: "centre" }, false);
 
     const G = PALETTE.blue, F = PALETTE.red;
-    const val = (v: number) => `${fmt(v)}°`;
-    const foundText = (v: number) => (showFound ? val(v) : unknown);
+    // No angle given (a general proof in letters): the given angle is marked with its symbol, or just
+    // its arc — never the built-in example's number ("35°" on a proof in x and y; maths benchmark).
+    // The found angle keeps its value only where the theorem fixes it (90° in a semicircle).
+    const angleGiven = params.angle !== undefined && params.angle !== null && String(params.angle).trim() !== "";
+    const givenSymbol = str(params.givenSymbol, "", 4);
+    const val = (v: number) => (angleGiven ? `${fmt(v)}°` : givenSymbol);
+    const fixedByTheorem = theorem === "semicircle" || theorem === "tangent-radius";
+    const foundText = (v: number) => (showFound && (angleGiven || fixedByTheorem) ? `${fmt(v)}°` : unknown);
     const seg = (p: Pt, q: Pt, part?: string, dash?: string) => sk.line([p, q], { stroke: "ink", width: 2.2, part, dash });
     const r0 = 30;
     let points: Array<[Pt, string]> = [];
@@ -145,6 +151,24 @@ CHORD AND TANGENT THEOREMS (lengths, not angles): theorem "chord-bisector" (the 
         seg(A, B, "line"); seg(C, A); seg(C, B);
         points = [[A, L[0]], [B, L[1]], [C, L[2]]];
         line = { p: A, q: B, name: `Diameter ${L[0]}${L[1]}` };
+        if (!angleGiven) {
+          // THE PROOF'S FIGURE (maths benchmark, 2026-10-21): it showed "x&y" at both base angles, no
+          // radius OC, and 90° at C — the very thing being proved. Now: the radius OC that makes two
+          // isosceles triangles, x at A and at C, y at B and at C, and nothing written at C beyond them.
+          // Only letters name the base angles: a writer's "180°" was written on all four (round 4).
+          const sym = String(params.givenSymbol ?? "").slice(0, 20).split(/\s*(?:&|,|;|\band\b|\/)\s*/).map((t) => t.trim()).filter((t) => /^[a-zα-ω][′']?$/i.test(t));
+          const sx = sym[0] ?? "x", sy = sym[1] ?? (sx === "x" ? "y" : `${sx}′`);
+          const Y = PALETTE.amber;
+          seg(O, C);
+          givenAnchor = angleMark(sk, A, C, B, { r: r0 + 8, size: 23, colour: G, part: "given-angle", text: sx });
+          angleMark(sk, B, A, C, { r: r0 + 8, size: 23, colour: Y, text: sy });
+          const cx = angleMark(sk, C, A, O, { r: r0, size: 21, colour: G, part: "found-angle", text: sx });
+          const cy = angleMark(sk, C, O, B, { r: r0 + 6, size: 21, colour: Y, part: "found-angle", text: sy });
+          foundAnchor = lerp(cx, cy, 0.5);
+          givenName = `Angle ${L[2]}${L[0]}${L[1]}`;
+          foundName = `Angle ${L[0]}${L[2]}${L[1]}`;
+          break;
+        }
         givenAnchor = angleMark(sk, A, C, B, { r: r0 + 8, size: 23, colour: G, part: "given-angle", text: val(angle) });
         foundAnchor = angleMark(sk, C, A, B, { r: r0, size: 23, colour: F, part: "found-angle", text: foundText(90), right: true });
         if (showFound) angleMark(sk, B, A, C, { r: r0 + 8, size: 23, colour: "muted", text: val(vals.other!) });

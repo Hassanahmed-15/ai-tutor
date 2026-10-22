@@ -86,7 +86,7 @@ export type ProgressiveLectureInput = {
     topic: string;
     /** The planner's read of the request: a specific "question" gets only its own boards. */
     scope?: "question" | "lesson";
-    subtopics: Array<{ title: string; caption: string; reason?: string }>;
+    subtopics: Array<{ title: string; caption: string; reason?: string; status?: "new" | "shaky" | "known" }>;
   };
   context?: string;
   diagramHints?: string;

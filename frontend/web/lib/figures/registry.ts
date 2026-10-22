@@ -30,6 +30,7 @@ import { foodWeb } from "./components/foodWeb";
 import { ecologicalPyramid } from "./components/ecologicalPyramid";
 import { electromagnetism } from "./components/electromagnetism";
 import { circuit } from "./components/circuit";
+import { logicCircuit } from "./components/logicCircuit";
 import { rayLens } from "./components/rayLens";
 import { reflectionRefraction } from "./components/reflectionRefraction";
 import { fieldLines } from "./components/fieldLines";
@@ -61,8 +62,11 @@ import { coordinateGrid } from "./components/coordinateGrid";
 import { numberLine } from "./components/numberLine";
 import { shapes3d } from "./components/shapes3d";
 import { triangle } from "./components/triangle";
+import { pythagorasProof } from "./components/pythagorasProof";
+import { areaModel } from "./components/areaModel";
 import { vectors } from "./components/vectors";
 import { probabilityTree } from "./components/probabilityTree";
+import { dotPlot } from "./components/dotPlot";
 import { venn } from "./components/venn";
 import { fractionModel } from "./components/fractionModel";
 import { sequences } from "./components/sequences";
@@ -116,10 +120,12 @@ export const FIGURE_COMPONENTS: FigureComponent[] = [
   gametes, chromosome, sarcomere, glucoseRings, lipids, aminoAcid, atpNucleotide,
   rootHairCell, xylemPhloem, guardCells, seedStructure, windFlower, bloodVessels, bloodCells, villus, teeth, placenta,
   enzymeAction, membraneTransport, chromosomeSets, cellDivision, punnettSquare, pedigree, geneticTech, proteinSynthesis, antibody, dnaStructure, leafCrossSection, foodWeb, ecologicalPyramid, heart,
-  electromagnetism, circuit, rayLens, reflectionRefraction, fieldLines, standingWave, wave, motionGraph, moments, sankey,
+  // A logic circuit (gates) before the electrical circuit: "logic circuit" is not wires and bulbs.
+  logicCircuit, electromagnetism, circuit, rayLens, reflectionRefraction, fieldLines, standingWave, wave, motionGraph, moments, sankey,
   supplyDemand, ppf, adAs, costRevenue, circularFlow,
   scatterPlot, histogram, boxPlot, cumulativeFrequency, barChart, sectorArc, pieChart, inferenceDistribution,
-  riemannSum, slopeField, argand, unitCircle, circleTheorem, sequences, parallelLines, bearings, coordinateGrid, numberLine, shapes3d, triangle, vectors, probabilityTree, venn, fractionModel, functionGraph,
+  // The Visuals Lab maths figures (2026-10-20): the proof before the general triangle, area before fractions.
+  riemannSum, slopeField, argand, unitCircle, circleTheorem, sequences, parallelLines, bearings, coordinateGrid, numberLine, shapes3d, pythagorasProof, triangle, vectors, probabilityTree, dotPlot, venn, areaModel, fractionModel, functionGraph,
   timeline, causeConsequence, sourceCard, evaluationScale, conceptTable,
 ];
 

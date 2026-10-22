@@ -1,3 +1,4 @@
+import { describeSketch } from "./sketch";
 import { describeStructure } from "./structure";
 import type { CanvasBoardSpec } from "./types";
 
@@ -11,6 +12,9 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
   if (spec.notes.length) lines.push(`Written notes: ${spec.notes.map((n) => n.text).join(" · ")}`);
   const stage = spec.stage;
   switch (stage.kind) {
+    case "sketch":
+      lines.push(`Main visual: a board written and drawn live (a sketch board):\n${describeSketch(stage)}`);
+      break;
     case "flow": {
       const name = new Map(stage.nodes.map((n) => [n.id, n.label]));
       lines.push(`Diagram (${stage.arrangement}): ${stage.nodes.map((n) => `${n.label}${n.sub ? ` (${n.sub})` : ""}`).join(", ")}.`);
@@ -23,6 +27,7 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
     case "equation": {
       const text = new Map(stage.tokens.map((t) => [t.id, t.text]));
       lines.push(`Equation, step by step: ${stage.steps.map((s) => `${s.order.map((id) => text.get(id)).join(" ")}${s.caption ? ` (${s.caption})` : ""}`).join("  ⟶  ")}`);
+      if (stage.figure) lines.push(`Beside the working, a figure (${stage.figure.component}, drawn exactly): labelled ${stage.figure.parts.map((p) => p.name).join(", ")}.`);
       break;
     }
     case "figure":

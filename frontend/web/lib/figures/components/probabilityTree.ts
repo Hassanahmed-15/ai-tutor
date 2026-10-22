@@ -5,8 +5,8 @@ import { PALETTE, Sketch, type Frac, bool, clamp, fmt, frac, fracAdd, fracMul, f
 /**
  * PROBABILITY TREE. The board gives each stage's outcomes and probabilities (fractions or decimals;
  * a stage can depend on the branch before it, as in "without replacement"). The code checks every
- * set of branches sums to 1 — a single missing value is filled with the complement, otherwise the
- * set is normalised — multiplies along each path, and writes each outcome's probability at its
+ * set of branches sums to 1 — a single missing value is filled with the complement; a set with more
+ * gaps, or none given, leaves them blank (never an invented even split) — multiplies along each path, and writes each outcome's probability at its
  * leaf, exactly (as a fraction) whenever every branch was given as a fraction.
  */
 
@@ -16,14 +16,26 @@ type Node = { label: string; prob?: Prob; depth: number; children: Node[]; path:
 
 /** One set of branches: n probabilities that sum to 1 (complement for one gap; else normalised). */
 export function branchProbs(raw: string[], n: number): Prob[] {
-  const parsed = Array.from({ length: n }, (_, i) => (raw[i] && raw[i] !== "?" ? parseProb(raw[i]) : null));
+  let parsed = Array.from({ length: n }, (_, i) => (raw[i] && raw[i] !== "?" ? parseProb(raw[i]) : null));
+  // Every branch given as a count ("3,2": 3 red, 2 blue) is a share of the total.
+  const counts = parsed.every((p) => p && p.value >= 0) && parsed.some((p) => p!.value > 1);
+  if (counts) {
+    const total = parsed.reduce((t, p) => t + p!.value, 0);
+    const whole = parsed.every((p) => Number.isInteger(p!.value));
+    parsed = parsed.map((p) => ({ value: p!.value / total, frac: whole ? frac(p!.value, total) : undefined }));
+    raw = parsed.map((p) => (p!.frac ? fracStr(p!.frac) : fmt(p!.value, 3)));
+  }
   const valid = parsed.map((p) => (p && p.value >= 0 && p.value <= 1 ? p : null));
   const known = valid.filter((p): p is NonNullable<typeof p> => Boolean(p));
   const allFrac = known.every((p) => p.frac);
   const sum = known.reduce((t, p) => t + p.value, 0);
   const missing = valid.map((p, i) => (p ? -1 : i)).filter((i) => i >= 0);
   let out: Array<{ value: number; frac?: Frac }>;
-  if (!known.length) out = valid.map(() => ({ value: 1 / n, frac: frac(1, n) }));
+  // A branch the board gave no probability for stays blank: an even "1/2" in its place was invented
+  // data the board review rightly rejected (maths benchmark, 2026-10-21 — "P(art | not music)" was
+  // never said). With two or more gaps the given ones are kept as given and the rest stay blank.
+  if (!known.length) out = valid.map(() => ({ value: NaN }));
+  else if (missing.length > 1 && sum <= 1 + 1e-9) out = valid.map((p) => p ?? { value: NaN });
   else if (missing.length === 1 && sum <= 1 + 1e-9) {
     const restFrac = allFrac ? known.reduce((t, p) => fracAdd(t, p.frac!), frac(0, 1)) : undefined;
     out = valid.map((p) => p ?? { value: 1 - sum, frac: restFrac ? frac(restFrac.d - restFrac.n, restFrac.d) : undefined });
@@ -37,6 +49,7 @@ export function branchProbs(raw: string[], n: number): Prob[] {
     out = filled.map((p) => ({ value: p.value / total, frac: fracTotal && p.frac ? frac(p.frac.n * fracTotal.d, p.frac.d * fracTotal.n) : undefined }));
   }
   return out.map((p, i) => {
+    if (Number.isNaN(p.value)) return { value: NaN, text: "" };
     const asGiven = valid[i] && Math.abs(valid[i]!.value - p.value) < 1e-9 ? raw[i].replace(/\s+/g, "") : undefined;
     return { ...p, text: asGiven ?? (p.frac ? fracStr(p.frac) : fmt(p.value, 3)) };
   });
@@ -80,7 +93,9 @@ export function buildTree(params: FigureParams): { root: Node; leaves: TreeLeaf[
   const walk = (n: Node, chain: Prob[]) => {
     if (!n.children.length) {
       n.leafIndex = leaves.length;
-      leaves.push({ path: n.path, p: n.p, frac: n.f, text: n.f ? fracStr(n.f) : fmt(n.p, 4), working: chain.map((c) => c.text).join(" × ") });
+      // An outcome along a blank branch has no probability to write.
+      const blank = Number.isNaN(n.p);
+      leaves.push({ path: n.path, p: n.p, frac: blank ? undefined : n.f, text: blank ? "" : n.f ? fracStr(n.f) : fmt(n.p, 4), working: blank ? "" : chain.map((c) => c.text).join(" × ") });
       return;
     }
     n.children.forEach((c) => walk(c, [...chain, c.prob!]));
@@ -98,7 +113,7 @@ const PARTS = [
 export const probabilityTree: FigureComponent = {
   name: "probabilityTree",
   title: "Probability tree diagram: 1-3 stages of branches with their probabilities, each outcome's probability (the product along its path) written at the leaves",
-  params: `first, second, third (branch labels per stage, 2-3 each, comma-separated, e.g. first "Red,Blue"; later stages default to the first's labels; default "H,T"); firstP, secondP, thirdP (probabilities in the same order, fractions "3/5,2/5" or decimals "0.6,0.4"; leave one blank or "?" and it is the complement; sets that do not sum to 1 are normalised; for dependent events give one group per earlier branch separated by "|", e.g. secondP "2/4,2/4|3/4,1/4" — without replacement); stages (1-3; default 2, or 3 when third/thirdP is given); outcomes (true default: write each outcome and its probability at the leaves); working (true: write the multiplication, e.g. "1/2 × 1/3 = 1/6"; default false); highlight (one path to colour, e.g. "Red,Blue"). Outcome probabilities are computed (exact fractions when every branch is a fraction). A 1-stage tree has no second-stage part; third-stage branches are not separately labelled.`,
+  params: `first, second, third (branch labels per stage, 2-3 each, comma-separated, e.g. first "Red,Blue"; later stages default to the first's labels; default "H,T"); firstP, secondP, thirdP (probabilities in the same order, fractions "3/5,2/5" or decimals "0.6,0.4"; leave one blank or "?" and it is the complement; with more gaps, or a group left empty, those branches and their outcomes are left blank — never invent a probability the lesson does not give; complete sets that do not sum to 1 are normalised; for dependent events give one group per earlier branch separated by "|", e.g. secondP "2/4,2/4|3/4,1/4" — without replacement); stages (1-3; default 2, or 3 when third/thirdP is given); outcomes (true default: write each outcome and its probability at the leaves); working (true: write the multiplication, e.g. "1/2 × 1/3 = 1/6"; default false); highlight (one path to colour, e.g. "Red,Blue"). Outcome probabilities are computed (exact fractions when every branch is a fraction). A 1-stage tree has no second-stage part; third-stage branches are not separately labelled.`,
   match: /\bprobability trees?\b|\btree diagrams?\b|^(?![\s\S]*\bsampl)[\s\S]*\b(with|without) replacement\b|\bindependent events?\b.*\btree\b|\bconditional probabilit\w*.*\btree\b/i,
   parts: PARTS,
   build(params: FigureParams) {
@@ -134,6 +149,7 @@ export const probabilityTree: FigureComponent = {
     }
     // Probabilities on the branches: above a rising branch, below a falling one (above a level one).
     for (const { p, q, node } of branches) {
+      if (!node.prob!.text) continue;
       let n = perp(unit(sub(q, p)));
       const up = q.y <= p.y + 0.5;
       if ((up && n.y > 0) || (!up && n.y < 0)) n = { x: -n.x, y: -n.y };
@@ -146,7 +162,7 @@ export const probabilityTree: FigureComponent = {
       const leafNodes = nodes.filter((n) => !n.children.length).sort((a, b) => a.leafIndex! - b.leafIndex!);
       const maxLabel = Math.max(...leafNodes.map((n) => textW(n.label, labelSize)));
       const names = leaves.map((l) => l.path.join(", "));
-      const probs = leaves.map((l) => (working ? `${l.working} = ${l.text}` : l.text));
+      const probs = leaves.map((l) => (!l.text ? "" : working ? `${l.working} = ${l.text}` : l.text));
       const x1 = stages * colW + maxLabel / 2 + 30;
       const w1 = Math.max(...names.map((t) => textW(t, probSize)));
       const x2 = x1 + w1 + 22;
@@ -157,7 +173,7 @@ export const probabilityTree: FigureComponent = {
         const y = leafNodes[i].pos!.y;
         const fill: Ink = onPath(l.path) ? PALETTE.blue : "ink";
         sk.text({ x: x1 + textW(names[i], probSize) / 2, y }, names[i], probSize, fill, "outcomes");
-        sk.text({ x: x2 + textW(probs[i], probSize) / 2, y }, probs[i], probSize, onPath(l.path) ? PALETTE.blue : PALETTE.green, "outcomes");
+        if (probs[i]) sk.text({ x: x2 + textW(probs[i], probSize) / 2, y }, probs[i], probSize, onPath(l.path) ? PALETTE.blue : PALETTE.green, "outcomes");
       });
       outcomeAnchor = { x: x2 + w2 + 9, y: leafNodes[0].pos!.y - 3 };
     } else {

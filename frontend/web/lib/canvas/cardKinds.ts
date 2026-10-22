@@ -48,6 +48,10 @@ export function orderCard(spec: CanvasBoardSpec, script: string): QuizInteractio
   // wastes" turning into "Urine") shows its new name while the card is open (kidney test, 2026-10-18).
   const name = (n: (typeof order)[number]) => n.becomes?.label ?? n.label;
   if (new Set(order.map((n) => name(n).toLowerCase())).size !== order.length) return null;
+  // Steps named only by their place ("First stage → Second stage → Outcomes") give the order away:
+  // ordering them tests nothing (maths benchmark, 2026-10-21) — the board's written question is used.
+  const ordinal = /^(?:(?:the\s+)?(?:first|second|third|fourth|next|final|last|1st|2nd|3rd)\s+(?:stage|step|part|draw|event|branch|level)s?|(?:stage|step|part)\s*\d+|outcomes?|results?|start|end|finish|input|output|answer)$/i;
+  if (order.filter((n) => ordinal.test(name(n).trim())).length >= 2) return null;
   const sentences = canvasSentences(script);
   const words = order.map(name).join(" → ");
   return {

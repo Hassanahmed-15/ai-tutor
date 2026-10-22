@@ -4,6 +4,7 @@ import { slug } from "./validate";
 import { figureComponent } from "../figures/registry";
 import { withoutSourceTags } from "../webSources";
 import { withoutOldTransferPrompt } from "./oldTransferPrompt";
+import { formulaNotes } from "./equationCheck";
 
 /**
  * A canvas lecture's PLAN, as the model wrote it, made safe — pure, so it is unit-tested
@@ -12,6 +13,18 @@ import { withoutOldTransferPrompt } from "./oldTransferPrompt";
  */
 
 /** Mirrors splitNarrationSentences in lib/voice.ts, which numbers the sentences the player speaks. */
+/**
+ * "S = a + (a+d) + ... + l": a typed "..." was read as a sentence's end, cutting the sum into
+ * fragments ("+ a.") each timed as its own sentence (maths benchmark, 2026-10-21). In new scripts it
+ * becomes the one-character ellipsis "…", which never ends a sentence and is still read as a pause.
+ */
+export function mathsEllipsis(script: string): string {
+  // A factorial ends no sentence either: "6 choose 2 = 6! ÷ (2! × 4!) = 15" was cut into three
+  // sentences at its "!" signs (maths benchmark round 2). It is said "6 factorial" — as a teacher reads
+  // it aloud — and the equation reader turns it back into "6!" (equationCheck.ts spokenMaths).
+  return script.replace(/\.{3}/g, "…").replace(/(\d+|\b[a-zA-Z]|\))!(?=[\s,.;:)×÷=+−-]|$)/g, "$1 factorial");
+}
+
 export function canvasSentences(script: string): string[] {
   return script.split(/(?<=[.!?۔؟])\s+/).map((s) => s.trim()).filter(Boolean);
 }
@@ -35,10 +48,11 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
   const beats: CanvasPlanBeat[] = [];
   // A safety cap on a runaway answer, well above any lesson the planner sizes (it allows 14 parts;
   // a strict lecture on a whole document, up to 24 boards — lib/canvas/sourceLessons.ts).
-  list.slice(0, 24).forEach((item, i) => {
+  // 32: a beginner's lesson on the concept ladder (lib/canvas/conceptLadder.ts) has no cap of its own.
+  list.slice(0, 32).forEach((item, i) => {
     const b = (item && typeof item === "object" ? item : {}) as Record<string, unknown>;
     // Spoken aloud: a "Sources: [S1]" line the model added from the research material goes.
-    let script = typeof b.script === "string" ? withoutSourceTags(b.script.replace(/\s+/g, " ").trim()) : "";
+    let script = typeof b.script === "string" ? withoutSourceTags(mathsEllipsis(b.script.replace(/\s+/g, " ").trim())) : "";
     // Headings shrink to fit their board (lib/canvas/layout.ts), so a long title is kept whole; a
     // runaway one is ended at a word, never mid-word ("…the perpendicular bisec").
     const title = typeof b.title === "string" ? trimToFit(b.title, 90) : "";
@@ -77,7 +91,11 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
       // The planner's diagram, only when it names a real catalogue entry.
       ...(typeof b.diagram === "string" && figureComponent(b.diagram.trim()) ? { plannedFigure: b.diagram.trim() } : {}),
       ...(typeof b.visual === "string" && ["thing", "diagram", "quantity", "math", "sequence", "comparison", "concept"].includes(b.visual.trim().toLowerCase()) ? { visualType: b.visual.trim().toLowerCase() as CanvasPlanBeat["visualType"] } : {}),
-      ...boardNotesOf(b.board, canvasSentences(script).length),
+      // A sentence that states a formula has the formula as its note (equationCheck.ts formulaNotes).
+      ...(() => {
+        const notes = formulaNotes(boardNotesOf(b.board, canvasSentences(script).length).boardNotes, script);
+        return notes?.length ? { boardNotes: notes } : {};
+      })(),
       ...(Array.isArray(b.sentenceBlocks) ? { sentenceBlocks: b.sentenceBlocks.map((v) => (typeof v === "string" ? v.replace(/[{}\s]/g, "") : "")).slice(0, 40) } : {}),
     });
     void i;

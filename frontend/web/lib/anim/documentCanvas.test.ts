@@ -294,3 +294,18 @@ test("strict: asking for the coding of a document whose pages print code is not 
   // A word the pages really never use is still named.
   assert.deepEqual(termsNotInDocument("explain AVL tree coding in Python", doc as never), ["Python"]);
 });
+
+test("strict: 'explain me AVL tree coding' asks for every listing, and a left-out one is named (PDF bench, 2026-10-19)", async () => {
+  const { listingsAsked, listingsLeftOut, documentListings } = await import("../canvas/documentContext");
+  const doc = JSON.parse(readFileSync(join(__dirname, "..", "..", "..", "lib", "anim", "fixtures", "avlCodePages.json"), "utf8"));
+  const all = documentListings(doc);
+  // "tree" is in most listings: the document's subject, not a pick.
+  assert.equal(listingsAsked("explain me AVL tree coding", all).length, all.length);
+  assert.deepEqual(listingsAsked("Explain the code for a single rotation", all).map((l) => l.n), [4]);
+  const beats = [3, 4].map((n) => ({ stage: "code" as const, source: { pages: [12], listing: n } }));
+  assert.match(listingsLeftOut(doc, beats, all)[0], /LISTINGS 1 .*2 .*5 .*6 .* are on no code board/);
+  assert.deepEqual(listingsLeftOut(doc, beats, all.filter((l) => l.n === 4)), [], "only the listings asked for");
+  assert.deepEqual(listingsLeftOut(doc, [{ stage: "notes" as never, source: { pages: [12] } }], all), [], "a plan teaching no code is not made to");
+  // The long listings' extra boards are allowed in strict mode too.
+  assert.equal(documentExtraBoards(lecture({ sourceScope: { breadth: { kind: "section", focus: "explain me AVL tree coding" }, fidelity: "strict", documentLabels: [] } })), 3);
+});

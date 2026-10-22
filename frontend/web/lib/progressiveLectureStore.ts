@@ -2,6 +2,7 @@ import "server-only";
 
 import { CODE_BEAT_PATTERN } from "./codeSpec";
 import { canvasEngineFor } from "./canvas/lessonRequest";
+import { CANVAS_OPENING_BOARDS } from "./progressiveWindow";
 
 import { randomUUID } from "node:crypto";
 import {
@@ -101,11 +102,12 @@ export async function createProgressiveLectureSession(
     starterBeatCount: 2,
     starterBufferMs: 50_000,
     /*
-     * A canvas lecture starts on its first board: every board is queued at once (see
-     * lib/progressiveDispatch.ts) and each is written in well under the ~40 s a board is spoken
-     * for, so the next one is ready before the student reaches it.
+     * A canvas lecture starts once its first THREE boards are ready (owner, 2026-10-21), and the
+     * rest are then written three at a time, earliest first (lib/progressiveWindow.ts canvasDueSequences),
+     * so the boards ahead keep up with the one playing. Only the count decides — the time buffer is out
+     * of reach on purpose. A shorter lecture waits for all its boards.
      */
-    ...(canvas ? { boardEngine: "canvas" as const, starterBeatCount: 1, starterBufferMs: 30_000 } : {}),
+    ...(canvas ? { boardEngine: "canvas" as const, starterBeatCount: CANVAS_OPENING_BOARDS, starterBufferMs: 24 * 3_600_000 } : {}),
     lectureId: null,
     costUsd: 0,
     createdAt: now,
