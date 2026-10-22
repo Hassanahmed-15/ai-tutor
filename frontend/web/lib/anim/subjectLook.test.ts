@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { isLabLookTopic } from "../canvas/subjectLook";
+import { isCsTopic, isLabLookTopic } from "../canvas/subjectLook";
 
 test("maths and computer-science lectures get the lab look; every other subject keeps its own", () => {
   for (const t of ["Pythagoras' theorem and its proof", "Completing the square", "Solving quadratic equations", "Recursion in Python", "While loops", "Binary search", "Logic gates and truth tables", "Dijkstra's algorithm", "Converting denary to hexadecimal"]) assert.equal(isLabLookTopic(t), true, t);
@@ -50,4 +50,13 @@ test("maths benchmark routing: named points are plotted; trees get the tree; flo
   const v = figureComponent("vectors")!.build({ a: "3,2", components: true, ticks: true });
   const texts = v.shapes.filter((s) => s.t === "text").map((s) => String((s as { text: unknown }).text));
   assert.ok(!texts.includes("4") && !texts.includes("6") || texts.length < 12, "no axis numbers beside the components");
+});
+
+test("words other subjects share are CS only with computer science around them (2026-10-22)", () => {
+  for (const t of ["Coastal landforms: caves, arches, stacks and stumps", "Protein sorting in the cell", "Sorting materials by their properties", "Sequences defined by recursion", "Why the body tries to keep temperature constant", "Heaps and piles: deposition in rivers", "Pre-order sales in a business", "Queueing at a bank: probability", "Stacked bar charts"]) {
+    assert.equal(isCsTopic(t), false, t);
+  }
+  for (const t of ["Checking balanced brackets with a stack", "Stacks", "Tries", "Priority queues", "The call stack", "Binary heaps and heap sort", "Circular queue implementation", "Tree traversals: in-order, pre-order and post-order", "Selection sort", "Generating permutations with backtracking"]) {
+    assert.equal(isCsTopic(t), true, t);
+  }
 });
