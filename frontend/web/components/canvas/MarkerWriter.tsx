@@ -15,9 +15,11 @@ import type { Rect } from "@/lib/canvas/layout";
  *
  * Pace: a teacher's pace, not a flash (owner, 2026-10-21: "when it draws any graphs or diagram it
  * moves way too fast", then "the sketches are drawn pretty fast"). A line is traced at about 200 board
- * units a second; a sentence's new ink shares about seven and a half seconds, and is never sped up past
- * 85% of its natural pace (≈ 235 units a second) unless the drawing has fallen more than nine seconds
- * behind Aria's voice — then the backlog gently catches up. A whole board
+ * units a second; a sentence's new ink shares the time the sentence takes to say (about six seconds,
+ * less at a faster playback speed), going up to twice its natural pace when there is a lot of it. When
+ * Aria starts the next sentence while ink is still being drawn, that ink is finished within a second
+ * and a half, so the pen stays with her voice (2026-10-23: it trailed by 2.4 s a sentence, 5.2 s at
+ * 1.5×). A whole board
  * arriving at once (a jump to a finished board) is simply there. Nothing is ever left hidden: every
  * item is finished when its stroke ends, or when this unmounts.
  *
@@ -27,14 +29,14 @@ import type { Rect } from "@/lib/canvas/layout";
  */
 
 type Kind = "trace" | "wipe";
-type Job = { el: SVGGraphicsElement; kind: Kind; dur: number; len: number; pathLength: string | null; x0: number; x1: number; y: number; left: number; boxW: number; batch: number; faint?: boolean; caughtUp?: boolean };
+type Job = { el: SVGGraphicsElement; kind: Kind; dur: number; len: number; pathLength: string | null; x0: number; x1: number; y: number; left: number; boxW: number; batch: number; faint?: boolean };
 /** `drawing`: a diagram, graph, equation or code — worth a close-up; notes and headings are not. */
 type Batch = { jobs: Job[]; ms: number; drawing: boolean; scenery: SVGGraphicsElement[] };
 
 const WRITABLE = "text, foreignObject";
 const SHAPES = "path, line, polyline, polygon, circle, ellipse, rect";
-/** A sentence's new ink is drawn in about this long (ms). */
-const BATCH_MS = 7500;
+/** A sentence's new ink is drawn in about this long (ms) at normal speed: a 15-word sentence at Aria's pace. */
+const BATCH_MS = 6000;
 /**
  * A traced line: ms per board unit (≈ 200 units a second — a teacher's hand on a whiteboard; owner,
  * 2026-10-21, twice: "the sketches are drawn pretty fast"), and the shortest and longest one stroke takes.
@@ -46,17 +48,15 @@ const TRACE_MAX_MS = 6500;
 const WIPE_MS_PER_UNIT = 4.5;
 const WIPE_MIN_MS = 200;
 const WIPE_MAX_MS = 1800;
-/** Never faster than this share of the natural pace (≈ 235 units a second), unless far behind the voice. */
-const SLOWEST_SQUEEZE = 0.85;
-/** Drawing this far (ms) behind: what is waiting is sped up (gently) to catch up with Aria. */
-const BEHIND_MS = 9000;
+/** When Aria starts a new sentence, the ink still owed from earlier sentences is finished within this (ms). */
+const CATCH_UP_MS = 1500;
 /** A new board: the camera flies in from the last one first; the pen starts once it has landed. */
 const BOARD_FLIGHT_MS = 1500;
 /** More new items than this at once is a whole board appearing: it is shown, not drawn. */
 const WHOLE_BOARD = 200;
 const TRANSPARENT = /^(none|transparent)$|rgba\([^)]*,\s*0\)$/;
 
-export function MarkerWriter({ onRegion, finished = false, paused = false }: { onRegion?: (box: Rect | null, ms: number, drawing: boolean) => number; finished?: boolean; paused?: boolean } = {}) {
+export function MarkerWriter({ onRegion, finished = false, paused = false, rate = 1, sentence = 0 }: { onRegion?: (box: Rect | null, ms: number, drawing: boolean) => number; finished?: boolean; paused?: boolean; rate?: number; sentence?: number } = {}) {
   const ref = useRef<SVGGElement>(null);
   const regionRef = useRef(onRegion);
   /**
@@ -68,6 +68,16 @@ export function MarkerWriter({ onRegion, finished = false, paused = false }: { o
   useEffect(() => {
     pausedRef.current = paused;
   }, [paused]);
+  /** The student's playback speed: at 1.5× a sentence is spoken in two thirds of the time, so its ink is too. */
+  const rateRef = useRef(rate);
+  useEffect(() => {
+    rateRef.current = Math.max(0.5, Math.min(2, rate || 1));
+  }, [rate]);
+  /** The sentence Aria is on: when it changes, ink still owed from the last one is finished quickly. */
+  const sentenceRef = useRef(sentence);
+  useEffect(() => {
+    sentenceRef.current = sentence;
+  }, [sentence]);
   /** Opened on a finished board (a jump back, a replay): what is there is simply there. Read at mount. */
   const openedFinished = useRef(finished);
   /** Everything held is put on the board at once (set by the drawing effect). */
@@ -228,6 +238,26 @@ export function MarkerWriter({ onRegion, finished = false, paused = false }: { o
     };
     const place = (x: number, y: number) => marker.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
 
+    /**
+     * THE PEN KEEPS UP WITH THE VOICE (owner, 2026-10-23: "it should be more in sync"). Measured on a Raft
+     * lecture, the pen trailed Aria by 2.4 s a sentence on average (5.2 s at 1.5×, up to 20 s): each
+     * sentence's ink took ~7.5 s whatever the speed, and it only caught up once 9 s behind. Now, whenever
+     * Aria starts a new sentence (or new ink arrives) while earlier ink is still being drawn, that ink is
+     * finished within CATCH_UP_MS, as a teacher completes the word in hand. Returns the ms still owed.
+     */
+    const catchUp = (now: number, except: Job[] = []): number => {
+      const backlog = (current && !except.includes(current.job) ? Math.max(0, current.start + current.job.dur - now) : 0) + queue.filter((j) => !except.includes(j)).reduce((a, j) => a + j.dur, 0);
+      if (backlog <= CATCH_UP_MS) return backlog;
+      const squeeze = CATCH_UP_MS / backlog;
+      if (current && !except.includes(current.job)) {
+        const done = Math.max(0, now - current.start);
+        current.job.dur = done + Math.max(0, current.job.dur - done) * squeeze;
+        if (current.start > now) current.start = now + (current.start - now) * squeeze;
+      }
+      for (const j of queue) if (!except.includes(j)) j.dur = Math.max(30, j.dur * squeeze);
+      return CATCH_UP_MS;
+    };
+
     /** Give a batch its durations: by size, at a teacher's pace, fitted (within limits) to its budget. */
     const plan = (jobs: Job[]) => {
       const want = jobs.map((j) => {
@@ -245,14 +275,12 @@ export function MarkerWriter({ onRegion, finished = false, paused = false }: { o
       });
       const total = want.reduce((a, b) => a + b, 0);
       // What is still to draw before this batch: a backlog shortens this batch's budget.
-      const now = performance.now();
-      const backlog = (current ? Math.max(0, current.start + current.job.dur - now) : 0) + queue.filter((j) => !jobs.includes(j)).reduce((a, j) => a + j.dur, 0);
-      const budget = Math.max(1500, BATCH_MS - backlog);
-      // Far behind the voice it may speed up — never past half its natural pace (≈ 400 units a second).
-      const k = backlog > BEHIND_MS ? Math.min(1, Math.max(0.5, budget / total)) : Math.min(1, Math.max(SLOWEST_SQUEEZE, budget / total));
+      const backlog = catchUp(performance.now(), jobs);
+      // This sentence's ink shares the time it takes to say it, at the student's speed; a sentence with a
+      // lot of ink may go up to twice its natural pace to fit, never faster.
+      const budget = Math.max(1200, BATCH_MS / rateRef.current - backlog);
+      const k = Math.min(1, Math.max(0.5, budget / total));
       jobs.forEach((j, i) => (j.dur = Math.max(60, want[i] * k)));
-      // …and what is still waiting catches up too, once (sped up again and again it raced at 1,300 units a second).
-      if (backlog > BEHIND_MS) for (const j of queue) if (!jobs.includes(j) && !j.caughtUp) { j.dur = Math.max(60, j.dur * 0.75); j.caughtUp = true; }
     };
 
     /** The writing's span, read now: the pen wipes from its left edge to its right. */
@@ -280,6 +308,7 @@ export function MarkerWriter({ onRegion, finished = false, paused = false }: { o
     mountedRef.current = mountedAt;
     /** When the current pause began (0 = playing), and scenery waiting to come in at a time. */
     let pausedAt = 0;
+    let heardSentence = sentenceRef.current;
     const laterReveals: Array<{ at: number; els: SVGGraphicsElement[] }> = [];
     flushRef.current = () => {
       if (current) finish(current.job);
@@ -303,6 +332,11 @@ export function MarkerWriter({ onRegion, finished = false, paused = false }: { o
         if (settleSince) settleSince += away;
         if (idle) idle += away;
         for (const r of laterReveals) r.at += away;
+      }
+      // Aria has moved to the next sentence: what the pen still owes from the last one is finished now.
+      if (sentenceRef.current !== heardSentence) {
+        heardSentence = sentenceRef.current;
+        catchUp(now);
       }
       for (let i = laterReveals.length - 1; i >= 0; i--) {
         if (laterReveals[i].at <= now) reveal(laterReveals.splice(i, 1)[0].els);
@@ -338,7 +372,9 @@ export function MarkerWriter({ onRegion, finished = false, paused = false }: { o
             const boxes = [job, ...batch.jobs.filter((j) => j !== job && j.el.isConnected)].map((j) => boxOf(j.el)).filter((b): b is Rect => Boolean(b && b.w > 0 && b.h > 0));
             const x = Math.min(...boxes.map((b) => b.x)), y = Math.min(...boxes.map((b) => b.y));
             const box = boxes.length ? { x, y, w: Math.max(...boxes.map((b) => b.x + b.w)) - x, h: Math.max(...boxes.map((b) => b.y + b.h)) - y } : null;
-            wait = Math.max(0, Math.min(3000, regionRef.current?.(box, batch.ms, batch.drawing) ?? 0));
+            // Behind the voice (more ink already queued), the camera gets a short glide, not a full flight.
+            const behind = queue.some((j) => j.batch !== job.batch);
+            wait = Math.max(0, Math.min(behind ? 600 : 3000, regionRef.current?.(box, batch.ms, batch.drawing) ?? 0));
           }
           // The piece's scenery (grid, ticks, axis numbers) comes in as the pen starts it.
           if (batch?.scenery.length) {
@@ -364,6 +400,8 @@ export function MarkerWriter({ onRegion, finished = false, paused = false }: { o
         if (qa.__qaMarker) (window as unknown as { __markerCurrent?: unknown }).__markerCurrent = { el: job.el, wait, startBox: boxOf(job.el), batch: job.batch };
       }
       const { job, start } = current;
+      // Playback QA: how many ms of drawing the pen still owes (scripts/qa — how far it trails the voice).
+      if ((window as unknown as { __qaMarker?: boolean }).__qaMarker) (window as unknown as { __markerBacklogMs?: number }).__markerBacklogMs = Math.max(0, start + job.dur - now) + queue.reduce((a, j) => a + j.dur, 0);
       if (!job.el.isConnected) {
         finish(job);
         current = null;
@@ -446,6 +484,8 @@ export function MarkerWriter({ onRegion, finished = false, paused = false }: { o
       if (labels.length) afterBatch.set(batchSeq, { left: jobs.length, els: labels });
       batches.set(batchSeq, { jobs, ms: jobs.reduce((a, j) => a + j.dur, 0), drawing, scenery: sceneryHere.filter((el) => !el.matches(WRITABLE)) });
       batchSeq++;
+      // Playback QA: how many pieces of ink have arrived (scripts/qa — which ink came before a sentence).
+      if ((window as unknown as { __qaMarker?: boolean }).__qaMarker) (window as unknown as { __markerBatches?: number }).__markerBatches = batchSeq;
     };
 
     // What is on the board when it becomes live is drawn too, unless it is a whole board at once.

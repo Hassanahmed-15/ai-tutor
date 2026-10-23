@@ -3372,6 +3372,7 @@ export function LessonPlayer({
                   sentence={predictHold?.index === index ? predictHold.boardSentence : stage === "board" ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).index : summaryUnlocked && !lesson.playing ? Number.MAX_SAFE_INTEGER : -1}
                   taskDone={answeredPredictions.includes(beat.id)}
                   sentenceProgress={narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).progress}
+                  rate={rate}
                   completed={summaryUnlocked}
                   finished={narrationDoneIndex === index}
                   waitingForStudent={canvasHoldIndex === index}

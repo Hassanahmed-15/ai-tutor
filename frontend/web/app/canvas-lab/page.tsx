@@ -280,6 +280,8 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
   // voice — every board, sentence by sentence, the way a student sees it. For recording real playback
   // (scripts/qa/playback-qa.mts) without paying for narration.
   const [play, setPlay] = useState(false);
+  // ?rate=1.5: the student's playback speed, for the speaking clock and the marker alike.
+  const [labRate] = useState(() => (typeof window === "undefined" ? 1 : Math.max(0.5, Math.min(2, Number(new URLSearchParams(window.location.search).get("rate")) || 1))));
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     queueMicrotask(() => {
@@ -294,7 +296,7 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
   useEffect(() => {
     if (!play || finished) return;
     const words = (sentences[sentence] ?? "").split(/\s+/).filter(Boolean).length;
-    const ms = Math.max(1800, words * 400);
+    const ms = Math.max(1800, words * 400) / labRate;
     const start = performance.now();
     let raf = 0;
     const tick = (now: number) => {
@@ -306,7 +308,7 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play, finished, sentence, sentences]);
+  }, [play, finished, sentence, sentences, labRate]);
   useEffect(() => {
     if (!play || !finished) return;
     // The finished board stays up a moment, as it does after Aria's last word; then the next board.
@@ -332,7 +334,7 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
         <span className="min-w-0 flex-1 truncate font-normal text-white/60">{sentences[sentence]}</span>
       </div>
       <div className="relative min-h-0 flex-1">
-        <LessonCanvas panels={panels} currentIndex={board} sentence={predict ? predict.at - 1 : sentence} sentenceProgress={predict ? 1 : progress} finished={predict ? false : finished} waitingForStudent={predict ? true : finished} predictCard={predict?.card} checkFlow={Boolean(predict)} playing={!finished} topic={lecture.topic} onSpeak={(t) => console.log("[speak]", t)} onTellAria={(t) => console.log("[aria]", t)} onContinue={() => { setBoard((b) => Math.min(panels.length - 1, b + 1)); setSentence(0); setFinished(false); }} />
+        <LessonCanvas panels={panels} currentIndex={board} sentence={predict ? predict.at - 1 : sentence} sentenceProgress={predict ? 1 : progress} rate={labRate} finished={predict ? false : finished} waitingForStudent={predict ? true : finished} predictCard={predict?.card} checkFlow={Boolean(predict)} playing={!finished} topic={lecture.topic} onSpeak={(t) => console.log("[speak]", t)} onTellAria={(t) => console.log("[aria]", t)} onContinue={() => { setBoard((b) => Math.min(panels.length - 1, b + 1)); setSentence(0); setFinished(false); }} />
       </div>
     </main>
   );

@@ -52,6 +52,8 @@ type Props = {
   currentIndex: number;
   sentence: number;
   sentenceProgress: number;
+  /** The student's playback speed (1 = normal): the marker draws each sentence in the time it is said. */
+  rate?: number;
   /** The current board's narration has finished. */
   finished: boolean;
   /** The player is holding this board for the student (Try it / Draw it). */
@@ -96,7 +98,7 @@ export type CanvasKnowledge = {
 const ARIA = ARIA_INK;
 const STUDENT = "#2563eb";
 
-export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, onTaskResult, completed = false, taskDone = false, checkFlow = false, predictCard }: Props) {
+export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, rate = 1, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, onTaskResult, completed = false, taskDone = false, checkFlow = false, predictCard }: Props) {
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -649,7 +651,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 carryFrom={carryFrom[panel.key] ?? EMPTY_RECTS}
                 reducedMotion={reducedMotion}
               />
-              {live && labLook && <MarkerWriter key={panel.key} onRegion={onInkRegion} finished={finished} paused={paused} />}
+              {live && labLook && <MarkerWriter key={panel.key} onRegion={onInkRegion} finished={finished} paused={paused} rate={rate} sentence={sentence} />}
               {/* No writing on writing, on every board (owner, 2026-10-21: the most important fix). */}
               {live && <TextDeconflict key={`tx-${panel.key}`} />}
               <Corrections layout={layouts[i]} check={corrections[panel.key]} />
