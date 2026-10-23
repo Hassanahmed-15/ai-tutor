@@ -36,7 +36,7 @@ import { findLibraryFigure, libraryAssetTitle, libraryStageAsset } from "../figu
 import type { FigureComponent } from "../figures/types";
 import { loadSharedCanvasImage, loadSharedDiagramRecord, saveCanvasImage, saveCanvasLecture, saveSharedCanvasImage, saveSharedDiagramRecord, type CanvasLecture } from "./store";
 import { boardStructureProblem, dsaTeachingProblem, isDataStructureTopic, withoutStructure } from "./structure";
-import { csPictureRule, exampleProblem, isTypedCsTopic, isTypedDsaTopic, parentForestProblem, placeholderProblem, protocolStartProblem, syncProblem, type EarlierStructure } from "./csLessons";
+import { anchorTraceNotes, claimedLinksProblem, continuedCodeProblem, crowdedStepsProblem, csPictureRule, removeCutNodes, retargetLineReferences, exampleProblem, hardcodedResultProblem, isCodeNote, isTypedCsTopic, isTypedDsaTopic, parentForestProblem, placeholderProblem, pointerNameProblem, protocolStartProblem, repairFromExample, structureChangeProblem, syncProblem, type EarlierStructure } from "./csLessons";
 import { equationProblem, normalizeMath, orderNotesAsSaid, revealNotesWhenSaid, tidyNotes, withResultNotes } from "./equationCheck";
 import { MATHS_CHECK_MODEL, mathsCheck, mathsFixes, patchNarration, type ExaminerSubject } from "./mathsCheck";
 import { isMissingLine, writeMissingLines } from "./writeMissing";
@@ -88,6 +88,9 @@ export const TYPED_DSA_RULES = [
   `- ONE CHANGE PER STEP: one vertex coloured, one pointer moved, or one link turned — and each step's "lines" are only the 1–2 lines that just did it. Never put a whole loop body in one step.`,
   `- TWO-COLOURING / SETS: {"op": "group", "id", "group": 0 or 1} puts a vertex in Set A (0, drawn blue) or Set B (1, drawn orange) with a legend — use it on the sentence that colours the vertex. A same-set edge found is {"op": "edge", "from", "to", "as": "conflict"} (drawn red); a BFS/DFS tree edge is {"op": "edge", "from", "to", "as": "tree"} (drawn bold).`,
   `- NULL IS DRAWN: a pointer set to None/null is {"op": "point", "name", "to": null} — shown as "prev → null". In a list, {"op": "link", "from", "to"} replaces the node's next link, so the student watches each arrow turn.`,
+  `- THE STRUCTURE CHANGES AS ARIA SAYS IT: a deletion removes the node ({"op": "remove", "id"}) or unlinks it on the sentence that deletes it; a child taking its parent's place is {"op": "link", "from": grandparent, "to": child, "side"}; an insertion is {"op": "add", "id", "value", "parent", "side"}. Colouring a node is not deleting it.`,
+  `- A TRAVERSAL IS SHOWN, never listed: real code (recursive or with a stack/queue), one node visited per step ({"op": "mark", "as": "visit"}, then "done"), the output list growing in the variables panel ("out": "[1, 3, 4]"). Never write the answer as a list in the code.`,
+  `- POINTER NAMES at most 9 characters ("curr", "parent", "succ", "succ_par"), so the tag never covers the next node.`,
   `- THE VARIABLES PANEL ("state") holds at most 4 variables over the WHOLE board — only scalars and the queue/stack, each value at most 28 characters ("[B, C]"). Colours, sets, visited marks and links are shown ON the structure — never written there as a dictionary; a distance table goes on its own board or into the narration, never as a long dict in the panel.`,
   `- CODE: Python unless another language was asked for; lines at most 56 characters (break a longer statement inside its brackets); "reveal": "build".`,
   `The stage looks like this (fill it with THIS board's structure, values and lines):`,
@@ -322,7 +325,7 @@ function diagramKeyFor(beat: CanvasPlanBeat): string {
   return diagramCacheKey(`${beat.title} ${beat.brief}`, [...(beat.objects ?? []), ...(beat.requiredVisual?.mustShow ?? [])], nums);
 }
 
-export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; typed?: boolean; earlier?: EarlierStructure[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
+export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; typed?: boolean; earlier?: EarlierStructure[]; continueCode?: string[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
   if (beat.stage === "diagram") {
     const cached = await loadSharedDiagramRecord<{ spec: CanvasBoardSpec }>(diagramKeyFor(beat)).catch(() => null);
     if (cached?.spec?.stage?.kind === "diagram") return { spec: cached.spec, costUsd: 0, attempts: 1 };
@@ -339,6 +342,9 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       console.log(`[canvas] ${beat.id}: narration change undone — the board was not written again for it`);
       beat.script = own;
     }
+    // A typed CS trace's notes go up on the sentences of the narration that ships: the examiner can
+    // rewrite the narration after they were placed (BST review: four notes on one sentence).
+    if (typedCs && (shipped.stage.kind === "code" || shipped.stage.kind === "structure")) shipped.notes = anchorTraceNotes(shipped.notes, beat.script);
     return shipped;
   };
   // A code board in a data-structures lesson draws the structure beside the code (lib/canvas/structure.ts).
@@ -350,8 +356,10 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   // values, one example and keeping pace with Aria, and each kind of topic draws its own picture.
   const typedCs = Boolean(opts.typed) && isTypedCsTopic([topic, ...plan.map((b) => b.title)].join(" "));
   const picture = typedCs && needsStructure ? csPictureRule(`${topic} ${beat.title} ${beat.brief}`) ?? csPictureRule(topic) : null;
+  // A board that continues the last one's code keeps it exactly (BST review: insertion taught twice, two codes).
+  const continuing = typedCs && beat.stage === "code" && opts.continueCode?.length ? [continuedCodeProblem([], opts.continueCode)!] : [];
   const asked = typedDsa
-    ? [...extra, ...TYPED_DSA_RULES, ...(picture ? [picture] : [])]
+    ? [...extra, ...TYPED_DSA_RULES, ...(picture ? [picture] : []), ...continuing]
     : needsStructure && beat.stage === "code"
     ? [
         ...extra,
@@ -541,6 +549,15 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           beat.script = lines.script;
           writtenFor.set(spec, beat.script);
         }
+        // A typed CS lesson also corrects "line 10 copies…" over a line that cannot copy (more verbs, ties broken).
+        if (typedCs) {
+          const more = retargetLineReferences(spec.stage.lines, spec.stage.steps, beat.script);
+          if (more.fixed) {
+            console.log(`[canvas] ${beat.id}: ${more.fixed} more line number(s) corrected to the line that does it`);
+            beat.script = more.script;
+            writtenFor.set(spec, beat.script);
+          }
+        }
       }
       if (spec?.stage.kind === "figure" && spec.stage.component === "library") {
         // Filled again after validation from the index itself (the authoritative copy).
@@ -565,6 +582,22 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       if (spec.interaction?.kind === "quiz" || spec.interaction?.kind === "draw") delete spec.interaction;
       // A try-it task without enough reactions is left off, not a reason to fail the board.
       if (spec.interaction?.kind === "try" && spec.interaction.reactions.length < 2) delete spec.interaction;
+      // A typed CS tree that forgot one of the example's links (a node left floating) gets it back by code.
+      if (typedCs && opts.earlier?.length && (spec.stage.kind === "code" || spec.stage.kind === "structure") && spec.stage.structure) {
+        const repaired = repairFromExample(spec.stage.structure, opts.earlier);
+        if (repaired) {
+          spec.stage.structure = repaired;
+          console.log(`[canvas] board ${beat.id}: a node's link to its parent was missing — put back from the lesson's example`);
+        }
+      }
+      // A node a step cuts out of the tree (re-linked around, never removed) is removed on that step, by code.
+      if (typedCs && (spec.stage.kind === "code" || spec.stage.kind === "structure") && spec.stage.structure) {
+        const cut = removeCutNodes(spec.stage.structure, spec.stage.steps);
+        if (cut) {
+          spec.stage.steps = cut;
+          console.log(`[canvas] board ${beat.id}: a node cut out of the tree was left hanging — removed on its step`);
+        }
+      }
       const drawnStructure = spec.stage.kind === "code" ? spec.stage.structure : spec.stage.kind === "structure" ? spec.stage.structure : undefined;
       if (drawnStructure && (spec.stage.kind === "code" || spec.stage.kind === "structure") && keepSearchedCells(drawnStructure, spec.stage.steps)) console.log(`[canvas] board ${beat.id}: a search's removed cells are crossed out instead`);
       if (drawnStructure && (spec.stage.kind === "code" || spec.stage.kind === "structure") && repairPositionalIds(drawnStructure, spec.stage.steps, canvasSentences(beat.script))) console.log(`[canvas] board ${beat.id}: array ops read by position, rewritten to the cells' ids`);
@@ -624,6 +657,10 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       const spoken = await spokenNotes(openai, beat, clock);
       costUsd += spoken.costUsd;
       if (spoken.notes.length && spec.stage.kind !== "exam") spec.notes = anchorNotes(spoken.notes, beat.script);
+      // Beside code, a note that is itself a line of code only repeats it, often with other names.
+      if (typedCs && spec.stage.kind === "code") spec.notes = spec.notes.filter((n) => !isCodeNote(n.text));
+      // On a trace, each note goes up on the sentence that says it, however far the splitter moved it.
+      if (typedCs && (spec.stage.kind === "code" || spec.stage.kind === "structure")) spec.notes = anchorTraceNotes(spec.notes, beat.script);
       // A note that only repeats a row of the working is the same answer twice (maths benchmark R6).
       if (spec.stage.kind === "equation") {
         const eq = spec.stage;
@@ -795,13 +832,21 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       // panel, the lesson's one example, one parent per node, messages that arrive as arrows, and a board that
       // keeps pace with Aria. Checked last, so a board sent back for these has been reviewed and examined —
       // it is kept and ships if no rewrite passes. Sent back at most twice.
-      if (!fatal.length && typedCs && !hurried && attempt < 3 && clock.left() > 40_000) {
+      // A board the student is about to reach still gets ONE rewrite for what would teach wrongly (a deletion
+      // only said, words for values, the answer hard-coded, the same code rewritten); the finer checks wait.
+      if (!fatal.length && typedCs && attempt < 3 && (!hurried || attempt === 1) && clock.left() > 40_000) {
         const st = spec.stage;
         const steps = st.kind === "code" || st.kind === "structure" ? st.steps : null;
-        const problem = (steps ? placeholderProblem(steps) : null)
-          ?? (drawnStructure && opts.earlier?.length ? exampleProblem(drawnStructure, opts.earlier, beat.script) : null)
+        const sentences = canvasSentences(beat.script);
+        const serious = (steps ? placeholderProblem(steps) : null)
+          ?? (st.kind === "code" ? continuedCodeProblem(st.lines, opts.continueCode) ?? hardcodedResultProblem(st.lines) : null)
+          ?? (drawnStructure && steps ? structureChangeProblem(drawnStructure, steps, sentences) ?? pointerNameProblem(drawnStructure, steps) : null)
+          ?? (drawnStructure ? claimedLinksProblem(drawnStructure, sentences) : null)
+          ?? (steps && st.kind === "code" ? crowdedStepsProblem(steps) : null);
+        const problem = serious ?? (hurried ? null
+          : (drawnStructure && opts.earlier?.length ? exampleProblem(drawnStructure, opts.earlier, beat.script) : null)
           ?? (drawnStructure && steps ? parentForestProblem(topic, drawnStructure, steps) ?? protocolStartProblem(topic, drawnStructure, steps) : null)
-          ?? (!beat.overview && !beat.refresher ? syncProblem(spec, beat.script) : null);
+          ?? (!beat.overview && !beat.refresher ? syncProblem(spec, beat.script) : null));
         if (problem) {
           csFallback ??= spec;
           fatal = [{ gate: "cs-board", message: problem }];

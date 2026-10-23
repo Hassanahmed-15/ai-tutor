@@ -390,3 +390,253 @@ export function protocolStartProblem(lessonText: string, start: DsStart, steps: 
   if ([...roles.values()].some((s) => s.has("follower"))) return `a follower is the normal state: give no "follower" tag. Only the leader and a candidate carry a role tag ({"op": "point", "name": "candidate", "to": "b"}), and a server's tag moves when its role changes.`;
   return null;
 }
+
+// ── BST lecture review (2026-10-23): what kept a good DSA lecture at 6.5/10 ───────────────────────
+
+type Steps = Array<{ s: number; lines?: number[]; ops?: DsOp[] }>;
+
+/**
+ * A DELETION THAT IS ONLY SAID (BST review: "deleting 1 simply removes the link", "3 points directly to
+ * 4", while the tree only changed colour). A structure board whose narration deletes a value, re-links a
+ * child or inserts one must change the structure on the step that does it.
+ */
+export function structureChangeProblem(start: DsStart, steps: Steps, sentences: string[]): string | null {
+  if (start.kind === "array" || start.kind === "stack" || start.kind === "queue") return null;
+  const ops = steps.flatMap((st) => st.ops ?? []);
+  const talk = sentences.join(" ");
+  const deletes = /\b(?:delet|remov)\w*\s+(?:(?:the|node|key|value|leaf|it|original|successor)\s+){0,3}\d+\b/i.test(talk);
+  const relinks = /\bpoints? directly to\b|\breplaced by its (?:only )?child\b|\bre-?link\w*\b|\bbypass\w*\b|\bconnect\w* (?:its )?(?:child|parent) (?:directly )?to\b/i.test(talk);
+  const inserts = /\b(?:insert\w*|attach\w*)\s+(?:(?:the|a|new|node|key|value)\s+){0,3}\d+\b/i.test(talk);
+  const missing: string[] = [];
+  if (deletes && !ops.some((o) => o.op === "remove" || o.op === "unlink")) missing.push(`a deletion is said but nothing is removed — use {"op": "remove", "id"} (or {"op": "unlink"}) on the sentence that deletes it`);
+  if (relinks && !ops.some((o) => o.op === "link")) missing.push(`a child is re-linked in words only — give that sentence {"op": "link", "from": parent, "to": child, "side"} so the arrow moves`);
+  if (inserts && !ops.some((o) => o.op === "add" || o.op === "link")) missing.push(`an insertion is said but nothing is added — use {"op": "add", "id", "value", "parent", "side"} on the sentence that attaches it`);
+  return missing.length ? `the structure must change as Aria says it (a coloured node is not a deleted one): ${missing.join("; ")}.` : null;
+}
+
+/** A traversal's answer written as a list in the code (BST review: inorder = [1, 3, 4, 6, 8, 10, 14]). */
+export function hardcodedResultProblem(lines: string[]): string | null {
+  const line = lines.find((l) => /^\s*\w*(?:order|traversal|result|output|visited|path)\w*\s*=\s*\[\s*[\w'"]+(?:\s*,\s*[\w'"]+){3,}\s*\]/i.test(l));
+  return line ? `the code writes the answer as a list ("${line.trim().slice(0, 50)}"): show the algorithm producing it — real code (a recursive or loop traversal), one node visited per step ({"op": "mark", "as": "visit"}, then "done"), the output list growing in the variables panel.` : null;
+}
+
+/** Several executed steps on one sentence (BST review: a four-step walk said as "It moves left or right."). */
+export function crowdedStepsProblem(steps: Steps): string | null {
+  const per = new Map<number, number>();
+  for (const st of steps) per.set(st.s, (per.get(st.s) ?? 0) + 1);
+  const worst = [...per.entries()].find(([, n]) => n >= 3);
+  return worst ? `${worst[1]} steps of the trace happen on one sentence (sentence ${worst[0] + 1}): give each step its own sentence that says what it does ("5 is smaller than 6, so we move left").` : null;
+}
+
+/** Pointer tags longer than a short word cover the next node (BST review: "successor_pa" over node 4). */
+export const POINTER_NAME_SHORT = 9;
+export function pointerNameProblem(start: DsStart, steps: Steps): string | null {
+  const names = new Set([...(start.pointers ?? []).map((p) => p.name), ...steps.flatMap((st) => (st.ops ?? []).flatMap((o) => (o.op === "point" ? [o.name] : [])))]);
+  const long = [...names].filter((n) => n.length > POINTER_NAME_SHORT);
+  return long.length ? `pointer name(s) ${long.map((n) => `"${n}"`).join(", ")} are too long for the tag above a node: use at most ${POINTER_NAME_SHORT} characters ("succ", "parent", "curr"), and the same short name in the variables panel.` : null;
+}
+
+/** A continued code board writes the same code again (BST review: insertion taught twice with two codes). */
+export function continuedCodeProblem(lines: string[], previous: string[] | undefined): string | null {
+  if (!previous?.length) return null;
+  const norm = (ls: string[]) => ls.map((l) => l.trim()).filter(Boolean).join("\n");
+  return norm(lines) === norm(previous) ? null : `this board CONTINUES the last board: its code must be exactly the last board's lines, same numbering — continue the trace where it stopped instead of writing the algorithm again:\n${previous.map((l, i) => `${i + 1}  ${l}`).join("\n")}`;
+}
+
+/**
+ * A NODE LEFT WITHOUT ITS PARENT (BST review: board 8 drew 14 floating, its link from 10 forgotten).
+ * When a tree's nodes are the lesson's example and a non-root node has no parent link, the link is put
+ * back from the earlier board that had it — repaired by code, no rewrite. Returns the repaired start, or null.
+ */
+export function repairFromExample(drawn: DsStart, earlier: EarlierStructure[]): DsStart | null {
+  if (drawn.kind !== "tree") return null;
+  const valueOf = (n: { value: string }) => n.value.trim().replace(/\s*[(:=].*$/, "").toUpperCase();
+  const hasParent = new Set(drawn.edges.map((e) => e.to));
+  const roots = drawn.nodes.filter((n) => !hasParent.has(n.id));
+  if (roots.length <= 1) return null;
+  const sources = earlier.filter((e) => e.start.kind === "tree").flatMap((e) => {
+    const { frames } = runStructure(e.start, e.steps);
+    const last = frames.at(-1);
+    return [{ nodes: e.start.nodes, edges: e.start.edges }, ...(last ? [{ nodes: last.nodes, edges: last.edges }] : [])];
+  });
+  const repaired: DsStart = { ...drawn, edges: [...drawn.edges] };
+  let fixed = 0;
+  for (const orphan of roots.slice(1)) {
+    for (const src of sources) {
+      const srcNode = src.nodes.find((n) => valueOf(n) === valueOf(orphan));
+      const edge = srcNode && src.edges.find((e) => e.to === srcNode.id);
+      const srcParent = edge && src.nodes.find((n) => n.id === edge.from);
+      const parent = srcParent && drawn.nodes.find((n) => valueOf(n) === valueOf(srcParent));
+      if (!edge || !parent || parent.id === orphan.id) continue;
+      const side = (edge as { side?: "left" | "right" }).side;
+      if (side && repaired.edges.some((e) => e.from === parent.id && (e as { side?: string }).side === side)) continue;
+      repaired.edges.push({ from: parent.id, to: orphan.id, ...(side ? { side } : {}) });
+      fixed++;
+      break;
+    }
+  }
+  return fixed ? repaired : null;
+}
+
+/** A note that is a line of code (BST review: notes "def search(root, target):" beside the code itself). */
+export function isCodeNote(text: string): boolean {
+  const t = text.trim();
+  return /^(?:def|class|while|for|if|elif|else|return|import|from)\b.*(?:[:(]|\bin\b)/.test(t) || /\b[a-z_][a-z0-9_]*\.(?:value|key|left|right|next|parent|val)\b/i.test(t) || /\)\s*:\s*$/.test(t);
+}
+
+/**
+ * A DELETED NODE LEFT HANGING (BST review: a recap board re-linked 8→6 around node 3 and left 3 drawn,
+ * crossed out, floating beside the tree). In a tree, a node that loses its parent on a step and is not
+ * the root is removed on that same step — repaired by code. Returns the repaired steps, or null.
+ */
+export function removeCutNodes<T extends { s: number; ops?: DsOp[] }>(start: DsStart, steps: T[]): T[] | null {
+  if (start.kind !== "tree") return null;
+  const root = start.nodes.find((n) => !start.edges.some((e) => e.to === n.id))?.id;
+  if (!root) return null;
+  let changed = false;
+  const out: T[] = [];
+  for (let i = 0; i < steps.length; i++) {
+    const before = steps.slice(0, i + 1);
+    const { frames } = runStructure(start, before);
+    const frame = frames.at(-1);
+    if (!frame) { out.push(steps[i]); continue; }
+    const hasParent = new Set(frame.edges.map((e) => e.to));
+    // A node a later step uses again is not cut out: a new node made first and linked a step later, or
+    // a child detached and re-attached (removing it broke an insertion: "n5 is not on the board").
+    const usedLater = new Set(steps.slice(i + 1).flatMap((st) => st.ops ?? []).flatMap((o) => {
+      if (o.op === "link" || o.op === "unlink" || o.op === "edge") return [o.from, o.to];
+      if (o.op === "add") return [o.id, o.parent ?? ""];
+      if (o.op === "swap") return [o.a, o.b];
+      if (o.op === "point") return [o.to ?? ""];
+      return [o.id];
+    }));
+    const cut = frame.nodes.filter((n) => n.id !== root && !hasParent.has(n.id) && !frame.edges.some((e) => e.from === n.id) && !usedLater.has(n.id));
+    if (!cut.length) { out.push(steps[i]); continue; }
+    changed = true;
+    const fixed = { ...steps[i], ops: [...(steps[i].ops ?? []), ...cut.map((n) => ({ op: "remove" as const, id: n.id }))] };
+    out.push(fixed);
+    steps = [...out, ...steps.slice(i + 1)];
+  }
+  return changed ? out : null;
+}
+
+/**
+ * WHAT ARIA SAYS THE TREE IS, THE BOARD DRAWS (BST review: "continuing from links 8→3, 3→6, 6→5…" over a
+ * drawing of the original tree). When the narration names three or more links, the board's starting
+ * structure must have exactly those links.
+ */
+export function claimedLinksProblem(start: DsStart, sentences: string[]): string | null {
+  if (start.kind !== "tree" && start.kind !== "graph" && start.kind !== "list") return null;
+  const said = sentences.slice(0, 2).join(" ");
+  const pairs = [...said.matchAll(/\b([A-Z]|\d{1,3})\s*(?:→|->)\s*([A-Z]|\d{1,3})\b/g)].map((m) => `${m[1]}>${m[2]}`);
+  if (pairs.length < 3) return null;
+  const val = new Map(start.nodes.map((n) => [n.id, n.value.trim().replace(/\s*[(:=].*$/, "").toUpperCase()]));
+  const drawn = new Set(start.edges.map((e) => `${val.get(e.from)}>${val.get(e.to)}`));
+  const claimed = new Set(pairs.map((p) => p.toUpperCase()));
+  const missing = [...claimed].filter((p) => !drawn.has(p));
+  const extra = [...drawn].filter((p) => !claimed.has(p));
+  if (!missing.length && !extra.length) return null;
+  return `Aria says the structure has the links ${[...claimed].join(", ").replace(/>/g, "→")}, but the board starts with ${[...drawn].join(", ").replace(/>/g, "→") || "no links"}: draw exactly the links she names (the structure as the last board left it).`;
+}
+
+// ── Sync on trace boards (BST review, 2026-10-23) ───────────────────────────────────────────────
+
+/** Words of a note or sentence, with comparison symbols read as words ("4 < 8" says "4 less 8"). */
+function syncWords(text: string): string[] {
+  const t = text.toLowerCase()
+    // "Line 6 checks…": a line number is not a value of the trace.
+    .replace(/\blines?\s+\d+(?:\s*(?:[–-]|to|and)\s*\d+)?/g, " ")
+    .replace(/==|≡/g, " equal ").replace(/!=|≠/g, " not equal ").replace(/<=|≤/g, " less ").replace(/>=|≥/g, " greater ")
+    .replace(/(?<![-=])</g, " less ").replace(/>(?!=)/g, " greater ").replace(/→|->/g, " ");
+  return (t.match(/[a-z]+|\d+/g) ?? [])
+    .map((w) => ({ found: "find", finds: "find", went: "go", goes: "go", moved: "move", children: "child" })[w] ?? w)
+    .map((w) => w.replace(/(?:ing|ed|es|s)$/, "") || w)
+    // "delete" and "deleting" both become "delet", "move" and "moving" both "mov".
+    .map((w) => (w.length > 3 && !/\d/.test(w) ? w.replace(/e$/, "") : w))
+    .map((w) => (w === "smaller" || w === "small" ? "less" : w === "larger" || w === "bigger" || w === "great" ? "greater" : w === "equal" || w === "match" ? "equal" : w))
+    .filter((w) => w.length > 1 || /\d/.test(w))
+    .filter((w) => !["the", "and", "is", "it", "to", "of", "so", "we", "a", "an", "in", "on", "at", "that", "this", "line", "than", "with", "its", "now", "then", "has", "have", "had", "ha", "are", "was", "be", "by", "for"].includes(w));
+}
+
+/**
+ * NOTES WHEN SHE SAYS THEM, ON A TRACE (BST review: "4 < 8 → left", "4 > 3 → right" and "4 == 4 → found" all
+ * appeared at once, sentences before Aria reached them). The step-by-step splitter turns one planned
+ * sentence into four or five, and the usual anchoring looks only two sentences away. Here each note goes to
+ * the sentence that says most of it, anywhere after the previous note, ties to the later one.
+ */
+export function anchorTraceNotes<T extends { text: string; s: number }>(notes: T[], script: string): T[] {
+  const said = canvasSentences(script).map((x) => new Set(syncWords(x)));
+  let floor = 0;
+  return notes.map((note) => {
+    const want = syncWords(note.text);
+    if (!want.length) return note;
+    // A number names the step ("4", "8"): it counts double.
+    const weight = (w: string) => (/\d/.test(w) ? 2 : 1);
+    const total = want.reduce((a, w) => a + weight(w), 0);
+    const scores = said.map((words, i) => (i < floor ? -1 : want.filter((w) => words.has(w)).reduce((a, w) => a + weight(w), 0)));
+    // A sentence that lists many values ("the output is 4, 5, 6, 7, 10, 14") repeats every step's numbers:
+    // it is never where a one-step note goes (a note that is itself a list may go there).
+    const noteIsList = want.filter((w) => /\d/.test(w)).length >= 3;
+    for (let i = 0; i < said.length; i++) if (!noteIsList && [...said[i]].filter((w) => /\d/.test(w)).length >= 4) scores[i] = -1;
+    const bestScore = Math.max(0, ...scores);
+    // A clear match only: at least half the note's weight said in one sentence.
+    if (bestScore < Math.max(2, Math.ceil(total * 0.5))) {
+      const s = Math.min(Math.max(floor, note.s), said.length - 1);
+      floor = s;
+      return { ...note, s };
+    }
+    // Equal matches close together ("4 is less than 6" … "follows 6's left link"): the later one, where
+    // the step is done rather than weighed.
+    const first = scores.indexOf(bestScore);
+    let best = first;
+    for (let i = first + 1; i <= first + 2 && i < scores.length; i++) if (scores[i] === bestScore) best = i;
+    floor = best;
+    return { ...note, s: best };
+  });
+}
+
+/** Code verbs Aria uses ("Line 16 copies…") and what such a line contains. */
+const LINE_VERBS: Array<[RegExp, RegExp]> = [
+  [/^(?:copies|copy|stores|sets|assigns|saves|records|updates|moves|replaces|overwrites)\b/, /(?<![=!<>])=(?!=)/],
+  [/^(?:deletes|removes|calls|recurses|invokes)\b/, /\b[a-z_]\w*\s*\(/i],
+  [/^(?:checks|tests|compares|asks|sees|decides)\b/, /\b(?:if|elif|while)\b/],
+  [/^returns?\b/, /\breturn\b/],
+  [/^(?:loops|iterates|walks|follows|repeats)\b/, /\b(?:while|for)\b|\.(?:left|right|next)\b/],
+];
+
+/**
+ * THE LINE SHE NAMES IS THE LINE THAT DOES IT (BST review: "Line 10 copies the successor value" over
+ * line 10 `elif root.right is None:` — the copy is line 16; "line 11 recursively deletes" was line 17).
+ * For each "line N <verb>" whose line cannot do that verb, the line that can and that shares the most of
+ * the sentence's words (precise lines first, near the line named just before) is named and lit instead.
+ * Typed CS lessons only. Returns the narration and how many references it changed.
+ */
+export function retargetLineReferences(lines: string[], steps: Array<{ s: number; lines: number[] }>, script: string): { script: string; fixed: number } {
+  const sentences = canvasSentences(script);
+  const words = lines.map((l) => syncWords(l.replace(/[._()[\],:]/g, " ")));
+  let fixed = 0;
+  let previous = 0;
+  sentences.forEach((sentence, i) => {
+    const refs = [...sentence.matchAll(/\b([Ll]ine) (\d+)\b/g)];
+    if (refs.length !== 1) return;
+    const named = Number(refs[0][2]);
+    if (named < 1 || named > lines.length) return;
+    const after = sentence.slice((refs[0].index ?? 0) + refs[0][0].length).trim().toLowerCase().replace(/^(?:then|now|also|first|next|finally|recursively|again)\s+/, "");
+    const rule = LINE_VERBS.find(([verb]) => verb.test(after));
+    if (!rule || rule[1].test(lines[named - 1])) { previous = named; return; }
+    const said = new Set(syncWords(sentence));
+    const scored = lines.map((l, k) => {
+      if (!rule[1].test(l)) return { n: k + 1, score: -1 };
+      const mine = words[k];
+      const hit = mine.filter((w) => said.has(w) || [...said].some((s) => s.length >= 4 && w.length >= 4 && (s.startsWith(w) || w.startsWith(s)))).length;
+      return { n: k + 1, score: hit - 0.1 * (mine.length - hit) + (previous && Math.abs(k + 1 - previous) <= 2 ? 0.5 : 0) };
+    }).filter((c) => c.score > 0.5).sort((a, b) => b.score - a.score);
+    const pick = scored[0] && (!scored[1] || scored[0].score - scored[1].score >= 0.25) ? scored[0].n : 0;
+    if (!pick) return;
+    sentences[i] = sentence.replace(refs[0][0], `${refs[0][1]} ${pick}`);
+    for (const step of steps) if (step.s === i) step.lines = [pick];
+    previous = pick;
+    fixed++;
+  });
+  return { script: fixed ? sentences.join(" ") : script, fixed };
+}

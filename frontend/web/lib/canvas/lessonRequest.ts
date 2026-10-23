@@ -250,6 +250,8 @@ export const TYPED_DSA_PLAN = [
   "- Every board that explains or runs the algorithm DRAWS THE STRUCTURE ITSELF (a \"code\" board with the structure beside the code, or a \"structure\" board) — a graph lesson draws the graph, a linked-list lesson draws the list. Never teach a structure only in words or as a dictionary of values.",
   "- Two-colouring (bipartite checks, graph colouring) is SHOWN: the brief says which vertex goes in Set A and which in Set B, step by step, and where the same-set edge is when the graph is not bipartite.",
   "- Linked-list operations are shown ONE POINTER AT A TIME: the brief says which link turns on which sentence (\"1.next now points to None\"), and pointers that hold None are named.",
+  "- OPERATIONS BUILD ON EACH OTHER: a board starts from the structure the last board left (after inserting 5, the deletion board's tree has 5 in it). A board that goes back to the original example says so in its first sentence (\"Back to our original tree:\").",
+  "- EACH OPERATION HAS ITS OWN BOARD THAT SHOWS IT HAPPEN: a deletion lesson removes a leaf, re-links a one-child node and replaces a two-child node with its successor ON the structure, one case per sentence or board. A traversal visits the nodes one by one. An applications or comparison board is words and pictures, never a re-run of the operations.",
   "- STAY ON THE QUESTION ASKED: every board serves it. Never add a board on a different problem (asked how to detect a bipartite graph, there is no board on maximum matching, Hopcroft–Karp or flows).",
   "- Code is Python unless the student named another language.",
 ].join("\n");

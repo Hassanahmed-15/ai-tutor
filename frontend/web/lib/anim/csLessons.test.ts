@@ -1,9 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { csMechanismBoard, csPictureRule, exampleProblem, parentForestProblem, protocolStartProblem, isCsMechanismQuestion, isPlaceholderValue, isTypedCsTopic, isTypedDsaTopic, placeholderProblem, syncProblem } from "../canvas/csLessons";
+import { anchorTraceNotes, claimedLinksProblem, continuedCodeProblem, retargetLineReferences, crowdedStepsProblem, csMechanismBoard, removeCutNodes, csPictureRule, exampleProblem, hardcodedResultProblem, isCodeNote, parentForestProblem, pointerNameProblem, protocolStartProblem, repairFromExample, structureChangeProblem, isCsMechanismQuestion, isPlaceholderValue, isTypedCsTopic, isTypedDsaTopic, placeholderProblem, syncProblem } from "../canvas/csLessons";
 import { ladderBoardBudget } from "../canvas/conceptLadder";
 import { examinerFor } from "../canvas/mathsCheck";
-import type { CanvasBoardSpec, DsStart } from "../canvas/types";
+import type { CanvasBoardSpec, DsOp, DsStart } from "../canvas/types";
 
 // The CS test of 2026-10-23: 50 niche CS topics, and everyday uses of CS words.
 const CS = [
@@ -161,4 +161,87 @@ test("a protocol's messages are named, and only changing roles carry a tag", () 
   assert.match(protocolStartProblem(raft, servers, [{ s: 1, ops: [{ op: "link", from: "b", to: "a", label: "link" }] }]) ?? "", /no name/);
   assert.match(protocolStartProblem(raft, servers, [{ s: 1, ops: [{ op: "point", name: "follower", to: "a" }] }]) ?? "", /no "follower" tag/);
   assert.equal(protocolStartProblem(raft, servers, [{ s: 1, ops: [{ op: "point", name: "candidate", to: "b" }, { op: "link", from: "b", to: "a", label: "vote?" }] }]), null);
+});
+
+// The BST review (2026-10-23): what kept a good DSA lecture at 6.5/10.
+const bst = (edges: Array<[string, string, "left" | "right"]>): DsStart => ({
+  kind: "tree",
+  variant: "bst",
+  nodes: ["8", "3", "10", "1", "6", "14", "4"].map((v) => ({ id: `n${v}`, value: v })),
+  edges: edges.map(([a, b, side]) => ({ from: `n${a}`, to: `n${b}`, side })),
+});
+const FULL: Array<[string, string, "left" | "right"]> = [["8", "3", "left"], ["8", "10", "right"], ["3", "1", "left"], ["3", "6", "right"], ["6", "4", "left"], ["10", "14", "right"]];
+
+test("BST review: a deletion or re-link that is only said sends the board back", () => {
+  const said = ["A leaf has no children, so deleting 1 simply removes the link from 3 to 1.", "6 is replaced by its child, so 3 points directly to 4."];
+  assert.match(structureChangeProblem(bst(FULL), [{ s: 0, ops: [{ op: "mark", id: "n1", as: "remove" }] }], said) ?? "", /nothing is removed/);
+  assert.equal(structureChangeProblem(bst(FULL), [{ s: 0, ops: [{ op: "remove", id: "n1" }] }, { s: 1, ops: [{ op: "link", from: "n3", to: "n4", side: "right" }] }], said), null);
+  assert.equal(structureChangeProblem(bst(FULL), [], ["Deletion has three cases."]), null, "talk about deletion in general is fine");
+});
+
+test("BST review: a traversal's answer hard-coded in the code is sent back", () => {
+  assert.match(hardcodedResultProblem(["inorder = [1, 3, 4, 6, 8, 10, 14]"]) ?? "", /writes the answer as a list/);
+  assert.equal(hardcodedResultProblem(["def inorder(node):", "    if node is None: return", "    out.append(node.value)"]), null);
+  assert.equal(hardcodedResultProblem(["queue = [start]"]), null);
+});
+
+test("BST review: four steps on one sentence, long pointer names and re-written continued code are caught", () => {
+  assert.match(crowdedStepsProblem([{ s: 3 }, { s: 3 }, { s: 3 }, { s: 4 }]) ?? "", /3 steps of the trace happen on one sentence \(sentence 4\)/);
+  assert.equal(crowdedStepsProblem([{ s: 1 }, { s: 2 }, { s: 2 }]), null);
+  assert.match(pointerNameProblem(bst(FULL), [{ s: 0, ops: [{ op: "point", name: "successor_parent", to: "n6" }] }]) ?? "", /"successor_parent"/);
+  assert.equal(pointerNameProblem(bst(FULL), [{ s: 0, ops: [{ op: "point", name: "succ_par", to: "n6" }] }]), null);
+  assert.equal(continuedCodeProblem(["def insert(root, key):", "  pass"], ["def insert(root, key):", "  pass"]), null);
+  assert.match(continuedCodeProblem(["def insert(root, key):", "  node = Node(key)"], ["def insert(root, key):", "  pass"]) ?? "", /CONTINUES the last board/);
+  assert.equal(continuedCodeProblem(["x = 1"], undefined), null);
+});
+
+test("BST review: a node left floating gets its link back from the lesson's example", () => {
+  const forgot = bst(FULL.filter(([a, b]) => !(a === "10" && b === "14")));
+  const repaired = repairFromExample(forgot, [{ start: bst(FULL), steps: [] }]);
+  assert.ok(repaired?.edges.some((e) => e.from === "n10" && e.to === "n14" && e.side === "right"));
+  assert.equal(repairFromExample(bst(FULL), [{ start: bst(FULL), steps: [] }]), null, "nothing to repair");
+});
+
+test("BST review: notes that are lines of code are dropped beside the code, link notes stay", () => {
+  for (const t of ["def search(root, target):", "while root is not None:", "if target == root.key:", "return root"]) assert.equal(isCodeNote(t) || t === "return root", true, t);
+  for (const t of ["5 < 8: move left", "3.right = 6", "Successor = smallest right key", "Delete key 3"]) assert.equal(isCodeNote(t), false, t);
+});
+
+test("BST review: a node re-linked around is removed, and named links must match the drawing", () => {
+  const tree: DsStart = { kind: "tree", variant: "bst", nodes: ["8", "3", "10", "6"].map((v) => ({ id: `n${v}`, value: v })), edges: [{ from: "n8", to: "n3", side: "left" }, { from: "n8", to: "n10", side: "right" }, { from: "n3", to: "n6", side: "right" }] };
+  const steps: Array<{ s: number; ops: DsOp[] }> = [{ s: 0, ops: [{ op: "mark", id: "n3", as: "remove" }] }, { s: 1, ops: [{ op: "link", from: "n8", to: "n6", side: "left" }] }];
+  const fixed = removeCutNodes(tree, steps);
+  assert.ok(fixed?.[1].ops?.some((o) => o.op === "remove" && o.id === "n3"), "3 is removed on the step that cut it out");
+  assert.equal(removeCutNodes(tree, [{ s: 0, ops: [{ op: "mark" as const, id: "n3", as: "visit" as const }] }]), null);
+  assert.match(claimedLinksProblem(tree, ["This board continues from links 8→3, 8→10, 3→6, and 6→5."]) ?? "", /draw exactly the links she names/);
+  assert.equal(claimedLinksProblem(tree, ["This board continues from links 8→3, 8→10 and 3→6."]), null);
+  assert.equal(claimedLinksProblem(tree, ["We delete 3."]), null);
+});
+
+test("BST review: notes go up on the sentence that says them, however far the splitter moved them", () => {
+  const script = "We start at the root node, 8. Line 3 checks whether 4 equals 8; it does not. Line 5 checks whether 4 is less than 8; it is. Line 6 follows 8's left link, so node becomes 3. Line 3 checks whether 4 equals 3; it does not. Line 5 checks whether 4 is less than 3; it is not, so the else branch is selected. Line 8 follows 3's right link, so node becomes 6. Line 3 checks whether 4 equals 6; it does not. Line 5 checks whether 4 is less than 6; it is. Line 6 follows 6's left link, so node becomes 4. Line 3 finds that the key 4 equals node.key.";
+  const notes = anchorTraceNotes([{ text: "4 < 8 → left", s: 1 }, { text: "4 > 3 → right", s: 1 }, { text: "4 < 6 → left", s: 3 }, { text: "4 == 4 → found", s: 4 }], script);
+  assert.deepEqual(notes.map((n) => n.s), [2, 5, 9, 10]);
+  // A note that matches nothing never moves before the one before it.
+  assert.deepEqual(anchorTraceNotes([{ text: "4 < 8 → left", s: 1 }, { text: "something else", s: 0 }], script).map((n) => n.s), [2, 2]);
+});
+
+test("BST review: 'line 10 copies…' over a line that cannot copy names and lights the line that does", () => {
+  const lines = ["def delete(root, key):", "    if root is None:", "        return None", "    if key < root.value:", "        root.left = delete(root.left, key)", "    elif key > root.value:", "        root.right = delete(root.right, key)", "    elif root.left is None:", "        return root.right", "    elif root.right is None:", "        return root.left", "    else:", "        succ = root.right", "        while succ.left:", "            succ = succ.left", "        root.value = succ.value", "        root.right = delete(root.right, succ.value)", "    return root"];
+  const steps = [{ s: 0, lines: [10] }, { s: 1, lines: [11] }, { s: 2, lines: [11] }];
+  const r = retargetLineReferences(lines, steps, "Line 10 copies the successor value 10 into the root node. Line 11 recursively deletes the original successor node containing 10 from the right subtree. Line 11 assigns that returned node as the root's right child.");
+  assert.equal(r.fixed, 3);
+  assert.match(r.script, /^Line 16 copies .* Line 17 recursively deletes .* Line 17 assigns/);
+  assert.deepEqual(steps.map((s) => s.lines), [[16], [17], [17]]);
+  // A line that can do what she says is left alone.
+  assert.equal(retargetLineReferences(lines, [{ s: 0, lines: [16] }], "Line 16 copies the successor value into the root.").fixed, 0);
+});
+
+test("BST review: a new node made first and linked a step later is not removed as 'cut out'", () => {
+  const tree: DsStart = { kind: "tree", variant: "bst", nodes: ["8", "3", "4"].map((v) => ({ id: `n${v}`, value: v })), edges: [{ from: "n8", to: "n3", side: "left" }, { from: "n3", to: "n4", side: "right" }] };
+  const insert: Array<{ s: number; ops: DsOp[] }> = [{ s: 0, ops: [{ op: "add", id: "n5", value: "5" }] }, { s: 1, ops: [{ op: "link", from: "n4", to: "n5", side: "right" }] }];
+  assert.equal(removeCutNodes(tree, insert), null);
+  // Deleting one-child 3: 4 is detached, then linked to 8's left where 3 was.
+  const relink: Array<{ s: number; ops: DsOp[] }> = [{ s: 0, ops: [{ op: "unlink", from: "n3", to: "n4" }, { op: "unlink", from: "n8", to: "n3" }, { op: "remove", id: "n3" }] }, { s: 1, ops: [{ op: "link", from: "n8", to: "n4", side: "left" }] }];
+  assert.equal(removeCutNodes(tree, relink), null);
 });

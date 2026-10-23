@@ -214,7 +214,9 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         // A CS sentence that packs several lines or steps is split into one per line or step, in the plan,
         // so each board is written once for the narration it plays with (lib/canvas/squeeze.ts).
         if (visualMode !== "strict" && (visualMode === "prompt" ? isTypedCsTopic : isCsTopic)([input.topic, ...plan.beats.map((b) => b.title)].join(" "))) {
-          const squeezed = squeezedInPlan(plan.beats).slice(0, 24);
+          // A typed prompt splits only the boards that trace something (code, a structure): an application
+          // board split one-step-a-sentence read "They also use inserting 5." (BST review, 2026-10-23).
+          const squeezed = squeezedInPlan(visualMode === "prompt" ? plan.beats.filter((b) => b.stage === "code" || b.stage === "structure") : plan.beats).slice(0, 24);
           if (squeezed.length) {
             try {
               const user = squeezed.map((x, i) => `[${i}] ${x.text}`).join("\n");
@@ -323,6 +325,11 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
  * and its references to other boards resolved. Never throws — a board that cannot be written falls
  * back to a simple scene, so the lesson never loses a board.
  */
+/** A board that continues the last one (lib/canvas/splitWorking.ts) keeps that board's code exactly. */
+function continuedCodeOf(beat: CanvasPlanBeat, previous: CanvasBoardSpec | undefined): string[] | undefined {
+  return beat.id.endsWith("-continued") && previous?.stage.kind === "code" ? previous.stage.lines : undefined;
+}
+
 export async function writeCanvasBoard(args: {
   userId: string;
   sessionId: string;
@@ -383,7 +390,7 @@ export async function writeCanvasBoard(args: {
     else if (beat.stage === "exam") throw new Error("an exam board needs the lesson's mark scheme");
     // `typed`: a lesson from a typed prompt (no PDF, video or course behind it) gets the DSA teaching rules.
     // `earlier`: the structures the earlier boards drew, so a typed CS board stays on the lesson's one example.
-    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, typed, earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined });
+    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, typed, earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined, continueCode: typed ? continuedCodeOf(beat, args.earlier[index - 1]) : undefined });
     pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra));
   } catch (error) {
     log.push(`${beat.id}: ${(error as Error).message}`);
