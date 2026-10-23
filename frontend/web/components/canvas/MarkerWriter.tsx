@@ -56,9 +56,18 @@ const BOARD_FLIGHT_MS = 1500;
 const WHOLE_BOARD = 200;
 const TRANSPARENT = /^(none|transparent)$|rgba\([^)]*,\s*0\)$/;
 
-export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: Rect | null, ms: number, drawing: boolean) => number; finished?: boolean } = {}) {
+export function MarkerWriter({ onRegion, finished = false, paused = false }: { onRegion?: (box: Rect | null, ms: number, drawing: boolean) => number; finished?: boolean; paused?: boolean } = {}) {
   const ref = useRef<SVGGElement>(null);
   const regionRef = useRef(onRegion);
+  /**
+   * PAUSED, THE PEN STOPS (owner, 2026-10-23: "when I click pause the pen keeps on writing"). The
+   * drawing runs on its own clock; while paused it stands still, and on resume every time it was
+   * keeping moves on by the paused time, so the stroke continues from exactly where it stopped.
+   */
+  const pausedRef = useRef(paused);
+  useEffect(() => {
+    pausedRef.current = paused;
+  }, [paused]);
   /** Opened on a finished board (a jump back, a replay): what is there is simply there. Read at mount. */
   const openedFinished = useRef(finished);
   /** Everything held is put on the board at once (set by the drawing effect). */
@@ -267,8 +276,11 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
       return false;
     };
     let settleSince = 0;
-    const mountedAt = performance.now();
+    let mountedAt = performance.now();
     mountedRef.current = mountedAt;
+    /** When the current pause began (0 = playing), and scenery waiting to come in at a time. */
+    let pausedAt = 0;
+    const laterReveals: Array<{ at: number; els: SVGGraphicsElement[] }> = [];
     flushRef.current = () => {
       if (current) finish(current.job);
       current = null;
@@ -278,6 +290,23 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
     };
     const tick = (now: number) => {
       raf = requestAnimationFrame(tick);
+      // Paused: nothing moves. Resumed: every time kept moves on by the pause, so nothing jumps ahead.
+      if (pausedRef.current) {
+        pausedAt ||= now;
+        return;
+      }
+      if (pausedAt) {
+        const away = now - pausedAt;
+        pausedAt = 0;
+        if (current) current.start += away;
+        mountedAt += away;
+        if (settleSince) settleSince += away;
+        if (idle) idle += away;
+        for (const r of laterReveals) r.at += away;
+      }
+      for (let i = laterReveals.length - 1; i >= 0; i--) {
+        if (laterReveals[i].at <= now) reveal(laterReveals.splice(i, 1)[0].els);
+      }
       // The pen never writes on a board the camera has not reached yet.
       if (!current && now - mountedAt < BOARD_FLIGHT_MS) return;
       if (!current) {
@@ -314,7 +343,8 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
           // The piece's scenery (grid, ticks, axis numbers) comes in as the pen starts it.
           if (batch?.scenery.length) {
             const els = batch.scenery;
-            if (wait > 0) window.setTimeout(() => reveal(els), wait);
+            // On the pen's own clock, so a pause holds it too.
+            if (wait > 0) laterReveals.push({ at: now + wait, els });
             else reveal(els);
           }
         } else {

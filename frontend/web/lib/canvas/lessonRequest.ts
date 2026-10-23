@@ -10,6 +10,7 @@ import { strictPlanSection, videoParts, videoPlanSection } from "./sourceLessons
 import { isVideoSource } from "../youtube/videoSource";
 import { packForPrompt } from "../webSources";
 import { isDataStructureTopic } from "./structure";
+import { csPlanRule, isTypedCsTopic, isTypedDsaTopic } from "./csLessons";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
 
 /**
@@ -130,7 +131,7 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   const pageBoards = strictDoc && !question && input.sourceScope?.breadth.kind === "whole" ? Math.max(0, Math.min(14, substantivePages(strictDoc).length) - boards) : 0;
   if (parts.length > 0 && isLadder(input.outline?.subtopics)) {
     // THE CONCEPT LADDER (owner, 2026-10-20): what the student does not know is built from scratch.
-    lines.push(...ladderCanvasSection(input.outline!.subtopics));
+    lines.push(...ladderCanvasSection(input.outline!.subtopics, typedCsLesson(input)));
   } else if (parts.length > 0) {
     lines.push(
       "",
@@ -198,12 +199,24 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // the writer compress an eight-step derivation into "this gives the result"; working boards are as
   // long as their steps — the board wipes when full and a longer one continues on the next board
   // (lib/canvas/splitWorking.ts).
-  if (!strictDoc && !video && isLabLookTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) {
+  // A typed-prompt computer-science lesson (lib/canvas/csLessons.ts): niche CS topics the shared checks
+  // miss (KMP, Bloom filters, Raft, paging…) get the CS rules too. PDF, video and course lessons keep the shared checks.
+  const typedPrompt = !doc && !strictDoc && !video && !course;
+  const lessonText = [input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" ");
+  const typedCs = typedPrompt && isTypedCsTopic(lessonText);
+  if (!strictDoc && !video && (typedCs || isLabLookTopic(lessonText))) {
     lines.push("A board that WORKS something out — a proof, a derivation, a worked example, a rearrangement — is as long as its steps, past the length above: ONE sentence per step, every step a textbook shows (each expansion, substitution, cancelling, rearrangement and the result), with its reason, up to 10 sentences; longer working continues on the next board by itself. Never compress working to fit a length (\"this gives the result\", \"simplifying, we get\" with the line missing).");
   }
   // DATA STRUCTURES are taught with the structure itself on the board (owner's direction, 2026-10-15).
   // A source lesson keeps its own rules: its boards follow the document or the video.
-  if (!strictDoc && !video && isDataStructureTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) {
+  // A typed prompt (no PDF, video or course behind it) also counts the graph algorithms the shared list
+  // misses: "BFT in Bipartite Graphs" got none of this and drew no graph (owner, 2026-10-23).
+  const typedDsa = typedPrompt && isTypedDsaTopic(lessonText);
+  if (typedDsa) lines.push("", TYPED_DSA_PLAN);
+  // The picture each kind of CS topic needs: a protocol as machines and messages, KMP as cells and pointers.
+  const picture = typedCs ? csPlanRule(lessonText) : null;
+  if (picture) lines.push("", picture);
+  if (!strictDoc && !video && (typedPrompt ? typedDsa : isDataStructureTopic(lessonText))) {
     lines.push(
       "",
       "THIS IS A DATA STRUCTURES / ALGORITHMS LESSON: every board that runs an operation (insert, search, delete, traverse, rotate, push, pop, swap, BFS, DFS) is a \"code\" board in REAL code — Python, or the exam board's pseudocode when the syllabus uses it — every line a statement, never a description (\"shift 7 right\", \"search cost: inspect up to n nodes\") — with the structure drawn beside it, changing line by line; a board that explains the structure itself is a \"structure\" board; never illustration, flow or scene for a data structure. Each brief names the starting values and the operation, and the script walks it one step per sentence with those same values — a board that runs an operation may take up to 10 sentences for that.",
@@ -212,10 +225,10 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // MATHS AND COMPUTER SCIENCE are taught in a visible structure (owner, 2026-10-21: "keep your
   // intentions clear and teach in a structured way — I really don't get how you teach"; "if there is
   // any proof it should build step by step"). Not for a lesson strictly from a source: its order is the source's.
-  if (!strictDoc && !video && isLabLookTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) lines.push("", MATHS_CS_TEACHING);
+  if (!strictDoc && !video && (typedCs || isLabLookTopic(lessonText))) lines.push("", MATHS_CS_TEACHING);
   // COMPUTER SCIENCE is taught as a CS teacher teaches it (owner's manager, a CS teacher, 2026-10-22:
   // the visuals and code were nice but it "never really teaches" and did not explain its visuals).
-  if (!strictDoc && !video && isCsTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) lines.push("", CS_TEACHING);
+  if (!strictDoc && !video && (typedPrompt ? typedCs : isCsTopic(lessonText))) lines.push("", CS_TEACHING);
   if (doc) lines.push("", documentPlanSection(doc, listings, Boolean(question)));
   if (strictDoc) lines.push("", strictPlanSection(strictDoc, strictQuestion));
   // What the student already knows of these pages (lib/intake.ts): how deep each part goes.
@@ -224,6 +237,22 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   if (course) lines.push("", curriculumPlanSection(course));
   return lines.join("\n");
 }
+
+/**
+ * A TYPED DATA-STRUCTURES LESSON, PLANNED THE WAY DSA IS TAUGHT WELL (owner, 2026-10-23: a bipartite
+ * lecture drew no graph and drifted into maximum matching; a linked-list reversal "made no sense").
+ * One small example from start to finish (textbook figures, VisuAlgo), the structure on every working
+ * board, and every board on the question asked.
+ */
+export const TYPED_DSA_PLAN = [
+  "THIS LESSON TEACHES A DATA STRUCTURE OR ALGORITHM FROM A TYPED REQUEST:",
+  "- Choose ONE small example before planning — 4 to 7 nodes with short names (A–G, or small numbers), e.g. a 5-vertex graph with one odd cycle for bipartite checking, or the list 1 → 2 → 3 → None for reversal — and name it, with its values AND its links (\"A→C, B→C, B→E, C→D, D→F\"), in EVERY board's brief. Every board uses that same example; a later board continues from the state the earlier one ended in.",
+  "- Every board that explains or runs the algorithm DRAWS THE STRUCTURE ITSELF (a \"code\" board with the structure beside the code, or a \"structure\" board) — a graph lesson draws the graph, a linked-list lesson draws the list. Never teach a structure only in words or as a dictionary of values.",
+  "- Two-colouring (bipartite checks, graph colouring) is SHOWN: the brief says which vertex goes in Set A and which in Set B, step by step, and where the same-set edge is when the graph is not bipartite.",
+  "- Linked-list operations are shown ONE POINTER AT A TIME: the brief says which link turns on which sentence (\"1.next now points to None\"), and pointers that hold None are named.",
+  "- STAY ON THE QUESTION ASKED: every board serves it. Never add a board on a different problem (asked how to detect a bipartite graph, there is no board on maximum matching, Hopcroft–Karp or flows).",
+  "- Code is Python unless the student named another language.",
+].join("\n");
 
 /** How a maths or computer-science lesson is taught: its structure said out loud, proofs built step by step. */
 export const MATHS_CS_TEACHING = [
@@ -378,9 +407,18 @@ export function canvasRefresherAllowed(_input: ProgressiveLectureInput, _knowled
   return false;
 }
 
+/**
+ * A computer-science lesson from a typed prompt (no PDF, video or course behind it; lib/canvas/csLessons.ts):
+ * its ladder is compact, one or two boards a new part and ten at most.
+ */
+export function typedCsLesson(input: ProgressiveLectureInput): boolean {
+  if (referenceDocumentOf(input) || strictDocumentOf(input) || videoDocumentOf(input) || curriculumDocumentOf(input)) return false;
+  return isTypedCsTopic([input.topic, input.focus ?? "", ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "));
+}
+
 export function canvasBoardCount(input: ProgressiveLectureInput): number {
   // A lesson on the concept ladder (lib/canvas/conceptLadder.ts) may take up to its ladder's boards.
-  if (isLadder(input.outline?.subtopics)) return ladderBoardBudget(input.outline!.subtopics).max;
+  if (isLadder(input.outline?.subtopics)) return ladderBoardBudget(input.outline!.subtopics, typedCsLesson(input)).max;
   const course = curriculumDocumentOf(input);
   const parts = course && !input.outline ? curriculumParts(course).length : input.outline?.subtopics.filter((s) => s.title.trim()).length ?? 0;
   if (parts > 0) return Math.min(14, parts);

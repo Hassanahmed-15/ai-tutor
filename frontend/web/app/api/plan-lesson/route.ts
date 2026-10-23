@@ -34,6 +34,7 @@ import {
 } from "@/lib/learnerProfile";
 import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
 import { learnerInstruction } from "@/lib/learnerProfile";
+import { CS_LESSON_LENGTH, isCsMechanismQuestion, isTypedCsTopic } from "@/lib/canvas/csLessons";
 import { PROMPT_OUTLINE_RULES, QUESTION_SHAPE_PROMPT, capQuestionOutline, directQuestionInstruction, parseQuestionShape, type QuestionShape, isBroadTopicQuestion, isDirectQuestion, isTopicRequest, outlineLearnerInstruction, topicLessonInstruction } from "@/lib/planPrompt";
 import { nounTitle, polishBeatPlan } from "@/lib/beatPresentation";
 import { costFor } from "@/lib/modelPricing";
@@ -1056,11 +1057,15 @@ export async function POST(req: Request) {
     // A check is read WITHOUT the document in front of the student ("Which two roles are named?" made
     // no sense; probe 2026-10-20): it asks about the subject itself, plainly, and every option is true to it.
     const standalone = sourceDocument ? "\nEach check must make sense on its own, without the document in front of the student: about the subject itself, never \"named\", \"shown\", \"listed\", \"in the text\" or \"the activity\". Every right option must be exactly true (you look at pollen grains WITH a microscope; you do not collect a microscope)." : "";
+    // A TYPED PROMPT'S CARD READS LIKE CLAUDE'S (owner, 2026-10-23): every part has a one-line "about"
+    // shown under it, and a check names its subject — "Which item comes out first?" left the student
+    // asking "first out of what?" (professor's review, 2026-10-20). Document lessons keep their prompt.
+    const typedCard = sourceDocument ? "" : "\nEVERY PART ALSO HAS AN \"about\" — so each part is {\"label\": string, \"about\": string, \"check\": {...}}, where \"about\" is at most 9 plain words saying what that part is (it is shown under the label: \"BFS traversal\" → \"visiting vertices level by level with a queue\"). Never leave \"about\" out. Every check question NAMES WHAT IT IS ABOUT, so it reads on its own: \"In BFS, which vertex leaves the queue first?\", never \"Which item comes out first?\"; \"In a bipartite graph, where can an edge go?\", never \"Where can it go?\".";
     try {
       // The planning model, not the small one: a "right" answer that is wrong tells a student who
       // knows the part that they do not (the small model said electrolysis breaks down "water";
       // probe 2026-10-20). Started early by the page, so its few seconds are mostly hidden.
-      const { json, costUsd: spent } = await jsonCall(canvasClient(), PLAN_MODEL, INTAKE_PROMPT, `Topic: "${topic}"${request && request.toLowerCase() !== topic.toLowerCase() ? `\nWhat the student asked: "${request}"` : ""}${level}${wording}${fromSource}${strict}${standalone}${sourceDocument && given.length ? `\n\nThe document (for the checks):\n${summarizeSourceDocumentForPlanning(sourceDocument).slice(0, 6000)}` : ""}`, 1800);
+      const { json, costUsd: spent } = await jsonCall(canvasClient(), PLAN_MODEL, INTAKE_PROMPT, `Topic: "${topic}"${request && request.toLowerCase() !== topic.toLowerCase() ? `\nWhat the student asked: "${request}"` : ""}${level}${wording}${fromSource}${strict}${standalone}${typedCard}${sourceDocument && given.length ? `\n\nThe document (for the checks):\n${summarizeSourceDocumentForPlanning(sourceDocument).slice(0, 6000)}` : ""}`, 1800);
       const named = sanitizeIntake(json);
       // A document's parts are exactly its groups: if the model named fewer, the missing ones keep
       // their first section's heading (unchecked) so no page is left out of what the student is asked.
@@ -1264,7 +1269,17 @@ export async function POST(req: Request) {
      * one slide. A specific question ("how is the counter incremented in a while loop?") stays 1-2
      * slides. With a document, any question is still answered from the document as before.
      */
-    const broadTopic = !sourceDocument && isBroadTopicQuestion(questionText);
+    /*
+     * A STUDENT NEW TO A CS ALGORITHM OR SYSTEM WHO ASKS HOW IT WORKS gets a lesson (CS test, 2026-10-23):
+     * "How does Union-Find work?" was capped at 3 boards as a question, for a student who had ticked
+     * "all new to me". Typed prompts in the normal mode only (research on, no document), and only when
+     * the student does not already know most of its parts.
+     */
+    const csTyped = body.research === true && !sourceDocument && isTypedCsTopic(`${topic} ${questionText}`);
+    const partsKnown = Array.isArray(body.learnerProfile?.parts) ? (body.learnerProfile.parts as Array<{ status?: unknown }>) : [];
+    const newToIt = partsKnown.filter((p) => p?.status === "known").length * 2 <= partsKnown.length;
+    const csMechanism = csTyped && !scopedQuestion && newToIt && isCsMechanismQuestion(questionText);
+    const broadTopic = !sourceDocument && (isBroadTopicQuestion(questionText) || csMechanism);
     // A whole topic asked as a question ("what is photosynthesis") is taught as a lesson — by either
     // rule: isTopicRequest (which also keeps it out of isDirectQuestion) or isBroadTopicQuestion.
     const topicRequest = !scopedQuestion && (isTopicRequest(questionText) || broadTopic);
@@ -1355,6 +1370,8 @@ export async function POST(req: Request) {
       : directQuestion
       ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument, shape })
       : topicRequest ? topicLessonInstruction(questionText) : "";
+    // A typed CS lesson is 5 to 8 parts, none repeating another (lib/canvas/csLessons.ts).
+    const csLengthLine = csTyped && !directQuestion && !syllabusAsked(null) ? `\n${CS_LESSON_LENGTH}` : "";
     // A strict question about something the document never mentions is answered by saying so — never by
     // giving its content another name (lib/canvas/documentContext.ts termsNotInDocument).
     const absent = strictPdf && directQuestion ? termsNotInDocument(questionText, strictPdf) : [];
@@ -1372,7 +1389,7 @@ export async function POST(req: Request) {
     // A typed-prompt lesson (no document) titles every slide by its concept and covers each topic once.
     const promptRules = sourceDocument ? "" : PROMPT_OUTLINE_RULES;
     const contentFor = (pack: SourcePack | null) =>
-      withPages(`Topic: "${topic}"${requestLineFor(pack)}${briefLine(brief)}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${absentLine}${listingLine}${materialLine(pack)}${promptRules}`, pageImages);
+      withPages(`Topic: "${topic}"${requestLineFor(pack)}${briefLine(brief)}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${csLengthLine}${absentLine}${listingLine}${materialLine(pack)}${promptRules}`, pageImages);
     /*
      * THE OFFICIAL SYLLABUS, when the student's is known and the request names one of its topics: its
      * outcomes are the checklist and its text names every term — web research alone stopped after the

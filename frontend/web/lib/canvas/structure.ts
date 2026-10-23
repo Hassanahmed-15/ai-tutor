@@ -11,11 +11,13 @@
  * sentence the board's model is shown when it is asked to try again.
  */
 
-import type { CanvasBoardSpec, DsEdge, DsKind, DsMark, DsNode, DsOp, DsPointer, DsStart } from "./types";
+import type { CanvasBoardSpec, DsEdge, DsEdgeMark, DsKind, DsMark, DsNode, DsOp, DsPointer, DsStart } from "./types";
 
 export const DS_KINDS: DsKind[] = ["tree", "list", "array", "stack", "queue", "graph"];
 export const DS_MAX_NODES = 12;
 export const DS_MAX_STEPS = 16;
+/** A pointer's name as the code writes it: "next_node" was cut to "next_nod" at 8 (2026-10-23). */
+const POINTER_NAME_MAX = 12;
 const DS_MARKS: DsMark[] = ["visit", "compare", "found", "remove", "done", "none"];
 const VARIANTS = ["bst", "avl", "heap", "binary", "directed"] as const;
 
@@ -54,13 +56,22 @@ export function parseStructure(raw: unknown): DsStart | null {
     .slice(0, 24);
   const pointers: DsPointer[] = arr(r.pointers)
     .map((p) => obj(p))
-    .map((p) => ({ name: text(p.name, 8), to: p.to === null ? null : nodeId(p.to) }))
+    .map((p) => ({ name: text(p.name, POINTER_NAME_MAX), to: p.to === null ? null : nodeId(p.to) }))
     .filter((p) => p.name && (p.to === null || seen.has(p.to)))
     .slice(0, 4);
   return { kind, ...(variant ? { variant } : {}), nodes, edges, ...(pointers.length ? { pointers } : {}) };
 }
 
-const OP_NAMES = ["add", "remove", "link", "unlink", "set", "swap", "point", "mark"] as const;
+const OP_NAMES = ["add", "remove", "link", "unlink", "set", "swap", "point", "mark", "group", "edge"] as const;
+
+/** A set number from what the model writes: 0/1, "A"/"B", "0"/"1" (also 1/2 as the first and second set). */
+function setOf(v: unknown): 0 | 1 | null {
+  const t = text(v, 6).toLowerCase();
+  if (t === "0" || t === "a" || t === "set a" || t === "red" || t === "blue") return 0;
+  if (t === "1" || t === "b" || t === "set b" || t === "orange" || t === "green") return 1;
+  if (t === "2") return 1;
+  return null;
+}
 
 /** One step's operations: {"op": "link", "from": "3", "to": "1", "side": "left"} (or {"link": {...}}). */
 export function parseOps(raw: unknown): DsOp[] {
@@ -96,12 +107,21 @@ export function parseOps(raw: unknown): DsOp[] {
       const b = nodeId(pair[1]);
       if (a && b && a !== b) out.push({ op: "swap", a, b });
     } else if (name === "point") {
-      const pname = text(o.name, 8);
+      const pname = text(o.name, POINTER_NAME_MAX);
       if (pname) out.push({ op: "point", name: pname, to: o.to === null || o.to === undefined || o.to === "" ? null : nodeId(o.to) });
     } else if (name === "mark") {
       const id = nodeId(o.id);
       const as = text(o.as, 8).toLowerCase() as DsMark;
       if (id && DS_MARKS.includes(as)) out.push({ op: "mark", id, as });
+    } else if (name === "group" || name === "color" || name === "colour") {
+      const id = nodeId(o.id);
+      const group = setOf(o.group ?? o.set ?? o.color ?? o.colour ?? o.value);
+      if (id && group !== null) out.push({ op: "group", id, group });
+    } else if (name === "edge") {
+      const from = nodeId(o.from);
+      const to = nodeId(o.to);
+      const as = text(o.as, 9).toLowerCase();
+      if (from && to && (as === "tree" || as === "conflict" || as === "none")) out.push({ op: "edge", from, to, as });
     }
   }
   return out;
@@ -118,7 +138,19 @@ export type DsFrame = {
   marks: Record<string, DsMark>;
   /** Nodes whose value changed on this frame (they flash). */
   changed: string[];
+  /** The set each two-coloured node is in (0 = Set A, 1 = Set B). */
+  groups: Record<string, 0 | 1>;
+  /** Marked edges by `edgeKey`: a BFS tree edge, or a conflict (both ends in one set). */
+  edgeMarks: Record<string, DsEdgeMark>;
+  /** Pointers that hold null right now (prev = None): drawn as a tag pointing at "null". */
+  nulls: string[];
 };
+
+/** An edge's key for its mark: direction kept only in a directed graph or a list. */
+export function edgeKey(kind: DsKind, variant: DsStart["variant"] | undefined, from: string, to: string): string {
+  const directed = kind === "list" || variant === "directed";
+  return directed || from < to ? `${from}>${to}` : `${to}>${from}`;
+}
 
 const isTree = (kind: DsKind) => kind === "tree";
 const ordered = (variant?: DsStart["variant"]) => variant === "bst" || variant === "avl";
@@ -206,6 +238,9 @@ export function runStructure(start: DsStart, steps: Array<{ s: number; ops?: DsO
     pointers: (start.pointers ?? []).filter((p): p is { name: string; to: string } => p.to !== null),
     marks: {},
     changed: [],
+    groups: {},
+    edgeMarks: {},
+    nulls: (start.pointers ?? []).filter((p) => p.to === null).map((p) => p.name),
   };
   if (isTree(start.kind)) first.edges = withSides(start, first);
   const frames: DsFrame[] = [first];
@@ -222,6 +257,10 @@ export function runStructure(start: DsStart, steps: Array<{ s: number; ops?: DsO
       // A comparison lasts one step; what has been visited, found or finished stays marked.
       marks: Object.fromEntries(Object.entries(prev.marks).filter(([, m]) => m !== "compare")),
       changed: [],
+      // A node's set, a marked edge and a null pointer stay until a later step changes them.
+      groups: { ...prev.groups },
+      edgeMarks: { ...prev.edgeMarks },
+      nulls: [...prev.nulls],
     };
     const where = `step ${i + 1} (sentence ${steps[i].s})`;
     for (const op of steps[i].ops ?? []) {
@@ -306,6 +345,8 @@ function applyOp(start: DsStart, f: DsFrame, op: DsOp): string | null {
       f.edges = f.edges.filter((e) => e.from !== op.id && e.to !== op.id);
       f.pointers = f.pointers.filter((p) => p.to !== op.id);
       delete f.marks[op.id];
+      delete f.groups[op.id];
+      for (const key of Object.keys(f.edgeMarks)) if (key.split(">").includes(op.id)) delete f.edgeMarks[key];
       return null;
     }
     case "link": {
@@ -360,7 +401,13 @@ function applyOp(start: DsStart, f: DsFrame, op: DsOp): string | null {
     }
     case "point": {
       f.pointers = f.pointers.filter((p) => p.name !== op.name);
-      if (op.to === null) return null;
+      f.nulls = f.nulls.filter((n) => n !== op.name);
+      // A pointer set to null is DRAWN, pointing at "null": list reversal starts with prev = None and
+      // ends with curr = None, and both vanished from the board (owner, 2026-10-23).
+      if (op.to === null) {
+        f.nulls.push(op.name);
+        return null;
+      }
       if (!has(op.to)) return missing(op.to);
       f.pointers.push({ name: op.name, to: op.to });
       return null;
@@ -369,6 +416,22 @@ function applyOp(start: DsStart, f: DsFrame, op: DsOp): string | null {
       if (!has(op.id)) return missing(op.id);
       if (op.as === "none") delete f.marks[op.id];
       else f.marks[op.id] = op.as;
+      return null;
+    }
+    case "group": {
+      if (!has(op.id)) return missing(op.id);
+      f.groups[op.id] = op.group;
+      return null;
+    }
+    case "edge": {
+      if (!has(op.from)) return missing(op.from);
+      if (!has(op.to)) return missing(op.to);
+      const undirected = !(start.kind === "list" || start.variant === "directed");
+      const joined = f.edges.some((e) => (e.from === op.from && e.to === op.to) || (undirected && e.from === op.to && e.to === op.from));
+      if (!joined) return `there is no edge ${valueOf(op.from)} – ${valueOf(op.to)} to mark`;
+      const key = edgeKey(start.kind, start.variant, op.from, op.to);
+      if (op.as === "none") delete f.edgeMarks[key];
+      else f.edgeMarks[key] = op.as;
       return null;
     }
   }
@@ -394,7 +457,14 @@ export type DsLayout = {
     pointers: Array<{ name: string; to: string; at: DsPt; tip: DsPt; arrow: boolean }>;
     /** Array indices under the cells. */
     indices: Array<{ text: string; at: DsPt }>;
+    /**
+     * Pointers holding null: on a list, tags under the null slot (`tip` is where their arrow ends);
+     * elsewhere, tags in the corner reading "name → null".
+     */
+    nulls?: Array<{ name: string; at: DsPt; tip?: DsPt; arrow?: boolean }>;
   }>;
+  /** A list's "null" slot, left of its first node, when any of its pointers holds None. */
+  nullMark?: DsPt;
 };
 
 const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
@@ -409,7 +479,25 @@ export function layoutStructure(start: Pick<DsStart, "kind">, frames: DsFrame[],
   // The value fits where it is written: a list node's value part, a cell, a circle — so "1000" never
   // runs into the box beside it. Digits in the bold board font are about 0.62 em wide.
   const room = layout.shape === "box" ? layout.w * 0.62 - 8 : layout.shape === "cell" ? layout.w - 8 : layout.r * 2 - 6;
-  return { ...layout, size: clamp(Math.min(layout.size, room / (longest * 0.62)), 11, 22) };
+  return { ...placeNulls(layout, frames, area), size: clamp(Math.min(layout.size, room / (longest * 0.62)), 11, 22) };
+}
+
+/**
+ * Where the pointers holding null are drawn: on a row (a list), in the free space right of its last
+ * box — "→ null", as textbooks draw it — or left of the first when the right has no room; on a tree or
+ * a graph, in the area's top-right corner. Several stack downwards.
+ */
+function placeNulls(layout: DsLayout, frames: DsFrame[], area: DsBox): DsLayout {
+  // A list placed its null slot itself (placeStructure). Anything else: tags in the top-right corner.
+  if (layout.nullMark) return layout;
+  return {
+    ...layout,
+    frames: layout.frames.map((lf, i) => {
+      const names = frames[i]?.nulls ?? [];
+      if (!names.length) return { ...lf, nulls: [] };
+      return { ...lf, nulls: names.map((name, k) => ({ name, at: { x: area.x + area.w - 70, y: area.y + 14 + k * 30 } })) };
+    }),
+  };
 }
 
 function placeStructure(kind: DsKind, frames: DsFrame[], area: DsBox, longest: number): DsLayout {
@@ -431,15 +519,21 @@ function placeStructure(kind: DsKind, frames: DsFrame[], area: DsBox, longest: n
   }
   // A row: list boxes with room for their next-arrows; array and queue cells side by side.
   const list = kind === "list";
-  const gap = list ? clamp(area.w / most * 0.34, 26, 46) : 0;
+  // A list whose pointers ever hold None keeps a slot left of its first node for "null" — drawn as
+  // textbooks do (null ← A ← B), with those pointers' tags under it like any other pointer.
+  const nullSlot = list && frames.some((f) => f.nulls.length > 0) ? 1 : 0;
+  const slots = most + nullSlot;
+  const gap = list ? clamp(area.w / slots * 0.34, 26, 46) : 0;
   // Long values ("1000") get a wider list box, so they stay readable rather than tiny.
-  const w = clamp((area.w - 20 - gap * (most - 1)) / most, 40, list ? (longest >= 4 ? 96 : 84) : 72);
+  const w = clamp((area.w - 20 - gap * (slots - 1)) / slots, 40, list ? (longest >= 4 ? 96 : 84) : 72);
   const h = clamp(w * 0.72, 36, 52);
-  const rowW = most * w + gap * (most - 1);
-  const x0 = area.x + (area.w - rowW) / 2 + w / 2;
+  const rowW = slots * w + gap * (slots - 1);
+  const x0 = area.x + (area.w - rowW) / 2 + w / 2 + nullSlot * (w + gap);
   const y = area.y + area.h * 0.42;
+  const nullAt = { x: x0 - (w + gap), y };
   return {
     shape: list ? "box" : "cell", r: h / 2, w, h, size: clamp(h * 0.44, 15, 22),
+    ...(nullSlot ? { nullMark: nullAt } : {}),
     frames: frames.map((f) => {
       const place = Object.fromEntries(f.nodes.map((n, i) => [n.id, { x: x0 + i * (w + gap), y }]));
       const below = y + h / 2 + (list ? 18 : 40);
@@ -449,7 +543,8 @@ function placeStructure(kind: DsKind, frames: DsFrame[], area: DsBox, longest: n
         return { name: p.name, to: p.to, at: { x: place[p.to].x, y: below + 30 + k * 24 }, tip: { x: place[p.to].x, y: y + h / 2 + (list ? 4 : 26) }, arrow: k === 0 };
       });
       const indices = list ? [] : f.nodes.map((n, i) => ({ text: String(i), at: { x: x0 + i * w, y: y + h / 2 + 20 } }));
-      return { s: f.s, place, pointers, indices };
+      const nulls = nullSlot ? f.nulls.map((name, k) => ({ name, at: { x: nullAt.x, y: below + 30 + k * 24 }, tip: { x: nullAt.x, y: y + 12 }, arrow: k === 0 })) : undefined;
+      return { s: f.s, place, pointers, indices, ...(nulls ? { nulls } : {}) };
     }),
   };
 }
@@ -530,15 +625,24 @@ function layoutGraph(frames: DsFrame[], area: DsBox, most: number): DsLayout {
   };
 }
 
-/** Pointer tags above circle nodes; several on one node sit side by side. */
+/** A pointer tag's width as the board draws it (CanvasPanel: 8.6 px a character and its padding). */
+const pointerTagWidth = (name: string) => Math.max(30, name.length * 8.6 + 14);
+
+/**
+ * Pointer tags above circle nodes; several on one node sit side by side, spaced by their own widths —
+ * a fixed 52 px printed "leader", "follower" and "candidate" over each other (CS test, 2026-10-23).
+ */
 function tagPointers(f: DsFrame, place: Record<string, DsPt>, r: number): DsLayout["frames"][number]["pointers"] {
-  const count: Record<string, number> = {};
-  const total: Record<string, number> = {};
-  for (const p of f.pointers) total[p.to] = (total[p.to] ?? 0) + 1;
+  const onNode: Record<string, string[]> = {};
+  for (const p of f.pointers) (onNode[p.to] ??= []).push(p.name);
+  const gap = 6;
   return f.pointers.filter((p) => place[p.to]).map((p) => {
-    const k = (count[p.to] = (count[p.to] ?? -1) + 1);
+    const names = onNode[p.to];
+    const k = names.indexOf(p.name);
+    const widths = names.map(pointerTagWidth);
+    const total = widths.reduce((a, b) => a + b, 0) + gap * (names.length - 1);
+    const offset = -total / 2 + widths.slice(0, k).reduce((a, b) => a + b + gap, 0) + widths[k] / 2;
     const at = place[p.to];
-    const offset = (k - (total[p.to] - 1) / 2) * 52;
     return { name: p.name, to: p.to, at: { x: at.x + offset, y: at.y - r - 26 }, tip: { x: at.x + offset * 0.4, y: at.y - r - 4 }, arrow: true };
   });
 }
@@ -600,6 +704,37 @@ export function describeStructure(start: DsStart, steps: Array<{ s: number; ops?
   const first = shapeInWords(start.kind, frames[0]);
   const last = frames.length > 1 ? shapeInWords(start.kind, frames[frames.length - 1]) : first;
   return `Data structure — a ${name}, drawn as nodes and links: ${first}${last !== first ? `; after the steps: ${last}` : ""}.`;
+}
+
+/**
+ * GRAPH ALGORITHMS THE LIST ABOVE MISSES — for typed-prompt lessons only (the document, video and course
+ * paths keep isDataStructureTopic as it is). "BFT in Bipartite Graphs" matched nothing, so its boards
+ * were written as code with the colours as a dictionary and no graph drawn (owner, 2026-10-23).
+ */
+export function isGraphAlgorithmTopic(text: string | null | undefined): boolean {
+  return /\b(?:bipartite|bft|breadth[- ]first traversal|graph colou?ring|two[- ]colou?r(?:ing|able)?|shortest paths?|minimum spanning trees?|mst|cycle detection|detect(?:ing)? (?:a )?cycles?|adjacency (?:lists?|matri(?:x|ces))|bellman[- ]ford|floyd[- ]warshall|connected components?|strongly connected|spanning trees?|graph search|a\*(?: search)?|flood fill)\b/i.test(text ?? "");
+}
+
+/**
+ * WHAT A DSA BOARD SAYS MUST BE WHAT IT DRAWS (typed-prompt lessons; owner, 2026-10-23).
+ *   - Aria says which colour or set a vertex gets, and the graph never shows it: every two-colouring
+ *     sentence needs a "group" op (a bipartite lecture showed four grey nodes while saying "A gets
+ *     color 1, B and C get color 2").
+ *   - Aria flips a link of a list ("curr.next = prev"), and no step links or unlinks anything: the
+ *     reversal happened only in words.
+ * Returns the problem to send back to the writer, or null.
+ */
+export function dsaTeachingProblem(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>, sentences: string[]): string | null {
+  const ops = steps.flatMap((st) => st.ops ?? []);
+  const colourTalk = /\b(?:colou?r(?:s|ed|ing)?\s*(?:[01]|zero|one|red|blue|white|black)|colou?r [AB]\b|set [AB]\b|two (?:colou?rs|sets|groups|sides)|opposite colou?r|same colou?r|alternat\w* colou?rs?|group [AB]\b|side [AB]\b|partition)/i;
+  if ((start.kind === "graph" || start.kind === "tree") && sentences.some((s) => colourTalk.test(s)) && !ops.some((o) => o.op === "group")) {
+    return 'Aria says which colour or set the vertices get, but the graph never shows it. Put each vertex in its set with {"op": "group", "id", "group": 0 or 1} on the sentence that colours it (the board draws Set A blue and Set B orange, with a legend), and mark a same-set edge with {"op": "edge", "from", "to", "as": "conflict"} when one is found.';
+  }
+  const linkTalk = /\.next\s*=|\bnext\s*(?:pointer|link)s?\b.*\b(?:back|reverse|previous|prev)\b|\brevers\w*\b.*\b(?:link|pointer|next)\b|\b(?:link|pointer)\w*\b.*\brevers\w*|\bpoint\w* (?:it )?back\b|\bflip\w*\b/i;
+  if (start.kind === "list" && sentences.some((s) => linkTalk.test(s)) && !ops.some((o) => o.op === "link" || o.op === "unlink")) {
+    return 'Aria changes a node\'s next link, but the list on the board never changes. On the sentence that runs that line, give the step {"op": "link", "from", "to"} (it replaces the node\'s old next link), so the student watches the arrow turn; a pointer set to None is {"op": "point", "name", "to": null}.';
+  }
+  return null;
 }
 
 /**

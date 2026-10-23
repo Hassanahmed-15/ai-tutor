@@ -5,8 +5,8 @@ import katex from "katex";
 import "katex/dist/katex.min.css";
 import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
-import { graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
-import { edgeCurve } from "@/lib/canvas/structure";
+import { fitValue, graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
+import { edgeCurve, edgeKey } from "@/lib/canvas/structure";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
 import { stackAt } from "@/lib/canvas/callStack";
@@ -873,6 +873,17 @@ const DS_LOOK: Record<string, { fill: string; stroke: string }> = {
   done: { fill: "#e5e7eb", stroke: "#64748b" },
   remove: { fill: "#fee2e2", stroke: "#be123c" },
 };
+/** The two sets of a two-colouring (op "group"), with the legend's names. */
+const SET_LOOK: Array<{ fill: string; stroke: string; name: string }> = [
+  { fill: "#bfdbfe", stroke: "#1d4ed8", name: "Set A" },
+  { fill: "#fed7aa", stroke: "#c2410c", name: "Set B" },
+];
+// "same set!" at 13px bold: its width, for placing the label and the plate behind it.
+const CONFLICT_LABEL_W = 68;
+const EDGE_LOOK: Record<string, { color: string; width: number }> = {
+  tree: { color: "#0f766e", width: 6 },
+  conflict: { color: "#dc2626", width: 5.5 },
+};
 const POINTER_INK = "#7c3aed";
 const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -937,14 +948,62 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
     if (!a || !b) return null;
     const { p0, c, p1 } = edgeCurve(layout, a, b);
     const points = quadPoints(p0, c, p1, 14);
+    // A BFS tree edge drawn bold; a conflict (both ends in one set) drawn red, with its reason.
+    const marked = frame.edgeMarks?.[edgeKey(mark.kind, mark.directed ? "directed" : undefined, edge.from, edge.to)];
+    const edgeLook = marked ? EDGE_LOOK[marked] : null;
     return (
       <g key={`${edge.from}>${edge.to}`}>
-        <Ink points={points} width={3.6} color={INK} opacity={0.85} />
+        <Ink points={points} width={edgeLook?.width ?? 3.6} color={edgeLook?.color ?? INK} opacity={edgeLook ? 1 : 0.85} />
         {box && <circle cx={p0.x} cy={p0.y} r={4.2} fill={INK} />}
         {mark.directed && <g className="cv-in cv-late">{arrowHead(p1, bezier(p0, c, p1, 0.82), 12, 3.4).map((d, i) => <path key={i} d={d} fill={INK} opacity={0.85} />)}</g>}
         {edge.label && <text x={c.x} y={c.y - 8} textAnchor="middle" fontSize={14} fontWeight={700} fill={MUTED}>{edge.label}</text>}
       </g>
     );
+  });
+
+  /*
+   * "same set!" beside each conflict edge, drawn after every edge so none crosses it, on whichever side
+   * of its edge is farther from the nodes and the other edges' middles (2026-10-23: it sat on its own
+   * edge, then under the next one).
+   */
+  const conflictLabels = frame.edges.flatMap((edge) => {
+    if (frame.edgeMarks?.[edgeKey(mark.kind, mark.directed ? "directed" : undefined, edge.from, edge.to)] !== "conflict") return [];
+    const a = at(edge.from);
+    const b = at(edge.to);
+    if (!a || !b) return [];
+    const { p0, c, p1 } = edgeCurve(layout, a, b);
+    const len = Math.hypot(p1.x - p0.x, p1.y - p0.y) || 1;
+    const n = { x: -(p1.y - p0.y) / len, y: (p1.x - p0.x) / len };
+    // Every candidate spot (either side, a little along the edge) is scored by how far its label box sits from
+    // the nodes and from every other edge's whole line, so the label never lands on a neighbouring edge.
+    const nodes = frame.nodes.map((m) => at(m.id)).filter((p): p is Pt => Boolean(p));
+    const segs = frame.edges.filter((e) => e !== edge).map((e) => [at(e.from), at(e.to)] as const).filter((s): s is readonly [Pt, Pt] => Boolean(s[0] && s[1]));
+    const toSeg = (p: Pt, [u, v]: readonly [Pt, Pt]) => {
+      const L = (v.x - u.x) ** 2 + (v.y - u.y) ** 2 || 1;
+      const t = Math.max(0, Math.min(1, ((p.x - u.x) * (v.x - u.x) + (p.y - u.y) * (v.y - u.y)) / L));
+      return Math.hypot(p.x - (u.x + t * (v.x - u.x)), p.y - (u.y + t * (v.y - u.y)));
+    };
+    const labelW = CONFLICT_LABEL_W;
+    const labelBox = (x: number, y: number, anchor: string) => {
+      const left = anchor === "start" ? x : anchor === "end" ? x - labelW : x - labelW / 2;
+      return [0, 0.5, 1].flatMap((f) => [{ x: left + f * labelW, y: y - 9 }, { x: left + f * labelW, y: y + 1 }]);
+    };
+    const room = (pts: Pt[]) => Math.min(...pts.flatMap((p) => [
+      ...nodes.map((o) => Math.hypot(o.x - p.x, o.y - p.y) - layout.size * 0.8),
+      ...segs.map((s) => toSeg(p, s)),
+    ]), Infinity);
+    const candidates = [0.5, 0.35, 0.65].flatMap((t) => {
+      const mid = { x: (1 - t) ** 2 * p0.x + 2 * (1 - t) * t * c.x + t * t * p1.x, y: (1 - t) ** 2 * p0.y + 2 * (1 - t) * t * c.y + t * t * p1.y };
+      return [1, -1].flatMap((side) => [16, 28, 40].map((off) => {
+        const dx = n.x * side;
+        const anchor = Math.abs(dx) > 0.6 ? (dx > 0 ? "start" : "end") : "middle";
+        const x = mid.x + n.x * side * off;
+        const y = mid.y + n.y * side * off + 4;
+        return { x, y, anchor, score: room(labelBox(x, y, anchor)) - off * 0.05 };
+      }));
+    });
+    const best = candidates.reduce((a, b) => (b.score > a.score ? b : a));
+    return [{ key: `${edge.from}>${edge.to}`, x: best.x, y: best.y, anchor: best.anchor }];
   });
 
   return (
@@ -954,7 +1013,11 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
         const p = at(n.id);
         if (!p) return null;
         const state = frame.marks[n.id] ?? "none";
-        const look = DS_LOOK[state] ?? DS_LOOK.none;
+        // A node in a set is filled in its set's colour; a mark (visiting, comparing) shows as its outline.
+        const set = frame.groups?.[n.id];
+        const look = set !== undefined
+          ? { fill: SET_LOOK[set].fill, stroke: state !== "none" ? (DS_LOOK[state] ?? DS_LOOK.none).stroke : SET_LOOK[set].stroke }
+          : DS_LOOK[state] ?? DS_LOOK.none;
         const lit = focusId === `ds-${n.id}`;
         const changed = shown.t >= 1 && frame.changed.includes(n.id);
         return (
@@ -981,6 +1044,12 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
         );
       })}
       {box && links}
+      {conflictLabels.map((l) => (
+        <g key={`conflict-${l.key}`} className="cv-in">
+          <rect x={(l.anchor === "start" ? l.x : l.anchor === "end" ? l.x - CONFLICT_LABEL_W : l.x - CONFLICT_LABEL_W / 2) - 3} y={l.y - 11} width={CONFLICT_LABEL_W + 6} height={15} rx={4} data-plate="" />
+          <text x={l.x} y={l.y} textAnchor={l.anchor as "start" | "end" | "middle"} fontSize={13} fontWeight={800} fill={EDGE_LOOK.conflict.color}>same set!</text>
+        </g>
+      ))}
       {/* Removed on this step: crossed out where it was, fading as the rest settles. */}
       {shown.t < 1 && gone.map((n) => {
         const p = before.place[n.id];
@@ -1015,6 +1084,54 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
           </g>
         );
       })}
+      {/* A list's null slot (null ← A ← B), with the tags of the pointers that hold None under it. */}
+      {layout.nullMark && (
+        <g className="cv-in">
+          <rect x={layout.nullMark.x - layout.w * 0.42} y={layout.nullMark.y - layout.h * 0.38} width={layout.w * 0.84} height={layout.h * 0.76} rx={8} fill="none" stroke="#94a3b8" strokeWidth={1.8} strokeDasharray="5 4" />
+          <text x={layout.nullMark.x} y={layout.nullMark.y + 5} textAnchor="middle" fontSize={15} fontWeight={800} fontFamily={MONO_FONT} fill="#94a3b8">null</text>
+        </g>
+      )}
+      {layout.nullMark && (after.nulls ?? []).map((nl) => {
+        const was = before.nulls?.find((q) => q.name === nl.name);
+        const tag = lerp(was?.at, nl.at)!;
+        const w = Math.max(30, nl.name.length * 8.6 + 14);
+        return (
+          <g key={`null-${nl.name}`} className={was ? undefined : "cv-in"}>
+            <rect x={tag.x - w / 2} y={tag.y - 13} width={w} height={22} rx={11} fill={POINTER_INK} />
+            <text x={tag.x} y={tag.y + 3} textAnchor="middle" fontSize={13} fontWeight={800} fill="#ffffff" fontFamily={MONO_FONT}>{nl.name}</text>
+            {nl.arrow && nl.tip && (
+              <>
+                <line x1={tag.x} y1={tag.y - 13} x2={nl.tip.x} y2={nl.tip.y} stroke={POINTER_INK} strokeWidth={2.4} strokeLinecap="round" />
+                {arrowHead(nl.tip, { x: tag.x, y: tag.y }, 9, 2.6).map((d, i) => <path key={i} d={d} fill={POINTER_INK} />)}
+              </>
+            )}
+          </g>
+        );
+      })}
+      {/* Elsewhere (a tree, a graph), a pointer holding null is a tag reading "name → null". */}
+      {!layout.nullMark && (after.nulls ?? []).map((nl) => {
+        const w = Math.max(30, nl.name.length * 8.6 + 14);
+        return (
+          <g key={`null-${nl.name}`} className="cv-in">
+            <rect x={nl.at.x - w / 2} y={nl.at.y - 13} width={w} height={22} rx={11} fill={POINTER_INK} />
+            <text x={nl.at.x} y={nl.at.y + 3} textAnchor="middle" fontSize={13} fontWeight={800} fill="#ffffff" fontFamily={MONO_FONT}>{nl.name}</text>
+            <line x1={nl.at.x + w / 2 + 3} y1={nl.at.y - 2} x2={nl.at.x + w / 2 + 20} y2={nl.at.y - 2} stroke={POINTER_INK} strokeWidth={2.4} strokeLinecap="round" />
+            {arrowHead({ x: nl.at.x + w / 2 + 22, y: nl.at.y - 2 }, { x: nl.at.x, y: nl.at.y - 2 }, 8, 2.4).map((d, i) => <path key={i} d={d} fill={POINTER_INK} />)}
+            <text x={nl.at.x + w / 2 + 28} y={nl.at.y + 3} fontSize={14} fontWeight={800} fontFamily={MONO_FONT} fill="#475569">null</text>
+          </g>
+        );
+      })}
+      {/* The two sets' legend, once a node has been put in one. */}
+      {Object.keys(frame.groups ?? {}).length > 0 && (
+        <g className="cv-in">
+          {SET_LOOK.map((look, k) => (
+            <g key={look.name}>
+              <circle cx={mark.rect.x + 12 + k * 92} cy={mark.rect.y + 10} r={8} fill={look.fill} stroke={look.stroke} strokeWidth={2.2} />
+              <text x={mark.rect.x + 26 + k * 92} y={mark.rect.y + 15} fontSize={14} fontWeight={800} fill={look.stroke}>{look.name}</text>
+            </g>
+          ))}
+        </g>
+      )}
       {caption && (
         <text key={caption.s} x={mark.rect.x + mark.rect.w / 2} y={mark.captionY} textAnchor="middle" fontSize={20} fontWeight={600} fill={MUTED} className="cv-in">
           {caption.text}
@@ -1198,8 +1315,16 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
     return edit && shownThrough < edit.s ? edit.from : mark.lines[i];
   };
   const lineEnd = first ? textX + textOf(first - 1).length * 0.6 * size : 0;
+  // The code stays on its card: a line still too long at the smallest size is cut at the card's edge,
+  // never drawn into the structure or the variables beside it (owner, 2026-10-23).
+  const clipId = `code-clip-${useId().replace(/:/g, "")}`;
   return (
     <g>
+      <defs>
+        <clipPath id={clipId}>
+          <rect x={rect.x} y={rect.y} width={rect.w - 6} height={rect.h} />
+        </clipPath>
+      </defs>
       <rect x={rect.x} y={rect.y} width={rect.w} height={rect.h} rx={14} fill="#1e2030" />
       <rect x={rect.x} y={rect.y} width={gutter} height={rect.h} rx={14} fill="#191a29" />
       <rect x={rect.x + gutter - 14} y={rect.y} width={14} height={rect.h} fill="#191a29" />
@@ -1221,7 +1346,7 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
         const edit = mark.edits.find((e) => e.line === i + 1);
         const fixedNow = edit && shownThrough >= edit.s;
         return (
-          <g key={i} className="cv-in" style={{ animationDelay: `${Math.max(0, i - before) * 60}ms` }}>
+          <g key={i} className="cv-in" clipPath={`url(#${clipId})`} style={{ animationDelay: `${Math.max(0, i - before) * 60}ms` }}>
             <text x={rect.x + gutter - 22} y={baseline(i)} textAnchor="end" fontSize={size * 0.78} fontFamily={MONO_FONT} fill={lit.has(i + 1) ? "#e6e9f0" : "#4b5068"}>
               {i + 1}
             </text>
@@ -1324,7 +1449,11 @@ function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "
   const rowH = Math.min(46, (rect.h - 34) / Math.max(1, names.length));
   // Names are set in the code font: measured as monospace (0.6 em a character), with a gap.
   const nameW = Math.min(rect.w * 0.36, Math.max(...names.map((n) => n.length * 16 * 0.6)) + 18);
-  const boxW = Math.min(rect.w * 0.3, Math.max(64, ...mark.steps.flatMap((st) => (st.state ?? []).map((v) => textWidth(v.value, 17) + 22))));
+  // A name too long for its column ("candidate_length") is set smaller to fit, never over its value box (CS test, 2026-10-23).
+  const nameSize = (n: string) => Math.max(10, Math.min(16, Math.floor((nameW - 12) / Math.max(1, n.length * 0.6))));
+  // Values are written in the code font, so they are measured as monospace too: the proportional
+  // measure was ~20% short and a colours dictionary ran off the board (owner, 2026-10-23).
+  const boxW = Math.min(rect.w * 0.3, Math.max(64, ...mark.steps.flatMap((st) => (st.state ?? []).map((v) => monoWidth(v.value, 17) + 22))));
   return (
     <g className="cv-in" data-mark="state">
       <text x={rect.x} y={rect.y + 16} fontSize={15} fontWeight={700} fill="#64748b">variables</text>
@@ -1348,17 +1477,21 @@ function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "
         if (items) {
           // Cells at full size, else compact; a set too long for either is written as text that fits.
           const room = rect.x + rect.w - bx;
-          const full = items.map((it) => Math.max(34, textWidth(it, 16) + 18));
-          const compact = items.map((it) => Math.max(24, textWidth(it, 13) + 10));
+          const full = items.map((it) => Math.max(34, monoWidth(it, 16) + 18));
+          const compact = items.map((it) => Math.max(24, monoWidth(it, 13) + 10));
           const cellW = full.reduce((a, b) => a + b, 0) <= room ? full : compact;
           const cellFont = cellW === full ? 16 : 13;
           const total = cellW.reduce((a, b) => a + b, 0);
           if (total > room) {
-            const size = Math.max(11, Math.min(16, Math.floor((16 * room) / Math.max(1, textWidth(now!, 16)))));
+            // Too long for cells: written as text that FITS — on one line if it can at 11 px or more,
+            // else on two lines broken after a comma — never past the board's edge.
+            const { lines, size } = fitValue(now!, room, h);
             return (
               <g key={name}>
-                <text x={rect.x} y={y + h * 0.68} fontSize={16} fontFamily={MONO_FONT} fill={INK}>{name}</text>
-                <text key={`v-${now}`} x={bx} y={y + h * 0.68} fontSize={size} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged ? ARIA_INK : INK} className="cv-in">{now}</text>
+                <text x={rect.x} y={y + h * 0.68} fontSize={nameSize(name)} fontFamily={MONO_FONT} fill={INK}>{name}</text>
+                <text key={`v-${now}`} x={bx} y={lines.length > 1 ? y + size : y + h * 0.68} fontSize={size} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged ? ARIA_INK : INK} className="cv-in">
+                  {lines.map((l, k) => <tspan key={k} x={bx} dy={k === 0 ? 0 : size * 1.15}>{l}</tspan>)}
+                </text>
               </g>
             );
           }
@@ -1367,7 +1500,7 @@ function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "
             const end = /stack/i.test(name) ? "top" : /queue/i.test(name) ? "front" : "";
             return (
               <g key={name}>
-                <text x={rect.x} y={y + h * 0.68} fontSize={16} fontFamily={MONO_FONT} fill={INK}>{name}</text>
+                <text x={rect.x} y={y + h * 0.68} fontSize={nameSize(name)} fontFamily={MONO_FONT} fill={INK}>{name}</text>
                 {items.length === 0 && <text x={bx + 4} y={y + h * 0.68} fontSize={15} fill="#94a3b8">empty</text>}
                 {items.map((it, k) => {
                   const x = cx;
@@ -1379,21 +1512,26 @@ function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "
                     </g>
                   );
                 })}
-                {end && items.length > 0 && <text x={end === "front" ? bx + cellW[0] / 2 : cx - cellW[items.length - 1] / 2} y={y + h + 13} textAnchor="middle" fontSize={12} fill="#94a3b8">{end}</text>}
+                {/* Under its cell only where nothing is below it (the last row, or rows tall enough): it sat on the next row's name. */}
+                {end && items.length > 0 && (i === names.length - 1 || rowH >= 60) && <text x={end === "front" ? bx + cellW[0] / 2 : cx - cellW[items.length - 1] / 2} y={y + h + 13} textAnchor="middle" fontSize={12} fill="#94a3b8">{end}</text>}
               </g>
             );
           }
         }
         return (
           <g key={name}>
-            <text x={rect.x} y={y + h * 0.68} fontSize={16} fontFamily={MONO_FONT} fill={INK}>{name}</text>
+            <text x={rect.x} y={y + h * 0.68} fontSize={nameSize(name)} fontFamily={MONO_FONT} fill={INK}>{name}</text>
             <Sketch d={roughRect(`var-${mark.id}-${name}`, bx, y, boxW, h, 6)} color={INK} width={2} />
-            {now !== undefined && (
-              // A long value shrinks to fit its box, never spills over its name or its history.
-              <text key={`v-${now}`} x={bx + boxW / 2} y={y + h * 0.7} textAnchor="middle" fontSize={Math.max(10, Math.min(17, Math.floor((17 * (boxW - 12)) / Math.max(1, now.length * 17 * 0.6))))} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged ? ARIA_INK : INK} className="cv-in">
-                {now}
-              </text>
-            )}
+            {now !== undefined && (() => {
+              // A long value shrinks to fit its box — and past 10 px it breaks onto two lines — never
+              // spilling over its name or its history.
+              const { lines, size } = fitValue(now, boxW - 12, h, 17);
+              return (
+                <text key={`v-${now}`} x={bx + boxW / 2} y={lines.length > 1 ? y + size : y + h * 0.7} textAnchor="middle" fontSize={size} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged ? ARIA_INK : INK} className="cv-in">
+                  {lines.map((l, k) => <tspan key={k} x={bx + boxW / 2} dy={k === 0 ? 0 : size * 1.15}>{l}</tspan>)}
+                </text>
+              );
+            })()}
             {/* Oldest first, as a teacher crosses them out: 3̶ 2̶ 1̶. */}
             {values.slice(-4, -1).map((old, k) => {
               const w = textWidth(old, 14) + 4;
@@ -1412,6 +1550,11 @@ function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "
       })}
     </g>
   );
+}
+
+/** Width of text in the code font (monospace: 0.6 em a character). */
+function monoWidth(text: string, size: number): number {
+  return text.length * size * 0.6;
 }
 
 /** The items of a list, tuple or set value ("[B, C]", "{A, B}", "[]"), or null when it is not one. */
@@ -2048,11 +2191,16 @@ export function markerPoint(layout: PanelLayout, id: string, vars: Record<string
  */
 export const CANVAS_CSS = `
 .cv-live .cv-in { animation: cv-in 480ms cubic-bezier(.2,.8,.2,1) both; transform-box: fill-box; transform-origin: center; }
+/* Paused by the student: every stroke and fade on the board holds where it is until Play. */
+.cv-paused, .cv-paused * { animation-play-state: paused !important; }
 .cv-live .cv-late { animation-delay: 520ms; }
 .cv-live .cv-write { animation: cv-write 900ms steps(24, end) both; }
 /* A free label's halo (TextDeconflict): board colour behind its letters, so a line passing behind stops short. */
 text[data-halo] { paint-order: stroke fill; stroke: ${PAPER}; stroke-width: 4.5px; stroke-linejoin: round; }
 .cv-chalk text[data-halo] { stroke: #000000; }
+/* A plate in the board colour behind a short label, for spots no edge leaves free (a "same set!" inside a triangle). */
+rect[data-plate] { fill: ${PAPER}; }
+.cv-chalk rect[data-plate] { fill: #000000; }
 .cv-chalk foreignObject[data-halo] [data-ink-content], .cv-chalk foreignObject[data-halo] .katex { text-shadow: 0 0 2px #000, 0 0 4px #000, 0 0 7px #000; }
 .cv-live .cv-stroke { stroke-dasharray: 1; animation: cv-stroke 850ms cubic-bezier(.45,0,.25,1) both; }
 .cv-live .cv-slow { animation-duration: 1800ms; }

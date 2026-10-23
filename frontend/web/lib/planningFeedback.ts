@@ -34,3 +34,24 @@ export function verdictNote(verdict: AnswerVerdict | null): string {
   if (!verdict) return "";
   return verdict.verdict === "correct" ? "That's right — well done!" : verdict.verdict === "partial" ? "Nearly — Aria explains what was missing." : "Not quite — Aria explains why.";
 }
+
+/**
+ * THE CARD'S CHECKS, ANSWERED (professor's review, 2026-10-20: "question correct ans — what happens?").
+ * The question card grades its checks on Submit and said nothing about them: a student who answered
+ * "A queue" correctly heard only "would you like to change the plan?". This is what Aria is told to
+ * say before the plan: praise for what was right, and for each wrong answer the right one, kindly.
+ * Empty when no check was answered (all "Not sure", or none asked).
+ */
+export function cardChecksVoiceLine(
+  parts: Array<{ id: string; check: { question: string; options: string[]; answer: number } | null }>,
+  outcomes: Record<string, "right" | "wrong" | "unsure">,
+  answers: Record<string, string>,
+): string {
+  const right = parts.filter((p) => p.check && outcomes[p.id] === "right");
+  const wrong = parts.filter((p) => p.check && outcomes[p.id] === "wrong");
+  if (!right.length && !wrong.length) return "";
+  const said = [`The student just answered ${right.length + wrong.length === 1 ? "a quick check" : "some quick checks"}.`];
+  if (right.length) said.push(`Right: ${right.map((p) => `"${p.check!.question}"`).join("; ")}. Tell them warmly, in a few words, that ${right.length === 1 ? "it is" : "these are"} right (for example "That's right, well done!"), with no explanation.`);
+  if (wrong.length) said.push(`Not right: ${wrong.map((p) => `"${p.check!.question}" they chose "${answers[p.id] ?? ""}", but the answer is "${p.check!.options[p.check!.answer]}"`).join("; ")}. In ONE kind sentence each, say what the right answer is and why, simply. Do not lecture.`);
+  return said.join(" ");
+}

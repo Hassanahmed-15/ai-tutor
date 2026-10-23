@@ -6,7 +6,7 @@ import { canvasSentences } from "./plan";
 import { checkCardIssues, OPTION_MAX } from "./quizLint";
 import type { CanvasBoardSpec, CanvasPlanBeat, QuizInteraction } from "./types";
 import { validateInteraction } from "./validate";
-import { boardElements, orderCard, tapParts } from "./cardKinds";
+import { boardElements, codeBoardText, lineReferenceIssues, orderCard, tapParts } from "./cardKinds";
 
 /**
  * THE "CHECK IT" CARD — written after its board, verified independently, never able to fail a board.
@@ -65,7 +65,7 @@ function replayFor(spec: CanvasBoardSpec, sentences: string[], evidence: unknown
 }
 
 /** The card for a board: put its steps in order, tap its diagram, or choose an answer. */
-export async function writeCheckCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title" | "script">, spec: CanvasBoardSpec, context: { level?: string; teachingHints?: string[] } = {}): Promise<CheckCardResult> {
+export async function writeCheckCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title" | "script">, spec: CanvasBoardSpec, context: { level?: string; teachingHints?: string[]; typed?: boolean } = {}): Promise<CheckCardResult> {
   const ordered = orderCard(spec, beat.script);
   if (ordered) return { card: ordered, costUsd: 0, log: "order card built from the board's steps" };
   if (tapParts(spec).length >= 3) {
@@ -112,7 +112,7 @@ async function writeTapCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title" |
   return { card: null, costUsd, log: `no tap card — ${issues.join("; ").slice(0, 200)}` };
 }
 
-async function writeChoiceCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title" | "script">, spec: CanvasBoardSpec, context: { level?: string; teachingHints?: string[] } = {}): Promise<CheckCardResult> {
+async function writeChoiceCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title" | "script">, spec: CanvasBoardSpec, context: { level?: string; teachingHints?: string[]; typed?: boolean } = {}): Promise<CheckCardResult> {
   const sentences = canvasSentences(beat.script);
   const narration = sentences.map((s, i) => `[${i}] ${s}`).join("\n");
   const mistakes = mistakesOf(context.teachingHints);
@@ -125,6 +125,8 @@ async function writeChoiceCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title
         context.level ? `Level: ${context.level}` : "",
         `On the board: ${spec.heading}; ${spec.notes.map((n) => n.text).join("; ")}`,
         `Board elements for the hint (id: name): ${boardElements(spec).map((e) => `${e.id}: ${e.name}`).join("; ")}`,
+        // A typed lesson's code board: the card sees the code as the student does, with its numbers.
+        context.typed ? codeBoardText(spec) : "",
         mistakes ? `Common mistakes at this level: ${mistakes}` : "",
         `Narration:\n${narration}`,
         issues.length ? `Your previous card was rejected: ${issues.join("; ")}. Write a new card that fixes exactly that.` : "",
@@ -145,7 +147,7 @@ async function writeChoiceCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title
       const stem = typeof raw.question === "string" ? raw.question.replace(new RegExp(`^\\s*${beat.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*[:—–-]\\s*`, "i"), "") : raw.question;
       const card = validateInteraction({ kind: "quiz", question: stem, options }) as QuizInteraction | undefined;
       if (!card || card.kind !== "quiz") { issues = [`the card must have a "question" string and 3 or 4 "options", each {"text", "correct", "feedback"}, with exactly ONE "correct": true`]; continue; }
-      issues = checkCardIssues(card, beat.script);
+      issues = [...checkCardIssues(card, beat.script), ...(context.typed ? lineReferenceIssues(card, spec) : [])];
       if (issues.length) continue;
       // The independent check: shuffled, lettered, without the right answer marked.
       const order = card.options.map((_, i) => i).sort((a, b) => ((a * 7 + 3) % card.options.length) - ((b * 7 + 3) % card.options.length));

@@ -1286,11 +1286,13 @@ export function LessonPlayer({
   const canvasTaskRef = useRef(false);
   const canvasMidBoardTaskRef = useRef(false);
   /**
-   * MATHS AND CS: PREDICT BEFORE THE REVEAL (owner, 2026-10-20; lib/canvas/predictCard.ts). A code
-   * or maths-equation board gets a card built by code from its own values; the lecture holds before
-   * the sentence that reveals the answer. Every other subject gets null here and plays as before.
+   * NO MID-BOARD PREDICT CARD (owner, 2026-10-23). The maths/CS "Predict: after line N runs…" card
+   * (lib/canvas/predictCard.ts) stopped a board before the line it named was written — "line 6 is not
+   * in the code" — and the owner's standing rule is that questions come only as the end-of-board check
+   * card. It is never built now, so the hold-and-reveal path below stays idle; the builder stays in
+   * lib/canvas/predictCard.ts should it be wanted again.
    */
-  const canvasPredict = useMemo(() => (canvasIndex >= 0 ? predictCardFor(canvasPanels[canvasIndex].spec, title) : null), [canvasIndex, canvasPanels, title]);
+  const canvasPredict = useMemo((): ReturnType<typeof predictCardFor> => null, []);
   const canvasPredictRef = useRef(canvasPredict);
   /** Boards whose maths/CS prediction has been asked (separate from the old script predictions). */
   const cardPredictDoneRef = useRef(new Set<string>());

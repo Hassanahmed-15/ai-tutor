@@ -229,6 +229,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const focusId = penCue?.target;
   /** Picture hotspots: out while the student can explore — paused, finished, or moving the camera. */
   const exploring = !playing || finished || currentIndex < 0 || mode !== "follow";
+  // PAUSED BY THE STUDENT (not waiting at the end of a board, not finished): the pen, the camera and
+  // the board's own short animations all hold still until Play (owner, 2026-10-23).
+  const paused = !playing && !finished && !waitingForStudent && currentIndex >= 0;
   // A tick when Aria's pen taps, a pencil scratch when a sentence puts new ink on the board. Both are
   // silent unless the student switched sound on (sound.ts), and each is throttled.
   const penKey = penCue && current ? `${current.key}|${penCue.s}|${penCue.action}|${penCue.target}` : "";
@@ -625,7 +628,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               key={panel.key}
               data-panel={panel.key}
               // cv-marked: the marker writes this board, so new equation terms skip their own fade-in.
-              className={[themes[i] === "chalk" ? "cv-chalk" : "", labLook ? "cv-marked" : ""].filter(Boolean).join(" ") || undefined}
+              className={[themes[i] === "chalk" ? "cv-chalk" : "", labLook ? "cv-marked" : "", live && paused ? "cv-paused" : ""].filter(Boolean).join(" ") || undefined}
               data-live={live ? "true" : undefined}
               transform={`translate(${at.x},${at.y}) scale(${at.scale})`}
             >
@@ -646,7 +649,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 carryFrom={carryFrom[panel.key] ?? EMPTY_RECTS}
                 reducedMotion={reducedMotion}
               />
-              {live && labLook && <MarkerWriter key={panel.key} onRegion={onInkRegion} finished={finished} />}
+              {live && labLook && <MarkerWriter key={panel.key} onRegion={onInkRegion} finished={finished} paused={paused} />}
               {/* No writing on writing, on every board (owner, 2026-10-21: the most important fix). */}
               {live && <TextDeconflict key={`tx-${panel.key}`} />}
               <Corrections layout={layouts[i]} check={corrections[panel.key]} />

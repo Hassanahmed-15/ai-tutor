@@ -4,6 +4,7 @@ import { boardFacts } from "./boardReview";
 import { canvasSentences } from "./plan";
 import { isMathsTopic } from "./predictCard";
 import { isCsTopic } from "./subjectLook";
+import { isTypedCsTopic } from "./csLessons";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 
 /**
@@ -29,8 +30,10 @@ export function mathsCheckOn(topic: string, plan: Pick<CanvasPlanBeat, "title" |
 export type ExaminerSubject = "maths" | "cs";
 
 /** Which examiner reads this lecture's boards: maths, computer science (CANVAS_CS_CHECK=off turns it off), or none. */
-export function examinerFor(topic: string, plan: Pick<CanvasPlanBeat, "title" | "brief">[]): ExaminerSubject | null {
-  if (isCsTopic(topic) && process.env.CANVAS_CS_CHECK !== "off") return "cs";
+export function examinerFor(topic: string, plan: Pick<CanvasPlanBeat, "title" | "brief">[], typed = false): ExaminerSubject | null {
+  // A typed-prompt lesson also counts the niche CS topics the shared check misses (lib/canvas/csLessons.ts).
+  const cs = isCsTopic(topic) || (typed && isTypedCsTopic([topic, ...plan.map((b) => b.title)].join(" ")));
+  if (cs && process.env.CANVAS_CS_CHECK !== "off") return "cs";
   return mathsCheckOn(topic, plan) ? "maths" : null;
 }
 

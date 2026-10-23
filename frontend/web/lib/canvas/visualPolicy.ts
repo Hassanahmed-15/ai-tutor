@@ -2,6 +2,7 @@ import { isMathsTopic } from "./predictCard";
 import { spokenEquations } from "./equationCheck";
 import { canvasSentences } from "./plan";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
+import { csMechanismBoard, isTypedCsTopic } from "./csLessons";
 import { FIGURE_COMPONENTS, figureComponent, figureFor } from "../figures/registry";
 import { classifyInstructionalTask } from "./instructionalTask";
 import { namedIn } from "./labelPolicy";
@@ -291,8 +292,12 @@ export function applyLessonVisualPolicy(
   // A DATA-STRUCTURE BOARD IS FOR DATA STRUCTURES. An essay lesson drew "topic sentence → evidence →
   // because" as a linked list, its words cut to six characters (prompt bench, 2026-10-18): a board that
   // is not about a list, tree, stack, queue, array, graph, hash table or algorithm is a flow of steps.
+  // A typed CS lesson's mechanism board (a protocol's servers, a Bloom filter's bits) is a structure even
+  // without these words: Raft planned six structure boards and all six became flows (CS test, 2026-10-23).
+  const csLessonText = options.mode === "prompt" ? [options.topic ?? "", ...input.map((b) => b.title)].join(" ") : "";
   for (const beat of beats) {
-    if (beat.stage !== "structure" || DATA_STRUCTURE_WORDS.test(`${beat.title} ${beat.brief} ${beat.script}`)) continue;
+    const words = `${beat.title} ${beat.brief} ${beat.script}`;
+    if (beat.stage !== "structure" || DATA_STRUCTURE_WORDS.test(words) || (csLessonText && csMechanismBoard(csLessonText, words))) continue;
     beat.stage = "flow";
     changes.push(`${beat.id}: structure → flow (not a data structure)`);
   }
@@ -1151,7 +1156,8 @@ export function applyLessonVisualPolicy(
 
   // CODE IS WRITTEN ON A CODE BOARD (CS round 4): a board that writes or traces code — "we now express
   // that pattern as pseudocode and trace it" — went on a sketch, where no line is ever lit as Aria speaks.
-  if (options.mode !== "strict" && isCsTopic([options.topic ?? "", ...beats.map((b) => b.title)].join(" "))) {
+  // A typed prompt also counts the niche CS topics the shared check misses (lib/canvas/csLessons.ts).
+  if (options.mode !== "strict" && (options.mode === "prompt" ? isTypedCsTopic : isCsTopic)([options.topic ?? "", ...beats.map((b) => b.title)].join(" "))) {
     for (const beat of beats) {
       if (beat.refresher || beat.overview || examIds.has(beat.id) || (beat.stage !== "sketch" && beat.stage !== "flow" && beat.stage !== "scene")) continue;
       const text = `${beat.title} ${beat.brief} ${beat.script}`;
@@ -1163,7 +1169,22 @@ export function applyLessonVisualPolicy(
     }
   }
 
-  const meaningfulVisuals = beats.filter((beat) => meaningful(beat.stage, apparatus.has(beat.id))).length;
+  // A TYPED CS LESSON SHOWS ITS MECHANISM ON THE STRUCTURE (lib/canvas/csLessons.ts): a protocol's servers
+  // and messages, a Bloom filter's bits, KMP's pattern sliding — Raft was six flow charts of concepts and
+  // no server was ever drawn (CS test, 2026-10-23). The opening map board stays a flow.
+  if (options.mode === "prompt") {
+    const lessonText = [options.topic ?? "", ...beats.map((b) => b.title)].join(" ");
+    beats.forEach((beat, i) => {
+      if (i === 0 || beat.refresher || beat.overview || examIds.has(beat.id)) return;
+      if (beat.stage !== "flow" && beat.stage !== "scene" && beat.stage !== "sketch" && beat.stage !== "illustration") return;
+      if (!csMechanismBoard(lessonText, `${beat.title} ${beat.brief} ${beat.script}`)) return;
+      changes.push(`${beat.id}: ${beat.stage} → structure (the mechanism at work)`);
+      beat.stage = "structure";
+      beat.figure = undefined;
+    });
+  }
+
+  const meaningfulVisuals =beats.filter((beat) => meaningful(beat.stage, apparatus.has(beat.id))).length;
   const targetMeaningfulVisuals = Math.min(beats.length, beats.length <= 1 ? 1 : Math.max(2, Math.ceil(beats.length * 0.6)));
   return {
     beats,

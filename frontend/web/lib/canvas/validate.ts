@@ -765,6 +765,20 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
   return stage;
 }
 
+/** The longest code line a board can draw whole (lib/canvas/layout.ts layoutCode at its 10 px floor). */
+export const CODE_LINE_MAX = 84;
+
+/**
+ * One code line, kept whole when it fits; a longer one ends at its last token boundary with "…", so it
+ * never stops mid-word ("…Islama", owner 2026-10-23).
+ */
+export function codeLine(line: string): string {
+  if (line.length <= CODE_LINE_MAX) return line;
+  const head = line.slice(0, CODE_LINE_MAX - 2);
+  const cut = Math.max(head.lastIndexOf(", "), head.lastIndexOf(" "));
+  return `${cut > head.length * 0.6 ? head.slice(0, cut + (head[cut] === "," ? 1 : 0)) : head} …`;
+}
+
 /** A morph is only kept when it changes something and happens on a real sentence. */
 /**
  * A program as the model wrote it, made safe to draw: lines keep their indentation (tabs become
@@ -774,7 +788,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
 function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, unique: (v: unknown, f: string) => string): CodeStage | null {
   const rawLines = Array.isArray(r.lines) ? r.lines : typeof r.code === "string" ? r.code.split("\n") : [];
   const lines = rawLines
-    .map((l) => (typeof l === "string" ? l.replace(/\t/g, "    ").replace(/\s+$/, "").slice(0, 72) : ""))
+    .map((l) => (typeof l === "string" ? codeLine(l.replace(/\t/g, "    ").replace(/\s+$/, "")) : ""))
     .slice(0, 18);
   while (lines.length && !lines[lines.length - 1].trim()) lines.pop();
   if (!lines.some((l) => l.trim())) return null;
@@ -832,7 +846,7 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
     .map((e) => obj(e))
     .map((e) => {
       const line = lineNo(e.line);
-      const from = typeof e.from === "string" ? e.from.replace(/\t/g, "    ").replace(/\s+$/, "").slice(0, 72) : "";
+      const from = typeof e.from === "string" ? codeLine(e.from.replace(/\t/g, "    ").replace(/\s+$/, "")) : "";
       return line && from !== lines[line - 1] ? { s: sentence(e.s ?? e.sentence, 1), line, from } : null;
     })
     .filter((e): e is NonNullable<typeof e> => Boolean(e))
@@ -858,7 +872,7 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
     ...(r.reveal === "all" ? { reveal: "all" as const } : {}),
     ...(groups.length ? { groups } : {}),
     ...(edits.length ? { edits } : {}),
-    steps: steps.length ? steps : [{ s: 0, lines: [1] }],
+    steps: steps.length ? capStateNames(steps) : [{ s: 0, lines: [1] }],
     ...(rows.length ? { trace: { vars, rows } } : {}),
     ...(outputText ? { output: { s: sentence(outputRaw.s ?? outputRaw.sentence, 0), text: outputText } } : {}),
   };
@@ -893,7 +907,7 @@ function validateStructureStage(r: Raw, sentence: (v: unknown, f?: number) => nu
     .sort((a, b) => a.s - b.s)
     .slice(0, DS_MAX_STEPS);
   registerStructureIds(structure, steps, unique);
-  return { kind: "structure", structure, steps };
+  return { kind: "structure", structure, steps: capStateNames(steps) };
 }
 
 function registerStructureIds(structure: NonNullable<ReturnType<typeof parseStructure>>, steps: Array<{ ops?: ReturnType<typeof parseOps> }>, unique: (v: unknown, f: string) => string) {
@@ -921,6 +935,25 @@ function tokenTex(raw: string): string | null {
   // A term that is only "≠" is drawn as the character (no tex), so it never shows as "/=".
   if ("tex" in fixed && /^\s*(?:\\neq?|\\not\s*=|≠)\s*$/.test(fixed.tex)) return null;
   return "tex" in fixed ? fixed.tex : null;
+}
+
+/**
+ * At most five variables on a board, over ALL its steps: each step was capped at five, but a board
+ * whose steps named seven different ones (INF, dist, unvisited, u, v, w, candidate) squeezed its rows
+ * until the cells overlapped (2026-10-23). The first five the board introduces stay.
+ */
+export const STATE_NAMES_MAX = 5;
+export function capStateNames<T extends { state?: Array<{ name: string; value: string }> }>(steps: T[]): T[] {
+  const keep: string[] = [];
+  for (const st of steps) for (const v of st.state ?? []) if (!keep.includes(v.name) && keep.length < STATE_NAMES_MAX) keep.push(v.name);
+  return steps.map((st) => {
+    if (!st.state) return st;
+    const state = st.state.filter((v) => keep.includes(v.name));
+    if (state.length) return { ...st, state };
+    const { state: _dropped, ...rest } = st;
+    void _dropped;
+    return rest as T;
+  });
 }
 
 /** What the variables hold after a step: an object {"count": 1} or a list of {name, value}; at most 5. */

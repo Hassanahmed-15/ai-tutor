@@ -376,6 +376,25 @@ function layoutMolecules(st: MoleculeStage, area: Rect, marks: Mark[], add: Add)
 
 /** Monospace advance, in em. */
 const MONO = 0.6;
+/**
+ * A value written in the code font so it fits `width` (and a row `height`): one line at the largest
+ * size from `max` down to 11 px; else two lines broken after a comma (or a space), down to 9 px. A
+ * colours dictionary drawn at an 11 px floor ran off the board (owner, 2026-10-23).
+ */
+export function fitValue(value: string, width: number, height: number, max = 16): { lines: string[]; size: number } {
+  const one = Math.floor(width / Math.max(1, value.length * MONO));
+  if (one >= 11) return { lines: [value], size: Math.min(max, one) };
+  const cuts = [...value.matchAll(/,\s*|\s+/g)].map((m) => m.index! + m[0].length).filter((c) => c < value.length);
+  const at = cuts.length ? cuts.reduce((best, c) => (Math.abs(c - value.length / 2) < Math.abs(best - value.length / 2) ? c : best)) : Math.ceil(value.length / 2);
+  const lines = [value.slice(0, at).trimEnd(), value.slice(at).trimStart()].filter(Boolean);
+  const longest = Math.max(...lines.map((l) => l.length));
+  const size = Math.max(9, Math.min(max, Math.floor(width / Math.max(1, longest * MONO)), Math.floor(height / 2.3)));
+  return { lines, size };
+}
+
+/** The smallest code size while the longest line fits at it; below that, CODE_FLOOR_SIZE at most. */
+export const CODE_MIN_SIZE = 12;
+export const CODE_FLOOR_SIZE = 10;
 
 /**
  * A listing in an editor card, sized so its longest line and all its lines fit; under it, side by
@@ -415,7 +434,10 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
     // board); the structure it changes on the right. The trace table and the subgoal labels give
     // way: the structure shows what the trace would, and the labels would crowd the code.
     const longest = Math.max(8, ...stage.lines.map((l) => l.length));
-    const codeW = Math.round(Math.max(fullArea.w * 0.4, Math.min(fullArea.w * 0.58, 38 + longest * MONO * 15 + 48)));
+    // Up to 58% of the board at a readable size; a listing whose longest line cannot fit there even at
+    // the 12 px floor takes up to two thirds (its text ran into the structure, owner 2026-10-23).
+    const atFloor = 46 + longest * MONO * CODE_MIN_SIZE + 48;
+    const codeW = Math.round(Math.max(fullArea.w * 0.4, Math.min(atFloor > fullArea.w * 0.58 ? fullArea.w * 0.66 : fullArea.w * 0.58, 38 + longest * MONO * 15 + 48)));
     const side = { x: fullArea.x + codeW + 18, y: fullArea.y, w: fullArea.w - codeW - 18, h: fullArea.h };
     // The algorithm's bookkeeping (its stack, visited set) goes under the structure it describes: under
     // a sixteen-line listing it ran off the board (CS round, 2026-10-22).
@@ -441,7 +463,10 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
     const longestValue = Math.max(1, ...st.steps.flatMap((p) => (p.state ?? []).map((v) => v.value.length)));
     const colW = Math.round(Math.min(fullArea.w * 0.42, Math.max(240, (longestName + 3 * longestValue + 6) * MONO * 16 + 60)));
     const natural = 38 + Math.max(8, ...stage.lines.map((l) => l.length)) * MONO * 15 + 48;
-    if (fullArea.w - colW - 22 >= Math.min(natural, fullArea.w * 0.55)) {
+    // Beside the code only when the code still fits at its smallest size: a 72-character line squeezed
+    // to 505 px was drawn over the variables' names (owner, 2026-10-23).
+    const atFloor = 46 + Math.max(8, ...stage.lines.map((l) => l.length)) * MONO * CODE_MIN_SIZE + 48;
+    if (fullArea.w - colW - 22 >= Math.max(atFloor, Math.min(natural, fullArea.w * 0.55))) {
       const rowsH = sideNames.length * 46 + 40;
       const rect = { x: fullArea.x + fullArea.w - colW, y: fullArea.y + Math.max(0, Math.round((fullArea.h - rowsH) * 0.3)), w: colW, h: Math.min(fullArea.h, rowsH) };
       const s0 = st.steps.find((q) => q.state)?.s ?? (st.steps[0]?.s ?? 0);
@@ -484,9 +509,14 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
   const codeArea = { x: area.x, y: area.y + notePill, w: area.w - groupW, h: area.h - bottomH - gap - notePill };
   const maxLen = Math.max(8, ...st.lines.map((l) => l.length), ...(st.edits ?? []).map((e) => e.from.length));
   const gutter = st.lines.length >= 10 ? 46 : 38;
-  const size = Math.max(12, Math.min(22, Math.floor(Math.min((codeArea.w - gutter - 36) / (maxLen * MONO), (codeArea.h - 28) / (st.lines.length * 1.5)))));
+  // The size the longest line (and every line) fits at, 22 px at most. Below 12 px only when nothing
+  // larger fits — down to 10 px rather than past the card (owner, 2026-10-23: code ran off its card
+  // into the structure). CodeView clips at the card's edge as the last resort.
+  const fitSize = Math.floor(Math.min((codeArea.w - gutter - 36) / (maxLen * MONO), (codeArea.h - 28) / (st.lines.length * 1.5)));
+  const size = Math.max(CODE_FLOOR_SIZE, Math.min(22, fitSize));
   const lineH = Math.round(size * 1.5);
-  // Wide enough for the longest line, and for each step's note written beside the line it explains.
+  // Wide enough for the longest line, and for each step's note written beside the line it explains;
+  // never wider than its area (a line that still does not fit is clipped at the card, CodeView).
   const noteRoom = Math.max(0, ...st.steps.filter((p) => p.note).map((p) => gutter + 14 + (st.lines[Math.min(...p.lines) - 1]?.length ?? 0) * MONO * size + 22 + (p.note!.length + 2) * Math.max(12, size * 0.78) * 0.56 + 14));
   const w = Math.min(codeArea.w, Math.max(320, gutter + maxLen * MONO * size + 48, noteRoom));
   const h = st.lines.length * lineH + 28;
@@ -621,7 +651,8 @@ function sketchSize(item: SketchItem, w: number, k: number): { h: number; size: 
     }
     case "code": {
       const longest = Math.max(8, ...item.lines.map((l) => l.length));
-      const size = Math.max(12, Math.min(20 * k, (w - 70) / (longest * MONO)));
+      // 10 px rather than past the item's edge (owner, 2026-10-23); the renderer clips the rest.
+      const size = Math.max(CODE_FLOOR_SIZE, Math.min(20 * k, (w - 70) / (longest * MONO)));
       const lineH = size * 1.55;
       return { h: item.lines.length * lineH + 26, size, lineH };
     }
@@ -1027,7 +1058,9 @@ function layoutStructureMark(start: DsStart, steps: Array<{ s: number; ops?: DsO
   // (lib/canvas/generate.ts), so this only guards a board that slipped through.
   const { frames } = runStructure(start, steps);
   const captionRoom = captions.length ? 44 : 0;
-  const inner = { x: area.x, y: area.y, w: area.w, h: area.h - captionRoom };
+  // A two-coloured structure keeps a band at the top for its "Set A / Set B" legend (CanvasPanel).
+  const legendRoom = steps.some((st) => st.ops?.some((o) => o.op === "group")) ? 28 : 0;
+  const inner = { x: area.x, y: area.y + legendRoom, w: area.w, h: area.h - captionRoom - legendRoom };
   const layout = layoutStructure(start, frames, inner);
   const s = frames[0]?.s ?? 0;
   marks.push({ type: "structure", id: "structure", rect: area, kind: start.kind, directed: start.kind === "list" || start.variant === "directed", frames, layout, captions, captionY: area.y + area.h - 12, s });

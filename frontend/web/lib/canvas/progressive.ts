@@ -10,7 +10,7 @@ import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
 import { canvasBeatId, connectToEarlier } from "./connect";
 import { repairCues } from "./cueRepair";
-import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
+import { typedCsLesson, canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
 import { codeSentenceBlocks, groundSourcePlan, strictBoardLines, ungroundedInPlan, videoBoardLines, videoParts } from "./sourceLessons";
 import { assignListings, documentBoardLines, documentListings, extraBoardsForListings, faithfulCodeLines, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredPages, type DocumentListing } from "./documentContext";
 import type { SuprnotesLessonInput } from "../suprnotes";
@@ -24,6 +24,7 @@ import { sourcesForText, type SourcePack } from "../webSources";
 import { splitLongWorking } from "./splitWorking";
 import type { ExaminerSubject } from "./mathsCheck";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
+import { earlierStructures, isTypedCsTopic } from "./csLessons";
 import { applySplits, SQUEEZE_PROMPT, squeezedInPlan } from "./squeeze";
 import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
 import { findLibraryFigure } from "../figures/library";
@@ -61,7 +62,7 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
   const request = canvasPlanRequest(input, knowledge);
   // The approved outline sized the lecture; the plan may not grow it (only a refresher may be added).
   const outlined = canvasBoardCount(input);
-  const ladder = isLadder(input.outline?.subtopics) ? ladderBoardBudget(input.outline!.subtopics) : null;
+  const ladder = isLadder(input.outline?.subtopics) ? ladderBoardBudget(input.outline!.subtopics, typedCsLesson(input)) : null;
   // A document's long code listings may each take consecutive boards (lib/canvas/documentContext.ts).
   // A strict lecture on the whole selection may add a board per page its outline missed (up to 14):
   // capped at the outline's count, the page check could never be met (pages 3-10 of 10; 2026-10-18).
@@ -212,7 +213,7 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         const visualMode: VisualPolicyMode = sourceMode ? "strict" : reference ? "reference" : curriculum ? "course" : "prompt";
         // A CS sentence that packs several lines or steps is split into one per line or step, in the plan,
         // so each board is written once for the narration it plays with (lib/canvas/squeeze.ts).
-        if (visualMode !== "strict" && isCsTopic([input.topic, ...plan.beats.map((b) => b.title)].join(" "))) {
+        if (visualMode !== "strict" && (visualMode === "prompt" ? isTypedCsTopic : isCsTopic)([input.topic, ...plan.beats.map((b) => b.title)].join(" "))) {
           const squeezed = squeezedInPlan(plan.beats).slice(0, 24);
           if (squeezed.length) {
             try {
@@ -349,8 +350,11 @@ export async function writeCanvasBoard(args: {
   feedback?: string[];
   /** True while the student is about to reach this board: polish passes are skipped (generateSpec). */
   hurry?: () => boolean;
+  /** A lesson from a typed prompt; when left out, a lesson with no document or source behind it. */
+  typedPrompt?: boolean;
 }): Promise<{ beat: Beat; costUsd: number; fallback: boolean; log: string[] }> {
   const { plan, index, sessionId } = args;
+  const typed = args.typedPrompt ?? (!args.document && !args.strictSource);
   const beat = plan[index];
   const started = Date.now();
   // An examined board may need one rewrite: it gets a minute more (boards 2+ are written while earlier ones play).
@@ -377,7 +381,9 @@ export async function writeCanvasBoard(args: {
     const openai = client();
     if (exam) made = { spec: examBoardSpec(beat, exam), costUsd: 0, attempts: 1 };
     else if (beat.stage === "exam") throw new Error("an exam board needs the lesson's mark scheme");
-    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry });
+    // `typed`: a lesson from a typed prompt (no PDF, video or course behind it) gets the DSA teaching rules.
+    // `earlier`: the structures the earlier boards drew, so a typed CS board stays on the lesson's one example.
+    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, typed, earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined });
     pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra));
   } catch (error) {
     log.push(`${beat.id}: ${(error as Error).message}`);
@@ -395,7 +401,7 @@ export async function writeCanvasBoard(args: {
   const taskYields = Boolean(spec.interaction && (spec.interaction.kind === "try" || spec.interaction.kind === "draw") && tasksGiveWay(plan));
   if (cardHere && (!spec.interaction || taskYields) && spec.stage.kind !== "exam" && !beat.overview && !beat.refresher && process.env.CANVAS_CHECK_CARDS !== "off") {
     const block = args.document?.contentBlocks?.[plan.filter((b) => !b.refresher).indexOf(beat)];
-    const made = await writeCheckCard(client(), beat, spec, { level: args.document?.lesson?.level, teachingHints: block?.teachingHints }).catch((error) => ({ card: null, costUsd: (error as { costUsd?: number }).costUsd ?? 0, log: `no check card — ${(error as Error).message}` }));
+    const made = await writeCheckCard(client(), beat, spec, { level: args.document?.lesson?.level, teachingHints: block?.teachingHints, typed }).catch((error) => ({ card: null, costUsd: (error as { costUsd?: number }).costUsd ?? 0, log: `no check card — ${(error as Error).message}` }));
     cardCost = made.costUsd;
     log.push(`${beat.id}: ${made.log}`);
     if (made.card) spec.interaction = made.card;

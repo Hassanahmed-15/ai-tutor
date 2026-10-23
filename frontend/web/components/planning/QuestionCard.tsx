@@ -17,7 +17,8 @@ import { Check, ChevronLeft, CornerDownLeft, Mic, MicOff } from "lucide-react";
  * the parent as one more label that is not an option's.
  */
 export type CardOption = { label: string; description?: string };
-export type CardQuestion = { id: string; header: string; question: string; multi?: boolean; options: CardOption[] };
+/** `loading`: the question is on the card while its options are still being written. */
+export type CardQuestion = { id: string; header: string; question: string; multi?: boolean; options: CardOption[]; loading?: boolean };
 
 export function QuestionCard({
   questions,
@@ -147,6 +148,17 @@ export function QuestionCard({
             <>
               <h2 className="text-balance text-[1.15rem] font-semibold leading-snug text-[var(--hud-text)]">{open.question}</h2>
               {open.multi && <p className="mt-1 text-[0.8125rem] text-[var(--hud-text-faint)]">Select all that apply</p>}
+              {/* Still being written (the card opens the moment Enter is pressed): rows that fill in. */}
+              {open.loading ? (
+                <div className="mt-4 grid gap-1.5" aria-busy="true" aria-label="Aria is writing the options">
+                  {[0.72, 0.58, 0.66, 0.5].map((w, i) => (
+                    <div key={i} className="flex items-center gap-3 rounded-xl px-3.5 py-3">
+                      <span className="size-[1.125rem] shrink-0 rounded-[4px] border border-[var(--hud-line)]" />
+                      <span className="aria-breathe h-3 rounded-full bg-[var(--hud-surface-2)]" style={{ width: `${w * 100}%` }} />
+                    </div>
+                  ))}
+                </div>
+              ) : (
               <ul className="mt-4 grid gap-1.5">
                 {open.options.map((o, i) => {
                   const on = (answers[open.id] ?? []).includes(o.label);
@@ -229,6 +241,7 @@ export function QuestionCard({
                   })()}
                 </li>
               </ul>
+              )}
             </>
           ) : (
             <>

@@ -329,7 +329,15 @@ export type DsOp =
   | { op: "set"; id: string; value: string }
   | { op: "swap"; a: string; b: string }
   | { op: "point"; name: string; to: string | null }
-  | { op: "mark"; id: string; as: DsMark };
+  | { op: "mark"; id: string; as: DsMark }
+  /**
+   * TWO-COLOURING (owner, 2026-10-23: a bipartite lecture never showed its two sets): the node is put in
+   * set 0 ("Set A", blue) or set 1 ("Set B", orange); the board draws a legend once a node has a set.
+   */
+  | { op: "group"; id: string; group: 0 | 1 }
+  /** An edge marked as a BFS/DFS tree edge (bold) or a conflict (red: two ends in the same set), or cleared. */
+  | { op: "edge"; from: string; to: string; as: DsEdgeMark | "none" };
+export type DsEdgeMark = "tree" | "conflict";
 
 /** A board that is the structure alone: what a BST is, how a queue is arranged, a traversal's order. */
 export type StructureStage = {
