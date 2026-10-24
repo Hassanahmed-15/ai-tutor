@@ -27,7 +27,7 @@ export type Pt = { x: number; y: number };
 
 export type Mark =
   | { type: "heading"; id: string; text: string; x: number; y: number; size: number; s: number }
-  | { type: "note"; id: string; lines: string[]; x: number; y: number; size: number; s: number; bullet: Pt; /** Rolled off the column when a later note takes its slot (sentence number). */ until?: number }
+  | { type: "note"; id: string; lines: string[]; x: number; y: number; size: number; s: number; bullet: Pt; /** Rolled off the column when a later note takes its slot (sentence number). */ until?: number; /** An equation, typeset by KaTeX within `w`. */ tex?: string; w?: number }
   | { type: "node"; id: string; cx: number; cy: number; r: number; icon?: CanvasIcon; label: string; sub?: string; color: string; s: number; glow?: string; labelY: number; labelSize: number; becomes?: Becomes }
   | { type: "arrow"; id: string; p0: Pt; c: Pt; p1: Pt; label?: string; labelAt: Pt; s: number; flow: boolean; rate?: string; color: string }
   | { type: "picture"; id: string; rect: Rect; src?: string; paper?: string; s: number; subject: string }
@@ -279,9 +279,9 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
     allNotes.forEach((note, i) => {
       const x = STAGE_WIDE.x + (i % SLOTS) * (noteW + gap);
       const y = 474;
-      const { lines, size: sz } = noteLines(note.text, noteSize, noteW - 24);
+      const { lines, size: sz } = note.tex ? { lines: [note.text], size: noteSize } : noteLines(note.text, noteSize, noteW - 24);
       const until = untilOf(i);
-      marks.push({ type: "note", id: note.id, lines, x: x + 22, y, size: sz, s: note.s, bullet: { x: x + 7, y: y - sz * 0.34 }, ...(until !== undefined ? { until } : {}) });
+      marks.push({ type: "note", id: note.id, lines, x: x + 22, y, size: sz, s: note.s, bullet: { x: x + 7, y: y - sz * 0.34 }, ...(until !== undefined ? { until } : {}), ...(note.tex ? { tex: note.tex, w: noteW - 24 } : {}) });
       const h = lines.length * sz * 1.28;
       targets[note.id] = { x, y: y - noteSize, w: noteW, h: h + 6, s: note.s };
     });
@@ -292,9 +292,10 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
     const nw = besideNotes ? RIGHT_NOTES_W : NOTES_W;
     allNotes.forEach((note, i) => {
       const y = 140 + (i % SLOTS) * slotH;
-      const { lines, size: sz } = noteLines(note.text, NOTE_SIZE, nw - 26);
+      // An equation is typeset on one line, scaled to the column (KaTeX); words wrap as before.
+      const { lines, size: sz } = note.tex ? { lines: [note.text], size: NOTE_SIZE } : noteLines(note.text, NOTE_SIZE, nw - 26);
       const until = untilOf(i);
-      marks.push({ type: "note", id: note.id, lines, x: nx + 24, y, size: sz, s: note.s, bullet: { x: nx + 7, y: y - sz * 0.34 }, ...(until !== undefined ? { until } : {}) });
+      marks.push({ type: "note", id: note.id, lines, x: nx + 24, y, size: sz, s: note.s, bullet: { x: nx + 7, y: y - sz * 0.34 }, ...(until !== undefined ? { until } : {}), ...(note.tex ? { tex: note.tex, w: nw - 26 } : {}) });
       const h = lines.length * sz * 1.28;
       targets[note.id] = { x: nx, y: y - NOTE_SIZE, w: nw, h: h + 6, s: note.s };
     });

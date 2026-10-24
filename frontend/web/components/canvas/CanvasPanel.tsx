@@ -466,13 +466,20 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       return (
         <g className={`cv-in${focus}`}>
           <circle cx={mark.bullet.x} cy={mark.bullet.y} r={5} fill="#f59e0b" />
-          <text x={mark.x} y={mark.y} fontSize={mark.size} fontWeight={600} fill={INK} className="cv-write">
-            {mark.lines.map((line, i) => (
-              <tspan key={i} x={mark.x} dy={i === 0 ? 0 : mark.size * 1.28}>
-                {line}
-              </tspan>
-            ))}
-          </text>
+          {/* An equation note is typeset by KaTeX (owner, 2026-10-24: "each eq should be derived from katex"). */}
+          {mark.tex ? (
+            <g transform={`translate(${mark.x} ${mark.y})`} data-tex-note="">
+              <TexTerm tex={mark.tex} size={mark.size * 1.15} w={mark.w ?? 300} color={INK} onElement={() => {}} align="left" />
+            </g>
+          ) : (
+            <text x={mark.x} y={mark.y} fontSize={mark.size} fontWeight={600} fill={INK} className="cv-write">
+              {mark.lines.map((line, i) => (
+                <tspan key={i} x={mark.x} dy={i === 0 ? 0 : mark.size * 1.28}>
+                  {line}
+                </tspan>
+              ))}
+            </text>
+          )}
         </g>
       );
     case "node":
@@ -1912,7 +1919,7 @@ function EquationView({ mark, stage, shownThrough, focusId, reducedMotion }: { m
  * box grows to what it holds — a foreignObject's content past its box is clipped by Safari, whatever
  * its overflow says, and a tall fraction outgrew the fixed one.
  */
-function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number; w: number; color: string; onElement: (el: HTMLDivElement | null) => void }) {
+function TexTerm({ tex, size, w, color, onElement, align = "center" }: { tex: string; size: number; w: number; color: string; onElement: (el: HTMLDivElement | null) => void; /** A note starts at its bullet; a term centres on its slot. */ align?: "center" | "left" }) {
   const html = useMemo(() => katex.renderToString(tex, { throwOnError: false, displayMode: false }), [tex]);
   // The transform goes on a wrapper React owns and never styles: KaTeX's own root is replaced
   // whenever React writes the typeset HTML again, and would lose it.
@@ -1937,7 +1944,7 @@ function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number
       const scale = actual > w ? Math.max(0.45, w / actual) : 1;
       const shown = actual * scale;
       // Wider than its slot even at the floor: the box widens about its centre to hold it.
-      const left = Math.min(0, (w - shown) / 2 - 4);
+      const left = align === "left" ? 0 : Math.min(0, (w - shown) / 2 - 4);
       const width = Math.max(4, w, shown + 8);
       const height = Math.max(h, inner.offsetHeight + 8);
       if (fo) {
@@ -1948,7 +1955,7 @@ function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number
         fo.setAttribute("height", height.toFixed(1));
       }
       inner.style.transformOrigin = "0 50%";
-      inner.style.transform = `translateX(${((w - shown) / 2 - left).toFixed(1)}px) scale(${scale.toFixed(3)})`;
+      inner.style.transform = `translateX(${(align === "left" ? 0 : (w - shown) / 2 - left).toFixed(1)}px) scale(${scale.toFixed(3)})`;
       return true;
     };
     // A board is often mounted before it is laid out (its width reads 0), and a ResizeObserver
@@ -1966,7 +1973,7 @@ function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number
       alive = false;
       cancelAnimationFrame(raf);
     };
-  }, [html, w, h, top]);
+  }, [html, w, h, top, align]);
   return (
     <foreignObject ref={box} x={0} y={top} width={Math.max(4, w)} height={h} overflow="visible" className="cv-in">
       <div ref={onElement} style={{ display: "flex", alignItems: "center", height: "100%", whiteSpace: "nowrap", color, fontSize: size * 0.84, lineHeight: 1 }}>
@@ -2201,6 +2208,8 @@ text[data-halo] { paint-order: stroke fill; stroke: ${PAPER}; stroke-width: 4.5p
 /* A plate in the board colour behind a short label, for spots no edge leaves free (a "same set!" inside a triangle). */
 rect[data-plate] { fill: ${PAPER}; }
 .cv-chalk rect[data-plate] { fill: #000000; }
+/* A typeset equation note takes the board's ink: chalk recolours by fill attributes, which KaTeX has none of. */
+.cv-chalk [data-tex-note] .katex { color: #f1eee4; }
 .cv-chalk foreignObject[data-halo] [data-ink-content], .cv-chalk foreignObject[data-halo] .katex { text-shadow: 0 0 2px #000, 0 0 4px #000, 0 0 7px #000; }
 .cv-live .cv-stroke { stroke-dasharray: 1; animation: cv-stroke 850ms cubic-bezier(.45,0,.25,1) both; }
 .cv-live .cv-slow { animation-duration: 1800ms; }

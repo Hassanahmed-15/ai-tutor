@@ -36,6 +36,10 @@ import { findLibraryFigure, libraryAssetTitle, libraryStageAsset } from "../figu
 import type { FigureComponent } from "../figures/types";
 import { loadSharedCanvasImage, loadSharedDiagramRecord, saveCanvasImage, saveCanvasLecture, saveSharedCanvasImage, saveSharedDiagramRecord, type CanvasLecture } from "./store";
 import { boardStructureProblem, dsaTeachingProblem, isDataStructureTopic, withoutStructure } from "./structure";
+import katex from "katex";
+import { mathifyBoard } from "./mathNotes";
+/** A LaTeX string KaTeX can typeset (a note that cannot stays as text). */
+const rendersAsTex = (tex: string): boolean => { try { katex.renderToString(tex, { throwOnError: true }); return true; } catch { return false; } };
 import { anchorTraceNotes, claimedLinksProblem, continuedCodeProblem, crowdedStepsProblem, csPictureRule, removeCutNodes, retargetLineReferences, exampleProblem, hardcodedResultProblem, isCodeNote, isTypedCsTopic, isTypedDsaTopic, parentForestProblem, placeholderProblem, pointerNameProblem, protocolStartProblem, repairFromExample, structureChangeProblem, syncProblem, type EarlierStructure } from "./csLessons";
 import { equationProblem, normalizeMath, orderNotesAsSaid, revealNotesWhenSaid, tidyNotes, withResultNotes } from "./equationCheck";
 import { MATHS_CHECK_MODEL, mathsCheck, mathsFixes, patchNarration, type ExaminerSubject } from "./mathsCheck";
@@ -345,6 +349,11 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     // A typed CS trace's notes go up on the sentences of the narration that ships: the examiner can
     // rewrite the narration after they were placed (BST review: four notes on one sentence).
     if (typedCs && (shipped.stage.kind === "code" || shipped.stage.kind === "structure")) shipped.notes = anchorTraceNotes(shipped.notes, beat.script);
+    // A typed lesson's equations are typeset, and never squeezed into a box (lib/canvas/mathNotes.ts).
+    if (opts.typed) {
+      const { typeset, cleared } = mathifyBoard(shipped, rendersAsTex);
+      if (typeset || cleared) console.log(`[canvas] ${beat.id}: ${typeset} equation note(s) typeset${cleared ? `, ${cleared} equation(s) taken out of boxes` : ""}`);
+    }
     return shipped;
   };
   // A code board in a data-structures lesson draws the structure beside the code (lib/canvas/structure.ts).

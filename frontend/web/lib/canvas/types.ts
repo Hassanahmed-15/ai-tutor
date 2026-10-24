@@ -26,7 +26,8 @@ export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "comp
 export type CanvasStage = (typeof CANVAS_STAGES)[number];
 
 /** A written key note in the notes column, revealed on the sentence that says it. */
-export type CanvasNote = { id: string; text: string; s: number };
+/** `tex`: the note is an equation, typeset by KaTeX (typed-prompt lessons; lib/canvas/mathNotes.ts). */
+export type CanvasNote = { id: string; text: string; s: number; tex?: string };
 
 export type FlowNode = {
   id: string;
