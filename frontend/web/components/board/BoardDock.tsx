@@ -48,6 +48,8 @@ export interface BoardDockProps {
   onNext?: () => void;
   canGoPrevious: boolean;
   canGoNext: boolean;
+  /** Why Next is held, shown as its label (the next board is still being written). */
+  nextLabel?: string;
   tool: BoardTool;
   onToolChange: (tool: BoardTool) => void;
   /**
@@ -169,7 +171,7 @@ export function BoardDock(props: BoardDockProps) {
           <span>{props.playing ? "Pause" : "Play"}</span>
         </button>
 
-        <DockButton onClick={props.onNext} disabled={!props.canGoNext} label="Next concept" shortcut="→">
+        <DockButton onClick={props.onNext} disabled={!props.canGoNext} label={props.nextLabel ?? "Next concept"} shortcut="→">
           <ChevronRight size={20} />
         </DockButton>
 

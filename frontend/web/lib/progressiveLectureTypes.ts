@@ -146,6 +146,8 @@ export type ProgressiveLectureSessionDoc = {
   mode: LectureMode;
   learnerProfile: LearnerProfileSnapshot;
   inputBlobName: string;
+  /** A typed lesson's asked subject (lib/canvas/subjectDomain.ts), kept for the player. */
+  subjectDomain?: import("./canvas/subjectDomain").SubjectDomain;
   status: ProgressiveLectureStatus;
   plan: ProgressiveBeatPlan[];
   planRevision: number;
@@ -268,6 +270,8 @@ export type ProgressiveLectureSnapshot = {
   error: string | null;
   /** When the session was created, so time-to-first-beat can be read off the snapshot. */
   createdAt?: string;
+  /** A typed lesson's asked subject: a CS lecture waits for a board whose animation is being retried. */
+  subjectDomain?: import("./canvas/subjectDomain").SubjectDomain;
   /** Every planned beat, ready or not, with where its time has gone so far. */
   beatStatus?: Array<{
     sequence: number;

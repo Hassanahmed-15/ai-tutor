@@ -1,7 +1,7 @@
 import { describeSketch } from "./sketch";
 import { describeSequence } from "./sequence";
 import { describeGantt, describeMapping, describeMemory, describeStates } from "./osDiagrams";
-import { describeStructure } from "./structure";
+import { describeStructure, structureStatesInWords } from "./structure";
 import { evalExpr } from "./expr";
 import { layoutPanel } from "./layout";
 import { figureComponent } from "../figures/registry";
@@ -115,12 +115,14 @@ export function boardFacts(spec: CanvasBoardSpec): string {
       if (stage.structure) lines.push(`Beside the code: a ${stage.structure.variant ? `${stage.structure.variant} ` : ""}${stage.structure.kind} starting as ${stage.structure.nodes.map((n) => n.value).join(", ") || "empty"}.`);
       if (stage.steps.length) {
         lines.push("As Aria speaks:");
-        for (const st of stage.steps) {
+        // What the structure shows after each step, in values (a swapped node holds the other value).
+        const states = stage.structure ? structureStatesInWords(stage.structure, stage.steps) : [];
+        for (const [k, st] of stage.steps.entries()) {
           const parts = [`sentence ${st.s}: lights line${st.lines.length === 1 ? "" : "s"} ${st.lines.join(", ")}`];
           if (st.note) parts.push(`note "${st.note}"`);
           if (st.state?.length) parts.push(`variables ${st.state.map((v) => `${v.name} = ${v.value}`).join(", ")}`);
           if (st.stack?.length) parts.push(`call stack ${st.stack.map((f) => `${f.call}${f.value ? ` (${f.value})` : ""}`).join(" → ")}`);
-          if (st.ops?.length) parts.push(`structure: ${st.ops.map((o) => JSON.stringify(o)).join(", ")}`);
+          if (st.ops?.length) parts.push(`structure: ${st.ops.map((o) => JSON.stringify(o)).join(", ")}${states[k] ? ` → now ${states[k]}` : ""}`);
           lines.push(`- ${parts.join("; ")}`);
         }
       }
@@ -133,9 +135,10 @@ export function boardFacts(spec: CanvasBoardSpec): string {
       lines.push(`Main visual: ${describeStructure(stage.structure, stage.steps)}`);
       if (stage.steps.length) {
         lines.push("As Aria speaks:");
-        for (const st of stage.steps) {
+        const states = structureStatesInWords(stage.structure, stage.steps);
+        for (const [k, st] of stage.steps.entries()) {
           const parts = [`sentence ${st.s}`];
-          if (st.ops?.length) parts.push(`structure: ${st.ops.map((o) => JSON.stringify(o)).join(", ")}`);
+          if (st.ops?.length) parts.push(`structure: ${st.ops.map((o) => JSON.stringify(o)).join(", ")}${states[k] ? ` → now ${states[k]}` : ""}`);
           if (st.note) parts.push(`note "${st.note}"`);
           if (st.state?.length) parts.push(`variables ${st.state.map((v) => `${v.name} = ${v.value}`).join(", ")}`);
           lines.push(`- ${parts.join("; ")}`);

@@ -73,12 +73,38 @@ function setOf(v: unknown): 0 | 1 | null {
   return null;
 }
 
+/*
+ * OPERATIONS THE WRITER NAMES ITS OWN WAY ARE UNDERSTOOD, AND THE REST ARE REPORTED (BST deletion lecture,
+ * 2026-10-25: five code boards lost their tree — every attempt was refused as "the structure never changes",
+ * because steps written as "move", "highlight" or marked "successor" were dropped here without a word, and
+ * the writer, told only that nothing changed, wrote the same steps again).
+ */
+const OP_SYNONYMS: Record<string, string> = {
+  move: "point", movepointer: "point", pointer: "point", advance: "point", assign: "set", replace: "set", copy: "set", update: "set", setvalue: "set",
+  highlight: "mark", visit: "mark", select: "mark", compare: "mark", check: "mark", relink: "link", connect: "link", attach: "link", detach: "unlink", disconnect: "unlink", cut: "unlink",
+};
+const MARK_SYNONYMS: Record<string, DsMark> = {
+  current: "visit", active: "visit", highlight: "visit", target: "visit", visiting: "visit", checking: "compare", compared: "compare", comparing: "compare",
+  successor: "found", match: "found", matched: "found", result: "found", delete: "remove", deleted: "remove", removed: "remove", finished: "done", visited: "done", complete: "done", completed: "done",
+};
+/** Operations a step gave that could not be understood (taken by the board writer's retry: lib/canvas/generate.ts). */
+let droppedOps: string[] = [];
+export function takeDroppedOps(): string[] {
+  const d = droppedOps;
+  droppedOps = [];
+  return d;
+}
+
 /** One step's operations: {"op": "link", "from": "3", "to": "1", "side": "left"} (or {"link": {...}}). */
 export function parseOps(raw: unknown): DsOp[] {
   const out: DsOp[] = [];
   for (const item of arr(raw).slice(0, 10)) {
+    const before = out.length;
     let o = obj(item);
-    let name = text(o.op, 8).toLowerCase();
+    let name = text(o.op, 12).toLowerCase().replace(/[^a-z]/g, "");
+    name = OP_SYNONYMS[name] ?? name;
+    // A step named after its mark ({"op": "highlight", "id": "n3"}) is a mark: "visit" unless it says otherwise.
+    if (name === "mark" && o.as === undefined) o = { ...o, as: "visit" };
     if (!name) {
       const key = OP_NAMES.find((k) => k in o);
       if (!key) continue;
@@ -111,7 +137,8 @@ export function parseOps(raw: unknown): DsOp[] {
       if (pname) out.push({ op: "point", name: pname, to: o.to === null || o.to === undefined || o.to === "" ? null : nodeId(o.to) });
     } else if (name === "mark") {
       const id = nodeId(o.id);
-      const as = text(o.as, 8).toLowerCase() as DsMark;
+      const said = text(o.as, 12).toLowerCase();
+      const as = (MARK_SYNONYMS[said] ?? said) as DsMark;
       if (id && DS_MARKS.includes(as)) out.push({ op: "mark", id, as });
     } else if (name === "group" || name === "color" || name === "colour") {
       const id = nodeId(o.id);
@@ -123,6 +150,7 @@ export function parseOps(raw: unknown): DsOp[] {
       const as = text(o.as, 9).toLowerCase();
       if (from && to && (as === "tree" || as === "conflict" || as === "none")) out.push({ op: "edge", from, to, as });
     }
+    if (out.length === before && droppedOps.length < 8) droppedOps.push(JSON.stringify(item).slice(0, 120));
   }
   return out;
 }
@@ -185,10 +213,25 @@ function height(frame: Pick<DsFrame, "edges">, id: string | undefined, depth = 0
 }
 
 /** Why this frame is not a valid structure, or null. `final`: the operation has finished. */
-export function structureProblem(start: Pick<DsStart, "kind" | "variant">, frame: Pick<DsFrame, "nodes" | "edges" | "pointers">, final: boolean): string | null {
+export function structureProblem(start: Pick<DsStart, "kind" | "variant">, frame: Pick<DsFrame, "nodes" | "edges" | "pointers">, final: boolean, heapOrder = true): string | null {
   const ids = new Set(frame.nodes.map((n) => n.id));
   for (const e of frame.edges) if (!ids.has(e.from) || !ids.has(e.to)) return `an edge ${e.from} → ${e.to} points at a node that is not there`;
   for (const p of frame.pointers) if (!ids.has(p.to)) return `pointer "${p.name}" points at "${p.to}", which is not there`;
+  // A SINGLY LINKED LIST NEVER ENDS IN A LOOP (list reversal lecture, 2026-10-25: B.next became A, but A's old
+  // link to B was never cleared — A.next = None was only said — so A and B pointed at each other on the board).
+  if (final && start.kind === "list") {
+    const value = new Map(frame.nodes.map((n) => [n.id, n.value]));
+    for (const n of frame.nodes) {
+      const seen = new Set<string>();
+      for (let id: string | undefined = n.id; id; id = frame.edges.find((e) => e.from === id)?.to) {
+        if (seen.has(id)) {
+          const back = frame.edges.find((e) => e.from === id)!;
+          return `the list ends in a loop: ${value.get(back.from) ?? back.from} → ${value.get(back.to) ?? back.to} leads back to a node already passed. When a node's next becomes None, remove its old link on that same step ({"op": "unlink", "from", "to"}); a link changing to another node is {"op": "link"}, which replaces the old one`;
+        }
+        seen.add(id);
+      }
+    }
+  }
   if (!isTree(start.kind)) return null;
   const value = new Map(frame.nodes.map((n) => [n.id, n.value]));
   for (const id of ids) if (frame.edges.filter((e) => e.to === id).length > 1) return `node ${value.get(id)} has two parents`;
@@ -217,7 +260,7 @@ export function structureProblem(start: Pick<DsStart, "kind" | "variant">, frame
       if (Math.abs(diff) > 1) return `the AVL tree is unbalanced at ${value.get(id)} when the operation ends`;
     }
   }
-  if (final && start.variant === "heap" && nums && frame.edges.length) {
+  if (final && heapOrder && start.variant === "heap" && nums && frame.edges.length) {
     const up = frame.edges.every((e) => Number(value.get(e.from)) <= Number(value.get(e.to)));
     const down = frame.edges.every((e) => Number(value.get(e.from)) >= Number(value.get(e.to)));
     if (!up && !down) return "the heap is out of order when the operation ends (a parent must be ≤ its children in a min-heap, ≥ in a max-heap)";
@@ -230,6 +273,13 @@ export function structureProblem(start: Pick<DsStart, "kind" | "variant">, frame
  * applied. Stops at the first operation that cannot be done or leaves an invalid structure, and says
  * which step and why.
  */
+/** Do a tree's links already keep one heap order (every parent ≤, or every parent ≥, its children)? */
+function isHeapOrdered(f: Pick<DsFrame, "nodes" | "edges">): boolean {
+  if (!f.edges.length) return false;
+  const value = new Map(f.nodes.map((n) => [n.id, Number(n.value)]));
+  return f.edges.every((e) => value.get(e.from)! <= value.get(e.to)!) || f.edges.every((e) => value.get(e.from)! >= value.get(e.to)!);
+}
+
 export function runStructure(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>): { frames: DsFrame[]; problem: string | null } {
   const first: DsFrame = {
     s: Math.min(0, steps[0]?.s ?? 0),
@@ -245,6 +295,11 @@ export function runStructure(start: DsStart, steps: Array<{ s: number; ops?: DsO
   };
   if (isTree(start.kind)) first.edges = withSides(start, first);
   const frames: DsFrame[] = [first];
+  // HEAP ORDER IS DEMANDED OF HEAP WORK: a board that swaps (heapify, sift) or starts from a heap must end in
+  // one; a board that only lays the unsorted array out as a tree ("not yet a max-heap") need not (max-heap
+  // lecture, 2026-10-25: that board was refused, and the cut-node repair then deleted three of its nodes).
+  // A tree drawn from the start (it has links) is a heap and is held to it; one laid out link by link is a shape.
+  const heapOrder = start.variant !== "heap" || start.edges.length > 0 || steps.some((st) => st.ops?.some((o) => o.op === "swap" || o.op === "remove")) || isHeapOrdered(first);
   const startProblem = structureProblem(start, first, false);
   if (startProblem) return { frames, problem: `the starting structure is wrong: ${startProblem}` };
 
@@ -269,7 +324,7 @@ export function runStructure(start: DsStart, steps: Array<{ s: number; ops?: DsO
       if (problem) return { frames, problem: `${where}: ${problem}` };
     }
     if (f.nodes.length > DS_MAX_NODES) return { frames, problem: `${where}: more than ${DS_MAX_NODES} nodes` };
-    const problem = structureProblem(start, f, i === steps.length - 1);
+    const problem = structureProblem(start, f, i === steps.length - 1, heapOrder);
     if (problem) return { frames, problem: `${where}: ${problem}` };
     frames.push(f);
   }
@@ -324,7 +379,13 @@ function applyOp(start: DsStart, f: DsFrame, op: DsOp): string | null {
   };
   switch (op.op) {
     case "add": {
-      if (has(op.id)) return `"${op.id}" is already on the board`;
+      if (has(op.id)) {
+        // The same node added again (a linked-list board re-added its tail node at step 10 and lost its
+        // whole list for it, 2026-10-25): nothing to add — only a missing link from the parent is drawn.
+        if (valueOf(op.id) !== op.value) return `"${op.id}" is already on the board`;
+        if (op.parent && has(op.parent) && !tree && (start.kind === "list" || start.kind === "graph") && !f.edges.some((e) => e.from === op.parent && e.to === op.id)) f.edges.push({ from: op.parent, to: op.id });
+        return null;
+      }
       const node = { id: op.id, value: op.value };
       if (op.at !== undefined && op.at >= 0 && op.at < f.nodes.length) f.nodes.splice(op.at, 0, node);
       else f.nodes.push(node);
@@ -502,6 +563,32 @@ function placeNulls(layout: DsLayout, frames: DsFrame[], area: DsBox): DsLayout 
   };
 }
 
+/**
+ * A linked list's nodes in the order its links run: from each head (a node no link points to — the one the
+ * "head" pointer marks first), along its next links; a node not yet linked keeps its place after them. A
+ * list with no links, or only a cycle, keeps the order its nodes were given.
+ */
+export function chainOrder(f: Pick<DsFrame, "nodes" | "edges" | "pointers">): DsNode[] {
+  if (!f.edges.length) return f.nodes;
+  const byId = new Map(f.nodes.map((n) => [n.id, n]));
+  const pointedAt = new Set(f.edges.map((e) => e.to));
+  const headId = f.pointers.find((p) => /^head$/i.test(p.name))?.to;
+  const heads = f.nodes.filter((n) => !pointedAt.has(n.id)).sort((a, b) => (a.id === headId ? -1 : b.id === headId ? 1 : 0));
+  if (!heads.length) return f.nodes;
+  const out: DsNode[] = [];
+  const seen = new Set<string>();
+  for (const head of heads) {
+    // Only chains of links count: a lone node with no next link stays where it was given, after them.
+    if (!f.edges.some((e) => e.from === head.id)) continue;
+    for (let id: string | undefined = head.id; id && !seen.has(id) && byId.has(id); id = f.edges.find((e) => e.from === id)?.to) {
+      seen.add(id);
+      out.push(byId.get(id)!);
+    }
+  }
+  for (const n of f.nodes) if (!seen.has(n.id)) out.push(n);
+  return out;
+}
+
 function placeStructure(kind: DsKind, frames: DsFrame[], area: DsBox, longest: number): DsLayout {
   const most = Math.max(1, ...frames.map((f) => f.nodes.length));
   if (kind === "tree") return layoutTree(frames, area);
@@ -525,9 +612,11 @@ function placeStructure(kind: DsKind, frames: DsFrame[], area: DsBox, longest: n
   // textbooks do (null ← A ← B), with those pointers' tags under it like any other pointer.
   const nullSlot = list && frames.some((f) => f.nulls.length > 0) ? 1 : 0;
   const slots = most + nullSlot;
-  const gap = list ? clamp(area.w / slots * 0.34, 26, 46) : 0;
+  // A long row may close up and shrink its boxes before it runs past its area (a ten-node list ran under
+  // the code and off the board, 2026-10-25); a short one keeps its roomy spacing.
+  const gap = list ? clamp(area.w / slots * 0.34, 14, 46) : 0;
   // Long values ("1000") get a wider list box, so they stay readable rather than tiny.
-  const w = clamp((area.w - 20 - gap * (slots - 1)) / slots, 40, list ? (longest >= 4 ? 96 : 84) : 72);
+  const w = clamp((area.w - 20 - gap * (slots - 1)) / slots, 28, list ? (longest >= 4 ? 96 : 84) : 72);
   const h = clamp(w * 0.72, 36, 52);
   const rowW = slots * w + gap * (slots - 1);
   const x0 = area.x + (area.w - rowW) / 2 + w / 2 + nullSlot * (w + gap);
@@ -537,7 +626,11 @@ function placeStructure(kind: DsKind, frames: DsFrame[], area: DsBox, longest: n
     shape: list ? "box" : "cell", r: h / 2, w, h, size: clamp(h * 0.44, 15, 22),
     ...(nullSlot ? { nullMark: nullAt } : {}),
     frames: frames.map((f) => {
-      const place = Object.fromEntries(f.nodes.map((n, i) => [n.id, { x: x0 + i * (w + gap), y }]));
+      // A linked list is drawn in LINK order from its head, not the order its nodes were made: nodes
+      // inserted at the front were drawn at the end, with a long arrow arcing back over the whole list
+      // (2026-10-25). As Aria links a node in, it slides to its place.
+      const order = list ? chainOrder(f) : f.nodes;
+      const place = Object.fromEntries(order.map((n, i) => [n.id, { x: x0 + i * (w + gap), y }]));
       const below = y + h / 2 + (list ? 18 : 40);
       const stacked: Record<string, number> = {};
       const pointers = f.pointers.map((p) => {
@@ -742,6 +835,31 @@ function shapeInWords(kind: DsKind, f: DsFrame): string {
 }
 
 /** The structure in words, for Aria's live context: what it starts as and what it ends as. */
+/**
+ * WHAT THE STRUCTURE SHOWS AFTER EACH STEP, IN VALUES (max-heap lecture, 2026-10-25: the reviewer read the ops
+ * "swap n4 n10", then "swap n10 n5", took n10 for the value 10 — after the first swap that node holds 4 — and
+ * rejected a correct sift-down twice). One entry per step: a heap as its array in position order, anything
+ * else as its shape in words. A step whose operations go wrong ends the list.
+ */
+export function structureStatesInWords(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>): string[] {
+  const { frames } = runStructure(start, steps);
+  return frames.slice(1).map((f) => {
+    if (start.kind === "tree" && start.variant === "heap") {
+      const hasParent = new Set(f.edges.map((e) => e.to));
+      const root = f.nodes.find((n) => !hasParent.has(n.id));
+      const value = new Map(f.nodes.map((n) => [n.id, n.value]));
+      const order: string[] = [];
+      for (const queue = root ? [root.id] : []; queue.length;) {
+        const id = queue.shift()!;
+        order.push(value.get(id) ?? id);
+        for (const side of ["left", "right"] as const) { const c = childOn(f.edges, id, side); if (c) queue.push(c); }
+      }
+      return `[${order.join(", ")}] (level order)`;
+    }
+    return shapeInWords(start.kind, f);
+  });
+}
+
 export function describeStructure(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>): string {
   const { frames } = runStructure(start, steps);
   const name = start.variant === "bst" ? "binary search tree" : start.variant === "avl" ? "AVL tree" : start.variant === "heap" ? "heap" : KIND_NAME[start.kind];
@@ -806,6 +924,67 @@ export function boardStructureProblem(spec: CanvasBoardSpec, required: boolean):
   if (st.kind === "code" && changing < 2) return `the structure never changes: walk the code one step per sentence, and give each step the "ops" its lines perform (mark the node compared, move a pointer, link, remove) — at least 2 steps must change it`;
   if (st.kind === "structure" && changing < 1) return `the structure never changes: give the steps "ops" (mark the nodes the sentence talks about, in order)`;
   return null;
+}
+
+/**
+ * THE CORRECT HEAP TRACE, COMPUTED (max-heap lecture, 2026-10-25: the writer's build-heap and heap-sort boards
+ * left the heap out of order — a sift-down stopped one swap early — on every attempt, and both boards shipped as
+ * plain flows of words). From the board's own starting heap, code works out every swap exactly: the build
+ * (Floyd's sift-downs) when it is not yet a heap, else heap sort's extractions (root to the end, then sift
+ * down). Said to the writer on a retry, as the ops to use. Null when the tree is not a complete binary tree.
+ */
+export function heapRepairHint(start: DsStart, boardText: string): string | null {
+  if (start.kind !== "tree" || start.variant !== "heap") return null;
+  // The heap as an array: level order from the root, left before right, with no gap before the last node.
+  const hasParent = new Set(start.edges.map((e) => e.to));
+  const root = start.nodes.find((n) => !hasParent.has(n.id));
+  if (!root) return null;
+  const ids: string[] = [];
+  const queue = [root.id];
+  while (queue.length) {
+    const id = queue.shift()!;
+    ids.push(id);
+    const l = childOn(start.edges, id, "left"), r = childOn(start.edges, id, "right");
+    if (r && !l) return null;
+    if (l) queue.push(l);
+    if (r) queue.push(r);
+  }
+  if (ids.length !== start.nodes.length || ids.length < 2) return null;
+  const valueOf = new Map(start.nodes.map((n) => [n.id, n.value]));
+  const a = ids.map((id) => Number(valueOf.get(id)));
+  if (a.some((v) => !Number.isFinite(v))) return null;
+  const min = /\bmin[- ]?heap/i.test(boardText) && !/\bmax[- ]?heap/i.test(boardText);
+  const better = (x: number, y: number) => (min ? x < y : x > y);
+  const fmt = (n: number) => `[${a.slice(0, n).join(", ")}${n < a.length ? ` | sorted: ${a.slice(n).join(", ")}` : ""}]`;
+  const lines: string[] = [];
+  const swap = (i: number, j: number, n: number, why: string) => {
+    [a[i], a[j]] = [a[j], a[i]];
+    if (lines.length < 18) lines.push(`${why}: {"op": "swap", "a": "${ids[i]}", "b": "${ids[j]}"} → ${fmt(n)}`);
+  };
+  const sift = (start0: number, n: number) => {
+    for (let i = start0; ;) {
+      const l = 2 * i + 1, r = l + 1;
+      let t = i;
+      if (l < n && better(a[l], a[t])) t = l;
+      if (r < n && better(a[r], a[t])) t = r;
+      if (t === i) return;
+      const was = a[i], other = a[t];
+      swap(i, t, n, `${was} is ${min ? "larger" : "smaller"} than its child ${other}, so swap them`);
+      i = t;
+    }
+  };
+  const isHeap = a.every((v, i) => (2 * i + 1 >= a.length || !better(a[2 * i + 1], v)) && (2 * i + 2 >= a.length || !better(a[2 * i + 2], v)));
+  const kind = min ? "min-heap" : "max-heap";
+  const from = fmt(a.length);
+  if (!isHeap) {
+    for (let i = Math.floor(a.length / 2) - 1; i >= 0; i--) sift(i, a.length);
+    return `THE CORRECT BUILD OF THE ${kind.toUpperCase()}, computed exactly from this board's starting tree ${from} (node ids by position: ${ids.join(", ")}) — every sift-down swap in order, one or two per sentence, saying the same values:\n${lines.map((l, i) => `${i + 1}. ${l}`).join("\n")}`;
+  }
+  for (let end = a.length - 1; end >= 1; end--) {
+    swap(0, end, end, `move the ${min ? "smallest" : "largest"} ${a[0]} to the end (the root swaps with the last heap position)`);
+    sift(0, end);
+  }
+  return `THE CORRECT HEAP SORT, computed exactly from this board's starting ${kind} ${from} (node ids by position: ${ids.join(", ")}) — after each root swap the last position leaves the heap (show it as sorted: mark it "done"), then the new root sifts down; every swap in order, one or two per sentence, saying the same values:\n${lines.map((l, i) => `${i + 1}. ${l}`).join("\n")}`;
 }
 
 /** The code board without its structure — kept when the structure could not be made right: never wrong, only plainer. */

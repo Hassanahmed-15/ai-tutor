@@ -46,7 +46,7 @@ export type Mark =
   | { type: "figure-label"; id: string; part: string; lines: string[]; side: "left" | "right"; at: Pt; leader: Pt[]; size: number; s: number }
   | { type: "free-body"; id: string; body: SceneStage["items"][number]; bodyRect: Rect; forces: FreeBodyForce[]; s: number }
   | { type: "electrolytic-cell"; id: string; rect: Rect; parts: { power: SceneStage["items"][number]; electrolyte: SceneStage["items"][number]; anode: SceneStage["items"][number]; cathode: SceneStage["items"][number] }; s: number }
-  | { type: "code"; id: string; rect: Rect; lines: string[]; language: string; size: number; lineH: number; gutter: number; steps: CodeStage["steps"]; reveal: "build" | "all"; groups: Array<{ from: number; to: number; label: string; s: number; x: number }>; edits: NonNullable<CodeStage["edits"]>; s: number }
+  | { type: "code"; id: string; rect: Rect; lines: string[]; language: string; size: number; lineH: number; gutter: number; steps: CodeStage["steps"]; reveal: "build" | "all"; groups: Array<{ from: number; to: number; label: string; s: number; x: number }>; edits: NonNullable<CodeStage["edits"]>; s: number; /** Lines shown at once when the listing scrolls. */ window?: number }
   | { type: "state"; id: string; rect: Rect; steps: CodeStage["steps"]; s: number; /** Drawn beside the code as pencil memory boxes. */ pencil?: boolean }
   | { type: "stack"; id: string; rect: Rect; view: StackView; boxes: Record<string, Rect>; s: number }
   | { type: "sketch"; id: string; rect: Rect; items: SketchPlaced[]; s: number }
@@ -462,6 +462,22 @@ export function fitValue(value: string, width: number, height: number, max = 16)
 /** The smallest code size while the longest line fits at it; below that, CODE_FLOOR_SIZE at most. */
 export const CODE_MIN_SIZE = 12;
 export const CODE_FLOOR_SIZE = 10;
+/** The most lines a code card shows at once; a longer listing scrolls (CodeView). */
+export const CODE_WINDOW = 10;
+
+/**
+ * The first line (0-based) a scrolling code card shows while `lit` (1-based) is being read; never past the
+ * end. Pure, so the layout (where the pen points) and the card (where it scrolls) agree.
+ */
+export function codeScrollTop(lit: number[], total: number, visible: number): number {
+  if (!lit.length || total <= visible) return 0;
+  // It scrolls only when it must: still until the lit line comes within two lines of the bottom, then
+  // following it down; a lit line above the window brings it back up.
+  const lo = Math.min(...lit) - 1, hi = Math.max(...lit) - 1;
+  let top = Math.max(0, hi - (visible - 3));
+  if (lo < top) top = lo;
+  return Math.max(0, Math.min(total - visible, top));
+}
 
 /**
  * A listing in an editor card, sized so its longest line and all its lines fit; under it, side by
@@ -506,9 +522,26 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
     const atFloor = 46 + longest * MONO * CODE_MIN_SIZE + 48;
     const codeW = Math.round(Math.max(fullArea.w * 0.4, Math.min(atFloor > fullArea.w * 0.58 ? fullArea.w * 0.66 : fullArea.w * 0.58, 38 + longest * MONO * 15 + 48)));
     const side = { x: fullArea.x + codeW + 18, y: fullArea.y, w: fullArea.w - codeW - 18, h: fullArea.h };
+    const names = [...new Set(stage.steps.flatMap((p) => (p.state ?? []).map((v) => v.name)))];
+    // A ROW TOO LONG FOR THE SIDE (linked-list lecture, 2026-10-25: ten nodes beside the code ran under the
+    // code card and off the board). A list, array or queue that cannot fit beside the code at its smallest
+    // boxes goes across the whole board under it; the code and its variables share the top.
+    const most = Math.max(stage.structure.nodes.length, ...(() => { try { return runStructure(stage.structure, stage.steps).frames.map((f) => f.nodes.length); } catch { return [0]; } })());
+    if ((stage.structure.kind === "list" || stage.structure.kind === "array" || stage.structure.kind === "queue") && most * 44 + (most - 1) * 28 + 40 > side.w) {
+      const rowH = Math.min(170, fullArea.h * 0.4);
+      const top = { ...fullArea, h: fullArea.h - rowH - 12 };
+      layoutStructureMark(stage.structure, stage.steps, { x: fullArea.x, y: fullArea.y + top.h + 12, w: fullArea.w, h: rowH }, marks, add, []);
+      if (names.length) {
+        const rect = { x: fullArea.x + codeW + 18, y: top.y, w: fullArea.w - codeW - 18, h: Math.min(top.h, names.length * 46 + 40) };
+        const s0 = stage.steps.find((p) => p.state)?.s ?? (stage.steps[0]?.s ?? 0);
+        marks.push({ type: "state", id: "state", rect, steps: stage.steps, s: s0, pencil: true });
+        add("state", rect, s0);
+      }
+      area = { ...top, w: codeW };
+      st = { ...stage, trace: undefined, groups: undefined, steps: stage.steps.map((p) => ({ ...p, state: undefined })) };
+    } else {
     // The algorithm's bookkeeping (its stack, visited set) goes under the structure it describes: under
     // a sixteen-line listing it ran off the board (CS round, 2026-10-22).
-    const names = [...new Set(stage.steps.flatMap((p) => (p.state ?? []).map((v) => v.name)))];
     const stateH = names.length ? Math.min(side.h * 0.42, names.length * 46 + 40) : 0;
     layoutStructureMark(stage.structure, stage.steps, { ...side, h: side.h - stateH - (stateH ? 12 : 0) }, marks, add, []);
     if (stateH) {
@@ -519,6 +552,7 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
     }
     area = { ...fullArea, w: codeW };
     st = { ...stage, trace: undefined, groups: undefined, steps: stage.steps.map((p) => ({ ...p, state: undefined })) };
+    }
   }
   // THE VARIABLES BESIDE THE CODE (owner, 2026-10-22: pencil "sketches … alongside the code"): with no
   // call stack or structure there, the variables stand in that column as pencil memory boxes, each with
@@ -579,28 +613,39 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
   // The size the longest line (and every line) fits at, 22 px at most. Below 12 px only when nothing
   // larger fits — down to 10 px rather than past the card (owner, 2026-10-23: code ran off its card
   // into the structure). CodeView clips at the card's edge as the last resort.
-  const fitSize = Math.floor(Math.min((codeArea.w - gutter - 36) / (maxLen * MONO), (codeArea.h - 28) / (st.lines.length * 1.5)));
+  // A LISTING LONGER THAN THE CARD SCROLLS (owner, 2026-10-25: "if there is more code to display you may use
+  // a scroller"): past CODE_WINDOW lines the card shows that many at a readable size and glides to the line
+  // Aria is reading (CodeView), instead of shrinking every line until a 15-line function was hard to read.
+  // As many lines as fit at a readable 16 px, ten at most (fewer on a card that shares the board with a long row).
+  const visible = Math.min(st.lines.length, CODE_WINDOW, Math.max(5, Math.floor((codeArea.h - 28) / (16 * 1.5))));
+  const fitSize = Math.floor(Math.min((codeArea.w - gutter - 36) / (maxLen * MONO), (codeArea.h - 28) / (visible * 1.5)));
   const size = Math.max(CODE_FLOOR_SIZE, Math.min(22, fitSize));
   const lineH = Math.round(size * 1.5);
   // Wide enough for the longest line, and for each step's note written beside the line it explains;
   // never wider than its area (a line that still does not fit is clipped at the card, CodeView).
   const noteRoom = Math.max(0, ...st.steps.filter((p) => p.note).map((p) => gutter + 14 + (st.lines[Math.min(...p.lines) - 1]?.length ?? 0) * MONO * size + 22 + (p.note!.length + 2) * Math.max(12, size * 0.78) * 0.56 + 14));
   const w = Math.min(codeArea.w, Math.max(320, gutter + maxLen * MONO * size + 48, noteRoom));
-  const h = st.lines.length * lineH + 28;
+  const h = visible * lineH + 28;
   // A short listing sits in the middle of its area rather than hugging the top of the board.
   const slack = Math.max(0, area.h - (h + gap + bottomH));
   const rect = { x: codeArea.x, y: codeArea.y + Math.round(slack * 0.4), w, h };
   const first = st.steps[0]?.s ?? 0;
+  const scrolls = visible < st.lines.length;
+  // A scrolling card has no subgoal brackets: they would have to scroll outside its edge.
+  const shownGroups = scrolls ? [] : groups;
   marks.push({
     type: "code", id: "code", rect, lines: st.lines, language: st.language, size, lineH, gutter, steps: st.steps,
-    reveal: st.reveal ?? "build", groups: groups.map((g) => ({ ...g, x: rect.x + w + 10 })), edits: st.edits ?? [], s: first,
+    reveal: st.reveal ?? "build", groups: shownGroups.map((g) => ({ ...g, x: rect.x + w + 10 })), edits: st.edits ?? [], s: first,
+    ...(scrolls ? { window: visible } : {}),
   });
   add("code", rect, first);
   st.lines.forEach((line, i) => {
     const indent = (line.length - line.trimStart().length) * MONO * size;
-    add(`line-${i + 1}`, { x: rect.x + gutter + 14 + indent, y: rect.y + 14 + i * lineH, w: Math.max(24, line.trim().length * MONO * size), h: lineH }, first);
+    // Where the line sits when the card has scrolled to it (the pen points at it then).
+    const row = i - codeScrollTop([i + 1], st.lines.length, visible);
+    add(`line-${i + 1}`, { x: rect.x + gutter + 14 + indent, y: rect.y + 14 + row * lineH, w: Math.max(24, line.trim().length * MONO * size), h: lineH }, first);
   });
-  groups.forEach((g, i) => add(`group-${i + 1}`, { x: rect.x + w + 4, y: rect.y + 14 + (g.from - 1) * lineH, w: groupW, h: (g.to - g.from + 1) * lineH }, g.s));
+  shownGroups.forEach((g, i) => add(`group-${i + 1}`, { x: rect.x + w + 4, y: rect.y + 14 + (g.from - 1) * lineH, w: groupW, h: (g.to - g.from + 1) * lineH }, g.s));
 
   const by = rect.y + rect.h + gap;
   let x = area.x;

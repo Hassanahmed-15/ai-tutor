@@ -302,6 +302,7 @@ export function LessonPlayer({
   lessonQuestion = "",
   fullDocumentText = "",
   hasMoreBeats = false,
+  holdForNextBoard = false,
   totalBeatCount,
   plannedParts,
   startIndex = 0,
@@ -368,6 +369,11 @@ export function LessonPlayer({
   fullDocumentText?: string;
   /** True while the progressive worker is still appending future beats. */
   hasMoreBeats?: boolean;
+  /**
+   * Normal mode (owner, 2026-10-25): while the next board is still being written, Next is held and the board
+   * says so — a board whose animation is being retried is waited for, never skipped. Off: as before.
+   */
+  holdForNextBoard?: boolean;
   totalBeatCount?: number;
   /** Every planned part, generated or not, so the chat can point to parts not written yet. Absent for strict. */
   plannedParts?: PlannedPart[];
@@ -402,6 +408,8 @@ export function LessonPlayer({
   }
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
   const [waitingForNextBeat, setWaitingForNextBeat] = useState(false);
+  // The next board is planned but not written yet (its animation may still be being retried).
+  const nextBoardPending = holdForNextBoard && hasMoreBeats && index >= beats.length - 1 && index < displayBeatCount - 1;
   useEffect(() => onBeatIndexChange?.(index), [index, onBeatIndexChange]);
   // The ADHD layer decides the face; the header renders it. Subscribed rather than passed, because
   // the layer is a CHILD of this component and props only travel downward.
@@ -3582,6 +3590,12 @@ export function LessonPlayer({
 
             {/* While a board is being generated, the whole board says so — no silent 20 s wait. */}
             {(tutor.status === "drawing" || chat.drawingBoard) && <TeacherDrawingNotice />}
+            {nextBoardPending && (
+              <div role="status" aria-live="polite" data-next-board-pending className="pointer-events-none absolute bottom-4 right-4 z-40 flex items-center gap-2 rounded-full border border-[var(--hud-cyan)]/40 bg-black/70 px-3.5 py-1.5 text-xs font-semibold text-[var(--hud-text)] backdrop-blur-sm">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--hud-cyan)]" aria-hidden />
+                Next board is being prepared…
+              </div>
+            )}
 
             {/* Two-way board: freehand sketch. The sketch is auto-shared into Aria's live context
                 a moment after the pen lifts — no "send" step, the student just asks about it. */}
@@ -3758,7 +3772,8 @@ export function LessonPlayer({
           speed={rate}
           onSpeedChange={setRate}
           canGoPrevious={index > 0}
-          canGoNext={index < displayBeatCount - 1 && !waitingForNextBeat}
+          canGoNext={index < displayBeatCount - 1 && !waitingForNextBeat && !nextBoardPending}
+          nextLabel={nextBoardPending ? "Next board is being prepared…" : undefined}
           tool={boardTool}
           onToolChange={setBoardTool}
           /* Closing the tools puts the board back: the highlight was the question, and it has been

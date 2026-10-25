@@ -289,6 +289,8 @@ type BuildCost =
   const generationProfileRef = useRef<LearnerProfileSnapshot>(DEFAULT_LEARNER_PROFILE);
   const [progressiveSessionId, setProgressiveSessionId] = useState<string | null>(null);
   const [progressiveComplete, setProgressiveComplete] = useState(true);
+  // A computer-science lecture: the player waits for a board whose animation is still being retried.
+  const [csLecture, setCsLecture] = useState(false);
   const [progressivePlannedBeatCount, setProgressivePlannedBeatCount] = useState(0);
   const [progressiveStreamRevision, setProgressiveStreamRevision] = useState(0);
   /** Reopens of the lecture stream in a row without a successful connection, for the backoff. */
@@ -1021,6 +1023,7 @@ type BuildCost =
       }
       // The worker keeps a running total, so each snapshot replaces the last rather than adding.
       if (typeof snapshot.costUsd === "number") setCost("generation", snapshot.costUsd);
+      setCsLecture(snapshot.subjectDomain === "cs");
       setProgressivePlannedBeatCount(snapshot.plannedBeatCount);
       setBuildStatus(snapshot.complete
         ? "Lecture saved to your history"
@@ -4271,7 +4274,7 @@ type BuildCost =
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
         // The mic is on when the lecture opens (owner, 2026-10-18): the student talks to Aria without
         // finding a button first. It opens on Play — the click the browser needs to ask for it.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} holdForNextBoard={clickableMindMap && csLecture} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">

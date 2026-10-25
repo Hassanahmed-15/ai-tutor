@@ -38,7 +38,7 @@ import { DRAWN_GUIDE, drawnFigure } from "../figures/drawn";
 import { findLibraryFigure, libraryAssetTitle, libraryStageAsset } from "../figures/library";
 import type { FigureComponent } from "../figures/types";
 import { loadSharedCanvasImage, loadSharedDiagramRecord, saveCanvasImage, saveCanvasLecture, saveSharedCanvasImage, saveSharedDiagramRecord, type CanvasLecture } from "./store";
-import { boardStructureProblem, dsaTeachingProblem, isDataStructureTopic, withoutStructure } from "./structure";
+import { boardStructureProblem, dsaTeachingProblem, heapRepairHint, isDataStructureTopic, takeDroppedOps, withoutStructure } from "./structure";
 import katex from "katex";
 import { mathifyBoard } from "./mathNotes";
 /** A LaTeX string KaTeX can typeset (a note that cannot stays as text). */
@@ -101,6 +101,9 @@ export const TYPED_DSA_RULES = [
   `- THE STRUCTURE CHANGES AS ARIA SAYS IT: a deletion removes the node ({"op": "remove", "id"}) or unlinks it on the sentence that deletes it; a child taking its parent's place is {"op": "link", "from": grandparent, "to": child, "side"}; an insertion is {"op": "add", "id", "value", "parent", "side"}. Colouring a node is not deleting it.`,
   `- A TRAVERSAL IS SHOWN, never listed: real code (recursive or with a stack/queue), one node visited per step ({"op": "mark", "as": "visit"}, then "done"), the output list growing in the variables panel ("out": "[1, 3, 4]"). Never write the answer as a list in the code.`,
   `- POINTER NAMES at most 9 characters ("curr", "parent", "succ", "succ_par"), so the tag never covers the next node.`,
+  // A heap's nodes named after their values ("n10") were read as values after a swap had moved them (max-heap
+  // lecture, 2026-10-25): the writer and the review both lost track, and correct sift-downs were rejected.
+  `- A HEAP is a "tree" with "variant": "heap" whose node ids are POSITIONS — "p0" the root, "p1" and "p2" its children, "p3"… in level order — never values. {"op": "swap", "a": "p0", "b": "p1"} exchanges the VALUES at two positions; the nodes stay. Sift down until the parent is ≥ both children (max-heap): every swap, each on its own step. In heap sort, the root swaps with the last heap position and that position is then marked "done" (sorted).`,
   `- THE VARIABLES PANEL ("state") holds at most 4 variables over the WHOLE board — only scalars and the queue/stack, each value at most 28 characters ("[B, C]"). Colours, sets, visited marks and links are shown ON the structure — never written there as a dictionary; a distance table goes on its own board or into the narration, never as a long dict in the panel.`,
   `- CODE: Python unless another language was asked for; lines at most 56 characters (break a longer statement inside its brackets); "reveal": "build".`,
   `The stage looks like this (fill it with THIS board's structure, values and lines):`,
@@ -345,7 +348,7 @@ function diagramKeyFor(beat: CanvasPlanBeat): string {
   return diagramCacheKey(`${beat.title} ${beat.brief}`, [...(beat.objects ?? []), ...(beat.requiredVisual?.mustShow ?? [])], nums);
 }
 
-export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; typed?: boolean; domain?: SubjectDomain; earlier?: EarlierStructure[]; continueCode?: string[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
+export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; typed?: boolean; domain?: SubjectDomain; earlier?: EarlierStructure[]; continueCode?: string[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number; /** Its animation could not be made right: the faults each attempt was sent back for. */ incomplete?: string[] }> {
   if (beat.stage === "diagram") {
     const cached = await loadSharedDiagramRecord<{ spec: CanvasBoardSpec }>(diagramKeyFor(beat)).catch(() => null);
     if (cached?.spec?.stage?.kind === "diagram") return { spec: cached.spec, costUsd: 0, attempts: 1 };
@@ -390,7 +393,12 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   // A typed-prompt lesson also counts graph algorithms the shared list misses (bipartite, BFT, MST…).
   // A lesson asked to be neither CS nor maths (lib/canvas/subjectDomain.ts) is never a data-structures one.
   const notCs = opts.domain === "none" || opts.domain === "maths";
-  const dsaTopic = !notCs && (opts.typed ? isTypedDsaTopic : isDataStructureTopic)(`${topic} ${beat.title} ${beat.brief}`);
+  // A typed lesson that is about a data structure makes EVERY code board a data-structure board (BST deletion
+  // lecture, 2026-10-25: its topic was stored as "Deleting a Node", so boards titled "Deleting a Node With One
+  // Child" or "In-Order Successor Identification" named no structure, were never asked to draw the tree, and
+  // shipped as bare code while Aria recited "8→3, 8→10…"). The lesson is read from all its boards' titles.
+  const dsaTopic = !notCs && ((opts.typed ? isTypedDsaTopic : isDataStructureTopic)(`${topic} ${beat.title} ${beat.brief}`)
+    || (Boolean(opts.typed) && isTypedDsaTopic([topic, ...plan.map((b) => b.title)].join(" "))));
   const needsStructure = beat.stage === "structure" || (beat.stage === "code" && dsaTopic);
   const typedDsa = Boolean(opts.typed) && !notCs && needsStructure;
   // A typed-prompt computer-science lesson (lib/canvas/csLessons.ts): its boards are checked for real
@@ -429,6 +437,10 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     : [...askedBase.filter((line) => !line.startsWith("- THE VARIABLES PANEL")), 'NO VARIABLES PANEL ON THIS BOARD: give no "state" in any step, whatever any rule above says. A value Aria names (a queue, a term, a table row, a list) is shown on the drawing itself or as a short note.'];
   let costUsd = 0;
   let lastError: string | undefined;
+  // Every fault an attempt at this board was sent back for, in order (passed to each retry, and to a rewrite).
+  const failures: string[] = [];
+  // A heap board's correct trace, computed from its last attempt's starting heap (lib/canvas/structure.ts).
+  let heapHint: string | null = null;
   let softest: { spec: CanvasBoardSpec; faults: number } | undefined;
   let visualRejections = 0;
   // The maths examiner (lib/canvas/mathsCheck.ts): at most two reads of a board — the first, and the
@@ -478,6 +490,13 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     }
     console.log(`[canvas] ${beat.id}: the board review rejected its ${beat.stage} visual twice — rebuilt as a plain board (${why.slice(0, 200)})`);
     const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat, true, labPlain, typedCs), clock, [...extra, `An earlier version of this board was rejected because ${why}. Teach it without that visual.`], true, { domain: opts.domain, typed: opts.typed });
+    // A computer-science board that was to show its data structure and is now plain words has lost its
+    // animation (max-heap lecture, 2026-10-25: two heap boards shipped as flows): INCOMPLETE, so the worker
+    // writes it again with every fault — and the computed heap trace — rather than ship it as done.
+    if (typedCs && needsStructure) {
+      const faults = [...failures, ...(lastError && !failures.includes(lastError) ? [lastError] : []), why, ...(heapHint ? [heapHint] : [])];
+      return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd, incomplete: [...new Set(faults)] };
+    }
     return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd };
   };
   // The code alone, kept when its structure could not be made right: plainer, never wrong.
@@ -514,8 +533,15 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     // A second attempt still runs with 30 s left (one bounded call): with a 75 s floor most slow
     // boards skipped every retry and shipped the fallback.
     if (attempt > 1 && clock.left() < (attempt === 2 ? 30_000 : 75_000)) break;
+    // EVERY RETRY HEARS EVERYTHING THE EARLIER ATTEMPTS GOT WRONG (owner, 2026-10-25: "in each animation retry,
+    // next call should contain what the prev animation lacked") — not only the last fault, which let a third
+    // attempt repeat the first one's mistake.
+    if (lastError && !failures.includes(lastError)) failures.push(lastError);
+    const toFixBase = typedCs && failures.length > 1 ? `earlier attempts at this board failed — fix ALL of these:\n${failures.map((f, i) => `${i + 1}. ${f}`).join("\n")}` : lastError;
+    // A heap board that went wrong is given the exact trace its starting heap needs (a repair, not only a retry).
+    const toFix = typedCs && heapHint && toFixBase ? `${toFixBase}\n${heapHint}` : toFixBase;
     try {
-      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, lastError, asked, vector), needsStructure ? 9000 : 6000), Math.min(needsStructure ? 60_000 : 45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
+      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, toFix, asked, vector), needsStructure ? 9000 : 6000), Math.min(needsStructure ? 60_000 : 45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
       costUsd += c;
       const raw = json as Record<string, unknown>;
       // The plan decides the stage; a model that drifted to another one is corrected, not trusted.
@@ -561,7 +587,12 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           continue;
         }
       }
+      takeDroppedOps();
       let spec = validateCanvasSpec(raw, sentenceCount(), [], beat.script);
+      // Step operations the parser could not understand: named in the retry, never dropped in silence.
+      const droppedSteps = takeDroppedOps();
+      const heapStart = spec && (spec.stage.kind === "structure" || spec.stage.kind === "code") ? spec.stage.structure : undefined;
+      if (typedCs && heapStart) heapHint = heapRepairHint(heapStart, `${beat.title} ${beat.brief} ${beat.script}`) ?? heapHint;
       if (spec) writtenFor.set(spec, beat.script);
       // TEXT THAT DOES NOT FIT IS REWRITTEN TO FIT, never cut (owner, 2026-10-17): every over-long
       // piece goes to one small call that rewrites it within its exact room, and the board is checked
@@ -724,8 +755,10 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       const structureProblem = boardStructureProblem(spec, needsStructure);
       if (structureProblem) {
         plainCode = withoutStructure(spec) ?? plainCode;
-        lastError = structureProblem;
-        console.warn(`[canvas] board ${beat.id}: ${structureProblem}`);
+        lastError = droppedSteps.length
+          ? `${structureProblem}. ${droppedSteps.length} step operation(s) were NOT understood and were ignored: ${droppedSteps.join("; ")}. Use only these ops: {"op": "add", "id", "value", "parent", "side"}, {"op": "remove", "id"}, {"op": "link", "from", "to", "side"}, {"op": "unlink", "from", "to"}, {"op": "set", "id", "value"}, {"op": "swap", "a", "b"}, {"op": "point", "name", "to"}, {"op": "mark", "id", "as": "visit" | "compare" | "found" | "remove" | "done"}`
+          : structureProblem;
+        console.warn(`[canvas] board ${beat.id}: ${lastError}`);
         continue;
       }
       // Everything appears on the sentence that first says it (lib/canvas/narrationSync.ts).
@@ -970,12 +1003,20 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   }
   if (csFallback) {
     console.log(`[canvas] ${beat.id}: shipped the reviewed board the CS checks sent back — no rewrite passed in time (${lastError ?? ""})`.slice(0, 400));
+    // A data-structure board whose structure does not do what Aria says (BST lecture, 2026-10-25: "delete 8"
+    // was said and nothing was removed — the rewrite timed out) is INCOMPLETE: the worker writes it again.
+    if (typedCs && needsStructure) {
+      const faults = [...new Set([...failures, ...(lastError ? [lastError] : []), ...(heapHint ? [heapHint] : [])])];
+      return { spec: inStep(csFallback), costUsd, attempts: 3, incomplete: faults };
+    }
     return { spec: inStep(csFallback), costUsd, attempts: 3 };
   }
   if (closestEquation) return { spec: inStep(closestEquation), costUsd, attempts: 3 };
   if (plainCode) {
     console.warn(`[canvas] board ${beat.id}: kept as code without its structure`);
-    return { spec: inStep(plainCode), costUsd, attempts: 3 };
+    // INCOMPLETE, not done: the worker writes it again with these faults rather than ship the code alone.
+    if (lastError && !failures.includes(lastError)) failures.push(lastError);
+    return { spec: inStep(plainCode), costUsd, attempts: 3, incomplete: failures };
   }
   if (examined && !typedCs) {
     // Maths ships the examined board as on the parent branch (owner, 2026-10-25).
@@ -997,7 +1038,8 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   console.log(`[canvas] ${beat.id}: every attempt failed — last reason: ${lastError ?? "time budget"}`);
   // The backup is built from what Aria says. It always ships: a lecture never stops for one board.
   const backupBeat = visualRejections ? plainBeat(beat, true, labPlain, typedCs) : beat;
-  return { spec: fallbackSpec(backupBeat), costUsd, attempts: -1 };
+  if (lastError && !failures.includes(lastError)) failures.push(lastError);
+  return { spec: fallbackSpec(backupBeat), costUsd, attempts: -1, incomplete: failures };
 }
 
 const SHORTEN_PROMPT = `You rewrite pieces of text from a school lesson board so each fits its room. Return JSON only: {"items": [{"i": number, "text": string}]}. Each new text keeps the meaning, the key term, every number and unit, and the notation (CO₂, x², ≤), reads as a complete phrase, and has AT MOST the number of characters given — count them. Drop filler words first, then secondary detail; never end with "…".`;

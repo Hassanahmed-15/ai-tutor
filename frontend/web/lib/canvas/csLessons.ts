@@ -546,9 +546,11 @@ export function removeCutNodes<T extends { s: number; ops?: DsOp[] }>(start: DsS
   const out: T[] = [];
   for (let i = 0; i < steps.length; i++) {
     const before = steps.slice(0, i + 1);
-    const { frames } = runStructure(start, before);
+    const { frames, problem } = runStructure(start, before);
     const frame = frames.at(-1);
-    if (!frame) { out.push(steps[i]); continue; }
+    // A replay that stopped on a fault shows the frame before the step: its nodes only LOOK cut off (a heap board's
+    // linked nodes were deleted this way, 2026-10-25). Nothing is removed on a step that does not replay.
+    if (!frame || problem) { out.push(steps[i]); continue; }
     const hasParent = new Set(frame.edges.map((e) => e.to));
     // A node a later step uses again is not cut out: a new node made first and linked a step later, or
     // a child detached and re-attached (removing it broke an insertion: "n5 is not on the board").
@@ -577,7 +579,10 @@ export function removeCutNodes<T extends { s: number; ops?: DsOp[] }>(start: DsS
 export function claimedLinksProblem(start: DsStart, sentences: string[]): string | null {
   if (start.kind !== "tree" && start.kind !== "graph" && start.kind !== "list") return null;
   const said = sentences.slice(0, 2).join(" ");
-  const pairs = [...said.matchAll(/\b([A-Z]|\d{1,3})\s*(?:→|->)\s*([A-Z]|\d{1,3})\b/g)].map((m) => `${m[1]}>${m[2]}`);
+  // A chain "H → A → B → X" is three links (H→A, A→B, B→X): each node is the end of one link and the start of
+  // the next. Matched without the lookahead, every other link was skipped and correct boards were sent back
+  // as wrong (linked-list lecture, 2026-10-25).
+  const pairs = [...said.matchAll(/\b([A-Z]|\d{1,3})\s*(?:→|->)\s*(?=([A-Z]|\d{1,3})\b)/g)].map((m) => `${m[1]}>${m[2]}`);
   if (pairs.length < 3) return null;
   const val = new Map(start.nodes.map((n) => [n.id, n.value.trim().replace(/\s*[(:=].*$/, "").toUpperCase()]));
   const drawn = new Set(start.edges.map((e) => `${val.get(e.from)}>${val.get(e.to)}`));

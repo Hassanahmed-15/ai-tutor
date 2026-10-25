@@ -1173,6 +1173,9 @@ export function applyLessonVisualPolicy(
   if (options.mode !== "strict" && (options.mode === "prompt" ? domainIsCs(domain, lessonTitles) : isCsTopic(lessonTitles))) {
     for (const beat of beats) {
       if (beat.refresher || beat.overview || examIds.has(beat.id) || (beat.stage !== "sketch" && beat.stage !== "flow" && beat.stage !== "scene")) continue;
+      // The opening map only SAYS the lesson will write and trace code ("…then trace it in Python"): it stays the
+      // map (binary search lecture, 2026-10-25: it became an 11-line listing with half its lines never lit).
+      if (beat === beats[0]) continue;
       const text = `${beat.title} ${beat.brief} ${beat.script}`;
       if (/\b(?:pseudocode|python|code|function|procedure)\b/i.test(text) && /\b(?:writ\w*|trac\w*|line (?:\d+|one|two|three|four|five)|the \w+ line)\b/i.test(beat.script)) {
         changes.push(`${beat.id}: ${beat.stage} → code (it writes or traces code)`);

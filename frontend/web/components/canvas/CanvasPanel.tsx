@@ -5,7 +5,7 @@ import katex from "katex";
 import "katex/dist/katex.min.css";
 import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
-import { fitValue, graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
+import { codeScrollTop, fitValue, graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
 import { edgeBends, edgeCurve, edgeDetour, edgeKey } from "@/lib/canvas/structure";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
@@ -1355,16 +1355,33 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
   // The code stays on its card: a line still too long at the smallest size is cut at the card's edge,
   // never drawn into the structure or the variables beside it (owner, 2026-10-23).
   const clipId = `code-clip-${useId().replace(/:/g, "")}`;
+  // A LONG LISTING SCROLLS (owner, 2026-10-25): the card shows `mark.window` lines and glides so the line
+  // Aria is reading stays in view (lib/canvas/layout.ts codeScrollTop — the pen's targets agree with it).
+  const total = mark.lines.length;
+  const windowed = Boolean(mark.window && mark.window < total);
+  const following = [...lit].filter((n) => n <= shown);
+  const scrollTop = windowed ? codeScrollTop(following.length ? following : shown ? [shown] : [], total, mark.window!) : 0;
+  const dy = -scrollTop * lineH;
   return (
     <g>
       <defs>
         <clipPath id={clipId}>
-          <rect x={rect.x} y={rect.y} width={rect.w - 6} height={rect.h} />
+          {/* A scrolling card hides its padding too, so no half line shows at its top or bottom edge. */}
+          <rect x={rect.x} y={windowed ? rect.y + 12 : rect.y} width={rect.w - 6} height={windowed ? rect.h - 24 : rect.h} />
         </clipPath>
       </defs>
       <rect x={rect.x} y={rect.y} width={rect.w} height={rect.h} rx={14} fill="#1e2030" />
       <rect x={rect.x} y={rect.y} width={gutter} height={rect.h} rx={14} fill="#191a29" />
       <rect x={rect.x + gutter - 14} y={rect.y} width={14} height={rect.h} fill="#191a29" />
+      {windowed && (
+        <g>
+          <rect x={rect.x + rect.w - 9} y={rect.y + 10} width={4} height={rect.h - 20} rx={2} fill="#2a2d42" />
+          <rect x={rect.x + rect.w - 9} width={4} height={((rect.h - 20) * mark.window!) / total} rx={2} fill="#6b7194"
+            style={{ transform: `translateY(${rect.y + 10 + ((rect.h - 20) * scrollTop) / total}px)`, transition: "transform 450ms cubic-bezier(.65,0,.25,1)" }} />
+        </g>
+      )}
+      <g clipPath={`url(#${clipId})`}>
+      <g style={{ transform: `translateY(${dy}px)`, transition: "transform 450ms cubic-bezier(.65,0,.25,1)" }}>
       {/* The lines being talked about, lit; the pointer glides between steps. */}
       {[...lit].filter((n) => n <= shown).map((n) => (
         // fillOpacity, not opacity: the cv-in reveal animates opacity to 1 and would make the band solid.
@@ -1383,7 +1400,7 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
         const edit = mark.edits.find((e) => e.line === i + 1);
         const fixedNow = edit && shownThrough >= edit.s;
         return (
-          <g key={i} className="cv-in" clipPath={`url(#${clipId})`} style={{ animationDelay: `${Math.max(0, i - before) * 60}ms` }}>
+          <g key={i} className="cv-in" style={{ animationDelay: `${Math.max(0, i - before) * 60}ms` }}>
             <text x={rect.x + gutter - 22} y={baseline(i)} textAnchor="end" fontSize={size * 0.78} fontFamily={MONO_FONT} fill={lit.has(i + 1) ? "#e6e9f0" : "#4b5068"}>
               {i + 1}
             </text>
@@ -1403,6 +1420,8 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
           </g>
         );
       })}
+      </g>
+      </g>
       {/* SUBGOAL LABELS: what each chunk of lines is FOR (Margulieux) — a bracket and its name. */}
       {mark.groups.filter((g) => g.s <= shownThrough && g.to <= shown).map((g, i) => {
         const y1 = top + (g.from - 1) * lineH + 5;
@@ -1424,7 +1443,7 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
         const noteW = (step.note.length + 2) * noteSize * 0.56;
         const fits = lineEnd + 18 + noteW < rect.x + rect.w - 8;
         const x = fits ? lineEnd + 18 : rect.x + rect.w - noteW - 18;
-        const y = fits ? baseline(first - 1) : rect.y - 12;
+        const y = fits ? baseline(first - 1) + dy : rect.y - 12;
         return (
           <g key={`note-${step.s}`} className="cv-in">
             {!fits && <rect x={x - 8} y={y - noteSize - 2} width={noteW + 16} height={noteSize + 12} rx={(noteSize + 12) / 2} fill="#1e2030" />}

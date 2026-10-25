@@ -391,7 +391,9 @@ export async function writeCanvasBoard(args: {
   subjectDomain?: SubjectDomain;
   /** How many check questions the student asked for on the question card (lib/teachingQuestions.ts). */
   practice?: "none" | "some" | "lots";
-}): Promise<{ beat: Beat; costUsd: number; fallback: boolean; log: string[] }> {
+  /** The student's code choice on the question card: a language, or no code (lib/teachingQuestions.ts). */
+  code?: { include: boolean; language?: string };
+}): Promise<{ beat: Beat; costUsd: number; fallback: boolean; incomplete?: string[]; log: string[] }> {
   const { plan, index, sessionId } = args;
   const typed = args.typedPrompt ?? (!args.document && !args.strictSource);
   const domain = typed ? args.subjectDomain : undefined;
@@ -408,6 +410,10 @@ export async function writeCanvasBoard(args: {
   if (shared.length) extra.push(`Lesson colours — these things appear on several boards, so give them exactly these colours: ${shared.map((o) => `${o} ${colours[o]}`).join(", ")}.`);
   if (beat.audience) extra.push(`How to pitch this board for the student (presentation only — never change what it depicts): ${beat.audience}`);
   if (args.notes.length) extra.push(`What the student has shown so far (pitch the notes, cues and any interaction to it): ${args.notes.slice(-3).join(" ")}`);
+  // THE LANGUAGE THE STUDENT CHOSE (BFS lecture, 2026-10-25: Java was chosen, every board was Python — the choice
+  // reached the planner only, and the board writer's rule is "Python unless another language was asked for").
+  if (args.code?.include === false) extra.push("THE STUDENT ASKED FOR NO CODE: no code board and no code on this board — teach it with the structure, diagrams and words.");
+  else if (args.code?.language && !/^python/i.test(args.code.language)) extra.push(`THE STUDENT ASKED FOR CODE IN ${args.code.language.toUpperCase() === "PSEUDOCODE" ? "pseudocode" : args.code.language}: write any code on this board in it ("language": "${args.code.language.toLowerCase()}"), with its own syntax — never Python.`);
   if (args.feedback?.length) extra.push(`CORRECT THESE — ${args.feedback.join(" ")}`);
   if (args.document) extra.push(...documentBoardLines(args.document, beat));
   // The reference page's diagram this board redraws (lib/canvas/sourceDiagrams.ts).
@@ -418,7 +424,7 @@ export async function writeCanvasBoard(args: {
   if (args.strictSource) extra.push(...(args.strictSource.mode === "video" ? videoBoardLines(args.strictSource.doc, beat) : strictBoardLines(args.strictSource.doc, beat)));
   const codeDoc = args.document ?? (args.strictSource?.mode === "strict" ? args.strictSource.doc : null);
 
-  let made: { spec: CanvasBoardSpec; costUsd: number; attempts: number };
+  let made: { spec: CanvasBoardSpec; costUsd: number; attempts: number; incomplete?: string[] };
   let pictured: { spec: CanvasBoardSpec; costUsd: number };
   // The exam-practice board is the lesson's mark scheme, built by code (lib/canvas/examBoard.ts).
   const exam = beat.stage === "exam" ? args.document?.contentBlocks?.find((b) => b.exam)?.exam : undefined;
@@ -501,7 +507,9 @@ export async function writeCanvasBoard(args: {
     const all = drawnFrom ? [drawnFrom, ...cited.filter((c) => c.url !== drawnFrom.url)].slice(0, 3) : cited;
     if (all.length) written.sources = all.map(({ title, url, site }) => ({ title, url, site }));
   }
-  return { beat: written, costUsd: made.costUsd + pictured.costUsd + cardCost, fallback: made.attempts < 0 || Boolean(spec.visualFallback), log };
+  // `incomplete`: its animation could not be made right (the code shipped without its structure, or the backup) —
+  // the faults each attempt was sent back for, which a rewrite is given (lib/progressiveLectureWorker.ts).
+  return { beat: written, costUsd: made.costUsd + pictured.costUsd + cardCost, fallback: made.attempts < 0 || Boolean(spec.visualFallback), ...(made.incomplete?.length || made.attempts < 0 ? { incomplete: made.incomplete ?? [] } : {}), log };
 }
 
 /**
