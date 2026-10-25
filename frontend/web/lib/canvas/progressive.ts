@@ -4,7 +4,7 @@ import "server-only";
 import type { Beat } from "../lessonContent";
 import type { ProgressiveBeatPlan, ProgressiveLectureInput } from "../progressiveLectureTypes";
 import { chooseVisuals } from "./visualChoice";
-import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, plainRebuild, validatePlan, type Clock } from "./generate";
+import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, plainRebuild, validatePlan, type Clock, type CoursePictureState } from "./generate";
 import { withRefresherOnlyIfOffered } from "./plan";
 import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
@@ -12,7 +12,7 @@ import { canvasBeatId, connectToEarlier } from "./connect";
 import { repairCues } from "./cueRepair";
 import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
 import { codeSentenceBlocks, groundSourcePlan, strictBoardLines, ungroundedInPlan, videoBoardLines, videoParts } from "./sourceLessons";
-import { assignListings, documentBoardLines, documentListings, extraBoardsForListings, faithfulCodeLines, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredPages, type DocumentListing } from "./documentContext";
+import { assignListings, documentBoardLines, documentListings, documentSections, extraBoardsForListings, faithfulCodeLines, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredPages, type DocumentListing } from "./documentContext";
 import type { SuprnotesLessonInput } from "../suprnotes";
 import { policyForBoards } from "../teachingPolicy";
 import { applyConceptColours, planConceptColours, recapTour } from "./lessonPasses";
@@ -24,12 +24,24 @@ import { sourcesForText, type SourcePack } from "../webSources";
 import { splitLongWorking } from "./splitWorking";
 import type { ExaminerSubject } from "./mathsCheck";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
+import { asCs, asMathsOrCs, courseLessonSubject, type LessonSubject } from "./lessonSubject";
+import { courseBoardContext } from "./coursePicturePrompt";
+import { courseCodeDiagramsOff, offInCourses, readyFiguresOffForCourses } from "./courseFigures";
+import { classifySubject, type SubjectEvidence } from "./subjectClassifier";
+import { mentionLabels } from "./labelMentions";
+import { boardLookOn, boardPhoto, lookAtBoard } from "./boardLook";
+import { lookFeedback, removeNamedLines, type LookKind, type LookProblem } from "./boardLookCheck";
 import { applySplits, SQUEEZE_PROMPT, squeezedInPlan } from "./squeeze";
-import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
+import { applyLessonVisualPolicy, labelledFigureParts, type VisualPolicyMode } from "./visualPolicy";
+import { componentFitsSubject } from "../diagrams/visualForm";
+import { figureFor } from "../figures/registry";
 import { findLibraryFigure } from "../figures/library";
-import { courseCoverageGaps, coverageMessage, requiredTermsOf, type CoverageGap } from "./courseCoverage";
+import { courseCoverageGaps, coverageMessage, requiredTermsOf, syllabusLost, type CoverageGap } from "./courseCoverage";
 import { boardNotesOf, mathsEllipsis } from "./plan";
-import { formulaNotes, narrationArithmetic } from "./equationCheck";
+import { dropRowsWhere, formulaNotes, narrationArithmetic, saysNothing } from "./equationCheck";
+import { chemSubscripts } from "./chemText";
+import { partMentionCues } from "./pictureTalk";
+import { prettyPowers } from "../text/fit";
 import { examBoardSpec } from "./examBoard";
 import { writeCheckCard } from "./checkCard";
 import { checkCardBoards, tasksGiveWay } from "./checkCardPlan";
@@ -56,9 +68,45 @@ const BOARD_BUDGET_MS = Number(process.env.CANVAS_BOARD_BUDGET_MS) || 170_000;
 
 export { canvasBeatId, connectToEarlier };
 
+/** Faults of placement, not of content: what a checked library figure is still held to. */
+const LAYOUT_FAULTS = new Set<LookKind>(["covers-writing", "overlap", "illegible", "broken-maths", "empty-shape"]);
+/** A figure drawn by the code library (a component or a library asset) — not one the writer drew. */
+function isLibraryFigure(spec: CanvasBoardSpec): boolean {
+  const st = spec.stage as { kind: string; component?: string; asset?: unknown };
+  return st.kind === "figure" && st.component !== undefined && st.component !== "drawn";
+}
+
+/**
+ * THE LECTURE'S SUBJECT, DECIDED ONCE (lib/canvas/lessonSubject.ts): a course lesson's from its course;
+ * any other lecture's by one small call that reads what it is about (lib/canvas/subjectClassifier.ts).
+ * A failed call leaves it undecided, and every later step then guesses from words as it used to.
+ */
+async function lectureSubject(openai: ReturnType<typeof client>, input: ProgressiveLectureInput): Promise<{ subject?: LessonSubject; costUsd: number }> {
+  const course = courseLessonSubject(curriculumDocumentOf(input), input.topic);
+  if (course) return { subject: course, costUsd: 0 };
+  if (process.env.CANVAS_SUBJECT_CHECK === "off") return { costUsd: 0 };
+  const doc = referenceDocumentOf(input) ?? strictDocumentOf(input) ?? videoDocumentOf(input);
+  const evidence: SubjectEvidence = {
+    topic: input.topic,
+    request: input.focus,
+    parts: input.outline?.subtopics.map((s) => s.title),
+    documentTitle: doc?.lesson?.title,
+    headings: doc ? documentSections(doc) : undefined,
+    excerpt: doc ? (doc.contentBlocks ?? []).map((b) => b.text ?? "").join(" ").slice(0, 900) : undefined,
+  };
+  const judged = await bounded(classifySubject((system, user, max) => jsonCall(openai, PLAN_MODEL, system, user, max), evidence), 15_000, "lesson subject").catch(() => ({ subject: null, costUsd: 0 }));
+  console.log(`[canvas] lesson subject: ${judged.subject ?? "undecided (words guess)"} — "${input.topic.slice(0, 60)}"`);
+  return { subject: judged.subject ?? undefined, costUsd: judged.costUsd };
+}
+
 export async function planCanvasLecture(input: ProgressiveLectureInput, knowledge?: PlanningKnowledge): Promise<{ plan: ProgressiveBeatPlan[]; costUsd: number }> {
   const openai = client();
-  const request = canvasPlanRequest(input, knowledge);
+  // The subject is decided before the plan, whose rules depend on it — except for a lesson taught strictly
+  // from a source, whose plan has no subject rules: there it is decided alongside the plan (no added wait).
+  const subjectWork = lectureSubject(openai, input);
+  const sourceOnly = Boolean(strictDocumentOf(input) || videoDocumentOf(input));
+  const early = sourceOnly ? null : await subjectWork;
+  const request = canvasPlanRequest(input, knowledge, early?.subject);
   // The approved outline sized the lecture; the plan may not grow it (only a refresher may be added).
   const outlined = canvasBoardCount(input);
   const ladder = isLadder(input.outline?.subtopics) ? ladderBoardBudget(input.outline!.subtopics) : null;
@@ -81,6 +129,8 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
   const wantedListings = document ? (codeAsk ? listingsAsked(codeAsk, documentListings(document)) : documentListings(document)) : [];
   const fromDocument = Boolean(reference || strictDoc || video);
   let costUsd = 0;
+  // The subject call's cost, counted once whichever attempt's plan is kept.
+  void subjectWork.then((d) => { costUsd += d.costUsd; });
   let lastError = "";
   // A strict lecture on the selected pages (no question) must teach every one of them: a plan that
   // leaves a page out is sent back, naming it — one more try than other lectures get.
@@ -210,9 +260,15 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
           };
         }
         const visualMode: VisualPolicyMode = sourceMode ? "strict" : reference ? "reference" : curriculum ? "course" : "prompt";
+        // A COURSE LESSON IS TAUGHT AS ITS COURSE'S SUBJECT (lib/canvas/lessonSubject.ts), stamped on every
+        // board so every later step reads it instead of guessing from words.
+        const decided = early ?? (await subjectWork);
+        const subject = decided.subject;
+        if (subject) plan = { ...plan, beats: plan.beats.map((b) => ({ ...b, subject })) };
+        const planWords = [input.topic, ...plan.beats.map((b) => b.title)].join(" ");
         // A CS sentence that packs several lines or steps is split into one per line or step, in the plan,
         // so each board is written once for the narration it plays with (lib/canvas/squeeze.ts).
-        if (visualMode !== "strict" && isCsTopic([input.topic, ...plan.beats.map((b) => b.title)].join(" "))) {
+        if (visualMode !== "strict" && asCs(subject, () => isCsTopic(planWords))) {
           const squeezed = squeezedInPlan(plan.beats).slice(0, 24);
           if (squeezed.length) {
             try {
@@ -232,19 +288,21 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
           }
         }
         // A maths or CS board says every step of its working; one longer than a board continues on the next.
-        if (visualMode !== "strict" && isLabLookTopic([input.topic, ...plan.beats.map((b) => b.title)].join(" "))) {
+        if (visualMode !== "strict" && asMathsOrCs(subject, () => isLabLookTopic(planWords))) {
           const split = splitLongWorking(plan.beats);
           if (split.count) { plan = { ...plan, beats: split.beats }; console.log(`[canvas] ${split.count} long piece(s) of working continued on a second board: ${split.beats.length} board(s) now`); }
         }
         // What each board shows is chosen by one focused call (lib/canvas/visualChoice.ts), not by the
         // long planning prompt, which reached for tables (owner, 2026-10-17: "fix the weak link").
         if (visualMode !== "strict" && process.env.CANVAS_VISUAL_CHOICE !== "off") {
-          const chosen = await bounded(chooseVisuals((system, user, max) => jsonCall(openai, PLAN_MODEL, system, user, max), input.topic, plan.beats), 30_000, "visual choice").catch((error: Error) => { console.warn(`[canvas] visual choice skipped: ${error.message}`); return null; });
+          const chosen = await bounded(chooseVisuals((system, user, max) => jsonCall(openai, PLAN_MODEL, system, user, max), input.topic, plan.beats, { course: visualMode === "course" && courseCodeDiagramsOff() }), 30_000, "visual choice").catch((error: Error) => { console.warn(`[canvas] visual choice skipped: ${error.message}`); return null; });
           if (chosen) { plan = { ...plan, beats: chosen.beats }; costUsd += chosen.costUsd; console.log(`[canvas] visual choice: ${chosen.log}`); }
         }
-        const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: findLibraryFigure, topic: input.topic });
+        const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: visualMode === "course" && readyFiguresOffForCourses() ? undefined : findLibraryFigure, topic: input.topic });
         plan = { ...plan, beats: visualPolicy.beats };
-        if ((visualMode === "course" || visualMode === "prompt") && visualPolicy.audit.meaningfulVisuals < visualPolicy.audit.targetMeaningfulVisuals && attempt < maxAttempts) {
+        // Not for a course lesson drawn by gpt-image-2: there only a board that needs a picture gets one
+        // (owner, 2026-10-24), and a lesson of written boards with one picture is not sent back for more.
+        if ((visualMode === "prompt" || (visualMode === "course" && !courseCodeDiagramsOff())) && visualPolicy.audit.meaningfulVisuals < visualPolicy.audit.targetMeaningfulVisuals && attempt < maxAttempts) {
           lastError = `only ${visualPolicy.audit.meaningfulVisuals} of ${plan.beats.length} boards used purpose-built visuals; use at least ${visualPolicy.audit.targetMeaningfulVisuals} appropriate stages such as illustration, flow, graph, equation, compare, molecule, atom-map or code instead of generic scenes`;
           console.log(`[canvas] plan sent back: ${lastError}`);
           continue;
@@ -254,14 +312,35 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         // and the ones too hard for this student are rewritten simpler (lib/studentCard.ts).
         // The target is the policy's reading grade: plainer English or simpler language lowers it.
         const policy = canvasPolicy(input);
-        if (policy) {
+        // EASY WORDS IN A COURSE LESSON (owner, 2026-10-24: "simpler doesn't mean the text will be small, it
+        // means easy wording"): its sentences are rewritten to grade 7 at most — everyday words, each
+        // syllabus term kept and explained — whatever the student's level; the ideas stay at their level.
+        // Course lessons came out at grade 10–11 (13.8–17.6 words a sentence, 3–5 unexplained terms).
+        const pitch = curriculum ? Math.min(policy?.readingGrade ?? COURSE_READING_GRADE, COURSE_READING_GRADE) : policy?.readingGrade;
+        if (pitch !== undefined) {
           const scriptsBefore = plan.beats.map((beat) => beat.script);
-          const fixed = await pitchScripts(openai, plan.beats, policy.readingGrade);
+          const fixed = await pitchScripts(openai, plan.beats.filter((beat) => beat.stage !== "exam"), pitch);
           costUsd += fixed.costUsd;
           // A simpler rewrite must not break a number: a script whose calculations got worse goes back.
+          // Nor drop the syllabus (owner, 2026-10-25: "does it still check all the outcomes?"): a board
+          // that no longer teaches a key point or required term it taught before keeps its old script.
+          const blocks = curriculum?.contentBlocks ?? [];
+          const terms = blocks.length ? requiredTermsOf(blocks[0].teachingHints) : [];
+          const lessonBeats = plan.beats.filter((beat) => !beat.refresher);
           plan.beats.forEach((beat, i) => {
-            if (beat.script !== scriptsBefore[i] && checkNumbers(beat.script).length > checkNumbers(scriptsBefore[i]).length) beat.script = scriptsBefore[i];
+            if (beat.script === scriptsBefore[i]) return;
+            if (checkNumbers(beat.script).length > checkNumbers(scriptsBefore[i]).length) {
+              beat.script = scriptsBefore[i];
+              return;
+            }
+            const lost = syllabusLost(scriptsBefore[i], beat.script, blocks[lessonBeats.indexOf(beat)], terms);
+            if (lost.length) {
+              console.log(`[pitch] ${beat.id}: simpler script kept out — it dropped ${lost.map((x) => `"${x.slice(0, 60)}"`).join(", ")}`);
+              beat.script = scriptsBefore[i];
+            }
           });
+        }
+        if (policy) {
           // Each board is written later, from its plan beat alone: it carries the policy's board brief.
           const audience = policyForBoards(policy);
           for (const beat of plan.beats) beat.audience = audience;
@@ -354,7 +433,10 @@ export async function writeCanvasBoard(args: {
   const beat = plan[index];
   const started = Date.now();
   // An examined board may need one rewrite: it gets a minute more (boards 2+ are written while earlier ones play).
-  const budget = BOARD_BUDGET_MS + (args.mathsCheck ? 60_000 : 0);
+  // A course lesson's picture (gpt-image-2, checked, perhaps drawn twice) gets the time it needs: boards
+  // 2+ are written while earlier ones play (lib/canvas/coursePicture.ts).
+  const course = beat.stage === "illustration" || beat.pictureBeside ? courseBoardContext(args.document, args.topic, beat) : null;
+  const budget = BOARD_BUDGET_MS + (args.mathsCheck ? 60_000 : 0) + (course ? 150_000 : 0);
   const clock: Clock = { left: () => budget - (Date.now() - started) };
   const log: string[] = [];
   const colours = planConceptColours(plan);
@@ -370,21 +452,158 @@ export async function writeCanvasBoard(args: {
   const codeDoc = args.document ?? (args.strictSource?.mode === "strict" ? args.strictSource.doc : null);
 
   let made: { spec: CanvasBoardSpec; costUsd: number; attempts: number };
-  let pictured: { spec: CanvasBoardSpec; costUsd: number };
+  let pictured: { spec: CanvasBoardSpec; costUsd: number; picture?: CoursePictureState };
+  // FIX 2 (owner, 2026-10-24): a course board's line of working that says nothing ("Na₂O = Na₂O") is
+  // removed before anything is drawn from the board. Not maths, where "6 = 6" checks an answer.
+  const dropEmptyRows = (board: CanvasBoardSpec) => {
+    // Formulas in a course board's notes are written as in print ("CH₂", not "CH2"; lib/canvas/chemText.ts).
+    // …and powers as in print ("N kg⁻¹", "4.0 × 10⁷ m" — a gravitation board showed "N kg^-1" and "10^7").
+    if (beat.course) board.notes = board.notes.map((n) => ({ ...n, text: beat.subject === "maths" ? prettyPowers(n.text) : chemSubscripts(prettyPowers(n.text)) }));
+    if (!beat.course || beat.subject === "maths" || board.stage.kind !== "equation") return;
+    const gone = dropRowsWhere(board.stage, saysNothing);
+    if (gone.length) log.push(`${beat.id}: removed ${gone.length} line(s) of working that say nothing — ${gone.join(" | ").slice(0, 200)}`);
+  };
   // The exam-practice board is the lesson's mark scheme, built by code (lib/canvas/examBoard.ts).
   const exam = beat.stage === "exam" ? args.document?.contentBlocks?.find((b) => b.exam)?.exam : undefined;
   try {
     const openai = client();
     if (exam) made = { spec: examBoardSpec(beat, exam), costUsd: 0, attempts: 1 };
     else if (beat.stage === "exam") throw new Error("an exam board needs the lesson's mark scheme");
+    // A course board with nothing to see is Aria's notes, written as she says them (owner, 2026-10-24:
+    // "only those which are necessary get a diagram").
+    else if (beat.written && beat.course) made = { spec: fallbackSpec(beat), costUsd: 0, attempts: 1 };
     else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry });
-    pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra));
+    dropEmptyRows(made.spec);
+    pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra), course);
   } catch (error) {
     log.push(`${beat.id}: ${(error as Error).message}`);
     made = { spec: fallbackSpec(beat), costUsd: 0, attempts: -1 };
     pictured = { spec: made.spec, costUsd: 0 };
   }
-  const spec: CanvasBoardSpec = { ...pictured.spec };
+  let spec: CanvasBoardSpec = { ...pictured.spec };
+  let picture = pictured.picture;
+  // EYES ON THE BOARD BEFORE A STUDENT SEES IT (lib/canvas/boardLook.ts; owner, 2026-10-23: "100 percent
+  // accurate diagrams … I don't want to reduce the amount of visuals"). The finished board is drawn by the
+  // real board code in a headless browser and a vision model checks it against what Aria says — a course
+  // lesson's gpt-image-2 picture boards included (owner, 2026-10-24: "the board itself should have a visual
+  // check of what it contains"). Never a lecture held up: a board that could not be photographed or judged
+  // ships as it is.
+  let lookCost = 0;
+  // null: not looked at (no photo, no verdict, the look off); true: passed; false: refused and shipped as settled.
+  let lookPassed: boolean | null = null;
+  const courseBoard = Boolean(beat.course && courseCodeDiagramsOff());
+  if (made.attempts >= 0 && boardLookOn() && beat.stage !== "exam" && !beat.overview) {
+    const openai = client();
+    const opts = { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry };
+    // LOOSENED (owner, 2026-10-24: "please loosen its check, it always rejects things"): a board is refused
+    // only for a serious fault (lib/canvas/boardLookCheck.ts) and redrawn ONCE. Refused again, the better of
+    // its drawings ships — in a course lesson with every line the look named as false taken off it (fix 1);
+    // elsewhere an exact code-drawn figure replaces it when one fits. Never a plain board of boxes.
+    let best: { spec: CanvasBoardSpec; serious: number; problems: LookProblem[]; picture?: CoursePictureState } | null = null;
+    let current: LookProblem[] = [];
+    const settle = (why: string) => {
+      let problems = current;
+      if (best && best.spec !== spec) {
+        spec = best.spec;
+        picture = best.picture;
+        problems = best.problems;
+        log.push(`${beat.id}: kept the better drawing (${why})`);
+      } else log.push(`${beat.id}: shipped as drawn (${why})`);
+      if (!courseBoard) return;
+      const cleaned = removeNamedLines(spec, problems);
+      if (cleaned.removed.length) {
+        spec = cleaned.spec;
+        log.push(`${beat.id}: took off ${cleaned.removed.length} line(s) the look named as wrong — ${cleaned.removed.join(" | ").slice(0, 300)}`);
+      }
+    };
+    for (let round = 0; round < 3; round++) {
+      const photo = await boardPhoto(spec, { userId: args.userId, topic: args.topic, withoutCues: courseBoard });
+      if (!photo) { log.push(`${beat.id}: not looked at (no photo)`); break; }
+      // A written board is read by the cheaper model, as a board of working is.
+      const verdict = await bounded(lookAtBoard(openai, photo, { topic: args.topic, title: beat.title, script: beat.script, stageKind: beat.written ? "written" : spec.stage.kind }), 60_000, "board look").catch(() => null);
+      lookCost += verdict?.costUsd ?? 0;
+      if (!verdict) { log.push(`${beat.id}: not looked at (no verdict)`); break; }
+      // A checked library figure is not second-guessed on its own drawing (calibration: "elastic tissue"
+      // pointed at the layer textbooks put elastic fibres in): only what lands on it, over it or beside it.
+      if (isLibraryFigure(spec)) {
+        verdict.problems = verdict.problems.filter((p) => LAYOUT_FAULTS.has(p.kind));
+        verdict.ok = !verdict.problems.some((p) => p.serious);
+      }
+      const serious = verdict.problems.filter((p) => p.serious);
+      const minor = verdict.problems.length - serious.length;
+      if (verdict.ok) { lookPassed = true; log.push(`${beat.id}: looked at${round ? " after a redraw" : ""} — fine${minor ? ` (${minor} minor note(s) let through)` : ""}`); break; }
+      lookPassed = false;
+      current = verdict.problems;
+      log.push(`${beat.id}: looked at — refused: ${serious.map((p) => `${p.kind}${p.where ? ` (${p.where})` : ""}: ${p.detail}`).join(" | ").slice(0, 400)}`);
+      if (!best || serious.length < best.serious) best = { spec, serious: serious.length, problems: verdict.problems, picture };
+      if (round === 2 || clock.left() < 40_000) { settle("no time for more"); break; }
+      try {
+        if (courseBoard) {
+          // A COURSE BOARD: one redraw in all (owner, 2026-10-24: "redraw it one time only"). A fault in its
+          // picture redraws the picture with the faults named — unless the picture's own check already used
+          // the redraw; a fault only in the writing of a picture board takes those lines off rather than
+          // pay for the picture again; a board with no picture is written again.
+          const hasPicture = spec.stage.kind === "illustration" ? Boolean(spec.stage.coursePicture) : spec.stage.kind === "equation" && Boolean(spec.stage.picture);
+          const pictureFault = serious.some((p) => p.where !== "writing");
+          if (round > 0) { settle("its one redraw was refused too"); break; }
+          // A written board is Aria's notes: a false line is taken off, never redrawn as a sketch.
+          if (beat.written) { settle("a written board keeps its true lines"); break; }
+          if (hasPicture && !pictureFault) { settle("the fault is in its writing"); break; }
+          if (hasPicture && picture?.redrawn) { settle("its picture already had its one redraw"); break; }
+          if (args.hurry?.() || clock.left() < (hasPicture ? 130_000 : 80_000)) { settle("no time for a redraw"); break; }
+          const again = await generateSpec(openai, args.topic, plan, beat, clock, [...extra, lookFeedback(verdict.problems)], false, opts);
+          dropEmptyRows(again.spec);
+          const redraw = hasPicture ? serious.filter((p) => p.where !== "writing").map((p) => p.detail) : undefined;
+          const pic = await illustrate(openai, args.userId, sessionId, beat, again.spec, log, clock, undefined, course, { redraw });
+          lookCost += again.costUsd + pic.costUsd;
+          if (again.attempts < 0) { settle("its redraw could not be written"); break; }
+          spec = { ...pic.spec };
+          picture = pic.picture;
+          continue;
+        }
+        if (round === 0 && !args.hurry?.() && clock.left() > 80_000) {
+          const again = await generateSpec(openai, args.topic, plan, beat, clock, [...extra, lookFeedback(verdict.problems)], false, opts);
+          const pic = await illustrate(openai, args.userId, sessionId, beat, again.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra), course);
+          lookCost += again.costUsd + pic.costUsd;
+          if (again.attempts >= 0) { spec = { ...pic.spec }; picture = pic.picture; continue; }
+        }
+        // Refused after its one redraw: an exact figure drawn by code when one fits (a library diagram
+        // outside course lessons) — else the better of the drawings it has, never a plain board.
+        const about = `${beat.title} ${beat.brief} ${beat.script}`;
+        const drawnNow = spec.stage.kind === "figure" ? spec.stage.component : undefined;
+        const component = figureFor(`${beat.title} ${beat.brief} ${beat.script.split(/(?<=[.!?])\s+/)[0] ?? ""}`) ?? figureFor(about);
+        const kit = component && component.name !== drawnNow && componentFitsSubject(component.name, about) && !(beat.course && offInCourses(component.name)) ? component : undefined;
+        const asset = kit || (beat.course && offInCourses("library")) ? null : findLibraryFigure(`${beat.title} ${beat.brief} ${beat.objects.join(" ")}`, beat.requiredVisual?.mustShow ?? []);
+        if (!kit && !asset) { settle("no exact figure fits"); break; }
+        const refusedAs = `The first drawing of this board was refused (${serious.map((p) => p.kind).join(", ")}); it is taught on a checked figure instead.`;
+        const rebuilt = kit
+          ? await generateSpec(openai, args.topic, plan, { ...beat, stage: "figure", figure: kit.name, figureAsset: undefined, objects: labelledFigureParts(kit, beat.requiredVisual?.mustShow ?? []) }, clock, [...extra, refusedAs], true)
+          : await generateSpec(openai, args.topic, plan, { ...beat, stage: "figure", figure: "library", figureAsset: asset! }, clock, [...extra, refusedAs], true);
+        lookCost += rebuilt.costUsd;
+        spec = { ...rebuilt.spec };
+        log.push(`${beat.id}: ${kit ? `replaced by the code-drawn figure "${kit.name}"` : `replaced by the library figure "${asset!.id}"`} after the look refused it${round ? " twice" : ""}`);
+        round = 1;
+      } catch (error) {
+        log.push(`${beat.id}: redraw after the look failed — ${(error as Error).message}`);
+        settle("the redraw failed");
+        break;
+      }
+    }
+  }
+  // A course picture that passed its own check is shared with other students only when the board's look
+  // passed too (or could not be had) — never one the look refused.
+  if (picture?.remember && lookPassed !== false) await picture.remember().catch(() => undefined);
+  // EVERY PART DRAWN IS NAMED (lib/canvas/labelMentions.ts): a diagram label the narration never says is
+  // named on the sentence it appears on. Same number of sentences, so the board's timing is untouched.
+  let mentionCost = 0;
+  if (made.attempts >= 0 && !beat.overview && process.env.CANVAS_LABEL_MENTIONS !== "off") {
+    const named = await bounded(mentionLabels((system, user, max) => jsonCall(client(), PLAN_MODEL, system, user, max), spec, beat.script), 20_000, "label mentions").catch(() => null);
+    if (named?.mentioned) {
+      beat.script = named.script;
+      log.push(`${beat.id}: ${named.mentioned} diagram label(s) Aria never said are now named as they are drawn`);
+    }
+    mentionCost = named?.costUsd ?? 0;
+  }
   // THE "CHECK IT" CARD (lib/canvas/checkCard.ts): written and verified after the board, shown when
   // Aria finishes it. A card that cannot be verified is left off — it never fails or holds the board.
   // Only on about every third board, and never in a strict PDF lesson (lib/canvas/checkCardPlan.ts).
@@ -413,6 +632,8 @@ export async function writeCanvasBoard(args: {
   applyConceptColours(spec, colours);
 
   connectToEarlier(spec, plan, index, args.earlier, sessionId);
+  // The player reads the course lesson's subject from the board itself (lib/canvas/lessonSubject.ts).
+  if (beat.subject) spec.subject = beat.subject;
 
   // The recap's visits go back to boards the student has seen, by their deterministic ids.
   if (beat.overview) spec.overview = true;
@@ -422,6 +643,13 @@ export async function writeCanvasBoard(args: {
   if (beat.overview && !spec.cues.some((c) => c.action === "visit")) spec.cues = [...spec.cues, ...recapTour(beat, plan.slice(0, index))];
   spec.cues = spec.cues.map((c) => (c.action === "visit" ? { ...c, beat: canvasBeatId(sessionId, c.beat!) } : c));
 
+  // A course picture is talked through (lib/canvas/pictureTalk.ts): the pointer goes to each part of it
+  // every time Aria names it, as she says it.
+  if (beat.course) {
+    const before = spec.cues.length;
+    spec.cues = partMentionCues(spec, beat.script);
+    if (spec.cues.length !== before) log.push(`${beat.id}: picture talked through — ${spec.cues.filter((c) => c.action === "circle" || c.action === "point").length} pointer moves`);
+  }
   // The pen never points at nothing (lib/canvas/cueRepair.ts): checked on the board as it ships.
   const shipped = layoutPanel(spec);
   const onBoard = new Set([...Object.keys(shipped.targets), ...shipped.marks.flatMap((m) => (m.type === "graph" ? (m.spec.markers ?? []).map((k) => k.id) : []))]);
@@ -444,7 +672,7 @@ export async function writeCanvasBoard(args: {
     const cited = sourcesForText(args.webSources, `${beat.title} ${beat.brief ?? ""} ${beat.script}`);
     if (cited.length) written.sources = cited.map(({ title, url, site }) => ({ title, url, site }));
   }
-  return { beat: written, costUsd: made.costUsd + pictured.costUsd + cardCost, fallback: made.attempts < 0 || Boolean(spec.visualFallback), log };
+  return { beat: written, costUsd: made.costUsd + pictured.costUsd + cardCost + mentionCost + lookCost, fallback: made.attempts < 0 || Boolean(spec.visualFallback), log };
 }
 
 /**
@@ -452,14 +680,15 @@ export async function writeCanvasBoard(args: {
  * EXACTLY the number of sentences (each sentence is timed to its board's drawing). A rewrite that
  * changes the count, or is no easier, is not used. Best effort: on any failure the plan stands.
  */
-async function pitchScripts(openai: ReturnType<typeof client>, beats: CanvasPlanBeat[], grade: number): Promise<{ costUsd: number }> {
+export async function pitchScripts(openai: ReturnType<typeof client>, beats: CanvasPlanBeat[], grade: number): Promise<{ costUsd: number }> {
   const rules = gradeRules(grade);
   let costUsd = 0;
   // Two passes at most: a first rewrite often lands a grade short, and the second sees its own score.
   for (let pass = 1; pass <= 2; pass++) {
-    const tooHard = beats.filter((b) => readingGrade(b.script) > grade + 2);
+    // One grade over is already too hard (a teacher, 2026-10-23: "overcomplicated"); it was two.
+    const tooHard = beats.filter((b) => readingGrade(b.script) > grade + 1);
     if (tooHard.length === 0) break;
-    const system = `You rewrite a teacher's spoken narration so a student reading at GRADE ${grade} follows every word. For each script: keep every fact and idea, the same order, and EXACTLY the same number of sentences — each sentence is timed to a drawing. Aim for grade ${Math.max(2, grade - 1)}: sentences of at most ${rules.sentenceWords} words, mostly short everyday words of one or two syllables ("main government", not "central authority"; "fights inside", not "internal conflicts"). A technical term the lesson needs stays, followed by a few plain words saying what it means. Never add new content. SIMPLER NEVER MEANS WRONG: a plainer sentence must stay exactly as true as the original — never turn "vaccine antigens come from a harmless or killed form of the germ" into "antigens cause no disease", or "Newton's laws describe objects at rest and in motion" into "motion includes staying still". Return JSON only: {"scripts": {"<id>": "<rewritten script>"}}.`;
+    const system = `You rewrite a teacher's spoken narration so a student reading at GRADE ${grade} follows every word. For each script: keep every fact and idea, the same order, and EXACTLY the same number of sentences — each sentence is timed to a drawing. Aim for grade ${Math.max(2, grade - 1)}: sentences of at most ${rules.sentenceWords} words, mostly short everyday words of one or two syllables ("main government", not "central authority"; "fights inside", not "internal conflicts"). Make it sound like a friendly tutor talking to the student ("you"), not a textbook: no "whereas", "hence", "thus". A technical term the lesson needs stays, followed by a few plain words saying what it means. Never add new content. SIMPLER NEVER MEANS WRONG: a plainer sentence must stay exactly as true as the original — never turn "vaccine antigens come from a harmless or killed form of the germ" into "antigens cause no disease", or "Newton's laws describe objects at rest and in motion" into "motion includes staying still". Return JSON only: {"scripts": {"<id>": "<rewritten script>"}}.`;
     const user = tooHard.map((b) => `${b.id} (${canvasSentences(b.script).length} sentences, reads at grade ${readingGrade(b.script)}):\n${b.script}`).join("\n\n");
     try {
       const { json, costUsd: c } = await bounded(jsonCall(openai, PITCH_MODEL, system, user, 5000), 45_000, "pitch");
@@ -481,6 +710,8 @@ async function pitchScripts(openai: ReturnType<typeof client>, beats: CanvasPlan
 }
 
 const PITCH_MODEL = process.env.CANVAS_PITCH_MODEL ?? "gpt-5.6-luna";
+/** The reading grade a course lesson's sentences are written at, at most (easy wording, owner 2026-10-24). */
+const COURSE_READING_GRADE = 7;
 
 /**
  * Every sentence of the lesson read once by a careful subject teacher; a sentence that is false, or

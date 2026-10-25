@@ -15,9 +15,27 @@ export function trimToFit(text: string, max: number): string {
   }
   if (at < 0) at = head.lastIndexOf(" ");
   let out = (at > 0 ? head.slice(0, at) : head).replace(/[\s,;:(–—+×=→&/-]+$/, "");
-  // A phrase never ends on a small joining word ("…first-hand for a").
-  for (let prev = ""; prev !== out; ) { prev = out; out = out.replace(/\s+(and|or|of|the|a|an|to|in|on|for|with|by|but|so|which|because|while|as|such)$/i, "").replace(/[\s,;:(–—+×=→&/-]+$/, ""); }
+  // A phrase never ends on a small joining word ("…first-hand for a") or a verb still waiting for its rest
+  // ("Molecular formula can be" — the cut of "…can be a multiple", course bench 2026-10-24).
+  for (let prev = ""; prev !== out; ) { prev = out; out = out.replace(/\s+(and|or|of|the|a|an|to|in|on|for|with|by|but|so|which|that|because|while|as|such|than|from|into|onto|at|its|their|this|these|is|are|was|were|be|been|being|can|could|may|might|must|should|will|would|has|have|had|does|do|not|no|very|more|less|most)$/i, "").replace(/[\s,;:(–—+×=→&/-]+$/, ""); }
   return out;
+}
+
+/** A phrase that stops where its sentence is still going ("Molecular formula can be"). */
+export function unfinishedNote(text: string): boolean {
+  return /\s(and|or|of|the|a|an|to|in|on|for|with|by|but|so|which|that|because|while|as|than|from|into|at|is|are|was|were|be|been|can|could|may|might|must|should|will|would|has|have|had|does|do|not)$/i.test(text.trim());
+}
+
+/**
+ * FIX 3 — NO NOTE CUT OFF MID-SENTENCE (owner, 2026-10-24): "Molecular formula may be a multiple" was one
+ * character over the notes column's two lines and shipped as "Molecular formula can be". A note is
+ * shortened only to a complete phrase; failing that it is written whole when it fits three lines
+ * (`whole`), and cut at a natural break — never on a word that needs its rest — only when longer still.
+ */
+export function fittedNote(text: string, shortened: string | undefined, max = 34, whole = 48): string {
+  if (shortened && shortened.length <= max && !unfinishedNote(shortened)) return shortened;
+  if (text.length <= whole) return text;
+  return trimToFit(text, whole);
 }
 
 const SUPER: Record<string, string> = { "-": "⁻", "−": "⁻", "+": "⁺", "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" };

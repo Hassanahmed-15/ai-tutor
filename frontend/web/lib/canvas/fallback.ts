@@ -7,6 +7,8 @@ import { isRealProcess } from "../diagrams/visualForm";
 import { figureComponent } from "../figures/registry";
 import { foreignFigureWords } from "../figures/foreignText";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
+import { courseCodeDiagramsOff } from "./courseFigures";
+import { chemSubscripts } from "./chemText";
 
 /**
  * The board shown when every attempt failed: still READABLE. The plan's objects (slugged ids, e.g.
@@ -29,6 +31,25 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
     // Whole: the layout fits a name to its box (a 24-character cap cut names mid-word).
     return t.charAt(0).toUpperCase() + t.slice(1);
   };
+  // A COURSE LESSON'S BOARD IS NEVER CODE-DRAWN (owner, 2026-10-24: "no code diagrams … gpt-image-2 for
+  // everything"): when it cannot be made, it is WRITTEN — what Aria writes as she speaks, each line on the
+  // sentence that says it — never boxes, arrows or a ready-made figure.
+  if (beat.course && courseCodeDiagramsOff()) {
+    // In the order she says them (a note planned for sentence 0 was written fifth), formulas in print
+    // ("CH₄", not "CH4"), a line that repeats an earlier one left out ("Metaphase plate" after "Equatorial
+    // plane; metaphase plate"), and at most eight lines — a written board, not a wall of text.
+    const stems = (t: string) => (t.toLowerCase().match(/[a-z0-9]{3,}/g) ?? []).map((w) => w.slice(0, 5));
+    const kept: Array<{ text: string; s: number }> = [];
+    for (const n of (beat.boardNotes ?? []).filter((n) => n.text.trim()).map((n) => ({ text: chemSubscripts(n.text.trim()), s: Math.min(last, Math.max(0, n.s)) })).sort((a, b) => a.s - b.s)) {
+      const mine = stems(n.text);
+      const repeats = kept.some((k) => { const theirs = new Set(stems(k.text)); return mine.length > 0 && mine.filter((w) => theirs.has(w)).length / mine.length >= 0.6; });
+      if (!repeats) kept.push(n);
+    }
+    const planned = kept.slice(0, 8);
+    const lines = planned.length ? planned : keyPoints(sentences, 4, 60).map((text, i, all) => ({ text, s: Math.min(last, Math.round((i * last) / Math.max(1, all.length - 1))) }));
+    const items = lines.map((l, i) => ({ id: `line-${i + 1}`, type: "text" as const, text: l.text, s: l.s, col: "full" as const }));
+    return { v: 1, heading: beat.title.trim(), notes: [], stage: { kind: "sketch", items }, cues: [], ...(beat.overview ? { overview: true } : {}) };
+  }
   // A maths/CS sketch that could not be drawn is still WRITTEN on the board, line by line as Aria says
   // it — never swapped for cards the lecture's look does not use (lib/canvas/sketch.ts).
   if (beat.stage === "sketch") {

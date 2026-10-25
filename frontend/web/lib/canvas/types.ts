@@ -86,6 +86,15 @@ export type IllustrationStage = {
   /** Filled by the server: the stored picture's URL and its paper colour. */
   src?: string;
   paper?: string;
+  /**
+   * A course lesson's picture drawn WITH its labels by gpt-image-2 (lib/canvas/coursePicture.ts): the
+   * labels written in the picture (no callouts are drawn over it), and what the picture shows, in words,
+   * for the voice tutor and the board's description.
+   */
+  labelsInPicture?: string[];
+  description?: string;
+  /** Drawn by gpt-image-2 for a course lesson: shown as drawn after its one check and redraw. */
+  coursePicture?: boolean;
 };
 
 /**
@@ -152,6 +161,8 @@ export type EquationStage = {
    * right (lib/canvas/layout.ts). Only a registered component.
    */
   figure?: FigureStage;
+  /** A course lesson's working beside a gpt-image-2 picture instead of a code figure (owner, 2026-10-24). */
+  picture?: IllustrationStage;
 };
 
 export type GraphCurve = { id: string; expr: string; label?: string; color?: string; s: number };
@@ -459,6 +470,8 @@ export type CanvasInteraction = TryItInteraction | DrawInteraction | QuizInterac
 
 export type CanvasBoardSpec = {
   v: 1;
+  /** The course lesson's subject (lib/canvas/lessonSubject.ts), so the player never guesses it; absent elsewhere. */
+  subject?: import("./lessonSubject").LessonSubject;
   heading: string;
   notes: CanvasNote[];
   stage: StageSpec;
@@ -491,6 +504,14 @@ export type CanvasBoardOp = {
 /** One board of a canvas lecture as the plan writes it, before its spec is written. */
 export type CanvasPlanBeat = {
   id: string;
+  /** A course lesson's board (set by the visual policy): its pictures are drawn by gpt-image-2 (lib/canvas/courseFigures.ts). */
+  course?: boolean;
+  /** A course lesson's subject, decided once from its course (lib/canvas/lessonSubject.ts); absent elsewhere. */
+  subject?: import("./lessonSubject").LessonSubject;
+  /** A course working board with a gpt-image-2 picture beside its lines, where a code figure stood (lib/canvas/courseFigures.ts). */
+  pictureBeside?: boolean;
+  /** A course board with nothing to see: Aria's notes written as she speaks, no picture (lib/canvas/fallback.ts). */
+  written?: boolean;
   title: string;
   script: string;
   stage: CanvasStage;

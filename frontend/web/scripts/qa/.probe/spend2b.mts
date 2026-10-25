@@ -1,0 +1,10 @@
+import { readFileSync } from "node:fs";
+import { SignJWT } from "jose";
+const env = Object.fromEntries(readFileSync(".env.local", "utf8").split("\n").filter((l) => /^[A-Z_]+=/.test(l)).map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1).replace(/^"|"$/g, "")]));
+const token = await new SignJWT({ email: "local-dev-canvas@example.com" }).setProtectedHeader({ alg: "HS256" }).setSubject("local-dev-canvas").setIssuedAt().setExpirationTime("1h").sign(new TextEncoder().encode(env.AUTH_SECRET));
+const r = await (await fetch("http://localhost:3000/api/spend?day=today", { headers: { cookie: `aria_access=${token}` } })).json();
+console.log("calls", r.day.calls, "unpriced", r.day.unpriced);
+const top = (o: Record<string, any>) => Object.entries(o).map(([k, v]) => [k, typeof v === "number" ? v : v.usd ?? v.totalUsd ?? JSON.stringify(v)]).sort((a: any, b: any) => (b[1] as number) - (a[1] as number)).slice(0, 12);
+console.log("byModel", JSON.stringify(top(r.day.byModel)));
+console.log("byKind", JSON.stringify(top(r.day.byKind)));
+process.exit(0);

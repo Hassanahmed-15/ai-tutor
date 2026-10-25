@@ -1,0 +1,11 @@
+import sharp from "sharp";
+import { readdirSync } from "node:fs";
+const [prefix, out] = process.argv.slice(2);
+const DIR = process.argv[4] ?? "/Users/hassanahmed/aria-qa-images/2026-10-24-google-lab/img";
+const files = readdirSync(DIR).filter((f) => f.startsWith(prefix)).sort();
+const W = 300, H = 220;
+const tiles = await Promise.all(files.map(async (f, i) => ({ input: await sharp(`${DIR}/${f}`).flatten({ background: "#fff" }).resize(W - 10, H - 30, { fit: "contain", background: "#fff" }).toBuffer(), left: (i % 4) * W + 5, top: Math.floor(i / 4) * H + 25 })));
+const labels = files.map((f, i) => `<text x="${(i % 4) * W + 8}" y="${Math.floor(i / 4) * H + 18}" font-size="16" font-family="sans-serif">${f}</text>`).join("");
+const rows = Math.ceil(files.length / 4);
+await sharp({ create: { width: W * 4, height: H * rows, channels: 3, background: "#eee" } }).composite([...tiles, { input: Buffer.from(`<svg width="${W * 4}" height="${H * rows}">${labels}</svg>`), left: 0, top: 0 }]).png().toFile(out);
+console.log(files.join(" "));

@@ -41,6 +41,9 @@ const PRICES: Record<string, Price> = {
   // The mini image model: about a quarter of gpt-image-1 per picture ($0.015 vs $0.063 at medium,
   // 1536x1024), checked 2026-10-13. Listed BEFORE prefix matching can price it as gpt-image-1.
   "gpt-image-1-mini": { input: 2.5, output: 8.0 },
+  // gpt-image-2 (course-lesson pictures, owner 2026-10-24): $5 text in, $30 image out per 1M tokens — the
+  // rate most listings agree on (OpenAI's own page did not load); medium 1536x1024 measured ≈ $0.046.
+  "gpt-image-2": { input: 5.0, output: 30.0 },
   "text-embedding-3-small": { input: 0.02, output: 0 },
   // Narration. Text input and AUDIO output tokens, from the speech endpoint's SSE usage event.
   // Checked 2026-09-18 on developers.openai.com/api/docs/pricing.

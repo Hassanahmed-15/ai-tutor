@@ -88,6 +88,8 @@ import { DrawOverlay } from "./sketch/DrawOverlay";
 import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { DeafSigningExtension } from "./sign-language/DeafSigningExtension";
 import { openingSentence, transitionSentence } from "@/lib/beatPresentation";
+import { penRemainingMs } from "@/lib/canvas/penClock";
+import type { HeardSentence } from "./canvas/MarkerWriter";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
@@ -272,6 +274,14 @@ const wallClock = () => Date.now();
 
 /** How long a finished board stays on screen after its narration ends, before the next slide. */
 const BOARD_HOLD_AFTER_NARRATION_MS = 2500;
+/**
+ * HER NEXT SENTENCE WAITS FOR THE PEN (owner, 2026-10-23: "100 percent synchronisation with voice"). A
+ * sentence whose drawing does not fit in the time she takes to say it — even with the pen at its
+ * fastest allowed pace — finishes before she goes on, as a teacher pauses to finish a drawing; the pen
+ * never races to catch her up. Bounded (at 1x; twice as long at 0.5x), so a pen that will not finish
+ * never stops the lecture.
+ */
+const PEN_WAIT_MAX_MS = 12_000;
 
 /** Thinking time Aria leaves after a prediction question on a board with no task card to answer it. */
 const THINK_PAUSE_MS = 4_000;
@@ -473,7 +483,9 @@ export function LessonPlayer({
   const [checkpointResult, setCheckpointResult] = useState<CheckpointResult>(null);
   const [waitingOnCheckpoint, setWaitingOnCheckpoint] = useState(false);
   const [checkpointAttempts, setCheckpointAttempts] = useState(0);
-  const [sentenceCue, setSentenceCue] = useState({ index: 0, total: 1, text: "" });
+  const [sentenceCue, setSentenceCue] = useState({ index: 0, total: 1, text: "", beat: -1 });
+  /** The board sentence her voice is saying (audible), for the marker to write in step with it. */
+  const [heard, setHeard] = useState<(HeardSentence & { beat: number }) | null>(null);
   const [captionLog, setCaptionLog] = useState<string[]>([]);
   // Bumped to (re)start narration for the current beat ONLY when there's nothing to resume in place
   // (fresh beat, or the browser-TTS fallback that can't be frozen). Pausing does NOT touch this — a
@@ -2138,7 +2150,11 @@ export function LessonPlayer({
     const bridged = Boolean(transitionIn) && !restartOnBoard;
     const force = forceNextStartRef.current;
     forceNextStartRef.current = false;
-    window.setTimeout(() => setDrawProgress(0), 0);
+    // A narration starting again (a replay of this board) has said nothing yet: the pen waits for it anew.
+    window.setTimeout(() => {
+      setDrawProgress(0);
+      setHeard(null);
+    }, 0);
     /*
      * The voice numbers sentences over `narrationText`, bridge included; the board's
      * `data-teach-sentence` tags number the SCRIPT. Every cue and progress value is translated into
@@ -2159,6 +2175,11 @@ export function LessonPlayer({
         // With a task card (a slider, a drawing) the lecture waits for the student's answer; with
         // none, Aria leaves a few seconds to think before she gives it (owner, 2026-10-18: "it never
         // really waits for me and tells the answers").
+        // The board's pen first finishes what she has said on it (lib/canvas/penClock.ts).
+        waitBefore: (sentenceIndex) => {
+          const pen = sentenceIndex > bridge ? penRemainingMs() : 0;
+          return pen > 30 ? pen + 40 : 0;
+        },
         holdBefore: (sentenceIndex) => {
           // A maths/CS board's own prediction card: held before its reveal sentence, whatever was said.
           const mathsPredict = canvasPredictRef.current;
@@ -2186,6 +2207,12 @@ export function LessonPlayer({
           tracePlayback("think-pause", { beat: index, ms: THINK_PAUSE_MS });
           return THINK_PAUSE_MS;
         },
+        // The moment a board sentence is audible: the marker writes it now, fitted into its spoken time.
+        onSentenceHeard: (sentenceIndex, spokenMs) => {
+          if (sentenceIndex < bridge) return;
+          tracePlayback("heard", { beat: index, board: sentenceIndex - bridge, ms: Math.round(spokenMs) });
+          setHeard({ beat: index, sentence: sentenceIndex - bridge, ms: spokenMs, at: performance.now() });
+        },
         onSentenceStart: (sentenceIndex, sentence, total) => {
           lastNarrationSignalRef.current = Date.now();
           previousAskedPrediction = sentenceIndex >= bridge && asksForPrediction(sentence);
@@ -2198,6 +2225,7 @@ export function LessonPlayer({
             setStage("board");
           }
           setSentenceCue({
+            beat: index,
             index: Math.max(0, sentenceIndex - bridge),
             text: sentence,
             total: Math.max(1, total - bridge),
@@ -2276,7 +2304,16 @@ export function LessonPlayer({
              */
             const heldIndex = index;
             pendingAdvanceRef.current = heldIndex;
-            window.setTimeout(() => {
+            // The board's pen finishes what she said on it first (bounded), then the board holds, complete.
+            const afterPen = (waited: number) => {
+              const pen = penRemainingMs();
+              if (pen > 30 && waited < PEN_WAIT_MAX_MS / rateRef.current) {
+                window.setTimeout(() => afterPen(waited + Math.min(pen, 200)), Math.min(pen, 200));
+                return;
+              }
+              window.setTimeout(holdThenAdvance, BOARD_HOLD_AFTER_NARRATION_MS / rateRef.current);
+            };
+            const holdThenAdvance = () => {
               /*
                * A pause or a question during the hold used to DROP the advance: this beat's narration
                * had already ended, so resuming found nothing to continue and the lecture sat silent
@@ -2286,7 +2323,8 @@ export function LessonPlayer({
               if (lesson.modeRef.current !== "teaching" || mcqRef.current) return;
               advanceFromHeld(heldIndex);
               // The pause after a finished board keeps pace with the voice before it.
-            }, BOARD_HOLD_AFTER_NARRATION_MS / rateRef.current);
+            };
+            afterPen(0);
           }
         },
         onBlocked: () => {
@@ -2646,7 +2684,7 @@ export function LessonPlayer({
     setWaitingOnCheckpoint(false);
     setCheckpointResult(null);
     setCheckpointAttempts(0);
-    setSentenceCue({ index: 0, total: 1, text: "" });
+    setSentenceCue({ index: 0, total: 1, text: "", beat: -1 });
     setDrawProgress(0);
     setIndex((i) => {
       if (i < beats.length - 1) return i + 1;
@@ -3013,7 +3051,7 @@ export function LessonPlayer({
     setWaitingOnCheckpoint(false);
     setCheckpointResult(null);
     setCheckpointAttempts(0);
-    setSentenceCue({ index: 0, total: 1, text: "" });
+    setSentenceCue({ index: 0, total: 1, text: "", beat: -1 });
     setDrawProgress(0);
     if (deafMode) setCaptionLog([]);
     setIndex(i);
@@ -3025,7 +3063,7 @@ export function LessonPlayer({
     setWaitingOnCheckpoint(false);
     setCheckpointResult(null);
     setCheckpointAttempts(0);
-    setSentenceCue({ index: 0, total: 1, text: "" });
+    setSentenceCue({ index: 0, total: 1, text: "", beat: -1 });
     setDrawProgress(0);
     if (deafMode) setCaptionLog([]);
     setIndex(0);
@@ -3365,11 +3403,16 @@ export function LessonPlayer({
                 <LessonCanvas
                   panels={canvasPanels}
                   currentIndex={canvasIndex}
+                  speed={rate}
+                  voiceHeard={heard?.beat === index ? heard : null}
                   /* A completed lecture revisited while paused ("Review slide N") shows the whole
                      board, not an empty one waiting for Play (audit 2026-10-15). */
-                  sentence={predictHold?.index === index ? predictHold.boardSentence : stage === "board" ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).index : summaryUnlocked && !lesson.playing ? Number.MAX_SAFE_INTEGER : -1}
+                  /* The cue is this board's own: until her voice reaches this board the cue still holds the
+                     LAST board's sentence, and the new board showed (and the marker queued) every mark up to
+                     it for a moment (sync check, 2026-10-23). */
+                  sentence={predictHold?.index === index ? predictHold.boardSentence : stage === "board" ? (sentenceCue.beat === index ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).index : 0) : summaryUnlocked && !lesson.playing ? Number.MAX_SAFE_INTEGER : -1}
                   taskDone={answeredPredictions.includes(beat.id)}
-                  sentenceProgress={narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).progress}
+                  sentenceProgress={sentenceCue.beat === index ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).progress : 0}
                   completed={summaryUnlocked}
                   finished={narrationDoneIndex === index}
                   waitingForStudent={canvasHoldIndex === index}

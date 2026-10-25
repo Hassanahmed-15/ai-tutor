@@ -23,11 +23,15 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
     }
     case "illustration":
       lines.push(`Illustration: ${stage.subject}`, `Parts shown: ${stage.parts.map((p) => p.name).join(", ")}.`);
+      // A course picture drawn with its labels: what it shows, and where each label points on it.
+      if (stage.description) lines.push(`What the picture shows: ${stage.description}`);
+      if (stage.labelsInPicture?.length) lines.push(`Labels written on the picture: ${stage.parts.filter((p) => Number.isFinite(p.x) && Number.isFinite(p.y)).map((p) => `${p.name} (${regionOf(p.x as number, p.y as number)})`).join(", ") || stage.labelsInPicture.join(", ")}.`);
       break;
     case "equation": {
       const text = new Map(stage.tokens.map((t) => [t.id, t.text]));
       lines.push(`Equation, step by step: ${stage.steps.map((s) => `${s.order.map((id) => text.get(id)).join(" ")}${s.caption ? ` (${s.caption})` : ""}`).join("  ⟶  ")}`);
       if (stage.figure) lines.push(`Beside the working, a figure (${stage.figure.component}, drawn exactly): labelled ${stage.figure.parts.map((p) => p.name).join(", ")}.`);
+      if (stage.picture) lines.push(`Beside the working, a picture: ${stage.picture.description || stage.picture.subject}${stage.picture.labelsInPicture?.length ? ` Labels written on it: ${stage.picture.labelsInPicture.join(", ")}.` : ""}`);
       break;
     }
     case "figure":
@@ -74,4 +78,11 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
   if (spec.interaction?.kind === "quiz") lines.push(`Question for the student: ${spec.interaction.question} Options: ${spec.interaction.options.map((o) => `${o.text}${o.correct ? " (correct)" : ""}`).join(" / ")}`);
   if (spec.interaction?.kind === "draw") lines.push(`Drawing task for the student: ${spec.interaction.prompt} (correct: ${spec.interaction.expect})`);
   return lines.join("\n");
+}
+
+/** Where a point sits on a picture, in words ("upper left", "centre"). */
+function regionOf(x: number, y: number): string {
+  const h = x < 0.36 ? "left" : x > 0.64 ? "right" : "";
+  const v = y < 0.36 ? "upper" : y > 0.64 ? "lower" : "";
+  return [v, h].filter(Boolean).join(" ") || "centre";
 }

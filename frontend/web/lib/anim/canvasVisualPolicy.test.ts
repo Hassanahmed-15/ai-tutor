@@ -3,6 +3,10 @@ import assert from "node:assert/strict";
 import { applyLessonVisualPolicy, nativeStageFor, pictureNeedScore } from "../canvas/visualPolicy";
 import type { CanvasPlanBeat, CanvasStage } from "../canvas/types";
 
+// These tests check the code-diagram routing, which course lessons skip since the owner switched every
+// course visual to gpt-image-2 (2026-10-24; lib/anim/coursePicture.test.ts): the routing runs with the switch on.
+process.env.CANVAS_COURSE_CODE_DIAGRAMS = "on";
+
 function beat(id: string, title: string, stage: CanvasStage, brief = title): CanvasPlanBeat {
   return {
     id,

@@ -1,7 +1,14 @@
+import { CODE_DIAGRAM_STAGES, courseCodeDiagramsOff, offInCourses } from "./courseFigures";
+
+/** Boards that are writing, not drawing: a course lesson keeps them as the planner wrote them. */
+const WRITTEN_STAGES = new Set<CanvasStage>(["compare", "equation", "code"]);
+/** What the student must SEE (the planner's "visual"): only these get a course picture. */
+const SEEN_KINDS = new Set<NonNullable<CanvasPlanBeat["visualType"]>>(["thing", "quantity", "diagram"]);
 import { isMathsTopic } from "./predictCard";
 import { spokenEquations } from "./equationCheck";
 import { canvasSentences } from "./plan";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
+import { asCs, asMaths, plannedSubject } from "./lessonSubject";
 import { FIGURE_COMPONENTS, figureComponent, figureFor } from "../figures/registry";
 import { classifyInstructionalTask } from "./instructionalTask";
 import { namedIn } from "./labelPolicy";
@@ -306,7 +313,9 @@ export function applyLessonVisualPolicy(
   // The subject is read from the lecture itself — the student's words AND the planner's board titles
   // and briefs: a student who typed "pythogaras theorm" still gets a maths lecture (owner, 2026-10-20:
   // "can't see the change locally" — the misspelt topic matched no maths word).
-  const labLecture = options.topic !== undefined && isLabLookTopic([options.topic, ...input.map((b) => `${b.title} ${b.brief}`)].join(" "));
+  // A course lesson's subject is stamped on its boards (lib/canvas/lessonSubject.ts): no guessing then.
+  const subject = plannedSubject(input);
+  const labLecture = subject ? subject !== "other" : options.topic !== undefined && isLabLookTopic([options.topic, ...input.map((b) => `${b.title} ${b.brief}`)].join(" "));
   const aiPictures = labLecture ? false : options.aiPictures ?? !(typeof process !== "undefined" && process.env?.CANVAS_AI_PICTURES === "off");
   // Pictures are generated, checked by a textbook editor and remembered (lib/canvas/textbookDiagram.ts),
   // so a lesson may show up to four; a verified one costs nothing the next time it is used.
@@ -375,7 +384,10 @@ export function applyLessonVisualPolicy(
   // with "atoms conserved" (audits 2026-10-17). Any other atom-map board gets the diagram its subject
   // has, a picture of a physical structure, or a plain flow.
   for (const beat of beats) {
-    if (options.mode === "strict" || beat.stage !== "atom-map" || beat.requiredVisual?.stages.includes("atom-map")) continue;
+    // Even when a course lesson's contract asked for an atom map (owner, 2026-10-23: its Chemistry lessons drew
+    // "Ca(OH)₂ → Ca(OH)₂" and "Energy: none → none" on formula boards): the contract's stage is a preference,
+    // a reaction diagram of something that does not react is wrong.
+    if (options.mode === "strict" || beat.stage !== "atom-map") continue;
     const text = boardText(beat);
     // Judged on what Aria says: the planner's brief describes the atom map it already chose.
     const reaction = /\b(conserv\w*|balanc\w*|atom counts?|atoms? (are |is )?(conserved|rearranged)|reactants?|products? of|react(s|ion|ions)?\b|word equation|chemical equation|combust\w*|photosynthesis|respiration|neutrali[sz]\w*|oxidi[sz]\w*|displacement)\b/i.test(beat.script);
@@ -455,9 +467,14 @@ export function applyLessonVisualPolicy(
     // On a cell, organ, plant or animal board the task's figure must be what the title or brief is
     // about, not a process its narration mentions (protein synthesis on an animal-cell board).
     const semantic = decided && processKitOffSubject(beat, decided.name) ? undefined : decided;
+    // WHAT THE BOARD IS ABOUT WINS over a word its narration mentions in passing (2026-10-23: "…carries
+    // blood away from the heart" put the heart on "Artery Structure"). Maths figures keep their own rule.
+    const opening = beat.script.split(/(?<=[.!?])\s+/)[0] ?? "";
+    const byAbout = figureFor(`${beat.title} ${beat.brief} ${opening}`);
+    const aboutFirst = byAbout && semantic && byAbout.name !== semantic.name && !MATH_KITS.has(byAbout.name) && !MATH_KITS.has(semantic.name) && componentFitsSubject(byAbout.name, boardText(beat)) ? byAbout : undefined;
     // A semantic decision may replace a generic graph/flow because the figure is a stricter form of
     // that representation. Other library figures replace only picture-like stages.
-    const component = semantic ?? figureForBoard(beat);
+    const component = aboutFirst ?? semantic ?? figureForBoard(beat);
     if (!component || !componentFitsSubject(component.name, boardText(beat))) continue;
     // The function plotter labels roots, asymptotes and "y = f(x)": a biology antibody-response graph
     // drawn by it read "Curve y = Primar(x)", "Root x = 0" (audit 2026-10-17). It draws maths only.
@@ -491,6 +508,29 @@ export function applyLessonVisualPolicy(
       if (decision.requiredParts?.length) beat.requiredVisual.mustShow = [...new Set([...beat.requiredVisual.mustShow, ...decision.requiredParts])];
     }
   }
+  // A CODE-DRAWN FIGURE BEFORE A GENERATED PICTURE (owner, 2026-10-23: "use a code-drawn library figure
+  // whenever one exists"). A picture board whose subject a figure component draws — read from its title,
+  // purpose AND narration — is that figure: the manager's "Artery Structure" was a generated picture (an
+  // artery with a valve-like fold inside) while the code-drawn blood-vessel figure was right. A contract's
+  // "illustration" is a preference, not a reason to draw it wrong.
+  if (options.mode !== "strict") {
+    for (const beat of beats) {
+      if (beat.refresher || beat.stage !== "illustration") continue;
+      const text = `${beat.title} ${beat.brief} ${beat.script}`;
+      // What the board is ABOUT — its title, purpose and opening sentence — picks the figure; the rest of the
+      // narration only when they name none ("…away from the heart" put the heart on an artery board).
+      const opening = beat.script.split(/(?<=[.!?])\s+/)[0] ?? "";
+      const component = figureFor(`${beat.title} ${beat.brief} ${opening}`) ?? figureFor(text);
+      if (!component || !componentFitsSubject(component.name, text) || processKitOffSubject(beat, component.name) || beat.rejectedFigures?.includes(component.name)) continue;
+      changes.push(`${beat.id}: illustration → figure (${component.name}; a code-drawn figure before a generated picture)`);
+      beat.stage = "figure";
+      beat.figure = component.name;
+      beat.figureAsset = undefined;
+      beat.objects = labelledFigureParts(component, beat.requiredVisual?.mustShow ?? []);
+      if (beat.requiredVisual) beat.requiredVisual.stages = ["figure"];
+    }
+  }
+
   // A picture board — or a board that would otherwise be a plain scene — whose subject the library
   // has a real textbook diagram for shows that diagram, its parts labelled exactly (lib/figures/library.ts).
   // Strict source mode teaches only from the student's own pages, so it never adds one.
@@ -1066,7 +1106,7 @@ export function applyLessonVisualPolicy(
       if (examIds.has(beat.id) || beat.overview) continue;
       // A maths lesson that is not about programming has no code board: a probability lecture's third
       // board was planned as "code" (maths benchmark R7). Its working is an equation board.
-      if (beat.stage === "code" && isMathsTopic(`${options.topic ?? ""} ${beat.title}`) && !/\b(code|coding|program\w*|python|java\w*|pseudo-?code|algorithm|function\s+in|loop|variable|array|recursion|computer)\b/i.test(`${options.topic ?? ""} ${beat.title} ${beat.brief}`)) {
+      if (beat.stage === "code" && asMaths(subject, () => isMathsTopic(`${options.topic ?? ""} ${beat.title}`)) && !/\b(code|coding|program\w*|python|java\w*|pseudo-?code|algorithm|function\s+in|loop|variable|array|recursion|computer)\b/i.test(`${options.topic ?? ""} ${beat.title} ${beat.brief}`)) {
         changes.push(`${beat.id}: code → equation (a maths lesson, not programming)`);
         Object.assign(beat, { stage: "equation", figure: undefined, figureAsset: undefined });
         if (beat.requiredVisual) beat.requiredVisual.stages = ["equation"];
@@ -1129,7 +1169,7 @@ export function applyLessonVisualPolicy(
   // narration works a calculation writes that working beside the figure, and a working board whose
   // words a maths figure draws gets that figure beside its lines (lib/canvas/layout.ts). A figure that
   // is drawn once per lesson (not a graph, not a construction kit) is not added to a second board.
-  if (options.mode !== "strict" && isMathsTopic([options.topic ?? "", ...beats.map((b) => `${b.title} ${b.brief}`)].join(" "))) {
+  if (options.mode !== "strict" && asMaths(subject, () => isMathsTopic([options.topic ?? "", ...beats.map((b) => `${b.title} ${b.brief}`)].join(" ")))) {
     const used = new Set(beats.map((b) => b.figure).filter(Boolean));
     for (const beat of beats) {
       if (beat.refresher || beat.overview || examIds.has(beat.id)) continue;
@@ -1151,7 +1191,7 @@ export function applyLessonVisualPolicy(
 
   // CODE IS WRITTEN ON A CODE BOARD (CS round 4): a board that writes or traces code — "we now express
   // that pattern as pseudocode and trace it" — went on a sketch, where no line is ever lit as Aria speaks.
-  if (options.mode !== "strict" && isCsTopic([options.topic ?? "", ...beats.map((b) => b.title)].join(" "))) {
+  if (options.mode !== "strict" && asCs(subject, () => isCsTopic([options.topic ?? "", ...beats.map((b) => b.title)].join(" ")))) {
     for (const beat of beats) {
       if (beat.refresher || beat.overview || examIds.has(beat.id) || (beat.stage !== "sketch" && beat.stage !== "flow" && beat.stage !== "scene")) continue;
       const text = `${beat.title} ${beat.brief} ${beat.script}`;
@@ -1160,6 +1200,56 @@ export function applyLessonVisualPolicy(
         beat.stage = "code";
         beat.figure = undefined;
       }
+    }
+  }
+
+  // COURSE LESSONS: NO CODE DIAGRAMS (owner, 2026-10-24: "I'm not allowing any code diagrams … relying on
+  // gpt-image-2 for everything"). Every drawing stage becomes a picture board drawn by gpt-image-2 with its
+  // labels and exact values, maths and computer science included (lib/canvas/courseFigures.ts); writing
+  // stays writing — working, tables, code listings, the exam board — and a working board that had a code
+  // figure beside its lines gets a picture beside them instead. CANVAS_COURSE_CODE_DIAGRAMS=on restores
+  // the code diagrams; then only the ready-made PICTURE figures and library diagrams are switched off.
+  if (options.mode === "course") {
+    const noCode = courseCodeDiagramsOff() && options.aiPictures !== false;
+    // ONLY A BOARD THAT NEEDS A PICTURE GETS ONE (owner, 2026-10-24: "not every lecture gets a diagram, only
+    // those which are necessary"). A drawing board keeps its picture when the planner says the student must
+    // SEE something — a thing, a graph of data, a cycle or pathway. Any other board is writing: the table,
+    // working or code it was planned as, a table for a comparison, working for maths, and Aria's notes
+    // written as she speaks for a concept or a list of steps. The "two boards in three are diagrams" quota
+    // had turned a planned comparison table into a gpt-image-2 picture.
+    const planned = new Map(input.map((b) => [b.id, b.stage]));
+    for (const beat of beats) {
+      beat.course = true;
+      if (noCode) {
+        const plannedStage = planned.get(beat.id);
+        const drawing = beat.stage === "illustration" || CODE_DIAGRAM_STAGES.has(beat.stage);
+        const kind = beat.visualType;
+        const seen = kind !== undefined && SEEN_KINDS.has(kind);
+        if (drawing && !seen && (kind !== undefined || (plannedStage && WRITTEN_STAGES.has(plannedStage)))) {
+          const next: CanvasStage = plannedStage && WRITTEN_STAGES.has(plannedStage) ? plannedStage : kind === "comparison" ? "compare" : kind === "math" ? "equation" : "sketch";
+          const written = next === "sketch";
+          changes.push(`${beat.id}: ${beat.stage} → ${written ? "written notes" : next} (${kind ?? "planned as writing"}: no picture needed)`);
+          Object.assign(beat, { stage: next, figure: undefined, figureAsset: undefined, plannedFigure: undefined, written, ...(beat.interaction === "try" ? { interaction: null } : {}) });
+          if (beat.requiredVisual) beat.requiredVisual.stages = written ? [] : [next];
+          continue;
+        }
+        if (CODE_DIAGRAM_STAGES.has(beat.stage)) {
+          changes.push(`${beat.id}: ${beat.stage}${beat.figure ? ` (${beat.figure})` : ""} → illustration (course visuals are drawn by gpt-image-2)`);
+          // A slider on a live graph cannot move a picture: the board keeps its check card, not a try-it.
+          Object.assign(beat, { stage: "illustration", figure: undefined, figureAsset: undefined, plannedFigure: undefined, written: false, ...(beat.interaction === "try" ? { interaction: null } : {}) });
+          if (beat.requiredVisual) beat.requiredVisual.stages = ["illustration"];
+        } else if (beat.stage === "equation" && beat.figure) {
+          changes.push(`${beat.id}: working beside the ${beat.figure} figure → working beside a gpt-image-2 picture`);
+          Object.assign(beat, { figure: undefined, figureAsset: undefined, pictureBeside: true });
+        }
+        continue;
+      }
+      // Maths and computer science draw everything by code: no generated picture (owner, 2026-10-20).
+      // With generated pictures switched off (CANVAS_AI_PICTURES=off), the ready-made figure stays.
+      if (labLecture || !aiPictures || beat.stage !== "figure" || !offInCourses(beat.figure)) continue;
+      changes.push(`${beat.id}: figure (${beat.figure}) → illustration (course pictures are drawn by gpt-image-2)`);
+      Object.assign(beat, { stage: "illustration", figure: undefined, figureAsset: undefined, visualType: "thing" });
+      if (beat.requiredVisual) beat.requiredVisual.stages = ["illustration"];
     }
   }
 

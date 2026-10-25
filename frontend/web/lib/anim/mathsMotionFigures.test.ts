@@ -75,9 +75,15 @@ test("a timed figure carries its parts' sentences; an untimed figure's mark is u
   const timed = layoutPanel(spec("pythagorasProof", {}, [{ id: "triangles", name: "t", s: 1 }, { id: "step-slide", name: "s", s: 3 }]));
   const fig = timed.marks.find((m): m is Extract<Mark, { type: "figure" }> => m.type === "figure")!;
   assert.deepEqual(fig.timing, { triangles: 1, "step-slide": 3 });
-  const plain = layoutPanel(spec("vectors", {}, [{ id: "vector-a", name: "a", s: 1 }]));
+  // Every part named on the first sentence: drawn whole, as before.
+  const plain = layoutPanel(spec("vectors", {}, [{ id: "vector-a", name: "a", s: 0 }]));
   const pf = plain.marks.find((m): m is Extract<Mark, { type: "figure" }> => m.type === "figure")!;
   assert.equal(pf.timing, undefined);
+  // A part named later is drawn when it is named (owner, 2026-10-23: diagrams appear part by part).
+  const later = layoutPanel(spec("vectors", {}, [{ id: "vector-a", name: "a", s: 1 }]));
+  const lf = later.marks.find((m): m is Extract<Mark, { type: "figure" }> => m.type === "figure")!;
+  assert.deepEqual(lf.timing, { "vector-a": 1 });
+  assert.ok(lf.drawing.shapes.some((sh) => sh.part === "vector-a" && sh.show === "vector-a"), "its shapes wait for its sentence");
 });
 
 test("the live 'Proof by rearrangement' board (it never says 'Pythagoras') gets the moving proof, whatever its visual label", async () => {

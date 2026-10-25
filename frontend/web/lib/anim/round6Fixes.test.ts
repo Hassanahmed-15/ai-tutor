@@ -6,6 +6,10 @@ import { applyLessonVisualPolicy } from "../canvas/visualPolicy";
 import { validatePlan } from "../canvas/plan";
 import type { CanvasPlanBeat } from "../canvas/types";
 
+// The code-diagram routing these tests check is off in course lessons since the owner switched every course
+// visual to gpt-image-2 (2026-10-24; lib/anim/courseNoCode.test.ts): it runs here with the switch on.
+process.env.CANVAS_COURSE_CODE_DIAGRAMS = "on";
+
 const beat = (over: Partial<CanvasPlanBeat>): CanvasPlanBeat => ({ id: "b1", title: "", script: "One. Two.", stage: "scene", brief: "", objects: [], inside: null, carry: [], interaction: null, overview: false, ...over }) as CanvasPlanBeat;
 
 test("a content figure with no data of its own is recognised as someone else's lesson", () => {
@@ -41,12 +45,16 @@ test('the planner choosing "picture" asks for a generated textbook picture', () 
 });
 
 test("a structure is drawn once per lesson: other boards about it get their own picture", () => {
-  const { beats } = applyLessonVisualPolicy([
+  const leaf = () => [
     beat({ id: "b1", title: "A broad, thin surface", stage: "figure", plannedFigure: "leafCrossSection", script: "A leaf is broad and thin, so light reaches the palisade cells. Predict: why is it thin? Gases diffuse a short distance." }),
     beat({ id: "b2", title: "Leaf tissues", stage: "figure", plannedFigure: "leafCrossSection", script: "Find the cuticle, the upper epidermis, the palisade mesophyll, the spongy mesophyll, the xylem and phloem, and the stoma with its guard cells. Predict: which layer has most chloroplasts? The palisade." }),
-  ], { mode: "course", aiPictures: true });
+  ];
+  const { beats } = applyLessonVisualPolicy(leaf(), { mode: "prompt", aiPictures: true });
   assert.equal(beats[1].figure, "leafCrossSection", "the labelling board keeps the diagram");
   assert.equal(beats[0].stage, "illustration", "the other board gets its own picture");
+  // A course lesson draws both as gpt-image-2 pictures (owner, 2026-10-24; lib/canvas/courseFigures.ts).
+  const course = applyLessonVisualPolicy(leaf().map((b) => ({ ...b, subject: "other" as const })), { mode: "course", aiPictures: true }).beats;
+  assert.deepEqual(course.map((b) => b.stage), ["illustration", "illustration"]);
 });
 
 test("an atom map is one balanced reaction with formula labels", async () => {

@@ -6,13 +6,13 @@ import { directFocus, directInk, fitView, flightMs, unionRects, viewAt, type Sho
 import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
 import { isLabLookTopic } from "@/lib/canvas/subjectLook";
-import { MarkerWriter } from "./MarkerWriter";
+import { MarkerWriter, type HeardSentence } from "./MarkerWriter";
 import { TextDeconflict } from "./TextDeconflict";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type QuizInteraction, type TryItInteraction } from "@/lib/canvas/types";
 import { activeCues, targetVisible } from "@/lib/canvas/cues";
 import { setPointTarget } from "@/lib/avatar/pointTarget";
 import { CHALK, chalkCss, chalkTint, panelTheme, recolour, type BoardTheme } from "@/lib/canvas/theme";
-import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "@/lib/anim/boardFont";
+import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK, COURSE_FONT_FACE, COURSE_FONT_FAMILY, COURSE_FONT_RANGE } from "@/lib/anim/boardFont";
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
 import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint } from "./CanvasPanel";
 import { quadPoints } from "@/lib/canvas/ink";
@@ -63,6 +63,10 @@ type Props = {
   onContinue: () => void;
   /** The lecture is playing. Paused, the student may explore: picture hotspots appear. */
   playing?: boolean;
+  /** The lecture's playback speed (lib/playbackPrefs.ts): the marker writes at the voice's pace. */
+  speed?: number;
+  /** Her voice on the live board (the lecture player): the marker writes each sentence while she says it. */
+  voiceHeard?: HeardSentence | null;
   /** This lecture through the student's knowledge graph (GET /api/knowledge/lecture): marks the boards. */
   knowledge?: CanvasKnowledge | null;
   /** A Predict-it answer or a drawing check — evidence of what the student knows. First try only. */
@@ -96,7 +100,7 @@ export type CanvasKnowledge = {
 const ARIA = ARIA_INK;
 const STUDENT = "#2563eb";
 
-export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, onTaskResult, completed = false, taskDone = false, checkFlow = false, predictCard }: Props) {
+export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, speed = 1, voiceHeard, onTaskResult, completed = false, taskDone = false, checkFlow = false, predictCard }: Props) {
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -123,8 +127,13 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
    * word, term and line as Aria says it (MarkerWriter), and cards are drawn in chalk on the slate, not
    * stuck-on paper notes. Every other subject keeps its sticky notes and plays exactly as before.
    */
-  // Read from the lecture itself (its topic and its boards' headings), never the typed words alone.
-  const labLook = useMemo(() => panels.some((p) => p.spec.stage.kind === "sketch") || isLabLookTopic([topic, ...panels.map((p) => p.spec.heading)].join(" ")), [topic, panels]);
+  // A course lesson's boards carry its subject (lib/canvas/lessonSubject.ts); other lectures are read from
+  // themselves (their topic and their boards' headings), never the typed words alone. A sketch board is
+  // drawn by the marker whatever the subject.
+  const labLook = useMemo(() => {
+    const subject = panels.find((p) => p.spec.subject)?.spec.subject;
+    return panels.some((p) => p.spec.stage.kind === "sketch") || (subject ? subject !== "other" : isLabLookTopic([topic, ...panels.map((p) => p.spec.heading)].join(" ")));
+  }, [topic, panels]);
   useEffect(() => {
     const t = window.setTimeout(() => setCardStyle(labLook ? "classic" : preferredCardStyle()), 0);
     return () => window.clearTimeout(t);
@@ -582,7 +591,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     return out;
   }, [panels, layouts, placements]);
 
-  const fontCss = BOARD_FONT_FACES.map((f) => `@font-face{font-family:"${BOARD_FONT_FAMILY}";src:url("${f.url}") format("truetype");font-weight:${f.weight};font-display:swap;}`).join("");
+  const fontCss = BOARD_FONT_FACES.map((f) => `@font-face{font-family:"${BOARD_FONT_FAMILY}";src:url("${f.url}") format("truetype");font-weight:${f.weight};font-display:swap;}`).join("")
+    // A course board's neat hand (lib/anim/boardFont.ts), one file for every weight.
+    + `@font-face{font-family:"${COURSE_FONT_FAMILY}";src:url("${COURSE_FONT_FACE.url}") format("truetype");font-weight:${COURSE_FONT_FACE.weight};unicode-range:${COURSE_FONT_RANGE};font-display:swap;}`;
   const showOverviewBadges = mode === "overview" || (current?.spec.overview && finished);
   const rackFocus = mode === "follow" && currentIndex >= 0 && !showOverviewBadges && visitIndex < 0;
 
@@ -646,7 +657,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 carryFrom={carryFrom[panel.key] ?? EMPTY_RECTS}
                 reducedMotion={reducedMotion}
               />
-              {live && labLook && <MarkerWriter key={panel.key} onRegion={onInkRegion} finished={finished} />}
+              {live && (labLook || panel.spec.subject !== undefined) && <MarkerWriter key={panel.key} onRegion={onInkRegion} finished={finished} speed={speed} playing={playing || finished} sentence={sentence} heard={voiceHeard} />}
               {/* No writing on writing, on every board (owner, 2026-10-21: the most important fix). */}
               {live && <TextDeconflict key={`tx-${panel.key}`} />}
               <Corrections layout={layouts[i]} check={corrections[panel.key]} />

@@ -11,8 +11,13 @@ test("every sketch fixture validates, lays out inside the board, and no two item
   for (const f of SKETCH_FIXTURES) {
     const spec = validateCanvasSpec(f.raw, canvasSentences(f.script).length);
     assert.ok(spec && spec.stage.kind === "sketch", f.id);
-    const sketch = layoutPanel(spec).marks.find((m): m is Extract<Mark, { type: "sketch" }> => m.type === "sketch")!;
-    assert.equal(sketch.items.length, spec.stage.items.length, `${f.id}: every item placed`);
+    const laid = layoutPanel(spec);
+    const sketch = laid.marks.find((m): m is Extract<Mark, { type: "sketch" }> => m.type === "sketch")!;
+    // A short written point joins the notes under the heading (2026-10-23), unless a note already says it.
+    const asNotes = new Set(laid.marks.filter((m) => m.type === "note").map((m) => m.id));
+    const written = spec.stage.items.filter((it) => it.type === "text" && it.text.length <= 60 && spec.stage.kind === "sketch" && spec.stage.items.some((d) => d.type !== "text"));
+    for (const it of spec.stage.items) assert.ok(sketch.items.some((p) => p.item.id === it.id) || asNotes.has(it.id) || written.includes(it), `${f.id}.${it.id}: placed, or written under the heading`);
+    assert.equal(sketch.items.length + written.length, spec.stage.items.length, `${f.id}: every item placed`);
     for (const p of sketch.items) {
       assert.ok(p.rect.x >= sketch.rect.x - 1 && p.rect.x + p.rect.w <= sketch.rect.x + sketch.rect.w + 1, `${f.id}.${p.item.id} inside horizontally`);
       assert.ok(p.rect.y >= sketch.rect.y - 1 && p.rect.y + p.rect.h <= sketch.rect.y + sketch.rect.h + 1, `${f.id}.${p.item.id} inside vertically`);

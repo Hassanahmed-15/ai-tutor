@@ -14,20 +14,26 @@ test("over-long text ends at a natural break as a complete phrase, never with \"
 });
 
 test("the planner's spoken board phrases are kept per sentence, within the board", () => {
-  const notes = boardNotesOf([{ s: 0, text: "Diploid: two sets (2n)" }, { s: 0, text: "duplicate sentence" }, { s: 9, text: "beyond the script" }, { s: 1, text: "Gametes are haploid." }], 3).boardNotes!;
-  assert.deepEqual(notes, [{ s: 0, text: "Diploid: two sets (2n)" }, { s: 1, text: "Gametes are haploid" }]);
+  // A sentence may write up to three notes (a list, item by item: owner, 2026-10-23); a repeated note is dropped.
+  const notes = boardNotesOf([{ s: 0, text: "Diploid: two sets (2n)" }, { s: 0, text: "second item" }, { s: 0, text: "Diploid: two sets (2n)" }, { s: 9, text: "beyond the script" }, { s: 1, text: "Gametes are haploid." }], 3).boardNotes!;
+  assert.deepEqual(notes, [{ s: 0, text: "Diploid: two sets (2n)" }, { s: 0, text: "second item" }, { s: 1, text: "Gametes are haploid" }]);
   const plan = validatePlan({ beats: [{ title: "Sets", stage: "flow", script: "Body cells are diploid. Gametes are haploid. Fertilisation restores two sets.", objects: [], board: [{ s: 0, text: "Body cells: 2n" }, { s: 2, text: "n + n → 2n" }] }] })!;
   assert.equal(plan.beats[0].boardNotes?.length, 2);
 });
 
-test("the notes column holds four at a time and is wiped for the next four, in reading order", () => {
-  const notes = Array.from({ length: 6 }, (_, i) => ({ id: `say-${i + 1}`, text: `Point ${i + 1}`, s: i }));
-  const spec = validateCanvasSpec({ heading: "Notes", notes, cues: [], stage: { kind: "flow", arrangement: "chain", nodes: [{ id: "a", label: "A", s: 0 }, { id: "b", label: "B", s: 1 }], arrows: [] } }, 6)!;
+test("the notes column is wiped only when the next note does not fit, in reading order", () => {
+  // Four at a time wiped what Aria had just said within a few sentences (owner, 2026-10-23): a page now
+  // holds as many as fit, and the note that does not fit starts again at the top.
+  const notes = Array.from({ length: 14 }, (_, i) => ({ id: `say-${i + 1}`, text: `Point ${i + 1}`, s: i }));
+  const spec = validateCanvasSpec({ heading: "Notes", notes: [], cues: [], stage: { kind: "flow", arrangement: "chain", nodes: [{ id: "a", label: "A", s: 0 }, { id: "b", label: "B", s: 1 }], arrows: [] } }, 14)!;
+  spec.notes = notes; // the planner's notes go on after validation (lib/canvas/generate.ts writeAsSaid), uncapped
   const marks = layoutPanel(spec).marks.filter((m) => m.type === "note") as Array<{ id: string; y: number; until?: number }>;
-  assert.equal(marks.length, 6);
-  assert.equal(marks[0].until, 4, "the first page leaves when the fifth note is written");
-  assert.equal(marks[4].y, marks[0].y, "the fifth note starts again at the top");
-  assert.equal(marks[5].until, undefined, "the last page stays");
+  assert.equal(marks.length, 14);
+  const next = marks.findIndex((m, i) => i > 0 && m.y === marks[0].y);
+  assert.ok(next >= 7, `the first page holds ${next} short notes`);
+  assert.equal(marks[0].until, next, "the first page leaves when the first note that does not fit is written");
+  assert.ok(marks.slice(0, next).every((m, i) => i === 0 || m.y > marks[i - 1].y), "read top to bottom");
+  assert.equal(marks[13].until, undefined, "the last page stays");
 });
 
 test("a check card is refused for a give-away, a long option or wrong arithmetic", () => {

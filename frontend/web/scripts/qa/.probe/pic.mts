@@ -1,0 +1,11 @@
+import { readFileSync } from "node:fs";
+import { CosmosClient } from "@azure/cosmos";
+const env = Object.fromEntries(readFileSync(".env.local", "utf8").split("\n").filter((l) => /^[A-Z_]+=/.test(l)).map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1).replace(/^"|"$/g, "")]));
+const db = new CosmosClient(env.COSMOS_CONNECTION_STRING).database("aria-shared");
+const [id, seq] = process.argv.slice(2);
+const b = (await db.container("progressive-lecture-beats").items.query({ query: "SELECT c.beat FROM c WHERE c.sessionId = @id AND c.sequence = @s", parameters: [{ name: "@id", value: id }, { name: "@s", value: Number(seq) }] }).fetchAll()).resources[0] as any;
+const spec = b.beat.draw.ops.find((o: any) => o.kind === "canvasBoard").spec;
+const st = spec.stage;
+console.log("stage", st.kind, "| subject", st.subject, "| image:", JSON.stringify(st.image ?? st.src ?? st.picture ?? st.asset ?? null).slice(0, 300));
+console.log("parts:", JSON.stringify((st.parts ?? []).map((p: any) => ({ name: p.name, x: p.x, y: p.y }))).slice(0, 400));
+console.log("keys:", Object.keys(st).join(","));

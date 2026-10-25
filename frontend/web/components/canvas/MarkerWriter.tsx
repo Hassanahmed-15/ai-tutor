@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type { Rect } from "@/lib/canvas/layout";
+import { reportPenRemaining } from "@/lib/canvas/penClock";
 
 /**
  * THE MARKER DRAWS THE BOARD (owner, 2026-10-20 "I don't see the marker"; 2026-10-21 "draw everything
@@ -21,13 +22,24 @@ import type { Rect } from "@/lib/canvas/layout";
  * arriving at once (a jump to a finished board) is simply there. Nothing is ever left hidden: every
  * item is finished when its stroke ends, or when this unmounts.
  *
+ * IN STEP WITH HER VOICE (owner, 2026-10-23: "the pencil just got way too fast and then the voice came …
+ * I want 100 percent synchronisation with voice", at every speed). In the lecture player the pen is told
+ * when each sentence becomes audible and how long it takes to say (`heard`):
+ *   - a sentence's ink waits for her voice — never written while the clip is still loading;
+ *   - it is fitted into the time she takes to say that sentence, sped up at most to 1/0.7 of its
+ *     natural pace; what still does not fit is waited for — her next sentence, and the next board, wait
+ *     for the pen (lib/canvas/penClock.ts) instead of the pen racing to catch up with her.
+ * Elsewhere (the canvas lab, the board photo) there is no voice and the pen keeps its own clock.
+ *
  * The camera follows the marker, not the clock: before the first stroke of each new piece of ink the
  * marker tells `onRegion` where it will draw (board units) and waits the time it answers, so the
  * camera is already there when the pen touches the board (LessonCanvas, lib/canvas/camera.ts).
  */
 
 type Kind = "trace" | "wipe";
-type Job = { el: SVGGraphicsElement; kind: Kind; dur: number; len: number; pathLength: string | null; x0: number; x1: number; y: number; left: number; boxW: number; batch: number; faint?: boolean; caughtUp?: boolean };
+type Job = { el: SVGGraphicsElement; kind: Kind; dur: number; want: number; len: number; pathLength: string | null; x0: number; x1: number; y: number; left: number; boxW: number; batch: number; sentence: number; created: number; faint?: boolean; caughtUp?: boolean };
+/** The sentence her voice is saying: which, how long it takes to say (ms) and when it became audible. */
+export type HeardSentence = { sentence: number; ms: number; at: number };
 /** `drawing`: a diagram, graph, equation or code — worth a close-up; notes and headings are not. */
 type Batch = { jobs: Job[]; ms: number; drawing: boolean; scenery: SVGGraphicsElement[] };
 
@@ -52,12 +64,28 @@ const SLOWEST_SQUEEZE = 0.85;
 const BEHIND_MS = 9000;
 /** A new board: the camera flies in from the last one first; the pen starts once it has landed. */
 const BOARD_FLIGHT_MS = 1500;
+/** In step with her voice: never faster than this share of the natural pace (≈ 285 units a second). */
+const VOICE_SQUEEZE = 0.7;
+/** Ink still waiting for her voice after this long (ms) is written anyway — a voice that never came. */
+const VOICE_WAIT_MAX_MS = 12_000;
+/** The pen finishes this long (ms) before her sentence ends. */
+const VOICE_TAIL_MS = 150;
 /** More new items than this at once is a whole board appearing: it is shown, not drawn. */
 const WHOLE_BOARD = 200;
 const TRANSPARENT = /^(none|transparent)$|rgba\([^)]*,\s*0\)$/;
 
-export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: Rect | null, ms: number, drawing: boolean) => number; finished?: boolean } = {}) {
+export function MarkerWriter({ onRegion, finished = false, speed = 1, playing = true, sentence = 0, heard }: { onRegion?: (box: Rect | null, ms: number, drawing: boolean) => number; finished?: boolean; /** The lecture's playback speed: the pen writes at the voice's pace (2x writes twice as fast). */ speed?: number; /** Paused, the pen stops mid-stroke and carries on from there on resume (manager, 2026-10-23: "when I paused it continued playing just without the sound"). */ playing?: boolean; /** The board's current sentence: the ink that appears now belongs to it. */ sentence?: number; /** Her voice (the lecture player): null until this board's first sentence is audible; absent where there is no voice. */ heard?: HeardSentence | null } = {}) {
   const ref = useRef<SVGGElement>(null);
+  const sentenceRef = useRef(sentence);
+  sentenceRef.current = sentence;
+  const heardRef = useRef(heard);
+  heardRef.current = heard;
+  const finishedRef = useRef(finished);
+  finishedRef.current = finished;
+  const speedRef = useRef(speed);
+  speedRef.current = Math.min(2, Math.max(0.5, speed || 1));
+  const playingRef = useRef(playing);
+  playingRef.current = playing;
   const regionRef = useRef(onRegion);
   /** Opened on a finished board (a jump back, a replay): what is there is simply there. Read at mount. */
   const openedFinished = useRef(finished);
@@ -77,6 +105,11 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
     const board = marker?.parentElement as unknown as SVGGElement | null;
     if (!marker || !board || typeof MutationObserver === "undefined") return;
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    // Sync QA (scripts/qa/sync-check.mts) reads when each piece of ink came and each stroke ran; nothing is kept otherwise.
+    const qaLog = (entry: Record<string, unknown>) => {
+      const qa = window as unknown as { __qaMarker?: boolean; __markerLog?: Array<Record<string, unknown>> };
+      if (qa.__qaMarker) (qa.__markerLog ??= []).push({ board: board.getAttribute("data-panel"), t: performance.now(), ...entry });
+    };
     const queue: Job[] = [];
     const pending = new Set<Element>();
     let raf = 0;
@@ -190,7 +223,7 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
         sceneryNow.push(g);
         return;
       }
-      const job: Job = { el: g, kind: traced ? "trace" : "wipe", dur: 0, len: 0, pathLength: g.getAttribute("pathLength"), x0: 0, x1: 0, y: 0, left: 0, boxW: 1, batch: batchSeq };
+      const job: Job = { el: g, kind: traced ? "trace" : "wipe", dur: 0, want: 0, len: 0, pathLength: g.getAttribute("pathLength"), x0: 0, x1: 0, y: 0, left: 0, boxW: 1, batch: batchSeq, sentence: sentenceRef.current, created: performance.now() };
       if (traced) {
         // Traced in the element's own units: pathLength is taken off while it is drawn.
         if (job.pathLength !== null) g.removeAttribute("pathLength");
@@ -234,16 +267,40 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
         const b = boxOf(j.el);
         return b ? Math.max(WIPE_MIN_MS, Math.min(WIPE_MAX_MS, b.w * WIPE_MS_PER_UNIT)) : WIPE_MIN_MS;
       });
+      // At the lecture's speed: the voice says a sentence in half the time at 2x, so the pen writes it in half the time.
+      const pace = speedRef.current;
+      for (let i = 0; i < want.length; i++) want[i] = want[i] / pace;
+      jobs.forEach((j, i) => (j.want = want[i]));
+      // With her voice, the batch is fitted to her sentence when the pen starts it (fit, below).
+      if (heardRef.current !== undefined) {
+        jobs.forEach((j) => (j.dur = Math.max(60, j.want)));
+        return;
+      }
       const total = want.reduce((a, b) => a + b, 0);
       // What is still to draw before this batch: a backlog shortens this batch's budget.
       const now = performance.now();
       const backlog = (current ? Math.max(0, current.start + current.job.dur - now) : 0) + queue.filter((j) => !jobs.includes(j)).reduce((a, j) => a + j.dur, 0);
-      const budget = Math.max(1500, BATCH_MS - backlog);
+      const budget = Math.max(1500 / pace, BATCH_MS / pace - backlog);
       // Far behind the voice it may speed up — never past half its natural pace (≈ 400 units a second).
-      const k = backlog > BEHIND_MS ? Math.min(1, Math.max(0.5, budget / total)) : Math.min(1, Math.max(SLOWEST_SQUEEZE, budget / total));
+      const k = backlog > BEHIND_MS / pace ? Math.min(1, Math.max(0.5, budget / total)) : Math.min(1, Math.max(SLOWEST_SQUEEZE, budget / total));
       jobs.forEach((j, i) => (j.dur = Math.max(60, want[i] * k)));
       // …and what is still waiting catches up too, once (sped up again and again it raced at 1,300 units a second).
-      if (backlog > BEHIND_MS) for (const j of queue) if (!jobs.includes(j) && !j.caughtUp) { j.dur = Math.max(60, j.dur * 0.75); j.caughtUp = true; }
+      if (backlog > BEHIND_MS / pace) for (const j of queue) if (!jobs.includes(j) && !j.caughtUp) { j.dur = Math.max(60, j.dur * 0.75); j.caughtUp = true; }
+    };
+
+    /** A batch fitted into `budget` ms: never faster than VOICE_SQUEEZE of its natural pace. */
+    const fit = (jobs: Job[], budget: number) => {
+      const total = jobs.reduce((a, j) => a + j.want, 0);
+      if (total <= 0) return;
+      // Each stroke starts on the frame after the last one ends (≈ 20 ms between strokes).
+      const k = Math.min(1, Math.max(VOICE_SQUEEZE, (budget - jobs.length * 20) / total));
+      for (const j of jobs) j.dur = Math.max(60, j.want * k);
+    };
+    /** Ink of a sentence she has not started saying waits for her (or, after a long wait, for nobody). */
+    const voiceReady = (job: Job, now: number) => {
+      if (heardRef.current === undefined || finishedRef.current) return true;
+      const h = heardRef.current;
+      return Boolean(h && h.sentence >= job.sentence) || now - job.created > VOICE_WAIT_MAX_MS;
     };
 
     /** The writing's span, read now: the pen wipes from its left edge to its right. */
@@ -270,19 +327,39 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
     const mountedAt = performance.now();
     mountedRef.current = mountedAt;
     flushRef.current = () => {
+      qaLog({ ev: "flush", n: queue.length + (current ? 1 : 0) });
       if (current) finish(current.job);
       current = null;
       for (const job of queue.splice(0)) finish(job);
       reveal([...scenery.keys()]);
       show(false);
     };
+    // While the lecture is paused the pen stands still, mid-stroke; on resume every clock it keeps moves on
+    // by the time it stood (it used to finish everything queued — seconds of writing — in silence).
+    let pausedSince = 0;
     const tick = (now: number) => {
       raf = requestAnimationFrame(tick);
+      if (!playingRef.current) {
+        if (!pausedSince) pausedSince = now;
+        return;
+      }
+      if (pausedSince) {
+        const stood = now - pausedSince;
+        pausedSince = 0;
+        if (current) current.start += stood;
+        if (settleSince) settleSince += stood;
+        idle += stood;
+      }
       // The pen never writes on a board the camera has not reached yet.
       if (!current && now - mountedAt < BOARD_FLIGHT_MS) return;
       if (!current) {
         // A term still gliding to its new place (an equation step's arc) is written once it lands.
         if (queue[0] && settling(queue[0].el) && now - (settleSince ||= now) < 1600) return;
+        // A new sentence's ink waits until she is saying it.
+        if (queue[0] && queue[0].batch !== drawingBatch && !voiceReady(queue[0], now)) {
+          if (now - idle > 650) show(false);
+          return;
+        }
         settleSince = 0;
         const job = queue.shift();
         if (!job) {
@@ -310,6 +387,12 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
             const x = Math.min(...boxes.map((b) => b.x)), y = Math.min(...boxes.map((b) => b.y));
             const box = boxes.length ? { x, y, w: Math.max(...boxes.map((b) => b.x + b.w)) - x, h: Math.max(...boxes.map((b) => b.y + b.h)) - y } : null;
             wait = Math.max(0, Math.min(3000, regionRef.current?.(box, batch.ms, batch.drawing) ?? 0));
+          }
+          // Fitted into what is left of her sentence (after the camera's move): written while she says it.
+          if (heardRef.current !== undefined && !finishedRef.current) {
+            const h = heardRef.current;
+            const left = !h ? BATCH_MS / speedRef.current : h.sentence === job.sentence ? h.ms - (now - h.at) - wait - VOICE_TAIL_MS : 0;
+            fit([job, ...queue.filter((j) => j.batch === job.batch)], left);
           }
           // The piece's scenery (grid, ticks, axis numbers) comes in as the pen starts it.
           if (batch?.scenery.length) {
@@ -383,6 +466,7 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
         place(at, job.y);
       }
       if (t >= 1) {
+        qaLog({ ev: "stroke", batch: job.batch, t0: start, t1: now, kind: job.kind, len: job.len, dur: job.dur, faint: Boolean(job.faint) });
         finish(job);
         current = null;
         idle = now;
@@ -411,10 +495,11 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
       plan(jobs);
       // Where it is drawn is measured when the pen starts it (below): queued behind slower ink, an
       // equation's terms had moved by then and the camera framed where they used to be.
-      const drawing = jobs.some((j) => !j.el.closest('[data-kind="note"], [data-kind="heading"]'));
+      const drawing = jobs.some((j) => !j.el.closest('[data-kind="note"], [data-kind="heading"], [data-kind="partLink"]'));
       const labels = sceneryHere.filter((el) => el.matches(WRITABLE));
       if (labels.length) afterBatch.set(batchSeq, { left: jobs.length, els: labels });
       batches.set(batchSeq, { jobs, ms: jobs.reduce((a, j) => a + j.dur, 0), drawing, scenery: sceneryHere.filter((el) => !el.matches(WRITABLE)) });
+      qaLog({ ev: "ink", batch: batchSeq, n: jobs.length, ms: jobs.reduce((a, j) => a + j.dur, 0), sentence: sentenceRef.current });
       batchSeq++;
     };
 
@@ -431,11 +516,25 @@ export function MarkerWriter({ onRegion, finished = false }: { onRegion?: (box: 
       const qa = window as unknown as { __qaMarker?: boolean; __markerSkipped?: number[] };
       if (qa.__qaMarker && found.length > WHOLE_BOARD) (qa.__markerSkipped ??= []).push(found.length);
       if (!found.length || found.length > WHOLE_BOARD) return;
+      // A board opened finished (a jump back, the board photo the eyes check) stays finished: what
+      // arrives as it settles — a sketch's shapes, typeset maths — is simply there, not drawn from scratch.
+      // The board photo caught maths boards with the pen mid-stroke and judged half-drawn boards (2026-10-24).
+      if (openedFinished.current && finishedRef.current) return;
       enqueue(found);
     });
     observer.observe(board, { childList: true, subtree: true });
     raf = requestAnimationFrame(tick);
+    // What the pen still owes the sentences she has said: her next sentence and the next board wait for it.
+    const unreport = reportPenRemaining(() => {
+      const now = performance.now();
+      const h = heardRef.current;
+      const owed = (j: Job) => h === undefined || finishedRef.current || (h !== null && j.sentence <= h.sentence);
+      let ms = current ? Math.max(0, current.start + current.job.dur - now) : 0;
+      for (const j of queue) if (owed(j)) ms += j.dur + 20;
+      return ms;
+    });
     return () => {
+      unreport();
       observer.disconnect();
       cancelAnimationFrame(raf);
       // Never leave ink hidden.

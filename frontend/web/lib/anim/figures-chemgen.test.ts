@@ -7,6 +7,7 @@ import { layoutPanel, type Mark } from "../canvas/layout";
 import { validateCanvasSpec } from "../canvas/validate";
 import { atomicStructure, atomInfo } from "../figures/components/atomicStructure";
 import { particles, particleCentres, changesFor } from "../figures/components/particles";
+import { componentFitsSubject } from "../diagrams/visualForm";
 import { energyProfile, energyLevels } from "../figures/components/energyProfile";
 import { punnettSquare, cross } from "../figures/components/punnettSquare";
 import { pedigree, parsePedigree } from "../figures/components/pedigree";
@@ -153,6 +154,17 @@ test("pedigree: generations, partners, sibships and numbering", () => {
       // Siblings only (a married-in partner has no drop line), so their centre is the parents' midpoint.
       assert.ok(Math.abs((Math.min(...drops) + Math.max(...drops)) / 2 - mid) < 0.5, `centred: ${JSON.stringify(params)}`);
     }
+  }
+});
+
+test("the states-of-matter figure goes only on a board about states of matter, never on a formula board", () => {
+  // Course bench 2026-10-24 (Cambridge IGCSE Chemistry "Formulae", board 4): "particle models" in the title
+  // picked the solid/liquid/gas boxes for a board about one methane molecule.
+  const formulae = "Formulae from particle models An atom-map counts one methane particle, converts the counts to CH4, and checks the formula against the model. Picture: one methane molecule with one carbon atom joined to four hydrogen atoms. Count each type of atom in one molecule or repeated formula unit. A model of one molecule contains 1 carbon atom joined to 4 hydrogen atoms. The deduced formula is CH4.";
+  assert.ok(particles.match.test(formulae), "its words still match");
+  assert.equal(componentFitsSubject("particles", formulae), false);
+  for (const about of ["The particle model of solids, liquids and gases", "Changes of state: melting and boiling", "Arrangement of particles in a solid: a regular pattern, vibrating in place", "Gas pressure: gas particles move randomly and hit the walls", "Kinetic particle theory"]) {
+    assert.ok(componentFitsSubject("particles", about), about);
   }
 });
 

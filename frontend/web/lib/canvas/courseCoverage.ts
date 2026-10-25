@@ -7,7 +7,9 @@
 
 const STOP = new Set("about above after again also among because been before being below between both could does each every from have here into just like more most much must only other over same should some such than that their them then there these they this those through under until very were what when where which while with would your will used uses using also make makes made".split(" "));
 
-const stem = (w: string) => w.toLowerCase().replace(/[’']s$/, "").replace(/(ies|es|s|ed|ing)$/, "").slice(0, 6);
+// One stem for a word's forms: "valve"/"valves", "cause"/"causes", "study"/"studies", "diffuse"/"diffused"
+// ("valves" lost only its "es" and never matched "valve": blood-vessel lessons that said it were marked as missing it).
+const stem = (w: string) => w.toLowerCase().replace(/[’']s$/, "").replace(/ies$/, "y").replace(/(s|x|z|ch|sh)es$/, "$1").replace(/(ed|ing)$/, "").replace(/s$/, "").replace(/e$/, "").slice(0, 6);
 function stems(text: string): string[] {
   const words = text.replace(/(\d),(\d{3})/g, "$1$2").match(/[\p{L}\d][\p{L}\d.%$£€-]*/gu) ?? [];
   return [...new Set(words.map((w) => w.replace(/[.-]+$/, "")).filter((w) => (/\d/.test(w) ? w.length >= 2 : w.length >= 4) && !STOP.has(w.toLowerCase())).map(stem))];
@@ -106,4 +108,17 @@ export function coverageMessage(gaps: ReturnType<typeof courseCoverageGaps>): st
 export function requiredTermsOf(hints: string[] = []): string[] {
   const line = hints.find((h) => /^Use these terms:/i.test(h));
   return line ? line.replace(/^Use these terms:\s*/i, "").replace(/\.$/, "").split(/,\s*/).map((t) => t.trim()).filter(Boolean) : [];
+}
+
+/**
+ * What a rewrite of one board's script dropped from its syllabus block: the key points and required
+ * terms the old script taught that the new one does not. The easy-words rewrite (progressive.ts
+ * pitchScripts) runs after the coverage check and was never checked against it.
+ */
+export function syllabusLost(before: string, after: string, block: { keyIdeas?: string[] } | undefined, terms: string[] = []): string[] {
+  if (!block) return [];
+  return [
+    ...(block.keyIdeas ?? []).filter((p) => keyPointTaught(p, before) && !keyPointTaught(p, after)),
+    ...terms.filter((t) => termUsed(t, before) && !termUsed(t, after)),
+  ];
 }

@@ -1,0 +1,114 @@
+{
+  "template_version": "sci-diagram-v1 (research: /Users/hassanahmed/ai-tutor/reports/Science diagram image prompts.md)",
+  "filled_per_board": {
+    "{{audience}}": "the student's age, level and curriculum, e.g. '15-year-old IGCSE student' or 'US high-school AP Biology student'",
+    "{{diagram_type}}": "what is drawn, named specifically — only types the image model is allowed to draw (see image_types)",
+    "{{view}}": "the conventional view and its orientation, said outright",
+    "{{parts}}": "each part the student's level names: where it sits in the frame and what it looks like",
+    "{{must_be_true}}": "3–6 positive, visible facts the picture must show (the same list the checker uses)",
+    "{{labels}}": "at most 6: the exact text (curriculum spelling), the part it names, its margin and row",
+    "{{curriculum}}": "one preset from curriculum_presets; 'international' when unknown"
+  },
+  "curriculum_presets": {
+    "international": { "spelling": "British English unless the student's locale says otherwise", "names_and_units": "IUPAC names (aluminium, caesium, sulfur); SI units", "symbols": "IEC circuit symbols", "conventions": "Follow international (IUPAC, SI, IEC) conventions." },
+    "cambridge": { "spelling": "British English (haemoglobin, oesophagus, fibre, centre, metre) but 'fetus'", "names_and_units": "aluminium, caesium, sulfur; cm3, dm3, mol/dm3", "symbols": "IEC (Cambridge symbol table)", "conventions": "Follow Cambridge International conventions." },
+    "us": { "spelling": "American English (hemoglobin, esophagus, fiber, center, meter)", "names_and_units": "aluminum, cesium, sulfur; mL, L, M", "symbols": "IEEE 315 circuit symbols", "conventions": "Follow US high-school, NGSS and AP conventions." },
+    "ib": "international (until IB conventions are checked)",
+    "unknown": "international"
+  },
+  "biology": {
+    "image_types": ["organ", "organ system", "tissue section", "cell", "organelle", "plant section", "flower", "micrograph-style view", "experiment set-up"],
+    "drawn_by_code_instead": ["graphs", "Punnett squares and genetic crosses", "pedigrees", "food chains and webs", "pyramids", "nutrient cycles", "flow charts", "dichotomous keys", "DNA base pairing"],
+    "prompt": {
+      "purpose": "A correctly labelled school-textbook biology diagram for one lesson board. For {{audience}}.",
+      "canvas": "Landscape 3:2, plain white background. The drawing fills the central 60% of the frame; the left and right margins are kept empty for the labels.",
+      "subject_and_view": "{{diagram_type}}, {{view}}.",
+      "parts_and_layout": "{{parts}}",
+      "must_be_true": "{{must_be_true}}",
+      "biology_rules": [
+        "Draw it the way a standard school textbook does: the conventional view named above, never mirrored.",
+        "Bodies and organs are shown as if the organism faces the viewer: its right side is on the viewer's left.",
+        "Draw only the parts listed, each once, with real proportions, positions and connections; neighbouring tissues in clearly different tones.",
+        "Membranes are continuous single lines; plant cell walls are double lines.",
+        "Oxygenated blood is red and deoxygenated blood is blue, only in diagrams of circulation; photosynthetic plant tissue is green."
+      ],
+      "labels": {
+        "count": "Exactly {{n}} labels.",
+        "rules": [
+          "Write each label EXACTLY as given, once, with no extra characters.",
+          "Bold dark sans-serif, large and easy to read, set in the margins outside the drawing.",
+          "Each label is joined to its part by a thin straight ruled line with no arrowhead that ends on that part.",
+          "Label lines never cross each other or any label."
+        ],
+        "draw_exactly": "{{labels}}"
+      },
+      "style": "Flat 2D textbook illustration: clean, even dark outlines; flat colour fills; no gradients, shadows, photographic texture or 3D rendering.",
+      "curriculum": "{{curriculum}}",
+      "text_and_exclusions": "The only words anywhere in the image are the {{n}} labels. No title, caption, legend, numbers, arrows, watermark or other text."
+    }
+  },
+  "chemistry": {
+    "image_types": ["laboratory apparatus set-up", "electrolytic cell picture", "industrial plant cut-away", "everyday context scene"],
+    "drawn_by_code_instead": ["formulas and equations", "dot-and-cross and Lewis diagrams", "electron shells and configurations", "displayed, structural and skeletal formulas", "energy profiles", "particle diagrams", "lattices", "graphs", "the periodic table"],
+    "prompt": {
+      "purpose": "A correctly labelled school-textbook chemistry diagram for one lesson board. For {{audience}}.",
+      "canvas": "Landscape 3:2, plain white background. The drawing fills the central 65% of the frame; the left and right margins are kept empty for the labels.",
+      "subject_and_view": "{{diagram_type}}, {{view}}.",
+      "parts_and_layout": "{{parts}}",
+      "must_be_true": "{{must_be_true}}",
+      "chemistry_rules": [
+        "Apparatus is a 2D side-on cross-section like an exam-paper diagram: uniform black outlines, glass walls as two thin parallel lines, no perspective, shading or reflections.",
+        "Draw only the apparatus listed, left to right in the order listed; every joint meets with no gap; tubes and wires connect to what they should.",
+        "A heated vessel or one collecting gas always has an open outlet — never a sealed system being heated.",
+        "Heat comes from a Bunsen burner flame under the vessel, only when heating is listed.",
+        "Liquids are a pale blue fill with a flat horizontal surface; electrodes dip into the electrolyte and are wired to the power supply.",
+        "Condenser cooling water goes in at the bottom and out at the top; a distillation thermometer bulb sits level with the side arm.",
+        "Any atoms shown use standard (CPK) colours: carbon black, hydrogen white, oxygen red, nitrogen blue, chlorine green, sulfur yellow."
+      ],
+      "labels": {
+        "count": "Exactly {{n}} labels.",
+        "rules": [
+          "Write each label EXACTLY as given, once, with no extra characters; chemical formulas keep their subscripts and charges.",
+          "Plain dark sans-serif, large and easy to read, set in the margins outside the apparatus.",
+          "Each label is joined to its part by a thin straight line that ends on that part.",
+          "Label lines never cross each other or any label."
+        ],
+        "draw_exactly": "{{labels}}"
+      },
+      "style": "Clean exam-style line drawing in black on white, with pale tinted liquids; industrial cut-aways in flat 2D colour with clean dark outlines; no photographic texture or 3D rendering.",
+      "curriculum": "{{curriculum}}",
+      "text_and_exclusions": "The only words anywhere in the image are the {{n}} labels. No title, caption, legend, numbers, equations, arrows, watermark or other text."
+    }
+  },
+  "physics": {
+    "image_types": ["device cross-section (motor, generator, transformer, relay, loudspeaker)", "apparatus set-up", "astronomy scene", "real-world context scene"],
+    "drawn_by_code_instead": ["circuit diagrams", "ray diagrams", "free-body and force diagrams", "field lines", "wave diagrams and wavefronts", "graphs", "Sankey diagrams and energy bar charts", "moments diagrams"],
+    "prompt": {
+      "purpose": "A correctly labelled school-textbook physics diagram for one lesson board. For {{audience}}.",
+      "canvas": "Landscape 3:2, plain white background. The drawing fills the central 60% of the frame; the left and right margins are kept empty for the labels.",
+      "subject_and_view": "{{diagram_type}}, {{view}}.",
+      "parts_and_layout": "{{parts}}",
+      "must_be_true": "{{must_be_true}}",
+      "physics_rules": [
+        "Draw it the way a standard school textbook does: real proportions and connections; only the parts listed, clearly separated.",
+        "Devices are clean line drawings in cross-section or simple schematic view, never photographs.",
+        "Context scenes show objects and people from the outside, on a plain background, with no cut-aways.",
+        "No field lines, current arrows or force arrows: the teacher adds those afterwards.",
+        "Correctness never depends on colour."
+      ],
+      "labels": {
+        "count": "Exactly {{n}} labels.",
+        "rules": [
+          "Write each label EXACTLY as given, once, with no extra characters.",
+          "Bold dark sans-serif, large and easy to read, set in the margins outside the drawing.",
+          "Each label is joined to its part by a thin straight line that ends on that part.",
+          "Label lines never cross each other or any label."
+        ],
+        "draw_exactly": "{{labels}}"
+      },
+      "style": "Clean textbook line drawing: even dark outlines on white, optional flat colour, no gradients, shadows or 3D rendering.",
+      "curriculum": "{{curriculum}}",
+      "text_and_exclusions": "The only words anywhere in the image are the {{n}} labels. No title, caption, legend, numbers, symbols, arrows, watermark or other text."
+    }
+  }
+}

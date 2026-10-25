@@ -280,9 +280,14 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
   // voice — every board, sentence by sentence, the way a student sees it. For recording real playback
   // (scripts/qa/playback-qa.mts) without paying for narration.
   const [play, setPlay] = useState(false);
+  // pause=1: the board as a student who pressed pause sees it (the pen stops mid-stroke) — for checking pause.
+  const [paused, setPaused] = useState(false);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     queueMicrotask(() => {
+      if (params.get("pause") === "1") setPaused(true);
+      // Pause and resume mid-board from a test (scripts/qa/.probe/pausecheck.mts); development only.
+      if (process.env.NODE_ENV !== "production") (window as unknown as { __setPaused?: (v: boolean) => void }).__setPaused = setPaused;
       if (params.get("board")) setBoard(Number(params.get("board")));
       if (params.get("s")) setSentence(Number(params.get("s")));
       if (params.get("p")) setProgress(Number(params.get("p")));
@@ -332,7 +337,7 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
         <span className="min-w-0 flex-1 truncate font-normal text-white/60">{sentences[sentence]}</span>
       </div>
       <div className="relative min-h-0 flex-1">
-        <LessonCanvas panels={panels} currentIndex={board} sentence={predict ? predict.at - 1 : sentence} sentenceProgress={predict ? 1 : progress} finished={predict ? false : finished} waitingForStudent={predict ? true : finished} predictCard={predict?.card} checkFlow={Boolean(predict)} playing={!finished} topic={lecture.topic} onSpeak={(t) => console.log("[speak]", t)} onTellAria={(t) => console.log("[aria]", t)} onContinue={() => { setBoard((b) => Math.min(panels.length - 1, b + 1)); setSentence(0); setFinished(false); }} />
+        <LessonCanvas panels={panels} currentIndex={board} sentence={predict ? predict.at - 1 : sentence} sentenceProgress={predict ? 1 : progress} finished={predict ? false : finished} waitingForStudent={predict ? true : finished} predictCard={predict?.card} checkFlow={Boolean(predict)} playing={!finished && !paused} topic={lecture.topic} onSpeak={(t) => console.log("[speak]", t)} onTellAria={(t) => console.log("[aria]", t)} onContinue={() => { setBoard((b) => Math.min(panels.length - 1, b + 1)); setSentence(0); setFinished(false); }} />
       </div>
     </main>
   );

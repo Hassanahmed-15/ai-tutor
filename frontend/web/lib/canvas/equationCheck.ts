@@ -492,20 +492,17 @@ export function withResultNotes<T extends { id: string; text: string; s: number 
     return text && !unbalanced(text) ? [{ ...n, text }] : [];
   });
   const shows = (eq: string) => out.some((n) => norm(n.text).includes(norm(eq)) || spokenIsWritten(eq, [norm(n.text)]));
+  // EVERY EQUATION SAID IS WRITTEN, on its sentence (owner's manager, 2026-10-23: "whatever it was saying
+  // was not being written down"). Only the last four were, and a board with six notes swapped notes out:
+  // the notes column held four at a time then. It now holds a page of them and wipes when full
+  // (lib/canvas/layout.ts), so each equation said and not yet on the board is added.
   const bySentence = new Map<number, string>();
   for (const e of spoken) bySentence.set(e.sentence, e.text);
-  const last = [...bySentence.entries()].sort((a, b) => a[0] - b[0]).slice(-4);
   let k = 0;
-  for (const [s, eq] of last) {
+  for (const [s, eq] of [...bySentence.entries()].sort((a, b) => a[0] - b[0])) {
     const text = short(eq);
     if (!text || shows(eq) || shows(text)) continue;
-    const note = make(text, s, k++);
-    if (out.length >= 6) {
-      // Replace the word-only note nearest this sentence; never another equation.
-      const words = out.map((n, i) => ({ n, i })).filter(({ n }) => !/[=≈]/.test(n.text)).sort((a, b) => Math.abs(a.n.s - s) - Math.abs(b.n.s - s))[0];
-      if (!words) continue;
-      out = out.map((n, i) => (i === words.i ? note : n));
-    } else out.push(note);
+    out.push(make(text, s, k++));
   }
   return out.sort((a, b) => a.s - b.s);
 }
@@ -588,4 +585,109 @@ export function falseIdentities(stage: EquationStage, script: string): Array<{ s
 export function narrationArithmetic(script: string): ReturnType<typeof checkNumbers> {
   const text = spokenMaths(script).replace(/([\d)²³])\s*,?\s*\b(?:which is|gives|giving|is|makes|totals?|comes to|equal to)\b\s*(?=[-−]?\d)/gi, "$1 = ");
   return checkNumbers(text);
+}
+
+/**
+ * Does this note only repeat a line of the working, in other notation? "x + b/2a = ±√(b² − 4ac)/2a" beside
+ * the typeset row x + b/(2a) = ±√(b² − 4ac)/(2a) is the same line twice (2026-10-23). Spacing, brackets,
+ * minus signs and ÷ are ignored; a shortened equation ("x = ±√(...) / 2a") repeats the row it shortens.
+ * A note without "=" ("Add (b/2a)²", "Subtract b/2a") says what a step does and is kept.
+ */
+export function repeatsWorking(note: string, rows: string[]): boolean {
+  if (!/[=≈]/.test(note)) return false;
+  const loose = (t: string) => normalizeMath(t).replace(/÷/g, "/").replace(/[−–]/g, "-").replace(/[\s()[\]{}]/g, "").toLowerCase();
+  if (/\.\.\.|…/.test(note)) return true;
+  const n = loose(note);
+  return rows.some((r) => { const row = loose(r); return row === n || row.includes(n) || (n.includes(row) && row.length >= 6); });
+}
+
+/**
+ * NO BROKEN OR FALSE LINE OF WORKING EVER SHIPS (owner, 2026-10-23: "100 percent accurate"). A working
+ * board kept when no attempt passed its checks went out with "P(not blue) = 1 −" and "1 − 1 − 0.8 = 0.2"
+ * on it. Each step whose row is incomplete (ends on an operator, opens on "=", leaves a bracket open) or
+ * whose arithmetic is false is taken off the board; its sentence keeps whatever else the board shows (its
+ * note), and nothing false is written. Returns how many were taken off.
+ */
+export function dropBrokenRows(stage: EquationStage, check: (text: string) => unknown[]): number {
+  const text = new Map(stage.tokens.map((t) => [t.id, t.text]));
+  const rowOf = (order: string[]) => order.map((id) => text.get(id) ?? "").join(" ").replace(/\s+/g, " ").trim();
+  const broken = (row: string) => {
+    if (!row) return false;
+    const opens = (row.match(/\(/g)?.length ?? 0) !== (row.match(/\)/g)?.length ?? 0);
+    return /(?:[=+\-−×÷*/^]|\bof)\s*$/.test(row) || /^[=≈]/.test(row) || opens || check(row).length > 0;
+  };
+  const before = stage.steps.length;
+  const kept = stage.steps.filter((st) => !broken(rowOf(st.order)));
+  // Every line broken: the board keeps them rather than go blank (its notes still carry what is said).
+  if (!kept.length || kept.length === before) return 0;
+  stage.steps = kept;
+  return before - kept.length;
+}
+
+const PLAIN: Record<string, string> = { "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5", "₆": "6", "₇": "7", "₈": "8", "₉": "9", "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "⁺": "+", "⁻": "-", "₊": "+", "₋": "-" };
+
+/** A line of a board in a normal form: subscripts, superscripts, LaTeX, arrows, minus signs and spaces made plain. */
+export function lineKey(text: string): string {
+  return text
+    .replace(/\\(?:longrightarrow|rightarrow|to)\b/g, "→")
+    .replace(/->|⟶|⇒/g, "→")
+    .replace(/\\(?:left|right|mathrm|text|operatorname)\b/g, "")
+    .replace(/\\[,;! ]/g, "")
+    .replace(/[₀-₉⁰-⁹¹²³⁺⁻₊₋]/g, (c) => PLAIN[c] ?? c)
+    .replace(/[−–]/g, "-")
+    .replace(/[{}^_$\\\s]/g, "")
+    .toLowerCase();
+}
+
+/** The same line, as the board writes it and as a reader copies it: equal in normal form, or one most of the other. */
+export function sameLine(a: string, b: string): boolean {
+  const x = lineKey(a), y = lineKey(b);
+  if (!x || !y) return false;
+  if (x === y) return true;
+  const [short, long] = x.length <= y.length ? [x, y] : [y, x];
+  return short.length >= 8 && long.includes(short) && short.length / long.length >= 0.6;
+}
+
+/**
+ * FIX 2 — A ROW THAT SAYS NOTHING (owner, 2026-10-24): one "=" whose two sides are the same ("Na₂O = Na₂O",
+ * Cambridge IGCSE "Formulae", board 7). Not for maths, where "6 = 6" checks an answer.
+ */
+export function saysNothing(row: string): boolean {
+  if ((row.match(/=/g) ?? []).length !== 1 || /[≠<>≤≥≈]/.test(row)) return false;
+  const [left, right] = row.split("=").map(lineKey);
+  return Boolean(left) && left === right;
+}
+
+/**
+ * Removes the written lines of the working that match, keeping at least one; returns the lines removed. A
+ * step may write two lines with a "," between them ("2 Na⁺ + 1 O²⁻ = 0 , Na₂O = Na₂O" is written as two
+ * lines on the board): each line is judged on its own, and a step goes only when none of its lines is left.
+ */
+export function dropRowsWhere(stage: EquationStage, bad: (row: string) => boolean): string[] {
+  const text = new Map(stage.tokens.map((t) => [t.id, t.text]));
+  const join = (ids: string[]) => ids.map((id) => text.get(id) ?? "").join(" ").replace(/\s+/g, " ").trim();
+  const isBreak = (id: string) => /^[,;]$/.test((text.get(id) ?? "").trim());
+  const removed: string[] = [];
+  const steps = stage.steps.map((st) => {
+    // The step's lines, each with the break written before it.
+    const lines: Array<{ ids: string[]; lead?: string }> = [{ ids: [] }];
+    for (const id of st.order) {
+      if (isBreak(id)) lines.push({ ids: [], lead: id });
+      else lines[lines.length - 1].ids.push(id);
+    }
+    const kept = lines.filter((l) => {
+      const row = join(l.ids);
+      if (!row || !bad(row)) return true;
+      removed.push(row);
+      return false;
+    });
+    if (kept.length === lines.length) return st;
+    const order = kept.flatMap((l, i) => (i > 0 && l.lead ? [l.lead, ...l.ids] : l.ids));
+    return order.length ? { ...st, order } : null;
+  });
+  const left = steps.filter((st): st is NonNullable<typeof st> => Boolean(st));
+  // Every line matched: the board keeps them rather than go blank (its notes still carry what is said).
+  if (!left.length || !removed.length) return [];
+  stage.steps = left;
+  return removed;
 }

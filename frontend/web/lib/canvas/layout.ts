@@ -15,6 +15,8 @@ import { evalExpr } from "./expr";
 import { placeLabels } from "../figures/labels";
 import { recordFigureCut } from "../figures/cuts";
 import { trimToFit } from "../text/fit";
+import { COURSE_FONT_WIDTH } from "../anim/boardFont";
+import { mentionAt, pictureOf, talkable } from "./pictureTalk";
 import { fitText } from "./renderFit";
 import { partBodies, shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
@@ -27,10 +29,12 @@ export type Pt = { x: number; y: number };
 
 export type Mark =
   | { type: "heading"; id: string; text: string; x: number; y: number; size: number; s: number }
-  | { type: "note"; id: string; lines: string[]; x: number; y: number; size: number; s: number; bullet: Pt; /** Rolled off the column when a later note takes its slot (sentence number). */ until?: number }
+  | { type: "note"; id: string; lines: string[]; x: number; y: number; size: number; s: number; bullet: Pt; /** Rolled off the column when a later note takes its slot (sentence number). */ until?: number; /** A written course board's line number, drawn in place of the bullet. */ num?: number }
   | { type: "node"; id: string; cx: number; cy: number; r: number; icon?: CanvasIcon; label: string; sub?: string; color: string; s: number; glow?: string; labelY: number; labelSize: number; becomes?: Becomes }
   | { type: "arrow"; id: string; p0: Pt; c: Pt; p1: Pt; label?: string; labelAt: Pt; s: number; flow: boolean; rate?: string; color: string }
   | { type: "picture"; id: string; rect: Rect; src?: string; paper?: string; s: number; subject: string }
+  /** A course board's line from a note to the part of the picture it names, shown while that note's sentence is said. */
+  | { type: "partLink"; id: string; from: Pt; to: Pt; s: number; until?: number }
   | { type: "part"; id: string; cx: number; cy: number; name: string; s: number }
   | { type: "callout"; id: string; partId: string; text: string; box: Rect; anchor: Pt; s: number; size: number }
   | { type: "equation"; id: string; tokens: Array<{ id: string; text: string; tex?: string; color: string; w: number; size: number }>; steps: Array<{ s: number; place: Record<string, Pt>; highlight: string[]; caption?: string }>; size: number; captionY: number; center: number; s: number; /** Wiped with its page of working when the next page starts (sentence number). */ until?: number }
@@ -66,12 +70,33 @@ export const INK = "#1f2937";
 export const PALETTE = ["#0f766e", "#d97706", "#2563eb", "#be123c", "#7c3aed", "#15803d", "#b45309", "#0369a1"];
 
 const HEADING_SIZE = 34;
-const NOTE_SIZE = 21;
+/**
+ * A COURSE BOARD (owner, 2026-10-24: "the font of the text and the placement is just pathetic", choosing
+ * option 2 of four rendered boards): written in a neat hand (Patrick Hand, lib/anim/boardFont.ts) at a
+ * bigger size, the notes in a wider column so about six sit beside a picture, and a written board's lines
+ * in two numbered columns. Measured as Nunito at COURSE_FONT_WIDTH of the size, which is what it takes up.
+ */
+const COURSE_HEADING_SIZE = 44;
+const COURSE_NOTE_SIZE = 26;
+const COURSE_NOTES_W = 380;
+const COURSE_STAGE: Rect = { x: 452, y: 108, w: 512, h: 424 };
+/**
+ * A course board of working keeps a wide working area (owner, 2026-10-24: "the KaTeX font and its placement
+ * to be perfect and look good"): the wider notes column of a picture board left the working 512 wide, and
+ * a four-line calculation paged down to one small line in a corner. Its notes column is narrower instead.
+ */
+const COURSE_WORK_NOTES_W = 300;
+const COURSE_WORK_NOTE_SIZE = 24;
+const COURSE_WORK_STAGE: Rect = { x: 372, y: 108, w: 592, h: 424 };
+/** The notes column's writing: a little smaller than it was, so a page holds what Aria said over most of a board. */
+const COLUMN_NOTE_SIZE = 19;
 const NOTES_X = 48;
 const NOTES_W = 268;
 const STAGE: Rect = { x: 352, y: 108, w: 612, h: 424 };
 const STAGE_WIDE: Rect = { x: 56, y: 108, w: 908, h: 424 };
 const FIGURE_STAGE_WITH_NOTES: Rect = { x: 56, y: 108, w: 908, h: 318 };
+/** A figure over a two-row notes strip (more than four notes): a little shorter, so both rows clear the corner. */
+const FIGURE_STAGE_WITH_TWO_ROWS: Rect = { x: 56, y: 104, w: 908, h: 296 };
 /** A maths/CS figure at full height, its notes in a column on the right (owner, 2026-10-21: "diagrams big enough"). */
 const FIGURE_BESIDE_NOTES: Rect = { x: 40, y: 96, w: 652, h: 452 };
 const RIGHT_NOTES_X = 716;
@@ -225,7 +250,45 @@ const union = (rects: Rect[]): Rect => {
 const overlaps = (a: Rect, b: Rect, pad = 0) =>
   a.x < b.x + b.w + pad && b.x < a.x + a.w + pad && a.y < b.y + b.h + pad && b.y < a.y + a.h + pad;
 
-export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
+/**
+ * POINTS UNDER THE HEADING, NOT AROUND THE BOARD (owner's manager, 2026-10-23: "points being written
+ * haphazardly without proper headings or on a random part of the board"). A sketch board's short written
+ * points ("No double counting") went where the writer put them — a corner, the middle, shrunk to fit a
+ * small spot. They join the notes under the heading instead, on the sentence they were written on, in
+ * the order said; the drawings (shapes, graphs, tables, working, code) keep the drawing area. A point
+ * that says what a note already says is not written twice; a long passage stays in the sketch.
+ */
+function sketchWritingToNotes(spec: CanvasBoardSpec): CanvasBoardSpec {
+  if (spec.stage.kind !== "sketch") return spec;
+  const writing = spec.stage.items.filter((it): it is Extract<SketchItem, { type: "text" }> => it.type === "text" && it.text.trim().length > 0 && it.text.length <= 60);
+  const drawings = spec.stage.items.filter((it) => !writing.includes(it as Extract<SketchItem, { type: "text" }>));
+  if (!writing.length || !drawings.length) return spec;
+  const stems = (t: string) => (t.toLowerCase().match(/[a-z0-9]{3,}/g) ?? []).map((w) => w.slice(0, 5));
+  const notes = [...spec.notes];
+  for (const it of writing) {
+    const mine = stems(it.text);
+    const repeats = notes.some((n) => { const theirs = new Set(stems(n.text)); return mine.length > 0 && mine.filter((w) => theirs.has(w)).length / mine.length >= 0.6; });
+    if (!repeats) notes.push({ id: it.id, text: it.text.replace(/\s+/g, " ").trim(), s: it.s });
+  }
+  return { ...spec, notes: notes.map((n, i) => ({ n, i })).sort((a, b) => a.n.s - b.n.s || a.i - b.i).map(({ n }) => n), stage: { ...spec.stage, items: drawings } };
+}
+
+export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
+  const sketched = sketchWritingToNotes(given);
+  // A course board has its own look (above); a written course board (Aria's notes, no picture) is its
+  // lines as numbered notes, in two columns.
+  const course = given.subject !== undefined;
+  const W = course ? COURSE_FONT_WIDTH : 1;
+  const written = course && sketched.stage.kind === "sketch" && sketched.stage.items.length > 0 && sketched.stage.items.every((it) => it.type === "text");
+  const spec: CanvasBoardSpec = written && sketched.stage.kind === "sketch"
+    ? { ...sketched, notes: [...sketched.notes, ...sketched.stage.items.map((it) => ({ id: it.id, text: (it as Extract<SketchItem, { type: "text" }>).text, s: it.s }))], stage: { kind: "sketch", items: [] } }
+    : sketched;
+  /** A note's lines in the board's hand: a course board's narrower face fits more on a line. */
+  const fitNote = (text: string, size: number, width: number) => {
+    if (!course) return noteLines(text, size, width);
+    const fitted = noteLines(text, size * W, width);
+    return { lines: fitted.lines, size: Math.round(fitted.size / W) };
+  };
   const marks: Mark[] = [];
   const targets: PanelLayout["targets"] = {};
   // Code beside its data structure needs the whole width: that board writes no notes column.
@@ -233,7 +296,7 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   // too, a four-line loop was written at 12 px (CS round, 2026-10-22).
   const split = spec.stage.kind === "code" && (Boolean(spec.stage.structure) || spec.stage.steps.some((p) => p.stack?.length || p.state?.length));
   // Working beside its figure needs the whole width too: its lines are the notes (no notes column).
-  const working = spec.stage.kind === "equation" && Boolean(spec.stage.figure);
+  const working = spec.stage.kind === "equation" && Boolean(spec.stage.figure || spec.stage.picture);
   const hasNotes = spec.notes.length > 0 && !split && !working;
   // Labelled textbook figures need horizontal room for the drawing and two boundary-label columns.
   // Putting their notes in the normal left rail made a correct 440 px scientific figure render at
@@ -249,36 +312,100 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
     const beside = figureFit(spec.stage, FIGURE_BESIDE_NOTES);
     return Boolean(strip && beside && beside.scale > strip.scale * 1.12);
   })();
-  const stage = besideNotes ? FIGURE_BESIDE_NOTES : figureWithNotes ? FIGURE_STAGE_WITH_NOTES : hasNotes ? STAGE : STAGE_WIDE;
+  const courseWork = course && spec.stage.kind === "equation" && !working;
+  const stage = besideNotes ? FIGURE_BESIDE_NOTES : figureWithNotes ? (spec.notes.length > 4 ? FIGURE_STAGE_WITH_TWO_ROWS : FIGURE_STAGE_WITH_NOTES) : hasNotes ? (courseWork ? COURSE_WORK_STAGE : course ? COURSE_STAGE : STAGE) : STAGE_WIDE;
 
   // The heading steps down until it fits the board's width (a 60-character heading at 28 px reached
   // the edge); it is never cut.
-  let headingSize = HEADING_SIZE;
-  while (headingSize > 22 && textWidth(spec.heading, headingSize) > PANEL_W - 110) headingSize -= 2;
+  let headingSize = course ? COURSE_HEADING_SIZE : HEADING_SIZE;
+  while (headingSize > 22 && textWidth(spec.heading, headingSize * W) > PANEL_W - 110) headingSize -= 2;
   // s = -1: the heading is written while Aria is still bridging into the board, before sentence 0.
-  marks.push({ type: "heading", id: "heading", text: spec.heading, x: 48, y: 66, size: headingSize, s: -1 });
-  targets.heading = { x: 48, y: 66 - headingSize, w: Math.min(PANEL_W - 96, textWidth(spec.heading, headingSize)), h: headingSize * 1.25, s: 0 };
+  marks.push({ type: "heading", id: "heading", text: spec.heading, x: 48, y: course ? 70 : 66, size: headingSize, s: -1 });
+  targets.heading = { x: 48, y: (course ? 70 : 66) - headingSize, w: Math.min(PANEL_W - 96, textWidth(spec.heading, headingSize * W)), h: headingSize * 1.25, s: 0 };
 
-  // THE NOTES COLUMN IS WIPED WHEN FULL, like a teacher's board. What Aria writes as she speaks can be
-  // a note for most sentences, so the column holds four at a time, read top to bottom; the fifth note
-  // wipes the column and starts again at the top. When the board is complete the last page shows.
+  // THE NOTES COLUMN IS WIPED WHEN FULL, like a teacher's board. What Aria writes as she speaks is a
+  // note for most sentences. The column holds as many as fit (owner, 2026-10-23: four at a time wiped
+  // what she had just said within a few sentences — "whatever it was saying was not being written
+  // down"): notes stack by their own height, read top to bottom, and the note that does not fit wipes
+  // the column and starts again at the top. When the board is complete the last page shows.
   const allNotes = hasNotes ? [...spec.notes].sort((a, b) => a.s - b.s) : [];
-  const SLOTS = 4;
-  const slots = Math.min(SLOTS, allNotes.length);
+  // Each note's page and place, decided once from the notes before it: a note never moves once written.
   // A page wiped on the sentence it was written is never drawn: two pages due on one sentence were
   // printed on top of each other ("Rapid, brief vs slower, lasting" over "Both coordinate responses";
   // live test, 2026-10-17). The later page wins.
-  const untilOf = (i: number) => {
-    const nextPage = allNotes[(Math.floor(i / SLOTS) + 1) * SLOTS];
-    return nextPage ? Math.max(nextPage.s, allNotes[i].s) : undefined;
+  const pageStarts: number[] = [];
+  const untilFrom = (pageOf: number[]) => (i: number) => {
+    const next = pageStarts[pageOf[i] + 1];
+    return next !== undefined ? Math.max(allNotes[next].s, allNotes[i].s) : undefined;
   };
-  if (figureWithNotes && !besideNotes) {
-    const gap = 18;
-    const noteW = (STAGE_WIDE.w - gap * Math.max(0, slots - 1)) / Math.max(1, slots);
-    const noteSize = slots >= 4 ? 15 : 17;
+  if (written) {
+    // A WRITTEN COURSE BOARD: its lines numbered, in two columns read row by row, each written on its
+    // sentence; a page that fills is wiped for the next, as the notes column is.
+    const gap = 40, colW = (PANEL_W - 96 - gap) / 2, top = 146, bottom = 528;
+    const pageOf: number[] = [];
+    const rows: Array<{ y: number; items: Array<{ i: number; lines: string[]; size: number }> }> = [];
+    let page = 0, y = top, start = 0;
+    for (let r = 0; r < allNotes.length; r += 2) {
+      const items = allNotes.slice(r, r + 2).map((note, k) => ({ i: r + k, ...fitNote(note.text, COURSE_NOTE_SIZE + 1, colW - 46) }));
+      const h = Math.max(...items.map((it) => it.lines.length * it.size * 1.28));
+      if (r > start && y + h > bottom) {
+        // A sentence's rows start the new page together, as the notes column's do (below).
+        let k = rows.length;
+        while (k - 1 > start / 2 && allNotes[rows[k - 1].items[0].i].s === allNotes[r].s) k--;
+        page++;
+        y = top;
+        if (k < rows.length) {
+          rows.length = k;
+          pageOf.length = k * 2;
+          start = k * 2;
+          r = start - 2;
+          continue;
+        }
+        start = r;
+      }
+      items.forEach(() => pageOf.push(page));
+      rows.push({ y, items });
+      y += h + 24;
+    }
+    pageOf.forEach((p, i) => { if (pageStarts[p] === undefined) pageStarts[p] = i; });
+    const untilOf = untilFrom(pageOf);
+    for (const row of rows) {
+      for (const it of row.items) {
+        const note = allNotes[it.i];
+        const x = 48 + (it.i % 2) * (colW + gap);
+        const yy = row.y + it.size;
+        const until = untilOf(it.i);
+        marks.push({ type: "note", id: note.id, lines: it.lines, x: x + 40, y: yy, size: it.size, s: note.s, bullet: { x: x + 30, y: yy - it.size * 0.34 }, num: it.i + 1, ...(until !== undefined ? { until } : {}) });
+        targets[note.id] = { x, y: yy - it.size, w: colW, h: it.lines.length * it.size * 1.28 + 6, s: note.s };
+      }
+    }
+  } else if (figureWithNotes && !besideNotes) {
+    // The strip under a figure: one row of four as before; more than four notes take a second row, the
+    // figure a little shorter for it (FIGURE_STAGE_WITH_TWO_ROWS), clear of the board map in the corner.
+    const gap = 18, perRow = Math.min(4, allNotes.length), rows = allNotes.length > 4 ? 2 : 1;
+    const noteW = (STAGE_WIDE.w - gap * Math.max(0, perRow - 1)) / Math.max(1, perRow);
+    const noteSize = perRow >= 4 ? 15 : 17;
+    const rowH = 2 * noteSize * 1.28 + 12;
+    const pageOf: number[] = [];
+    const slotOf: number[] = [];
+    for (let i = 0, page = 0, start = 0; i < allNotes.length; i++) {
+      if (i - start >= perRow * rows) {
+        // A course sentence's notes start the new page together (the notes column's rule, below).
+        let j = i;
+        while (course && j - 1 > start && allNotes[j - 1].s === allNotes[i].s) j--;
+        pageOf.length = slotOf.length = i = j;
+        page++;
+        start = i;
+      }
+      pageOf.push(page);
+      slotOf.push(i - start);
+    }
+    pageOf.forEach((p, i) => { if (pageStarts[p] === undefined) pageStarts[p] = i; });
+    const untilOf = untilFrom(pageOf);
     allNotes.forEach((note, i) => {
-      const x = STAGE_WIDE.x + (i % SLOTS) * (noteW + gap);
-      const y = 474;
+      const k = slotOf[i];
+      const x = STAGE_WIDE.x + (k % perRow) * (noteW + gap);
+      const y = (rows === 2 ? 424 : 474) + Math.floor(k / perRow) * rowH;
       const { lines, size: sz } = noteLines(note.text, noteSize, noteW - 24);
       const until = untilOf(i);
       marks.push({ type: "note", id: note.id, lines, x: x + 22, y, size: sz, s: note.s, bullet: { x: x + 7, y: y - sz * 0.34 }, ...(until !== undefined ? { until } : {}) });
@@ -286,17 +413,51 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
       targets[note.id] = { x, y: y - noteSize, w: noteW, h: h + 6, s: note.s };
     });
   } else {
-    // Fixed slots, each room for two lines, so a note never moves once written.
-    const slotH = 2 * NOTE_SIZE * 1.28 + 30;
     const nx = besideNotes ? RIGHT_NOTES_X : NOTES_X;
-    const nw = besideNotes ? RIGHT_NOTES_W : NOTES_W;
-    allNotes.forEach((note, i) => {
-      const y = 140 + (i % SLOTS) * slotH;
-      const { lines, size: sz } = noteLines(note.text, NOTE_SIZE, nw - 26);
+    const nw = besideNotes ? RIGHT_NOTES_W : courseWork ? COURSE_WORK_NOTES_W : course ? COURSE_NOTES_W : NOTES_W;
+    const noteSize = courseWork ? COURSE_WORK_NOTE_SIZE : course ? COURSE_NOTE_SIZE : COLUMN_NOTE_SIZE;
+    // Ends above the bottom-left corner, where the player's board map sits over the board.
+    const top = 140, bottom = 486;
+    const paginate = (size: number, gap: number) => {
+      const placed = allNotes.map((note) => ({ note, ...fitNote(note.text, size, nw - 26) }));
+      const pageOf: number[] = [];
+      const yOf: number[] = [];
+      let page = 0, y = top, start = 0;
+      for (let i = 0; i < placed.length; i++) {
+        if (i > start && y + placed[i].lines.length * placed[i].size * 1.28 > bottom) {
+          // A course sentence's notes start the new page together: split across it, the ones left on the
+          // old page were wiped on the sentence they were written and never drawn (QA frame, 2026-10-25:
+          // "p orbitals perpendicular to plane" never appeared).
+          let j = i;
+          while (course && j - 1 > start && allNotes[j - 1].s === allNotes[i].s) j--;
+          pageOf.length = yOf.length = i = j;
+          page++;
+          y = top;
+          start = i;
+        }
+        pageOf.push(page);
+        yOf.push(y);
+        y += placed[i].lines.length * placed[i].size * 1.28 + gap;
+      }
+      return { placed, pageOf, yOf };
+    };
+    let laid = paginate(noteSize, course ? 16 : 14);
+    // One or two notes spilling onto a fresh page wiped the whole column on the board's last sentences
+    // (a ten-note board finished showing one): a little smaller, they all stay on one page.
+    const spill = laid.pageOf.filter((p) => p === 1).length;
+    if (laid.pageOf.at(-1) === 1 && spill <= 2) {
+      const tighter = paginate(noteSize - 2, 10);
+      if (tighter.pageOf.at(-1) === 0) laid = tighter;
+    }
+    const { placed, pageOf, yOf } = laid;
+    pageOf.forEach((p, i) => { if (pageStarts[p] === undefined) pageStarts[p] = i; });
+    const untilOf = untilFrom(pageOf);
+    placed.forEach(({ note, lines, size: sz }, i) => {
+      const y = yOf[i] + sz;
       const until = untilOf(i);
       marks.push({ type: "note", id: note.id, lines, x: nx + 24, y, size: sz, s: note.s, bullet: { x: nx + 7, y: y - sz * 0.34 }, ...(until !== undefined ? { until } : {}) });
       const h = lines.length * sz * 1.28;
-      targets[note.id] = { x: nx, y: y - NOTE_SIZE, w: nw, h: h + 6, s: note.s };
+      targets[note.id] = { x: nx, y: y - sz, w: nw, h: h + 6, s: note.s };
     });
   }
 
@@ -317,14 +478,16 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
       layoutDiagram(spec.stage, stage, marks, add);
       break;
     case "equation":
-      if (spec.stage.figure) {
+      if (spec.stage.figure || spec.stage.picture) {
         // WORKING BESIDE ITS FIGURE: the figure on the left, the lines of working written on the right
-        // as Aria says them (owner, 2026-10-22: a graph or drawing while the working is shown).
+        // as Aria says them (owner, 2026-10-22: a graph or drawing while the working is shown). A course
+        // lesson's is a gpt-image-2 picture (owner, 2026-10-24: no code diagrams).
         const gap = 24;
         const figW = Math.round(stage.w * 0.5);
-        layoutFigure(spec.stage.figure, { x: stage.x, y: stage.y, w: figW, h: stage.h }, marks, add);
-        layoutEquation(spec.stage, { x: stage.x + figW + gap, y: stage.y, w: stage.w - figW - gap, h: stage.h }, marks, add);
-      } else layoutEquation(spec.stage, stage, marks, add);
+        if (spec.stage.picture) layoutIllustration(spec.stage.picture, { x: stage.x, y: stage.y, w: figW, h: stage.h }, marks, add);
+        else layoutFigure(spec.stage.figure!, { x: stage.x, y: stage.y, w: figW, h: stage.h }, marks, add);
+        layoutEquation(spec.stage, { x: stage.x + figW + gap, y: stage.y, w: stage.w - figW - gap, h: stage.h }, marks, add, course);
+      } else layoutEquation(spec.stage, stage, marks, add, course);
       break;
     case "graph":
       layoutGraph(spec.stage, stage, marks, add, spec.interaction?.kind === "try" ? Object.fromEntries(spec.interaction.controls.map((c) => [c.var, c.value])) : {});
@@ -358,6 +521,23 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   }
   targets.stage = { ...stage, s: 0 };
   targets.board = { x: 0, y: 0, w: PANEL_W, h: PANEL_H, s: 0 };
+  // A NOTE TIED TO THE PART IT NAMES (owner, 2026-10-25: "actually relate the board text to the figure"):
+  // on a course board's picture, a note that names a labelled part gets a dashed line from its end to that
+  // part while Aria says it — the student sees which part of the figure the words are about.
+  if (course && pictureOf(spec)?.coursePicture) {
+    const parts = marks.filter((m): m is Extract<Mark, { type: "part" }> => m.type === "part" && talkable(m.name));
+    for (const note of marks.filter((m): m is Extract<Mark, { type: "note" }> => m.type === "note")) {
+      // The part whose name the note writes in yellow (CanvasPanel withKeyTerms: the longest name it holds).
+      const hit = parts.map((p) => ({ p, at: mentionAt(note.lines.join(" "), p.name) })).filter((h) => h.at >= 0).sort((a, b) => b.p.name.length - a.p.name.length || a.at - b.at)[0];
+      if (!hit) continue;
+      const from = { x: note.x + textWidth(note.lines[0], note.size * W) + 12, y: note.y - note.size * 0.32 };
+      if (hit.p.cx - from.x < 40) continue;
+      // Shown while its sentence is said, and never longer than its note is on the board.
+      const until = Math.min(note.s + 1, note.until ?? Infinity);
+      if (until <= note.s) continue;
+      marks.push({ type: "partLink", id: `link-${note.id}`, from, to: { x: hit.p.cx, y: hit.p.cy }, s: note.s, until });
+    }
+  }
   return { marks, targets, stage };
 }
 
@@ -1297,7 +1477,13 @@ function figureFit(stage: FigureStage, box: Rect) {
 function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
   const fit = figureFit(stage, box);
   if (!fit) return;
-  const { component, drawing, anchors, shown, size, left, room, scale } = fit;
+  const { component, anchors, shown, size, left, room, scale } = fit;
+  // DRAWN PART BY PART AS ARIA NAMES EACH PART (owner, 2026-10-23). A shape tagged with its part is drawn
+  // on the sentence that part is labelled on — the figure builds up as she explains it — unless the figure
+  // times it itself. Untagged shapes (outlines, scenery) and parts never named are there from the start,
+  // so the finished figure is always whole.
+  const partAt = new Map(stage.parts.map((p) => [p.id, p.s]));
+  const drawing = { ...fit.drawing, shapes: fit.drawing.shapes.map((sh) => (sh.part && !sh.show && !sh.hide && !sh.move && (partAt.get(sh.part) ?? 0) > 0 ? { ...sh, show: sh.part } : sh)) };
   const rect = { x: box.x + left + (room.w - drawing.w * scale) / 2, y: box.y + 4 + (room.h - drawing.h * scale) / 2, w: drawing.w * scale, h: drawing.h * scale };
   const onBoard = (p: Pt): Pt => ({ x: rect.x + p.x * scale, y: rect.y + p.y * scale });
   // A figure whose shapes change with the narration (lib/figures/types.ts ShapeTiming) carries each
@@ -1526,7 +1712,7 @@ function wrapRow(row: string[], width: (id: string) => number, isBreak: (id: str
   return [row.slice(0, best), row.slice(best)];
 }
 
-function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add) {
+function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add, course = false) {
   // 48 terms: a worked calculation of four lines needs more than 16, and the rows shrink to fit
   // (a circuits board lost its "= 6 V" to the old limit of 16; 2026-10-18).
   // 96 terms: a derivation written one line per step runs to ten lines, over pages (below).
@@ -1536,7 +1722,10 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
   const hosted = new Map(tokens.filter((t) => t.on && tokens.some((h) => h.id === t.on && !h.on)).map((t) => [t.id, t.on as string]));
   const inRow = (id: string) => !hosted.has(id);
   // A sign on its own is typeset without the spacing it gets inside an expression: just its glyph.
-  const em = new Map(tokens.map((t) => [t.id, t.tex ? (/^\s*(?:[=+<>−-]|\\times|\\cdot|\\to|\\rightarrow)\s*$/.test(t.tex) ? 0.8 : texEm(t.tex)) : textWidth(t.text, 1)]));
+  // A course board's working is typeset in the board's hand (2026-10-24): measured in the browser, its
+  // typeset terms run about 1.15 the KaTeX estimate (terms were shrunk to their slots) and its plain words
+  // 0.8 of Nunito's. The renderer then packs each line by the terms' real widths (CanvasPanel EquationView).
+  const em = new Map(tokens.map((t) => [t.id, t.tex ? (/^\s*(?:[=+<>−-]|\\times|\\cdot|\\to|\\rightarrow)\s*$/.test(t.tex) ? 0.8 : texEm(t.tex)) * (course ? 1.1 : 1) : textWidth(t.text, 1) * (course ? COURSE_FONT_WIDTH : 1)]));
   const maxW = box.w - 40;
   const gapEm = 12 / 44;
   const rows = steps.map((step) => step.order.filter((id) => em.has(id) && inRow(id)));
@@ -1585,7 +1774,11 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
   const tallK = matrixRows >= 2 ? 1.15 + 0.85 * matrixRows : tall ? 1.95 : 0;
   const lineGap = size * (tallK || 1.6);
   const twoLines = lined.some((l) => l.length > 1);
-  const baseY = box.y + box.h * 0.44;
+  // Under the heading, level with the first point — not floating mid-board (a teacher, 2026-10-23: "the
+  // heading is written in one corner while the point is in some other random corner"). Room is left
+  // above for a fraction's numerator or a condition over an arrow, and for a step's extra lines.
+  const halfSpan = twoLines ? ((Math.max(1, ...lined.map((l) => l.length)) - 1) / 2) * lineGap : 0;
+  const baseY = box.y + Math.min(box.h * 0.44, halfSpan + size * (tall ? 2.1 : 1.6) + 28);
   const measured = tokens.map((t, i) => {
     const tokenSize = hosted.has(t.id) ? small : size;
     const color = t.color && /^#/.test(t.color) ? t.color : /[→=⇌]/.test(t.text) || /^[+−-]$/.test(t.text) ? "#64748b" : PALETTE[i % PALETTE.length];
@@ -1618,7 +1811,8 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
     // lines of one sentence always share a page. Shrinking everything onto one page wrote ten lines
     // of working at 16 px.
     // Beside a figure the column is half the board: a little smaller text keeps the working on one page.
-    const PAGE_MIN = box.w < 600 ? 22 : 26;
+    // A course board's working is written at 24 at least (owner, 2026-10-24: "placement to be perfect").
+    const PAGE_MIN = course ? 24 : box.w < 600 ? 22 : 26;
     const linesAt = (sz: number) => added.map((row, k) => (writes[k] ? clauses(row).flatMap((c) => wrapRow(c, (id) => em.get(id)! * sz, breakOf, maxW, gapEm * sz)) : []));
     type Page = { steps: number[]; size: number };
     let pages: Page[];
@@ -1661,8 +1855,9 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
       const lines = linesAt(pSize);
       const next = pages[p + 1];
       const until = next ? steps[next.steps[0]].s : undefined;
-      const height = page.steps.reduce((n, k) => n + lines[k].length, 0) * pGap;
-      let y = box.y + (pages.length > 1 ? pSize : Math.max(pSize, (box.h - height) / 2 + pSize));
+      // From the top, under the heading and level with the first point — a short piece of working used to
+      // be centred, so it started mid-board while the points started under the heading (2026-10-23).
+      let y = box.y + pSize * (tallK ? 1.3 : 1) + 12;
       const sized = tokens.map((t, i) => ({ ...measured[i], w: (em.get(t.id) ?? 0) * (hosted.has(t.id) ? Math.round(pSize * 0.5) : pSize), size: hosted.has(t.id) ? Math.round(pSize * 0.5) : pSize }));
       for (const k of page.steps) {
         const step = steps[k];
@@ -1670,7 +1865,8 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
         const place: Record<string, Pt> = {};
         for (const line of lines[k]) {
           const total = line.reduce((w, id) => w + sized.find((t) => t.id === id)!.w, 0) + pGapEm * Math.max(0, line.length - 1);
-          let x = center - total / 2;
+          // A course board's working is written down the board from one left margin, as a teacher writes it.
+          let x = course ? box.x + 18 : center - total / 2;
           for (const id of line) { place[id] = { x, y }; x += sized.find((m) => m.id === id)!.w + pGapEm; }
           y += pGap;
         }
@@ -1693,7 +1889,7 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
     const lines = lined[k];
     lines.forEach((line, n) => {
       const total = line.reduce((w, id) => w + measured.find((t) => t.id === id)!.w, 0) + gap * Math.max(0, line.length - 1);
-      let x = center - total / 2;
+      let x = course ? box.x + 18 : center - total / 2;
       // Centred on the base line however many lines the step has; the caption goes under the last
       // (a three-line step had its caption written over its third line; maths benchmark round 4).
       const y = baseY + (n - (lines.length - 1) / 2) * lineGap;

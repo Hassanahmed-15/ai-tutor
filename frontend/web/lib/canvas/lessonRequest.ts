@@ -1,4 +1,5 @@
 import { isLadder, ladderBoardBudget, ladderCanvasSection, strictLadderSection } from "./conceptLadder";
+import { courseCodeDiagramsOff } from "./courseFigures";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
 import type { PlanningKnowledge } from "../knowledge/graph";
 import { isDirectQuestion, isTopicRequest } from "../planPrompt";
@@ -11,6 +12,7 @@ import { isVideoSource } from "../youtube/videoSource";
 import { packForPrompt } from "../webSources";
 import { isDataStructureTopic } from "./structure";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
+import { asCodeLesson, asMathsOrCs, courseLessonSubject, type LessonSubject } from "./lessonSubject";
 
 /**
  * WHICH LECTURES ARE TAUGHT ON THE LESSON CANVAS, and what its planner is told about them.
@@ -87,7 +89,7 @@ export function videoDocumentOf(input: ProgressiveLectureInput): SuprnotesLesson
  * generic one — the outline the student approved in the planning conversation, at the depth they
  * chose. The system prompt's "6 to 8 boards" is the default these lines override.
  */
-export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: PlanningKnowledge): string {
+export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: PlanningKnowledge, decidedSubject?: LessonSubject): string {
   const lines = [`Topic: ${input.topic}`];
   const asked = input.focus?.replace(/\s+/g, " ").trim();
   if (asked && asked.toLowerCase() !== input.topic.toLowerCase()) lines.push(`The student asked: "${asked.slice(0, 400)}"`);
@@ -198,12 +200,15 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // the writer compress an eight-step derivation into "this gives the result"; working boards are as
   // long as their steps — the board wipes when full and a longer one continues on the next board
   // (lib/canvas/splitWorking.ts).
-  if (!strictDoc && !video && isLabLookTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) {
+  // A course lesson is taught as its course's subject (lib/canvas/lessonSubject.ts); other lectures guess from their words.
+  const subject = decidedSubject ?? courseLessonSubject(curriculumDocumentOf(input), input.topic) ?? undefined;
+  const planWords = [input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" ");
+  if (!strictDoc && !video && asMathsOrCs(subject, () => isLabLookTopic(planWords))) {
     lines.push("A board that WORKS something out — a proof, a derivation, a worked example, a rearrangement — is as long as its steps, past the length above: ONE sentence per step, every step a textbook shows (each expansion, substitution, cancelling, rearrangement and the result), with its reason, up to 10 sentences; longer working continues on the next board by itself. Never compress working to fit a length (\"this gives the result\", \"simplifying, we get\" with the line missing).");
   }
   // DATA STRUCTURES are taught with the structure itself on the board (owner's direction, 2026-10-15).
   // A source lesson keeps its own rules: its boards follow the document or the video.
-  if (!strictDoc && !video && isDataStructureTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) {
+  if (!strictDoc && !video && asCodeLesson(subject, () => isDataStructureTopic(planWords))) {
     lines.push(
       "",
       "THIS IS A DATA STRUCTURES / ALGORITHMS LESSON: every board that runs an operation (insert, search, delete, traverse, rotate, push, pop, swap, BFS, DFS) is a \"code\" board in REAL code — Python, or the exam board's pseudocode when the syllabus uses it — every line a statement, never a description (\"shift 7 right\", \"search cost: inspect up to n nodes\") — with the structure drawn beside it, changing line by line; a board that explains the structure itself is a \"structure\" board; never illustration, flow or scene for a data structure. Each brief names the starting values and the operation, and the script walks it one step per sentence with those same values — a board that runs an operation may take up to 10 sentences for that.",
@@ -212,10 +217,11 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // MATHS AND COMPUTER SCIENCE are taught in a visible structure (owner, 2026-10-21: "keep your
   // intentions clear and teach in a structured way — I really don't get how you teach"; "if there is
   // any proof it should build step by step"). Not for a lesson strictly from a source: its order is the source's.
-  if (!strictDoc && !video && isLabLookTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) lines.push("", MATHS_CS_TEACHING);
+  if (!strictDoc && !video && asMathsOrCs(subject, () => isLabLookTopic(planWords))) lines.push("", MATHS_CS_TEACHING);
   // COMPUTER SCIENCE is taught as a CS teacher teaches it (owner's manager, a CS teacher, 2026-10-22:
   // the visuals and code were nice but it "never really teaches" and did not explain its visuals).
-  if (!strictDoc && !video && isCsTopic([input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "))) lines.push("", CS_TEACHING);
+  // Inside a CS course only a programming, algorithm or data-structure lesson is taught through code.
+  if (!strictDoc && !video && asCodeLesson(subject, () => isCsTopic(subject ? `${planWords} ${(curriculumDocumentOf(input)?.lesson?.learningGoals ?? []).join(" ")}` : planWords))) lines.push("", CS_TEACHING);
   if (doc) lines.push("", documentPlanSection(doc, listings, Boolean(question)));
   if (strictDoc) lines.push("", strictPlanSection(strictDoc, strictQuestion));
   // What the student already knows of these pages (lib/intake.ts): how deep each part goes.
@@ -226,6 +232,34 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
 }
 
 /** How a maths or computer-science lesson is taught: its structure said out loud, proofs built step by step. */
+/**
+ * HOW A COURSE LESSON TALKS AND WHAT IT DRAWS (owner, 2026-10-24): "simpler doesn't mean the text will be
+ * small, it means easy wording"; "not every lecture gets a diagram, only those which are necessary";
+ * "simple diagrams, don't make them over-complicated"; "check the board actually explains the diagram".
+ * Every course picture is drawn by gpt-image-2 (lib/canvas/courseFigures.ts), so a picture is chosen only
+ * where the student must SEE something, kept simple, and talked through.
+ */
+export const COURSE_EASY_WORDS = [
+  "EASY WORDS — simple means easy wording, never smaller writing or less content:",
+  "- Short spoken sentences of about 8 to 15 words, one idea each. Everyday words a 12-year-old knows; the syllabus term comes AFTER the plain idea, with what it means (\"the gas traps heat, like a blanket — this is the greenhouse effect\").",
+  "- At most ONE new term per sentence. Every technical term is explained in plain words the first time it is said.",
+  "- A comparison from the student's own life before the formal rule. No stacked clauses, no \"which\" chains, no textbook phrasing (\"it is essential that\", \"this results in\").",
+  "- The board's notes are short and easy too, in the same plain words, with the key term written exactly.",
+];
+
+/** Only where the course's pictures are generated (lib/canvas/courseFigures.ts courseCodeDiagramsOff). */
+export const COURSE_PICTURES_WHERE_NEEDED = [
+  "PICTURES ONLY WHERE NEEDED — every picture on a course board is drawn by an image model, so a board gets one ONLY when the student must SEE something to understand it:",
+  "- \"visual\": \"thing\" — a real structure, organism, organ, cell, apparatus, set-up, machine or place whose look or parts matter;",
+  "- \"visual\": \"quantity\" — a graph or chart of data the board reads;",
+  "- \"visual\": \"diagram\" — a cycle, pathway or flow of stuff the student must follow with their eyes (the carbon cycle, the path of blood).",
+  "- Everything else gets NO picture: a definition, a list of facts, causes or effects, ways to reduce something, a method's steps, a rule, an argument — \"visual\": \"concept\" or \"sequence\" (written notes as Aria speaks), \"comparison\" (a table) or \"math\" (working). A lesson may have only one or two pictures, or none; never draw just to have a picture.",
+  "- A picture is SIMPLE: one idea, the fewest parts that teach it (two to six), nothing the board does not talk about — no extra scenery, no side panels, no second diagram inside it.",
+  "- A board with a picture TALKS THE STUDENT THROUGH IT: its script names each labelled part as the eye should go to it and says what each part, arrow or line shows — the picture is explained, never just shown.",
+  "- Say WHERE each part is as you name it (\"at the top\", \"on the left\", \"where the tube joins the flask\") and come back to a part when a later sentence is about it again — the pointer goes to every part as you name it.",
+  "- On a picture board, a note about a part names that part exactly as the picture labels it (\"Left ventricle: thickest wall\"), so the board can draw a line from the note to the part.",
+];
+
 export const MATHS_CS_TEACHING = [
   "THIS IS A MATHS / COMPUTER SCIENCE LESSON — TEACH IT IN A STRUCTURE THE STUDENT CAN SEE:",
   "- Each board's FIRST sentence says what this board is going to do, in plain words, and how it follows from the last board (\"We found the gradient; now we use it to find the tangent.\"). Never open with a bare fact.",
@@ -237,7 +271,7 @@ export const MATHS_CS_TEACHING = [
   "- State every condition a conclusion needs, as a mark scheme does: parallel vectors AND a shared point for collinear points; a ≠ 0 for a quadratic; a right-angled triangle for Pythagoras.",
   "- The standard case comes first: a normal worked example before any special case (an impossible or ambiguous triangle, a zero denominator, no real roots).",
   "- Code: say what the code is for, then what each line does, then trace it with real values, one step per sentence.",
-  "- Each board's LAST sentence says what we now know — the result the next board builds on.",
+  "- Each board's LAST sentence says, in plain words, what the student can now do or knows — the result the next board builds on. Say it naturally and differently on each board, never the same stock phrase (\"We now know that…\") on every board.",
 ].join("\n");
 
 /** How a computer-science lesson is taught: as a CS teacher teaches, explaining everything it draws. */
@@ -289,7 +323,7 @@ function curriculumPlanSection(doc: SuprnotesLessonInput): string {
     documentForCanvas(doc),
     "",
     "WHAT EACH BOARD'S SCRIPT MUST DO — explain its part of the topic so completely that nothing is missed, and say nothing twice:",
-    "  1. every key point of its block, in the mark scheme's precise wording; a point about HOW or WHY (a process, cause, adaptation, method or effect) is said with its reason or mechanism (\"because…\", \"which means…\"); a definition or plain fact is just stated;",
+    "  1. every key point of its block, said in EASY EVERYDAY WORDS (see EASY WORDS below) with the mark scheme's key term said too and what it means; a point about HOW or WHY (a process, cause, adaptation, method or effect) is said with its reason or mechanism (\"because…\", \"which means…\"); a definition or plain fact is just stated;",
     "  2. its worked example walked one step per sentence, with every number, unit or named detail it uses, to its answer;",
     "  3. the prediction question and its answer.",
     "  A common mistake from a \"Watch for\" line is corrected only on the board it belongs to (two or three in the whole lesson). Never restate what an earlier board said, never add a summary of the board, never pad.",
@@ -304,7 +338,12 @@ function curriculumPlanSection(doc: SuprnotesLessonInput): string {
       return `- b${i + 1} (${block.heading}): ${block.keyIdeas?.length ?? 0} key points${steps ? ` + a ${steps}-step worked example` : ""}${lastOfOutcome ? ' + a closing exam-style question as its "How it is examined" line sets it (command word first, marks said)' : ""} → at most ${n + 1} sentences.`;
     }),
     "",
-    "PHASE 3 VISUAL CONTRACT — enforce these requirements in the board stage and visible content:",
+    ...COURSE_EASY_WORDS,
+    ...(courseCodeDiagramsOff() ? ["", ...COURSE_PICTURES_WHERE_NEEDED] : []),
+    "",
+    courseCodeDiagramsOff()
+      ? "WHAT THE SYLLABUS SUGGESTS EACH BOARD SHOWS — a suggestion, not a demand: a board gets a picture only when PICTURES ONLY WHERE NEEDED says it needs one:"
+      : "PHASE 3 VISUAL CONTRACT — enforce these requirements in the board stage and visible content:",
     ...(plan?.beats ?? []).map((beat, i) => {
       const refs = beat.outcomeRefs?.length ? `outcomes ${beat.outcomeRefs.join(", ")}` : `board ${i + 1}`;
       const reqs = (beat.visualRequirement ?? []).flatMap((r) => [

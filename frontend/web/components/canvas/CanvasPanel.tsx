@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import katex from "katex";
 import "katex/dist/katex.min.css";
 import { evalExpr } from "@/lib/canvas/expr";
@@ -9,6 +9,7 @@ import { graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt,
 import { edgeCurve } from "@/lib/canvas/structure";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
+import { COURSE_FONT_FAMILY, COURSE_FONT_STACK } from "@/lib/anim/boardFont";
 import { stackAt } from "@/lib/canvas/callStack";
 import { SketchView } from "./SketchView";
 import type { CardStyle } from "@/lib/canvas/cardStyle";
@@ -78,11 +79,11 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
   const pencil = cards === "sticky" && Boolean(cardNumbers?.size);
   // A note rolls off the notes column when a later note takes its slot (lib/canvas/layout.ts).
   // A rolled-off note, or a page of working wiped for the next one (lib/canvas/layout.ts), is gone.
-  const visible = layout.marks.filter((m) => m.s <= shownThrough && !((m.type === "note" || m.type === "equation") && m.until !== undefined && shownThrough >= m.until) && (!concealStage || m.type === "heading" || m.type === "note"));
+  const visible = layout.marks.filter((m) => m.s <= shownThrough && !((m.type === "note" || m.type === "equation" || m.type === "partLink") && m.until !== undefined && shownThrough >= m.until) && (!concealStage || m.type === "heading" || m.type === "note"));
   const headingW = layout.targets.heading?.w ?? 200;
   return (
     <InkDrawing.Provider value={live && !reducedMotion}>
-    <g className={`${live && !reducedMotion ? "cv-live" : "cv-settled"}${spot ? " cv-spot" : ""}${recap && pencil && !reducedMotion ? " cv-recap" : ""}`}>
+    <g className={`${live && !reducedMotion ? "cv-live" : "cv-settled"}${spot ? " cv-spot" : ""}${recap && pencil && !reducedMotion ? " cv-recap" : ""}${spec.subject !== undefined ? " cv-course" : ""}`} style={spec.subject !== undefined ? { fontFamily: COURSE_FONT_STACK } : undefined}>
       <g className="cv-lift">
         {/* The shadow is a picture baked once (LessonCanvas paperShadow): a live blur filter under
             every board was re-blurred on every frame of a camera flight, and the flights stuttered. */}
@@ -462,19 +463,38 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       const fit = fitText(mark.text, (PANEL_W - 48) - mark.x, mark.size, Math.min(mark.size, 20));
       return <FitLines fit={fit} x={mark.x} y={mark.y - (fit.lines.length - 1) * fit.size * 1.12} lead={1.12} fontWeight={800} fill={INK} className="cv-write" />;
     }
-    case "note":
+    case "partLink": {
+      // A note tied to the part of the picture it names: the pencil draws a line (solid: a traced dash
+      // pattern flips to dashes when the stroke ends) bowing from the note to the part, with a dot on the
+      // part, right after it writes the note — drawn on by itself, a link
+      // stood in empty board before its note was written (QA frame, 2026-10-25).
+      const mid = { x: (mark.from.x + mark.to.x) / 2, y: Math.min(mark.from.y, mark.to.y) - Math.abs(mark.to.x - mark.from.x) * 0.12 };
+      return (
+        <g pointerEvents="none">
+          <path d={`M${mark.from.x} ${mark.from.y} Q${mid.x} ${mid.y} ${mark.to.x} ${mark.to.y}`} fill="none" stroke={KEY_TERM} strokeWidth={2.6} strokeLinecap="round" opacity={0.9} className="cv-link" />
+          <circle cx={mark.to.x} cy={mark.to.y} r={6} fill={KEY_TERM} stroke="#000" strokeWidth={2} className="cv-in" />
+        </g>
+      );
+    }
+    case "note": {
+      // A course board's key words in yellow (owner, 2026-10-24, option 2): the parts its picture names,
+      // or what a note is about ("Glomerulus: high-pressure filter").
+      const keys = spec.subject !== undefined ? keyTermsOf(spec) : [];
       return (
         <g className={`cv-in${focus}`}>
-          <circle cx={mark.bullet.x} cy={mark.bullet.y} r={5} fill="#f59e0b" />
+          {mark.num !== undefined
+            ? <text x={mark.bullet.x} y={mark.y} fontSize={mark.size} textAnchor="end" fill="#f59e0b" className="cv-write">{mark.num}.</text>
+            : <circle cx={mark.bullet.x} cy={mark.bullet.y} r={5} fill="#f59e0b" />}
           <text x={mark.x} y={mark.y} fontSize={mark.size} fontWeight={600} fill={INK} className="cv-write">
             {mark.lines.map((line, i) => (
               <tspan key={i} x={mark.x} dy={i === 0 ? 0 : mark.size * 1.28}>
-                {line}
+                {keys.length || spec.subject !== undefined ? withKeyTerms(line, keys, i === 0) : line}
               </tspan>
             ))}
           </text>
         </g>
       );
+    }
     case "node":
       return <NodeView mark={mark} vars={vars} focused={focused} shownThrough={shownThrough} />;
     case "arrow":
@@ -482,7 +502,9 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       return <ArrowView mark={mark} vars={vars} focused={focused} reducedMotion={reducedMotion} />;
     case "picture":
       return (
-        <g className="cv-in">
+        // A course picture is already drawn: it is put up at once, not traced by the pencil (owner,
+        // 2026-10-25: tracing its frame held the board in "a long pause" before anything was written).
+        <g className="cv-in" data-no-marker={spec.subject !== undefined ? "" : undefined}>
           {/* On a chalkboard a picture is a photo taped to the board: a white border and two strips of tape. */}
           {chalk && (
             <>
@@ -506,8 +528,10 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
         </g>
       );
     case "part":
-      // A part is invisible until the pen or a label points at it — the picture carries it.
-      return focused ? (
+      // A part is invisible until the pen or a label points at it — the picture carries it. A course
+      // picture's labels are printed in it: nothing is drawn on it (owner, 2026-10-25: the ring and dot
+      // on the part she names were "a second kind of label" — removed).
+      return focused && spec.subject === undefined ? (
         <g className="cv-in">
           <circle cx={mark.cx} cy={mark.cy} r={9} fill={ARIA_INK} stroke="#fff" strokeWidth={3} />
         </g>
@@ -531,7 +555,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       );
     }
     case "equation":
-      return <EquationView mark={mark} stage={layout.stage} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} />;
+      return <EquationView mark={mark} stage={layout.stage} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} packed={spec.subject !== undefined} />;
     case "graph":
       return <GraphView mark={mark} stage={layout.stage} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focusId={focusId} />;
     case "column":
@@ -1672,9 +1696,47 @@ function FlowParticles({ p0, c, p1, color, rate }: { p0: Pt; c: Pt; p1: Pt; colo
 
 /* ── equation: terms glide on arcs, and flash colour when they cross ──────────────────────── */
 
-function EquationView({ mark, stage, shownThrough, focusId, reducedMotion }: { mark: Extract<Mark, { type: "equation" }>; stage: Rect; shownThrough: number; focusId?: string; reducedMotion: boolean }) {
+function EquationView({ mark, stage, shownThrough, focusId, reducedMotion, packed = false }: { mark: Extract<Mark, { type: "equation" }>; stage: Rect; shownThrough: number; focusId?: string; reducedMotion: boolean; packed?: boolean }) {
   const stepIndex = Math.max(0, mark.steps.reduce((best, step, i) => (step.s <= shownThrough ? i : best), 0));
   const step = mark.steps[stepIndex];
+  /*
+   * A COURSE BOARD'S WORKING IS PACKED BY ITS REAL WIDTHS (owner, 2026-10-24: "placement to be perfect"):
+   * a term's slot comes from an estimate of its width, so once typeset each line is set again from its
+   * left margin, term after term at its measured width with an even gap — no wide gaps after a term the
+   * estimate overrated, no term squeezed into one it underrated.
+   */
+  const widths = useRef<Record<string, number>>({});
+  const [pack, setPack] = useState<Record<string, number>>({});
+  const repackFrame = useRef(0);
+  const repack = () => {
+    if (!packed) return;
+    cancelAnimationFrame(repackFrame.current);
+    repackFrame.current = requestAnimationFrame(() => {
+      const lines = new Map<number, Array<{ id: string; x: number; w: number; size: number }>>();
+      for (const [id, p] of Object.entries(step.place)) {
+        const t = mark.tokens.find((k) => k.id === id);
+        if (!t) continue;
+        const key = Math.round(p.y);
+        if (!lines.has(key)) lines.set(key, []);
+        lines.get(key)!.push({ id, x: p.x, w: widths.current[id] ?? t.w, size: t.size });
+      }
+      const next: Record<string, number> = {};
+      for (const line of lines.values()) {
+        line.sort((a, b) => a.x - b.x);
+        let x = line[0].x;
+        for (const it of line) {
+          next[it.id] = Math.round((x - it.x) * 10) / 10;
+          x += it.w + it.size * 0.27;
+        }
+      }
+      setPack((prev) => (JSON.stringify(prev) === JSON.stringify(next) ? prev : next));
+    });
+  };
+  useLayoutEffect(() => {
+    repack();
+    return () => cancelAnimationFrame(repackFrame.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stepIndex, packed]);
   // A token absent from this step keeps the spot it last had (so it fades where it was), or waits
   // where it will first appear.
   const placeOf = (id: string, at = stepIndex): Pt | undefined => {
@@ -1716,8 +1778,9 @@ function EquationView({ mark, stage, shownThrough, focusId, reducedMotion }: { m
   return (
     <g>
       {mark.tokens.map((t) => {
-        const at = placeOf(t.id);
-        if (!at) return null;
+        const placed = placeOf(t.id);
+        if (!placed) return null;
+        const at = pack[t.id] ? { x: placed.x + pack[t.id], y: placed.y } : placed;
         // A term is put on the board on the step that first writes it — not waiting unseen from the
         // start, where the marker wrote it across empty board (playback QA, 2026-10-21).
         const first = mark.steps.findIndex((st) => st.place[t.id]);
@@ -1738,7 +1801,7 @@ function EquationView({ mark, stage, shownThrough, focusId, reducedMotion }: { m
               </g>
             )}
             {t.tex ? (
-              <TexTerm tex={t.tex} size={t.size} w={t.w} color={t.color} onElement={(el) => { texts.current[t.id] = el; }} />
+              <TexTerm tex={t.tex} size={t.size} w={t.w} color={t.color} onElement={(el) => { texts.current[t.id] = el; }} onWidth={packed ? (w) => { if (Math.abs((widths.current[t.id] ?? -1) - w) > 0.5) { widths.current[t.id] = w; repack(); } } : undefined} />
             ) : (
               <text ref={(el) => { texts.current[t.id] = el; }} x={0} y={0} fontSize={t.size} fontWeight={800} fill={t.color} className="cv-in">
                 {t.text}
@@ -1769,8 +1832,10 @@ function EquationView({ mark, stage, shownThrough, focusId, reducedMotion }: { m
  * box grows to what it holds — a foreignObject's content past its box is clipped by Safari, whatever
  * its overflow says, and a tall fraction outgrew the fixed one.
  */
-function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number; w: number; color: string; onElement: (el: HTMLDivElement | null) => void }) {
+function TexTerm({ tex, size, w, color, onElement, onWidth }: { tex: string; size: number; w: number; color: string; onElement: (el: HTMLDivElement | null) => void; onWidth?: (w: number) => void }) {
   const html = useMemo(() => katex.renderToString(tex, { throwOnError: false, displayMode: false }), [tex]);
+  const onWidthRef = useRef(onWidth);
+  onWidthRef.current = onWidth;
   // The transform goes on a wrapper React owns and never styles: KaTeX's own root is replaced
   // whenever React writes the typeset HTML again, and would lose it.
   const wrap = useRef<HTMLSpanElement>(null);
@@ -1793,8 +1858,11 @@ function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number
       // to its slot down to 45%; the layout's width estimate is also wider for words (lib/canvas/layout.ts).
       const scale = actual > w ? Math.max(0.45, w / actual) : 1;
       const shown = actual * scale;
+      // A course board's working starts every line on one margin (owner, 2026-10-24: "placement to be
+      // perfect"): its terms sit at the left of their slots, not in their middle.
+      const leftAlign = Boolean(inner.closest(".cv-course"));
       // Wider than its slot even at the floor: the box widens about its centre to hold it.
-      const left = Math.min(0, (w - shown) / 2 - 4);
+      const left = leftAlign ? (shown > w ? -4 : 0) : Math.min(0, (w - shown) / 2 - 4);
       const width = Math.max(4, w, shown + 8);
       const height = Math.max(h, inner.offsetHeight + 8);
       if (fo) {
@@ -1805,7 +1873,8 @@ function TexTerm({ tex, size, w, color, onElement }: { tex: string; size: number
         fo.setAttribute("height", height.toFixed(1));
       }
       inner.style.transformOrigin = "0 50%";
-      inner.style.transform = `translateX(${((w - shown) / 2 - left).toFixed(1)}px) scale(${scale.toFixed(3)})`;
+      inner.style.transform = `translateX(${((leftAlign ? 0 : (w - shown) / 2) - left).toFixed(1)}px) scale(${scale.toFixed(3)})`;
+      onWidthRef.current?.(shown);
       return true;
     };
     // A board is often mounted before it is laid out (its width reads 0), and a ResizeObserver
@@ -2047,6 +2116,13 @@ export function markerPoint(layout: PanelLayout, id: string, vars: Record<string
  * loops for decoration. The camera itself never bounces (lib/canvas/camera.ts).
  */
 export const CANVAS_CSS = `
+/* A note's line to the part it names, and the pointer's ring on a course picture: drawn on quickly. */
+.cv-live .cv-link { animation: cv-link 700ms ease-out both; }
+@keyframes cv-link { from { opacity: 0; } to { opacity: .9; } }
+/* A course board's typeset working in the board's own hand (owner, 2026-10-24): letters, digits and signs
+   in Aria Hand; big brackets, large operators, roots and accents keep KaTeX's own sized glyphs. */
+.cv-course .katex, .cv-course .katex :is(.mathnormal, .mathit, .mathrm, .textrm, .mord, .mbin, .mrel, .mpunct, .minner):not(.delimsizing):not(.mop):not(.accent-body) { font-family: "${COURSE_FONT_FAMILY}", KaTeX_Main, "Times New Roman", serif; font-style: normal; }
+.cv-course .katex :is(.mopen, .mclose):not(.delimsizing) { font-family: "${COURSE_FONT_FAMILY}", KaTeX_Main, serif; }
 .cv-live .cv-in { animation: cv-in 480ms cubic-bezier(.2,.8,.2,1) both; transform-box: fill-box; transform-origin: center; }
 .cv-live .cv-late { animation-delay: 520ms; }
 .cv-live .cv-write { animation: cv-write 900ms steps(24, end) both; }
@@ -2095,3 +2171,28 @@ text[data-halo] { paint-order: stroke fill; stroke: ${PAPER}; stroke-width: 4.5p
 @media (prefers-reduced-motion: reduce) { .cv-live .cv-sticky-slap, .cv-pop, .cv-recap .cv-sticky-note { animation: none !important; } .cv-sticky-body, .cv-sticky-shadow, .cv-sticky-note { transition: none !important; } }
 @media (prefers-reduced-motion: reduce) { .cv-live .cv-in, .cv-live .cv-write, .cv-live .cv-stroke, .cv-live .cv-morph-in, .cv-ring, .cv-swipe, .cv-tap, .cv-outline, .cv-hotspot { animation: none !important; } .cv-morph-out, .cv-morph-ring { display: none; } }
 `;
+
+/** The names a course board's picture labels: the words a note colours yellow. */
+function keyTermsOf(spec: CanvasBoardSpec): string[] {
+  const picture = spec.stage.kind === "illustration" ? spec.stage : spec.stage.kind === "equation" ? spec.stage.picture : undefined;
+  const names = [...(picture?.labelsInPicture ?? []), ...(picture?.parts ?? []).map((p) => p.name)];
+  return [...new Set(names.map((n) => n.trim()).filter((n) => n.length >= 3))].sort((a, b) => b.length - a.length);
+}
+
+/** One line of a note with its key word in yellow: a picture's part it names, or the words before a colon. */
+function withKeyTerms(line: string, keys: string[], first: boolean): ReactNode {
+  // Curly and straight apostrophes match ("Bowman’s capsule" on the picture, "Bowman's capsule" in a note).
+  const plain = (t: string) => t.toLowerCase().replace(/[’‘]/g, "'");
+  const lower = plain(line);
+  for (const key of keys) {
+    const at = lower.indexOf(plain(key));
+    // A plural or possessive is the same part ("p orbitals" under a picture labelled "p orbital").
+    const end = at + key.length + (/^(e?s|'s)(?!\w)/.exec(lower.slice(at + key.length))?.[0].length ?? 0);
+    if (at < 0 || (at > 0 && /\w/.test(line[at - 1])) || /\w/.test(line[end] ?? "")) continue;
+    return <>{line.slice(0, at)}<tspan fill={KEY_TERM}>{line.slice(at, end)}</tspan>{line.slice(end)}</>;
+  }
+  const colon = first ? line.indexOf(":") : -1;
+  if (colon > 0 && colon <= 32) return <><tspan fill={KEY_TERM}>{line.slice(0, colon)}</tspan>{line.slice(colon)}</>;
+  return line;
+}
+const KEY_TERM = "#ffd76a";

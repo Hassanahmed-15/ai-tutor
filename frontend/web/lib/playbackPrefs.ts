@@ -5,13 +5,14 @@ import { useCallback, useEffect, useState } from "react";
 /**
  * The lecture's playback speed, remembered between lectures.
  *
- * Only these three: a slider invites 1.37x, and a speed nobody chose on purpose is a speed nobody
- * notices they are stuck on. 0.25x and 2x were removed (owner's request, 2026-10-14) — at those
- * extremes time-stretched speech stops sounding like a teacher. A stored 0.25x or 2x reads back as
- * normal speed (parseRate). Kept per browser in localStorage, like the dyslexia and autism
+ * A fixed set, not a slider: a slider invites 1.37x, and a speed nobody chose on purpose is a speed
+ * nobody notices they are stuck on. 0.75x and 2x came back at the manager's request (2026-10-23: "more
+ * speed options should be given such as 0.75x or 2x"), with 1.25x between; the board's pen keeps pace
+ * with the voice at every speed (components/canvas/MarkerWriter.tsx). A stored speed no longer offered
+ * reads back as normal speed (parseRate). Kept per browser in localStorage, like the dyslexia and autism
  * preferences — it is a listening preference, not something the account needs to carry.
  */
-export const PLAYBACK_RATES = [0.5, 1, 1.5] as const;
+export const PLAYBACK_RATES = [0.5, 0.75, 1, 1.25, 1.5, 2] as const;
 export type PlaybackRate = (typeof PLAYBACK_RATES)[number];
 
 const STORAGE_KEY = "aria.lecture.rate";

@@ -8,6 +8,10 @@ import { auditBoardForRelease } from "../canvas/releaseAudit";
 import { figureComponent } from "../figures/registry";
 import type { CanvasPlanBeat, CanvasStage } from "../canvas/types";
 
+// The code-diagram routing these tests check is off in course lessons since the owner switched every course
+// visual to gpt-image-2 (2026-10-24; lib/anim/courseNoCode.test.ts): it runs here with the switch on.
+process.env.CANVAS_COURSE_CODE_DIAGRAMS = "on";
+
 function beat(title: string, brief: string, stage: CanvasStage = "scene"): CanvasPlanBeat {
   return {
     id: "b1", title, brief, stage, objects: [], inside: null, carry: [], interaction: null, overview: false,

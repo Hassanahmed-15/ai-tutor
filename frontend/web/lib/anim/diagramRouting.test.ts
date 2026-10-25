@@ -17,6 +17,10 @@ import { GRAMMAR_FIXTURES, SAVED_GRAMMAR_DIAGRAMS } from "../diagrams/grammarFix
 import { FIXTURES } from "../diagrams/fixtures";
 import { inkIndex, nearOtherInk, textGap } from "../diagrams/ink";
 
+// The code-diagram routing these tests check is off in course lessons since the owner switched every course
+// visual to gpt-image-2 (2026-10-24; lib/anim/courseNoCode.test.ts): it runs here with the switch on.
+process.env.CANVAS_COURSE_CODE_DIAGRAMS = "on";
+
 const beat = (id: string, title: string, stage: CanvasStage, script: string, extra: Partial<CanvasPlanBeat> = {}): CanvasPlanBeat => ({
   id, title, brief: title, script, stage, objects: [], inside: null, carry: [], interaction: "quiz", overview: false, ...extra,
 });

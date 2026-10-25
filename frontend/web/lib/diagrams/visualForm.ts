@@ -118,7 +118,18 @@ export function componentFitsSubject(name: string, text: string): boolean {
   // source card, a timeline) stay off science and maths boards: "Classifying viruses" was drawn as
   // causes with short- and long-term consequences (diagram lab, 2026-10-17). Tables stay allowed.
   if (ESSAY_KITS.has(name) && SCIENCE_MATHS.test(text) && !HUMANITIES_WORDS.test(text)) return false;
+  // The particle model of solids, liquids and gases is for a board about STATES of matter: "Formulae from
+  // particle models" (a methane molecule) was given the solid/liquid/gas boxes (course bench, 2026-10-24).
+  if (name === "particles" && !aboutStatesOfMatter(text)) return false;
   return true;
+}
+
+const STATE_CHANGES = /\b(states? of matter|changes? of state|state changes?|kinetic|melt(s|ing|ed)?|freez\w*|boil\w*|evaporat\w*|condens\w*|sublim\w*)\b/i;
+const PARTICLE_MOTION = /\b(arrange\w*|spacing|spaced|far apart|close together|vibrat\w*|mov(e|es|ing)|motion|random\w*|regular pattern|pressure|diffus\w*)\b/i;
+/** A board about the states of matter: a change of state, two states compared, or one state's particles moving or arranged. */
+function aboutStatesOfMatter(text: string): boolean {
+  const states = new Set([...text.toLowerCase().matchAll(/\b(solid|liquid|gas)(?:es|s)?\b/g)].map((m) => m[1]));
+  return STATE_CHANGES.test(text) || states.size >= 2 || (states.size === 1 && PARTICLE_MOTION.test(text));
 }
 
 const ESSAY_KITS = new Set(["causeConsequence", "evaluationScale", "sourceCard", "timeline"]);

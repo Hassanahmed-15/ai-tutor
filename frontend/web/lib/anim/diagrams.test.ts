@@ -13,6 +13,12 @@ import { validateCanvasSpec } from "../canvas/validate";
 import { applyLessonVisualPolicy, pictureRequestProblem } from "../canvas/visualPolicy";
 import { alignToNarration } from "../canvas/narrationSync";
 import type { CanvasPlanBeat } from "../canvas/types";
+// These tests check which ready-made kit a board is routed to. Course lessons switch picture kits off by
+// default (lib/canvas/courseFigures.ts, tested in coursePicture.test.ts); the routing itself is checked here.
+process.env.CANVAS_COURSE_READY_FIGURES = "on";
+// …and the code diagrams themselves (owner, 2026-10-24: course lessons draw everything with gpt-image-2).
+process.env.CANVAS_COURSE_CODE_DIAGRAMS = "on";
+
 
 test("parseDiagramSpec accepts a closed grammar and drops unknown kinds", () => {
   const spec = parseDiagramSpec({

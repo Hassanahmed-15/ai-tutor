@@ -4,6 +4,7 @@ import { boardFacts } from "./boardReview";
 import { canvasSentences } from "./plan";
 import { isMathsTopic } from "./predictCard";
 import { isCsTopic } from "./subjectLook";
+import { asCs, asMaths, plannedSubject } from "./lessonSubject";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 
 /**
@@ -21,16 +22,17 @@ import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 export const MATHS_CHECK_MODEL = process.env.CANVAS_MATHS_CHECK_MODEL ?? "gpt-5.6-sol";
 
 /** On for maths lectures unless CANVAS_MATHS_CHECK=off. */
-export function mathsCheckOn(topic: string, plan: Pick<CanvasPlanBeat, "title" | "brief">[]): boolean {
+export function mathsCheckOn(topic: string, plan: Pick<CanvasPlanBeat, "title" | "brief" | "subject">[]): boolean {
   if (process.env.CANVAS_MATHS_CHECK === "off") return false;
-  return isMathsTopic([topic, ...plan.map((b) => `${b.title} ${b.brief ?? ""}`)].join(" "));
+  return asMaths(plannedSubject(plan), () => isMathsTopic([topic, ...plan.map((b) => `${b.title} ${b.brief ?? ""}`)].join(" ")));
 }
 
 export type ExaminerSubject = "maths" | "cs";
 
 /** Which examiner reads this lecture's boards: maths, computer science (CANVAS_CS_CHECK=off turns it off), or none. */
-export function examinerFor(topic: string, plan: Pick<CanvasPlanBeat, "title" | "brief">[]): ExaminerSubject | null {
-  if (isCsTopic(topic) && process.env.CANVAS_CS_CHECK !== "off") return "cs";
+export function examinerFor(topic: string, plan: Pick<CanvasPlanBeat, "title" | "brief" | "subject">[]): ExaminerSubject | null {
+  // A course lesson's subject decides (lib/canvas/lessonSubject.ts): a Chemistry lesson gets no maths examiner.
+  if (asCs(plannedSubject(plan), () => isCsTopic(topic)) && process.env.CANVAS_CS_CHECK !== "off") return "cs";
   return mathsCheckOn(topic, plan) ? "maths" : null;
 }
 

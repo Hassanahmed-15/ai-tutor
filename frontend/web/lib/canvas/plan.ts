@@ -153,13 +153,26 @@ function blockIds(raw: unknown): string[] {
 }
 
 /** The planner's "board" phrases: one per sentence at most, within the sentences, at most 60 characters as written. */
+/** Notes one sentence may write: one, or up to three for a sentence that lists several items (owner, 2026-10-23: lists are written item by item). */
+export const NOTES_PER_SENTENCE = 3;
+
 export function boardNotesOf(raw: unknown, sentenceCount: number): { boardNotes?: Array<{ s: number; text: string }> } {
   if (!Array.isArray(raw)) return {};
-  const seen = new Set<number>();
+  const count = new Map<number, number>();
+  const texts = new Set<string>();
   const notes = raw
     .map((n) => (n && typeof n === "object" ? (n as Record<string, unknown>) : {}))
     .map((n) => ({ s: Math.round(Number(n.s)), text: typeof n.text === "string" ? n.text.replace(/\s+/g, " ").trim().replace(/[.…]+$/, "") : "" }))
-    .filter((n) => Number.isInteger(n.s) && n.s >= 0 && n.s < sentenceCount && n.text && n.text.length <= 60 && !seen.has(n.s) && seen.add(n.s))
-    .sort((a, b) => a.s - b.s);
+    .filter((n) => {
+      if (!Number.isInteger(n.s) || n.s < 0 || n.s >= sentenceCount || !n.text || n.text.length > 60) return false;
+      const key = n.text.toLowerCase();
+      if (texts.has(key) || (count.get(n.s) ?? 0) >= NOTES_PER_SENTENCE) return false;
+      texts.add(key);
+      count.set(n.s, (count.get(n.s) ?? 0) + 1);
+      return true;
+    })
+    .map((n, i) => ({ ...n, i }))
+    .sort((a, b) => a.s - b.s || a.i - b.i)
+    .map(({ s, text }) => ({ s, text }));
   return notes.length ? { boardNotes: notes } : {};
 }

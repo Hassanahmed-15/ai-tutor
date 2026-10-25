@@ -1,0 +1,18 @@
+import { readFileSync } from "node:fs";
+import { chromium } from "playwright";
+import { SignJWT } from "jose";
+const env = Object.fromEntries(readFileSync("/Users/hassanahmed/ai-tutor/frontend/web/.env.local", "utf8").split("\n").filter((l) => /^[A-Z_]+=/.test(l)).map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1).replace(/^"|"$/g, "")]));
+const token = await new SignJWT({ email: `local-dev-canvas@example.com` }).setProtectedHeader({ alg: "HS256" }).setSubject("local-dev-canvas").setIssuedAt().setExpirationTime("1h").sign(new TextEncoder().encode(env.AUTH_SECRET));
+const snap = await (await fetch("http://localhost:3000/api/progressive-lectures/5ae6177b-39b6-4abd-ad63-bedbb6b2aa8b", { headers: { cookie: `aria_access=${token}` } })).json();
+const beats = snap.beats.filter(Boolean).slice(0, 2);
+console.log("beats", beats.length, beats.map((b: any) => b.draw?.ops?.map((o: any) => o.kind)));
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+p.on("pageerror", (e) => console.log("pageerror", e.message.slice(0, 200)));
+await p.addInitScript("window.__name = (f) => f;");
+await p.goto("http://localhost:3000/playback-lab", { timeout: 90000 });
+await p.evaluate((l) => ((window as any).__PLAYBACK_BEATS__ = l), { title: snap.topic, beats });
+await p.waitForTimeout(15000);
+console.log(await p.evaluate(() => [...document.querySelectorAll("button")].map((x) => x.getAttribute("aria-label") || x.textContent?.trim().slice(0, 30)).join(" | ")));
+await p.screenshot({ path: "/private/tmp/claude-501/-Users-hassanahmed-ai-tutor/2735a389-20f1-4b4d-94c6-1e1ea98cc81e/scratchpad/lab.png" });
+await b.close();

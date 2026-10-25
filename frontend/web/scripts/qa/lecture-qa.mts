@@ -34,7 +34,8 @@ const OUT = `${homedir()}/aria-qa-images/${day}-lecture-qa`;
 mkdirSync(OUT, { recursive: true });
 
 const env = Object.fromEntries(readFileSync(new URL("../../.env.local", import.meta.url), "utf8").split("\n").filter((l) => /^[A-Z_]+=/.test(l)).map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1).replace(/^"|"$/g, "")]));
-const token = await new SignJWT({ email: "local-dev-canvas@example.com" }).setProtectedHeader({ alg: "HS256" }).setSubject("local-dev-canvas").setIssuedAt().setExpirationTime("3h").sign(new TextEncoder().encode(env.AUTH_SECRET));
+// QA_USER re-checks another account's saved lecture (a teammate's or a tester's), read-only.
+const token = await new SignJWT({ email: "local-dev-canvas@example.com" }).setProtectedHeader({ alg: "HS256" }).setSubject(process.env.QA_USER ?? "local-dev-canvas").setIssuedAt().setExpirationTime("3h").sign(new TextEncoder().encode(env.AUTH_SECRET));
 const headers = { "content-type": "application/json", cookie: `aria_access=${token}` };
 
 type Snapshot = { topic: string; status: string; costUsd?: number; beats: Array<{ id: string; title: string; script: string; draw?: { ops: Array<{ kind: string; spec?: CanvasBoardSpec }> } } | null> };

@@ -36,7 +36,8 @@ export function predictCardFor(spec: CanvasBoardSpec | undefined, topic: string)
   // A board that already asks the student something mid-board (a slider, a drawing) keeps its own task.
   if (spec.interaction && !(spec.interaction.kind === "quiz" && spec.interaction.check)) return null;
   if (spec.stage.kind === "code") return codePredict(spec.stage);
-  if (spec.stage.kind === "equation" && isMathsTopic(`${topic} ${spec.heading}`)) return equationPredict(spec.stage);
+  // A course lesson's board carries its subject (lib/canvas/lessonSubject.ts): a Chemistry board never gets a maths prediction.
+  if (spec.stage.kind === "equation" && (spec.subject ? spec.subject === "maths" : isMathsTopic(`${topic} ${spec.heading}`))) return equationPredict(spec.stage);
   return null;
 }
 
