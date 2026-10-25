@@ -6,11 +6,13 @@ import "katex/dist/katex.min.css";
 import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
 import { fitValue, graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
-import { edgeCurve, edgeKey } from "@/lib/canvas/structure";
+import { edgeBends, edgeCurve, edgeDetour, edgeKey } from "@/lib/canvas/structure";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
 import { stackAt } from "@/lib/canvas/callStack";
 import { SketchView } from "./SketchView";
+import { SequenceView } from "./SequenceView";
+import { OsGanttView, OsMappingView, OsMemoryView, OsStatesView } from "./OsDiagramView";
 import type { CardStyle } from "@/lib/canvas/cardStyle";
 import { cardNumbersOf } from "@/lib/canvas/cardOrder";
 import { IconGlyph } from "./icons";
@@ -643,6 +645,16 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       return <CallStackView mark={mark} shownThrough={shownThrough} />;
     case "sketch":
       return <SketchView mark={mark} shownThrough={shownThrough} />;
+    case "sequence":
+      return <SequenceView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
+    case "os-states":
+      return <OsStatesView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
+    case "os-memory":
+      return <OsMemoryView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
+    case "os-gantt":
+      return <OsGanttView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
+    case "os-mapping":
+      return <OsMappingView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
     case "state":
       return <StateView mark={mark} shownThrough={shownThrough} />;
     case "output":
@@ -949,21 +961,39 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
   // "next" box (lib/canvas/structure.ts edgeCurve), so list links are drawn over the nodes; a tree's
   // and a graph's run between circles and sit under them.
   const box = layout.shape === "box";
-  const links = frame.edges.map((edge) => {
+  // Edges sharing two nodes bend apart (lib/canvas/structure.ts edgeBends); a lone edge stays straight —
+  // unless its line would run through another node, when it bends around it (edgeDetour).
+  const bends = mark.kind === "graph" ? edgeBends(frame.edges) : frame.edges.map(() => 0);
+  const routeOf = (edge: (typeof frame.edges)[number], ei: number) => {
     const a = at(edge.from);
     const b = at(edge.to);
     if (!a || !b) return null;
-    const { p0, c, p1 } = edgeCurve(layout, a, b);
+    const curve = edgeCurve(layout, a, b);
+    // The normal of the pair's own direction (lower id → higher id), so A→B and B→A bend to opposite sides.
+    const [lo, hi] = edge.from < edge.to ? [a, b] : [b, a];
+    const len = Math.hypot(hi.x - lo.x, hi.y - lo.y) || 1;
+    const normal = { x: -(hi.y - lo.y) / len, y: (hi.x - lo.x) / len };
+    const others = mark.kind === "graph" && layout.shape === "circle" ? frame.nodes.filter((m) => m.id !== edge.from && m.id !== edge.to).map((m) => at(m.id)).filter((p): p is Pt => Boolean(p)) : [];
+    const offset = bends[ei] * 2 + edgeDetour(lo, hi, others, layout.r);
+    return { p0: curve.p0, p1: curve.p1, c: { x: curve.c.x + normal.x * offset, y: curve.c.y + normal.y * offset }, normal, side: Math.sign(offset) || 0 };
+  };
+  const links = frame.edges.map((edge, ei) => {
+    const route = routeOf(edge, ei);
+    if (!route) return null;
+    const { p0, p1, c, normal } = route;
     const points = quadPoints(p0, c, p1, 14);
+    const bulge = bezier(p0, c, p1, 0.5);
+    const side = route.side;
+    const labelAt = side ? { x: bulge.x + normal.x * side * 16, y: bulge.y + normal.y * side * 16 + 5 } : { x: c.x, y: c.y - 8 };
     // A BFS tree edge drawn bold; a conflict (both ends in one set) drawn red, with its reason.
     const marked = frame.edgeMarks?.[edgeKey(mark.kind, mark.directed ? "directed" : undefined, edge.from, edge.to)];
     const edgeLook = marked ? EDGE_LOOK[marked] : null;
     return (
-      <g key={`${edge.from}>${edge.to}`}>
+      <g key={`${edge.from}>${edge.to}>${ei}`}>
         <Ink points={points} width={edgeLook?.width ?? 3.6} color={edgeLook?.color ?? INK} opacity={edgeLook ? 1 : 0.85} />
         {box && <circle cx={p0.x} cy={p0.y} r={4.2} fill={INK} />}
         {mark.directed && <g className="cv-in cv-late">{arrowHead(p1, bezier(p0, c, p1, 0.82), 12, 3.4).map((d, i) => <path key={i} d={d} fill={INK} opacity={0.85} />)}</g>}
-        {edge.label && <text x={c.x} y={c.y - 8} textAnchor="middle" fontSize={14} fontWeight={700} fill={MUTED}>{edge.label}</text>}
+        {edge.label && <text x={labelAt.x} y={labelAt.y} textAnchor="middle" fontSize={14} fontWeight={700} fill={MUTED}>{edge.label}</text>}
       </g>
     );
   });
@@ -973,12 +1003,12 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
    * of its edge is farther from the nodes and the other edges' middles (2026-10-23: it sat on its own
    * edge, then under the next one).
    */
-  const conflictLabels = frame.edges.flatMap((edge) => {
+  const conflictLabels = frame.edges.flatMap((edge, ei) => {
     if (frame.edgeMarks?.[edgeKey(mark.kind, mark.directed ? "directed" : undefined, edge.from, edge.to)] !== "conflict") return [];
-    const a = at(edge.from);
-    const b = at(edge.to);
-    if (!a || !b) return [];
-    const { p0, c, p1 } = edgeCurve(layout, a, b);
+    // Beside the edge as it is drawn, bent or straight.
+    const route = routeOf(edge, ei);
+    if (!route) return [];
+    const { p0, c, p1 } = route;
     const len = Math.hypot(p1.x - p0.x, p1.y - p0.y) || 1;
     const n = { x: -(p1.y - p0.y) / len, y: (p1.x - p0.x) / len };
     // Every candidate spot (either side, a little along the edge) is scored by how far its label box sits from

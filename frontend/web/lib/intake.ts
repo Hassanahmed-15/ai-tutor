@@ -1,5 +1,6 @@
 import { emptyProfile, type DepthLevel, type LearnerProfile, type PartReading } from "./learnerProfile";
 import { matchSpokenAnswer } from "./spokenAnswer";
+import { TEACH_TAB_PREFIX, type TeachingQuestion } from "./teachingQuestions";
 
 /**
  * THE INTAKE: WHAT THE STUDENT ALREADY KNOWS, ASKED SIMPLY (owner, 2026-10-20).
@@ -261,12 +262,16 @@ export const GOAL_TAB = "goal";
  *   3. a check on each ticked part;
  *   4. their goal — the intent question that used to be worked out and never shown.
  */
-export function cardQuestions(state: { parts: IntakePart[]; known: string[]; meaning?: CardExtra | null; goal?: CardExtra | null; loadingParts?: boolean }): Array<IntakeCardQuestion & { loading?: boolean }> {
+export function cardQuestions(state: { parts: IntakePart[]; known: string[]; meaning?: CardExtra | null; goal?: CardExtra | null; loadingParts?: boolean; teaching?: TeachingQuestion[]; loadingTeaching?: boolean }): Array<IntakeCardQuestion & { loading?: boolean }> {
   const out: Array<IntakeCardQuestion & { loading?: boolean }> = [];
   if (state.meaning?.options.length) out.push({ id: MEANING_TAB, header: "Which one", question: state.meaning.question, options: state.meaning.options.map((label) => ({ label })) });
   if (state.parts.length) out.push(...intakeCard(state.parts, state.known));
   else if (state.loadingParts) out.push({ id: "parts", header: "What you know", question: INTAKE_QUESTION, multi: true, options: [], loading: true });
   if (state.goal?.options.length) out.push({ id: GOAL_TAB, header: "Your goal", question: state.goal.question, options: state.goal.options.map((label) => ({ label })) });
+  // 5. how they want it taught (lib/teachingQuestions.ts): questions written for this topic, last. While
+  // they are written a loading tab holds their place, so the card is not finished before they arrive.
+  for (const q of state.teaching ?? []) out.push({ id: `${TEACH_TAB_PREFIX}${q.id}`, header: q.header, question: q.question, ...(q.multi ? { multi: true } : {}), options: q.options.map((o) => ({ label: o.label, ...(o.description ? { description: o.description } : {}) })) });
+  if (!state.teaching?.length && state.loadingTeaching) out.push({ id: `${TEACH_TAB_PREFIX}loading`, header: "How to teach", question: "How should Aria teach this?", options: [], loading: true });
   return out;
 }
 

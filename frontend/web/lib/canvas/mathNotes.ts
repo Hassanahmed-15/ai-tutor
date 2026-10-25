@@ -17,7 +17,23 @@ const SYMBOL: Record<string, string> = {
   Σ: "\\sum", "∑": "\\sum", "∏": "\\prod", Π: "\\prod", "∫": "\\int", "√": "\\sqrt", "∞": "\\infty", "∂": "\\partial", "∇": "\\nabla",
   "×": "\\times", "÷": "\\div", "·": "\\cdot", "≤": "\\le", "≥": "\\ge", "≠": "\\ne", "≈": "\\approx", "→": "\\to", "←": "\\leftarrow", "⇒": "\\Rightarrow", "∈": "\\in", "±": "\\pm", "…": "\\ldots", "|": "\\mid ", "−": "-",
 };
-const MATH_CHAR = /[=∏∑Σ∫√≤≥≠≈±×÷₀-₉ₐ-ₜᵢⱼ⁰-⁹ⁱⁿᵗᴺᵀα-ωΓΔΘΛΦΨΩ̂̄]/;
+const MATH_CHAR = /[=∏∑Σ∫√≤≥≠≈±×÷₀-₉ₐ-ₜᵢⱼ⁰-⁹¹²³½¼¾ⁱⁿᵗᴺᵀα-ωΓΔΘΛΦΨΩ̂̄]/;
+/** A maths symbol other than "=": "SYN = synchronise" has an equals sign and no maths (TCP lecture, 2026-10-24). */
+const SYMBOL_CHAR = /[∏∑Σ∫√≤≥≠≈±×÷₀-₉ₐ-ₜᵢⱼ⁰-⁹¹²³½¼¾ⁱⁿᵗᴺᵀα-ωΓΔΘΛΦΨΩ̂̄]/;
+/** Arithmetic between numbers or letters: "1000 + 1", "2x − 3", "a/b" — never the hyphen of "32-bit". */
+const ARITHMETIC = /[\d)]\s*[-+*/^−]\s*[\d(]|[A-Za-z\d)]\s*[+*/^−]\s*[A-Za-z\d(]/;
+const FUNCTION_NAME = /^(?:sin|cos|tan|sinh|cosh|tanh|log|exp|lim|max|min|argmax|argmin|mod)$/;
+
+/**
+ * Is this an equation, not a definition in words? Without a maths symbol, a lowercase word makes it words:
+ * "SYN = synchronise", "ISN = 32-bit random number", "SYN-ACK = request + confirm" stay text.
+ */
+function isEquation(text: string): boolean {
+  if (!/=|[∏∑Σ∫]/.test(text)) return false;
+  if (SYMBOL_CHAR.test(text)) return true;
+  if (!ARITHMETIC.test(text)) return false;
+  return !(text.match(/\b[a-z]{4,}\b/g) ?? []).some((w) => !FUNCTION_NAME.test(w));
+}
 
 /** Unicode maths (as the writer types it) to LaTeX. */
 export function unicodeToTex(math: string): string {
@@ -59,23 +75,26 @@ export function unicodeToTex(math: string): string {
 }
 
 /** Is this note an equation (or "Label: equation")? Returns its LaTeX, or null for a note in words. */
-export function noteTex(text: string): string | null {
+export function noteTex(text: string, opts: { acronyms?: boolean } = {}): string | null {
   const t = text.trim();
   if (!t || !/=|[∏∑Σ∫]/.test(t) || !MATH_CHAR.test(t)) return null;
   // "Ordinary: V̂ₖ = (1/N)ΣρᵢGᵢ" — a label in words, then the equation.
   const m = /^([A-Za-z][A-Za-z ,'-]{1,30}):\s*(.+)$/.exec(t);
   const [label, math] = m && MATH_CHAR.test(m[2]) ? [m[1], m[2]] : [null, t];
+  if (!isEquation(math)) return null;
   // Prose with a symbol in it ("Large ratios increase variance") is not an equation.
   const words = math.replace(/[^A-Za-z\s]/g, " ").split(/\s+/).filter((w) => w.length >= 4);
   if (words.length >= 3) return null;
   // A word in the maths is text — never a command's name (\gamma, \prod, \times).
-  const body = unicodeToTex(math).replace(/(?<![\\A-Za-z])([A-Za-z]{4,})\b/g, "\\text{$1}");
+  let body = unicodeToTex(math).replace(/(?<![\\A-Za-z])([A-Za-z]{4,})\b/g, "\\text{$1}");
+  // A CS acronym is a name, not three variables multiplied: "ACK = 1000 + 1" sets ACK upright.
+  if (opts.acronyms) body = body.replace(/(?<![\\A-Za-z{])([A-Z]{3})(?![A-Za-z}])/g, "\\text{$1}");
   return label ? `\\text{${label}: }${body}` : body;
 }
 
 /** The equation written inside a box's text ("ρ₀:t = π/b × …" in a box's detail), or null. */
 function boxEquation(text: string | undefined): string | null {
-  if (!text || !/=/.test(text) || !MATH_CHAR.test(text)) return null;
+  if (!text || !isEquation(text)) return null;
   return text.trim();
 }
 
@@ -84,7 +103,7 @@ function boxEquation(text: string | undefined): string | null {
  * notes when no note says them already). `valid` checks a LaTeX string renders (KaTeX on the server).
  * Returns how many notes were typeset and how many boxes were cleared.
  */
-export function mathifyBoard(spec: CanvasBoardSpec, valid: (tex: string) => boolean): { typeset: number; cleared: number } {
+export function mathifyBoard(spec: CanvasBoardSpec, valid: (tex: string) => boolean, opts: { acronyms?: boolean } = {}): { typeset: number; cleared: number } {
   let cleared = 0;
   const st = spec.stage as { kind: string; nodes?: Array<{ id: string; label: string; sub?: string; s: number }> };
   if ((st.kind === "flow" || st.kind === "scene") && Array.isArray(st.nodes)) {
@@ -126,7 +145,7 @@ export function mathifyBoard(spec: CanvasBoardSpec, valid: (tex: string) => bool
   }
   let typeset = 0;
   for (const note of spec.notes as Array<CanvasNote & { tex?: string }>) {
-    const tex = noteTex(note.text);
+    const tex = noteTex(note.text, opts);
     if (tex && valid(tex)) {
       note.tex = tex;
       typeset++;

@@ -13,6 +13,8 @@ import { studentCardFor } from "@/lib/learnerBasicsStore";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
 import { sanitizeSourcePack } from "@/lib/webSources";
 import { isProgrammingTopic } from "@/lib/codeSpec";
+import { classifySubject } from "@/lib/canvas/subjectClassifier";
+import { emphasisedParts, sanitizeTeachingChoices, teachingSettings } from "@/lib/teachingQuestions";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -48,6 +50,14 @@ export async function POST(request: Request) {
       }))
       .filter((item) => item.title),
   } : undefined;
+  // How they want it taught, from the question card (lib/teachingQuestions.ts): applied below by code too.
+  const teachingChoices = sanitizeTeachingChoices(body.teaching);
+  const taught = teachingSettings(teachingChoices);
+  // A part they asked to stress gets the boards of a new part (lib/canvas/conceptLadder.ts): more of the lesson.
+  if (outline && taught.focus?.length) {
+    const stressed = emphasisedParts(outline.subtopics.map((s) => s.title), taught.focus);
+    outline.subtopics = outline.subtopics.map((s, i) => (stressed.has(i) && s.status && s.status !== "new" ? { ...s, status: "new" as const } : s));
+  }
   const input: ProgressiveLectureInput = {
     topic,
     mood: typeof body.mood === "string" ? body.mood.slice(0, 500) : "",
@@ -67,22 +77,37 @@ export async function POST(request: Request) {
       ...snapshot,
       // Words in the request ("quickly", "in depth") beat the saved preference, which beats the
       // profile's own depth. Depth buys words per board, never extra boards.
-      depth: requestedDepth(rawOutline?.depth, body.teachingPreference) ?? snapshot.depth,
+      depth: taught.depth ?? requestedDepth(rawOutline?.depth, body.teachingPreference) ?? snapshot.depth,
       // Code for an advanced professional, and for ANY programming topic ("explain for loops") —
       // a programming idea is taught by showing it, whatever the student's level.
-      codeExamples: shouldIncludeCodeExamples(snapshot) || isProgrammingTopic(`${topic} ${typeof body.focus === "string" ? body.focus : ""}`),
+      // The card's answer wins: "no code" means none, a language means code.
+      codeExamples: taught.code ? taught.code.include : shouldIncludeCodeExamples(snapshot) || isProgrammingTopic(`${topic} ${typeof body.focus === "string" ? body.focus : ""}`),
+      ...(taught.examples ? { preferredExamples: taught.examples } : {}),
+      ...(taught.expertise ? { expertise: taught.expertise } : {}),
       confirmedAt: snapshot.confirmedAt || new Date().toISOString(),
     },
     learner,
     learnerPersona: text(body.learnerPersona, 2_000),
+    ...(teachingChoices.length ? { teachingChoices } : {}),
   };
   // The material from the outline's web research (lib/webSources.ts), checked again on the way in.
   const webSources = sanitizeSourcePack(body.webSources ?? rawOutline?.research);
   if (webSources) input.webSources = webSources;
   // The student card: their grade, country, curriculum and subjects from the profile, as rules —
   // the grade applies to every subject, the subject list decides whether to follow their syllabus.
-  const card = await studentCardFor(auth.userId, `${topic} ${input.focus ?? ""}`).catch(() => null);
+  // A typed lesson's subject, asked once (lib/canvas/subjectClassifier.ts): CS and maths get their own
+  // rules, anything else the normal pipeline. PDF, video and course lessons carry a source and never ask.
+  const [card, subject] = await Promise.all([
+    studentCardFor(auth.userId, `${topic} ${input.focus ?? ""}`).catch(() => null),
+    typedRequest(input)
+      ? classifySubject([topic, input.focus, ...(outline?.subtopics.map((s) => s.title) ?? [])].filter(Boolean).join(" — "))
+      : null,
+  ]);
   if (card) input.studentCard = card;
+  if (subject) {
+    input.subjectDomain = subject.domain;
+    console.log(`[subject] "${topic}" → ${subject.domain} (${subject.source})`);
+  }
 
   try {
     const lecture = await createProgressiveLectureSession(auth.userId, input);
@@ -104,6 +129,12 @@ export async function POST(request: Request) {
     console.error("[progressive-lectures] start failed:", error);
     return NextResponse.json({ error: message }, { status: 502 });
   }
+}
+
+/** A lesson the student typed, in the normal mode: no document, transcript, video or dragged area. */
+function typedRequest(input: ProgressiveLectureInput): boolean {
+  return input.sourceType === "prompt" && input.mode === "standard"
+    && input.suprnotes == null && !input.transcript && !input.documentId && !input.selection;
 }
 
 function text(value: unknown, limit: number): string | undefined {

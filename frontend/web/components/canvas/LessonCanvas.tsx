@@ -125,8 +125,13 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
    * word, term and line as Aria says it (MarkerWriter), and cards are drawn in chalk on the slate, not
    * stuck-on paper notes. Every other subject keeps its sticky notes and plays exactly as before.
    */
-  // Read from the lecture itself (its topic and its boards' headings), never the typed words alone.
-  const labLook = useMemo(() => panels.some((p) => p.spec.stage.kind === "sketch") || isLabLookTopic([topic, ...panels.map((p) => p.spec.heading)].join(" ")), [topic, panels]);
+  // Read from the lecture itself (its topic and its boards' headings), never the typed words alone —
+  // or from the subject a typed lesson was asked to be (lib/canvas/subjectDomain.ts), when its boards carry it.
+  const labLook = useMemo(() => {
+    if (panels.some((p) => p.spec.stage.kind === "sketch")) return true;
+    const asked = panels.find((p) => p.spec.subject)?.spec.subject;
+    return asked ? asked !== "none" : isLabLookTopic([topic, ...panels.map((p) => p.spec.heading)].join(" "));
+  }, [topic, panels]);
   useEffect(() => {
     const t = window.setTimeout(() => setCardStyle(labLook ? "classic" : preferredCardStyle()), 0);
     return () => window.clearTimeout(t);

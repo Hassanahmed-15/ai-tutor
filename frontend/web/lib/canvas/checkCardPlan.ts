@@ -28,11 +28,14 @@ export function tasksGiveWay(plan: CanvasPlanBeat[]): boolean {
   return plan.filter((beat) => teaches(beat) && (beat.interaction === "try" || beat.interaction === "draw")).length >= 2;
 }
 
-export function checkCardBoards(plan: CanvasPlanBeat[], strict: boolean): Set<number> {
+export function checkCardBoards(plan: CanvasPlanBeat[], strict: boolean, practice?: "none" | "some" | "lots"): Set<number> {
   const picked = new Set<number>();
-  if (strict) return picked;
+  // The student said how much checking they want on the question card (lib/teachingQuestions.ts).
+  if (strict || practice === "none") return picked;
+  const every = practice === "lots" ? 2 : CHECK_CARD_EVERY;
+  const most = practice === "lots" ? CHECK_CARDS_MAX + 2 : CHECK_CARDS_MAX;
   const teaching = plan.map((beat, index) => ({ beat, index })).filter(({ beat }) => teaches(beat));
-  if (teaching.length < CHECK_CARD_EVERY) return picked;
+  if (teaching.length < every) return picked;
   // A lesson with two or more hands-on tasks still gets its questions: a slider on every board left a
   // water-cycle lesson, and a course lesson, with no question at all (2026-10-18 test). There the card
   // takes the board's place in the count and replaces that board's task (lib/canvas/progressive.ts).
@@ -44,7 +47,7 @@ export function checkCardBoards(plan: CanvasPlanBeat[], strict: boolean): Set<nu
       since = 0;
       continue;
     }
-    if (since >= CHECK_CARD_EVERY && picked.size < CHECK_CARDS_MAX) {
+    if (since >= every && picked.size < most) {
       picked.add(index);
       since = 0;
     }

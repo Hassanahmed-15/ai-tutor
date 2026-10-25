@@ -240,7 +240,8 @@ export function runStructure(start: DsStart, steps: Array<{ s: number; ops?: DsO
     changed: [],
     groups: {},
     edgeMarks: {},
-    nulls: (start.pointers ?? []).filter((p) => p.to === null).map((p) => p.name),
+    // A "null" tag belongs to a linked list (prev = None): on a graph or tree it read "set → null" for nothing (2026-10-25).
+    nulls: start.kind === "list" ? (start.pointers ?? []).filter((p) => p.to === null).map((p) => p.name) : [],
   };
   if (isTree(start.kind)) first.edges = withSides(start, first);
   const frames: DsFrame[] = [first];
@@ -364,7 +365,8 @@ function applyOp(start: DsStart, f: DsFrame, op: DsOp): string | null {
         return null;
       }
       if (start.kind === "graph") {
-        if (!f.edges.some((e) => e.from === op.from && e.to === op.to)) f.edges.push({ from: op.from, to: op.to, ...(op.label ? { label: op.label } : {}) });
+        // A second message the same way with a new name is its own arrow (it is drawn on its own bend).
+        if (!f.edges.some((e) => e.from === op.from && e.to === op.to && (e.label ?? "") === (op.label ?? ""))) f.edges.push({ from: op.from, to: op.to, ...(op.label ? { label: op.label } : {}) });
         return null;
       }
       return `a ${start.kind} has no links between its cells`;
@@ -405,7 +407,7 @@ function applyOp(start: DsStart, f: DsFrame, op: DsOp): string | null {
       // A pointer set to null is DRAWN, pointing at "null": list reversal starts with prev = None and
       // ends with curr = None, and both vanished from the board (owner, 2026-10-23).
       if (op.to === null) {
-        f.nulls.push(op.name);
+        if (start.kind === "list") f.nulls.push(op.name);
         return null;
       }
       if (!has(op.to)) return missing(op.to);
@@ -652,6 +654,48 @@ function tagPointers(f: DsFrame, place: Record<string, DsPt>, r: number): DsLayo
  * circles; for a list, between the facing sides of neighbouring boxes, or arched over the row when
  * the link skips a box or runs backwards past one.
  */
+/**
+ * How far each edge bends off the straight line, signed in one direction per pair of nodes: an edge
+ * alone between its two nodes is straight; A→B and B→A (and a repeated A→B) bend apart, so their
+ * arrows and labels never lie on each other (TCP lecture, 2026-10-24: SYN, SYN-ACK and ACK on one line).
+ */
+export function edgeBends(edges: Array<{ from: string; to: string }>, gap = 36): number[] {
+  const pair = (e: { from: string; to: string }) => (e.from < e.to ? `${e.from}|${e.to}` : `${e.to}|${e.from}`);
+  const count = new Map<string, number>();
+  for (const e of edges) count.set(pair(e), (count.get(pair(e)) ?? 0) + 1);
+  const seen = new Map<string, number>();
+  return edges.map((e) => {
+    const n = count.get(pair(e)) ?? 1;
+    const i = seen.get(pair(e)) ?? 0;
+    seen.set(pair(e), i + 1);
+    return n === 1 ? 0 : (i - (n - 1) / 2) * gap;
+  });
+}
+
+/**
+ * How far an edge's control point must move so its line clears every other node it would run through,
+ * signed along the normal of lo → hi (0 when nothing is in the way). A triangle B–C–D laid out in one
+ * column drew B–D straight through C, so the odd cycle Aria named was invisible (bipartite lecture,
+ * 2026-10-25). The curve bends away from the node in the way.
+ */
+export function edgeDetour(lo: DsPt, hi: DsPt, others: DsPt[], r: number): number {
+  const dx = hi.x - lo.x, dy = hi.y - lo.y;
+  const L2 = dx * dx + dy * dy || 1;
+  const L = Math.sqrt(L2);
+  const nx = -dy / L, ny = dx / L;
+  let off = 0;
+  for (const o of others) {
+    const t = ((o.x - lo.x) * dx + (o.y - lo.y) * dy) / L2;
+    if (t <= 0.06 || t >= 0.94) continue;
+    const d = (o.x - lo.x) * nx + (o.y - lo.y) * ny;
+    if (Math.abs(d) >= r * 1.4) continue;
+    // A quadratic's curve sits 2t(1-t) of the control's offset from the line at t: enough to clear the node.
+    const need = ((Math.abs(d) + r * 1.7) / (2 * t * (1 - t))) * (d > 0.5 ? -1 : 1);
+    if (Math.abs(need) > Math.abs(off)) off = need;
+  }
+  return off;
+}
+
 export function edgeCurve(layout: Pick<DsLayout, "shape" | "r" | "w" | "h">, from: DsPt, to: DsPt): { p0: DsPt; c: DsPt; p1: DsPt } {
   if (layout.shape === "circle") {
     const dx = to.x - from.x;

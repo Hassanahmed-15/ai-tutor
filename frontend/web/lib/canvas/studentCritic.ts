@@ -54,6 +54,7 @@ export function critiqueStudentBoard(spec: CanvasBoardSpec, beat: Pick<CanvasPla
       case "scene": return spec.stage.arrows.length > 0 || !/\b(process|cause|relationship|from|to|becomes)\b/i.test(beat.brief);
       case "molecule": return spec.stage.molecules.every((molecule) => molecule.bonds.length > 0 && Boolean(molecule.geometry));
       case "atom-map": return spec.stage.reactants.length > 0 && spec.stage.products.length > 0;
+      case "sequence": return spec.stage.messages.length > 0;
       default: return true;
     }
   })();

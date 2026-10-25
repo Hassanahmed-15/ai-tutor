@@ -24,7 +24,11 @@ import { sourcesForText, type SourcePack } from "../webSources";
 import { splitLongWorking } from "./splitWorking";
 import type { ExaminerSubject } from "./mathsCheck";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
-import { earlierStructures, isTypedCsTopic } from "./csLessons";
+import { earlierStructures, isTypedDsaTopic, lessonSoFar } from "./csLessons";
+import { matchDiagramsToBeats, readSourceDiagrams, sourceDiagramBrief } from "./sourceDiagrams";
+import { mergeRepeatedBoards } from "./repeatBoards";
+import { isMathsTopic } from "./predictCard";
+import { domainIsCs, domainIsLab, type SubjectDomain } from "./subjectDomain";
 import { applySplits, SQUEEZE_PROMPT, squeezedInPlan } from "./squeeze";
 import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
 import { findLibraryFigure } from "../figures/library";
@@ -89,6 +93,13 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
   // folded into the board it belongs to (AVL chapter: 1 of 6 sections taught; PDF bench, 2026-10-18).
   const covering = Boolean(strictDoc || reference) && input.sourceScope?.breadth.kind === "whole";
   const maxAttempts = covering ? 3 : 2;
+  // A typed CS lesson that is not DSA redraws its reference pages' diagrams (lib/canvas/sourceDiagrams.ts):
+  // they are read while the plan is written, so nobody waits for them.
+  const lessonWords = [input.topic, input.focus ?? "", ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" ");
+  const pageDiagrams = !fromDocument && !curriculumDocumentOf(input) && input.subjectDomain === "cs" && input.webSources?.sources.length && !isTypedDsaTopic(lessonWords) && process.env.CANVAS_SOURCE_DIAGRAMS !== "off"
+    ? readSourceDiagrams(openai, `${input.topic}${input.focus ? ` — ${input.focus}` : ""}`, input.webSources)
+    : null;
+  let diagramsUsed = false;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, attempt > 1 && lastError ? `${request}\n\nYour previous plan could not be used: ${lastError}` : request, fromDocument ? 16_000 : 9000), fromDocument ? 180_000 : 120_000, "canvas plan");
@@ -213,7 +224,10 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         const visualMode: VisualPolicyMode = sourceMode ? "strict" : reference ? "reference" : curriculum ? "course" : "prompt";
         // A CS sentence that packs several lines or steps is split into one per line or step, in the plan,
         // so each board is written once for the narration it plays with (lib/canvas/squeeze.ts).
-        if (visualMode !== "strict" && (visualMode === "prompt" ? isTypedCsTopic : isCsTopic)([input.topic, ...plan.beats.map((b) => b.title)].join(" "))) {
+        // A typed lesson's subject was asked when it was created (lib/canvas/subjectDomain.ts); others keep the keywords.
+        const domain = visualMode === "prompt" ? input.subjectDomain : undefined;
+        const lessonTitles = [input.topic, ...plan.beats.map((b) => b.title)].join(" ");
+        if (visualMode !== "strict" && (visualMode === "prompt" ? domainIsCs(domain, lessonTitles) : isCsTopic(lessonTitles))) {
           // A typed prompt splits only the boards that trace something (code, a structure): an application
           // board split one-step-a-sentence read "They also use inserting 5." (BST review, 2026-10-23).
           const squeezed = squeezedInPlan(visualMode === "prompt" ? plan.beats.filter((b) => b.stage === "code" || b.stage === "structure") : plan.beats).slice(0, 24);
@@ -234,8 +248,14 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
             }
           }
         }
+        // A typed maths lesson never spends a board saying again what earlier boards said (lib/canvas/repeatBoards.ts):
+        // "The Proof of Prime Numbers" recited the whole proof on its last board, 2026-10-25.
+        if (visualMode === "prompt" && !domainIsCs(domain, lessonTitles) && isMathsTopic(lessonTitles)) {
+          const merged = mergeRepeatedBoards(plan.beats);
+          if (merged.log.length) { plan = { ...plan, beats: merged.beats }; console.log(`[canvas] repeated board(s) merged: ${merged.log.join(" | ")}`); }
+        }
         // A maths or CS board says every step of its working; one longer than a board continues on the next.
-        if (visualMode !== "strict" && isLabLookTopic([input.topic, ...plan.beats.map((b) => b.title)].join(" "))) {
+        if (visualMode !== "strict" && (visualMode === "prompt" ? domainIsLab(domain, lessonTitles) : isLabLookTopic(lessonTitles))) {
           const split = splitLongWorking(plan.beats);
           if (split.count) { plan = { ...plan, beats: split.beats }; console.log(`[canvas] ${split.count} long piece(s) of working continued on a second board: ${split.beats.length} board(s) now`); }
         }
@@ -245,7 +265,15 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
           const chosen = await bounded(chooseVisuals((system, user, max) => jsonCall(openai, PLAN_MODEL, system, user, max), input.topic, plan.beats), 30_000, "visual choice").catch((error: Error) => { console.warn(`[canvas] visual choice skipped: ${error.message}`); return null; });
           if (chosen) { plan = { ...plan, beats: chosen.beats }; costUsd += chosen.costUsd; console.log(`[canvas] visual choice: ${chosen.log}`); }
         }
-        const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: findLibraryFigure, topic: input.topic });
+        // The reference pages' diagrams go to the boards they fit, which redraw them (once, on the first plan that gets here).
+        if (pageDiagrams && !diagramsUsed) {
+          diagramsUsed = true;
+          const read = await pageDiagrams;
+          costUsd += read.costUsd;
+          console.log(`[canvas] source diagrams: ${read.log}`);
+          for (const line of matchDiagramsToBeats(plan.beats, read.diagrams)) console.log(`[canvas] ${line}`);
+        }
+        const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: findLibraryFigure, topic: input.topic, domain });
         plan = { ...plan, beats: visualPolicy.beats };
         if ((visualMode === "course" || visualMode === "prompt") && visualPolicy.audit.meaningfulVisuals < visualPolicy.audit.targetMeaningfulVisuals && attempt < maxAttempts) {
           lastError = `only ${visualPolicy.audit.meaningfulVisuals} of ${plan.beats.length} boards used purpose-built visuals; use at least ${visualPolicy.audit.targetMeaningfulVisuals} appropriate stages such as illustration, flow, graph, equation, compare, molecule, atom-map or code instead of generic scenes`;
@@ -359,9 +387,14 @@ export async function writeCanvasBoard(args: {
   hurry?: () => boolean;
   /** A lesson from a typed prompt; when left out, a lesson with no document or source behind it. */
   typedPrompt?: boolean;
+  /** A typed lesson's asked subject (lib/canvas/subjectDomain.ts): CS and maths boards follow their own rules. */
+  subjectDomain?: SubjectDomain;
+  /** How many check questions the student asked for on the question card (lib/teachingQuestions.ts). */
+  practice?: "none" | "some" | "lots";
 }): Promise<{ beat: Beat; costUsd: number; fallback: boolean; log: string[] }> {
   const { plan, index, sessionId } = args;
   const typed = args.typedPrompt ?? (!args.document && !args.strictSource);
+  const domain = typed ? args.subjectDomain : undefined;
   const beat = plan[index];
   const started = Date.now();
   // An examined board may need one rewrite: it gets a minute more (boards 2+ are written while earlier ones play).
@@ -377,6 +410,11 @@ export async function writeCanvasBoard(args: {
   if (args.notes.length) extra.push(`What the student has shown so far (pitch the notes, cues and any interaction to it): ${args.notes.slice(-3).join(" ")}`);
   if (args.feedback?.length) extra.push(`CORRECT THESE — ${args.feedback.join(" ")}`);
   if (args.document) extra.push(...documentBoardLines(args.document, beat));
+  // The reference page's diagram this board redraws (lib/canvas/sourceDiagrams.ts).
+  if (typed && beat.sourceDiagram) extra.push(sourceDiagramBrief(beat.sourceDiagram, beat.stage));
+  // One lesson, not separate boards: the example, program and facts the earlier boards set (lib/canvas/csLessons.ts).
+  // CS only: maths keeps the parent branch's board prompts (owner, 2026-10-25).
+  if (typed && domainIsCs(domain, args.topic) && index > 0) extra.push(...lessonSoFar(args.earlier.slice(0, index)));
   if (args.strictSource) extra.push(...(args.strictSource.mode === "video" ? videoBoardLines(args.strictSource.doc, beat) : strictBoardLines(args.strictSource.doc, beat)));
   const codeDoc = args.document ?? (args.strictSource?.mode === "strict" ? args.strictSource.doc : null);
 
@@ -390,7 +428,7 @@ export async function writeCanvasBoard(args: {
     else if (beat.stage === "exam") throw new Error("an exam board needs the lesson's mark scheme");
     // `typed`: a lesson from a typed prompt (no PDF, video or course behind it) gets the DSA teaching rules.
     // `earlier`: the structures the earlier boards drew, so a typed CS board stays on the lesson's one example.
-    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, typed, earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined, continueCode: typed ? continuedCodeOf(beat, args.earlier[index - 1]) : undefined });
+    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, typed, domain, earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined, continueCode: typed ? continuedCodeOf(beat, args.earlier[index - 1]) : undefined });
     pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra));
   } catch (error) {
     log.push(`${beat.id}: ${(error as Error).message}`);
@@ -398,17 +436,19 @@ export async function writeCanvasBoard(args: {
     pictured = { spec: made.spec, costUsd: 0 };
   }
   const spec: CanvasBoardSpec = { ...pictured.spec };
+  // The marker writes a CS or maths lesson's boards (LessonCanvas), whatever words its headings use.
+  if (domain === "cs") spec.subject = domain;
   // THE "CHECK IT" CARD (lib/canvas/checkCard.ts): written and verified after the board, shown when
   // Aria finishes it. A card that cannot be verified is left off — it never fails or holds the board.
   // Only on about every third board, and never in a strict PDF lesson (lib/canvas/checkCardPlan.ts).
   let cardCost = 0;
-  const cardHere = checkCardBoards(plan, args.strictSource?.mode === "strict").has(index);
+  const cardHere = checkCardBoards(plan, args.strictSource?.mode === "strict", args.practice).has(index);
   // In a lesson full of sliders the question takes this board's slider's place (the slider stays if
   // no card can be verified).
   const taskYields = Boolean(spec.interaction && (spec.interaction.kind === "try" || spec.interaction.kind === "draw") && tasksGiveWay(plan));
   if (cardHere && (!spec.interaction || taskYields) && spec.stage.kind !== "exam" && !beat.overview && !beat.refresher && process.env.CANVAS_CHECK_CARDS !== "off") {
     const block = args.document?.contentBlocks?.[plan.filter((b) => !b.refresher).indexOf(beat)];
-    const made = await writeCheckCard(client(), beat, spec, { level: args.document?.lesson?.level, teachingHints: block?.teachingHints, typed }).catch((error) => ({ card: null, costUsd: (error as { costUsd?: number }).costUsd ?? 0, log: `no check card — ${(error as Error).message}` }));
+    const made = await writeCheckCard(client(), beat, spec, { level: args.document?.lesson?.level, teachingHints: block?.teachingHints, typed: typed && domainIsCs(domain, args.topic) }).catch((error) => ({ card: null, costUsd: (error as { costUsd?: number }).costUsd ?? 0, log: `no check card — ${(error as Error).message}` }));
     cardCost = made.costUsd;
     log.push(`${beat.id}: ${made.log}`);
     if (made.card) spec.interaction = made.card;
@@ -455,7 +495,11 @@ export async function writeCanvasBoard(args: {
   // The links at the foot of the slide: the pages behind what this board actually says.
   if (args.webSources) {
     const cited = sourcesForText(args.webSources, `${beat.title} ${beat.brief ?? ""} ${beat.script}`);
-    if (cited.length) written.sources = cited.map(({ title, url, site }) => ({ title, url, site }));
+    // A board that redraws a page's diagram cites that page first.
+    const d = beat.sourceDiagram;
+    const drawnFrom = d ? args.webSources.sources.find((s) => s.url === d.url) ?? { id: "D", title: d.title, url: d.url, site: d.site } : undefined;
+    const all = drawnFrom ? [drawnFrom, ...cited.filter((c) => c.url !== drawnFrom.url)].slice(0, 3) : cited;
+    if (all.length) written.sources = all.map(({ title, url, site }) => ({ title, url, site }));
   }
   return { beat: written, costUsd: made.costUsd + pictured.costUsd + cardCost, fallback: made.attempts < 0 || Boolean(spec.visualFallback), log };
 }

@@ -5,6 +5,7 @@ import { canvasSentences } from "./plan";
 import { isMathsTopic } from "./predictCard";
 import { isCsTopic } from "./subjectLook";
 import { isTypedCsTopic } from "./csLessons";
+import type { SubjectDomain } from "./subjectDomain";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 
 /**
@@ -30,9 +31,12 @@ export function mathsCheckOn(topic: string, plan: Pick<CanvasPlanBeat, "title" |
 export type ExaminerSubject = "maths" | "cs";
 
 /** Which examiner reads this lecture's boards: maths, computer science (CANVAS_CS_CHECK=off turns it off), or none. */
-export function examinerFor(topic: string, plan: Pick<CanvasPlanBeat, "title" | "brief">[], typed = false): ExaminerSubject | null {
-  // A typed-prompt lesson also counts the niche CS topics the shared check misses (lib/canvas/csLessons.ts).
-  const cs = isCsTopic(topic) || (typed && isTypedCsTopic([topic, ...plan.map((b) => b.title)].join(" ")));
+export function examinerFor(topic: string, plan: Pick<CanvasPlanBeat, "title" | "brief">[], typed = false, domain?: SubjectDomain): ExaminerSubject | null {
+  // A typed lesson asked to be CS (lib/canvas/subjectDomain.ts) gets the CS examiner.
+  if (typed && domain === "cs") return process.env.CANVAS_CS_CHECK !== "off" ? "cs" : null;
+  // Every other lesson is examined as on the parent branch, by keywords (owner, 2026-10-25). A typed lesson with no
+  // subject answer also counts the niche CS topics the shared check misses (lib/canvas/csLessons.ts).
+  const cs = isCsTopic(topic) || (typed && !domain && isTypedCsTopic([topic, ...plan.map((b) => b.title)].join(" ")));
   if (cs && process.env.CANVAS_CS_CHECK !== "off") return "cs";
   return mathsCheckOn(topic, plan) ? "maths" : null;
 }

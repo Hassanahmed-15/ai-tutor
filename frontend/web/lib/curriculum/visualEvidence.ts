@@ -2,6 +2,8 @@ import { describeSketch } from "../canvas/sketch";
 import type { Beat } from "@/lib/lessonContent";
 import type { CanvasBoardSpec, StageSpec } from "@/lib/canvas/types";
 import { describeStructure } from "../canvas/structure";
+import { describeSequence } from "../canvas/sequence";
+import { describeGantt, describeMapping, describeMemory, describeStates } from "../canvas/osDiagrams";
 
 /** A compact, literal account of what the finished board renderer gives the student. */
 export function curriculumBoardEvidence(beat: Beat): { title: string; script: string; visual: string } {
@@ -55,6 +57,16 @@ function describeStage(stage: StageSpec): string {
       return `Exam question (${stage.marks} marks, command word ${stage.commandWord}): ${stage.question}. Mark-scheme points: ${stage.points.map((p) => p.text).join("; ")}.${stage.lostMarks ? ` Loses marks: ${stage.lostMarks.text}.` : ""}`;
     case "sketch":
       return describeSketch(stage);
+    case "sequence":
+      return describeSequence(stage);
+    case "states":
+      return describeStates(stage);
+    case "memory":
+      return describeMemory(stage);
+    case "gantt":
+      return describeGantt(stage);
+    case "mapping":
+      return describeMapping(stage);
     case "atom-map":
       return `Atom map: ${stage.reactants.map((group) => `${group.label} [${group.atoms.map((atom) => `${atom.element}×${atom.count}`).join(", ")}]`).join(" + ")} -> ${stage.products.map((group) => `${group.label} [${group.atoms.map((atom) => `${atom.element}×${atom.count}`).join(", ")}]`).join(" + ")}. Energy lane: ${stage.energy ? `${stage.energy.input} -> ${stage.energy.output}` : "none"}.`;
   }

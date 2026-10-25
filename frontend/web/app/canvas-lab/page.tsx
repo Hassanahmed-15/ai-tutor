@@ -20,7 +20,7 @@ import { LessonPlayer } from "@/components/LessonPlayer";
 import { LessonCanvas } from "@/components/canvas/LessonCanvas";
 import type { Beat } from "@/lib/lessonContent";
 import type { CanvasBoardSpec } from "@/lib/canvas/types";
-import { DSA_FIXTURES } from "@/lib/canvas/dsaFixtures";
+import { DSA_FIXTURES, SEQUENCE_FIXTURES, OS_FIXTURES } from "@/lib/canvas/dsaFixtures";
 import { EQUATION_FIXTURES } from "@/lib/canvas/equationFixtures";
 import { CS_VISUAL_FIXTURES, LOGIC_FIXTURES, MATHS_VISUAL_FIXTURES, SKETCH_FIXTURES } from "@/lib/canvas/mathsVisualFixtures";
 import { canvasSentences } from "@/lib/canvas/plan";
@@ -62,6 +62,8 @@ export default function CanvasLab() {
     const session = params.get("session");
     const fixture = params.get("fixture");
     if (fixture === "sketch" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(SKETCH_FIXTURES, "Completing the square, graphs and sorting algorithms")));
+    else if (fixture === "sequence" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(SEQUENCE_FIXTURES, "TCP three way handshake")));
+    else if (fixture === "os" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(OS_FIXTURES, "Operating systems: processes and threads")));
     else if (fixture === "logic" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(LOGIC_FIXTURES, "Logic gates and truth tables")));
     else if ((fixture === "dsa" || fixture === "math" || fixture === "visuals") && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixture === "visuals" ? fixtureLecture([...MATHS_VISUAL_FIXTURES, ...CS_VISUAL_FIXTURES], "Algebra, Pythagoras and recursion: solving equations") : fixtureLecture(fixture === "math" ? EQUATION_FIXTURES : DSA_FIXTURES)));
     else if (session && process.env.NODE_ENV !== "production") {

@@ -10,8 +10,12 @@ import { strictPlanSection, videoParts, videoPlanSection } from "./sourceLessons
 import { isVideoSource } from "../youtube/videoSource";
 import { packForPrompt } from "../webSources";
 import { isDataStructureTopic } from "./structure";
-import { csPlanRule, isTypedCsTopic, isTypedDsaTopic } from "./csLessons";
+import { csPlanRule, isTypedDsaTopic } from "./csLessons";
+import { asksToCompare, mathsNoRepeatRule } from "./repeatBoards";
+import { isMathsTopic } from "./predictCard";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
+import { domainIsCs, domainIsLab } from "./subjectDomain";
+import { teachingLine } from "../teachingQuestions";
 
 /**
  * WHICH LECTURES ARE TAUGHT ON THE LESSON CANVAS, and what its planner is told about them.
@@ -203,15 +207,21 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // miss (KMP, Bloom filters, Raft, paging…) get the CS rules too. PDF, video and course lessons keep the shared checks.
   const typedPrompt = !doc && !strictDoc && !video && !course;
   const lessonText = [input.topic, asked, ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" ");
-  const typedCs = typedPrompt && isTypedCsTopic(lessonText);
-  if (!strictDoc && !video && (typedCs || isLabLookTopic(lessonText))) {
+  // How the student asked for it to be taught, on the question card (lib/teachingQuestions.ts).
+  if (typedPrompt && input.teachingChoices?.length) lines.push(teachingLine(input.teachingChoices).trim());
+  // The subject was asked of a model when the lesson was created (lib/canvas/subjectDomain.ts): CS, maths or
+  // neither — neither is the normal pipeline. An older lecture without the answer keeps the keyword checks.
+  const domain = typedPrompt ? input.subjectDomain : undefined;
+  const typedCs = typedPrompt && domainIsCs(domain, lessonText);
+  const labLesson = typedCs || (typedPrompt ? domainIsLab(domain, lessonText) : isLabLookTopic(lessonText));
+  if (!strictDoc && !video && labLesson) {
     lines.push("A board that WORKS something out — a proof, a derivation, a worked example, a rearrangement — is as long as its steps, past the length above: ONE sentence per step, every step a textbook shows (each expansion, substitution, cancelling, rearrangement and the result), with its reason, up to 10 sentences; longer working continues on the next board by itself. Never compress working to fit a length (\"this gives the result\", \"simplifying, we get\" with the line missing).");
   }
   // DATA STRUCTURES are taught with the structure itself on the board (owner's direction, 2026-10-15).
   // A source lesson keeps its own rules: its boards follow the document or the video.
   // A typed prompt (no PDF, video or course behind it) also counts the graph algorithms the shared list
   // misses: "BFT in Bipartite Graphs" got none of this and drew no graph (owner, 2026-10-23).
-  const typedDsa = typedPrompt && isTypedDsaTopic(lessonText);
+  const typedDsa = typedCs && isTypedDsaTopic(lessonText);
   if (typedDsa) lines.push("", TYPED_DSA_PLAN);
   // The picture each kind of CS topic needs: a protocol as machines and messages, KMP as cells and pointers.
   const picture = typedCs ? csPlanRule(lessonText) : null;
@@ -225,7 +235,9 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // MATHS AND COMPUTER SCIENCE are taught in a visible structure (owner, 2026-10-21: "keep your
   // intentions clear and teach in a structured way — I really don't get how you teach"; "if there is
   // any proof it should build step by step"). Not for a lesson strictly from a source: its order is the source's.
-  if (!strictDoc && !video && (typedCs || isLabLookTopic(lessonText))) lines.push("", MATHS_CS_TEACHING);
+  if (!strictDoc && !video && labLesson) lines.push("", MATHS_CS_TEACHING);
+  // A typed maths lesson: every board moves the argument on, and "compare both" gets its own board (lib/canvas/repeatBoards.ts).
+  if (typedPrompt && !typedCs && isMathsTopic(lessonText)) lines.push("", mathsNoRepeatRule(asksToCompare((input.teachingChoices ?? []).map((c) => c.answer))));
   // COMPUTER SCIENCE is taught as a CS teacher teaches it (owner's manager, a CS teacher, 2026-10-22:
   // the visuals and code were nice but it "never really teaches" and did not explain its visuals).
   if (!strictDoc && !video && (typedPrompt ? typedCs : isCsTopic(lessonText))) lines.push("", CS_TEACHING);
@@ -274,7 +286,7 @@ export const MATHS_CS_TEACHING = [
 /** How a computer-science lesson is taught: as a CS teacher teaches, explaining everything it draws. */
 export const CS_TEACHING = [
   "THIS IS A COMPUTER SCIENCE LESSON — TEACH IT AS A GOOD CS TEACHER DOES. A student who has never seen the topic must understand WHAT it is, WHY it works and HOW to write and trace it.",
-  "- Each concept, over as many boards as it needs, in this order: WHY (the problem it solves, in one concrete situation) → THE IDEA (a real-world analogy, then a pencil \"sketch\" board of the idea with real values: boxes for memory and variables, arrows for references and pointers, the structure itself) → HOW IT WORKS (the rule or algorithm in plain steps, done by hand on that sketch with small real values, one step per sentence) → THE CODE (each line written and explained in its own sentence) → THE TRACE (the code run on concrete input, one executed line per sentence) → EDGE CASES AND MISTAKES (the empty input, the boundary, the classic bug and its fix) → COST (time and space complexity, with the reason, when the level includes it) → a CHECK (predict what a small change does).",
+  "- Each concept, over as many boards as it needs, in this order: WHY (the problem it solves, in one concrete situation) → THE IDEA (a real-world analogy, then a picture board of the idea with real values: the structure itself, boxes for memory and variables, arrows for references and pointers — a \"structure\", \"sequence\" or \"flow\" board, which code lays out, never a free \"sketch\") → HOW IT WORKS (the rule or algorithm in plain steps, done by hand on that picture with small real values, one step per sentence) → THE CODE (each line written and explained in its own sentence) → THE TRACE (the code run on concrete input, one executed line per sentence) → EDGE CASES AND MISTAKES (the empty input, the boundary, the classic bug and its fix) → COST (time and space complexity, with the reason, when the level includes it) → a CHECK (predict what a small change does).",
   "- THE CODE is real and runnable — Python unless the student or the syllabus names another language or the exam board's pseudocode, which then follows that board's conventions. Never prose dressed as code (\"push(stack, item): add item to top\"). Each line gets its OWN sentence saying what it does and WHY it is needed (\"Line 2 checks for the base case, because without it the calls would never stop\"); never \"the rest of the code\", never several lines in one sentence.",
   "- THE TRACE says, one executed line per sentence, what changes: each variable's new value, each call pushed or returned on the call stack, each node, pointer or element added, moved or removed, and what is printed. The values are the ones the code really produces. One loop pass or one call per sentence at least — never a whole loop in one sentence (\"the loop compares 9, then 2 and 7, and returns 9\"); a long run traces its first passes in full, then says the rest briefly.",
   "- ONE FUNCTION PER CODE BOARD, at most about 10 lines. A board about boundary cases or mistakes shows only the lines it adds or changes (the guard, the fixed line), never every function again.",
@@ -415,7 +427,7 @@ export function canvasRefresherAllowed(_input: ProgressiveLectureInput, _knowled
  */
 export function typedCsLesson(input: ProgressiveLectureInput): boolean {
   if (referenceDocumentOf(input) || strictDocumentOf(input) || videoDocumentOf(input) || curriculumDocumentOf(input)) return false;
-  return isTypedCsTopic([input.topic, input.focus ?? "", ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "));
+  return domainIsCs(input.subjectDomain, [input.topic, input.focus ?? "", ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "));
 }
 
 export function canvasBoardCount(input: ProgressiveLectureInput): number {

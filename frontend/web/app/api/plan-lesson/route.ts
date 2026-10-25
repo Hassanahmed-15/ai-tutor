@@ -34,7 +34,9 @@ import {
 } from "@/lib/learnerProfile";
 import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
 import { learnerInstruction } from "@/lib/learnerProfile";
-import { CS_LESSON_LENGTH, isCsMechanismQuestion, isTypedCsTopic } from "@/lib/canvas/csLessons";
+import { CS_LESSON_LENGTH, isCsMechanismQuestion } from "@/lib/canvas/csLessons";
+import { classifySubject } from "@/lib/canvas/subjectClassifier";
+import { sanitizeTeachingChoices, sanitizeTeachingQuestions, teachingLine, teachingSettings, TEACHING_QUESTIONS_PROMPT } from "@/lib/teachingQuestions";
 import { PROMPT_OUTLINE_RULES, QUESTION_SHAPE_PROMPT, capQuestionOutline, directQuestionInstruction, parseQuestionShape, type QuestionShape, isBroadTopicQuestion, isDirectQuestion, isTopicRequest, outlineLearnerInstruction, topicLessonInstruction } from "@/lib/planPrompt";
 import { nounTitle, polishBeatPlan } from "@/lib/beatPresentation";
 import { costFor } from "@/lib/modelPricing";
@@ -121,6 +123,8 @@ function summarizeSourceDocumentForPlanning(doc: SuprnotesLessonInput): string {
  * costs). Needs OPENAI_API_KEY in frontend/web/.env.local.
  */
 const MODEL = process.env.OPENAI_PLAN_MODEL ?? "gpt-4o-mini";
+/** Writes the "how should it be taught?" questions (lib/teachingQuestions.ts). */
+const TEACHING_MODEL = process.env.OPENAI_TEACHING_MODEL ?? "gpt-5.6-luna";
 
 /**
  * "What Aria thinks about this student", from their long-term memory (lib/learnerModel.ts
@@ -855,8 +859,8 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const mode = typeof body.mode === "string" ? body.mode : "";
-  if (mode !== "subject" && mode !== "clarify" && mode !== "intent" && mode !== "diagnose" && mode !== "intake" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
-    return NextResponse.json({ error: "mode must be subject, clarify, intent, diagnose, document-scope, document-question, outline, or revise" }, { status: 400 });
+  if (mode !== "subject" && mode !== "clarify" && mode !== "intent" && mode !== "teaching" && mode !== "diagnose" && mode !== "intake" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
+    return NextResponse.json({ error: "mode must be subject, clarify, intent, teaching, diagnose, document-scope, document-question, outline, or revise" }, { status: 400 });
   }
 
   const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -1180,6 +1184,35 @@ export async function POST(req: Request) {
   }
 
   /*
+   * HOW SHOULD IT BE TAUGHT? (lib/teachingQuestions.ts) — 2 to 4 questions written for this topic, asked
+   * on the card beside the others; the answers shape the outline and the lecture. Never blocks: on
+   * failure there are simply no such questions.
+   */
+  if (mode === "teaching") {
+    const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
+    const requestText = typeof body.request === "string" ? body.request.trim().slice(0, 400) : topic;
+    if (!topic) return NextResponse.json({ error: "topic is required" }, { status: 400 });
+    try {
+      // A stronger model than the route's own: it words the questions in the topic's terms, which the
+      // small one did not ("What style of teaching do you prefer?" for every topic, 2026-10-24).
+      const completion = await client.chat.completions.create({
+        model: TEACHING_MODEL,
+        messages: [
+          { role: "system", content: TEACHING_QUESTIONS_PROMPT },
+          { role: "user", content: `The student typed: "${requestText}"
+The lesson's subject: "${topic}"` },
+        ],
+        max_completion_tokens: 3000,
+        response_format: { type: "json_object" },
+      });
+      const questions = sanitizeTeachingQuestions(JSON.parse(completion.choices[0]?.message?.content ?? "{}"));
+      return NextResponse.json({ questions, costUsd: costFor(TEACHING_MODEL, completion.usage) });
+    } catch (err) {
+      return NextResponse.json({ questions: [], costUsd: 0, degraded: err instanceof Error ? err.message : "teaching questions unavailable" });
+    }
+  }
+
+  /*
    * WHAT DOES THE STUDENT WANT? (lib/lessonIntent.ts) — one turn of the short conversation before a
    * typed-topic lesson is planned: settle the goal, curriculum and scope from the request, the profile
    * and the answers so far, or ask ONE question about what is missing. The client sends the answers
@@ -1241,6 +1274,12 @@ export async function POST(req: Request) {
       : [];
     const angle: PlanningAngleId | undefined = typeof body.angle === "string" ? (body.angle as PlanningAngleId) : undefined;
 
+    // How they want it taught, from the card (lib/teachingQuestions.ts): the outline follows it.
+    const teachingRule = teachingLine(sanitizeTeachingChoices(body.teaching));
+    // "A quick overview": no rule or check may grow it back past 4 parts (the CS length rule asks for 5
+    // to 8, and the syllabus check adds parts) — the Dijkstra overview came back with 7 (2026-10-24).
+    const overview = teachingSettings(sanitizeTeachingChoices(body.teaching)).depth === "concise";
+    if (teachingRule) console.log(`[plan] teaching choices: ${sanitizeTeachingChoices(body.teaching).map((c) => `${c.kind}=${c.answer}`).join("; ")}`);
     const clarifyLine = clarifications.length
       ? `\nClarification from the student:\n${clarifications.map((c: { question: string; answer: string }) => `Q: ${c.question}\nA: ${c.answer}`).join("\n")}`
       : "";
@@ -1275,10 +1314,12 @@ export async function POST(req: Request) {
      * "all new to me". Typed prompts in the normal mode only (research on, no document), and only when
      * the student does not already know most of its parts.
      */
-    const csTyped = body.research === true && !sourceDocument && isTypedCsTopic(`${topic} ${questionText}`);
+    // Whether it is CS is asked of a model (lib/canvas/subjectClassifier.ts), not read off keywords.
+    const csTyped = body.research === true && !sourceDocument
+      && (await classifySubject([...new Set([topic, questionText])].join(" — "))).domain === "cs";
     const partsKnown = Array.isArray(body.learnerProfile?.parts) ? (body.learnerProfile.parts as Array<{ status?: unknown }>) : [];
     const newToIt = partsKnown.filter((p) => p?.status === "known").length * 2 <= partsKnown.length;
-    const csMechanism = csTyped && !scopedQuestion && newToIt && isCsMechanismQuestion(questionText);
+    const csMechanism = csTyped && !scopedQuestion && newToIt && isCsMechanismQuestion(questionText, true);
     const broadTopic = !sourceDocument && (isBroadTopicQuestion(questionText) || csMechanism);
     // A whole topic asked as a question ("what is photosynthesis") is taught as a lesson — by either
     // rule: isTopicRequest (which also keeps it out of isDirectQuestion) or isBroadTopicQuestion.
@@ -1371,7 +1412,7 @@ export async function POST(req: Request) {
       ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument, shape })
       : topicRequest ? topicLessonInstruction(questionText) : "";
     // A typed CS lesson is 5 to 8 parts, none repeating another (lib/canvas/csLessons.ts).
-    const csLengthLine = csTyped && !directQuestion && !syllabusAsked(null) ? `\n${CS_LESSON_LENGTH}` : "";
+    const csLengthLine = csTyped && !directQuestion && !syllabusAsked(null) && !overview ? `\n${CS_LESSON_LENGTH}` : "";
     // A strict question about something the document never mentions is answered by saying so — never by
     // giving its content another name (lib/canvas/documentContext.ts termsNotInDocument).
     const absent = strictPdf && directQuestion ? termsNotInDocument(questionText, strictPdf) : [];
@@ -1389,7 +1430,8 @@ export async function POST(req: Request) {
     // A typed-prompt lesson (no document) titles every slide by its concept and covers each topic once.
     const promptRules = sourceDocument ? "" : PROMPT_OUTLINE_RULES;
     const contentFor = (pack: SourcePack | null) =>
-      withPages(`Topic: "${topic}"${requestLineFor(pack)}${briefLine(brief)}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${csLengthLine}${absentLine}${listingLine}${materialLine(pack)}${promptRules}`, pageImages);
+      withPages(`Topic: "${topic}"${requestLineFor(pack)}${briefLine(brief)}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${csLengthLine}${absentLine}${listingLine}${materialLine(pack)}${teachingRule ? `${teachingRule}
+The parts, their order, their captions and how much each gets must follow these answers: an emphasised part gets more of the lesson, an unwanted thing (code, practice) is left out.${overview ? " They asked for a QUICK OVERVIEW: merge the parts listed above into AT MOST 4 subtopics, whatever any other rule here says." : ""}` : ""}${promptRules}`, pageImages);
     /*
      * THE OFFICIAL SYLLABUS, when the student's is known and the request names one of its topics: its
      * outcomes are the checklist and its text names every term — web research alone stopped after the
@@ -1418,7 +1460,7 @@ export async function POST(req: Request) {
           checkCoverage: (pack) => syllabusAsked(pack) && pack.checklist.length > 0,
         }
       : undefined;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : shape === "process" ? 3 : shape === "fact" ? 1 : 2, research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined, !directQuestion ? sessionLearner?.parts : undefined);
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : shape === "process" ? 3 : shape === "fact" ? 1 : 2, overview && research ? { ...research, checkCoverage: () => false } : research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined, !directQuestion ? sessionLearner?.parts : undefined);
   }
 
   // mode === "revise"

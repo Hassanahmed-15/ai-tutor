@@ -2,7 +2,9 @@ import { isMathsTopic } from "./predictCard";
 import { spokenEquations } from "./equationCheck";
 import { canvasSentences } from "./plan";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
-import { csMechanismBoard, isTypedCsTopic } from "./csLessons";
+import { csMechanismBoard, csMechanismStage, isTypedOsTopic } from "./csLessons";
+import { osStageFor } from "./osDiagrams";
+import { domainIsCs, type SubjectDomain } from "./subjectDomain";
 import { FIGURE_COMPONENTS, figureComponent, figureFor } from "../figures/registry";
 import { classifyInstructionalTask } from "./instructionalTask";
 import { namedIn } from "./labelPolicy";
@@ -252,7 +254,7 @@ export const GRAPH_LIKE = new Set(["supplyDemand", "ppf", "adAs", "costRevenue",
 // Geometry kits draw a different construction per board from their params (one circle theorem per
 // board): "circleTheorem is drawn on b1" turned the chord-bisector and tangent boards of a circle
 // theorems lesson into a scene and an equation (QA 2026-10-17).
-const MATH_KITS = new Set(["circleTheorem", "triangle", "vectors", "parallelLines", "bearings", "shapes3d", "pythagorasProof", "areaModel", "logicCircuit"]);
+const MATH_KITS = new Set(["circleTheorem", "triangle", "vectors", "parallelLines", "bearings", "shapes3d", "pythagorasProof", "pythagorasGarfield", "pythagorasSimilar", "pythagorasSquares", "areaModel", "logicCircuit"]);
 /** Code-drawn maths figures that working can be written beside (lib/canvas/layout.ts). */
 const WORKING_FIGURES = new Set([...MATH_KITS, "functionGraph", "coordinateGrid", "numberLine", "unitCircle", "sectorArc", "argand", "calculusKit", "riemannSum", "dotPlot", "boxPlot", "cumulativeFrequency", "probabilityTree", "venn", "sequences"]);
 
@@ -267,6 +269,8 @@ const MOTION_MATHS = new Set(["pythagorasProof", "areaModel"]);
 const REPEATABLE = new Set(["logicCircuit", "chromosomeSets", "cellDivision", "punnettSquare", "pedigree", "electromagnetism", "titration", "circleTheorem", "triangle", "vectors", "parallelLines", "bearings", "shapes3d"]);
 export const HUMANITIES = new Set(["timeline", "causeConsequence", "sourceCard", "evaluationScale", "conceptTable", "circularFlow"]);
 
+/** What a structure board draws: a sketch naming two of these on a typed CS lesson becomes one. */
+const STRUCTURE_WORDS = /\b(?:graphs?|vert(?:ex|ices)|edges?|nodes?|trees?|bsts?|heaps?|linked lists?|arrays?|queues?|stacks?|hash tables?|states?|transitions?|automat(?:on|a)|dfas?|nfas?)\b/g;
 const DATA_STRUCTURE_WORDS = /\b(?:linked list|binary (?:search )?tree|bst|avl|heap|stack|queue|array|hash ?(?:table|map)|node|pointer|vertex|vertices|adjacency|traversal|bfs|dfs|algorithm|data structure|binary search|sorting|sort)\b/i;
 
 export function applyLessonVisualPolicy(
@@ -276,6 +280,8 @@ export function applyLessonVisualPolicy(
     aiPictures?: boolean;
     /** The lecture's topic: a maths or computer-science lecture never gets a generated picture (owner, 2026-10-20). */
     topic?: string;
+    /** A typed lesson's asked subject (lib/canvas/subjectDomain.ts): decides the maths and CS rules below. */
+    domain?: SubjectDomain;
     /**
      * The textbook diagram library (lib/figures/library.ts findLibraryFigure), passed in so this
      * policy stays pure: a board's words (and what the syllabus says it must show) → a diagram, or null.
@@ -288,13 +294,18 @@ export function applyLessonVisualPolicy(
   // may turn it into a diagram ("b6: exam → figure (numberLine)" shipped a demo number line in place
   // of the exam question, audit 2026-10-17). It is put back exactly as planned at the end.
   const examIds = new Set(beats.filter((beat) => beat.stage === "exam").map((beat) => beat.id));
+  // A board that redraws a reference page's diagram (lib/canvas/sourceDiagrams.ts), or a message sequence,
+  // keeps its stage whatever the rules below decide: the TLS lecture's two handshake boards, matched to
+  // Cloudflare's diagram, were turned into a "vector diagram" and then a flow chart (2026-10-24). Put back at the end.
+  const keptStages = new Map(beats.filter((beat) => beat.sourceDiagram || beat.stage === "sequence").map((beat) => [beat.id, beat.stage]));
   const changes: string[] = [];
   // A DATA-STRUCTURE BOARD IS FOR DATA STRUCTURES. An essay lesson drew "topic sentence → evidence →
   // because" as a linked list, its words cut to six characters (prompt bench, 2026-10-18): a board that
   // is not about a list, tree, stack, queue, array, graph, hash table or algorithm is a flow of steps.
   // A typed CS lesson's mechanism board (a protocol's servers, a Bloom filter's bits) is a structure even
   // without these words: Raft planned six structure boards and all six became flows (CS test, 2026-10-23).
-  const csLessonText = options.mode === "prompt" ? [options.topic ?? "", ...input.map((b) => b.title)].join(" ") : "";
+  const domain = options.mode === "prompt" ? options.domain : undefined;
+  const csLessonText = options.mode === "prompt" && (!domain || domain === "cs") ? [options.topic ?? "", ...input.map((b) => b.title)].join(" ") : "";
   for (const beat of beats) {
     const words = `${beat.title} ${beat.brief} ${beat.script}`;
     if (beat.stage !== "structure" || DATA_STRUCTURE_WORDS.test(words) || (csLessonText && csMechanismBoard(csLessonText, words))) continue;
@@ -311,7 +322,8 @@ export function applyLessonVisualPolicy(
   // The subject is read from the lecture itself — the student's words AND the planner's board titles
   // and briefs: a student who typed "pythogaras theorm" still gets a maths lecture (owner, 2026-10-20:
   // "can't see the change locally" — the misspelt topic matched no maths word).
-  const labLecture = options.topic !== undefined && isLabLookTopic([options.topic, ...input.map((b) => `${b.title} ${b.brief}`)].join(" "));
+  // Maths is decided by keywords as on the parent branch; only a "cs" answer adds to it (lib/canvas/subjectDomain.ts).
+  const labLecture = domain === "cs" || (options.topic !== undefined && isLabLookTopic([options.topic, ...input.map((b) => `${b.title} ${b.brief}`)].join(" ")));
   const aiPictures = labLecture ? false : options.aiPictures ?? !(typeof process !== "undefined" && process.env?.CANVAS_AI_PICTURES === "off");
   // Pictures are generated, checked by a textbook editor and remembered (lib/canvas/textbookDiagram.ts),
   // so a lesson may show up to four; a verified one costs nothing the next time it is used.
@@ -1157,7 +1169,8 @@ export function applyLessonVisualPolicy(
   // CODE IS WRITTEN ON A CODE BOARD (CS round 4): a board that writes or traces code — "we now express
   // that pattern as pseudocode and trace it" — went on a sketch, where no line is ever lit as Aria speaks.
   // A typed prompt also counts the niche CS topics the shared check misses (lib/canvas/csLessons.ts).
-  if (options.mode !== "strict" && (options.mode === "prompt" ? isTypedCsTopic : isCsTopic)([options.topic ?? "", ...beats.map((b) => b.title)].join(" "))) {
+  const lessonTitles = [options.topic ?? "", ...beats.map((b) => b.title)].join(" ");
+  if (options.mode !== "strict" && (options.mode === "prompt" ? domainIsCs(domain, lessonTitles) : isCsTopic(lessonTitles))) {
     for (const beat of beats) {
       if (beat.refresher || beat.overview || examIds.has(beat.id) || (beat.stage !== "sketch" && beat.stage !== "flow" && beat.stage !== "scene")) continue;
       const text = `${beat.title} ${beat.brief} ${beat.script}`;
@@ -1172,15 +1185,108 @@ export function applyLessonVisualPolicy(
   // A TYPED CS LESSON SHOWS ITS MECHANISM ON THE STRUCTURE (lib/canvas/csLessons.ts): a protocol's servers
   // and messages, a Bloom filter's bits, KMP's pattern sliding — Raft was six flow charts of concepts and
   // no server was ever drawn (CS test, 2026-10-23). The opening map board stays a flow.
-  if (options.mode === "prompt") {
-    const lessonText = [options.topic ?? "", ...beats.map((b) => b.title)].join(" ");
+  if (options.mode === "prompt" && (!domain || domain === "cs")) {
+    const lessonText = lessonTitles;
     beats.forEach((beat, i) => {
       if (i === 0 || beat.refresher || beat.overview || examIds.has(beat.id)) return;
-      if (beat.stage !== "flow" && beat.stage !== "scene" && beat.stage !== "sketch" && beat.stage !== "illustration") return;
-      if (!csMechanismBoard(lessonText, `${beat.title} ${beat.brief} ${beat.script}`)) return;
-      changes.push(`${beat.id}: ${beat.stage} → structure (the mechanism at work)`);
+      if (beat.sourceDiagram) return;
+      const target = csMechanismStage(lessonText, `${beat.title} ${beat.brief} ${beat.script}`);
+      if (!target) return;
+      // A message exchange is a sequence even when the plan drew it as a graph of two machines (TCP lecture, 2026-10-24).
+      if (beat.stage !== "flow" && beat.stage !== "scene" && beat.stage !== "sketch" && beat.stage !== "illustration" && !(target === "sequence" && beat.stage === "structure")) return;
+      changes.push(`${beat.id}: ${beat.stage} → ${target} (the mechanism at work)`);
+      beat.stage = target;
+      beat.figure = undefined;
+    });
+  }
+
+  // FEWER FREE SKETCHES (owner, 2026-10-25: "I don't wanna see such petty issues again"). Every unreadable
+  // board of the CS rating run was a free sketch, where the model places each shape itself; a structure is
+  // laid out by code. On a typed CS lesson, a sketch of a graph, tree, list, array, queue, stack, heap or
+  // state machine (two such words on the board) is drawn as a structure.
+  if (options.mode === "prompt" && domainIsCs(domain, lessonTitles)) {
+    for (const beat of beats) {
+      // A sketch, or a maths figure (the odd cycle came out as a geometry triangle with angle arcs, 2026-10-25).
+      if ((beat.stage !== "sketch" && beat.stage !== "figure") || beat.figureAsset || beat.refresher || beat.overview || examIds.has(beat.id) || keptStages.has(beat.id)) continue;
+      const found = new Set((`${beat.title} ${beat.brief} ${beat.script}`.toLowerCase().match(STRUCTURE_WORDS) ?? []).map((w) => w.replace(/(?:es|s)$/, "")));
+      if (found.size < 2) continue;
+      changes.push(`${beat.id}: ${beat.stage} → structure (${[...found].slice(0, 3).join(", ")}: drawn by code, not placed by hand)`);
       beat.stage = "structure";
       beat.figure = undefined;
+    }
+  }
+
+  for (const beat of beats) {
+    const kept = keptStages.get(beat.id);
+    if (!kept || beat.stage === kept) continue;
+    changes.push(`${beat.id}: ${beat.stage} → ${kept} (kept: ${beat.sourceDiagram ? "redraws the page's diagram" : "a message sequence"})`);
+    Object.assign(beat, { stage: kept, figure: undefined, figureAsset: undefined });
+    if (beat.requiredVisual) beat.requiredVisual.stages = [kept];
+  }
+
+  // AN OPERATING-SYSTEMS LESSON DRAWS THE PICTURES OS TEXTS DRAW (owner, 2026-10-25: "precision was
+  // literally zero" — a multithreading lecture's state, sharing and model boards were forced into graphs,
+  // failed, and shipped as free sketches with arrows from nowhere). A lifecycle is a state diagram, an
+  // address space a memory layout, a schedule a Gantt chart, two threads racing a sequence — all placed by
+  // code (lib/canvas/osDiagrams.ts). A page's state machine or layer stack is redrawn the same way. A free
+  // sketch is never kept: it becomes a flow, which code lays out.
+  if (options.mode === "prompt" && domainIsCs(domain, lessonTitles) && isTypedOsTopic(lessonTitles)) {
+    beats.forEach((beat, i) => {
+      if (beat.refresher || beat.overview || examIds.has(beat.id) || beat.stage === "code" || beat.stage === "exam") return;
+      const page = beat.sourceDiagram?.kind;
+      const target = page === "state-machine" ? "states"
+        : page === "layers" ? "memory"
+        : page || beat.stage === "sequence" ? null
+        : (i > 0 ? osStageFor(`${beat.title} ${beat.brief} ${beat.script}`, `${beat.brief} — ${beat.title}`) : null) ?? (beat.stage === "sketch" ? "flow" : null);
+      if (!target || target === beat.stage) return;
+      changes.push(`${beat.id}: ${beat.stage} → ${target} (operating systems: ${target === "flow" ? "laid out by code, not placed by hand" : `a ${target} picture`})`);
+      Object.assign(beat, { stage: target, figure: undefined, figureAsset: undefined });
+      if (beat.requiredVisual) beat.requiredVisual.stages = [target];
+    });
+  }
+
+  // NO FREE SKETCHES IN COMPUTER SCIENCE (owner, 2026-10-25: "there should not be free sketches for CS"). A
+  // sketch, or a free-hand vector diagram, is placed by the model shape by shape: crowded parts and labels with
+  // no room were the first cause of boards failing every attempt. Every typed CS board is one code lays out — a
+  // structure, sequence, state diagram, memory layout, Gantt chart, mapping, code or flow. What is left after
+  // the rules above becomes a flow. Maths keeps its sketches (equations and graphs need them).
+  if (options.mode === "prompt" && domainIsCs(domain, lessonTitles)) {
+    for (const beat of beats) {
+      if (examIds.has(beat.id)) continue;
+      const freeHand = beat.stage === "sketch" || beat.stage === "diagram" || (beat.stage === "figure" && (beat.figure === "drawn" || !beat.figure) && !beat.figureAsset);
+      if (!freeHand) continue;
+      changes.push(`${beat.id}: ${beat.stage}${beat.figure ? ` (${beat.figure})` : ""} → flow (computer science: laid out by code, never a free sketch)`);
+      Object.assign(beat, { stage: "flow", figure: undefined, figureAsset: undefined });
+      if (beat.requiredVisual) beat.requiredVisual.stages = ["flow"];
+    }
+  }
+
+  // EACH PROOF ON ITS OWN FIGURE (owner, 2026-10-25: "it did derivation of trapezoid but there was no trapezoid
+  // drawn"). A Pythagoras lecture taught Garfield's trapezoid and the similar-triangles proof over a plain right
+  // triangle, and its cancelling board lost the four-triangle square it was cancelling. A board whose words name
+  // a particular proof (a trapezoid, the altitude and similar triangles) gets that proof's figure in place of the
+  // general triangle; a board that continues the previous board's proof keeps its figure.
+  if (options.mode !== "strict" && isMathsTopic([options.topic ?? "", ...beats.map((b) => `${b.title} ${b.brief}`)].join(" "))) {
+    const SPECIFIC = ["pythagorasGarfield", "pythagorasSimilar", "pythagorasSquares"];
+    const PROOF_FIGURES = new Set([...SPECIFIC, "pythagorasProof"]);
+    const CONTINUES = /\b(?:continu\w*|same proof|this proof|the previous (?:board|proof|step|equation)s?|the (?:two|first|second) (?:ratio|similarity|area)\w*|we now (?:expand|cancel|add|subtract|translate|combine|make the previous)|from the (?:first|second|previous))\b/i;
+    beats.forEach((beat, i) => {
+      if (beat.refresher || examIds.has(beat.id) || (beat.stage !== "equation" && beat.stage !== "figure")) return;
+      const text = boardText(beat);
+      const specific = SPECIFIC.map((n) => figureComponent(n)!).find((c) => c.match.test(text));
+      if (specific && beat.figure !== specific.name && (!beat.figure || beat.figure === "triangle" || PROOF_FIGURES.has(beat.figure))) {
+        changes.push(`${beat.id}: ${beat.figure ?? beat.stage} → ${specific.name} (the proof this board names)`);
+        Object.assign(beat, { figure: specific.name, figureAsset: undefined, objects: labelledFigureParts(specific, beat.requiredVisual?.mustShow ?? []) });
+        return;
+      }
+      const prev = beats[i - 1];
+      // Its opening says so ("We continue the same proof…"), in its first two sentences.
+      const first = canvasSentences(beat.script).slice(0, 2).join(" ");
+      if (i > 0 && prev?.figure && PROOF_FIGURES.has(prev.figure) && beat.figure !== prev.figure && (!beat.figure || beat.figure === "triangle") && CONTINUES.test(`${beat.title} ${first}`)) {
+        const kept = figureComponent(prev.figure)!;
+        changes.push(`${beat.id}: ${beat.figure ?? beat.stage} → ${kept.name} (continues the proof on the board before)`);
+        Object.assign(beat, { figure: kept.name, figureAsset: undefined, objects: labelledFigureParts(kept, beat.requiredVisual?.mustShow ?? []) });
+      }
     });
   }
 

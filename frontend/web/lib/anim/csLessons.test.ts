@@ -245,3 +245,10 @@ test("BST review: a new node made first and linked a step later is not removed a
   const relink: Array<{ s: number; ops: DsOp[] }> = [{ s: 0, ops: [{ op: "unlink", from: "n3", to: "n4" }, { op: "unlink", from: "n8", to: "n3" }, { op: "remove", id: "n3" }] }, { s: 1, ops: [{ op: "link", from: "n8", to: "n4", side: "left" }] }];
   assert.equal(removeCutNodes(tree, relink), null);
 });
+
+test("a tied note does not drag the notes after it late (NFA board, CS rating run)", () => {
+  const script = "We have the destinations; now we identify where the DFA starts. The DFA start state is the epsilon-closure of the NFA start state, so it is {q0, q1}. A DFA state is accepting when its set contains at least one NFA accepting state. Since q3 accepts, every DFA set containing q3 accepts. For our machine, {q2} is not accepting, but {q2, q3} is accepting.";
+  const notes = anchorTraceNotes([{ text: "DFA start = {q0, q1}", s: 1 }, { text: "q3 is NFA accepting", s: 3 }, { text: "Contains q3 → accepting", s: 3 }, { text: "{q2} not accepting", s: 4 }], script);
+  assert.equal(notes[2].s, 3, "the note after a tied one can still go on the earlier tied sentence");
+  assert.equal(notes[3].s, 4);
+});

@@ -63,6 +63,7 @@ import { numberLine } from "./components/numberLine";
 import { shapes3d } from "./components/shapes3d";
 import { triangle } from "./components/triangle";
 import { pythagorasProof } from "./components/pythagorasProof";
+import { pythagorasGarfield, pythagorasSimilar, pythagorasSquares } from "./components/pythagorasProofs";
 import { areaModel } from "./components/areaModel";
 import { vectors } from "./components/vectors";
 import { probabilityTree } from "./components/probabilityTree";
@@ -125,7 +126,7 @@ export const FIGURE_COMPONENTS: FigureComponent[] = [
   supplyDemand, ppf, adAs, costRevenue, circularFlow,
   scatterPlot, histogram, boxPlot, cumulativeFrequency, barChart, sectorArc, pieChart, inferenceDistribution,
   // The Visuals Lab maths figures (2026-10-20): the proof before the general triangle, area before fractions.
-  riemannSum, slopeField, argand, unitCircle, circleTheorem, sequences, parallelLines, bearings, coordinateGrid, numberLine, shapes3d, pythagorasProof, triangle, vectors, probabilityTree, dotPlot, venn, areaModel, fractionModel, functionGraph,
+  riemannSum, slopeField, argand, unitCircle, circleTheorem, sequences, parallelLines, bearings, coordinateGrid, numberLine, shapes3d, pythagorasGarfield, pythagorasSimilar, pythagorasSquares, pythagorasProof, triangle, vectors, probabilityTree, dotPlot, venn, areaModel, fractionModel, functionGraph,
   timeline, causeConsequence, sourceCard, evaluationScale, conceptTable,
 ];
 

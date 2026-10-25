@@ -20,6 +20,8 @@ import { partBodies, shapeBoxes } from "../figures/bounds";
 import { figureComponent } from "../figures/registry";
 import type { FigureDrawing } from "../figures/types";
 import { compileDiagram } from "../diagrams/render";
+import { sequenceGeometry, type SequenceGeometry } from "./sequence";
+import { ganttGeometry, mappingGeometry, memoryGeometry, statesGeometry, type GanttGeometry, type MappingGeometry, type MemoryGeometry, type StatesGeometry } from "./osDiagrams";
 import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type DiagramStage, type EquationStage, type ExamStage, type FigureStage, type FlowNode, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage, type SketchItem, type SketchShape as SketchShapeT, type SketchStage, type StructureStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
@@ -53,7 +55,14 @@ export type Mark =
   | { type: "molecule"; id: string; rect: Rect; molecule: MoleculeStage["molecules"][number]; s: number }
   | { type: "atom-map"; id: string; rect: Rect; stage: AtomMapStage; s: number }
   /** A data structure, one frame per step (lib/canvas/structure.ts): the renderer glides between them. */
-  | { type: "structure"; id: string; rect: Rect; kind: DsKind; directed: boolean; frames: DsFrame[]; layout: DsLayout; captions: Array<{ s: number; text: string }>; captionY: number; s: number };
+  | { type: "structure"; id: string; rect: Rect; kind: DsKind; directed: boolean; frames: DsFrame[]; layout: DsLayout; captions: Array<{ s: number; text: string }>; captionY: number; s: number }
+  /** A message sequence (lib/canvas/sequence.ts): lifelines and time-ordered arrows, placed by code. */
+  | { type: "sequence"; id: string; rect: Rect; geometry: SequenceGeometry; s: number }
+  /** The operating-systems pictures (lib/canvas/osDiagrams.ts): a lifecycle, an address space, a CPU schedule. */
+  | { type: "os-states"; id: string; rect: Rect; geometry: StatesGeometry; s: number }
+  | { type: "os-memory"; id: string; rect: Rect; geometry: MemoryGeometry; s: number }
+  | { type: "os-gantt"; id: string; rect: Rect; geometry: GanttGeometry; s: number }
+  | { type: "os-mapping"; id: string; rect: Rect; geometry: MappingGeometry; s: number };
 
 export type PanelLayout = {
   marks: Mark[];
@@ -77,7 +86,7 @@ const FIGURE_BESIDE_NOTES: Rect = { x: 40, y: 96, w: 652, h: 452 };
 const RIGHT_NOTES_X = 716;
 const RIGHT_NOTES_W = 248;
 /** Maths and computer-science figures, which may take the full-height layout when it draws them bigger. */
-const MATHS_FIGURES = new Set(["circleTheorem", "dotPlot", "triangle", "vectors", "parallelLines", "bearings", "shapes3d", "pythagorasProof", "areaModel", "logicCircuit", "coordinateGrid", "functionGraph", "calculusKit", "argand", "boxPlot", "cumulativeFrequency", "fractionModel"]);
+const MATHS_FIGURES = new Set(["circleTheorem", "dotPlot", "triangle", "vectors", "parallelLines", "bearings", "shapes3d", "pythagorasProof", "pythagorasGarfield", "pythagorasSimilar", "pythagorasSquares", "areaModel", "logicCircuit", "coordinateGrid", "functionGraph", "calculusKit", "argand", "boxPlot", "cumulativeFrequency", "fractionModel"]);
 
 /** Average advance of the board font (Nunito SemiBold), in em. Close enough to lay text out. */
 const EM = 0.54;
@@ -239,7 +248,9 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   // Putting their notes in the normal left rail made a correct 440 px scientific figure render at
   // roughly 150 CSS pixels. Figure boards therefore use the wide stage and place supporting facts
   // in a compact evidence strip below it.
-  const figureWithNotes = hasNotes && (spec.stage.kind === "figure" || spec.stage.kind === "diagram");
+  // A big lifecycle (five states or more) or mappings side by side need the width too: six thread states beside
+  // the notes column put two transition labels on each other (2026-10-25).
+  const figureWithNotes = hasNotes && (spec.stage.kind === "figure" || spec.stage.kind === "diagram" || (spec.stage.kind === "states" && spec.stage.states.length >= 5) || (spec.stage.kind === "mapping" && spec.stage.groups.length >= 2));
   // A square or tall maths figure under a heading and a notes strip came out a quarter of the board
   // wide (QA 2026-10-21): it takes the full height, notes on the right, when that draws it at least
   // 12% bigger. Other subjects' figures keep the strip.
@@ -356,6 +367,61 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
     case "sketch":
       layoutSketch(spec.stage, stage, marks, add, spec.notes.map((n) => n.text));
       break;
+    case "sequence": {
+      const geometry = sequenceGeometry(spec.stage, stage, textWidth);
+      const s = Math.min(...geometry.lanes.map((l) => l.s));
+      marks.push({ type: "sequence", id: "sequence", rect: stage, geometry, s });
+      add("sequence", stage, s);
+      for (const l of geometry.lanes) add(`lane-${l.id}`, { ...l.head, h: geometry.lifeline.bottom - l.head.y }, l.s);
+      for (const m of geometry.messages) {
+        const x = Math.min(m.p0.x, m.p1.x), y = Math.min(m.p0.y, m.labelAt.y - m.labelSize);
+        add(`msg-${m.id}`, { x, y, w: Math.abs(m.p1.x - m.p0.x), h: Math.max(m.p1.y, m.detailAt?.y ?? m.p1.y) + 10 - y }, m.s);
+      }
+      break;
+    }
+    case "states": {
+      const geometry = statesGeometry(spec.stage, stage, textWidth);
+      const s = Math.min(...geometry.states.map((st) => st.s));
+      marks.push({ type: "os-states", id: "states", rect: stage, geometry, s });
+      add("states", stage, s);
+      for (const st of geometry.states) add(`state-${st.id}`, { x: st.cx - st.rx, y: st.cy - st.ry, w: st.rx * 2, h: st.ry * 2 }, st.s);
+      for (const t of geometry.transitions) {
+        const xs = t.samples.map((p) => p.x), ys = t.samples.map((p) => p.y);
+        add(`tr-${t.id}`, union([{ x: Math.min(...xs), y: Math.min(...ys), w: Math.max(...xs) - Math.min(...xs), h: Math.max(...ys) - Math.min(...ys) }, ...(t.labelBox ? [t.labelBox] : [])]), t.s);
+      }
+      for (const tk of geometry.tokens) {
+        const first = tk.stops[0];
+        if (first) add(`token-${tk.id}`, { x: first.x - tk.w / 2, y: first.y - tk.h / 2, w: tk.w, h: tk.h }, first.s);
+      }
+      break;
+    }
+    case "memory": {
+      const geometry = memoryGeometry(spec.stage, stage, textWidth);
+      const s = Math.min(...geometry.blocks.map((b) => b.s));
+      marks.push({ type: "os-memory", id: "memory", rect: stage, geometry, s });
+      add("memory", stage, s);
+      for (const c of geometry.columns) add(`col-${c.id}`, c.rect, c.s);
+      for (const b of geometry.blocks) add(`seg-${b.id}`, b.rect, b.s);
+      break;
+    }
+    case "gantt": {
+      const geometry = ganttGeometry(spec.stage, stage, textWidth);
+      const s = Math.min(...geometry.slots.map((sl) => sl.s));
+      marks.push({ type: "os-gantt", id: "gantt", rect: stage, geometry, s });
+      add("gantt", stage, s);
+      for (const sl of geometry.slots) add(sl.id, sl.rect, sl.s);
+      if (geometry.queue) add("queue", { x: geometry.queue.caption.x, y: geometry.queue.y, w: stage.w, h: geometry.queue.chipH }, Math.min(...geometry.queue.states.map((q) => q.s)));
+      break;
+    }
+    case "mapping": {
+      const geometry = mappingGeometry(spec.stage, stage, textWidth);
+      const s = Math.min(...geometry.items.map((it) => it.s));
+      marks.push({ type: "os-mapping", id: "mapping", rect: stage, geometry, s });
+      add("mapping", stage, s);
+      for (const g of geometry.groups) add(`map-${g.id}`, g.frame, g.s);
+      for (const it of geometry.items) add(`item-${it.id}`, it.rect, it.s);
+      break;
+    }
   }
   targets.stage = { ...stage, s: 0 };
   targets.board = { x: 0, y: 0, w: PANEL_W, h: PANEL_H, s: 0 };
@@ -671,6 +737,9 @@ function sketchSize(item: SketchItem, w: number, k: number): { h: number; size: 
  * only as needed); an item that would land on another moves to the nearest free spot, else shrinks.
  */
 /** Each item where the writer put it, or null when something would have to be left off. */
+/** The smallest writing a sketch may show (px): below it the board is sent back (owner: "very very small"). */
+export const SKETCH_MIN_TEXT = 13;
+
 function placeSketchFreely(stage: SketchStage, area: Rect): SketchPlaced[] | null {
   const gx = area.w / 12;
   const gy = area.h / 8;
@@ -682,11 +751,15 @@ function placeSketchFreely(stage: SketchStage, area: Rect): SketchPlaced[] | nul
     const box = { x: area.x + at.x * gx, y: area.y + at.y * gy, w: at.w * gx, h: at.h * gy };
     let k = 1;
     let sz = sketchSize(item, box.w, k);
-    const floor = item.type === "text" || item.type === "box" || item.type === "table" ? 0.8 : 0.5;
+    // Writing never shrinks below 80%: the bipartite lecture's "K(m,n) has m × n edges" was set at half size,
+    // unreadable (2026-10-25). Writing that still does not fit takes more room below instead.
+    const writing = item.type === "text" || item.type === "box" || item.type === "table" || item.type === "math";
+    const floor = writing ? 0.8 : 0.5;
     while (sz.h > box.h && k > floor) {
       k -= 0.05;
       sz = sketchSize(item, box.w, k);
     }
+    if (writing && sz.h > box.h) box.h = sz.h;
     let w = sz.w ?? box.w;
     let h = Math.min(sz.h, box.h);
     if (sz.w !== undefined && sz.h > box.h) {
@@ -696,6 +769,7 @@ function placeSketchFreely(stage: SketchStage, area: Rect): SketchPlaced[] | nul
       h = box.h;
     }
     let rect: Rect = { x: box.x + (box.w - w) / 2, y: box.y, w, h };
+    const asked = { x: rect.x, y: rect.y };
     // A drawing that only touches its neighbour (writing in the next grid cell) is drawn a little
     // smaller in its own spot — it was halved, a proof's circle shrank to an eighth of the board.
     if ((item.type === "shapes" || item.type === "graph") && (hits(rect) || !inside(rect))) {
@@ -734,6 +808,12 @@ function placeSketchFreely(stage: SketchStage, area: Rect): SketchPlaced[] | nul
       }
     }
     const final = sketchSize(item, rect.w, k);
+    // Faults a reader would see, reported so the writer redraws (generate.ts "text-dropped"): writing set too
+    // small to read, and a part moved far from where it was drawn (it no longer sits with what it labels).
+    const words = item.type === "text" || item.type === "box" ? item.text : item.type === "math" ? item.lines.map((l) => l.tex).join(" ") : item.id;
+    if (writing && final.size < SKETCH_MIN_TEXT) recordLayoutDrop(`the writing "${words.slice(0, 40)}" would be ${Math.round(final.size)} px, too small to read (write less, or give it more room)`);
+    if ((item.type === "shapes" || item.type === "graph") && k < 0.7) recordLayoutDrop(`the drawing "${item.id}" had to be shrunk to ${Math.round(k * 100)}% to fit (give it more room, or put fewer parts beside it)`);
+    if (Math.hypot(rect.x - asked.x, rect.y - asked.y) > Math.max(gx, gy) * 1.5) recordLayoutDrop(`"${item.id}" had no room where it was drawn and was moved away from it (make the parts smaller, or leave room between them)`);
     placed.push({ item, rect: { ...rect, h: Math.min(rect.h, Math.max(final.h, item.type === "shapes" || item.type === "graph" ? rect.h : 0)) }, size: final.size, lines: final.lines, lineH: final.lineH, labelW: final.labelW });
   }
   return placed;
@@ -764,8 +844,32 @@ function tidySketch(stage: SketchStage, notes: string[]): SketchStage {
   return items.length ? { ...stage, items } : stage;
 }
 
+/**
+ * A drawing written in exactly the same place, on the same grid, as an earlier one is drawn ON it: the
+ * dashed "missing A–D" edge was its own drawing over the first graph, was moved to a free corner by the
+ * layout, and floated there alone (bipartite lecture, 2026-10-25). Its shapes join the earlier drawing.
+ */
+export function mergeSketchOverlays(stage: SketchStage): SketchStage {
+  const items: SketchItem[] = [];
+  const same = (a: { x: number; y: number; w: number; h: number }, b: { x: number; y: number; w: number; h: number }) => a.x === b.x && a.y === b.y && a.w === b.w && a.h === b.h;
+  for (const it of stage.items) {
+    if (it.type === "shapes" && it.at) {
+      const base = items.find((b): b is Extract<SketchItem, { type: "shapes" }> => b.type === "shapes" && Boolean(b.at) && same(b.at!, it.at!) && b.grid.w === it.grid.w && b.grid.h === it.grid.h);
+      if (base) {
+        const ids = new Set(base.shapes.map((sh) => sh.id));
+        base.shapes = [...base.shapes, ...it.shapes.map((sh) => ({ ...sh, id: ids.has(sh.id) ? `${it.id}-${sh.id}` : sh.id, s: Math.max(sh.s, it.s) }))];
+        continue;
+      }
+      items.push({ ...it, shapes: [...it.shapes] });
+      continue;
+    }
+    items.push(it);
+  }
+  return items.length === stage.items.length ? stage : { ...stage, items };
+}
+
 function layoutSketch(rawStage: SketchStage, area: Rect, marks: Mark[], add: Add, notes: string[] = []) {
-  const stage = tidySketch(rawStage, notes);
+  const stage = mergeSketchOverlays(tidySketch(rawStage, notes));
   const freely = stage.items.length && stage.items.every((it) => it.at) ? placeSketchFreely(stage, area) : null;
   if (freely) {
     const placed = freely;
@@ -776,6 +880,8 @@ function layoutSketch(rawStage: SketchStage, area: Rect, marks: Mark[], add: Add
     registerSketchTargets(placed, add);
     return;
   }
+  // The parts did not fit where they were drawn, so they are stacked in bands below — smaller than asked.
+  if (stage.items.length && stage.items.every((it) => it.at)) recordLayoutDrop("the sketch's parts did not fit where they were drawn, so they were stacked and shrunk (draw fewer parts, with more room between them)");
   const visual = (it: SketchItem) => it.type === "shapes" || it.type === "graph" || it.type === "code";
   const colOf = (it: SketchItem) => it.col ?? (visual(it) ? "right" : "left");
   type Band = { full?: SketchItem; left: SketchItem[]; right: SketchItem[] };
@@ -936,22 +1042,29 @@ function clearSketchLabels(item: Extract<SketchItem, { type: "shapes" }>, rect: 
    * shape also keeps off its own outline and off every shape's body; a label over a filled area is
    * otherwise fine (in a square tiled by triangles, every spot is inside some body).
    */
-  const free = (b: Rect, own: string, outside = false) =>
+  // `avoidBodies`: also off every shape's body — a line's label or a free label written over a box or
+  // circle ("1000" on the phone's box, TCP lecture 2026-10-24).
+  // `inside`: a free label written inside a box (a document's fields inside its frame) stays inside that box,
+  // and the box is not in its way (NoSQL lecture, 2026-10-24: the fields were pushed across the frame's edge).
+  const free = (b: Rect, own: string, outside = false, avoidBodies = outside, inside?: { id: string; b: Rect }) =>
+    (!inside || within(b, inside.b)) &&
     b.x >= 0 && b.y >= 0 && b.x + b.w <= item.grid.w && b.y + b.h <= item.grid.h &&
     !segs.some((s) => (outside || s.id !== own) && s.segs.some((g) => segHitsBox(g, b))) &&
-    !(outside && bodies.some((o) => hit(b, o.b))) &&
+    !(avoidBodies && bodies.some((o) => (outside || o.id !== own) && o.id !== inside?.id && hit(b, o.b))) &&
     !taken.some((t) => hit(b, t));
   const within = (b: Rect, body: Rect) => b.x >= body.x && b.y >= body.y && b.x + b.w <= body.x + body.w && b.y + b.h <= body.y + body.h;
-  const ringSearch = (x: number, y: number, label: string, px: number, own: string, outside = false): [number, number] | null => {
+  const ringSearch = (x: number, y: number, label: string, px: number, own: string, outside = false, avoidBodies = outside, inside?: { id: string; b: Rect }): [number, number] | null => {
     const step = Math.max(0.3, (px * 0.6) / ky);
     for (let ring = 0; ring <= 7; ring++) {
       const tries = ring === 0 ? [[0, 0]] : Array.from({ length: 12 }, (_, i) => [Math.cos((i / 12) * 2 * Math.PI) * ring * step, Math.sin((i / 12) * 2 * Math.PI) * ring * step]);
-      for (const [dx, dy] of tries) if (free(boxAt(x + dx, y + dy, label, px), own, outside)) return [x + dx, y + dy];
+      for (const [dx, dy] of tries) if (free(boxAt(x + dx, y + dy, label, px), own, outside, avoidBodies, inside)) return [x + dx, y + dy];
     }
     return null;
   };
   const at = new Map<string, { x: number; y: number; size: number }>();
   const put = (id: string, x: number, y: number, label: string, px: number) => {
+    // A label squeezed below a readable size is a fault the writer fixes (a bigger shape, a shorter label).
+    if (px < SKETCH_MIN_TEXT - 0.5) recordLayoutDrop(`the label "${label.slice(0, 30)}" would be ${Math.round(px)} px, too small to read (make its shape bigger or the label shorter)`);
     at.set(id, { x, y, size: px });
     taken.push(boxAt(x, y, label, px));
   };
@@ -998,7 +1111,7 @@ function clearSketchLabels(item: Extract<SketchItem, { type: "shapes" }>, rect: 
     const off = labelSize * 0.95;
     const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
     const sides: Array<[number, number]> = [[mx + (nx * off) / kx, my + (ny * off) / ky], [mx - (nx * off) / kx, my - (ny * off) / ky]];
-    const spot = sides.find(([x, y]) => free(boxAt(x, y, sh.label!, labelSize), sh.id)) ?? ringSearch(sides[0][0], sides[0][1], sh.label, labelSize, sh.id);
+    const spot = sides.find(([x, y]) => free(boxAt(x, y, sh.label!, labelSize), sh.id, false, true)) ?? ringSearch(sides[0][0], sides[0][1], sh.label, labelSize, sh.id, false, true);
     if (!spot) recordLayoutDrop(`the label "${sh.label}" has no clear room beside its line (the drawing is too crowded: space the shapes further apart)`);
     put(sh.id, (spot ?? sides[0])[0], (spot ?? sides[0])[1], sh.label, labelSize);
   }
@@ -1025,7 +1138,9 @@ function clearSketchLabels(item: Extract<SketchItem, { type: "shapes" }>, rect: 
   // 4. Free labels: where asked, or the nearest clear spot.
   for (const sh of item.shapes) {
     if (sh.kind !== "label" || !sh.label) continue;
-    const spot = ringSearch(sh.x!, sh.y!, sh.label, labelSize, sh.id);
+    // The smallest box it was written inside, if any: it stays in there.
+    const inside = bodies.filter((o) => sh.x! > o.b.x && sh.x! < o.b.x + o.b.w && sh.y! > o.b.y && sh.y! < o.b.y + o.b.h).sort((a, c) => a.b.w * a.b.h - c.b.w * c.b.h)[0];
+    const spot = ringSearch(sh.x!, sh.y!, sh.label, labelSize, sh.id, false, true, inside);
     if (!spot) recordLayoutDrop(`the label "${sh.label}" has no clear room near where it was put (the drawing is too crowded there)`);
     put(sh.id, (spot ?? [sh.x!, sh.y!])[0], (spot ?? [sh.x!, sh.y!])[1], sh.label, labelSize);
   }

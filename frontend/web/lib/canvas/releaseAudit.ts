@@ -1,8 +1,10 @@
 import { sketchGraphIssues } from "./sketch";
 import { figureComponent } from "../figures/registry";
 import { graphIssues } from "./graphCheck";
-import { layoutPanel } from "./layout";
+import { layoutPanel, textWidth } from "./layout";
 import { layoutIssues } from "./layoutQa";
+import { sequenceOverlaps } from "./sequence";
+import { ganttOverlaps, mappingOverlaps, memoryOverlaps, statesOverlaps } from "./osDiagrams";
 import { checkNumbers, numberIssuesText } from "./numberCheck";
 import { predictionRevealIssues, quizMatchesPrediction } from "./predict";
 import { quizIssues } from "./quizLint";
@@ -44,6 +46,18 @@ export function auditBoardForRelease(spec: CanvasBoardSpec, beat: CanvasPlanBeat
   if (spec.stage.kind === "graph") add("graph", graphIssues(spec.stage, spec.interaction?.kind === "try" ? Object.fromEntries(spec.interaction.controls.map((control) => [control.var, control.value])) : {}));
   add("quiz", quizIssues(spec.interaction, `${beat.title} ${beat.brief} ${beat.script}`));
   if (spec.stage.kind === "scene" || spec.stage.kind === "flow") add("layout", layoutIssues(layoutPanel(spec), spec));
+  if (spec.stage.kind === "sequence") {
+    const seq = layoutPanel(spec).marks.find((m) => m.type === "sequence");
+    if (seq?.type === "sequence") add("layout", sequenceOverlaps(seq.geometry));
+  }
+  // The operating-systems pictures (lib/canvas/osDiagrams.ts): placed by code, checked for the crowded cases.
+  if (spec.stage.kind === "states" || spec.stage.kind === "memory" || spec.stage.kind === "gantt" || spec.stage.kind === "mapping") {
+    const os = layoutPanel(spec).marks.find((m) => m.type === "os-states" || m.type === "os-memory" || m.type === "os-gantt" || m.type === "os-mapping");
+    if (os?.type === "os-mapping") add("layout", mappingOverlaps(os.geometry, textWidth));
+    if (os?.type === "os-states") add("layout", statesOverlaps(os.geometry));
+    if (os?.type === "os-memory") add("layout", memoryOverlaps(os.geometry, textWidth));
+    if (os?.type === "os-gantt") add("layout", ganttOverlaps(os.geometry, textWidth, os.rect));
+  }
   // A figure squeezed into the board until its words cannot be read (a balance diagram's cards came
   // out at about 7 px, audit 2026-10-17) fails the student view, so the writer shortens or cuts them.
   if (spec.stage.kind === "figure" || spec.stage.kind === "diagram") {
@@ -108,7 +122,7 @@ export function languageIssues(spec: CanvasBoardSpec, script: string): string[] 
 }
 
 /** Geometry figures whose written angles must come from the narration. */
-const GEOMETRY_FIGURES = new Set(["circleTheorem", "triangle", "parallelLines", "bearings", "pythagorasProof"]);
+const GEOMETRY_FIGURES = new Set(["circleTheorem", "triangle", "parallelLines", "bearings", "pythagorasProof", "pythagorasGarfield", "pythagorasSimilar", "pythagorasSquares"]);
 
 /**
  * An atom map is ONE balanced reaction. Boards drew complete and incomplete combustion together

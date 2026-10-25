@@ -21,6 +21,8 @@ import { snapEquilibrium } from "./graphCheck";
 import { DS_MAX_STEPS, parseOps, parseStructure } from "./structure";
 import { MAX_FRAMES, stackIsConsistent, stackView } from "./callStack";
 import { validateSketch } from "./sketch";
+import { validateSequenceStage } from "./sequence";
+import { validateGanttStage, validateMappingStage, validateMemoryStage, validateStatesStage } from "./osDiagrams";
 import { repairTex } from "../equationSpec";
 import {
   CANVAS_ICONS,
@@ -276,6 +278,11 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
   if (kind === "code") return validateCode(r, sentence, unique);
   if (kind === "sketch") return validateSketch(r, sentence, unique);
   if (kind === "structure") return validateStructureStage(r, sentence, unique);
+  if (kind === "sequence") return validateSequenceStage(r, sentence, unique);
+  if (kind === "states") return validateStatesStage(r, sentence, unique);
+  if (kind === "memory") return validateMemoryStage(r, sentence, unique);
+  if (kind === "gantt") return validateGanttStage(r, sentence, unique);
+  if (kind === "mapping") return validateMappingStage(r, sentence, unique);
 
   if (kind === "molecule") {
     const molecules = arr(r.molecules).map((m) => obj(m)).map((m, mi) => {
@@ -962,7 +969,7 @@ function stateOf(rawState: unknown): Array<{ name: string; value: string }> {
     // Up to 28 characters: "account_a.balance" was cut to "account_a.bala" (CS round, 2026-10-22).
     ? rawState.map((v) => obj(v)).map((v) => ({ name: str(v.name, 28), value: cell(v.value) }))
     : Object.entries(obj(rawState)).map(([name, value]) => ({ name: str(name, 28), value: cell(value) }));
-  return stateList.filter((v) => v.name && /^[A-Za-z_][\w.\[\]]*$/.test(v.name)).slice(0, 5);
+  return stateList.filter((v) => v.name && v.value !== "" && /^[A-Za-z_][\w.\[\]]*$/.test(v.name)).slice(0, 5);
 }
 
 /** One trace cell as text: a number, boolean or string, capped. */
@@ -973,6 +980,13 @@ function cell(v: unknown): string {
   if (Array.isArray(v)) return str(`[${v.map((x) => String(x)).join(", ")}]`, 64);
   const text = typeof v === "string" ? v.trim() : "";
   if (/^[[{(].*[\]})]$/.test(text)) return text.length <= 64 ? text : `${text.slice(0, 60).replace(/,[^,]*$/, "")}, …${text.slice(-1)}`;
+  // Never cut mid-word ("SYN starts; ACK confir", TCP lecture 2026-10-24): a sentence is not a value and
+  // is left off; a longer value is cut at a word and marked.
+  if (text.length > 22) {
+    if (text.split(/\s+/).length >= 3 && !/[\d[\]{}()=]/.test(text)) return "";
+    const cut = text.slice(0, 21).replace(/[\s,;:]+\S*$/, "");
+    return `${cut || text.slice(0, 21)}…`;
+  }
   return str(v, 22);
 }
 

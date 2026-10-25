@@ -13,6 +13,7 @@
 import { isCsTopic } from "./subjectLook";
 import { isDataStructureTopic, isGraphAlgorithmTopic, runStructure } from "./structure";
 import { canvasSentences } from "./plan";
+import { OS_PLAN_RULE } from "./osDiagrams";
 import type { CanvasBoardSpec, DsOp, DsStart } from "./types";
 
 /** Words that also mean something outside computing count only with computing around them. */
@@ -30,6 +31,10 @@ type Family = {
   picture: string | null;
   /** Words of a board that shows the mechanism at work: such a board is drawn on the structure, never as a flow chart. */
   mechanism?: RegExp;
+  /** The stage its mechanism boards use: a data structure ("structure", the default) or a message sequence. */
+  stage?: "structure" | "sequence";
+  /** Draws its own pictures but is not a data-structures lesson (operating systems: lib/canvas/osDiagrams.ts). */
+  notDsa?: boolean;
 };
 
 const FAMILIES: Family[] = [
@@ -75,20 +80,36 @@ const FAMILIES: Family[] = [
     picture: `GAME-TREE SEARCH: draw the game tree as a "tree" structure (3 levels, leaves holding their scores), compute ONE node's value per sentence bottom-up with {"op": "set"}, mark the node being evaluated ("visit"), and cross out a pruned branch with {"op": "mark", "as": "remove"} on the sentence that prunes it; alpha and beta are real numbers in the variables panel.`,
   },
   {
+    // MESSAGES BETWEEN TWO TO FOUR PARTIES (TCP lecture, 2026-10-24): a handshake is a message sequence —
+    // lifelines and arrows in time order — never a graph of two nodes whose messages lie on one line.
+    // Not a data structure: it gets no DSA rules (isTypedDsaTopic).
+    id: "message-exchange",
+    stage: "sequence",
+    mechanism: /\b(?:clients?|servers?|hosts?|hand ?shakes?|messages?|requests?|repl(?:y|ies)|responses?|acks?|syn|syn-ack|fin|packets?|segments?|frames?|sequence numbers?|seq|timeouts?|retransmi\w*|sends?|sent|receiv\w*|exchang\w*|coordinator|participants?|prepare|commit\w*|abort\w*|quer(?:y|ies)|resolvers?)\b/i,
+    strong: /\b(?:three[- ]way handshake|four[- ]way (?:handshake|termination)|tcp(?:\/ip)?|udp|tls|ssl|https?(?: requests?| handshake| request[- ]response)?|dns (?:resolution|lookup|quer(?:y|ies))|dhcp|arp|smtp|icmp|quic|websockets?|rpc|request[- ]response|client[- ]server (?:communication|model|architecture)|stop[- ]and[- ]wait|go[- ]back[- ]n|selective repeat|sliding window protocols?|arq|oauth|kerberos|diffie[- ]hellman|two[- ]phase commit|2pc|three[- ]phase commit)\b/i,
+    draws: true,
+    picture: `MESSAGE EXCHANGE: every board that shows the exchange at work is a "sequence" board — the parties as lanes ("Client", "Server"; at most 4), each message ONE arrow on the sentence that sends it, its name as "label" and what it carries as "detail" in values ("seq=1000", "ack=1001"), and each party's state on its lifeline where it changes (LISTEN, SYN-SENT, ESTABLISHED). Never a graph of two nodes, a flow chart or a sketch for the messages.`,
+  },
+  {
     id: "protocols",
     mechanism: /\b(?:servers?|nodes?|hosts?|clients?|messages?|votes?|voting|leaders?|followers?|candidates?|terms?|heartbeats?|requests?|repl(?:y|ies)|acks?|syn|packets?|timeouts?|crash\w*|elect\w*|commit\w*|prepare)\b/i,
-    strong: /\b(?:paxos|raft (?:consensus|algorithm|protocol|leader|log|cluster)s?|consensus (?:algorithms?|protocols?)|two[- ]phase commit|2pc|three[- ]phase commit|three[- ]way handshake|tcp(?:\/ip)?|udp|gossip protocols?|vector clocks?|lamport (?:clocks?|timestamps?)|byzantine (?:fault|generals?)\w*|cap theorem|consistent hashing|map ?reduce|sharding|dns (?:resolution|lookup)|routing protocols?|distance[- ]vector routing|link[- ]state routing|sliding window protocols?|go[- ]back[- ]n|selective repeat|stop[- ]and[- ]wait|distributed systems?|distributed consensus)\b/i,
+    strong: /\b(?:paxos|raft (?:consensus|algorithm|protocol|leader|log|cluster)s?|consensus (?:algorithms?|protocols?)|gossip protocols?|vector clocks?|lamport (?:clocks?|timestamps?)|byzantine (?:fault|generals?)\w*|cap theorem|consistent hashing|map ?reduce|sharding|routing protocols?|distance[- ]vector routing|link[- ]state routing|distributed systems?|distributed consensus)\b/i,
     weak: /\b(?:raft|leader election|replication|load balanc\w*|heartbeats?|quorum)\b/i,
     draws: true,
     picture: `PROTOCOL / DISTRIBUTED SYSTEM: draw the machines as a "graph" structure with "variant": "directed" — one node per server or host, its value a short name ("A", "B", "C" or "S1"), and NO edges at the start. Each message is ONE {"op": "link", "from", "to", "label"} on the sentence that sends it (label at most 10 characters: "vote?", "yes", "SYN", "ACK"), and {"op": "unlink"} once it is answered; a role that changes is a pointer tag — only "leader" and "candidate", one per server, never "follower" ({"op": "point", "name": "leader", "to": "b"}), and a crashed or failed machine is {"op": "mark", "id", "as": "remove"} — never written to again. Terms, votes, sequence numbers and timeouts are real values in the variables panel ("term": "2", "votes": "[B, C]"). Never a flow chart of concepts for the protocol itself.`,
   },
   {
+    // OPERATING SYSTEMS ARE NOT DATA STRUCTURES (owner, 2026-10-25: a multithreading lecture's boards were
+    // forced into graphs and queues, failed, and fell back to free sketches — "precision was literally zero").
+    // A lifecycle, an address space and a schedule have their own pictures (lib/canvas/osDiagrams.ts); only
+    // paging, deadlock and garbage collection are drawn on a structure, so only their words make a board one.
     id: "operating-systems",
-    mechanism: /\b(?:process(?:es)?|ready queue|frames?|pages?|threads?|locks?|resources?|waits?|holds?|schedul\w*|evict\w*|objects?|roots?|reachable|mark(?:s|ed|ing)?|sweep\w*)\b/i,
+    notDsa: true,
+    mechanism: /\b(?:frames?|page (?:faults?|tables?|replacement)|pages? (?:loaded|evicted|in memory)|evict\w*|deadlock\w*|wait-for graph|resource[- ]allocation graph|holds? (?:R\d|resource)|roots?|reachable|mark(?:ed|ing)?|sweep\w*)\b/i,
     strong: /\b(?:(?:cpu|process|disk) scheduling|scheduling algorithms?|round[- ]robin|first[- ]come,? first[- ]served|fcfs|shortest[- ]job[- ]first|sjf|context switch\w*|page (?:replacement|faults?|tables?)|paging|virtual memory|thrashing|deadlocks?|banker'?s algorithm|mutex(?:es)?|semaphores?|race conditions?|critical sections?|producer[- ]consumer|dining philosophers|multithreading|garbage collect\w*|mark[- ]and[- ]sweep|reference counting|operating systems?|system calls?)\b/i,
     weak: /\b(?:threads?|processes|scheduling|memory allocation|interrupts?)\b/i,
     draws: true,
-    picture: `OPERATING SYSTEMS: draw what the OS manages as a structure — for scheduling, the ready queue as a "queue" (processes P1, P2, … enqueued and dequeued one per sentence); for paging and page replacement, the memory frames as an "array" (one cell per frame, {"op": "set"} as each page is loaded, the evicted page marked "remove"); for deadlock, processes and resources as a directed "graph" (link "P1" → "R1" labelled "waits", "R1" → "P2" labelled "held"); for garbage collection, the objects as a directed "graph" with the roots as pointers, reached objects marked "found" and the unreachable ones removed. Clock times, counters and the page-fault count are real values in the variables panel.`,
+    picture: `OPERATING SYSTEMS: draw what the OS manages as a structure — for paging and page replacement, the memory frames as an "array" (one cell per frame, {"op": "set"} as each page is loaded, the evicted page marked "remove"); for deadlock, processes and resources as a directed "graph" (link "P1" → "R1" labelled "waits", "R1" → "P2" labelled "held"); for garbage collection, the objects as a directed "graph" with the roots as pointers, reached objects marked "found" and the unreachable ones removed; for multithreading models, the user threads ("U1", "U2", "U3") and kernel threads ("K1", "K2") as a directed "graph", each mapping one link. Every node is a name a student reads at once — never "P", "MEM", "RES" or "Mon". The page-fault count and clock times are notes.`,
   },
   {
     id: "automata",
@@ -162,10 +183,17 @@ export function isTypedDsaTopic(text: string | null | undefined): boolean {
   const t = text ?? "";
   if (!t.trim()) return false;
   if (isGraphAlgorithmTopic(t)) return true;
-  if (FAMILIES.some((f) => f.draws && familyMatches(f, t))) return true;
+  // A message exchange (TCP, DNS) is drawn as a sequence, not a data structure: it is not DSA.
+  if (FAMILIES.some((f) => f.draws && f.stage !== "sequence" && !f.notDsa && familyMatches(f, t))) return true;
   if (!isDataStructureTopic(t)) return false;
   const everydayOnly = !isDataStructureTopic(t.replace(EVERYDAY, " "));
   return !everydayOnly || isCsTopic(t) || DS_CONTEXT.test(t);
+}
+
+/** A typed-prompt operating-systems lesson (threads, scheduling, memory, paging, deadlock): drawn with lib/canvas/osDiagrams.ts. */
+export function isTypedOsTopic(text: string | null | undefined): boolean {
+  const t = text ?? "";
+  return Boolean(t.trim()) && familiesOf(t).some((f) => f.id === "operating-systems");
 }
 
 /** A typed-prompt computer-science lesson: the shared CS check, the data structures, or a niche CS topic. */
@@ -181,7 +209,22 @@ export function isTypedCsTopic(text: string | null | undefined): boolean {
  * (CS test, 2026-10-23).
  */
 export function csMechanismBoard(lessonText: string, boardText: string): boolean {
-  return familiesOf(lessonText).some((f) => f.draws && f.picture && f.mechanism?.test(boardText));
+  return csMechanismStage(lessonText, boardText) !== null;
+}
+
+const SENDS = /\b(?:sends?|sent|sending|repl(?:y|ies|ied)|answers?|answered|responds?|responded|returns?|returned|receives?|received|forwards?|asks?|queries|acknowledges?|acknowledged|transmits?|retransmits?)\b/i;
+const MESSAGE = /\b(?:syn|syn-ack|ack|fin|rst|requests?|repl(?:y|ies)|responses?|quer(?:y|ies)|answers?|referrals?|packets?|segments?|frames?|messages?|hello|certificates?|keys?|votes?|prepare|commit|abort|tokens?)\b/i;
+
+/** The stage a typed CS lesson's mechanism board is drawn on — its structure or its message sequence — or null. */
+export function csMechanismStage(lessonText: string, boardText: string): "structure" | "sequence" | null {
+  const fam = familiesOf(lessonText).find((f) => {
+    if (!f.draws || !f.picture || !f.mechanism) return false;
+    // A message sequence needs a board that SENDS messages — two sentences each sending one — not a board
+    // that mentions SYN while it explains window sizes or security (TCP test lecture, 2026-10-24).
+    if (f.stage === "sequence") return boardText.split(/(?<=[.!?])\s+/).filter((s) => SENDS.test(s) && MESSAGE.test(s)).length >= 2;
+    return f.mechanism.test(boardText);
+  });
+  return fam ? fam.stage ?? "structure" : null;
 }
 
 /** What the board draws for this kind of CS topic (said to the board writer), or null. */
@@ -196,6 +239,8 @@ export function csPictureRule(text: string | null | undefined): string | null {
 export function csPlanRule(text: string | null | undefined): string | null {
   const fam = familiesOf(text ?? "").find((f) => f.picture && f.draws);
   if (!fam) return null;
+  if (fam.id === "operating-systems") return OS_PLAN_RULE;
+  if (fam.stage === "sequence") return `THE PICTURE THIS TOPIC NEEDS: every board that shows messages being exchanged is a "sequence" board — the parties as lifelines, one message per sentence, with the values each carries — never a flow, scene, structure or sketch for the messages themselves. Each brief names the parties and the concrete values, the same across boards ("client ISN 1000, server ISN 2000").`;
   return `THE PICTURE THIS TOPIC NEEDS: every board that shows the ${fam.id.replace(/-/g, " ")} at work is a "structure" board, or a "code" board with the structure beside it — never flow, scene, illustration or sketch for the mechanism itself. Each brief names the concrete input it runs on (the same one across boards).`;
 }
 
@@ -206,12 +251,16 @@ export function csPlanRule(text: string | null | undefined): string | null {
  * A question asks for a whole lesson when it names an algorithm, structure or system a typed CS lesson
  * draws or teaches, asks how it works, and is not about the student's own code or one detail of it.
  */
-export function isCsMechanismQuestion(question: string): boolean {
+export function isCsMechanismQuestion(question: string, askedCs = false): boolean {
   const q = question.trim();
-  if (!/^(?:how\s+(?:does|do|is|are|can|would)|explain\s+how|what\s+(?:is|are)|explain|teach\s+me|walk\s+me\s+through)\b/i.test(q)) return false;
+  // "How RSA encryption works" and "How backpropagation trains a neural network" ask the same as "How does
+  // RSA work?" — they were capped at 3 boards as questions (CS rating run, 2026-10-24). Not "how many",
+  // "how long" and the like, which ask for one number.
+  if (!/^(?:how\s+(?:does|do|is|are|can|would)|how\s+(?!many\b|much\b|long\b|often\b|old\b|far\b|big\b|fast\b)\S+(?:\s+\S+){0,6}?\s+(?:works?|trains?|learns?|runs?|happens?|operates?|functions?|finds?|sorts?|searches|stores?|sends?|encrypts?|is\s+done)\b|explain\s+how|what\s+(?:is|are)|explain|teach\s+me|walk\s+me\s+through)\b/i.test(q)) return false;
   if (/\b(?:my|this|the following)\s+(?:code|program|function|output|error|bug)\b|\bline\s+\d+\b|\b(?:error|bug|exception|traceback)\b/i.test(q)) return false;
   if (q.split(/\s+/).length > 18) return false;
-  return isTypedDsaTopic(q) || familiesOf(q).length > 0;
+  // The model already said this is computer science (lib/canvas/subjectClassifier.ts): no keyword list decides it.
+  return askedCs || isTypedDsaTopic(q) || familiesOf(q).length > 0;
 }
 
 export const CS_LESSON_LENGTH = "THIS IS A COMPUTER-SCIENCE LESSON FROM A TYPED PROMPT: usually 5 to 8 subtopics, each teaching something the others do not. Never a subtopic that only repeats, reviews or re-lists earlier ones (\"X steps\", \"putting it together\", \"review of X\") — the full worked trace belongs in ONE subtopic, after the parts it uses.";
@@ -590,7 +639,9 @@ export function anchorTraceNotes<T extends { text: string; s: number }>(notes: T
     const first = scores.indexOf(bestScore);
     let best = first;
     for (let i = first + 1; i <= first + 2 && i < scores.length; i++) if (scores[i] === bestScore) best = i;
-    floor = best;
+    // The next note may still go on the earlier of the tied sentences: a floor at the later one dragged
+    // every following note late (CS rating run, 2026-10-24: four notes piled onto one sentence).
+    floor = first;
     return { ...note, s: best };
   });
 }
@@ -639,4 +690,30 @@ export function retargetLineReferences(lines: string[], steps: Array<{ s: number
     fixed++;
   });
   return { script: fixed ? sentences.join(" ") : script, fixed };
+}
+
+/**
+ * WHAT THE EARLIER BOARDS ESTABLISHED (owner, 2026-10-25: "I don't wanna see such petty issues again").
+ * Each board is written by its own call, and the boards contradicted each other: Dijkstra's last board used
+ * other weights, three boards showed three different programs, a page was "on disk" on one board and "in
+ * frame 9" on the next. Every board of a typed maths or CS lesson is now given the lesson's example as drawn,
+ * its program as written and the facts already on the board, to keep. Pure: lib/anim tests it.
+ */
+export function lessonSoFar(earlier: Array<CanvasBoardSpec | undefined>): string[] {
+  const boards = earlier.filter((sp): sp is CanvasBoardSpec => Boolean(sp));
+  const lines: string[] = [];
+  const structured = boards.map((sp) => sp.stage).find((st) => (st.kind === "code" || st.kind === "structure") && st.structure && ["graph", "tree", "list"].includes(st.structure.kind));
+  if (structured && (structured.kind === "code" || structured.kind === "structure") && structured.structure) {
+    const ds = structured.structure;
+    const name = (id: string) => ds.nodes.find((n) => n.id === id)?.value ?? id;
+    const edges = ds.edges.map((e) => `${name(e.from)}–${name(e.to)}${e.label ? ` (${e.label})` : ""}`).join(", ");
+    lines.push(`THE LESSON'S EXAMPLE, as the earlier boards drew it — use exactly these nodes${edges ? ", links and weights" : ""} (ids ${ds.nodes.map((n) => n.id).join(", ")}); any other values are wrong unless Aria says it is a new example: a ${ds.variant ? `${ds.variant} ` : ""}${ds.kind} of ${ds.nodes.map((n) => n.value).join(", ")}${edges ? `; ${edges}` : ""}.`);
+  }
+  const code = boards.map((sp) => sp.stage).find((st) => st.kind === "code" && st.lines.length >= 3);
+  if (code && code.kind === "code") {
+    lines.push(`THE LESSON'S PROGRAM, as an earlier board wrote it (${code.language}) — keep its language, names and data; another function of the same program is fine, a second version of the same function is not:\n${code.lines.slice(0, 24).join("\n")}`);
+  }
+  const facts = [...new Set(boards.slice(-3).flatMap((sp) => sp.notes.map((n) => n.text)))].slice(-12);
+  if (facts.length) lines.push(`FACTS ALREADY ON THE EARLIER BOARDS — never contradict them (a value, a state or a result stated there stays true here unless Aria says it changes): ${facts.join("; ")}.`);
+  return lines;
 }

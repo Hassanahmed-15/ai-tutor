@@ -118,6 +118,17 @@ export type ProgressiveLectureInput = {
    * planning profile above is about THIS topic; this is about the person across every topic.
    */
   learnerPersona?: string;
+  /**
+   * A typed lesson's subject, asked of a model when it was created (lib/canvas/subjectDomain.ts):
+   * "cs" and "maths" are taught by their own rules, "none" by the normal pipeline. Absent on source
+   * lessons and older lectures, which keep the keyword checks.
+   */
+  subjectDomain?: import("./canvas/subjectDomain").SubjectDomain;
+  /**
+   * How the student wants the lesson taught, from the question card (lib/teachingQuestions.ts): every
+   * board planner reads it, and its depth, code, examples, checks and level are applied by code.
+   */
+  teachingChoices?: import("./teachingQuestions").TeachingChoice[];
   /** Who the lesson is for — grade, country, curriculum, subjects — as rules (lib/studentCard.ts). */
   studentCard?: import("./studentCard").StudentCard;
   /**
