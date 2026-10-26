@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { applyLessonVisualPolicy } from "../canvas/visualPolicy";
 import { layoutPanel } from "../canvas/layout";
+import { mathsMentionAt, partMentionCues } from "../canvas/pictureTalk";
 import { MATHS_BOARD_LOOK, mathsBoardContext, mathsFieldsPrompt, mathsPicturePrompt, parseMathsFields, withMathsBoardWriting } from "../canvas/mathsPicturePrompt";
 import type { CanvasBoardSpec, CanvasPlanBeat, CanvasStage } from "../canvas/types";
 
@@ -125,4 +126,47 @@ test("gpt-image-2 sees the whole lecture: every board in order, this board's pla
   assert.ok(prompt.lecture_context.what_the_boards_before_this_one_wrote_and_drew.length === 1);
   assert.match(prompt.lecture_context.keep_consistent, /same letters/);
   assert.match(mathsFieldsPrompt(ctx).user, /The whole lecture, board by board/);
+});
+
+test("Aria points at the maths picture (owner, 2026-10-26): a part named in a sentence gets the pointer, a note naming it a line to its printed label", () => {
+  // The b6 board of a real Pythagoras lecture: legs a and b, hypotenuse c split into m and n. Only labels read
+  // off the picture (labelBox) can be pointed at; "m" was not read here.
+  const box = (x: number, y: number) => ({ x, y, w: 0.03, h: 0.05 });
+  const spec = {
+    v: 1, heading: "Similar-Triangle Ratios",
+    notes: [{ id: "n1", text: "Legs: a and b", s: 0 }, { id: "n2", text: "Hypotenuse: c", s: 1 }, { id: "n3", text: "a² = cm", s: 2 }, { id: "n4", text: "Hypotenuse: m + n = c", s: 3 }],
+    stage: { kind: "illustration", subject: "right triangle", src: "/x", paper: "#000000", onBoard: true, labels: [], parts: [
+      { id: "label-1", name: "a", s: 0, x: 0.15, y: 0.47, labelBox: box(0.15, 0.45) },
+      { id: "label-2", name: "b", s: 0, x: 0.5, y: 0.83, labelBox: box(0.49, 0.8) },
+      { id: "label-3", name: "c", s: 0, x: 0.55, y: 0.28, labelBox: box(0.54, 0.26) },
+      { id: "label-4", name: "m", s: 0, x: 0.37, y: 0.2 },
+    ] },
+    cues: [],
+  } as unknown as CanvasBoardSpec;
+  const script = "Draw a right-angled triangle with legs a and b and hypotenuse c. Its hypotenuse is split into two parts, m and n. So a² = c·m. Adding gives a² + b² = c(m + n) = c².";
+  const cues = partMentionCues(spec, script);
+  assert.deepEqual(cues.filter((c) => c.s === 0).map((c) => c.target), ["label-1", "label-2", "label-3"], "named in the sentence, in order");
+  assert.equal(cues.some((c) => c.target === "label-4"), false, "a label not read off the picture is never pointed at");
+  assert.equal(cues.some((c) => c.s >= 2), false, "letters in working are not parts being named");
+  const links = layoutPanel({ ...spec, cues }).marks.filter((m) => m.type === "partLink") as Array<{ id: string; s: number }>;
+  assert.deepEqual(links.map((l) => `${l.id}@${l.s}`), ["link-n1@0", "link-n1-1@0", "link-n2@1"], "\"Legs: a and b\" to a and b, \"Hypotenuse: c\" to c; working notes get none");
+  // A course board is unchanged: no maths reading of symbols there.
+  const course = { ...spec, course: true, stage: { ...(spec.stage as object), onBoard: undefined, coursePicture: true } } as unknown as CanvasBoardSpec;
+  assert.equal(partMentionCues(course, script).length, 0, "one-letter names are symbols on a course picture, never followed");
+});
+
+test("which words name a maths label: after a word for the part, never inside working", () => {
+  const named = (text: string, name: string) => mathsMentionAt(text, name) >= 0;
+  assert.equal(named("Construct a trapezoid whose parallel bases have lengths a and b, and whose height is a + b.", "b"), true);
+  assert.equal(named("Construct a trapezoid whose parallel bases have lengths a and b, and whose height is a + b.", "a + b"), true);
+  assert.equal(named("The angle at C is the right angle.", "C"), true);
+  assert.equal(named("A right-angled triangle has one angle of 90 degrees.", "A"), false, "an article is not vertex A");
+  assert.equal(named("The large square has area (a + b)² because its side is a.", "a + b"), false);
+  assert.equal(named("so a² = c·m and b² = c·n, where m + n = c.", "c"), false);
+  assert.equal(named("The x-axis is horizontal.", "x"), false);
+  assert.equal(named("A right triangle has one angle measuring 90 degrees, like the corner of a room.", "a"), false, "an article after a part word");
+  assert.equal(named("Construct a large square with side length a plus b.", "a"), false, "working said aloud");
+  assert.equal(named("Consider a right triangle with angle theta, opposite side a, adjacent side b, and hypotenuse c.", "a"), true);
+  assert.equal(named("If the legs are a and b and the hypotenuse is c, the theorem holds.", "b"), true);
+  assert.equal(named("this part here is the height.", "height"), true, "a label in words is found as on a course picture");
 });

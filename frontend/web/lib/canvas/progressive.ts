@@ -724,8 +724,8 @@ export async function writeCanvasBoard(args: {
   spec.cues = spec.cues.map((c) => (c.action === "visit" ? { ...c, beat: canvasBeatId(sessionId, c.beat!) } : c));
 
   // A course picture is talked through (lib/canvas/pictureTalk.ts): the pointer goes to each part of it
-  // every time Aria names it, as she says it.
-  if (beat.course) {
+  // every time Aria names it, as she says it. So is a maths picture, by its printed labels.
+  if (beat.course || beat.mathsPicture) {
     const before = spec.cues.length;
     spec.cues = partMentionCues(spec, beat.script);
     if (spec.cues.length !== before) log.push(`${beat.id}: picture talked through — ${spec.cues.filter((c) => c.action === "circle" || c.action === "point").length} pointer moves`);

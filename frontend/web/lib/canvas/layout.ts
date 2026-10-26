@@ -16,7 +16,7 @@ import { placeLabels } from "../figures/labels";
 import { recordFigureCut } from "../figures/cuts";
 import { trimToFit } from "../text/fit";
 import { COURSE_FONT_WIDTH } from "../anim/boardFont";
-import { mentionAt, pictureOf, talkable } from "./pictureTalk";
+import { mathsMentionAt, mentionAt, pictureOf, talkable } from "./pictureTalk";
 import { isCourseBoard } from "./lessonSubject";
 import { fitText } from "./renderFit";
 import { partBodies, shapeBoxes } from "../figures/bounds";
@@ -592,23 +592,34 @@ export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
   // A NOTE TIED TO THE PART IT NAMES (owner, 2026-10-25: "actually relate the board text to the figure"):
   // on a course board's picture, a note that names a labelled part gets a dashed line from its end to that
   // part while Aria says it — the student sees which part of the figure the words are about.
-  if (course && pictureOf(spec)?.coursePicture) {
-    const parts = marks.filter((m): m is Extract<Mark, { type: "part" }> => m.type === "part" && talkable(m.name));
+  // A maths picture's notes (owner, 2026-10-26: "the board doesn't really point out in maths lecture") are tied to
+  // its printed labels the same way: "Hypotenuse: c" to the c, "Legs: a and b" to both (pictureTalk mathsMentionAt).
+  const maths = Boolean(pictureOf(spec)?.onBoard);
+  if ((course && pictureOf(spec)?.coursePicture) || maths) {
+    const parts = marks.filter((m): m is Extract<Mark, { type: "part" }> => m.type === "part" && (maths ? Boolean(m.label) : talkable(m.name)));
     for (const note of marks.filter((m): m is Extract<Mark, { type: "note" }> => m.type === "note")) {
-      // The part whose name the note writes in yellow (CanvasPanel withKeyTerms: the longest name it holds).
-      const hit = parts.map((p) => ({ p, at: mentionAt(note.lines.join(" "), p.name) })).filter((h) => h.at >= 0).sort((a, b) => b.p.name.length - a.p.name.length || a.at - b.at)[0];
-      // ONLY TO THE PRINTED LABEL (owner, 2026-10-26: "it mostly points at very wrong label … it should be
-      // 100 percent perfect"): the line ends on the picture's own printed word for the part, read off the
-      // picture — never on a guessed point. A part whose label was not found has no line.
-      const label = hit?.p.label;
-      if (!label) continue;
-      const from = { x: note.x + textWidth(note.lines[0], note.size * W) + 12, y: note.y - note.size * 0.32 };
-      const to = label.x > from.x ? { x: label.x - 6, y: label.y + label.h / 2 } : { x: label.x + label.w + 6, y: label.y + label.h / 2 };
-      if (Math.abs(to.x - from.x) < 40) continue;
-      // Shown while its sentence is said, and never longer than its note is on the board.
-      const until = Math.min(note.s + 1, note.until ?? Infinity);
-      if (until <= note.s) continue;
-      marks.push({ type: "partLink", id: `link-${note.id}`, from, to, s: note.s, until });
+      const text = note.lines.join(" ");
+      // The part whose name the note writes in yellow (CanvasPanel withKeyTerms: the longest name it holds);
+      // on a maths picture every label the note names, in order, up to three.
+      const hits = maths
+        ? parts.map((p) => ({ p, at: mathsMentionAt(text, p.name) })).filter((h) => h.at >= 0).sort((a, b) => a.at - b.at).slice(0, 3)
+        : parts.map((p) => ({ p, at: mentionAt(text, p.name) })).filter((h) => h.at >= 0).sort((a, b) => b.p.name.length - a.p.name.length || a.at - b.at).slice(0, 1);
+      hits.forEach((hit, k) => {
+        // ONLY TO THE PRINTED LABEL (owner, 2026-10-26: "it mostly points at very wrong label … it should be
+        // 100 percent perfect"): the line ends on the picture's own printed word for the part, read off the
+        // picture — never on a guessed point. A part whose label was not found has no line.
+        const label = hit.p.label;
+        if (!label) return;
+        const from = { x: note.x + textWidth(note.lines[0], note.size * W) + 12, y: note.y - note.size * 0.32 };
+        // A maths label is one small letter: the line's dot stops clear of it rather than on it.
+        const gap = maths ? 13 : 6;
+        const to = label.x > from.x ? { x: label.x - gap, y: label.y + label.h / 2 } : { x: label.x + label.w + gap, y: label.y + label.h / 2 };
+        if (Math.abs(to.x - from.x) < 40) return;
+        // Shown while its sentence is said, and never longer than its note is on the board.
+        const until = Math.min(note.s + 1, note.until ?? Infinity);
+        if (until <= note.s) return;
+        marks.push({ type: "partLink", id: k ? `link-${note.id}-${k}` : `link-${note.id}`, from, to, s: note.s, until });
+      });
     }
   }
   return { marks, targets, stage };

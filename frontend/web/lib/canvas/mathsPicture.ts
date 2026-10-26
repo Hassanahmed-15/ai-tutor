@@ -9,7 +9,7 @@ import type OpenAI from "openai";
 import { costFor, priceFor } from "../modelPricing";
 import { locateParts, pngPixelsOnly, prepareStoredIllustration } from "../illustratedBoard";
 import { loadSharedCanvasImage, loadSharedDiagramRecord, saveSharedCanvasImage, saveSharedDiagramRecord } from "./store";
-import { printedLabelBoxes } from "./labelLeaders";
+import { mathsLabelBoxes } from "./mathsLabels";
 import { labelsInRecognisedText, mustFix, type Inspection, type PictureFields } from "./coursePicturePrompt";
 import { mathsFieldsPrompt, mathsPictureKey, mathsPicturePrompt, parseMathsFields, type MathsBoardContext } from "./mathsPicturePrompt";
 import type { CanvasBoardSpec } from "./types";
@@ -137,6 +137,12 @@ async function drawMathsPicture(openai: OpenAI, ctx: MathsBoardContext, options:
     if (record?.kind === "maths-picture" && image) {
       const stored = await prepareStoredIllustration(image);
       await options.save(key, stored.display);
+      // A picture saved before its letters were read mark by mark gets the boxes it lacks now (free).
+      const missing = record.labels.filter((l) => !l.box);
+      if (missing.length) {
+        const boxes = await mathsLabelBoxes(stored.display, missing.map((l) => l.text)).catch(() => new Map<string, NonNullable<MathsPicture["labels"][number]["box"]>>());
+        for (const l of missing) { const b = boxes.get(l.text); if (b) l.box = b; }
+      }
       return { key, display: stored.display, fields: record.fields, labels: record.labels, description: record.description, cached: true, costUsd, log: "checked maths picture reused" };
     }
   }
@@ -172,8 +178,9 @@ async function drawMathsPicture(openai: OpenAI, ctx: MathsBoardContext, options:
       corrections = problems.slice(0, 8);
       continue;
     }
-    // Where each printed label is (white on black, read inverted): Aria's pointer goes there, never to a guessed point.
-    const boxes = await printedLabelBoxes(picture.display, labels.map((l) => l.text), { inverted: true }).catch(() => new Map<string, NonNullable<MathsPicture["labels"][number]["box"]>>());
+    // Where each printed label is (lib/canvas/mathsLabels.ts: words read as words, letters mark by mark):
+    // Aria's pointer and a note's line go there, never to a guessed point.
+    const boxes = await mathsLabelBoxes(picture.display, labels.map((l) => l.text)).catch(() => new Map<string, NonNullable<MathsPicture["labels"][number]["box"]>>());
     for (const l of labels) { const b = boxes.get(l.text); if (b) l.box = b; }
     await options.save(key, picture.display);
     if (options.share) {

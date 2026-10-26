@@ -11,12 +11,17 @@ import type { CanvasBoardSpec, CanvasCue, IllustrationStage } from "./types";
  * and Dot flies to the part.
  *
  * Pure: the cues come from the script and the picture's located parts (lib/canvas/coursePicturePrompt.ts
- * withCoursePicture); lib/canvas/layout.ts draws the link from a note to the part it names.
+ * withCoursePicture, lib/canvas/mathsPicture.ts withMathsPicture); lib/canvas/layout.ts draws the link from a
+ * note to the part it names.
  */
 export function partMentionCues(spec: CanvasBoardSpec, script: string): CanvasCue[] {
   const picture = pictureOf(spec);
-  if (!picture?.coursePicture) return spec.cues;
-  const parts = picture.parts.filter((p) => Number.isFinite(p.x) && Number.isFinite(p.y) && talkable(p.name));
+  // A maths picture (lib/canvas/mathsPicture.ts, white on black on the board) is talked through the same way,
+  // by its printed labels only: the pointer goes to a label read off the picture, never to a guessed point.
+  const maths = Boolean(picture?.onBoard);
+  if (!picture?.coursePicture && !maths) return spec.cues;
+  const parts = picture!.parts.filter((p) => Number.isFinite(p.x) && Number.isFinite(p.y) && (maths ? Boolean(p.labelBox) : talkable(p.name)));
+  const named = maths ? mathsMentionAt : mentionAt;
   if (!parts.length) return spec.cues;
   const ids = new Set(parts.map((p) => p.id));
   const sentences = canvasSentences(script);
@@ -24,7 +29,7 @@ export function partMentionCues(spec: CanvasBoardSpec, script: string): CanvasCu
   const cues: CanvasCue[] = [];
   sentences.forEach((sentence, s) => {
     const hits = parts
-      .map((p) => ({ p, at: mentionAt(sentence, p.name) }))
+      .map((p) => ({ p, at: named(sentence, p.name) }))
       .filter((h) => h.at >= 0)
       .sort((a, b) => a.at - b.at)
       .slice(0, 3);
@@ -42,6 +47,43 @@ export function partMentionCues(spec: CanvasBoardSpec, script: string): CanvasCu
 export function pictureOf(spec: CanvasBoardSpec): IllustrationStage | undefined {
   return spec.stage.kind === "illustration" ? spec.stage : spec.stage.kind === "equation" ? spec.stage.picture : undefined;
 }
+
+/** A maths label written as a symbol or a short expression ("a", "C", "AB", "m + n", "90°", "x′"), not in words. */
+export function symbolLabel(text: string): boolean {
+  const t = text.trim();
+  return t.length > 0 && t.length <= 12 && !/[A-Za-z]{3,}/.test(t);
+}
+
+/**
+ * Where a maths picture's label is NAMED in the text, or -1. A symbol is named only as the part it labels —
+ * after a word for that part ("legs a and b", "hypotenuse c", "its side length is a + b", "angle at C",
+ * "Bases: a and b") — never inside working ("a² = c·m", "where m + n = c", "(a + b)²"), where pointing at
+ * the picture would be noise. A label in words ("trapezoid", "height") is found as on a course picture.
+ */
+export function mathsMentionAt(text: string, name: string): number {
+  if (!symbolLabel(name)) return mentionAt(text, name);
+  const pattern = new RegExp(name.trim().split(/\s+/).map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("\\s*"), "g");
+  for (const m of text.matchAll(pattern)) {
+    const at = m.index!;
+    const end = at + m[0].length;
+    if (/[A-Za-z0-9_²³′']/.test(text[at - 1] ?? " ") || /[A-Za-z0-9_²³′'^]/.test(text[end] ?? " ")) continue;
+    // Part of working: an operator straight before or after it.
+    const after = text.slice(end).trimStart();
+    if (/[-+−=×·*/^(]$/.test(text.slice(0, at).trimEnd()) || /^[-+−=×·*/^²³(]/.test(after)) continue;
+    // ... or said aloud ("side length a plus b" is the length a + b, not side a).
+    if (/^(?:plus|minus|times|over|divided|multiplied|squared|cubed|to the power)\b/i.test(after)) continue;
+    // "a", "A" and "I" are words too: "the corner of a room" names no side a.
+    if (/^[aAI]$/.test(name.trim()) && /^[A-Za-z]{2,}/.test(after) && !/^(?:and|or|is|are|was|has|have|meets?|lies|on|at|of|in|to|from|with|opposite)\b/i.test(after)) continue;
+    if (NAMED.test(text.slice(Math.max(0, at - 60), at))) return at;
+  }
+  return -1;
+}
+
+const PART = "(?:sides?|legs?|hypotenuses?|angles?|vertex|vertices|corners?|points?|segments?|lines?|lengths?|bases?|heights?|altitudes?|radius|radii|diameters?|chords?|arcs?|edges?|widths?|labell?ed|called|marked|named)";
+const LINK = "(?:of|is|are|has|have|equal|equals|to|at|its|the|length|lengths|called|labell?ed|by|as)";
+const SYM = "(?:[A-Za-z]{1,2}[′']?|\\d+°?)";
+/** Text ending in a word for a part of the figure, then perhaps "is", "of length", and earlier symbols of a list ("a and"). */
+const NAMED = new RegExp(`\\b${PART}\\b(?:\\s+${LINK}\\b)*\\s*[:=]?\\s*(?:${SYM}\\s*(?:,\\s*and|,|and|or)\\s*)*$`, "i");
 
 /** A part the pointer can follow by name: a one-letter label ("M", "r") is a symbol the working uses everywhere. */
 export function talkable(name: string): boolean {

@@ -7,6 +7,7 @@ import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
 import { codeScrollTop, fitValue, graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
 import { isCourseBoard } from "@/lib/canvas/lessonSubject";
+import { pictureOf } from "@/lib/canvas/pictureTalk";
 import { edgeBends, edgeCurve, edgeDetour, edgeKey } from "@/lib/canvas/structure";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
@@ -571,10 +572,10 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
         </g>
       );
     case "part":
-      // A part is invisible until the pen or a label points at it — the picture carries it. A course
-      // picture's labels are printed in it: nothing is drawn on it (owner, 2026-10-25: the ring and dot
-      // on the part she names were "a second kind of label" — removed).
-      return focused && !isCourseBoard(spec) ? (
+      // A part is invisible until the pen or a label points at it — the picture carries it. A course or
+      // maths picture's labels are printed in it: nothing is drawn on it (owner, 2026-10-25: the ring and
+      // dot on the part she names were "a second kind of label" — removed).
+      return focused && !isCourseBoard(spec) && !pictureOf(spec)?.onBoard ? (
         <g className="cv-in">
           <circle cx={mark.cx} cy={mark.cy} r={9} fill={ARIA_INK} stroke="#fff" strokeWidth={3} />
         </g>
