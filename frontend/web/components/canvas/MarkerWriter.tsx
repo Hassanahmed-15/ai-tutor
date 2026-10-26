@@ -386,7 +386,10 @@ export function MarkerWriter({ onRegion, finished = false, speed = 1, playing = 
             const boxes = [job, ...batch.jobs.filter((j) => j !== job && j.el.isConnected)].map((j) => boxOf(j.el)).filter((b): b is Rect => Boolean(b && b.w > 0 && b.h > 0));
             const x = Math.min(...boxes.map((b) => b.x)), y = Math.min(...boxes.map((b) => b.y));
             const box = boxes.length ? { x, y, w: Math.max(...boxes.map((b) => b.x + b.w)) - x, h: Math.max(...boxes.map((b) => b.y + b.h)) - y } : null;
-            wait = Math.max(0, Math.min(3000, regionRef.current?.(box, batch.ms, batch.drawing) ?? 0));
+            // Behind the voice (more ink already queued), the camera gets a short glide, not a full flight
+            // (from visual-clarity-labels-DSA, 2026-10-23: the camera could hold the pen up to 3 s).
+            const behind = queue.some((j) => j.batch !== job.batch);
+            wait = Math.max(0, Math.min(behind ? 600 : 3000, regionRef.current?.(box, batch.ms, batch.drawing) ?? 0));
           }
           // Fitted into what is left of her sentence (after the camera's move): written while she says it.
           if (heardRef.current !== undefined && !finishedRef.current) {

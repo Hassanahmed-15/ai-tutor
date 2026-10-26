@@ -12,7 +12,7 @@ import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { type DesignProgress } from "@/components/design/LessonDesignMode";
 import { LessonBuildScreen } from "@/components/design/LessonBuildScreen";
 import { applyDiagnostic, conceptMap, emptyProfile, hasEnoughSignal, learnerInstruction, profileSummary, resolveDepth, DEPTH_NAMES, type ConceptMapEntry, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
-import { verdictNote, verdictOfAnswer, verdictVoiceLine, type AnswerVerdict } from "@/lib/planningFeedback";
+import { cardChecksVoiceLine, verdictNote, verdictOfAnswer, verdictVoiceLine, type AnswerVerdict } from "@/lib/planningFeedback";
 import { personaForPrompt, profileHasSignal, snapshotFrom, type LearnerMemory } from "@/lib/learnerModel";
 import { PLAN_CHOICES, planMessage, shouldAddVoiceLine } from "@/lib/planningTranscript";
 import { openingSentence, topicKeywords } from "@/lib/beatPresentation";
@@ -20,11 +20,16 @@ import { warmNarration } from "@/lib/useNarrationPrefetch";
 import { splitNarrationSentences } from "@/lib/voice";
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 import { DEPTH_OPTIONS, openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
-import { ALL_NEW, gradeCard, intakeCard, markOf, matchSpokenParts, NOT_SURE, profileFromIntake, readParts, typedParts, type CheckOutcome, type IntakePart, type PartMark } from "@/lib/intake";
+import { ALL_NEW, cardQuestions, GOAL_TAB, gradeCard, MEANING_TAB, markOf, matchSpokenParts, NOT_SURE, profileFromIntake, readParts, typedParts, type CardExtra, type CheckOutcome, type IntakePart, type PartMark } from "@/lib/intake";
+import { TEACH_TAB_PREFIX, teachingChoices, type TeachingChoice, type TeachingQuestion } from "@/lib/teachingQuestions";
 import { QuestionCard } from "@/components/planning/QuestionCard";
 
 /** The intake card's state (lib/intake.ts): the parts, which are ticked, each check's pick, the open tab. */
-type IntakeState = { stage: "loading" | "card"; parts: IntakePart[]; known: string[]; answers: Record<string, string>; tab: string; allNew?: boolean; other?: string };
+/**
+ * The planning card's state. A typed prompt's card also carries `meaning` (which one of an ambiguous
+ * topic), `goal` (what the student wants from it) and `loadingParts` while the parts are written.
+ */
+type IntakeState = { stage: "loading" | "card"; parts: IntakePart[]; known: string[]; answers: Record<string, string>; tab: string; allNew?: boolean; other?: string; meaning?: CardExtra | null; meaningAnswer?: string; goal?: CardExtra | null; goalAnswer?: string; loadingParts?: boolean; teaching?: TeachingQuestion[]; teachingAnswers?: Record<string, string[]>; loadingTeaching?: boolean };
 import { profileLevelForTopic } from "@/lib/learnerBasics";
 import { buildStudentCard } from "@/lib/studentCard";
 import { buildTeachingPolicy, policyForVoice } from "@/lib/teachingPolicy";
@@ -284,6 +289,8 @@ type BuildCost =
   const generationProfileRef = useRef<LearnerProfileSnapshot>(DEFAULT_LEARNER_PROFILE);
   const [progressiveSessionId, setProgressiveSessionId] = useState<string | null>(null);
   const [progressiveComplete, setProgressiveComplete] = useState(true);
+  // A computer-science lecture: the player waits for a board whose animation is still being retried.
+  const [csLecture, setCsLecture] = useState(false);
   const [progressivePlannedBeatCount, setProgressivePlannedBeatCount] = useState(0);
   const [progressiveStreamRevision, setProgressiveStreamRevision] = useState(0);
   /** Reopens of the lecture stream in a row without a successful connection, for the backoff. */
@@ -351,6 +358,11 @@ type BuildCost =
   const intakeDocRef = useRef<SuprnotesLessonInput | null>(null);
   /** What follows the intake when it is not the plan: a strict PDF builds straight away. */
   const intakeThenRef = useRef<(() => void) | null>(null);
+  /** A typed prompt's card: which run it is (late answers of an earlier prompt are ignored) and its named subject. */
+  const typedCardRunRef = useRef(0);
+  const typedSubjectRef = useRef<Promise<string> | null>(null);
+  /** Submit is in flight (a tap and a spoken "submit" arrive together). */
+  const submittingCardRef = useRef(false);
   const intakeActionsRef = useRef<{ heard: (text: string) => void }>({ heard: () => {} });
   /** True while `diagnosticQuestion` IS the depth-preference question — answering it is handled
    *  locally (no model round-trip needed for a fixed set of chip options) rather than through
@@ -649,6 +661,15 @@ type BuildCost =
   /** The grade of that answer (lib/planningFeedback.ts): praised or explained before the next question. */
   const lastVerdictRef = useRef<AnswerVerdict | null>(null);
   const spokenQuestionRef = useRef<string>("");
+  /*
+   * THE STUDENT CLICKED THE CARD (owner, 2026-10-24: "if I select one option Aria keeps on saying the options …
+   * if the user clicks anything it means they have read the options, you don't need to speak them aloud").
+   * The card run in which they clicked: Aria stops at once, and from then on asks each question without
+   * reading its options out.
+   */
+  const cardTouchedRunRef = useRef(-1);
+  /** How the student wants the lesson taught, from the card (lib/teachingQuestions.ts): for the outline and the lecture. */
+  const teachingChoicesRef = useRef<TeachingChoice[]>([]);
   useEffect(() => {
     diagnosticQuestionRef.current = diagnosticQuestion;
     diagnosticBusyRef.current = diagnosticBusy;
@@ -687,12 +708,19 @@ type BuildCost =
   useEffect(() => {
     intakeStageRef.current = intake?.stage ?? null;
     if (intake?.stage !== "card" || !voiceLive) return;
-    const open = intakeCard(intake.parts, intake.known).find((q) => q.id === intake.tab);
+    const open = cardQuestions(intake).find((q) => q.id === intake.tab);
+    // A tab whose options are still being written is read once they are there.
+    if (open?.loading) return;
     const key = open ? `${open.id}:${open.question}` : `submit:${intake.known.join(",")}`;
     if (spokenQuestionRef.current === key) return;
     spokenQuestionRef.current = key;
-    if (!open) {
-      voiceSay("In ONE short sentence, say their answers are on screen and ask them to press Submit, or say submit, when they are ready. Nothing else.");
+    // No Submit card any more: the last answer finishes the card, so there is nothing to say here.
+    if (!open) return;
+    // They have clicked the card, so they are reading it: the question only, never its options read out.
+    if (cardTouchedRunRef.current === typedCardRunRef.current) {
+      voiceSay(open.id === "parts"
+        ? `In ONE short sentence, ask which parts of ${topic} they already know. Do not read the parts out: they are on screen. Nothing else.`
+        : `Ask exactly this question, in one breath: "${open.question}" Do not read the choices out: they are on screen. Nothing else.`);
       return;
     }
     voiceSay(open.id === "parts"
@@ -995,6 +1023,7 @@ type BuildCost =
       }
       // The worker keeps a running total, so each snapshot replaces the last rather than adding.
       if (typeof snapshot.costUsd === "number") setCost("generation", snapshot.costUsd);
+      setCsLecture(snapshot.subjectDomain === "cs");
       setProgressivePlannedBeatCount(snapshot.plannedBeatCount);
       setBuildStatus(snapshot.complete
         ? "Lecture saved to your history"
@@ -2083,6 +2112,8 @@ type BuildCost =
           ...personaField(),
           ...(requestTextRef.current ? { request: requestTextRef.current } : {}),
           ...(teachingPreference !== "adaptive" ? { teachingPreference } : {}),
+          // How they asked for it to be taught (the question card): the outline follows it.
+          ...(teachingChoicesRef.current.length ? { teaching: teachingChoicesRef.current } : {}),
         }),
         signal: controller.signal,
       });
@@ -2299,6 +2330,14 @@ type BuildCost =
     const planningKind = fresh?.kind ?? uploadedFile?.kind;
     const isPdfOrDeck = (planningKind === "pdf" || planningKind === "pptx") && Boolean(planningDocument);
 
+    // A TYPED PROMPT OPENS THE QUESTION CARD AT ONCE (owner, 2026-10-23): no "Planning…" screen and no
+    // separate screen before it — naming the subject, the ambiguity check, the goal and the parts are
+    // all asked for together and fill the card as they arrive (startTypedCard).
+    if (!forceBuild && !fresh && researchWanted() && !shouldSkipPlanning()) {
+      startTypedCard(raw);
+      return;
+    }
+
     // Shown at once from the local cleaner, then replaced by the named subject a moment later.
     setTopic(topicKeywords(raw) || raw);
     /*
@@ -2447,6 +2486,117 @@ type BuildCost =
     await beginLearnerConversation(trimmed, false);
   }
 
+  /** One /api/plan-lesson call that does not cancel the others (callPlanApi aborts whatever came before). */
+  async function planFetch(body: Record<string, unknown>, ms = 15_000): Promise<Record<string, unknown> | null> {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), ms);
+    try {
+      const res = await fetch("/api/plan-lesson", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), signal: controller.signal });
+      const data = await res.json().catch(() => null);
+      if (data) recordJsonCost("planning", data);
+      return res.ok ? data : null;
+    } catch {
+      return null;
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  /**
+   * THE QUESTION CARD, OPENED THE MOMENT ENTER IS PRESSED (owner, 2026-10-23: "it should not show
+   * planning and then in the next window it should appear", "it may ask multiple questions like Claude
+   * does"). The card is on screen at once with its "What you know" tab loading; four calls run
+   * together and each fills its part as it arrives:
+   *   - the subject's name (the title, and what the plan is made for);
+   *   - the parts and their checks;
+   *   - the ambiguity check — an ambiguous topic gets a "Which one" tab first (it was its own screen);
+   *   - the intent — a "Your goal" tab (it was worked out and never shown).
+   * Before, these ran one after another behind "Planning…", 5-10 seconds before the card.
+   */
+  function startTypedCard(raw: string) {
+    // A title to show until the subject is named: a question's lead-in and a trailing "Subject: …" are
+    // not the subject ("How can we detect if a graph is bipartite" was titled "How Can We Detect", and
+    // that title then asked "What are we detecting? Emotions, Fraud…" — owner, 2026-10-23).
+    const asked = raw
+      .replace(/[.;,]?\s*\bsubject\s*:?\s*[A-Za-z &]+$/i, "")
+      .replace(/^(?:how|what|why|when|where|which)\s+(?:(?:can|could|do|does|did|is|are|would|should|will)\s+)?(?:(?:we|you|i|one)\s+)?/i, "")
+      .replace(/^(?:detect|check|find out|tell|know|determine|test|decide|see)\s+(?:if|whether)\s+/i, "")
+      .trim();
+    const quick = topicKeywords(asked || raw) || raw;
+    const run = ++typedCardRunRef.current;
+    const live = () => typedCardRunRef.current === run && intakeRef.current !== null;
+    setTopic(quick);
+    const seeded = emptyProfile(quick);
+    setLearnerProfile(seeded);
+    learnerProfileRef.current = seeded;
+    setMemoryNote(null);
+    lastStudentAnswerRef.current = "";
+    spokenQuestionRef.current = "";
+    isDepthQuestionRef.current = false;
+    setDiagnosticRemark(null);
+    setClarifyAnswers([]);
+    intentExchangesRef.current = [];
+    intakeThenRef.current = null;
+    intakeDocRef.current = null;
+    intakePrefetchRef.current = null;
+    teachingChoicesRef.current = [];
+    const known = profileLevelForTopic(profile?.learner ?? null, quick);
+    if (known) setMemoryNote(known.subject ? `${explainedFor(known.level.label)} in ${known.subject.label}, from your profile.` : `${explainedFor(known.level.label)}.`);
+    setPhase("outline");
+    updateIntake({ stage: "card", parts: [], known: [], answers: {}, tab: "parts", loadingParts: true, loadingTeaching: true }, quick);
+
+    typedSubjectRef.current = nameSubject(raw, null, null).then((name) => {
+      if (live()) {
+        setTopic(name);
+        if (intakeRef.current) intakeRef.current.topic = name;
+      }
+      return name;
+    });
+    // The parts and the ambiguity check read the WHOLE request, never the short title.
+    void fetchIntake(raw).then((parts) => {
+      if (!live()) return;
+      const st = intakeRef.current!;
+      // Re-asked for a meaning the student chose meanwhile: that answer's parts win.
+      if (st.meaningAnswer) return;
+      updateIntake({ ...st, parts: parts.length >= 2 ? parts : [], loadingParts: false });
+      // No parts (a failed call) and nothing else to ask once the other answers are in: plan straight
+      // away, as before — never an empty card.
+      if (parts.length < 2) {
+        window.setTimeout(() => {
+          const now = intakeRef.current;
+          if (live() && now && !now.meaning && !now.goal && !now.parts.length && !now.teaching?.length && !now.loadingTeaching) void submitIntakeCard();
+        }, 4000);
+      }
+    });
+    void planFetch({ mode: "clarify", topic: raw }).then((data) => {
+      if (!live() || !data || data.ambiguous !== true || !Array.isArray(data.questions) || !data.questions.length) return;
+      const q = data.questions[0] as ClarifyQuestion;
+      if (!q?.question || !Array.isArray(q.options) || q.options.length < 2) return;
+      const st = intakeRef.current!;
+      // Opened on it only if the student has not started on the card yet.
+      const untouched = st.tab === "parts" && !st.known.length && !st.allNew && !st.other;
+      updateIntake({ ...st, meaning: { question: q.question, options: q.options.slice(0, 5) }, ...(untouched ? { tab: MEANING_TAB } : {}) });
+    });
+    // How they want it taught: questions written for this topic (lib/teachingQuestions.ts), last on the card.
+    void planFetch({ mode: "teaching", topic: quick, request: raw }).then((data) => {
+      if (!live()) return;
+      const st = intakeRef.current!;
+      const questions = Array.isArray(data?.questions) ? (data!.questions as TeachingQuestion[]) : [];
+      // Waiting on their loading tab: the first of them opens — or, with none, the card is done.
+      const waiting = st.tab === `${TEACH_TAB_PREFIX}loading`;
+      updateIntake({ ...st, teaching: questions, loadingTeaching: false, ...(waiting && questions.length ? { tab: `${TEACH_TAB_PREFIX}${questions[0].id}` } : {}) });
+      if (waiting && !questions.length) void submitIntakeCard();
+    });
+    void planFetch({ mode: "intent", topic: quick, request: raw, exchanges: [], ...(profile?.learner ? { learnerBasics: profile.learner } : {}) }).then((data) => {
+      if (!live() || !data) return;
+      if (data.brief && typeof data.brief === "object") briefRef.current = data.brief as LessonBrief;
+      const asked = data.question as IntentQuestion | null | undefined;
+      if (data.complete !== false || !asked?.question || !Array.isArray(asked.options) || asked.options.length < 2) return;
+      const st = intakeRef.current!;
+      updateIntake({ ...st, goal: { question: asked.question, options: asked.options.slice(0, 5) } });
+    });
+  }
+
   /**
    * The conversation about the student before the outline: their level, then what they already know.
    * `settledByIntent`: the "what do you want?" questions were just asked, and when they settled the
@@ -2547,8 +2697,39 @@ type BuildCost =
       updateIntake({ ...st, known: ticked, allNew, other });
       return;
     }
+    // WHICH ONE (an ambiguous typed topic): the meaning is kept for the plan, and the parts are asked for
+    // again for that meaning — the parts written before the student said which one were for neither.
+    if (questionId === MEANING_TAB && st.meaning) {
+      const answer = labels[0] ?? "";
+      if (!answer || answer === st.meaningAnswer) return;
+      setClarifyAnswers([{ question: st.meaning.question, answer }]);
+      updateIntake({ ...st, meaningAnswer: answer, parts: [], known: [], answers: {}, allNew: false, other: undefined, loadingParts: true });
+      const run = typedCardRunRef.current;
+      void fetchIntake(requestTextRef.current || st.topic, { note: answer }).then((parts) => {
+        const now = intakeRef.current;
+        if (typedCardRunRef.current !== run || !now || now.meaningAnswer !== answer) return;
+        updateIntake({ ...now, parts: parts.length >= 2 ? parts : [], loadingParts: false });
+      });
+      return;
+    }
+    // HOW TO TEACH IT (lib/teachingQuestions.ts): its picks as they are, for the plan and the lecture.
+    if (questionId.startsWith(TEACH_TAB_PREFIX)) {
+      updateIntake({ ...st, teachingAnswers: { ...st.teachingAnswers, [questionId.slice(TEACH_TAB_PREFIX.length)]: labels } });
+      return;
+    }
+    // YOUR GOAL: one answer to the intent question, for the plan (lib/lessonIntent.ts).
+    if (questionId === GOAL_TAB && st.goal) {
+      updateIntake({ ...st, goalAnswer: labels[0] ?? "" });
+      return;
+    }
     const partId = questionId.replace(/^check-/, "");
     updateIntake({ ...st, answers: { ...st.answers, [partId]: labels[0] ?? "" } });
+  }
+
+  /** A click on the card: Aria stops reading it, and asks the rest without reading the options. */
+  function touchCard() {
+    cardTouchedRunRef.current = typedCardRunRef.current;
+    planningVoice.silence();
   }
 
   function intakeTab(tab: string) {
@@ -2557,17 +2738,47 @@ type BuildCost =
   }
 
   /** Submit: the checks are graded and the plan is made from every part's status. */
-  function submitIntakeCard() {
+  async function submitIntakeCard() {
     const st = intakeRef.current;
-    if (!st) return;
-    finishIntake(st.topic, st.parts, markOf(st.known), gradeCard(st.parts, st.known, st.answers), st.other);
+    if (!st || submittingCardRef.current) return;
+    submittingCardRef.current = true;
+    const run = typedCardRunRef.current;
+    try {
+      await submitCard(st, run);
+    } finally {
+      submittingCardRef.current = false;
+    }
+  }
+  async function submitCard(st: IntakeState & { topic: string }, run: number) {
+    // How they want it taught, for the outline and the lecture (lib/teachingQuestions.ts).
+    teachingChoicesRef.current = teachingChoices(st.teaching ?? [], st.teachingAnswers ?? {});
+    // A typed prompt's card: the goal they chose settles the lesson's brief (one short call), and the
+    // plan is made for the subject's proper name (asked for when the card opened, at most 4 s).
+    if (st.goal && st.goalAnswer) {
+      intentExchangesRef.current = [{ question: st.goal.question, answer: st.goalAnswer }];
+      const data = await planFetch({ mode: "intent", topic: st.topic, request: requestTextRef.current || st.topic, exchanges: intentExchangesRef.current, ...(profile?.learner ? { learnerBasics: profile.learner } : {}) }, 6000);
+      if (data?.brief && typeof data.brief === "object") briefRef.current = data.brief as LessonBrief;
+    }
+    const subject = typedSubjectRef.current ? await typedSubjectRef.current : st.topic;
+    typedSubjectRef.current = null;
+    // A new prompt was started while this one was finishing: this card is gone.
+    if (typedCardRunRef.current !== run || !intakeRef.current) return;
+    const outcomes = gradeCard(st.parts, st.known, st.answers);
+    // Right or wrong, said back before the plan (a typed prompt's card; document lessons keep theirs).
+    const line = !intakeDocRef.current ? cardChecksVoiceLine(st.parts, outcomes, st.answers) : "";
+    if (line) {
+      lastVerdictHeardRef.current = false;
+      setSayingLastVerdict(true);
+      voiceSay(`${line} Then say you are putting their plan together. Nothing else.`);
+    }
+    finishIntake(subject, st.parts, markOf(st.known), outcomes, st.other);
   }
 
   /** What the student said aloud, on whichever tab is open. */
   function hearIntake(text: string) {
     const st = intakeRef.current;
     if (!st) return;
-    const card = intakeCard(st.parts, st.known);
+    const card = cardQuestions(st);
     const open = card.find((q) => q.id === st.tab);
     if (!open) {
       if (/\b(submit|done|yes|go|start|ready|that'?s (it|all)|let'?s go)\b/i.test(text)) submitIntakeCard();
@@ -2577,7 +2788,14 @@ type BuildCost =
       const heard = matchSpokenParts(text, st.parts);
       const known = heard.allNew ? [] : [...new Set([...st.known, ...Object.entries(heard.marks).filter(([, m]) => m === "know").map(([id]) => id)])];
       const next = { ...st, known, allNew: heard.allNew };
-      if (heard.allNew || heard.done) next.tab = intakeCard(st.parts, known)[1]?.id ?? "submit";
+      if (heard.allNew || heard.done) {
+        const tabs = cardQuestions({ ...st, known }).map((q) => q.id);
+        next.tab = tabs[tabs.indexOf("parts") + 1] ?? "parts";
+        updateIntake(next);
+        // The last question answered: the card is done (there is no Submit card).
+        if (!tabs[tabs.indexOf("parts") + 1]) void submitIntakeCard();
+        return;
+      }
       updateIntake(next);
       return;
     }
@@ -2589,8 +2807,11 @@ type BuildCost =
       answerIntakeCard(open.id, [meant.option]);
       const after = intakeRef.current;
       if (!after) return;
-      const tabs = intakeCard(after.parts, after.known).map((q) => q.id);
-      intakeTab(tabs[tabs.indexOf(open.id) + 1] ?? "submit");
+      const tabs = cardQuestions(after).map((q) => q.id);
+      const following = tabs[tabs.indexOf(open.id) + 1];
+      // The last question answered: the card is done (there is no Submit card).
+      if (following) intakeTab(following);
+      else void submitIntakeCard();
     }, 650);
   }
 
@@ -3233,6 +3454,8 @@ type BuildCost =
       // The web material the outline was planned from: the lecture teaches from it and cites it per slide.
       ...(!doc && !slides && researchRef.current ? { webSources: researchRef.current } : {}),
       ...(teachingPreference !== "adaptive" ? { teachingPreference } : {}),
+      // How they asked for it to be taught (the question card): every board follows it (lib/teachingQuestions.ts).
+      ...(!doc && !slides && teachingChoicesRef.current.length ? { teaching: teachingChoicesRef.current } : {}),
       // What lets the model read the pages instead of only a text extraction of them.
       ...(docImagesId ? { documentId: docImagesId } : {}),
       // Absent (defaults to "reference") for a topic with no upload — matches today's existing,
@@ -4051,7 +4274,7 @@ type BuildCost =
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
         // The mic is on when the lecture opens (owner, 2026-10-18): the student talks to Aria without
         // finding a button first. It opens on Play — the click the browser needs to ask for it.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} holdForNextBoard={clickableMindMap && csLecture} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">
@@ -4333,8 +4556,8 @@ type BuildCost =
           diagnosticRemark={diagnosticRemark}
           onAnswerDiagnostic={runDiagnostic}
           intake={intake}
-          onIntakeAnswer={answerIntakeCard}
-          onIntakeTab={intakeTab}
+          onIntakeAnswer={(id: string, labels: string[]) => { touchCard(); answerIntakeCard(id, labels); }}
+          onIntakeTab={(tab: string) => { touchCard(); intakeTab(tab); }}
           onIntakeSubmit={submitIntakeCard}
           voicePick={voicePick}
           learnerSummary={learnerProfile && learnerDepth ? profileSummary(learnerProfile, learnerDepth) : ""}
@@ -5594,10 +5817,13 @@ function OutlineReviewState({
         </div>
       );
     }
-    const questions = intakeCard(intake.parts, intake.known);
+    const questions = cardQuestions(intake);
     const answers: Record<string, string[]> = {
       parts: [...(intake.allNew ? [ALL_NEW] : intake.parts.filter((p) => intake.known.includes(p.id)).map((p) => p.label)), ...(intake.other ? [intake.other] : [])],
       ...Object.fromEntries(Object.entries(intake.answers).map(([id, label]) => [`check-${id}`, label ? [label] : []])),
+      ...(intake.meaningAnswer ? { [MEANING_TAB]: [intake.meaningAnswer] } : {}),
+      ...(intake.goalAnswer ? { [GOAL_TAB]: [intake.goalAnswer] } : {}),
+      ...Object.fromEntries(Object.entries(intake.teachingAnswers ?? {}).map(([id, labels]) => [`${TEACH_TAB_PREFIX}${id}`, labels])),
     };
     return (
       <QuestionCard

@@ -86,3 +86,13 @@ export function asMathsOrCs(subject: LessonSubject | undefined, guess: () => boo
 export function asCodeLesson(subject: LessonSubject | undefined, guess: () => boolean): boolean {
   return subject ? subject === "cs" && guess() : guess();
 }
+
+/**
+ * A COURSE LESSON'S BOARD (its course look: hand font, key terms in yellow, the pencil, pictures put up at
+ * once). Its own mark; a board saved before 2026-10-26 has none, and then a board with a subject was taken
+ * as a course board — but a typed or PDF lecture's boards carry their judged subject too, and took the
+ * course look with it (a typed Pythagoras lecture written in the course hand, 2026-10-26).
+ */
+export function isCourseBoard(spec: { course?: boolean; subject?: unknown }): boolean {
+  return spec.course ?? spec.subject !== undefined;
+}

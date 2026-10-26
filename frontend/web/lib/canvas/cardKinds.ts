@@ -1,4 +1,5 @@
 import { canvasSentences } from "./plan";
+import { describeStructure } from "./structure";
 import type { CanvasBoardSpec, QuizInteraction } from "./types";
 
 /**
@@ -19,6 +20,32 @@ export function boardElements(spec: CanvasBoardSpec): Array<{ id: string; name: 
     }
   }
   return out;
+}
+
+/**
+ * What a code board shows, for the check-card writer: its numbered lines and the structure beside
+ * them. The writer saw only the narration, heading and notes, so a card could name a "line 6" from
+ * the narration that the student never saw on the board (owner, 2026-10-23).
+ */
+export function codeBoardText(spec: CanvasBoardSpec): string {
+  const st = spec.stage;
+  if (st.kind !== "code") return "";
+  const lines = st.lines.map((l, i) => `${String(i + 1).padStart(2)}  ${l}`).join("\n");
+  const structure = st.structure ? `\n${describeStructure(st.structure, st.steps)}` : "";
+  return `Code on the board (its line numbers as shown):\n${lines}${structure}`;
+}
+
+/**
+ * Every "line N" a card names must be a line on its board: a card on a board with no code, or naming a
+ * line past the last one, is sent back.
+ */
+export function lineReferenceIssues(card: QuizInteraction, spec: CanvasBoardSpec): string[] {
+  const count = spec.stage.kind === "code" ? spec.stage.lines.length : 0;
+  const texts = [card.question, ...card.options.flatMap((o) => [o.text, o.feedback ?? ""])];
+  const named = texts.flatMap((t) => [...t.matchAll(/\blines?\s+(\d+)(?:\s*(?:-|–|to|and)\s*(\d+))?/gi)].flatMap((m) => [Number(m[1]), ...(m[2] ? [Number(m[2])] : [])]));
+  const bad = [...new Set(named.filter((n) => n < 1 || n > count))];
+  if (!bad.length) return [];
+  return [count ? `the card names line ${bad.join(", ")}, but the code on this board has only ${count} lines — refer to lines that are on the board (or quote the code itself)` : `the card names a line number, but this board has no code — refer to what is drawn instead`];
 }
 
 /** The parts of the board's diagram a student could tap: a picture's or figure's named parts. */

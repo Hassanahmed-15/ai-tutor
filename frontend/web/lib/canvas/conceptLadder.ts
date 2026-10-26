@@ -39,11 +39,26 @@ export function wantsMap(parts: LadderPart[]): boolean {
   return parts.filter((p) => (p.status ?? "new") === "new").length >= 2;
 }
 
+/**
+ * A typed computer-science lesson's ladder (lib/canvas/csLessons.ts): one or two boards a new part,
+ * ten at most. Six new parts of Kahn's algorithm at two to three boards each ran to 18 boards, the
+ * full trace told twice (CS test, 2026-10-23).
+ */
+export const COMPACT_LADDER_BOARDS: Record<PartStatus, { min: number; max: number }> = {
+  new: { min: 1, max: 2 },
+  shaky: { min: 1, max: 1 },
+  known: { min: 0, max: 0 },
+};
+export const COMPACT_LADDER_MAX = 10;
+
 /** The fewest and most boards the ladder allows for these parts (the map board included). */
-export function ladderBoardBudget(parts: LadderPart[]): { min: number; max: number } {
+export function ladderBoardBudget(parts: LadderPart[], compact = false): { min: number; max: number } {
+  const table = compact ? COMPACT_LADDER_BOARDS : LADDER_BOARDS;
   const map = wantsMap(parts) ? 1 : 0;
-  const sum = (k: "min" | "max") => parts.reduce((n, p) => n + LADDER_BOARDS[p.status ?? "new"][k], 0);
-  return { min: Math.max(1, sum("min") + map), max: Math.max(1, sum("max") + map) };
+  const sum = (k: "min" | "max") => parts.reduce((n, p) => n + table[p.status ?? "new"][k], 0);
+  const min = Math.max(1, sum("min") + map);
+  const max = Math.max(1, sum("max") + map);
+  return compact ? { min: Math.min(min, COMPACT_LADDER_MAX), max: Math.min(max, COMPACT_LADDER_MAX) } : { min, max };
 }
 
 const WORD: Record<PartStatus, string> = {
@@ -66,13 +81,14 @@ export function ladderOutlineInstruction(parts: PartReading[]): string {
  * For the canvas planner: how the boards climb the ladder, part by part. Replaces the "one board per
  * part" outline block and the rules against hook boards.
  */
-export function ladderCanvasSection(parts: LadderPart[]): string[] {
-  const budget = ladderBoardBudget(parts);
+export function ladderCanvasSection(parts: LadderPart[], compact = false): string[] {
+  const budget = ladderBoardBudget(parts, compact);
+  const table = compact ? COMPACT_LADDER_BOARDS : LADDER_BOARDS;
   const map = wantsMap(parts);
   const lines = [
     "",
     `THE CONCEPT LADDER: this student told Aria, part by part, what they already know. Build what they do not know FROM SCRATCH, step by step, in a structured way: ${budget.min} to ${budget.max} boards in all, ids b1 onward, the parts in this order (teach exactly these parts, nothing beyond them):`,
-    ...parts.map((p, i) => `P${i + 1}. ${p.title}${p.caption ? `: ${p.caption}` : ""} [${WORD[p.status ?? "new"]}${(p.status ?? "new") === "known" ? ", no board" : `, ${LADDER_BOARDS[p.status ?? "new"].min} to ${LADDER_BOARDS[p.status ?? "new"].max} boards`}]`),
+    ...parts.map((p, i) => `P${i + 1}. ${p.title}${p.caption ? `: ${p.caption}` : ""} [${WORD[p.status ?? "new"]}${(p.status ?? "new") === "known" ? ", no board" : `, ${table[p.status ?? "new"].min} to ${table[p.status ?? "new"].max} board${table[p.status ?? "new"].max === 1 ? "" : "s"}`}]`),
   ];
   if (map) lines.push(`- b1 is THE MAP: the whole topic's parts as a flow in teaching order, with the known parts marked as known. Its script names each part with the everyday question it answers ("where does the plant get its raw materials?"), and says which parts Aria will build from scratch. No facts, no equation, no terms, no definitions: it explains nothing yet.`);
   lines.push(
@@ -85,7 +101,9 @@ export function ladderCanvasSection(parts: LadderPart[]): string[] {
     "  6. WORKED EXAMPLE: one fully worked case, every step shown.",
     "  7. THE COMMON MISTAKE: only when a well-known one exists: say it, say why it is wrong, say what is true.",
     "  8. CONNECT: one sentence that sums the part up and raises what the next part answers.",
-    "  Rungs 1 to 4 share the part's first board; rungs 5 to 8 its second board. Only a part with a long mechanism or a hard worked example takes a third board.",
+    compact
+      ? "  Rungs 1 to 6 share the part's board (rung 1 in a sentence, rung 3 folded into the worked example); only a part with a long mechanism or a long trace takes a second board. The full worked trace is told ONCE in the lesson, never again in a later part."
+      : "  Rungs 1 to 4 share the part's first board; rungs 5 to 8 its second board. Only a part with a long mechanism or a hard worked example takes a third board.",
     "- A SHAKY part climbs the same ladder in one or two boards: rung 1 in a sentence, then rungs 4, 5, 6 and 7.",
     "- A KNOWN part gets NO board of its own: one sentence recapping it (\"You already know that …\") opens the first board of the part that builds on it, as its stepping stone. It is never explained again.",
     "- Each board's title says WHAT it teaches, as a noun phrase (\"Chlorophyll traps light\", \"How a model memorises noise\"), never the name of a rung (never \"the new words\", \"worked example\", \"how it works\").",

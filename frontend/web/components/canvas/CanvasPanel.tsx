@@ -5,13 +5,16 @@ import katex from "katex";
 import "katex/dist/katex.min.css";
 import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
-import { graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
-import { edgeCurve } from "@/lib/canvas/structure";
+import { codeScrollTop, fitValue, graphPoint, INK, textWidth, wrap, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
+import { isCourseBoard } from "@/lib/canvas/lessonSubject";
+import { edgeBends, edgeCurve, edgeDetour, edgeKey } from "@/lib/canvas/structure";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
 import { COURSE_FONT_FAMILY, COURSE_FONT_STACK } from "@/lib/anim/boardFont";
 import { stackAt } from "@/lib/canvas/callStack";
 import { SketchView } from "./SketchView";
+import { SequenceView } from "./SequenceView";
+import { OsGanttView, OsMappingView, OsMemoryView, OsStatesView } from "./OsDiagramView";
 import type { CardStyle } from "@/lib/canvas/cardStyle";
 import { cardNumbersOf } from "@/lib/canvas/cardOrder";
 import { IconGlyph } from "./icons";
@@ -83,7 +86,7 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
   const headingW = layout.targets.heading?.w ?? 200;
   return (
     <InkDrawing.Provider value={live && !reducedMotion}>
-    <g className={`${live && !reducedMotion ? "cv-live" : "cv-settled"}${spot ? " cv-spot" : ""}${recap && pencil && !reducedMotion ? " cv-recap" : ""}${spec.subject !== undefined ? " cv-course" : ""}`} style={spec.subject !== undefined ? { fontFamily: COURSE_FONT_STACK } : undefined}>
+    <g className={`${live && !reducedMotion ? "cv-live" : "cv-settled"}${spot ? " cv-spot" : ""}${recap && pencil && !reducedMotion ? " cv-recap" : ""}${isCourseBoard(spec) ? " cv-course" : ""}`} style={isCourseBoard(spec) ? { fontFamily: COURSE_FONT_STACK } : undefined}>
       <g className="cv-lift">
         {/* The shadow is a picture baked once (LessonCanvas paperShadow): a live blur filter under
             every board was re-blurred on every frame of a camera flight, and the flights stuttered. */}
@@ -479,19 +482,26 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
     case "note": {
       // A course board's key words in yellow (owner, 2026-10-24, option 2): the parts its picture names,
       // or what a note is about ("Glomerulus: high-pressure filter").
-      const keys = spec.subject !== undefined ? keyTermsOf(spec) : [];
+      const keys = isCourseBoard(spec) ? keyTermsOf(spec) : [];
       return (
         <g className={`cv-in${focus}`}>
-          {mark.num !== undefined
-            ? <text x={mark.bullet.x} y={mark.y} fontSize={mark.size} textAnchor="end" fill="#f59e0b" className="cv-write">{mark.num}.</text>
-            : <circle cx={mark.bullet.x} cy={mark.bullet.y} r={5} fill="#f59e0b" />}
-          <text x={mark.x} y={mark.y} fontSize={mark.size} fontWeight={600} fill={INK} className="cv-write">
-            {mark.lines.map((line, i) => (
-              <tspan key={i} x={mark.x} dy={i === 0 ? 0 : mark.size * 1.28}>
-                {keys.length || spec.subject !== undefined ? withKeyTerms(line, keys, i === 0) : line}
-              </tspan>
-            ))}
-          </text>
+            {mark.num !== undefined
+              ? <text x={mark.bullet.x} y={mark.y} fontSize={mark.size} textAnchor="end" fill="#f59e0b" className="cv-write">{mark.num}.</text>
+              : <circle cx={mark.bullet.x} cy={mark.bullet.y} r={5} fill="#f59e0b" />}
+            {/* An equation note is typeset by KaTeX (owner, 2026-10-24: "each eq should be derived from katex"). */}
+            {mark.tex ? (
+              <g transform={`translate(${mark.x} ${mark.y})`} data-tex-note="">
+                <TexTerm tex={mark.tex} size={mark.size * 1.15} w={mark.w ?? 300} color={INK} onElement={() => {}} align="left" />
+              </g>
+            ) : (
+              <text x={mark.x} y={mark.y} fontSize={mark.size} fontWeight={600} fill={INK} className="cv-write">
+                {mark.lines.map((line, i) => (
+                  <tspan key={i} x={mark.x} dy={i === 0 ? 0 : mark.size * 1.28}>
+                    {keys.length || isCourseBoard(spec) ? withKeyTerms(line, keys, i === 0) : line}
+                  </tspan>
+                ))}
+              </text>
+            )}
         </g>
       );
     }
@@ -513,7 +523,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       return (
         // A course picture is already drawn: it is put up at once, not traced by the pencil (owner,
         // 2026-10-25: tracing its frame held the board in "a long pause" before anything was written).
-        <g className="cv-in" data-no-marker={spec.subject !== undefined ? "" : undefined}>
+        <g className="cv-in" data-no-marker={isCourseBoard(spec) ? "" : undefined}>
           {/* On a chalkboard a picture is a photo taped to the board: a white border and two strips of tape. */}
           {chalk && (
             <>
@@ -540,7 +550,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       // A part is invisible until the pen or a label points at it — the picture carries it. A course
       // picture's labels are printed in it: nothing is drawn on it (owner, 2026-10-25: the ring and dot
       // on the part she names were "a second kind of label" — removed).
-      return focused && spec.subject === undefined ? (
+      return focused && !isCourseBoard(spec) ? (
         <g className="cv-in">
           <circle cx={mark.cx} cy={mark.cy} r={9} fill={ARIA_INK} stroke="#fff" strokeWidth={3} />
         </g>
@@ -564,7 +574,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       );
     }
     case "equation":
-      return <EquationView mark={mark} stage={layout.stage} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} packed={spec.subject !== undefined} />;
+      return <EquationView mark={mark} stage={layout.stage} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} packed={isCourseBoard(spec)} />;
     case "graph":
       return <GraphView mark={mark} stage={layout.stage} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focusId={focusId} />;
     case "column":
@@ -669,6 +679,16 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       return <CallStackView mark={mark} shownThrough={shownThrough} />;
     case "sketch":
       return <SketchView mark={mark} shownThrough={shownThrough} />;
+    case "sequence":
+      return <SequenceView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
+    case "os-states":
+      return <OsStatesView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
+    case "os-memory":
+      return <OsMemoryView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
+    case "os-gantt":
+      return <OsGanttView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
+    case "os-mapping":
+      return <OsMappingView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
     case "state":
       return <StateView mark={mark} shownThrough={shownThrough} />;
     case "output":
@@ -906,6 +926,17 @@ const DS_LOOK: Record<string, { fill: string; stroke: string }> = {
   done: { fill: "#e5e7eb", stroke: "#64748b" },
   remove: { fill: "#fee2e2", stroke: "#be123c" },
 };
+/** The two sets of a two-colouring (op "group"), with the legend's names. */
+const SET_LOOK: Array<{ fill: string; stroke: string; name: string }> = [
+  { fill: "#bfdbfe", stroke: "#1d4ed8", name: "Set A" },
+  { fill: "#fed7aa", stroke: "#c2410c", name: "Set B" },
+];
+// "same set!" at 13px bold: its width, for placing the label and the plate behind it.
+const CONFLICT_LABEL_W = 68;
+const EDGE_LOOK: Record<string, { color: string; width: number }> = {
+  tree: { color: "#0f766e", width: 6 },
+  conflict: { color: "#dc2626", width: 5.5 },
+};
 const POINTER_INK = "#7c3aed";
 const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -964,20 +995,86 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
   // "next" box (lib/canvas/structure.ts edgeCurve), so list links are drawn over the nodes; a tree's
   // and a graph's run between circles and sit under them.
   const box = layout.shape === "box";
-  const links = frame.edges.map((edge) => {
+  // Edges sharing two nodes bend apart (lib/canvas/structure.ts edgeBends); a lone edge stays straight —
+  // unless its line would run through another node, when it bends around it (edgeDetour).
+  const bends = mark.kind === "graph" ? edgeBends(frame.edges) : frame.edges.map(() => 0);
+  const routeOf = (edge: (typeof frame.edges)[number], ei: number) => {
     const a = at(edge.from);
     const b = at(edge.to);
     if (!a || !b) return null;
-    const { p0, c, p1 } = edgeCurve(layout, a, b);
+    const curve = edgeCurve(layout, a, b);
+    // The normal of the pair's own direction (lower id → higher id), so A→B and B→A bend to opposite sides.
+    const [lo, hi] = edge.from < edge.to ? [a, b] : [b, a];
+    const len = Math.hypot(hi.x - lo.x, hi.y - lo.y) || 1;
+    const normal = { x: -(hi.y - lo.y) / len, y: (hi.x - lo.x) / len };
+    const others = mark.kind === "graph" && layout.shape === "circle" ? frame.nodes.filter((m) => m.id !== edge.from && m.id !== edge.to).map((m) => at(m.id)).filter((p): p is Pt => Boolean(p)) : [];
+    const offset = bends[ei] * 2 + edgeDetour(lo, hi, others, layout.r);
+    return { p0: curve.p0, p1: curve.p1, c: { x: curve.c.x + normal.x * offset, y: curve.c.y + normal.y * offset }, normal, side: Math.sign(offset) || 0 };
+  };
+  const links = frame.edges.map((edge, ei) => {
+    const route = routeOf(edge, ei);
+    if (!route) return null;
+    const { p0, p1, c, normal } = route;
     const points = quadPoints(p0, c, p1, 14);
+    const bulge = bezier(p0, c, p1, 0.5);
+    const side = route.side;
+    const labelAt = side ? { x: bulge.x + normal.x * side * 16, y: bulge.y + normal.y * side * 16 + 5 } : { x: c.x, y: c.y - 8 };
+    // A BFS tree edge drawn bold; a conflict (both ends in one set) drawn red, with its reason.
+    const marked = frame.edgeMarks?.[edgeKey(mark.kind, mark.directed ? "directed" : undefined, edge.from, edge.to)];
+    const edgeLook = marked ? EDGE_LOOK[marked] : null;
     return (
-      <g key={`${edge.from}>${edge.to}`}>
-        <Ink points={points} width={3.6} color={INK} opacity={0.85} />
+      <g key={`${edge.from}>${edge.to}>${ei}`}>
+        <Ink points={points} width={edgeLook?.width ?? 3.6} color={edgeLook?.color ?? INK} opacity={edgeLook ? 1 : 0.85} />
         {box && <circle cx={p0.x} cy={p0.y} r={4.2} fill={INK} />}
         {mark.directed && <g className="cv-in cv-late">{arrowHead(p1, bezier(p0, c, p1, 0.82), 12, 3.4).map((d, i) => <path key={i} d={d} fill={INK} opacity={0.85} />)}</g>}
-        {edge.label && <text x={c.x} y={c.y - 8} textAnchor="middle" fontSize={14} fontWeight={700} fill={MUTED}>{edge.label}</text>}
+        {edge.label && <text x={labelAt.x} y={labelAt.y} textAnchor="middle" fontSize={14} fontWeight={700} fill={MUTED}>{edge.label}</text>}
       </g>
     );
+  });
+
+  /*
+   * "same set!" beside each conflict edge, drawn after every edge so none crosses it, on whichever side
+   * of its edge is farther from the nodes and the other edges' middles (2026-10-23: it sat on its own
+   * edge, then under the next one).
+   */
+  const conflictLabels = frame.edges.flatMap((edge, ei) => {
+    if (frame.edgeMarks?.[edgeKey(mark.kind, mark.directed ? "directed" : undefined, edge.from, edge.to)] !== "conflict") return [];
+    // Beside the edge as it is drawn, bent or straight.
+    const route = routeOf(edge, ei);
+    if (!route) return [];
+    const { p0, c, p1 } = route;
+    const len = Math.hypot(p1.x - p0.x, p1.y - p0.y) || 1;
+    const n = { x: -(p1.y - p0.y) / len, y: (p1.x - p0.x) / len };
+    // Every candidate spot (either side, a little along the edge) is scored by how far its label box sits from
+    // the nodes and from every other edge's whole line, so the label never lands on a neighbouring edge.
+    const nodes = frame.nodes.map((m) => at(m.id)).filter((p): p is Pt => Boolean(p));
+    const segs = frame.edges.filter((e) => e !== edge).map((e) => [at(e.from), at(e.to)] as const).filter((s): s is readonly [Pt, Pt] => Boolean(s[0] && s[1]));
+    const toSeg = (p: Pt, [u, v]: readonly [Pt, Pt]) => {
+      const L = (v.x - u.x) ** 2 + (v.y - u.y) ** 2 || 1;
+      const t = Math.max(0, Math.min(1, ((p.x - u.x) * (v.x - u.x) + (p.y - u.y) * (v.y - u.y)) / L));
+      return Math.hypot(p.x - (u.x + t * (v.x - u.x)), p.y - (u.y + t * (v.y - u.y)));
+    };
+    const labelW = CONFLICT_LABEL_W;
+    const labelBox = (x: number, y: number, anchor: string) => {
+      const left = anchor === "start" ? x : anchor === "end" ? x - labelW : x - labelW / 2;
+      return [0, 0.5, 1].flatMap((f) => [{ x: left + f * labelW, y: y - 9 }, { x: left + f * labelW, y: y + 1 }]);
+    };
+    const room = (pts: Pt[]) => Math.min(...pts.flatMap((p) => [
+      ...nodes.map((o) => Math.hypot(o.x - p.x, o.y - p.y) - layout.size * 0.8),
+      ...segs.map((s) => toSeg(p, s)),
+    ]), Infinity);
+    const candidates = [0.5, 0.35, 0.65].flatMap((t) => {
+      const mid = { x: (1 - t) ** 2 * p0.x + 2 * (1 - t) * t * c.x + t * t * p1.x, y: (1 - t) ** 2 * p0.y + 2 * (1 - t) * t * c.y + t * t * p1.y };
+      return [1, -1].flatMap((side) => [16, 28, 40].map((off) => {
+        const dx = n.x * side;
+        const anchor = Math.abs(dx) > 0.6 ? (dx > 0 ? "start" : "end") : "middle";
+        const x = mid.x + n.x * side * off;
+        const y = mid.y + n.y * side * off + 4;
+        return { x, y, anchor, score: room(labelBox(x, y, anchor)) - off * 0.05 };
+      }));
+    });
+    const best = candidates.reduce((a, b) => (b.score > a.score ? b : a));
+    return [{ key: `${edge.from}>${edge.to}`, x: best.x, y: best.y, anchor: best.anchor }];
   });
 
   return (
@@ -987,7 +1084,11 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
         const p = at(n.id);
         if (!p) return null;
         const state = frame.marks[n.id] ?? "none";
-        const look = DS_LOOK[state] ?? DS_LOOK.none;
+        // A node in a set is filled in its set's colour; a mark (visiting, comparing) shows as its outline.
+        const set = frame.groups?.[n.id];
+        const look = set !== undefined
+          ? { fill: SET_LOOK[set].fill, stroke: state !== "none" ? (DS_LOOK[state] ?? DS_LOOK.none).stroke : SET_LOOK[set].stroke }
+          : DS_LOOK[state] ?? DS_LOOK.none;
         const lit = focusId === `ds-${n.id}`;
         const changed = shown.t >= 1 && frame.changed.includes(n.id);
         return (
@@ -1014,6 +1115,12 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
         );
       })}
       {box && links}
+      {conflictLabels.map((l) => (
+        <g key={`conflict-${l.key}`} className="cv-in">
+          <rect x={(l.anchor === "start" ? l.x : l.anchor === "end" ? l.x - CONFLICT_LABEL_W : l.x - CONFLICT_LABEL_W / 2) - 3} y={l.y - 11} width={CONFLICT_LABEL_W + 6} height={15} rx={4} data-plate="" />
+          <text x={l.x} y={l.y} textAnchor={l.anchor as "start" | "end" | "middle"} fontSize={13} fontWeight={800} fill={EDGE_LOOK.conflict.color}>same set!</text>
+        </g>
+      ))}
       {/* Removed on this step: crossed out where it was, fading as the rest settles. */}
       {shown.t < 1 && gone.map((n) => {
         const p = before.place[n.id];
@@ -1048,6 +1155,54 @@ function StructureView({ mark, shownThrough, focusId, reducedMotion }: { mark: E
           </g>
         );
       })}
+      {/* A list's null slot (null ← A ← B), with the tags of the pointers that hold None under it. */}
+      {layout.nullMark && (
+        <g className="cv-in">
+          <rect x={layout.nullMark.x - layout.w * 0.42} y={layout.nullMark.y - layout.h * 0.38} width={layout.w * 0.84} height={layout.h * 0.76} rx={8} fill="none" stroke="#94a3b8" strokeWidth={1.8} strokeDasharray="5 4" />
+          <text x={layout.nullMark.x} y={layout.nullMark.y + 5} textAnchor="middle" fontSize={15} fontWeight={800} fontFamily={MONO_FONT} fill="#94a3b8">null</text>
+        </g>
+      )}
+      {layout.nullMark && (after.nulls ?? []).map((nl) => {
+        const was = before.nulls?.find((q) => q.name === nl.name);
+        const tag = lerp(was?.at, nl.at)!;
+        const w = Math.max(30, nl.name.length * 8.6 + 14);
+        return (
+          <g key={`null-${nl.name}`} className={was ? undefined : "cv-in"}>
+            <rect x={tag.x - w / 2} y={tag.y - 13} width={w} height={22} rx={11} fill={POINTER_INK} />
+            <text x={tag.x} y={tag.y + 3} textAnchor="middle" fontSize={13} fontWeight={800} fill="#ffffff" fontFamily={MONO_FONT}>{nl.name}</text>
+            {nl.arrow && nl.tip && (
+              <>
+                <line x1={tag.x} y1={tag.y - 13} x2={nl.tip.x} y2={nl.tip.y} stroke={POINTER_INK} strokeWidth={2.4} strokeLinecap="round" />
+                {arrowHead(nl.tip, { x: tag.x, y: tag.y }, 9, 2.6).map((d, i) => <path key={i} d={d} fill={POINTER_INK} />)}
+              </>
+            )}
+          </g>
+        );
+      })}
+      {/* Elsewhere (a tree, a graph), a pointer holding null is a tag reading "name → null". */}
+      {!layout.nullMark && (after.nulls ?? []).map((nl) => {
+        const w = Math.max(30, nl.name.length * 8.6 + 14);
+        return (
+          <g key={`null-${nl.name}`} className="cv-in">
+            <rect x={nl.at.x - w / 2} y={nl.at.y - 13} width={w} height={22} rx={11} fill={POINTER_INK} />
+            <text x={nl.at.x} y={nl.at.y + 3} textAnchor="middle" fontSize={13} fontWeight={800} fill="#ffffff" fontFamily={MONO_FONT}>{nl.name}</text>
+            <line x1={nl.at.x + w / 2 + 3} y1={nl.at.y - 2} x2={nl.at.x + w / 2 + 20} y2={nl.at.y - 2} stroke={POINTER_INK} strokeWidth={2.4} strokeLinecap="round" />
+            {arrowHead({ x: nl.at.x + w / 2 + 22, y: nl.at.y - 2 }, { x: nl.at.x, y: nl.at.y - 2 }, 8, 2.4).map((d, i) => <path key={i} d={d} fill={POINTER_INK} />)}
+            <text x={nl.at.x + w / 2 + 28} y={nl.at.y + 3} fontSize={14} fontWeight={800} fontFamily={MONO_FONT} fill="#475569">null</text>
+          </g>
+        );
+      })}
+      {/* The two sets' legend, once a node has been put in one. */}
+      {Object.keys(frame.groups ?? {}).length > 0 && (
+        <g className="cv-in">
+          {SET_LOOK.map((look, k) => (
+            <g key={look.name}>
+              <circle cx={mark.rect.x + 12 + k * 92} cy={mark.rect.y + 10} r={8} fill={look.fill} stroke={look.stroke} strokeWidth={2.2} />
+              <text x={mark.rect.x + 26 + k * 92} y={mark.rect.y + 15} fontSize={14} fontWeight={800} fill={look.stroke}>{look.name}</text>
+            </g>
+          ))}
+        </g>
+      )}
       {caption && (
         <text key={caption.s} x={mark.rect.x + mark.rect.w / 2} y={mark.captionY} textAnchor="middle" fontSize={20} fontWeight={600} fill={MUTED} className="cv-in">
           {caption.text}
@@ -1231,11 +1386,36 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
     return edit && shownThrough < edit.s ? edit.from : mark.lines[i];
   };
   const lineEnd = first ? textX + textOf(first - 1).length * 0.6 * size : 0;
+  // The code stays on its card: a line still too long at the smallest size is cut at the card's edge,
+  // never drawn into the structure or the variables beside it (owner, 2026-10-23).
+  const clipId = `code-clip-${useId().replace(/:/g, "")}`;
+  // A LONG LISTING SCROLLS (owner, 2026-10-25): the card shows `mark.window` lines and glides so the line
+  // Aria is reading stays in view (lib/canvas/layout.ts codeScrollTop — the pen's targets agree with it).
+  const total = mark.lines.length;
+  const windowed = Boolean(mark.window && mark.window < total);
+  const following = [...lit].filter((n) => n <= shown);
+  const scrollTop = windowed ? codeScrollTop(following.length ? following : shown ? [shown] : [], total, mark.window!) : 0;
+  const dy = -scrollTop * lineH;
   return (
     <g>
+      <defs>
+        <clipPath id={clipId}>
+          {/* A scrolling card hides its padding too, so no half line shows at its top or bottom edge. */}
+          <rect x={rect.x} y={windowed ? rect.y + 12 : rect.y} width={rect.w - 6} height={windowed ? rect.h - 24 : rect.h} />
+        </clipPath>
+      </defs>
       <rect x={rect.x} y={rect.y} width={rect.w} height={rect.h} rx={14} fill="#1e2030" />
       <rect x={rect.x} y={rect.y} width={gutter} height={rect.h} rx={14} fill="#191a29" />
       <rect x={rect.x + gutter - 14} y={rect.y} width={14} height={rect.h} fill="#191a29" />
+      {windowed && (
+        <g>
+          <rect x={rect.x + rect.w - 9} y={rect.y + 10} width={4} height={rect.h - 20} rx={2} fill="#2a2d42" />
+          <rect x={rect.x + rect.w - 9} width={4} height={((rect.h - 20) * mark.window!) / total} rx={2} fill="#6b7194"
+            style={{ transform: `translateY(${rect.y + 10 + ((rect.h - 20) * scrollTop) / total}px)`, transition: "transform 450ms cubic-bezier(.65,0,.25,1)" }} />
+        </g>
+      )}
+      <g clipPath={`url(#${clipId})`}>
+      <g style={{ transform: `translateY(${dy}px)`, transition: "transform 450ms cubic-bezier(.65,0,.25,1)" }}>
       {/* The lines being talked about, lit; the pointer glides between steps. */}
       {[...lit].filter((n) => n <= shown).map((n) => (
         // fillOpacity, not opacity: the cv-in reveal animates opacity to 1 and would make the band solid.
@@ -1274,6 +1454,8 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
           </g>
         );
       })}
+      </g>
+      </g>
       {/* SUBGOAL LABELS: what each chunk of lines is FOR (Margulieux) — a bracket and its name. */}
       {mark.groups.filter((g) => g.s <= shownThrough && g.to <= shown).map((g, i) => {
         const y1 = top + (g.from - 1) * lineH + 5;
@@ -1295,7 +1477,7 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
         const noteW = (step.note.length + 2) * noteSize * 0.56;
         const fits = lineEnd + 18 + noteW < rect.x + rect.w - 8;
         const x = fits ? lineEnd + 18 : rect.x + rect.w - noteW - 18;
-        const y = fits ? baseline(first - 1) : rect.y - 12;
+        const y = fits ? baseline(first - 1) + dy : rect.y - 12;
         return (
           <g key={`note-${step.s}`} className="cv-in">
             {!fits && <rect x={x - 8} y={y - noteSize - 2} width={noteW + 16} height={noteSize + 12} rx={(noteSize + 12) / 2} fill="#1e2030" />}
@@ -1357,7 +1539,11 @@ function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "
   const rowH = Math.min(46, (rect.h - 34) / Math.max(1, names.length));
   // Names are set in the code font: measured as monospace (0.6 em a character), with a gap.
   const nameW = Math.min(rect.w * 0.36, Math.max(...names.map((n) => n.length * 16 * 0.6)) + 18);
-  const boxW = Math.min(rect.w * 0.3, Math.max(64, ...mark.steps.flatMap((st) => (st.state ?? []).map((v) => textWidth(v.value, 17) + 22))));
+  // A name too long for its column ("candidate_length") is set smaller to fit, never over its value box (CS test, 2026-10-23).
+  const nameSize = (n: string) => Math.max(10, Math.min(16, Math.floor((nameW - 12) / Math.max(1, n.length * 0.6))));
+  // Values are written in the code font, so they are measured as monospace too: the proportional
+  // measure was ~20% short and a colours dictionary ran off the board (owner, 2026-10-23).
+  const boxW = Math.min(rect.w * 0.3, Math.max(64, ...mark.steps.flatMap((st) => (st.state ?? []).map((v) => monoWidth(v.value, 17) + 22))));
   return (
     <g className="cv-in" data-mark="state">
       <text x={rect.x} y={rect.y + 16} fontSize={15} fontWeight={700} fill="#64748b">variables</text>
@@ -1381,17 +1567,21 @@ function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "
         if (items) {
           // Cells at full size, else compact; a set too long for either is written as text that fits.
           const room = rect.x + rect.w - bx;
-          const full = items.map((it) => Math.max(34, textWidth(it, 16) + 18));
-          const compact = items.map((it) => Math.max(24, textWidth(it, 13) + 10));
+          const full = items.map((it) => Math.max(34, monoWidth(it, 16) + 18));
+          const compact = items.map((it) => Math.max(24, monoWidth(it, 13) + 10));
           const cellW = full.reduce((a, b) => a + b, 0) <= room ? full : compact;
           const cellFont = cellW === full ? 16 : 13;
           const total = cellW.reduce((a, b) => a + b, 0);
           if (total > room) {
-            const size = Math.max(11, Math.min(16, Math.floor((16 * room) / Math.max(1, textWidth(now!, 16)))));
+            // Too long for cells: written as text that FITS — on one line if it can at 11 px or more,
+            // else on two lines broken after a comma — never past the board's edge.
+            const { lines, size } = fitValue(now!, room, h);
             return (
               <g key={name}>
-                <text x={rect.x} y={y + h * 0.68} fontSize={16} fontFamily={MONO_FONT} fill={INK}>{name}</text>
-                <text key={`v-${now}`} x={bx} y={y + h * 0.68} fontSize={size} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged ? ARIA_INK : INK} className="cv-in">{now}</text>
+                <text x={rect.x} y={y + h * 0.68} fontSize={nameSize(name)} fontFamily={MONO_FONT} fill={INK}>{name}</text>
+                <text key={`v-${now}`} x={bx} y={lines.length > 1 ? y + size : y + h * 0.68} fontSize={size} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged ? ARIA_INK : INK} className="cv-in">
+                  {lines.map((l, k) => <tspan key={k} x={bx} dy={k === 0 ? 0 : size * 1.15}>{l}</tspan>)}
+                </text>
               </g>
             );
           }
@@ -1400,7 +1590,7 @@ function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "
             const end = /stack/i.test(name) ? "top" : /queue/i.test(name) ? "front" : "";
             return (
               <g key={name}>
-                <text x={rect.x} y={y + h * 0.68} fontSize={16} fontFamily={MONO_FONT} fill={INK}>{name}</text>
+                <text x={rect.x} y={y + h * 0.68} fontSize={nameSize(name)} fontFamily={MONO_FONT} fill={INK}>{name}</text>
                 {items.length === 0 && <text x={bx + 4} y={y + h * 0.68} fontSize={15} fill="#94a3b8">empty</text>}
                 {items.map((it, k) => {
                   const x = cx;
@@ -1412,21 +1602,26 @@ function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "
                     </g>
                   );
                 })}
-                {end && items.length > 0 && <text x={end === "front" ? bx + cellW[0] / 2 : cx - cellW[items.length - 1] / 2} y={y + h + 13} textAnchor="middle" fontSize={12} fill="#94a3b8">{end}</text>}
+                {/* Under its cell only where nothing is below it (the last row, or rows tall enough): it sat on the next row's name. */}
+                {end && items.length > 0 && (i === names.length - 1 || rowH >= 60) && <text x={end === "front" ? bx + cellW[0] / 2 : cx - cellW[items.length - 1] / 2} y={y + h + 13} textAnchor="middle" fontSize={12} fill="#94a3b8">{end}</text>}
               </g>
             );
           }
         }
         return (
           <g key={name}>
-            <text x={rect.x} y={y + h * 0.68} fontSize={16} fontFamily={MONO_FONT} fill={INK}>{name}</text>
+            <text x={rect.x} y={y + h * 0.68} fontSize={nameSize(name)} fontFamily={MONO_FONT} fill={INK}>{name}</text>
             <Sketch d={roughRect(`var-${mark.id}-${name}`, bx, y, boxW, h, 6)} color={INK} width={2} />
-            {now !== undefined && (
-              // A long value shrinks to fit its box, never spills over its name or its history.
-              <text key={`v-${now}`} x={bx + boxW / 2} y={y + h * 0.7} textAnchor="middle" fontSize={Math.max(10, Math.min(17, Math.floor((17 * (boxW - 12)) / Math.max(1, now.length * 17 * 0.6))))} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged ? ARIA_INK : INK} className="cv-in">
-                {now}
-              </text>
-            )}
+            {now !== undefined && (() => {
+              // A long value shrinks to fit its box — and past 10 px it breaks onto two lines — never
+              // spilling over its name or its history.
+              const { lines, size } = fitValue(now, boxW - 12, h, 17);
+              return (
+                <text key={`v-${now}`} x={bx + boxW / 2} y={lines.length > 1 ? y + size : y + h * 0.7} textAnchor="middle" fontSize={size} fontWeight={700} fontFamily={MONO_FONT} fill={justChanged ? ARIA_INK : INK} className="cv-in">
+                  {lines.map((l, k) => <tspan key={k} x={bx + boxW / 2} dy={k === 0 ? 0 : size * 1.15}>{l}</tspan>)}
+                </text>
+              );
+            })()}
             {/* Oldest first, as a teacher crosses them out: 3̶ 2̶ 1̶. */}
             {values.slice(-4, -1).map((old, k) => {
               const w = textWidth(old, 14) + 4;
@@ -1445,6 +1640,11 @@ function PencilStateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "
       })}
     </g>
   );
+}
+
+/** Width of text in the code font (monospace: 0.6 em a character). */
+function monoWidth(text: string, size: number): number {
+  return text.length * size * 0.6;
 }
 
 /** The items of a list, tuple or set value ("[B, C]", "{A, B}", "[]"), or null when it is not one. */
@@ -1841,7 +2041,7 @@ function EquationView({ mark, stage, shownThrough, focusId, reducedMotion, packe
  * box grows to what it holds — a foreignObject's content past its box is clipped by Safari, whatever
  * its overflow says, and a tall fraction outgrew the fixed one.
  */
-function TexTerm({ tex, size, w, color, onElement, onWidth }: { tex: string; size: number; w: number; color: string; onElement: (el: HTMLDivElement | null) => void; onWidth?: (w: number) => void }) {
+function TexTerm({ tex, size, w, color, onElement, onWidth, align = "center" }: { tex: string; size: number; w: number; color: string; onElement: (el: HTMLDivElement | null) => void; onWidth?: (w: number) => void; /** A note starts at its bullet; a term centred in its slot. */ align?: "left" | "center" }) {
   const html = useMemo(() => katex.renderToString(tex, { throwOnError: false, displayMode: false }), [tex]);
   const onWidthRef = useRef(onWidth);
   onWidthRef.current = onWidth;
@@ -1869,9 +2069,9 @@ function TexTerm({ tex, size, w, color, onElement, onWidth }: { tex: string; siz
       const shown = actual * scale;
       // A course board's working starts every line on one margin (owner, 2026-10-24: "placement to be
       // perfect"): its terms sit at the left of their slots, not in their middle.
-      const leftAlign = Boolean(inner.closest(".cv-course"));
+      const leftAlign = align === "left" || Boolean(inner.closest(".cv-course"));
       // Wider than its slot even at the floor: the box widens about its centre to hold it.
-      const left = leftAlign ? (shown > w ? -4 : 0) : Math.min(0, (w - shown) / 2 - 4);
+        const left = leftAlign ? (shown > w ? -4 : 0) : Math.min(0, (w - shown) / 2 - 4);
       const width = Math.max(4, w, shown + 8);
       const height = Math.max(h, inner.offsetHeight + 8);
       if (fo) {
@@ -1901,7 +2101,7 @@ function TexTerm({ tex, size, w, color, onElement, onWidth }: { tex: string; siz
       alive = false;
       cancelAnimationFrame(raf);
     };
-  }, [html, w, h, top]);
+  }, [html, w, h, top, align]);
   return (
     <foreignObject ref={box} x={0} y={top} width={Math.max(4, w)} height={h} overflow="visible" className="cv-in">
       <div ref={onElement} style={{ display: "flex", alignItems: "center", height: "100%", whiteSpace: "nowrap", color, fontSize: size * 0.84, lineHeight: 1 }}>
@@ -2133,11 +2333,18 @@ export const CANVAS_CSS = `
 .cv-course .katex, .cv-course .katex :is(.mathnormal, .mathit, .mathrm, .textrm, .mord, .mbin, .mrel, .mpunct, .minner):not(.delimsizing):not(.mop):not(.accent-body) { font-family: "${COURSE_FONT_FAMILY}", KaTeX_Main, "Times New Roman", serif; font-style: normal; }
 .cv-course .katex :is(.mopen, .mclose):not(.delimsizing) { font-family: "${COURSE_FONT_FAMILY}", KaTeX_Main, serif; }
 .cv-live .cv-in { animation: cv-in 480ms cubic-bezier(.2,.8,.2,1) both; transform-box: fill-box; transform-origin: center; }
+/* Paused by the student: every stroke and fade on the board holds where it is until Play. */
+.cv-paused, .cv-paused * { animation-play-state: paused !important; }
 .cv-live .cv-late { animation-delay: 520ms; }
 .cv-live .cv-write { animation: cv-write 900ms steps(24, end) both; }
 /* A free label's halo (TextDeconflict): board colour behind its letters, so a line passing behind stops short. */
 text[data-halo] { paint-order: stroke fill; stroke: ${PAPER}; stroke-width: 4.5px; stroke-linejoin: round; }
 .cv-chalk text[data-halo] { stroke: #000000; }
+/* A plate in the board colour behind a short label, for spots no edge leaves free (a "same set!" inside a triangle). */
+rect[data-plate] { fill: ${PAPER}; }
+.cv-chalk rect[data-plate] { fill: #000000; }
+/* A typeset equation note takes the board's ink: chalk recolours by fill attributes, which KaTeX has none of. */
+.cv-chalk [data-tex-note] .katex { color: #f1eee4; }
 .cv-chalk foreignObject[data-halo] [data-ink-content], .cv-chalk foreignObject[data-halo] .katex { text-shadow: 0 0 2px #000, 0 0 4px #000, 0 0 7px #000; }
 .cv-live .cv-stroke { stroke-dasharray: 1; animation: cv-stroke 850ms cubic-bezier(.45,0,.25,1) both; }
 .cv-live .cv-slow { animation-duration: 1800ms; }

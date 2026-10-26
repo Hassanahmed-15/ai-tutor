@@ -1,5 +1,7 @@
 import { describeSketch } from "./sketch";
 import { describeStructure } from "./structure";
+import { describeSequence } from "./sequence";
+import { describeGantt, describeMapping, describeMemory, describeStates } from "./osDiagrams";
 import type { CanvasBoardSpec } from "./types";
 
 /**
@@ -64,6 +66,21 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
     case "structure":
       lines.push(describeStructure(stage.structure, stage.steps));
       if (stage.steps.some((p) => p.note)) lines.push(`Steps: ${stage.steps.filter((p) => p.note).map((p) => p.note).join(" → ")}.`);
+      break;
+    case "sequence":
+      lines.push(describeSequence(stage));
+      break;
+    case "states":
+      lines.push(describeStates(stage));
+      break;
+    case "memory":
+      lines.push(describeMemory(stage));
+      break;
+    case "gantt":
+      lines.push(describeGantt(stage));
+      break;
+    case "mapping":
+      lines.push(describeMapping(stage));
       break;
     case "molecule":
       lines.push(`Molecular models: ${stage.molecules.map((m) => `${m.label}: ${m.geometry}${m.bondAngle ? `, ${m.bondAngle}` : ""}; atoms ${m.atoms.map((a) => `${a.element}${a.lonePairs ? ` (${a.lonePairs} lone pairs)` : ""}`).join(", ")}; bonds ${m.bonds.map((b) => `${b.from}-${b.to} ${b.style ?? "line"}`).join(", ")}`).join(" | ")}.`);

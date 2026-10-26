@@ -118,6 +118,17 @@ export type ProgressiveLectureInput = {
    * planning profile above is about THIS topic; this is about the person across every topic.
    */
   learnerPersona?: string;
+  /**
+   * A typed lesson's subject, asked of a model when it was created (lib/canvas/subjectDomain.ts):
+   * "cs" and "maths" are taught by their own rules, "none" by the normal pipeline. Absent on source
+   * lessons and older lectures, which keep the keyword checks.
+   */
+  subjectDomain?: import("./canvas/subjectDomain").SubjectDomain;
+  /**
+   * How the student wants the lesson taught, from the question card (lib/teachingQuestions.ts): every
+   * board planner reads it, and its depth, code, examples, checks and level are applied by code.
+   */
+  teachingChoices?: import("./teachingQuestions").TeachingChoice[];
   /** Who the lesson is for — grade, country, curriculum, subjects — as rules (lib/studentCard.ts). */
   studentCard?: import("./studentCard").StudentCard;
   /**
@@ -135,6 +146,8 @@ export type ProgressiveLectureSessionDoc = {
   mode: LectureMode;
   learnerProfile: LearnerProfileSnapshot;
   inputBlobName: string;
+  /** A typed lesson's asked subject (lib/canvas/subjectDomain.ts), kept for the player. */
+  subjectDomain?: import("./canvas/subjectDomain").SubjectDomain;
   status: ProgressiveLectureStatus;
   plan: ProgressiveBeatPlan[];
   planRevision: number;
@@ -257,6 +270,8 @@ export type ProgressiveLectureSnapshot = {
   error: string | null;
   /** When the session was created, so time-to-first-beat can be read off the snapshot. */
   createdAt?: string;
+  /** A typed lesson's asked subject: a CS lecture waits for a board whose animation is being retried. */
+  subjectDomain?: import("./canvas/subjectDomain").SubjectDomain;
   /** Every planned beat, ready or not, with where its time has gone so far. */
   beatStatus?: Array<{
     sequence: number;

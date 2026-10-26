@@ -3,8 +3,11 @@ import { missingStackProblem } from "./callStack";
 import { isLabLookTopic } from "./subjectLook";
 import { checkNumbers } from "./numberCheck";
 import { asCodeLesson, asMathsOrCs, plannedSubject } from "./lessonSubject";
+import { domainIsCs, domainIsLab, type SubjectDomain } from "./subjectDomain";
 import { repairEquationOrder } from "./equationRepair";
 import { SKETCH_GUIDE } from "./sketch";
+import { SEQUENCE_GUIDE, takeSequenceProblem } from "./sequence";
+import { GANTT_GUIDE, MAPPING_GUIDE, MEMORY_GUIDE, OS_SEQUENCE_HINT, STATES_GUIDE, takeOsProblem } from "./osDiagrams";
 import "server-only";
 import { complexNumbersIn } from "../figures/components/argand";
 
@@ -38,9 +41,15 @@ import { DRAWN_GUIDE, drawnFigure } from "../figures/drawn";
 import { findLibraryFigure, libraryAssetTitle, libraryStageAsset } from "../figures/library";
 import type { FigureComponent } from "../figures/types";
 import { loadSharedCanvasImage, loadSharedDiagramRecord, saveCanvasImage, saveCanvasLecture, saveSharedCanvasImage, saveSharedDiagramRecord, type CanvasLecture } from "./store";
-import { boardStructureProblem, isDataStructureTopic, withoutStructure } from "./structure";
+import { boardStructureProblem, dsaTeachingProblem, heapRepairHint, isDataStructureTopic, takeDroppedOps, withoutStructure } from "./structure";
+import katex from "katex";
+import { mathifyBoard } from "./mathNotes";
+/** A LaTeX string KaTeX can typeset (a note that cannot stays as text). */
+const rendersAsTex = (tex: string): boolean => { try { katex.renderToString(tex, { throwOnError: true }); return true; } catch { return false; } };
+import { anchorTraceNotes, claimedLinksProblem, continuedCodeProblem, crowdedStepsProblem, csPictureRule, removeCutNodes, retargetLineReferences, exampleProblem, hardcodedResultProblem, isCodeNote, isTypedDsaTopic, isTypedOsTopic, parentForestProblem, placeholderProblem, pointerNameProblem, protocolStartProblem, repairFromExample, structureChangeProblem, syncProblem, type EarlierStructure } from "./csLessons";
 import { dropBrokenRows, equationProblem, normalizeMath, orderNotesAsSaid, repeatsWorking, revealNotesWhenSaid, tidyNotes, withResultNotes } from "./equationCheck";
-import { MATHS_CHECK_MODEL, mathsCheck, mathsFixes, patchNarration, type ExaminerSubject } from "./mathsCheck";
+import { MATHS_CHECK_MODEL, mathsCheck, mathsFixes, patchNarration, type ExaminerSubject, type MathsProblem } from "./mathsCheck";
+import { alignNotesWithStructure, applyExaminerFixes } from "./boardFacts";
 import { isMissingLine, writeMissingLines } from "./writeMissing";
 import { codeSyncIssues, fixLineReferences } from "./codeSync";
 import { createOpenAI } from "../openaiClient";
@@ -80,6 +89,34 @@ export type { CanvasLecture };
 export const PLAN_MODEL = process.env.CANVAS_PLAN_MODEL ?? "gpt-5.6-luna";
 const SPEC_MODEL = process.env.CANVAS_SPEC_MODEL ?? "gpt-5.6-luna";
 const BUDGET_MS = Number(process.env.CANVAS_BUDGET_MS) || 195_000;
+
+/**
+ * HOW A DATA-STRUCTURES BOARD TEACHES (typed-prompt lessons; owner, 2026-10-23: "a bipartite lecture
+ * without a single bipartite graph", "the linked-list board made no sense"). Taken from how DSA is
+ * taught well: VisuAlgo (states in colour with a legend, the code lit beside the structure), Python
+ * Tutor (one executed line per step; variables on one side, the structure with its arrows — null
+ * included — on the other) and textbook figures (one small example, the same one throughout).
+ */
+export const TYPED_DSA_RULES = [
+  `THIS BOARD TEACHES A DATA STRUCTURE OR ALGORITHM. Draw the structure itself in "structure" — a graph for BFS/DFS/bipartite/shortest paths, a list for linked lists, a tree for BST/heap — and change it step by step as Aria speaks:`,
+  `- ONE SMALL EXAMPLE: 4 to 7 nodes with short values (letters A–G or small numbers, at most 4 characters — never city or person names), the same example the earlier boards used (it is named in this board's brief).`,
+  `- A graph is undirected unless the lesson is about directed graphs (then "variant": "directed").`,
+  // Dijkstra's weights were said aloud and never drawn (CS rating run, 2026-10-24).
+  `- A WEIGHTED graph shows every weight on its edge: each edge carries "label" with its weight ({"from": "a", "to": "b", "label": "4"}), and a link added later does too ({"op": "link", "from", "to", "label": "4"}). The weights are the same on every board.`,
+  `- ONE CHANGE PER STEP: one vertex coloured, one pointer moved, or one link turned — and each step's "lines" are only the 1–2 lines that just did it. Never put a whole loop body in one step.`,
+  `- TWO-COLOURING / SETS: {"op": "group", "id", "group": 0 or 1} puts a vertex in Set A (0, drawn blue) or Set B (1, drawn orange) with a legend — use it on the sentence that colours the vertex. A same-set edge found is {"op": "edge", "from", "to", "as": "conflict"} (drawn red); a BFS/DFS tree edge is {"op": "edge", "from", "to", "as": "tree"} (drawn bold).`,
+  `- NULL IS DRAWN: a pointer set to None/null is {"op": "point", "name", "to": null} — shown as "prev → null". In a list, {"op": "link", "from", "to"} replaces the node's next link, so the student watches each arrow turn.`,
+  `- THE STRUCTURE CHANGES AS ARIA SAYS IT: a deletion removes the node ({"op": "remove", "id"}) or unlinks it on the sentence that deletes it; a child taking its parent's place is {"op": "link", "from": grandparent, "to": child, "side"}; an insertion is {"op": "add", "id", "value", "parent", "side"}. Colouring a node is not deleting it.`,
+  `- A TRAVERSAL IS SHOWN, never listed: real code (recursive or with a stack/queue), one node visited per step ({"op": "mark", "as": "visit"}, then "done"), the output list growing in the variables panel ("out": "[1, 3, 4]"). Never write the answer as a list in the code.`,
+  `- POINTER NAMES at most 9 characters ("curr", "parent", "succ", "succ_par"), so the tag never covers the next node.`,
+  // A heap's nodes named after their values ("n10") were read as values after a swap had moved them (max-heap
+  // lecture, 2026-10-25): the writer and the review both lost track, and correct sift-downs were rejected.
+  `- A HEAP is a "tree" with "variant": "heap" whose node ids are POSITIONS — "p0" the root, "p1" and "p2" its children, "p3"… in level order — never values. {"op": "swap", "a": "p0", "b": "p1"} exchanges the VALUES at two positions; the nodes stay. Sift down until the parent is ≥ both children (max-heap): every swap, each on its own step. In heap sort, the root swaps with the last heap position and that position is then marked "done" (sorted).`,
+  `- THE VARIABLES PANEL ("state") holds at most 4 variables over the WHOLE board — only scalars and the queue/stack, each value at most 28 characters ("[B, C]"). Colours, sets, visited marks and links are shown ON the structure — never written there as a dictionary; a distance table goes on its own board or into the narration, never as a long dict in the panel.`,
+  `- CODE: Python unless another language was asked for; lines at most 56 characters (break a longer statement inside its brackets); "reveal": "build".`,
+  `The stage looks like this (fill it with THIS board's structure, values and lines):`,
+  `{"kind": "code", "language": "python", "reveal": "build", "lines": ["color[start] = 0", "queue = [start]", "while queue:", "    v = queue.pop(0)", "    for w in graph[v]:", "        if w not in color:", "            color[w] = 1 - color[v]", "            queue.append(w)"], "structure": {"kind": "graph", "nodes": [{"id": "a", "value": "A"}, {"id": "b", "value": "B"}, {"id": "c", "value": "C"}, {"id": "d", "value": "D"}], "edges": [{"from": "a", "to": "b"}, {"from": "a", "to": "c"}, {"from": "b", "to": "d"}, {"from": "c", "to": "d"}]}, "steps": [{"s": 1, "lines": [1, 2], "state": {"queue": "[A]"}, "ops": [{"op": "group", "id": "a", "group": 0}]}, {"s": 2, "lines": [4], "state": {"queue": "[]", "v": "A"}, "ops": [{"op": "point", "name": "v", "to": "a"}, {"op": "mark", "id": "a", "as": "visit"}]}, {"s": 3, "lines": [7], "state": {"queue": "[B]", "v": "A"}, "ops": [{"op": "group", "id": "b", "group": 1}, {"op": "edge", "from": "a", "to": "b", "as": "tree"}]}]}`,
+];
 
 /** Time left before the lecture must be finished, for this generation. */
 export type Clock = { left: () => number };
@@ -151,6 +188,12 @@ function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanB
     ...(beat.stage === "figure" && beat.figure === "drawn" && !vector ? [`FIGURE BOARD — draw the textbook diagram of what this board teaches (${beat.brief || beat.title}). ${DRAWN_GUIDE} Label 3-6 parts the narration names, each revealed ("s") on the sentence that first names it; cues point at part ids.`] : []),
     ...(beat.stage === "diagram" ? [DIAGRAM_GUIDE, `Draw the standard textbook diagram for: ${beat.brief || beat.title}.`] : []),
     ...(beat.stage === "sketch" ? [SKETCH_GUIDE, `Draw this board as a sketch: ${beat.brief || beat.title}.`] : []),
+    ...(beat.stage === "sequence" ? [SEQUENCE_GUIDE, `Draw this board as a message sequence: ${beat.brief || beat.title}.`] : []),
+    ...(beat.stage === "sequence" && isTypedOsTopic([topic, ...plan.map((b) => b.title)].join(" ")) ? [OS_SEQUENCE_HINT] : []),
+    ...(beat.stage === "states" ? [STATES_GUIDE, `Draw this board as a state diagram: ${beat.brief || beat.title}.`] : []),
+    ...(beat.stage === "memory" ? [MEMORY_GUIDE, `Draw this board as a memory layout: ${beat.brief || beat.title}.`] : []),
+    ...(beat.stage === "gantt" ? [GANTT_GUIDE, `Draw this board as a Gantt chart: ${beat.brief || beat.title}.`] : []),
+    ...(beat.stage === "mapping" ? [MAPPING_GUIDE, `Draw this board as a mapping: ${beat.brief || beat.title}.`] : []),
     ...(beat.stage === "flow" && /\bcycle\b/i.test(`${beat.title} ${beat.brief}`) ? [`This board is a CYCLE: use "arrangement": "cycle", with an arrow from the last stage back to the first.`] : []),
     ...(beat.requiredVisual?.mustShow.length ? [`The syllabus requires this board to visibly show: ${beat.requiredVisual.mustShow.join("; ")}. Each must be a drawn, labelled element, not only spoken.`] : []),
     `Narration, numbered (${sentences.length} sentences, s = 0 to ${sentences.length - 1}):`,
@@ -235,12 +278,17 @@ async function reviewBoard(openai: OpenAI, topic: string, spec: CanvasBoardSpec,
 const rejected = (beat: CanvasPlanBeat) => [...new Set([...(beat.rejectedFigures ?? []), ...(beat.figure && beat.figure !== "drawn" && beat.figure !== "library" ? [beat.figure] : [])])];
 
 /** The same board without its visual: a worked equation for a calculation, else a step-by-step flow. */
-/** A maths or computer-science lecture (lib/canvas/subjectLook.ts), read from its topic and its boards. */
-function labLecture(topic: string, plan: CanvasPlanBeat[]): boolean {
-  return asMathsOrCs(plannedSubject(plan), () => isLabLookTopic([topic, ...plan.map((b) => `${b.title} ${b.brief}`)].join(" ")));
+/**
+ * A maths or computer-science lecture (lib/canvas/subjectLook.ts): its judged subject (lib/canvas/lessonSubject.ts),
+ * else read from its topic and its boards — or, for a typed lesson whose subject was asked
+ * (lib/canvas/subjectDomain.ts), that answer.
+ */
+function labLecture(topic: string, plan: CanvasPlanBeat[], domain?: SubjectDomain): boolean {
+  return asMathsOrCs(plannedSubject(plan), () => domainIsLab(domain, [topic, ...plan.map((b) => `${b.title} ${b.brief}`)].join(" ")));
 }
 
-function plainBeat(beat: CanvasPlanBeat, allowFigure = true, lab = false): CanvasPlanBeat {
+/** `codeLaid`: a typed CS board — never a free sketch or a free-hand vector diagram, only boards code lays out. */
+function plainBeat(beat: CanvasPlanBeat, allowFigure = true, lab = false, codeLaid = false): CanvasPlanBeat {
   // A calculation is numbers being worked: an operation between numbers, or "calculate"/"work out"
   // with numbers. "This means…" and the notation "n = 23" made a sociology board and a genetics board
   // into equation boards of cut-off words (audit 2026-10-17).
@@ -271,7 +319,7 @@ function plainBeat(beat: CanvasPlanBeat, allowFigure = true, lab = false): Canva
   // Free-form vector diagrams are retired: only exact geometry (a map, data, a construction, mechanics)
   // named by the board itself is drawn as one; anything else is a plain board.
   const tb = `${beat.title} ${beat.brief}`;
-  if (!alreadyTriedDiagram && VECTOR_DIAGRAMS && (VECTOR_FORM.test(tb) || isGeometryOrMechanics(tb))) return { ...base, stage: "figure", figure: "drawn" };
+  if (!codeLaid && !alreadyTriedDiagram && VECTOR_DIAGRAMS && (VECTOR_FORM.test(tb) || isGeometryOrMechanics(tb))) return { ...base, stage: "figure", figure: "drawn" };
   // A flow for a real process — steps, causes, a cycle — or a board the visual choice called a
   // diagram or a sequence; anything else is labelled boxes.
   const processLike = isRealProcess(text) || beat.visualType === "diagram" || beat.visualType === "sequence" || /\bcycle\b/i.test(`${beat.title} ${beat.brief}`);
@@ -312,7 +360,7 @@ function diagramKeyFor(beat: CanvasPlanBeat): string {
   return diagramCacheKey(`${beat.title} ${beat.brief}`, [...(beat.objects ?? []), ...(beat.requiredVisual?.mustShow ?? [])], nums);
 }
 
-export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number; /** The board it was written for, when that changed (a maths code figure switched to a picture). */ beat?: CanvasPlanBeat }> {
+export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; typed?: boolean; domain?: SubjectDomain; earlier?: EarlierStructure[]; continueCode?: string[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number; /** Its animation could not be made right: the faults each attempt was sent back for. */ incomplete?: string[]; /** The board it was written for, when that changed (a maths code figure switched to a picture). */ beat?: CanvasPlanBeat }> {
   if (beat.stage === "diagram") {
     const cached = await loadSharedDiagramRecord<{ spec: CanvasBoardSpec }>(diagramKeyFor(beat)).catch(() => null);
     if (cached?.spec?.stage?.kind === "diagram") return { spec: cached.spec, costUsd: 0, attempts: 1 };
@@ -328,6 +376,28 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     if (own !== undefined && own !== beat.script) {
       console.log(`[canvas] ${beat.id}: narration change undone — the board was not written again for it`);
       beat.script = own;
+    }
+    // A typed CS trace's notes go up on the sentences of the narration that ships: the examiner can
+    // rewrite the narration after they were placed (BST review: four notes on one sentence).
+    if (typedCs && (shipped.stage.kind === "code" || shipped.stage.kind === "structure")) shipped.notes = anchorTraceNotes(shipped.notes, beat.script);
+    // No variables panel except on a DSA lesson's code board (see panelHere above).
+    if ((shipped.stage.kind === "code" || shipped.stage.kind === "structure") && !panelHere(shipped.stage.kind)) {
+      const steps = shipped.stage.steps as Array<{ state?: unknown }>;
+      if (steps.some((st) => st.state)) {
+        for (const st of steps) delete st.state;
+        console.log(`[canvas] ${beat.id}: variables panel removed (only a DSA lesson's code board has one)`);
+      }
+    }
+    // A note naming a vertex's colour or a set's members says what the drawing shows (lib/canvas/boardFacts.ts).
+    if (typedCs) {
+      const aligned = alignNotesWithStructure(shipped, beat.script);
+      if (aligned.fixed) console.log(`[canvas] ${beat.id}: ${aligned.fixed} note(s) corrected to match the drawing — ${aligned.log.join("; ").slice(0, 300)}`);
+    }
+    // A typed CS lesson's equations are typeset, and never squeezed into a box (lib/canvas/mathNotes.ts).
+    // Maths keeps the parent branch's notes (owner, 2026-10-25).
+    if (typedCs) {
+      const { typeset, cleared } = mathifyBoard(shipped, rendersAsTex, { acronyms: typedCs });
+      if (typeset || cleared) console.log(`[canvas] ${beat.id}: ${typeset} equation note(s) typeset${cleared ? `, ${cleared} equation(s) taken out of boxes` : ""}`);
     }
     return shipped;
   };
@@ -359,16 +429,58 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     }
   };
   // A code board in a data-structures lesson draws the structure beside the code (lib/canvas/structure.ts).
-  const needsStructure = beat.stage === "structure" || (beat.stage === "code" && asCodeLesson(plannedSubject(plan), () => isDataStructureTopic(`${topic} ${beat.title} ${beat.brief}`)));
-  const asked = needsStructure && beat.stage === "code"
+  // A typed-prompt lesson also counts graph algorithms the shared list misses (bipartite, BFT, MST…).
+  // A lesson asked to be neither CS nor maths (lib/canvas/subjectDomain.ts) is never a data-structures one.
+  const notCs = opts.domain === "none" || opts.domain === "maths";
+  // A typed lesson that is about a data structure makes EVERY code board a data-structure board (BST deletion
+  // lecture, 2026-10-25: its topic was stored as "Deleting a Node", so boards titled "Deleting a Node With One
+  // Child" or "In-Order Successor Identification" named no structure, were never asked to draw the tree, and
+  // shipped as bare code while Aria recited "8→3, 8→10…"). The lesson is read from all its boards' titles.
+  // A course or judged lecture's subject decides first (lib/canvas/lessonSubject.ts): only a CS lesson is taught through code.
+  const dsaTopic = !notCs && asCodeLesson(plannedSubject(plan), () => (opts.typed ? isTypedDsaTopic : isDataStructureTopic)(`${topic} ${beat.title} ${beat.brief}`)
+    || (Boolean(opts.typed) && isTypedDsaTopic([topic, ...plan.map((b) => b.title)].join(" "))));
+  const needsStructure = beat.stage === "structure" || (beat.stage === "code" && dsaTopic);
+  const typedDsa = Boolean(opts.typed) && !notCs && needsStructure;
+  // A typed-prompt computer-science lesson (lib/canvas/csLessons.ts): its boards are checked for real
+  // values, one example and keeping pace with Aria, and each kind of topic draws its own picture.
+  const typedCs = Boolean(opts.typed) && domainIsCs(opts.domain, [topic, ...plan.map((b) => b.title)].join(" "));
+  // A typed CS lesson: its boards must be readable or they do not ship (below). Maths keeps the parent
+  // branch's gates (owner, 2026-10-25: "i want prev math lec pipeline as in the parent branch").
+  const labTyped = typedCs;
+  // NO FREE SKETCHES IN COMPUTER SCIENCE (owner, 2026-10-25: "there should not be free sketches for CS").
+  // A sketch is placed by the model, shape by shape, and was the first cause of boards failing every attempt
+  // (crowded parts, labels with no room, arrows from nowhere). A typed CS board that loses its picture is
+  // rebuilt as a flow or labelled cards, which code lays out; maths keeps its sketches.
+  const labPlain = labLecture(topic, plan, opts.domain) && !typedCs;
+  const picture = typedCs && needsStructure ? csPictureRule(`${topic} ${beat.title} ${beat.brief}`) ?? csPictureRule(topic) : null;
+  // A board that continues the last one's code keeps it exactly (BST review: insertion taught twice, two codes).
+  const continuing = typedCs && beat.stage === "code" && opts.continueCode?.length ? [continuedCodeProblem([], opts.continueCode)!] : [];
+  const askedBase = typedDsa
+    ? [...extra, ...TYPED_DSA_RULES, ...(picture ? [picture] : []), ...continuing]
+    : needsStructure && beat.stage === "code"
     ? [
         ...extra,
         `This board runs an operation on a DATA STRUCTURE: draw it in "structure" beside the code (pseudocode unless a language was asked for), and give every step the "ops" its lines perform, so the structure changes as each line is read. The stage looks like this (fill it with THIS board's structure and values):`,
         `{"kind": "code", "language": "pseudocode", "reveal": "all", "lines": ["...", "..."], "structure": {"kind": "tree", "variant": "bst", "nodes": [{"id": "n50", "value": "50"}, {"id": "n30", "value": "30"}], "edges": [{"from": "n50", "to": "n30", "side": "left"}], "pointers": [{"name": "root", "to": "n50"}]}, "steps": [{"s": 0, "lines": [1], "ops": [{"op": "point", "name": "curr", "to": "n50"}]}, {"s": 1, "lines": [2, 3], "note": "30 < 50: go left", "ops": [{"op": "mark", "id": "n50", "as": "compare"}, {"op": "point", "name": "curr", "to": "n30"}]}]}`,
       ]
     : extra;
+  /*
+   * THE VARIABLES PANEL ONLY WHERE A PROGRAM IS TRACED (owner, 2026-10-25: "these variable boxes only in a
+   * DSA lecture, and only with code" — a threads board showed "work: shared process memory" in one). On a
+   * typed lesson it is kept for a code board of a data-structures lesson; anywhere else the writer is told
+   * there is none, and inStep removes any that is written anyway.
+   */
+  const dsaLesson = Boolean(opts.typed) && !notCs && isTypedDsaTopic([topic, ...plan.map((b) => b.title)].join(" "));
+  const panelHere = (kind: string) => !opts.typed || (dsaLesson && kind === "code");
+  const asked = panelHere(beat.stage)
+    ? askedBase
+    : [...askedBase.filter((line) => !line.startsWith("- THE VARIABLES PANEL")), 'NO VARIABLES PANEL ON THIS BOARD: give no "state" in any step, whatever any rule above says. A value Aria names (a queue, a term, a table row, a list) is shown on the drawing itself or as a short note.'];
   let costUsd = 0;
   let lastError: string | undefined;
+  // Every fault an attempt at this board was sent back for, in order (passed to each retry, and to a rewrite).
+  const failures: string[] = [];
+  // A heap board's correct trace, computed from its last attempt's starting heap (lib/canvas/structure.ts).
+  let heapHint: string | null = null;
   let softest: { spec: CanvasBoardSpec; faults: number } | undefined;
   let visualRejections = 0;
   // The maths examiner (lib/canvas/mathsCheck.ts): at most two reads of a board — the first, and the
@@ -377,7 +489,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   // The last board that passed every code gate and the review, with the examiner's faults on it: shipped
   // rather than replaced by a free-hand sketch or a plain board when its rewrite runs out of time — a
   // Venn figure missing one count became a wrong sketch that way (maths benchmark R5).
-  let examined: { spec: CanvasBoardSpec; faults: string[] } | null = null;
+  let examined: { spec: CanvasBoardSpec; faults: string[]; problems: MathsProblem[]; script: string } | null = null;
   // At most two reviews a board: the review must not turn a 2-minute lecture into a 6-minute one.
   const reviews = { used: 0 };
   // A MATHS BOARD'S CODE FIGURE REJECTED ONCE (owner, 2026-10-26: "if it's rejected one time I want it to
@@ -402,13 +514,29 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     // like any board); only if that fails, the board without a diagram.
     // Only a physical thing is redrawn from the review's description: with pictures on, anything else
     // (a chart, a framework) became a picture request the image model could never satisfy.
-    if (labLecture(topic, plan) && beat.stage !== "sketch") {
+    // A message sequence stays a sequence: the review's fault is fixed on it, never turned into a crowded sketch.
+    if (beat.stage === "sequence") {
+      console.log(`[canvas] ${beat.id}: its sequence was rejected — drawn again as a sequence (${why.slice(0, 200)})`);
+      const again = await generateSpec(openai, topic, plan, beat, clock, [...extra, `An earlier version of this sequence was rejected: ${why}. Draw the sequence again, fixing exactly that; keep only messages that are really sent.`], true, { domain: opts.domain, typed: opts.typed });
+      if (again.attempts !== -1) return { ...again, costUsd: again.costUsd + costUsd };
+      costUsd += again.costUsd;
+    }
+    // An operating-systems picture stays that picture too (lib/canvas/osDiagrams.ts): drawn again once with the fault named.
+    const osPicture = beat.stage === "states" || beat.stage === "memory" || beat.stage === "gantt" || beat.stage === "mapping";
+    if (osPicture) {
+      console.log(`[canvas] ${beat.id}: its ${beat.stage} visual was rejected — drawn again as ${beat.stage} (${why.slice(0, 200)})`);
+      const again = await generateSpec(openai, topic, plan, beat, clock, [...extra, `An earlier version of this board was rejected: ${why}. Draw it again as the same kind of picture, fixing exactly that.`], true, { domain: opts.domain, typed: opts.typed });
+      if (again.attempts !== -1) return { ...again, costUsd: again.costUsd + costUsd };
+      costUsd += again.costUsd;
+    }
+    if (labLecture(topic, plan, opts.domain) && !typedCs && beat.stage !== "sketch" && beat.stage !== "sequence") {
       console.log(`[canvas] ${beat.id}: its ${beat.figure ?? beat.stage} visual was rejected — drawn live as a sketch (${why.slice(0, 200)})`);
-      const sketched = await generateSpec(openai, topic, plan, plainBeat(beat, false, true), clock, [...extra, `An earlier visual on this board was rejected: ${why}. Draw instead exactly what this describes.`], true);
+      const sketched = await generateSpec(openai, topic, plan, plainBeat(beat, false, true), clock, [...extra, `An earlier visual on this board was rejected: ${why}. Draw instead exactly what this describes.`], true, { domain: opts.domain, typed: opts.typed });
       if (sketched.attempts !== -1) return { ...sketched, costUsd: sketched.costUsd + costUsd };
       costUsd += sketched.costUsd;
     }
-    const suggested = /\bshould (instead )?(show|depict|identify|be)\b/i.test(why) && beat.figure !== "drawn" && beat.stage !== "illustration" && clock.left() > 70_000
+    // A CS board is never redrawn as a free-hand diagram either: its shapes would be placed by the model too.
+    const suggested = !typedCs && /\bshould (instead )?(show|depict|identify|be)\b/i.test(why) && beat.figure !== "drawn" && beat.stage !== "illustration" && clock.left() > 70_000
       && (VECTOR_DIAGRAMS || process.env.CANVAS_AI_PICTURES === "off" || pictureable(why));
     if (suggested) {
       console.log(`[canvas] ${beat.id}: the board review rejected its ${beat.figure ?? beat.stage} visual twice — redrawn as the diagram the review describes (${why.slice(0, 200)})`);
@@ -417,11 +545,21 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       costUsd += drawn.costUsd;
     }
     console.log(`[canvas] ${beat.id}: the board review rejected its ${beat.stage} visual twice — rebuilt as a plain board (${why.slice(0, 200)})`);
-    const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat, true, labLecture(topic, plan)), clock, [...extra, `An earlier version of this board was rejected because ${why}. Teach it without that visual.`], true);
+    const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat, true, labPlain, typedCs), clock, [...extra, `An earlier version of this board was rejected because ${why}. Teach it without that visual.`], true, { domain: opts.domain, typed: opts.typed });
+    // A computer-science board that was to show its data structure and is now plain words has lost its
+    // animation (max-heap lecture, 2026-10-25: two heap boards shipped as flows): INCOMPLETE, so the worker
+    // writes it again with every fault — and the computed heap trace — rather than ship it as done.
+    if (typedCs && needsStructure) {
+      const faults = [...failures, ...(lastError && !failures.includes(lastError) ? [lastError] : []), why, ...(heapHint ? [heapHint] : [])];
+      return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd, incomplete: [...new Set(faults)] };
+    }
     return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd };
   };
   // The code alone, kept when its structure could not be made right: plainer, never wrong.
   let plainCode: CanvasBoardSpec | null = null;
+  // A typed CS board that passed the review and the examiner but was sent back for placeholder values,
+  // another example or a silent run (lib/canvas/csLessons.ts): it ships when no rewrite passes in time.
+  let csFallback: CanvasBoardSpec | null = null;
   // An equation board that still misses something after its retries: kept rather than replaced by
   // a placeholder scene (its terms are whole now; only the check's last complaint is left).
   let closestEquation: CanvasBoardSpec | null = null;
@@ -435,7 +573,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     console.log(`[canvas] ${beat.id}: ${made.log}`);
     if (made.diagram) vector = made.diagram.drawing;
     else {
-      const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat, true, labLecture(topic, plan)), clock, extra, true);
+      const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat, true, labPlain, typedCs), clock, extra, true, { domain: opts.domain, typed: opts.typed });
       return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd };
     }
   } else if (beat.stage === "figure" && beat.figure === "drawn") {
@@ -443,7 +581,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     // stand-in. Its labels were checked only against its own shapes, and a label check of saved
     // lectures found its parts wrong ("Mitochondria" in a sperm's head, "Prostate gland" on a bare
     // oval; 2026-10-17). A code-drawn figure that fits, else a plain board, is taught instead.
-    const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat, true, labLecture(topic, plan)), clock, extra, true);
+    const rebuilt = await generateSpec(openai, topic, plan, plainBeat(beat, true, labPlain, typedCs), clock, extra, true, { domain: opts.domain, typed: opts.typed });
     return { ...rebuilt, costUsd: rebuilt.costUsd + costUsd };
   }
   for (let attempt = 1; attempt <= 3; attempt++) {
@@ -451,8 +589,15 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     // A second attempt still runs with 30 s left (one bounded call): with a 75 s floor most slow
     // boards skipped every retry and shipped the fallback.
     if (attempt > 1 && clock.left() < (attempt === 2 ? 30_000 : 75_000)) break;
+    // EVERY RETRY HEARS EVERYTHING THE EARLIER ATTEMPTS GOT WRONG (owner, 2026-10-25: "in each animation retry,
+    // next call should contain what the prev animation lacked") — not only the last fault, which let a third
+    // attempt repeat the first one's mistake.
+    if (lastError && !failures.includes(lastError)) failures.push(lastError);
+    const toFixBase = typedCs && failures.length > 1 ? `earlier attempts at this board failed — fix ALL of these:\n${failures.map((f, i) => `${i + 1}. ${f}`).join("\n")}` : lastError;
+    // A heap board that went wrong is given the exact trace its starting heap needs (a repair, not only a retry).
+    const toFix = typedCs && heapHint && toFixBase ? `${toFixBase}\n${heapHint}` : toFixBase;
     try {
-      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, lastError, asked, vector), needsStructure ? 9000 : 6000), Math.min(needsStructure ? 60_000 : 45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
+      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, toFix, asked, vector), needsStructure ? 9000 : 6000), Math.min(needsStructure ? 60_000 : 45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
       costUsd += c;
       const raw = json as Record<string, unknown>;
       // The plan decides the stage; a model that drifted to another one is corrected, not trusted.
@@ -498,7 +643,12 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           continue;
         }
       }
+      takeDroppedOps();
       let spec = validateCanvasSpec(raw, sentenceCount(), [], beat.script);
+      // Step operations the parser could not understand: named in the retry, never dropped in silence.
+      const droppedSteps = takeDroppedOps();
+      const heapStart = spec && (spec.stage.kind === "structure" || spec.stage.kind === "code") ? spec.stage.structure : undefined;
+      if (typedCs && heapStart) heapHint = heapRepairHint(heapStart, `${beat.title} ${beat.brief} ${beat.script}`) ?? heapHint;
       if (spec) writtenFor.set(spec, beat.script);
       // TEXT THAT DOES NOT FIT IS REWRITTEN TO FIT, never cut (owner, 2026-10-17): every over-long
       // piece goes to one small call that rewrites it within its exact room, and the board is checked
@@ -549,7 +699,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         spec.stage = dropContradictingPoints(spec.stage);
       }
       // A note goes up when Aria says it, never sentences before (maths and CS boards).
-      if (spec && asMathsOrCs(plannedSubject(plan), () => isLabLookTopic(topic))) spec.notes = orderNotesAsSaid(revealNotesWhenSaid(spec.notes, beat.script), beat.script);
+      if (spec && (opts.domain === "cs" || asMathsOrCs(plannedSubject(plan), () => isLabLookTopic(topic)))) spec.notes = orderNotesAsSaid(revealNotesWhenSaid(spec.notes, beat.script), beat.script);
       // NOTHING BEFORE IT IS SAID (owner, 2026-10-22): code writes itself line by line as Aria reaches each
       // line; a listing shown whole from the start put lines on the board she had not yet said a word about.
       // Every code board, whatever the lecture is called — a PDF named "Lecture 7" is still code.
@@ -562,6 +712,15 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           beat.script = lines.script;
           writtenFor.set(spec, beat.script);
         }
+        // A typed CS lesson also corrects "line 10 copies…" over a line that cannot copy (more verbs, ties broken).
+        if (typedCs) {
+          const more = retargetLineReferences(spec.stage.lines, spec.stage.steps, beat.script);
+          if (more.fixed) {
+            console.log(`[canvas] ${beat.id}: ${more.fixed} more line number(s) corrected to the line that does it`);
+            beat.script = more.script;
+            writtenFor.set(spec, beat.script);
+          }
+        }
       }
       if (spec?.stage.kind === "figure" && spec.stage.component === "library") {
         // Filled again after validation from the index itself (the authoritative copy).
@@ -569,7 +728,9 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         if (asset) spec.stage.asset = asset;
       }
       if (!spec) {
-        lastError = `the ${beat.stage} stage was missing what it needs to draw (check the schema)`;
+        // A sequence says why it was refused (lib/canvas/sequence.ts): "check the schema" sent the TLS board to a sketch.
+        const why = beat.stage === "sequence" ? takeSequenceProblem() : beat.stage === "states" || beat.stage === "memory" || beat.stage === "gantt" || beat.stage === "mapping" ? takeOsProblem() : "";
+        lastError = why ? `the ${beat.stage === "states" ? "state diagram" : beat.stage === "memory" ? "memory layout" : beat.stage === "gantt" ? "Gantt chart" : beat.stage === "mapping" ? "mapping" : "sequence"} could not be drawn: ${why}` : `the ${beat.stage} stage was missing what it needs to draw (check the schema)`;
         continue;
       }
       // Only the mandatory labels are written: what the syllabus requires and what Aria names
@@ -586,6 +747,22 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       if (spec.interaction?.kind === "quiz" || spec.interaction?.kind === "draw") delete spec.interaction;
       // A try-it task without enough reactions is left off, not a reason to fail the board.
       if (spec.interaction?.kind === "try" && spec.interaction.reactions.length < 2) delete spec.interaction;
+      // A typed CS tree that forgot one of the example's links (a node left floating) gets it back by code.
+      if (typedCs && opts.earlier?.length && (spec.stage.kind === "code" || spec.stage.kind === "structure") && spec.stage.structure) {
+        const repaired = repairFromExample(spec.stage.structure, opts.earlier);
+        if (repaired) {
+          spec.stage.structure = repaired;
+          console.log(`[canvas] board ${beat.id}: a node's link to its parent was missing — put back from the lesson's example`);
+        }
+      }
+      // A node a step cuts out of the tree (re-linked around, never removed) is removed on that step, by code.
+      if (typedCs && (spec.stage.kind === "code" || spec.stage.kind === "structure") && spec.stage.structure) {
+        const cut = removeCutNodes(spec.stage.structure, spec.stage.steps);
+        if (cut) {
+          spec.stage.steps = cut;
+          console.log(`[canvas] board ${beat.id}: a node cut out of the tree was left hanging — removed on its step`);
+        }
+      }
       const drawnStructure = spec.stage.kind === "code" ? spec.stage.structure : spec.stage.kind === "structure" ? spec.stage.structure : undefined;
       if (drawnStructure && (spec.stage.kind === "code" || spec.stage.kind === "structure") && keepSearchedCells(drawnStructure, spec.stage.steps)) console.log(`[canvas] board ${beat.id}: a search's removed cells are crossed out instead`);
       if (drawnStructure && (spec.stage.kind === "code" || spec.stage.kind === "structure") && repairPositionalIds(drawnStructure, spec.stage.steps, canvasSentences(beat.script))) console.log(`[canvas] board ${beat.id}: array ops read by position, rewritten to the cells' ids`);
@@ -599,6 +776,15 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       }
       if (spec.stage.kind === "code" && spec.stage.structure && attempt < 3) {
         const problem = structureStateMismatch(spec.stage.structure, spec.stage.steps);
+        if (problem) {
+          lastError = problem;
+          console.warn(`[canvas] board ${beat.id}: ${problem}`);
+          continue;
+        }
+      }
+      // A typed DSA board draws what Aria says: the sets she colours, the links she flips.
+      if (typedDsa && drawnStructure && (spec.stage.kind === "code" || spec.stage.kind === "structure") && attempt < 3) {
+        const problem = dsaTeachingProblem(drawnStructure, spec.stage.steps, canvasSentences(beat.script));
         if (problem) {
           lastError = problem;
           console.warn(`[canvas] board ${beat.id}: ${problem}`);
@@ -632,14 +818,20 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         const plain = withoutStructure(spec);
         if (plain) await writeAsSaid(plain);
         plainCode = plain ?? plainCode;
-        lastError = structureProblem;
-        console.warn(`[canvas] board ${beat.id}: ${structureProblem}`);
+        lastError = droppedSteps.length
+          ? `${structureProblem}. ${droppedSteps.length} step operation(s) were NOT understood and were ignored: ${droppedSteps.join("; ")}. Use only these ops: {"op": "add", "id", "value", "parent", "side"}, {"op": "remove", "id"}, {"op": "link", "from", "to", "side"}, {"op": "unlink", "from", "to"}, {"op": "set", "id", "value"}, {"op": "swap", "a", "b"}, {"op": "point", "name", "to"}, {"op": "mark", "id", "as": "visit" | "compare" | "found" | "remove" | "done"}`
+          : structureProblem;
+        console.warn(`[canvas] board ${beat.id}: ${lastError}`);
         continue;
       }
       // Everything appears on the sentence that first says it (lib/canvas/narrationSync.ts).
       alignToNarration(spec, beat);
       deferRevealLeaks(spec, beat);
       await writeAsSaid(spec);
+      // Beside code, a note that is itself a line of code only repeats it, often with other names.
+      if (typedCs && spec.stage.kind === "code") spec.notes = spec.notes.filter((n) => !isCodeNote(n.text));
+      // On a trace, each note goes up on the sentence that says it, however far the splitter moved it.
+      if (typedCs && (spec.stage.kind === "code" || spec.stage.kind === "structure")) spec.notes = anchorTraceNotes(spec.notes, beat.script);
       // Vision pass, on by default since 2026-10-17 (DIAGRAM_VISION=off disables it): an editor looks
       // at the rendered diagram, labels included — the main diagram route was the one visual nobody
       // saw before a student did. The attempt that ships is the one checked: the repair used to go out
@@ -712,6 +904,14 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       ];
       // A code line left unexplained is sent back once; after that the board ships with the note.
       let fatal = findings.filter((f) => FATAL_GATES.has(f.gate) || (f.gate === "code-sync" && attempt === 1));
+      // READABLE OR NOTHING (owner, 2026-10-25: "I don't wanna see such petty issues again"). On a typed maths
+      // or CS lesson, words with no room, writing too small to read, a drawing moved off its place and parts
+      // that overlap are faults, never notes: the board is written again, and if it never comes out clean the
+      // plain written backup ships — never the crowded board (TLS, bipartite and paging lectures).
+      // A flow's arrow label left off for want of room is not shown at all, so it never overlaps: only a sketch's
+      // words, overlapping parts and arrows through cards count (31 of 56 saved boards flagged otherwise).
+      const unreadable = findings.filter((f) => f.gate === "layout" || (f.gate === "text-dropped" && (spec.stage.kind === "sketch" || /no path clear|too small/.test(f.message))));
+      if (labTyped && unreadable.length && !fatal.length) fatal = unreadable.map((f) => ({ ...f, message: `${f.message}. Draw fewer, bigger parts with short labels, spaced across the whole board` }));
       // THE STUDENT IS ABOUT TO REACH THIS BOARD (opts.hurry, lib/progressiveLectureWorker.ts): the polish
       // passes are skipped — a second review, a second examiner read unless the first found false maths or
       // wrong code, a rewrite for minor faults, growing the narration, tidying notes. A student waiting
@@ -753,7 +953,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       // plain board drops its diagram altogether (the blood-vessel figure shipped this way, 2026-10-17).
       if (visualRejections >= 2 && plain && beat.stage === "figure" && clock.left() > 25_000) {
         console.log(`[canvas] ${beat.id}: the review rejected its ${beat.figure} twice — rebuilt without a diagram`);
-        const bare = await generateSpec(openai, topic, plan, plainBeat(beat, false, labLecture(topic, plan)), clock, [...extra, `An earlier diagram on this board was rejected: ${fatal.map((f) => f.message).join("; ").slice(0, 300)}. Teach it without a diagram.`], true);
+        const bare = await generateSpec(openai, topic, plan, plainBeat(beat, false, labPlain, typedCs), clock, [...extra, `An earlier diagram on this board was rejected: ${fatal.map((f) => f.message).join("; ").slice(0, 300)}. Teach it without a diagram.`], true, { domain: opts.domain, typed: opts.typed });
         return { ...bare, costUsd: bare.costUsd + costUsd };
       }
       // THE MATHS EXAMINER reads a board the code checks and the review passed (maths lectures only).
@@ -790,14 +990,43 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         if (beat.mathsPictureFallback && contradicts.length && clock.left() > 100_000) return secondTimePicture(contradicts.map((p) => p.detail).join("; "));
         const rewrite = (!hurried && mathsChecks < 2) || (mathsChecks < 3 && serious(drawn.map((p) => p.kind)));
         if (drawn.length && rewrite) {
-          examined = { spec, faults: drawn.map((p) => `${p.kind}: ${p.detail}`) };
+          examined = { spec, faults: drawn.map((p) => `${p.kind}: ${p.detail}`), problems: drawn, script: beat.script };
           fatal = [{ gate: "maths", message: mathsFixes(drawn) }];
         } else if (drawn.length || (said.length && mathsChecks >= 2)) {
-          findings.push(...drawn.map((p) => ({ gate: "maths-note", message: `${p.kind}: ${p.detail}` })));
+          // No rewrite will follow: on a CS board the examiner's corrections are applied on the board itself
+          // (lib/canvas/boardFacts.ts); maths keeps the parent branch's behaviour (owner, 2026-10-25).
+          const applied = typedCs ? applyExaminerFixes(spec, drawn) : { fixed: 0, left: drawn };
+          if (applied.fixed) console.log(`[canvas] ${beat.id}: applied ${applied.fixed} of the examiner's corrections on the board`);
+          findings.push(...applied.left.map((p) => ({ gate: "maths-note", message: `${p.kind}: ${p.detail}` })));
         } else if (narrationChanged && mathsChecks < 2) {
           // The narration changed under a board written for it: the board is written once more for the new
           // words — only when it really changed (a refused fix used to cost a rewrite for nothing).
           fatal = [{ gate: "maths", message: `the narration was corrected (${said.map((p) => p.fix).join(" ")}): write the board for it` }];
+        }
+      }
+      // A TYPED CS BOARD that passed every other check (lib/canvas/csLessons.ts): real values in the variables
+      // panel, the lesson's one example, one parent per node, messages that arrive as arrows, and a board that
+      // keeps pace with Aria. Checked last, so a board sent back for these has been reviewed and examined —
+      // it is kept and ships if no rewrite passes. Sent back at most twice.
+      // A board the student is about to reach still gets ONE rewrite for what would teach wrongly (a deletion
+      // only said, words for values, the answer hard-coded, the same code rewritten); the finer checks wait.
+      if (!fatal.length && typedCs && attempt < 3 && (!hurried || attempt === 1) && clock.left() > 40_000) {
+        const st = spec.stage;
+        const steps = st.kind === "code" || st.kind === "structure" ? st.steps : null;
+        const sentences = canvasSentences(beat.script);
+        const serious = (steps && panelHere(st.kind) ? placeholderProblem(steps) : null)
+          ?? (st.kind === "code" ? continuedCodeProblem(st.lines, opts.continueCode) ?? hardcodedResultProblem(st.lines) : null)
+          ?? (drawnStructure && steps ? structureChangeProblem(drawnStructure, steps, sentences) ?? pointerNameProblem(drawnStructure, steps) : null)
+          ?? (drawnStructure ? claimedLinksProblem(drawnStructure, sentences) : null)
+          ?? (steps && st.kind === "code" ? crowdedStepsProblem(steps) : null);
+        const problem = serious ?? (hurried ? null
+          : (drawnStructure && opts.earlier?.length ? exampleProblem(drawnStructure, opts.earlier, beat.script) : null)
+          ?? (drawnStructure && steps ? parentForestProblem(topic, drawnStructure, steps) ?? protocolStartProblem(topic, drawnStructure, steps) : null)
+          ?? (!beat.overview && !beat.refresher ? syncProblem(spec, beat.script) : null));
+        if (problem) {
+          csFallback ??= spec;
+          fatal = [{ gate: "cs-board", message: problem }];
+          console.warn(`[canvas] board ${beat.id}: ${problem}`);
         }
       }
       if (fatal.length) {
@@ -825,6 +1054,16 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
     console.log(`[canvas] ${beat.id}: kept the best attempt (${softest.faults} note(s)) — ${lastError ?? ""}`);
     return { spec: inStep(softest.spec), costUsd, attempts: 3 };
   }
+  if (csFallback) {
+    console.log(`[canvas] ${beat.id}: shipped the reviewed board the CS checks sent back — no rewrite passed in time (${lastError ?? ""})`.slice(0, 400));
+    // A data-structure board whose structure does not do what Aria says (BST lecture, 2026-10-25: "delete 8"
+    // was said and nothing was removed — the rewrite timed out) is INCOMPLETE: the worker writes it again.
+    if (typedCs && needsStructure) {
+      const faults = [...new Set([...failures, ...(lastError ? [lastError] : []), ...(heapHint ? [heapHint] : [])])];
+      return { spec: inStep(csFallback), costUsd, attempts: 3, incomplete: faults };
+    }
+    return { spec: inStep(csFallback), costUsd, attempts: 3 };
+  }
   if (closestEquation) {
     // No attempt passed: the closest one ships without any incomplete or false line of working.
     if (closestEquation.stage.kind === "equation") {
@@ -835,10 +1074,22 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   }
   if (plainCode) {
     console.warn(`[canvas] board ${beat.id}: kept as code without its structure`);
-    return { spec: inStep(plainCode), costUsd, attempts: 3 };
+    // INCOMPLETE, not done: the worker writes it again with these faults rather than ship the code alone.
+    if (lastError && !failures.includes(lastError)) failures.push(lastError);
+    return { spec: inStep(plainCode), costUsd, attempts: 3, incomplete: failures };
+  }
+  if (examined && !typedCs) {
+    // Maths ships the examined board as on the parent branch (owner, 2026-10-25).
+    console.log(`[canvas] ${beat.id}: shipped the examined board — its rewrite did not pass in time (${examined.faults.join(" | ").slice(0, 300)})`);
+    return { spec: inStep(examined.spec), costUsd, attempts: 3 };
   }
   if (examined) {
-    console.log(`[canvas] ${beat.id}: shipped the examined board — its rewrite did not pass in time (${examined.faults.join(" | ").slice(0, 300)})`);
+    // Its rewrite ran out of time: the examiner's own corrections are applied on it instead of shipping the
+    // faults (bipartite check lecture: "E = blue" while Aria said red). Aria's corrected sentences stay with
+    // it when the narration kept its length, so the board and her words still match.
+    const applied = applyExaminerFixes(examined.spec, examined.problems);
+    if (canvasSentences(beat.script).length === canvasSentences(examined.script).length) writtenFor.set(examined.spec, beat.script);
+    console.log(`[canvas] ${beat.id}: shipped the examined board with ${applied.fixed} of its ${examined.problems.length} correction(s) applied — its rewrite did not pass in time (${examined.faults.join(" | ").slice(0, 300)})`);
     return { spec: inStep(examined.spec), costUsd, attempts: 3 };
   }
   // Serious faults on every attempt: the writer builds the same board plainly (a clear flow or a worked
@@ -846,8 +1097,9 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   if (!plain && clock.left() > 35_000) return rebuildPlain(lastError ?? "its visual did not fit the narration");
   console.log(`[canvas] ${beat.id}: every attempt failed — last reason: ${lastError ?? "time budget"}`);
   // The backup is built from what Aria says. It always ships: a lecture never stops for one board.
-  const backupBeat = visualRejections ? plainBeat(beat, true, labLecture(topic, plan)) : beat;
-  return { spec: fallbackSpec(backupBeat), costUsd, attempts: -1 };
+  const backupBeat = visualRejections ? plainBeat(beat, true, labPlain, typedCs) : beat;
+  if (lastError && !failures.includes(lastError)) failures.push(lastError);
+  return { spec: fallbackSpec(backupBeat), costUsd, attempts: -1, incomplete: failures };
 }
 
 const SHORTEN_PROMPT = `You rewrite pieces of text from a school lesson board so each fits its room. Return JSON only: {"items": [{"i": number, "text": string}]}. Each new text keeps the meaning, the key term, every number and unit, and the notation (CO₂, x², ≤), reads as a complete phrase, and has AT MOST the number of characters given — count them. Drop filler words first, then secondary detail; never end with "…".`;

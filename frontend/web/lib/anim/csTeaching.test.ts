@@ -73,7 +73,8 @@ test("an unindented listing is sent back; a CS board that writes or traces code 
   const { applyLessonVisualPolicy } = await import("../canvas/visualPolicy");
   const beat = (id: string, stage: string, script: string) => ({ id, title: id, brief: "", stage, script, objects: [], inside: null, carry: [], interaction: null, overview: false }) as never;
   const out = applyLessonVisualPolicy([beat("b1", "sketch", "A stack is last in, first out."), beat("b2", "sketch", "We now express that pattern as pseudocode and trace it on [1, 2, 3].")], { mode: "prompt", aiPictures: true, topic: "Generating permutations with backtracking" });
-  assert.deepEqual(out.beats.map((b) => b.stage), ["sketch", "code"]);
+  // No free sketches in a typed CS lesson (owner, 2026-10-25): the first board is a flow code lays out.
+  assert.deepEqual(out.beats.map((b) => b.stage), ["flow", "code"]);
 });
 
 test("the line Aria names is the line that does it, and the line lit; a right reference is left alone", async () => {

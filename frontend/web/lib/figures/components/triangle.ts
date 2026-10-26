@@ -108,7 +108,7 @@ const PARTS = [
 export const triangle: FigureComponent = {
   name: "triangle",
   title: "A triangle drawn to scale from its sides and angles (solved by the sine/cosine rules): vertices, sides with lengths, angle arcs with values, right-angle square, equal-side ticks",
-  params: `labels (vertex letters, default "A,B,C"); a, b, c (side lengths: a = BC opposite A, b = CA, c = AB; numbers > 0); angleA, angleB, angleC (degrees, 0-180). Give any set that fixes the triangle (3 sides, 2 sides + 1 angle, 1 side + 2 angles; angles only draws the shape); the code solves the rest. show ("given" default: values only for what was given; "all": every side and angle; "none"); unknown (what to mark as unknown, e.g. "c" or "C" or "c=x,B=θ"; default symbols x, y for sides, θ, α for angles); units (e.g. "cm", appended to lengths); equalSides (e.g. "AB,AC" or "a,b"; ";" separates a second group with double ticks); equalAngles (e.g. "B,C"); a right angle is marked with a square automatically.`,
+  params: `labels (vertex letters, default "A,B,C"); a, b, c (side lengths: a = BC opposite A, b = CA, c = AB; numbers > 0); angleA, angleB, angleC (degrees, 0-180). Give any set that fixes the triangle (3 sides, 2 sides + 1 angle, 1 side + 2 angles; angles only draws the shape); the code solves the rest. show ("given" default: values only for what was given; "all": every side and angle; "none"); unknown (what to mark as unknown, e.g. "c" or "C" or "c=x,B=θ"; default symbols x, y for sides, θ, α for angles); units (e.g. "cm", appended to lengths); equalSides (e.g. "AB,AC" or "a,b"; ";" separates a second group with double ticks); equalAngles (e.g. "B,C"); a right angle is marked with a square automatically. altitude (a vertex letter, e.g. "C", or true for the right angle: the dashed altitude to the opposite side with its right-angle mark), with altitudeLabel (e.g. "h"), foot (the foot's letter, e.g. "D") and segments (the two pieces of the opposite side, e.g. "x,y": first the piece next to the vertex after the altitude's, in A-B-C order).`,
   match: /(?<!pascal'?s\s)\btriangles?\b(?!\s+trade)|\bpythagora\w*|\bhypotenuse\b|\bsine rule\b|\bcosine rule\b|\bsohcahtoa\b|\bright[- ]angled\b|\b(isosceles|scalene|equilateral)\b/i,
   parts: PARTS,
   build(params: FigureParams) {
@@ -151,6 +151,43 @@ export const triangle: FigureComponent = {
     // Each side is its own stroke (and part), so focusing "side-a" highlights just BC.
     const sideEnds = (i: number): [Pt, Pt] => [V[(i + 1) % 3], V[(i + 2) % 3]];
     for (let i = 0; i < 3; i++) sk.line(sideEnds(i), { stroke: "ink", width: 2.6, part: `side-${"abc"[i]}` });
+
+    // THE ALTITUDE (owner, 2026-10-25: a similar-triangles board asked for the altitude and got none — the
+    // param did not exist). From a vertex (or, given "true", from the right angle) to the opposite side,
+    // dashed, with its right-angle mark at the foot; the side is extended, dotted, when the foot is outside.
+    const altFrom = (() => {
+      const v = String(params.altitude ?? "").trim();
+      if (!v || /^(false|no|none|0)$/i.test(v)) return -1;
+      const named = angleIndex(v, L);
+      if (named >= 0) return named;
+      const right = sol.angles.findIndex((ang) => Math.abs(ang - 90) < 0.05);
+      return right >= 0 ? right : 2;
+    })();
+    let altitudeAnchor: Pt | null = null;
+    if (altFrom >= 0) {
+      const v = V[altFrom], [p, q] = sideEnds(altFrom);
+      const d = sub(q, p), len2 = d.x * d.x + d.y * d.y || 1;
+      const t = ((v.x - p.x) * d.x + (v.y - p.y) * d.y) / len2;
+      const foot = add(p, mul(d, t));
+      if (t < 0 || t > 1) sk.line([t < 0 ? p : q, foot], { stroke: "muted", width: 1.6, dash: "3 5" });
+      sk.line([v, foot], { stroke: "ink", width: 2.2, dash: "7 6", part: "altitude" });
+      // The right angle at the foot: along the side (towards its inside) and up the altitude.
+      const along = unit(t > 0.5 ? sub(p, foot) : sub(q, foot)), up = unit(sub(v, foot));
+      const s = 12;
+      sk.line([add(foot, mul(along, s)), add(add(foot, mul(along, s)), mul(up, s)), add(foot, mul(up, s))], { stroke: "ink", width: 2, part: "altitude" });
+      const h = fitText(String(params.altitudeLabel ?? ""), 4);
+      if (h) sk.placeText(h, 21, lerp(v, foot, 0.5), perp(up), { min: 6, max: 40, fill: PALETTE.violet, part: "altitude" });
+      const footName = fitText(String(params.foot ?? ""), 3);
+      if (footName) sk.placeText(footName, 24, foot, mul(up, -1), { min: 8, max: 40 });
+      // The two pieces of the opposite side ("x,y": the piece next to the first vertex after this one, then the other).
+      const pieces = list(params.segments).map((x) => fitText(x, 4));
+      if (pieces.length === 2 && t > 0 && t < 1) {
+        const down = mul(up, -1);
+        sk.placeText(pieces[0], 21, lerp(p, foot, 0.5), down, { min: 6, max: 34, fill: PALETTE.blue, slide: unit(d) });
+        sk.placeText(pieces[1], 21, lerp(foot, q, 0.5), down, { min: 6, max: 34, fill: PALETTE.amber, slide: unit(d) });
+      }
+      altitudeAnchor = lerp(v, foot, 0.5);
+    }
 
     // Equal-side ticks across the middle of each side.
     for (const [i, n] of sideTicks) {
@@ -204,6 +241,7 @@ export const triangle: FigureComponent = {
       sk.part(`side-${"abc"[i]}`, `Side ${L[(i + 1) % 3]}${L[(i + 2) % 3]}`, sk.clearAnchor([0.3, 0.7, 0.2, 0.8, 0.4, 0.6, 0.5].map((t) => lerp(p, q, t))));
     }
     for (let i = 0; i < 3; i++) sk.part(`angle-${"abc"[i]}`, `Angle ${L[i]}`, angleAnchors[i]);
+    if (altitudeAnchor) sk.part("altitude", `Altitude from ${L[altFrom]}`, altitudeAnchor);
     return sk.finish(14);
   },
 };

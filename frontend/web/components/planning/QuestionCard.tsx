@@ -6,10 +6,15 @@ import { Check, ChevronLeft, CornerDownLeft, Mic, MicOff } from "lucide-react";
 /**
  * THE PLANNING QUESTIONS, IN ONE CARD (owner, 2026-10-20: "exactly like Claude when it asks
  * questions — it shouldn't look like it switched screen at the second question"). One card stays on
- * screen: a row of tabs (one per question, ticked when answered, then Submit), the open question,
- * its numbered options with a short line under each, and Back / Next. Picking an option of a
- * single-choice question moves to the next tab; any tab can be opened again to change an answer;
- * nothing happens until Submit. Numbers 1–9 pick, ← → move between tabs, Enter goes on.
+ * screen: a row of tabs (one per question, ticked when answered), the open question, its numbered
+ * options with a short line under each, and Back / Next. Picking an option of a single-choice question
+ * moves to the next tab; any tab can be opened again to change an answer. Numbers 1–9 pick, ← → move
+ * between tabs, Enter goes on.
+ *
+ * NO SUBMIT CARD (owner, 2026-10-24: "remove the existing Submit card, it is redundant — integrate
+ * completion into the question flow"): answering the last question finishes the card — a pick moves
+ * straight on to the plan, and the last question's button reads "Build my plan". A question still being
+ * written holds the card open (its button waits), so the card never finishes before every question is in.
  *
  * "OTHER", AS IN CLAUDE (owner, 2026-10-22: "if other you can type your answer"): every question ends
  * with an Other row that opens a text box. What the student types is their answer — on a single-choice
@@ -17,7 +22,8 @@ import { Check, ChevronLeft, CornerDownLeft, Mic, MicOff } from "lucide-react";
  * the parent as one more label that is not an option's.
  */
 export type CardOption = { label: string; description?: string };
-export type CardQuestion = { id: string; header: string; question: string; multi?: boolean; options: CardOption[] };
+/** `loading`: the question is on the card while its options are still being written. */
+export type CardQuestion = { id: string; header: string; question: string; multi?: boolean; options: CardOption[]; loading?: boolean };
 
 export function QuestionCard({
   questions,
@@ -34,7 +40,7 @@ export function QuestionCard({
   questions: CardQuestion[];
   /** Per question id: the picked option labels (one for a single-choice question). */
   answers: Record<string, string[]>;
-  /** The open tab: a question id, or "submit". */
+  /** The open tab: a question id (anything else opens the last question). */
   tab: string;
   onTab: (tab: string) => void;
   onAnswer: (questionId: string, labels: string[]) => void;
@@ -45,8 +51,12 @@ export function QuestionCard({
   /** An option just heard by voice: it lights up for a moment before it is picked. */
   heard?: string | null;
 }) {
-  const index = questions.findIndex((q) => q.id === tab);
+  const found = questions.findIndex((q) => q.id === tab);
+  const index = found >= 0 ? found : questions.length - 1;
   const open = index >= 0 ? questions[index] : null;
+  const last = index === questions.length - 1;
+  /** On to the next question, or — after the last — the plan. */
+  const onward = () => (last ? onSubmit() : onTab(questions[index + 1].id));
   /** The typed answer of a question: its one answer that is not an option's label. */
   const typedOf = (q: CardQuestion) => (answers[q.id] ?? []).find((l) => !q.options.some((o) => o.label === l)) ?? "";
   // The Other box being typed in (its question id) and what is in it.
@@ -71,10 +81,11 @@ export function QuestionCard({
     setTyping(q.id);
   }
   const next = () => {
-    if (open) commitTyped(open);
-    onTab(index >= 0 && index < questions.length - 1 ? questions[index + 1].id : "submit");
+    if (!open || open.loading || !answered(open)) return;
+    commitTyped(open);
+    onward();
   };
-  const back = () => onTab(index > 0 ? questions[index - 1].id : index < 0 && questions.length ? questions[questions.length - 1].id : tab);
+  const back = () => { if (index > 0) onTab(questions[index - 1].id); };
 
   function pick(q: CardQuestion, label: string) {
     if (q.multi) {
@@ -84,8 +95,8 @@ export function QuestionCard({
     }
     setTyping(null);
     onAnswer(q.id, [label]);
-    // As in Claude: a single choice moves straight on.
-    window.setTimeout(() => onTab(index < questions.length - 1 ? questions[index + 1].id : "submit"), 160);
+    // As in Claude: a single choice moves straight on — after the last question, to the plan.
+    window.setTimeout(onward, 160);
   }
 
   useEffect(() => {
@@ -98,7 +109,7 @@ export function QuestionCard({
         else if (Number(e.key) === open.options.length + 1) { e.preventDefault(); startTyping(open); }
       } else if (e.key === "ArrowRight") { e.preventDefault(); next(); }
       else if (e.key === "ArrowLeft") { e.preventDefault(); back(); }
-      else if (e.key === "Enter") { e.preventDefault(); if (open) next(); else onSubmit(); }
+      else if (e.key === "Enter") { e.preventDefault(); next(); }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -110,10 +121,10 @@ export function QuestionCard({
     <div className="mx-auto flex w-full max-w-2xl flex-col pb-10 pt-[12vh]">
       <span className="mb-4 truncate font-[family-name:var(--font-hud-mono)] text-[0.6875rem] uppercase tracking-[0.1em] text-[var(--hud-text-faint)]">{topic}</span>
       <section aria-label="Questions before the lesson" className="overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] shadow-[0_8px_30px_rgba(0,0,0,0.18)]">
-        {/* The tabs: one per question, ticked once answered, then Submit. */}
+        {/* The tabs: one per question, ticked once answered. */}
         <div role="tablist" className="flex flex-wrap items-center gap-1.5 border-b border-[var(--hud-line)] px-4 py-3">
           {questions.map((q) => {
-            const active = q.id === tab;
+            const active = q.id === open?.id;
             const done = (answers[q.id]?.length ?? 0) > 0;
             return (
               <button
@@ -131,15 +142,6 @@ export function QuestionCard({
               </button>
             );
           })}
-          <button
-            type="button"
-            role="tab"
-            aria-selected={tab === "submit"}
-            onClick={() => onTab("submit")}
-            className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[0.8125rem] font-medium transition ${tab === "submit" ? "bg-[var(--hud-surface-2)] text-[var(--hud-text)]" : "text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"}`}
-          >
-            <Check size={13} /> Submit
-          </button>
         </div>
 
         <div className="px-5 pb-5 pt-5 sm:px-6">
@@ -147,6 +149,17 @@ export function QuestionCard({
             <>
               <h2 className="text-balance text-[1.15rem] font-semibold leading-snug text-[var(--hud-text)]">{open.question}</h2>
               {open.multi && <p className="mt-1 text-[0.8125rem] text-[var(--hud-text-faint)]">Select all that apply</p>}
+              {/* Still being written (the card opens the moment Enter is pressed): rows that fill in. */}
+              {open.loading ? (
+                <div className="mt-4 grid gap-1.5" aria-busy="true" aria-label="Aria is writing the options">
+                  {[0.72, 0.58, 0.66, 0.5].map((w, i) => (
+                    <div key={i} className="flex items-center gap-3 rounded-xl px-3.5 py-3">
+                      <span className="size-[1.125rem] shrink-0 rounded-[4px] border border-[var(--hud-line)]" />
+                      <span className="aria-breathe h-3 rounded-full bg-[var(--hud-surface-2)]" style={{ width: `${w * 100}%` }} />
+                    </div>
+                  ))}
+                </div>
+              ) : (
               <ul className="mt-4 grid gap-1.5">
                 {open.options.map((o, i) => {
                   const on = (answers[open.id] ?? []).includes(o.label);
@@ -205,7 +218,7 @@ export function QuestionCard({
                                 if (e.key === "Enter") {
                                   e.preventDefault();
                                   // A typed answer to a single-choice question moves on, as a pick does.
-                                  if (commitTyped(open) && !open.multi) window.setTimeout(() => onTab(index < questions.length - 1 ? questions[index + 1].id : "submit"), 160);
+                                  if (commitTyped(open) && !open.multi) window.setTimeout(onward, 160);
                                 } else if (e.key === "Escape") {
                                   e.preventDefault();
                                   setTyping(null);
@@ -229,28 +242,13 @@ export function QuestionCard({
                   })()}
                 </li>
               </ul>
+              )}
             </>
-          ) : (
-            <>
-              <h2 className="text-[1.15rem] font-semibold text-[var(--hud-text)]">Review your answers</h2>
-              <ul className="mt-4 grid gap-3">
-                {questions.map((q) => (
-                  <li key={q.id}>
-                    <button type="button" onClick={() => onTab(q.id)} className="w-full rounded-lg px-1 py-0.5 text-left transition hover:bg-[var(--hud-surface-2)]">
-                      <span className="block text-[0.8125rem] text-[var(--hud-text-faint)]">{q.question}</span>
-                      <span className="mt-0.5 block text-[0.95rem] font-medium text-[var(--hud-text)]">
-                        {(answers[q.id] ?? []).join(", ") || (q.multi ? "None: it's all new to me" : "Not answered")}
-                      </span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
+          ) : null}
 
           <div className="mt-6 flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              {(index > 0 || (!open && questions.length > 0)) && (
+              {index > 0 && (
                 <button type="button" onClick={back} className="flex items-center gap-1 rounded-lg px-3 py-2 text-[0.875rem] text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]">
                   <ChevronLeft size={15} /> Back
                 </button>
@@ -268,18 +266,14 @@ export function QuestionCard({
                 </button>
               )}
             </div>
-            {open ? (
+            {open && (
               <button
                 type="button"
                 onClick={next}
-                disabled={!answered(open)}
+                disabled={open.loading || !answered(open)}
                 className="rounded-lg bg-[var(--hud-cyan)] px-4 py-2 text-[0.875rem] font-semibold text-[var(--hud-bg)] transition hover:opacity-90 disabled:opacity-40"
               >
-                Next
-              </button>
-            ) : (
-              <button type="button" onClick={onSubmit} className="rounded-lg bg-[var(--hud-cyan)] px-4 py-2 text-[0.875rem] font-semibold text-[var(--hud-bg)] transition hover:opacity-90">
-                Submit answers
+                {last ? "Build my plan" : "Next"}
               </button>
             )}
           </div>

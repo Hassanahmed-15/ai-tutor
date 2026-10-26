@@ -22,11 +22,12 @@ export const CANVAS_ICONS = [
 ] as const;
 export type CanvasIcon = (typeof CANVAS_ICONS)[number];
 
-export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure", "structure", "exam", "diagram", "sketch"] as const;
+export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure", "structure", "exam", "diagram", "sketch", "sequence", "states", "memory", "gantt", "mapping"] as const;
 export type CanvasStage = (typeof CANVAS_STAGES)[number];
 
 /** A written key note in the notes column, revealed on the sentence that says it. */
-export type CanvasNote = { id: string; text: string; s: number };
+/** `tex`: the note is an equation, typeset by KaTeX (typed-prompt lessons; lib/canvas/mathNotes.ts). */
+export type CanvasNote = { id: string; text: string; s: number; tex?: string };
 
 export type FlowNode = {
   id: string;
@@ -345,7 +346,15 @@ export type DsOp =
   | { op: "set"; id: string; value: string }
   | { op: "swap"; a: string; b: string }
   | { op: "point"; name: string; to: string | null }
-  | { op: "mark"; id: string; as: DsMark };
+  | { op: "mark"; id: string; as: DsMark }
+  /**
+   * TWO-COLOURING (owner, 2026-10-23: a bipartite lecture never showed its two sets): the node is put in
+   * set 0 ("Set A", blue) or set 1 ("Set B", orange); the board draws a legend once a node has a set.
+   */
+  | { op: "group"; id: string; group: 0 | 1 }
+  /** An edge marked as a BFS/DFS tree edge (bold) or a conflict (red: two ends in the same set), or cleared. */
+  | { op: "edge"; from: string; to: string; as: DsEdgeMark | "none" };
+export type DsEdgeMark = "tree" | "conflict";
 
 /** A board that is the structure alone: what a BST is, how a queue is arranged, a traversal's order. */
 export type StructureStage = {
@@ -355,7 +364,73 @@ export type StructureStage = {
   steps: Array<{ s: number; ops?: DsOp[]; note?: string; state?: Array<{ name: string; value: string }> }>;
 };
 
-export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage | StructureStage | ExamStage | DiagramStage | SketchStage;
+/**
+ * A MESSAGE SEQUENCE (TCP lecture, 2026-10-24): the parties as vertical lifelines, each message a
+ * downward arrow from one to another in time order — the picture every networking text draws for a
+ * handshake. Drawn as a two-node graph instead, SYN, SYN-ACK and ACK lay on one line over each other.
+ * Code places everything (lib/canvas/layout.ts layoutSequence); each message is drawn on its sentence.
+ */
+export type SequenceStage = {
+  kind: "sequence";
+  /** 2 to 4 parties, left to right ("Client", "Server"). */
+  lanes: Array<{ id: string; label: string }>;
+  /** In time order, at most 6. `label` is the message ("SYN"), `detail` what it carries ("seq=1000"). */
+  messages: Array<{ id: string; from: string; to: string; label: string; detail?: string; s: number; lost?: boolean }>;
+  /** A party's state from that row on (LISTEN, SYN-SENT), written on its lifeline. `at` is the message index it follows (-1: before the first). */
+  states?: Array<{ lane: string; label: string; at: number; s: number }>;
+};
+
+/**
+ * OPERATING-SYSTEMS PICTURES (owner, 2026-10-25: "this is the type of visuals req in OS", with a
+ * process-state diagram and a stack/heap/data/text layout). Code places every part (lib/canvas/osDiagrams.ts).
+ *
+ * A LIFECYCLE: states as ovals on a 4 × 3 grid (col 0–3, row 0–2), joined by curved labelled transitions,
+ * and up to two processes or threads that move from state to state (`path`: in `state` from sentence `s`).
+ */
+export type StatesStage = {
+  kind: "states";
+  states: Array<{ id: string; label: string; s: number; col: number; row: number }>;
+  transitions: Array<{ id: string; from: string; to: string; label?: string; s: number }>;
+  tokens?: Array<{ id: string; label: string; path: Array<{ state: string; s: number }> }>;
+};
+
+/** One block of memory. `size` is its height relative to the others (1 to 3); a `free` block is the empty gap. */
+export type MemorySegment = { id: string; label: string; s: number; size?: number; free?: boolean; note?: string };
+
+/**
+ * AN ADDRESS SPACE: segments stacked top to bottom in each column (Stack, free, Heap, Data, Text), and
+ * optionally a row shared by every column above them (a process's code, data and files over each thread's
+ * own registers and stack). `growth` draws a stack's or heap's growth arrow into the free gap beside it.
+ */
+export type MemoryStage = {
+  kind: "memory";
+  shared?: MemorySegment[];
+  sharedLabel?: string;
+  columns: Array<{ id: string; label?: string; s: number; segments: MemorySegment[] }>;
+  growth?: Array<{ segment: string; dir: "up" | "down"; label?: string; s: number }>;
+  addresses?: { top: string; bottom: string };
+};
+
+/** A CPU SCHEDULE: each process's time on the CPU as a block along one bar (or up to three bars compared: `rows`, each slot's `row`), the arrivals above it and the ready queue under it. */
+export type GanttStage = {
+  kind: "gantt";
+  unit?: string;
+  rows?: string[];
+  slots: Array<{ id: string; label: string; start: number; end: number; s: number; row?: number }>;
+  arrivals?: Array<{ label: string; at: number; s: number }>;
+  /** The ready queue from sentence `s` on, front first. */
+  queue?: Array<{ s: number; items: string[] }>;
+};
+
+/** A MAPPING: each group a top row (user threads, virtual pages) mapped by arrows onto a bottom row (kernel threads, frames); up to three groups side by side. */
+export type MappingStage = {
+  kind: "mapping";
+  topLabel?: string;
+  bottomLabel?: string;
+  groups: Array<{ id: string; label?: string; top: Array<{ id: string; label: string; s: number }>; bottom: Array<{ id: string; label: string; s: number }>; links: Array<{ from: string; to: string; s: number }> }>;
+};
+
+export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage | StructureStage | ExamStage | DiagramStage | SketchStage | SequenceStage | StatesStage | MemoryStage | GanttStage | MappingStage;
 
 /**
  * A SKETCH BOARD (owner, 2026-10-20: "why can't I get these visuals generated live"): a maths or
@@ -488,6 +563,16 @@ export type CanvasBoardSpec = {
   interaction?: CanvasInteraction;
   /** Frame the whole lesson when this board finishes — the recap's zoom-out. */
   overview?: boolean;
+  /**
+   * A typed lesson's asked subject (lib/canvas/subjectDomain.ts): "cs" and "maths" are written by the
+   * marker, "none" keeps the ordinary look. Absent: the look is read from the topic's words.
+   */
+  subjectDomain?: "cs" | "maths" | "none";
+  /**
+   * A course lesson's board (its course look: hand font, key terms, the pencil, pictures put up at once).
+   * Absent on boards saved before 2026-10-26: then a board with a `subject` was taken as a course board.
+   */
+  course?: boolean;
   /** A short refresher of a prerequisite, before the topic proper (lib/knowledge). */
   refresher?: boolean;
   /** A planned rich visual could not be produced, so the student sees a simpler grounded diagram. */
@@ -584,4 +669,33 @@ export type CanvasPlanBeat = {
    * script, the source block it is about — the PDF panel boxes that passage while it is spoken.
    */
   sentenceBlocks?: string[];
+  /**
+   * A diagram on one of the reference pages, read by a vision model (lib/canvas/sourceDiagrams.ts):
+   * the board redraws it natively, synced to the narration. Typed non-DSA CS lessons only.
+   */
+  sourceDiagram?: SourceDiagram;
+};
+
+/**
+ * WHAT A REFERENCE PAGE'S DIAGRAM SHOWS (owner, 2026-10-24: "take visuals from the images in the links
+ * you take as a reference … for other CS topics"). Only what is drawn in the image — never invented —
+ * so the board redraws the page's own picture (TCP: two lifelines, SYN seq=x, SYN-ACK seq=y ack=x+1, ACK).
+ */
+export type SourceDiagram = {
+  kind: "sequence" | "state-machine" | "layers" | "flow";
+  title: string;
+  /** The page it is on. */
+  url: string;
+  site: string;
+  /** sequence: the parties, left to right, and the messages in order. */
+  lanes?: string[];
+  messages?: Array<{ from: string; to: string; label: string; detail?: string }>;
+  /** sequence: a party's state written beside its lifeline, after message `after` (1-based; 0 = at the start). */
+  states?: Array<{ lane: string; label: string; after: number }>;
+  /** state-machine: transitions between named states. */
+  transitions?: Array<{ from: string; to: string; label?: string }>;
+  /** layers: top to bottom. flow: the boxes in order, and its arrows. */
+  layers?: string[];
+  boxes?: string[];
+  arrows?: Array<{ from: string; to: string; label?: string }>;
 };

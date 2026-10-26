@@ -344,3 +344,14 @@ test("an easy-words rewrite that drops a syllabus key point or term is caught", 
   assert.deepEqual(syllabusLost(before, "Tiny vessels are thin. Flaps stop blood going back.", block, ["valve"]), [block.keyIdeas[0], "valve"]);
   assert.deepEqual(syllabusLost(before, "anything", undefined), [], "not a course board");
 });
+
+test("a course board is known by its own mark: a typed or PDF lecture's judged subject never gives it the course look", async () => {
+  const { isCourseBoard } = await import("../canvas/lessonSubject");
+  assert.equal(isCourseBoard({ course: true, subject: "maths" }), true);
+  assert.equal(isCourseBoard({ course: false, subject: "maths" }), false, "a typed maths lecture carries its judged subject");
+  assert.equal(isCourseBoard({ subject: "other" }), true, "a board saved before the mark keeps the look it had");
+  assert.equal(isCourseBoard({}), false);
+  const board = (course: boolean) => ({ v: 1, subject: "maths", course, heading: "Pythagoras", notes: [{ id: "n1", text: "a² + b² = c²", s: 0 }], stage: { kind: "illustration", subject: "triangle", parts: [], labels: [] }, cues: [] }) as unknown as CanvasBoardSpec;
+  const size = (s: CanvasBoardSpec) => (layoutPanel(s).marks.find((m) => m.type === "note") as { size: number }).size;
+  assert.notEqual(size(board(true)), size(board(false)), "the typed lecture's notes are laid out as a typed lecture's");
+});

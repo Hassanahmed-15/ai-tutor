@@ -7,6 +7,7 @@ import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
 import { isLabLookTopic } from "@/lib/canvas/subjectLook";
 import { MarkerWriter, type HeardSentence } from "./MarkerWriter";
+import { isCourseBoard } from "@/lib/canvas/lessonSubject";
 import { TextDeconflict } from "./TextDeconflict";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type QuizInteraction, type TryItInteraction } from "@/lib/canvas/types";
 import { activeCues, targetVisible } from "@/lib/canvas/cues";
@@ -127,12 +128,16 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
    * word, term and line as Aria says it (MarkerWriter), and cards are drawn in chalk on the slate, not
    * stuck-on paper notes. Every other subject keeps its sticky notes and plays exactly as before.
    */
-  // A course lesson's boards carry its subject (lib/canvas/lessonSubject.ts); other lectures are read from
-  // themselves (their topic and their boards' headings), never the typed words alone. A sketch board is
-  // drawn by the marker whatever the subject.
+  // A course lesson's boards carry its subject (lib/canvas/lessonSubject.ts); a typed lesson's boards the
+  // subject it was asked to be (lib/canvas/subjectDomain.ts); otherwise the look is read from the lecture
+  // itself (its topic and its boards' headings), never the typed words alone. A sketch board is drawn by
+  // the marker whatever the subject.
   const labLook = useMemo(() => {
+    if (panels.some((p) => p.spec.stage.kind === "sketch")) return true;
     const subject = panels.find((p) => p.spec.subject)?.spec.subject;
-    return panels.some((p) => p.spec.stage.kind === "sketch") || (subject ? subject !== "other" : isLabLookTopic([topic, ...panels.map((p) => p.spec.heading)].join(" ")));
+    if (subject) return subject !== "other";
+    const asked = panels.find((p) => p.spec.subjectDomain)?.spec.subjectDomain;
+    return asked ? asked !== "none" : isLabLookTopic([topic, ...panels.map((p) => p.spec.heading)].join(" "));
   }, [topic, panels]);
   useEffect(() => {
     const t = window.setTimeout(() => setCardStyle(labLook ? "classic" : preferredCardStyle()), 0);
@@ -238,6 +243,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const focusId = penCue?.target;
   /** Picture hotspots: out while the student can explore — paused, finished, or moving the camera. */
   const exploring = !playing || finished || currentIndex < 0 || mode !== "follow";
+  // PAUSED BY THE STUDENT (not waiting at the end of a board, not finished): the pen, the camera and
+  // the board's own short animations all hold still until Play (owner, 2026-10-23).
+  const paused = !playing && !finished && !waitingForStudent && currentIndex >= 0;
   // A tick when Aria's pen taps, a pencil scratch when a sentence puts new ink on the board. Both are
   // silent unless the student switched sound on (sound.ts), and each is throttled.
   const penKey = penCue && current ? `${current.key}|${penCue.s}|${penCue.action}|${penCue.target}` : "";
@@ -636,7 +644,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               key={panel.key}
               data-panel={panel.key}
               // cv-marked: the marker writes this board, so new equation terms skip their own fade-in.
-              className={[themes[i] === "chalk" ? "cv-chalk" : "", labLook ? "cv-marked" : ""].filter(Boolean).join(" ") || undefined}
+              className={[themes[i] === "chalk" ? "cv-chalk" : "", labLook ? "cv-marked" : "", live && paused ? "cv-paused" : ""].filter(Boolean).join(" ") || undefined}
               data-live={live ? "true" : undefined}
               transform={`translate(${at.x},${at.y}) scale(${at.scale})`}
             >
@@ -657,7 +665,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 carryFrom={carryFrom[panel.key] ?? EMPTY_RECTS}
                 reducedMotion={reducedMotion}
               />
-              {live && (labLook || panel.spec.subject !== undefined) && <MarkerWriter key={panel.key} onRegion={onInkRegion} finished={finished} speed={speed} playing={playing || finished} sentence={sentence} heard={voiceHeard} />}
+              {live && (labLook || isCourseBoard(panel.spec)) && <MarkerWriter key={panel.key} onRegion={onInkRegion} finished={finished} speed={speed} playing={playing || finished} sentence={sentence} heard={voiceHeard} />}
               {/* No writing on writing, on every board (owner, 2026-10-21: the most important fix). */}
               {live && <TextDeconflict key={`tx-${panel.key}`} />}
               <Corrections layout={layouts[i]} check={corrections[panel.key]} />

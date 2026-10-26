@@ -20,7 +20,7 @@ import { LessonPlayer } from "@/components/LessonPlayer";
 import { LessonCanvas } from "@/components/canvas/LessonCanvas";
 import type { Beat } from "@/lib/lessonContent";
 import type { CanvasBoardSpec } from "@/lib/canvas/types";
-import { DSA_FIXTURES } from "@/lib/canvas/dsaFixtures";
+import { DSA_FIXTURES, SEQUENCE_FIXTURES, OS_FIXTURES } from "@/lib/canvas/dsaFixtures";
 import { EQUATION_FIXTURES } from "@/lib/canvas/equationFixtures";
 import { CS_VISUAL_FIXTURES, LOGIC_FIXTURES, MATHS_VISUAL_FIXTURES, SKETCH_FIXTURES } from "@/lib/canvas/mathsVisualFixtures";
 import { canvasSentences } from "@/lib/canvas/plan";
@@ -62,6 +62,8 @@ export default function CanvasLab() {
     const session = params.get("session");
     const fixture = params.get("fixture");
     if (fixture === "sketch" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(SKETCH_FIXTURES, "Completing the square, graphs and sorting algorithms")));
+    else if (fixture === "sequence" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(SEQUENCE_FIXTURES, "TCP three way handshake")));
+    else if (fixture === "os" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(OS_FIXTURES, "Operating systems: processes and threads")));
     else if (fixture === "logic" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(LOGIC_FIXTURES, "Logic gates and truth tables")));
     else if ((fixture === "dsa" || fixture === "math" || fixture === "visuals") && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixture === "visuals" ? fixtureLecture([...MATHS_VISUAL_FIXTURES, ...CS_VISUAL_FIXTURES], "Algebra, Pythagoras and recursion: solving equations") : fixtureLecture(fixture === "math" ? EQUATION_FIXTURES : DSA_FIXTURES)));
     else if (session && process.env.NODE_ENV !== "production") {
@@ -282,6 +284,8 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
   const [play, setPlay] = useState(false);
   // pause=1: the board as a student who pressed pause sees it (the pen stops mid-stroke) — for checking pause.
   const [paused, setPaused] = useState(false);
+  // ?rate=1.5: the student's playback speed, for the speaking clock and the marker alike.
+  const [labRate] = useState(() => (typeof window === "undefined" ? 1 : Math.max(0.5, Math.min(2, Number(new URLSearchParams(window.location.search).get("rate")) || 1))));
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     queueMicrotask(() => {
@@ -299,7 +303,7 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
   useEffect(() => {
     if (!play || finished) return;
     const words = (sentences[sentence] ?? "").split(/\s+/).filter(Boolean).length;
-    const ms = Math.max(1800, words * 400);
+    const ms = Math.max(1800, words * 400) / labRate;
     const start = performance.now();
     let raf = 0;
     const tick = (now: number) => {
@@ -311,7 +315,7 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play, finished, sentence, sentences]);
+  }, [play, finished, sentence, sentences, labRate]);
   useEffect(() => {
     if (!play || !finished) return;
     // The finished board stays up a moment, as it does after Aria's last word; then the next board.
@@ -337,7 +341,7 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
         <span className="min-w-0 flex-1 truncate font-normal text-white/60">{sentences[sentence]}</span>
       </div>
       <div className="relative min-h-0 flex-1">
-        <LessonCanvas panels={panels} currentIndex={board} sentence={predict ? predict.at - 1 : sentence} sentenceProgress={predict ? 1 : progress} finished={predict ? false : finished} waitingForStudent={predict ? true : finished} predictCard={predict?.card} checkFlow={Boolean(predict)} playing={!finished && !paused} topic={lecture.topic} onSpeak={(t) => console.log("[speak]", t)} onTellAria={(t) => console.log("[aria]", t)} onContinue={() => { setBoard((b) => Math.min(panels.length - 1, b + 1)); setSentence(0); setFinished(false); }} />
+        <LessonCanvas panels={panels} currentIndex={board} sentence={predict ? predict.at - 1 : sentence} sentenceProgress={predict ? 1 : progress} speed={labRate} finished={predict ? false : finished} waitingForStudent={predict ? true : finished} predictCard={predict?.card} checkFlow={Boolean(predict)} playing={!finished && !paused} topic={lecture.topic} onSpeak={(t) => console.log("[speak]", t)} onTellAria={(t) => console.log("[aria]", t)} onContinue={() => { setBoard((b) => Math.min(panels.length - 1, b + 1)); setSentence(0); setFinished(false); }} />
       </div>
     </main>
   );

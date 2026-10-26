@@ -1,5 +1,6 @@
 import { emptyProfile, type DepthLevel, type LearnerProfile, type PartReading } from "./learnerProfile";
 import { matchSpokenAnswer } from "./spokenAnswer";
+import { TEACH_TAB_PREFIX, type TeachingQuestion } from "./teachingQuestions";
 
 /**
  * THE INTAKE: WHAT THE STUDENT ALREADY KNOWS, ASKED SIMPLY (owner, 2026-10-20).
@@ -23,7 +24,7 @@ import { matchSpokenAnswer } from "./spokenAnswer";
  */
 
 export type IntakeCheck = { question: string; options: string[]; answer: number };
-export type IntakePart = { id: string; label: string; check: IntakeCheck | null };
+export type IntakePart = { id: string; label: string; check: IntakeCheck | null; about?: string };
 /** What the student tapped. */
 export type PartMark = "new" | "heard" | "know";
 /** How a check went: right, wrong, "not sure", or not asked. */
@@ -60,7 +61,9 @@ export function sanitizeIntake(raw: unknown): IntakePart[] {
     const valid = question && options.length >= 2 && options.length <= 4 && answer >= 0 && answer < options.length && new Set(options.map((o) => o.toLowerCase())).size === options.length;
     // A check whose right answer repeats the part's own words, or the question's, proves nothing.
     const check = valid && !givesAway(options[answer], `${label} ${question}`) ? shuffled({ question, options, answer }, label) : null;
-    parts.push({ id: `part-${parts.length + 1}`, label, check });
+    // A typed prompt's parts carry a short line saying what each is, shown under it on the card.
+    const about = typeof rec.about === "string" ? undash(rec.about).replace(/[.]+$/, "").trim().slice(0, 70) : "";
+    parts.push({ id: `part-${parts.length + 1}`, label, check, ...(about ? { about } : {}) });
     if (parts.length >= 6) break;
   }
   return parts.length >= 2 ? parts : [];
@@ -236,7 +239,7 @@ export type IntakeCardQuestion = { id: string; header: string; question: string;
 export function intakeCard(parts: IntakePart[], known: string[]): IntakeCardQuestion[] {
   const marks = markOf(known);
   return [
-    { id: "parts", header: "What you know", question: INTAKE_QUESTION, multi: true, options: [...parts.map((p) => ({ label: p.label })), { label: ALL_NEW, description: "Aria builds every part from the very beginning" }] },
+    { id: "parts", header: "What you know", question: INTAKE_QUESTION, multi: true, options: [...parts.map((p) => ({ label: p.label, ...(p.about ? { description: p.about } : {}) })), { label: ALL_NEW, description: "Aria builds every part from the very beginning" }] },
     ...checksToAsk(parts, marks).map((p) => ({
       id: `check-${p.id}`,
       header: p.label.length > 16 ? `${p.label.slice(0, 15).trimEnd()}…` : p.label,
@@ -244,6 +247,32 @@ export function intakeCard(parts: IntakePart[], known: string[]): IntakeCardQues
       options: [...p.check!.options.map((label) => ({ label })), { label: NOT_SURE, description: "No problem: Aria teaches it properly" }],
     })),
   ];
+}
+
+/** A single-choice question the card asks besides the parts: which meaning, or the student's goal. */
+export type CardExtra = { question: string; options: string[] };
+export const MEANING_TAB = "meaning";
+export const GOAL_TAB = "goal";
+
+/**
+ * EVERY QUESTION ON ONE CARD, AS CLAUDE ASKS (owner, 2026-10-23: "it should not show planning and then
+ * in the next window" — "it may ask multiple questions like Claude does"). In order:
+ *   1. "Which one do you mean?" — only when the topic is ambiguous (it was a screen of its own);
+ *   2. what the student has met (the parts) — a loading tab while the parts are written;
+ *   3. a check on each ticked part;
+ *   4. their goal — the intent question that used to be worked out and never shown.
+ */
+export function cardQuestions(state: { parts: IntakePart[]; known: string[]; meaning?: CardExtra | null; goal?: CardExtra | null; loadingParts?: boolean; teaching?: TeachingQuestion[]; loadingTeaching?: boolean }): Array<IntakeCardQuestion & { loading?: boolean }> {
+  const out: Array<IntakeCardQuestion & { loading?: boolean }> = [];
+  if (state.meaning?.options.length) out.push({ id: MEANING_TAB, header: "Which one", question: state.meaning.question, options: state.meaning.options.map((label) => ({ label })) });
+  if (state.parts.length) out.push(...intakeCard(state.parts, state.known));
+  else if (state.loadingParts) out.push({ id: "parts", header: "What you know", question: INTAKE_QUESTION, multi: true, options: [], loading: true });
+  if (state.goal?.options.length) out.push({ id: GOAL_TAB, header: "Your goal", question: state.goal.question, options: state.goal.options.map((label) => ({ label })) });
+  // 5. how they want it taught (lib/teachingQuestions.ts): questions written for this topic, last. While
+  // they are written a loading tab holds their place, so the card is not finished before they arrive.
+  for (const q of state.teaching ?? []) out.push({ id: `${TEACH_TAB_PREFIX}${q.id}`, header: q.header, question: q.question, ...(q.multi ? { multi: true } : {}), options: q.options.map((o) => ({ label: o.label, ...(o.description ? { description: o.description } : {}) })) });
+  if (!state.teaching?.length && state.loadingTeaching) out.push({ id: `${TEACH_TAB_PREFIX}loading`, header: "How to teach", question: "How should Aria teach this?", options: [], loading: true });
+  return out;
 }
 
 /** The ticked parts as marks: ticked is "I know this", everything else is new. */

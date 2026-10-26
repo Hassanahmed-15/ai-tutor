@@ -6,7 +6,7 @@ import { recordSpend } from "./spend/record";
 import { usdForUsage } from "./spend/usage";
 import { webResearch } from "./db/cosmos";
 import { briefLine } from "./lessonIntent";
-import { betterChecklist, cleanUrl, dropOffLevelSources, groundPointsInFound, jsonIn, packFromResearch, researchKey, sameUrl, sanitizeSourcePack, type LessonBrief, type SourcePack } from "./webSources";
+import { betterChecklist, cleanUrl, dropOffLevelSources, groundPointsInFound, jsonIn, MAX_SOURCES, packFromResearch, researchKey, sameUrl, sanitizeSourcePack, siteName, type LessonBrief, type SourcePack } from "./webSources";
 
 /**
  * READING UP BEFORE TEACHING: OpenAI web search, once per new topic, cached for everyone.
@@ -54,7 +54,8 @@ ${JSON_SHAPE}
 THE STUDENT'S LEVEL IS NOT NEGOTIABLE: every search you run includes the level or curriculum words given below, and you cite only pages written for that level — never a page for a lower or higher one (no GCSE page for an A Level student, no university textbook for an O Level student). The facts go exactly as deep as that level does.`;
 
 /** Bumped whenever the research changes, so older, thinner research is not reused from the cache. */
-const RESEARCH_VERSION = "v14";
+// v15: the pack keeps the uncited pages the search found, for their diagrams (pages).
+const RESEARCH_VERSION = "v15";
 
 type Found = { pack: SourcePack; costUsd: number; cached: boolean };
 type Searched = { json: Record<string, unknown> | null; cited: Array<{ url: string; title: string; cited: boolean }>; costUsd: number; searches: number };
@@ -208,6 +209,12 @@ export async function researchTopic(args: { topic: string; request?: string; bri
   // No pages written for a different level (lib/webSources.ts dropOffLevelSources).
   const levelled = found ? dropOffLevelSources(found, levelWords) : null;
   const pack = levelled?.pack ?? null;
+  // The pages found but not cited, kept for their diagrams only (lib/canvas/sourceDiagrams.ts).
+  if (pack) {
+    const all = [...(syllabus?.cited ?? []), ...content.cited, ...encyclopaedia.cited];
+    const pages = all.filter((p, i) => !pack.sources.some((s) => sameUrl(s.url) === sameUrl(p.url)) && all.findIndex((q) => sameUrl(q.url) === sameUrl(p.url)) === i).slice(0, MAX_SOURCES);
+    if (pages.length) pack.pages = pages.map((p, i) => ({ id: `P${i + 1}`, url: p.url, title: p.title || siteName(p.url), site: siteName(p.url) }));
+  }
   const searches = (syllabus?.searches ?? 0) + content.searches + encyclopaedia.searches;
   console.log(`[research] "${args.topic}" for ${levelWords ?? "no level"}: ${pack ? `${pack.sources.length} sources, ${pack.points.length} points, ${pack.worked?.length ?? 0} worked, ${pack.checklist.length} checklist` : "nothing usable"}${levelled?.dropped.length ? `, dropped off-level: ${levelled.dropped.map((s) => s.url).join(" ")}` : ""} in ${Math.round((Date.now() - started) / 1000)}s, ${searches} search(es), $${costUsd.toFixed(4)}`);
   if (!pack) return null;

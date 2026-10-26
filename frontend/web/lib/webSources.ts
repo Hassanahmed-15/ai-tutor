@@ -38,6 +38,12 @@ export type SourcePack = {
   worked?: WorkedSteps[];
   /** The pages, as cited by the search itself (never a URL the model typed on its own). */
   sources: WebSource[];
+  /**
+   * The other pages the search found but no fact cites. Never cited or taught from: read only for their
+   * diagrams (lib/canvas/sourceDiagrams.ts) — a NoSQL lesson kept one cited page of ten found, and it had
+   * no diagram (2026-10-24).
+   */
+  pages?: WebSource[];
 };
 
 export type WorkedSteps = { title: string; steps: string[]; sources: string[] };
@@ -177,7 +183,16 @@ export function sanitizeSourcePack(raw: unknown): SourcePack | null {
     worked.push({ title, steps, sources: [...new Set((Array.isArray(rec.sources) ? rec.sources : []).map((x) => text(x, 8)).filter((x) => ids.has(x)))] });
     if (worked.length >= 8) break;
   }
-  return { query: text(obj.query, 300), ...(curriculum ? { curriculum } : {}), ...(audience ? { audience } : {}), checklist, points, ...(worked.length ? { worked } : {}), sources };
+  const pages: WebSource[] = [];
+  for (const s of Array.isArray(obj.pages) ? obj.pages : []) {
+    const rec = (s && typeof s === "object" ? s : {}) as Record<string, unknown>;
+    const url = cleanUrl(rec.url);
+    if (!url || seenUrls.has(url)) continue;
+    seenUrls.add(url);
+    pages.push({ id: `P${pages.length + 1}`, url, title: text(rec.title, 140) || siteName(url), site: text(rec.site, 60) || siteName(url) });
+    if (pages.length >= MAX_SOURCES) break;
+  }
+  return { query: text(obj.query, 300), ...(curriculum ? { curriculum } : {}), ...(audience ? { audience } : {}), checklist, points, ...(worked.length ? { worked } : {}), sources, ...(pages.length ? { pages } : {}) };
 }
 
 /**

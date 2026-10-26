@@ -21,6 +21,8 @@ import { snapEquilibrium } from "./graphCheck";
 import { DS_MAX_STEPS, parseOps, parseStructure } from "./structure";
 import { MAX_FRAMES, stackIsConsistent, stackView } from "./callStack";
 import { validateSketch } from "./sketch";
+import { validateSequenceStage } from "./sequence";
+import { validateGanttStage, validateMappingStage, validateMemoryStage, validateStatesStage } from "./osDiagrams";
 import { repairTex } from "../equationSpec";
 import {
   CANVAS_ICONS,
@@ -276,6 +278,11 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
   if (kind === "code") return validateCode(r, sentence, unique);
   if (kind === "sketch") return validateSketch(r, sentence, unique);
   if (kind === "structure") return validateStructureStage(r, sentence, unique);
+  if (kind === "sequence") return validateSequenceStage(r, sentence, unique);
+  if (kind === "states") return validateStatesStage(r, sentence, unique);
+  if (kind === "memory") return validateMemoryStage(r, sentence, unique);
+  if (kind === "gantt") return validateGanttStage(r, sentence, unique);
+  if (kind === "mapping") return validateMappingStage(r, sentence, unique);
 
   if (kind === "molecule") {
     const molecules = arr(r.molecules).map((m) => obj(m)).map((m, mi) => {
@@ -765,6 +772,20 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
   return stage;
 }
 
+/** The longest code line a board can draw whole (lib/canvas/layout.ts layoutCode at its 10 px floor). */
+export const CODE_LINE_MAX = 84;
+
+/**
+ * One code line, kept whole when it fits; a longer one ends at its last token boundary with "…", so it
+ * never stops mid-word ("…Islama", owner 2026-10-23).
+ */
+export function codeLine(line: string): string {
+  if (line.length <= CODE_LINE_MAX) return line;
+  const head = line.slice(0, CODE_LINE_MAX - 2);
+  const cut = Math.max(head.lastIndexOf(", "), head.lastIndexOf(" "));
+  return `${cut > head.length * 0.6 ? head.slice(0, cut + (head[cut] === "," ? 1 : 0)) : head} …`;
+}
+
 /** A morph is only kept when it changes something and happens on a real sentence. */
 /**
  * A program as the model wrote it, made safe to draw: lines keep their indentation (tabs become
@@ -774,7 +795,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
 function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, unique: (v: unknown, f: string) => string): CodeStage | null {
   const rawLines = Array.isArray(r.lines) ? r.lines : typeof r.code === "string" ? r.code.split("\n") : [];
   const lines = rawLines
-    .map((l) => (typeof l === "string" ? l.replace(/\t/g, "    ").replace(/\s+$/, "").slice(0, 72) : ""))
+    .map((l) => (typeof l === "string" ? codeLine(l.replace(/\t/g, "    ").replace(/\s+$/, "")) : ""))
     .slice(0, 18);
   while (lines.length && !lines[lines.length - 1].trim()) lines.pop();
   if (!lines.some((l) => l.trim())) return null;
@@ -832,7 +853,7 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
     .map((e) => obj(e))
     .map((e) => {
       const line = lineNo(e.line);
-      const from = typeof e.from === "string" ? e.from.replace(/\t/g, "    ").replace(/\s+$/, "").slice(0, 72) : "";
+      const from = typeof e.from === "string" ? codeLine(e.from.replace(/\t/g, "    ").replace(/\s+$/, "")) : "";
       return line && from !== lines[line - 1] ? { s: sentence(e.s ?? e.sentence, 1), line, from } : null;
     })
     .filter((e): e is NonNullable<typeof e> => Boolean(e))
@@ -858,7 +879,7 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
     ...(r.reveal === "all" ? { reveal: "all" as const } : {}),
     ...(groups.length ? { groups } : {}),
     ...(edits.length ? { edits } : {}),
-    steps: steps.length ? steps : [{ s: 0, lines: [1] }],
+    steps: steps.length ? capStateNames(steps) : [{ s: 0, lines: [1] }],
     ...(rows.length ? { trace: { vars, rows } } : {}),
     ...(outputText ? { output: { s: sentence(outputRaw.s ?? outputRaw.sentence, 0), text: outputText } } : {}),
   };
@@ -893,7 +914,7 @@ function validateStructureStage(r: Raw, sentence: (v: unknown, f?: number) => nu
     .sort((a, b) => a.s - b.s)
     .slice(0, DS_MAX_STEPS);
   registerStructureIds(structure, steps, unique);
-  return { kind: "structure", structure, steps };
+  return { kind: "structure", structure, steps: capStateNames(steps) };
 }
 
 function registerStructureIds(structure: NonNullable<ReturnType<typeof parseStructure>>, steps: Array<{ ops?: ReturnType<typeof parseOps> }>, unique: (v: unknown, f: string) => string) {
@@ -923,13 +944,32 @@ function tokenTex(raw: string): string | null {
   return "tex" in fixed ? fixed.tex : null;
 }
 
+/**
+ * At most five variables on a board, over ALL its steps: each step was capped at five, but a board
+ * whose steps named seven different ones (INF, dist, unvisited, u, v, w, candidate) squeezed its rows
+ * until the cells overlapped (2026-10-23). The first five the board introduces stay.
+ */
+export const STATE_NAMES_MAX = 5;
+export function capStateNames<T extends { state?: Array<{ name: string; value: string }> }>(steps: T[]): T[] {
+  const keep: string[] = [];
+  for (const st of steps) for (const v of st.state ?? []) if (!keep.includes(v.name) && keep.length < STATE_NAMES_MAX) keep.push(v.name);
+  return steps.map((st) => {
+    if (!st.state) return st;
+    const state = st.state.filter((v) => keep.includes(v.name));
+    if (state.length) return { ...st, state };
+    const { state: _dropped, ...rest } = st;
+    void _dropped;
+    return rest as T;
+  });
+}
+
 /** What the variables hold after a step: an object {"count": 1} or a list of {name, value}; at most 5. */
 function stateOf(rawState: unknown): Array<{ name: string; value: string }> {
   const stateList = Array.isArray(rawState)
     // Up to 28 characters: "account_a.balance" was cut to "account_a.bala" (CS round, 2026-10-22).
     ? rawState.map((v) => obj(v)).map((v) => ({ name: str(v.name, 28), value: cell(v.value) }))
     : Object.entries(obj(rawState)).map(([name, value]) => ({ name: str(name, 28), value: cell(value) }));
-  return stateList.filter((v) => v.name && /^[A-Za-z_][\w.\[\]]*$/.test(v.name)).slice(0, 5);
+  return stateList.filter((v) => v.name && v.value !== "" && /^[A-Za-z_][\w.\[\]]*$/.test(v.name)).slice(0, 5);
 }
 
 /** One trace cell as text: a number, boolean or string, capped. */
@@ -940,6 +980,13 @@ function cell(v: unknown): string {
   if (Array.isArray(v)) return str(`[${v.map((x) => String(x)).join(", ")}]`, 64);
   const text = typeof v === "string" ? v.trim() : "";
   if (/^[[{(].*[\]})]$/.test(text)) return text.length <= 64 ? text : `${text.slice(0, 60).replace(/,[^,]*$/, "")}, …${text.slice(-1)}`;
+  // Never cut mid-word ("SYN starts; ACK confir", TCP lecture 2026-10-24): a sentence is not a value and
+  // is left off; a longer value is cut at a word and marked.
+  if (text.length > 22) {
+    if (text.split(/\s+/).length >= 3 && !/[\d[\]{}()=]/.test(text)) return "";
+    const cut = text.slice(0, 21).replace(/[\s,;:]+\S*$/, "");
+    return `${cut || text.slice(0, 21)}…`;
+  }
   return str(v, 22);
 }
 

@@ -1,11 +1,14 @@
 import { describeSketch } from "./sketch";
+import { describeSequence } from "./sequence";
+import { describeGantt, describeMapping, describeMemory, describeStates } from "./osDiagrams";
+import { describeStructure, structureStatesInWords } from "./structure";
 import { evalExpr } from "./expr";
 import { layoutPanel } from "./layout";
 import { figureComponent } from "../figures/registry";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 
 /** Maths and statistics figures (they draw only what their parameters give). */
-const MATHS_REVIEW_FIGURES = new Set(["argand", "areaModel", "bearings", "boxPlot", "circleTheorem", "coordinateGrid", "cumulativeFrequency", "dotPlot", "fractionModel", "functionGraph", "histogram", "inferenceDistribution", "logicCircuit", "numberLine", "parallelLines", "probabilityTree", "pythagorasProof", "riemannSum", "sectorArc", "sequences", "shapes3d", "slopeField", "triangle", "unitCircle", "vectors", "venn"]);
+const MATHS_REVIEW_FIGURES = new Set(["argand", "areaModel", "bearings", "boxPlot", "circleTheorem", "coordinateGrid", "cumulativeFrequency", "dotPlot", "fractionModel", "functionGraph", "histogram", "inferenceDistribution", "logicCircuit", "numberLine", "parallelLines", "probabilityTree", "pythagorasProof", "pythagorasGarfield", "pythagorasSimilar", "pythagorasSquares", "riemannSum", "sectorArc", "sequences", "shapes3d", "slopeField", "triangle", "unitCircle", "vectors", "venn"]);
 
 /**
  * THE BOARD REVIEW: the last check before a board reaches a student.
@@ -112,12 +115,14 @@ export function boardFacts(spec: CanvasBoardSpec): string {
       if (stage.structure) lines.push(`Beside the code: a ${stage.structure.variant ? `${stage.structure.variant} ` : ""}${stage.structure.kind} starting as ${stage.structure.nodes.map((n) => n.value).join(", ") || "empty"}.`);
       if (stage.steps.length) {
         lines.push("As Aria speaks:");
-        for (const st of stage.steps) {
+        // What the structure shows after each step, in values (a swapped node holds the other value).
+        const states = stage.structure ? structureStatesInWords(stage.structure, stage.steps) : [];
+        for (const [k, st] of stage.steps.entries()) {
           const parts = [`sentence ${st.s}: lights line${st.lines.length === 1 ? "" : "s"} ${st.lines.join(", ")}`];
           if (st.note) parts.push(`note "${st.note}"`);
           if (st.state?.length) parts.push(`variables ${st.state.map((v) => `${v.name} = ${v.value}`).join(", ")}`);
           if (st.stack?.length) parts.push(`call stack ${st.stack.map((f) => `${f.call}${f.value ? ` (${f.value})` : ""}`).join(" → ")}`);
-          if (st.ops?.length) parts.push(`structure: ${st.ops.map((o) => JSON.stringify(o)).join(", ")}`);
+          if (st.ops?.length) parts.push(`structure: ${st.ops.map((o) => JSON.stringify(o)).join(", ")}${states[k] ? ` → now ${states[k]}` : ""}`);
           lines.push(`- ${parts.join("; ")}`);
         }
       }
@@ -125,6 +130,36 @@ export function boardFacts(spec: CanvasBoardSpec): string {
       if (stage.output) lines.push(`Output shown on sentence ${stage.output.s}: ${stage.output.text}`);
       break;
     }
+    case "structure":
+      // The CS examiner reads what each sentence changes on the structure (it saw nothing here before).
+      lines.push(`Main visual: ${describeStructure(stage.structure, stage.steps)}`);
+      if (stage.steps.length) {
+        lines.push("As Aria speaks:");
+        const states = structureStatesInWords(stage.structure, stage.steps);
+        for (const [k, st] of stage.steps.entries()) {
+          const parts = [`sentence ${st.s}`];
+          if (st.ops?.length) parts.push(`structure: ${st.ops.map((o) => JSON.stringify(o)).join(", ")}${states[k] ? ` → now ${states[k]}` : ""}`);
+          if (st.note) parts.push(`note "${st.note}"`);
+          if (st.state?.length) parts.push(`variables ${st.state.map((v) => `${v.name} = ${v.value}`).join(", ")}`);
+          lines.push(`- ${parts.join("; ")}`);
+        }
+      }
+      break;
+    case "sequence":
+      lines.push(`Main visual: ${describeSequence(stage)}`);
+      break;
+    case "states":
+      lines.push(`Main visual: ${describeStates(stage)}`);
+      break;
+    case "memory":
+      lines.push(`Main visual: ${describeMemory(stage)}`);
+      break;
+    case "gantt":
+      lines.push(`Main visual: ${describeGantt(stage)}`);
+      break;
+    case "mapping":
+      lines.push(`Main visual: ${describeMapping(stage)}`);
+      break;
     case "molecule":
       lines.push(`Main visual: 3-D molecules: ${stage.molecules.map((m) => `${m.label} (${m.geometry}${m.bondAngle ? `, ${m.bondAngle}` : ""})`).join("; ")}.`);
       break;

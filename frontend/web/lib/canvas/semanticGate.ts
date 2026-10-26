@@ -14,7 +14,7 @@ export function semanticBoardIssues(spec: CanvasBoardSpec, beat: Pick<CanvasPlan
   if (!decision.figure) return issues;
   // A maths/CS sketch board was chosen over the catalogue on purpose (lib/canvas/visualPolicy.ts): it
   // draws what the board needs live, so no fixed renderer is demanded back.
-  if (spec.stage.kind === "sketch") return issues;
+  if (spec.stage.kind === "sketch" || spec.stage.kind === "sequence" || spec.stage.kind === "states" || spec.stage.kind === "memory" || spec.stage.kind === "gantt" || spec.stage.kind === "mapping") return issues;
   // The board review judged this diagram wrong for this board (it saw what was drawn); a keyword
   // rule must not demand it back — that contradiction sent rebuilt boards to the bare backup.
   if (beat.rejectedFigures?.includes(decision.figure)) return issues;

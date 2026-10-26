@@ -76,6 +76,7 @@ export async function createProgressiveLectureSession(
     mode: input.mode,
     learnerProfile: input.learnerProfile,
     inputBlobName,
+    ...(input.subjectDomain ? { subjectDomain: input.subjectDomain } : {}),
     status: "planning",
     plan: [],
     planRevision: 1,
@@ -251,6 +252,7 @@ export async function progressiveSnapshot(
     costUsd: session.costUsd + docs.reduce((sum, doc) => sum + doc.costUsd, 0),
     error: session.error,
     createdAt: session.createdAt,
+    ...(session.subjectDomain ? { subjectDomain: session.subjectDomain } : {}),
     beatStatus: session.plan.map((planned) => {
       const doc = docs.find((d) => d.sequence === planned.sequence);
       return {
