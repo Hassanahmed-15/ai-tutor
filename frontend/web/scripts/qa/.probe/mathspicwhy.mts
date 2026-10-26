@@ -1,0 +1,20 @@
+// Why routing differs for one saved lecture with maths pictures on vs off (free).
+import { readFileSync } from "node:fs";
+import { CosmosClient } from "@azure/cosmos";
+const env = Object.fromEntries(readFileSync(".env.local", "utf8").split("\n").filter((l) => /^[A-Z_]+=/.test(l)).map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1).replace(/^"|"$/g, "")]));
+const { applyLessonVisualPolicy } = await import("../../../lib/canvas/visualPolicy");
+const { isMathsTopic } = await import("../../../lib/canvas/predictCard");
+const { isCsTopic } = await import("../../../lib/canvas/subjectLook");
+const db = new CosmosClient(env.COSMOS_CONNECTION_STRING).database("aria-shared");
+const s = (await db.container("progressive-lecture-sessions").items.query({ query: "SELECT c.topic, c.plan FROM c WHERE STARTSWITH(c.id, @id)", parameters: [{ name: "@id", value: process.argv[2] }] }).fetchAll()).resources[0] as any;
+const plan = () => JSON.parse(JSON.stringify(s.plan.map((b: any) => ({ objects: [], carry: [], inside: null, ...(b.canvas ?? b), mathsPicture: undefined }))));
+console.log("topic maths?", isMathsTopic(s.topic), "cs?", isCsTopic(s.topic));
+for (const b of plan()) if (isMathsTopic(`${b.title} ${b.brief}`)) console.log("  maths words in:", b.id, b.title, "|", b.brief.slice(0, 80));
+const off = applyLessonVisualPolicy(plan(), { mode: "prompt", topic: s.topic }).audit.changes;
+const on = applyLessonVisualPolicy(plan(), { mode: "prompt", topic: s.topic, mathsPictures: true }).audit.changes;
+console.log("only off:", off.filter((c: string) => !on.includes(c)));
+console.log("only on:", on.filter((c: string) => !off.includes(c)));
+const res = applyLessonVisualPolicy(plan(), { mode: "prompt", topic: s.topic, mathsPictures: true });
+for (const b of res.beats) console.log(`  ${b.id} ${b.stage}${b.figure ? `:${b.figure}` : ""}${b.mathsPicture ? " +maths-picture" : ""} subject=${b.subject ?? "-"} vt=${b.visualType ?? "-"} "${b.title.slice(0, 40)}"`);
+console.log(res.audit.changes.filter((c: string) => /b(2|3|5|10):/.test(c)).join("\n"));
+process.exit(0);

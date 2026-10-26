@@ -14,12 +14,13 @@ import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
  * read by professor reviewers) found that the code checks catch wrong arithmetic but not a false
  * theorem condition ("same chord or arc"), a wrong term ("distance" for a signed deviation), a figure
  * that contradicts the example, or an answer said and never written — and the owner chose this check
- * on gpt-5.6-sol at about $0.25 a lecture.
+ * on gpt-5.6-sol at about $0.25 a lecture; on 2026-10-25 the owner moved it to gpt-5.6-luna (about a
+ * twentieth of the price). CANVAS_MATHS_CHECK_MODEL=gpt-5.6-sol puts the strong model back.
  *
  * It fails open: a check that errors or runs out of time never holds a board back.
  */
 
-export const MATHS_CHECK_MODEL = process.env.CANVAS_MATHS_CHECK_MODEL ?? "gpt-5.6-sol";
+export const MATHS_CHECK_MODEL = process.env.CANVAS_MATHS_CHECK_MODEL ?? "gpt-5.6-luna";
 
 /** On for maths lectures unless CANVAS_MATHS_CHECK=off. */
 export function mathsCheckOn(topic: string, plan: Pick<CanvasPlanBeat, "title" | "brief" | "subject">[]): boolean {

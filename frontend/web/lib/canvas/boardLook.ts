@@ -22,9 +22,10 @@ export const LOOK_MODEL = process.env.CANVAS_BOARD_LOOK_MODEL ?? "gpt-5.6-luna";
  * Drawings are judged by the stronger model (calibration on the manager's six lectures, 2026-10-23: the
  * light model passed a lone circle standing for isotopes and a label pointing at the wrong vessel; the
  * stronger one refused both and passed every good board). Working, code and comparison boards keep the
- * light one — it caught every fault on them — so a board costs about $0.006 on average.
+ * light one — it caught every fault on them — so a board costs about $0.006 on average. The owner moved
+ * drawings to the light model too (2026-10-25); CANVAS_BOARD_LOOK_DRAWING_MODEL=gpt-5.6-sol puts it back.
  */
-export const LOOK_DRAWING_MODEL = process.env.CANVAS_BOARD_LOOK_DRAWING_MODEL ?? "gpt-5.6-sol";
+export const LOOK_DRAWING_MODEL = process.env.CANVAS_BOARD_LOOK_DRAWING_MODEL ?? "gpt-5.6-luna";
 const DRAWN = new Set(["sketch", "illustration", "figure", "diagram", "atom-map", "molecule", "scene", "graph", "structure"]);
 export function lookModelFor(stageKind: string): string {
   return process.env.CANVAS_BOARD_LOOK_MODEL ? LOOK_MODEL : DRAWN.has(stageKind) ? LOOK_DRAWING_MODEL : LOOK_MODEL;

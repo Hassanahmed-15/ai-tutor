@@ -287,6 +287,12 @@ export function applyLessonVisualPolicy(
      * policy stays pure: a board's words (and what the syllabus says it must show) → a diagram, or null.
      */
     findAsset?: (text: string, mustShow?: string[]) => NonNullable<CanvasPlanBeat["figureAsset"]> | null;
+    /**
+     * A typed-prompt or PDF lecture (never a course or a video) whose maths drawings are gpt-image-2
+     * pictures (lib/canvas/mathsPicture.ts): `true` — every drawing (owner, 2026-10-26); "code-first" — a
+     * code figure first, gpt-image-2 when none fits or it is rejected once. Off unless the caller asks.
+     */
+    mathsPictures?: boolean | "code-first";
   },
 ): { beats: CanvasPlanBeat[]; audit: VisualPolicyAudit } {
   const beats = input.map((beat) => ({ ...beat, requiredVisual: beat.requiredVisual ? { stages: [...beat.requiredVisual.stages], mustShow: [...beat.requiredVisual.mustShow] } : undefined }));
@@ -317,6 +323,16 @@ export function applyLessonVisualPolicy(
   const subject = plannedSubject(input);
   const labLecture = subject ? subject !== "other" : options.topic !== undefined && isLabLookTopic([options.topic, ...input.map((b) => `${b.title} ${b.brief}`)].join(" "));
   const aiPictures = labLecture ? false : options.aiPictures ?? !(typeof process !== "undefined" && process.env?.CANVAS_AI_PICTURES === "off");
+  // A MATHS LECTURE FROM A TYPED PROMPT OR A PDF (not a course, not computer science) whose drawings no code
+  // figure fits are drawn by gpt-image-2 (owner, 2026-10-25; lib/canvas/mathsPicture.ts). A board the
+  // chooser called working, steps, a comparison or an idea is not a drawing.
+  // Maths: the subject judged for the lecture (lib/canvas/subjectClassifier.ts — a chemistry "Formulae" is
+  // not maths) or, only when it could not be judged, the student's own topic — never a guess from the
+  // boards' words (a networking lecture's "sequence", "Optical Flow"'s gradients: replay, 2026-10-26).
+  const lectureWords = [options.topic ?? "", ...input.map((b) => `${b.title} ${b.brief}`)].join(" ");
+  const mathsLecture = subject !== undefined ? subject === "maths" : isMathsTopic(options.topic ?? "") && !isCsTopic(options.topic ?? "") && !isCsTopic(lectureWords);
+  const mathsPictureLecture = (options.mathsPictures === true || options.mathsPictures === "code-first") && options.mode !== "course" && !input.some((b) => b.course) && mathsLecture;
+  const notADrawing = (beat: CanvasPlanBeat) => Boolean(beat.visualType && ["math", "sequence", "comparison", "concept"].includes(beat.visualType));
   // Pictures are generated, checked by a textbook editor and remembered (lib/canvas/textbookDiagram.ts),
   // so a lesson may show up to four; a verified one costs nothing the next time it is used.
   // Up to six checked pictures a lesson (owner, 2026-10-17: "AI generated images would be better").
@@ -1157,7 +1173,18 @@ export function applyLessonVisualPolicy(
         continue;
       }
       // No exact figure: a flow or a comparison keeps its own board (it lays out and fits every word).
-      if (beat.stage === "flow" || beat.stage === "compare" || beat.stage === "sketch") continue;
+      if (beat.stage === "flow" || beat.stage === "compare") continue;
+      // NO CODE FIGURE FITS A MATHS DRAWING (owner, 2026-10-25: "I don't think the maths fixed library is
+      // going to cover all the things … use gpt-image-2 … black background, white diagram, white labels"):
+      // in a typed-prompt or PDF maths lecture the board's figure is drawn by gpt-image-2 in the board's own
+      // look (lib/canvas/mathsPicture.ts).
+      if (mathsPictureLecture && !notADrawing(beat)) {
+        changes.push(`${beat.id}: ${beat.stage}${beat.figure ? ` (${beat.figure})` : ""} → illustration (maths picture: no code figure fits)`);
+        Object.assign(beat, { stage: "illustration", mathsPicture: true, figure: undefined, figureAsset: undefined });
+        if (beat.requiredVisual) beat.requiredVisual.stages = ["illustration"];
+        continue;
+      }
+      if (beat.stage === "sketch") continue;
       changes.push(`${beat.id}: ${beat.stage}${beat.figure ? ` (${beat.figure})` : ""} → sketch (maths/CS, drawn live)`);
       Object.assign(beat, { stage: "sketch", figure: undefined, figureAsset: undefined });
       if (beat.requiredVisual) beat.requiredVisual.stages = ["sketch"];
@@ -1199,6 +1226,34 @@ export function applyLessonVisualPolicy(
         changes.push(`${beat.id}: ${beat.stage} → code (it writes or traces code)`);
         beat.stage = "code";
         beat.figure = undefined;
+      }
+    }
+  }
+
+  // A CODE FIGURE THAT IS REJECTED ONCE IS DRAWN BY gpt-image-2 THE SECOND TIME (owner, 2026-10-26: "if
+  // it's rejected one time I want it to display the second time"): in a typed-prompt or PDF maths lecture,
+  // every board drawn by code — a figure, a vector diagram, a sketch, working beside a figure — is marked,
+  // and the board writer or the board's look switches it on its first rejection (lib/canvas/generate.ts).
+  // GPT-IMAGE-2 FOR EVERY MATHS DRAWING (owner, 2026-10-26: "I mostly want gpt-image-2 generated images
+  // now; they are better with the full board context"): unless code figures come first ("code-first"), a
+  // figure, vector diagram, sketch or scene board is a picture board, and working beside a figure keeps its
+  // working with the picture beside it. Written working, tables, flows, live graphs and exams stay.
+  if (mathsPictureLecture) {
+    const codeFirst = options.mathsPictures === "code-first";
+    for (const beat of beats) {
+      if (beat.refresher || beat.overview || examIds.has(beat.id) || beat.mathsPicture) continue;
+      const besideWorking = beat.stage === "equation" && Boolean(beat.figure);
+      const drawing = beat.stage === "figure" || beat.stage === "diagram" || ((beat.stage === "sketch" || beat.stage === "scene") && !notADrawing(beat));
+      if (!drawing && !besideWorking) continue;
+      if (codeFirst) {
+        if (beat.stage !== "scene") beat.mathsPictureFallback = true;
+        continue;
+      }
+      changes.push(`${beat.id}: ${beat.stage}${beat.figure ? ` (${beat.figure})` : ""} → ${besideWorking ? "working with a maths picture beside it" : "illustration (maths picture)"}`);
+      if (besideWorking) Object.assign(beat, { figure: undefined, figureAsset: undefined, plannedFigure: undefined, mathsPicture: true });
+      else {
+        Object.assign(beat, { stage: "illustration", figure: undefined, figureAsset: undefined, plannedFigure: undefined, mathsPicture: true, ...(beat.interaction === "try" ? { interaction: null } : {}) });
+        if (beat.requiredVisual) beat.requiredVisual.stages = ["illustration"];
       }
     }
   }

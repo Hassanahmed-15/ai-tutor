@@ -38,7 +38,8 @@ import { coursePictureKey, coursePicturePrompt, fieldsPrompt, labelsInPicture, l
  */
 const PLAN_MODEL = process.env.COURSE_PICTURE_PLAN_MODEL ?? "gpt-5.6-luna";
 const READ_MODEL = process.env.COURSE_PICTURE_READ_MODEL ?? "gpt-5.6-luna";
-const CHECK_MODEL = process.env.COURSE_PICTURE_CHECK_MODEL ?? "gpt-5.6-sol";
+// The examiner's look moved to the light model (owner, 2026-10-25); COURSE_PICTURE_CHECK_MODEL=gpt-5.6-sol puts it back.
+const CHECK_MODEL = process.env.COURSE_PICTURE_CHECK_MODEL ?? "gpt-5.6-luna";
 export const COURSE_IMAGE_MODEL = process.env.COURSE_PICTURE_MODEL ?? "gpt-image-2";
 const QUALITY = (process.env.COURSE_PICTURE_QUALITY ?? "medium") as "low" | "medium" | "high";
 

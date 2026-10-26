@@ -32,7 +32,7 @@ export type Mark =
   | { type: "note"; id: string; lines: string[]; x: number; y: number; size: number; s: number; bullet: Pt; /** Rolled off the column when a later note takes its slot (sentence number). */ until?: number; /** A written course board's line number, drawn in place of the bullet. */ num?: number }
   | { type: "node"; id: string; cx: number; cy: number; r: number; icon?: CanvasIcon; label: string; sub?: string; color: string; s: number; glow?: string; labelY: number; labelSize: number; becomes?: Becomes }
   | { type: "arrow"; id: string; p0: Pt; c: Pt; p1: Pt; label?: string; labelAt: Pt; s: number; flow: boolean; rate?: string; color: string }
-  | { type: "picture"; id: string; rect: Rect; src?: string; paper?: string; s: number; subject: string }
+  | { type: "picture"; id: string; rect: Rect; src?: string; paper?: string; s: number; subject: string; /** White on black, straight on the board (IllustrationStage.onBoard). */ onBoard?: boolean }
   /** A course board's line from a note to the part of the picture it names, shown while that note's sentence is said. */
   | { type: "partLink"; id: string; from: Pt; to: Pt; s: number; until?: number }
   | { type: "part"; id: string; cx: number; cy: number; name: string; s: number }
@@ -1522,7 +1522,7 @@ function layoutIllustration(stage: IllustrationStage, box: Rect, marks: Mark[], 
   const w = Math.min(box.w, (box.h - 10) * 1.5);
   const h = w / 1.5;
   const rect = { x: box.x + (box.w - w) / 2, y: box.y + (box.h - h) / 2 - 4, w, h };
-  marks.push({ type: "picture", id: "picture", rect, src: stage.src, paper: stage.paper, s: 0, subject: stage.subject });
+  marks.push({ type: "picture", id: "picture", rect, src: stage.src, paper: stage.paper, s: 0, subject: stage.subject, ...(stage.onBoard ? { onBoard: true } : {}) });
   add("picture", rect, 0);
 
   const placed: Rect[] = [];

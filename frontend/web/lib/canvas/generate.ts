@@ -56,6 +56,8 @@ import { deferRevealLeaks, teachingCycleIssues } from "./predict";
 import { alignToNarration, anchorNotes, unshownSentences } from "./narrationSync";
 import { coursePicture, coursePicturesOn, CoursePictureError } from "./coursePicture";
 import { withBoardWriting, withCoursePicture, type CourseBoardContext } from "./coursePicturePrompt";
+import { mathsPicture, MathsPictureError, withMathsPicture } from "./mathsPicture";
+import { asMathsPicture, withMathsBoardWriting, type MathsBoardContext } from "./mathsPicturePrompt";
 import { courseCodeDiagramsOff, offInCourses } from "./courseFigures";
 
 
@@ -310,7 +312,7 @@ function diagramKeyFor(beat: CanvasPlanBeat): string {
   return diagramCacheKey(`${beat.title} ${beat.brief}`, [...(beat.objects ?? []), ...(beat.requiredVisual?.mustShow ?? [])], nums);
 }
 
-export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
+export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number; /** The board it was written for, when that changed (a maths code figure switched to a picture). */ beat?: CanvasPlanBeat }> {
   if (beat.stage === "diagram") {
     const cached = await loadSharedDiagramRecord<{ spec: CanvasBoardSpec }>(diagramKeyFor(beat)).catch(() => null);
     if (cached?.spec?.stage?.kind === "diagram") return { spec: cached.spec, costUsd: 0, attempts: 1 };
@@ -378,6 +380,15 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   let examined: { spec: CanvasBoardSpec; faults: string[] } | null = null;
   // At most two reviews a board: the review must not turn a 2-minute lecture into a 6-minute one.
   const reviews = { used: 0 };
+  // A MATHS BOARD'S CODE FIGURE REJECTED ONCE (owner, 2026-10-26: "if it's rejected one time I want it to
+  // display the second time"): the board is written again for a gpt-image-2 picture, which is shown as
+  // drawn (lib/canvas/mathsPicture.ts). Typed-prompt and PDF maths lectures only (visualPolicy marks them).
+  const secondTimePicture = async (why: string) => {
+    const switched = asMathsPicture(beat);
+    console.log(`[canvas] ${beat.id}: its ${beat.stage}${beat.figure ? ` (${beat.figure})` : ""} was rejected once — drawn by gpt-image-2 the second time (${why.slice(0, 200)})`);
+    const again = await generateSpec(openai, topic, plan, switched, clock, [...extra, `This board's code-drawn figure was rejected (${why.slice(0, 300)}); it is drawn as a picture instead — write the board for that picture.`], plain, opts);
+    return { ...again, costUsd: again.costUsd + costUsd, beat: again.beat ?? switched };
+  };
   // Builds the same board again without its visual when the review rejected the visual itself.
   const rebuildPlain = async (why: string) => {
     // A course lesson's board is written again as a gpt-image-2 picture board with the fault named — never
@@ -733,6 +744,8 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           fatal = serious.map((p) => ({ gate: "review", message: `${p.kind}: ${p.detail}` }));
           if (serious.some((p) => VISUAL_FAULTS.has(p.kind))) visualRejections++;
           console.log(`[canvas] ${beat.id}: board review sent it back — ${fatal.map((f) => f.message).join(" | ").slice(0, 400)}`);
+          const wrongFigure = serious.filter((p) => p.kind === "wrong-visual");
+          if (beat.mathsPictureFallback && wrongFigure.length && clock.left() > 100_000) return secondTimePicture(wrongFigure.map((p) => p.detail).join("; "));
         } else findings.push(...review.problems.map((p) => ({ gate: "review-note", message: `${p.kind}: ${p.detail}` })));
       }
       if (visualRejections >= 2 && !plain && (beat.stage === "figure" || beat.stage === "graph" || beat.stage === "illustration" || beat.stage === "diagram")) return rebuildPlain(fatal.map((f) => f.message).join("; "));
@@ -773,6 +786,8 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         }
         const drawn = verdict.problems.filter((p) => p.where === "board" || isMissingLine(p.kind));
         console.log(`[canvas] ${beat.id}: maths examiner (${MATHS_CHECK_MODEL}, ${Math.round(verdict.ms / 1000)}s, $${verdict.costUsd.toFixed(4)})${verdict.checked ? "" : " skipped"} — ${verdict.problems.length ? verdict.problems.map((p) => `${p.where}/${p.kind}: ${p.detail}`).join(" | ").slice(0, 500) : "ships"}`);
+        const contradicts = drawn.filter((p) => p.kind === "figure-contradicts");
+        if (beat.mathsPictureFallback && contradicts.length && clock.left() > 100_000) return secondTimePicture(contradicts.map((p) => p.detail).join("; "));
         const rewrite = (!hurried && mathsChecks < 2) || (mathsChecks < 3 && serious(drawn.map((p) => p.kind)));
         if (drawn.length && rewrite) {
           examined = { spec, faults: drawn.map((p) => `${p.kind}: ${p.detail}`) };
@@ -960,6 +975,11 @@ function fallbackReason(error: unknown): "budget" | "generation" | "validation" 
 export function plainRebuild(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = []): () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null> {
   return async () => {
     if (clock.left() < 35_000) return null;
+    // A maths picture that could not be made: the board is drawn as the sketch it was before (lib/canvas/mathsPicture.ts).
+    if (beat.mathsPicture) {
+      const made = await generateSpec(openai, topic, plan, { ...beat, stage: "sketch", mathsPicture: undefined, requiredVisual: beat.requiredVisual ? { ...beat.requiredVisual, stages: ["sketch"] } : undefined }, clock, extra, true);
+      return { spec: made.spec, costUsd: made.costUsd };
+    }
     // With time left, the vector diagram first (it falls back to the plain board itself).
     const vector = VECTOR_DIAGRAMS && clock.left() > 110_000 && beat.stage === "illustration";
     const made = vector
@@ -969,12 +989,66 @@ export function plainRebuild(openai: OpenAI, topic: string, plan: CanvasPlanBeat
   };
 }
 
+/**
+ * A typed-prompt or PDF maths board's figure drawn by gpt-image-2, white on black (lib/canvas/mathsPicture.ts).
+ * A figure that cannot be made leaves the board the sketch it was before; with no time for that, written.
+ */
+async function mathsIllustration(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock, rebuild: (() => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null>) | undefined, ctx: MathsBoardContext): Promise<{ spec: CanvasBoardSpec; costUsd: number }> {
+  const started = Date.now();
+  // A student's own document's figure is theirs; a typed topic's figure is shared with the next student.
+  const share = !beat.source;
+  const own = `${lectureId}-${beat.id}`;
+  let costUsd = 0;
+  try {
+    if (clock.left() < 90_000) throw new Error("no time left for a picture");
+    const pic = await bounded(mathsPicture(openai, withMathsBoardWriting(ctx, spec), {
+      share,
+      asDrawn: beat.mathsPictureAsDrawn,
+      budget: { left: () => clock.left() - 50_000 },
+      save: async (_key, display) => { if (!share) await saveCanvasImage(userId, own, display); },
+    }), Math.min(240_000, clock.left() - 45_000), "maths picture");
+    log.push(`${beat.id}: maths picture ${Math.round((Date.now() - started) / 1000)}s — ${pic.log}`);
+    return { spec: withMathsPicture(spec, pic, `/api/canvas-lecture/image/${share ? pic.key : own}`), costUsd: pic.costUsd };
+  } catch (error) {
+    costUsd += error instanceof MathsPictureError ? error.costUsd : 0;
+    log.push(`${beat.id}: maths picture failed — ${(error as Error).message}; drawn as a sketch`);
+    const rebuilt = rebuild ? await rebuild().catch(() => null) : null;
+    if (rebuilt) return { spec: rebuilt.spec, costUsd: costUsd + rebuilt.costUsd };
+    return { spec: fallbackSpec(beat), costUsd };
+  }
+}
+
+/** A typed-prompt or PDF maths working board with its gpt-image-2 picture beside the lines (white on black). */
+async function mathsPictureBesideWorking(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock, ctx: MathsBoardContext): Promise<{ spec: CanvasBoardSpec; costUsd: number }> {
+  if (spec.stage.kind !== "equation") return { spec, costUsd: 0 };
+  const share = !beat.source;
+  const own = `${lectureId}-${beat.id}`;
+  const started = Date.now();
+  try {
+    if (clock.left() < 70_000) throw new Error("no time left for a picture");
+    const pic = await bounded(mathsPicture(openai, withMathsBoardWriting(ctx, spec), {
+      share,
+      asDrawn: beat.mathsPictureAsDrawn,
+      budget: { left: () => clock.left() - 20_000 },
+      save: async (_key, display) => { if (!share) await saveCanvasImage(userId, own, display); },
+    }), Math.min(240_000, clock.left() - 15_000), "maths picture");
+    const placed = withMathsPicture({ ...spec, stage: { kind: "illustration", subject: pic.fields.diagramType, parts: [], labels: [] } }, pic, `/api/canvas-lecture/image/${share ? pic.key : own}`);
+    log.push(`${beat.id}: maths picture beside the working ${Math.round((Date.now() - started) / 1000)}s — ${pic.log}`);
+    return { spec: { ...spec, stage: { ...spec.stage, picture: placed.stage as IllustrationStage }, cues: placed.cues }, costUsd: pic.costUsd };
+  } catch (error) {
+    log.push(`${beat.id}: maths picture beside the working failed — ${(error as Error).message}; the working stands alone`);
+    return { spec, costUsd: error instanceof MathsPictureError ? error.costUsd : 0 };
+  }
+}
+
 /** A course picture's own state, for the board's vision check (lib/canvas/progressive.ts). */
 export type CoursePictureState = { redrawn: boolean; remember?: () => Promise<void> };
 
-export async function illustrate(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock, rebuild?: () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null>, course?: CourseBoardContext | null, options: { redraw?: string[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; picture?: CoursePictureState }> {
+export async function illustrate(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock, rebuild?: () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null>, course?: CourseBoardContext | null, options: { redraw?: string[]; maths?: MathsBoardContext | null } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; picture?: CoursePictureState }> {
   if (spec.stage.kind === "equation" && beat.pictureBeside && course) return pictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, course, options);
+  if (spec.stage.kind === "equation" && beat.mathsPicture && !beat.course && options.maths) return mathsPictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, options.maths);
   if (spec.stage.kind !== "illustration") return { spec, costUsd: 0 };
+  if (beat.mathsPicture && !beat.course && options.maths) return mathsIllustration(openai, userId, lectureId, beat, spec, log, clock, rebuild, options.maths);
   const stage = spec.stage;
   const started = Date.now();
   let costUsd = 0;

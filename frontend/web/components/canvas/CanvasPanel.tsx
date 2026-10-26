@@ -501,6 +501,15 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       if (pencil) return <PencilArrow mark={mark} vars={vars} focused={focused} reducedMotion={reducedMotion} chalk={Boolean(chalk)} />;
       return <ArrowView mark={mark} vars={vars} focused={focused} reducedMotion={reducedMotion} />;
     case "picture":
+      // A maths figure drawn white on black (lib/canvas/mathsPicture.ts) is part of the board itself: no
+      // paper, tape or frame, and put up at once rather than traced by the pencil.
+      if (mark.onBoard && mark.src) {
+        return (
+          <g className="cv-in" data-no-marker="">
+            <image href={mark.src} x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} preserveAspectRatio="xMidYMid slice" />
+          </g>
+        );
+      }
       return (
         // A course picture is already drawn: it is put up at once, not traced by the pencil (owner,
         // 2026-10-25: tracing its frame held the board in "a long pause" before anything was written).
