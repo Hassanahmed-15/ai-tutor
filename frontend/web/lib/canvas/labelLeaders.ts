@@ -317,3 +317,31 @@ export function repointLeader(ctx: { getImageData: (x: number, y: number, w: num
   ctx.arc(to.x, to.y, 3.5, 0, Math.PI * 2);
   ctx.fill();
 }
+
+/**
+ * WHERE EACH PRINTED LABEL IS (owner, 2026-10-26: the yellow note lines "mostly point at very wrong label …
+ * it should be 100 percent perfect"): the box round each label's words in the picture, as 0..1 fractions,
+ * read by Tesseract. A label not found exactly once is left out — no line is better than a wrong one.
+ * `inverted`: the picture is white on black (a maths picture) and is read black on white.
+ */
+export async function printedLabelBoxes(image: Buffer, labels: string[], options: { inverted?: boolean } = {}): Promise<Map<string, Box>> {
+  const out = new Map<string, Box>();
+  const img = await loadImage(image);
+  let readable = image;
+  if (options.inverted) {
+    const canvas = createCanvas(img.width, img.height);
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    const data = ctx.getImageData(0, 0, img.width, img.height);
+    for (let i = 0; i < data.data.length; i += 4) for (let c = 0; c < 3; c++) data.data[i + c] = 255 - data.data[i + c];
+    ctx.putImageData(data, 0, 0);
+    readable = await canvas.encode("png");
+  }
+  const words = await tesseractWords(readable);
+  if (!words?.length) return out;
+  for (const label of labels) {
+    const box = labelBox(words, label);
+    if (box) out.set(label, { x: box.x / img.width, y: box.y / img.height, w: box.w / img.width, h: box.h / img.height });
+  }
+  return out;
+}

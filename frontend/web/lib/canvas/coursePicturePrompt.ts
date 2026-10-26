@@ -704,7 +704,7 @@ export function lettersToText(letters: string): string {
  * and the camera goes there as Aria says it, and every label is a part the narration must name
  * (lib/canvas/labelMentions.ts). A part the board planned that the picture does not label is dropped.
  */
-export function withCoursePicture(spec: CanvasBoardSpec, pic: { labels: Array<{ text: string; part: string; sentence: number; x: number; y: number }>; fields: Pick<PictureFields, "diagramType" | "labels"> & { family?: PictureFields["family"] }; description: string; paper: string }, src: string): CanvasBoardSpec {
+export function withCoursePicture(spec: CanvasBoardSpec, pic: { labels: Array<{ text: string; part: string; sentence: number; x: number; y: number; box?: { x: number; y: number; w: number; h: number } }>; fields: Pick<PictureFields, "diagramType" | "labels"> & { family?: PictureFields["family"] }; description: string; paper: string }, src: string): CanvasBoardSpec {
   if (spec.stage.kind !== "illustration") return spec;
   const stage = spec.stage;
   const planned = new Map(stage.parts.map((p) => [partNameKey(p.name), p]));
@@ -713,7 +713,7 @@ export function withCoursePicture(spec: CanvasBoardSpec, pic: { labels: Array<{ 
     const mine = planned.get(partNameKey(l.part)) ?? planned.get(partNameKey(l.text));
     const id = mine && !used.has(mine.id) ? mine.id : `label-${i + 1}`;
     used.add(id);
-    return { id, name: l.text, s: l.sentence, ...(mine?.say ? { say: mine.say } : {}), x: l.x, y: l.y };
+    return { id, name: l.text, s: l.sentence, ...(mine?.say ? { say: mine.say } : {}), x: l.x, y: l.y, ...(l.box ? { labelBox: l.box } : {}) };
   });
   const kept = new Set(parts.map((p) => p.id));
   const pointed = new Set(spec.cues.filter((c) => c.target && kept.has(c.target)).map((c) => c.target));

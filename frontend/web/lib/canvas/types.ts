@@ -75,6 +75,13 @@ export type PicturePart = {
   /** Where the part is on the picture, as fractions of its width and height. Filled by the server. */
   x?: number;
   y?: number;
+  /**
+   * Where the picture's OWN printed label for this part is (fractions of the picture), read off the picture
+   * (lib/canvas/labelLeaders.ts). A note's yellow line and Aria's pointer go to it — it is exactly where the
+   * word is printed, where a located point is only a guess (owner, 2026-10-26: "it should be 100 percent
+   * perfect"). Absent: no line is drawn.
+   */
+  labelBox?: { x: number; y: number; w: number; h: number };
 };
 
 export type IllustrationStage = {

@@ -306,9 +306,17 @@ test("Aria talks the student through a course picture: the pointer goes to each 
   assert.equal(talk.find((c) => c.s === 1 && c.target === "ureter")?.action, "circle", "a part named for the first time is circled");
   assert.ok(mentionAt("Bowman’s capsule around glomerulus", "Bowman's capsule") === 0, "apostrophes either way");
   assert.equal(mentionAt("the capsule", "Bowman's capsule"), -1, "half a name is not the part");
-  const links = layoutPanel({ ...spec, cues }).marks.filter((m) => m.type === "partLink") as Array<{ id: string; s: number; until?: number }>;
-  assert.deepEqual(links.map((l) => l.id), ["link-n1", "link-n2"], "each note naming a part is tied to it");
+  // No printed label found on the picture: no line at all (owner, 2026-10-26: never a wrong one).
+  assert.equal(layoutPanel({ ...spec, cues }).marks.filter((m) => m.type === "partLink").length, 0, "no line to a guessed point");
+  // With the picture's printed labels read: each note naming a part is tied to that part's printed label.
+  const stage = spec.stage as { parts: Array<Record<string, unknown>> };
+  const printed = { ...spec, cues, stage: { ...spec.stage, parts: stage.parts.map((p, i) => ({ ...p, labelBox: { x: 0.8, y: 0.1 + i * 0.2, w: 0.12, h: 0.05 } })) } } as unknown as CanvasBoardSpec;
+  const laid = layoutPanel(printed);
+  const links = laid.marks.filter((m) => m.type === "partLink") as Array<{ id: string; s: number; until?: number; to: { x: number; y: number } }>;
+  assert.deepEqual(links.map((l) => l.id), ["link-n1", "link-n2"], "each note naming a part is tied to its printed label");
   assert.equal(links[0].until, 1, "shown while its sentence is said");
+  const pelvis = laid.marks.find((m) => m.type === "part" && m.id === "pelvis") as { label?: { x: number; y: number; w: number; h: number } };
+  assert.ok(pelvis.label && Math.abs(links[0].to.x - (pelvis.label.x - 6)) < 0.01 && Math.abs(links[0].to.y - (pelvis.label.y + pelvis.label.h / 2)) < 0.01, "the line ends at the printed word");
   const typed = layoutPanel({ ...spec, subject: undefined, cues } as CanvasBoardSpec).marks.filter((m) => m.type === "partLink");
   assert.equal(typed.length, 0, "other lectures keep their look");
 });

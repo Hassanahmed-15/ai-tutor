@@ -8,6 +8,7 @@ import type OpenAI from "openai";
 import { costFor, priceFor } from "../modelPricing";
 import { locateParts, prepareStoredIllustration } from "../illustratedBoard";
 import { loadSharedCanvasImage, loadSharedDiagramRecord, saveSharedCanvasImage, saveSharedDiagramRecord } from "./store";
+import { printedLabelBoxes } from "./labelLeaders";
 import { coursePictureKey, coursePicturePrompt, fieldsPrompt, labelsInPicture, labelsInRecognisedText, labelsMatch, lettersToText, mustFix, parsePictureFields, type CourseBoardContext, type Inspection, type PictureFields } from "./coursePicturePrompt";
 
 /**
@@ -53,7 +54,7 @@ export type CoursePicture = {
   paper: string;
   fields: PictureFields;
   /** Each drawn label: its text, the part it names, the sentence that names it, and where its line ends. */
-  labels: Array<{ text: string; part: string; sentence: number; x: number; y: number }>;
+  labels: Array<{ text: string; part: string; sentence: number; x: number; y: number; /** Where its printed words are (lib/canvas/labelLeaders.ts). */ box?: { x: number; y: number; w: number; h: number } }>;
   description: string;
   cached: boolean;
   /** This picture is the one redraw: nothing may ask for another. */
@@ -153,7 +154,7 @@ export async function coursePicture(openai: OpenAI, ctx: CourseBoardContext, opt
     ]);
     costUsd += read.costUsd + inspect.costUsd + located.costUsd;
     const byPart = new Map(located.parts.map((p) => [p.name.toLowerCase(), p]));
-    const labels = targets.map((l) => ({ l, at: byPart.get(l.pointsTo.toLowerCase()) })).filter((x) => x.at).map(({ l, at }) => ({ text: l.text, part: l.pointsTo, sentence: l.sentence, x: Math.round(at!.x * 1000) / 1000, y: Math.round(at!.y * 1000) / 1000 }));
+    const labels: CoursePicture["labels"] = targets.map((l) => ({ l, at: byPart.get(l.pointsTo.toLowerCase()) })).filter((x) => x.at).map(({ l, at }) => ({ text: l.text, part: l.pointsTo, sentence: l.sentence, x: Math.round(at!.x * 1000) / 1000, y: Math.round(at!.y * 1000) / 1000 }));
     const description = String(inspect.json.description ?? "").replace(/\s+/g, " ").trim().slice(0, 900);
 
     const inspection = inspect.json as Inspection;
@@ -166,6 +167,11 @@ export async function coursePicture(openai: OpenAI, ctx: CourseBoardContext, opt
     if (problems.length) {
       corrections = problems.slice(0, 8);
       continue;
+    }
+    // Where each printed label is: the notes' yellow lines and Aria's pointer go there, never to a guessed point.
+    if (inPicture) {
+      const boxes = await printedLabelBoxes(picture.display, labels.map((l) => l.text)).catch(() => new Map<string, NonNullable<CoursePicture["labels"][number]["box"]>>());
+      for (const l of labels) { const b = boxes.get(l.text); if (b) l.box = b; }
     }
     await options.save(key, picture.display);
     // The picture is always stored where the board's link points — a redraw shown as drawn was never

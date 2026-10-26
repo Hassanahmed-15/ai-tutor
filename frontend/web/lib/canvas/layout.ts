@@ -38,7 +38,7 @@ export type Mark =
   | { type: "picture"; id: string; rect: Rect; src?: string; paper?: string; s: number; subject: string; /** White on black, straight on the board (IllustrationStage.onBoard). */ onBoard?: boolean }
   /** A course board's line from a note to the part of the picture it names, shown while that note's sentence is said. */
   | { type: "partLink"; id: string; from: Pt; to: Pt; s: number; until?: number }
-  | { type: "part"; id: string; cx: number; cy: number; name: string; s: number }
+  | { type: "part"; id: string; cx: number; cy: number; name: string; s: number; /** Its printed label on the picture (PicturePart.labelBox). */ label?: Rect }
   | { type: "callout"; id: string; partId: string; text: string; box: Rect; anchor: Pt; s: number; size: number }
   | { type: "equation"; id: string; tokens: Array<{ id: string; text: string; tex?: string; color: string; w: number; size: number }>; steps: Array<{ s: number; place: Record<string, Pt>; highlight: string[]; caption?: string }>; size: number; captionY: number; center: number; s: number; /** Wiped with its page of working when the next page starts (sentence number). */ until?: number }
   | { type: "graph"; id: string; plot: Rect; spec: GraphStage; s: number; /** A stacked panel: its curve's name as a title; x axis printed on the bottom panel only. */ stacked?: { title: string; showX: boolean } }
@@ -597,13 +597,18 @@ export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
     for (const note of marks.filter((m): m is Extract<Mark, { type: "note" }> => m.type === "note")) {
       // The part whose name the note writes in yellow (CanvasPanel withKeyTerms: the longest name it holds).
       const hit = parts.map((p) => ({ p, at: mentionAt(note.lines.join(" "), p.name) })).filter((h) => h.at >= 0).sort((a, b) => b.p.name.length - a.p.name.length || a.at - b.at)[0];
-      if (!hit) continue;
+      // ONLY TO THE PRINTED LABEL (owner, 2026-10-26: "it mostly points at very wrong label … it should be
+      // 100 percent perfect"): the line ends on the picture's own printed word for the part, read off the
+      // picture — never on a guessed point. A part whose label was not found has no line.
+      const label = hit?.p.label;
+      if (!label) continue;
       const from = { x: note.x + textWidth(note.lines[0], note.size * W) + 12, y: note.y - note.size * 0.32 };
-      if (hit.p.cx - from.x < 40) continue;
+      const to = label.x > from.x ? { x: label.x - 6, y: label.y + label.h / 2 } : { x: label.x + label.w + 6, y: label.y + label.h / 2 };
+      if (Math.abs(to.x - from.x) < 40) continue;
       // Shown while its sentence is said, and never longer than its note is on the board.
       const until = Math.min(note.s + 1, note.until ?? Infinity);
       if (until <= note.s) continue;
-      marks.push({ type: "partLink", id: `link-${note.id}`, from, to: { x: hit.p.cx, y: hit.p.cy }, s: note.s, until });
+      marks.push({ type: "partLink", id: `link-${note.id}`, from, to, s: note.s, until });
     }
   }
   return { marks, targets, stage };
@@ -1727,9 +1732,12 @@ function layoutIllustration(stage: IllustrationStage, box: Rect, marks: Mark[], 
     const cx = rect.x + (part.x as number) * rect.w;
     const cy = rect.y + (part.y as number) * rect.h;
     points.set(part.id, { x: cx, y: cy });
-    marks.push({ type: "part", id: part.id, cx, cy, name: part.name, s: part.s });
+    const lb = part.labelBox;
+    const label = lb ? { x: rect.x + lb.x * rect.w, y: rect.y + lb.y * rect.h, w: lb.w * rect.w, h: lb.h * rect.h } : undefined;
+    marks.push({ type: "part", id: part.id, cx, cy, name: part.name, s: part.s, ...(label ? { label } : {}) });
     // A part's target is a region around its point, big enough to read as "this bit" when zoomed to.
-    add(part.id, { x: cx - 34, y: cy - 34, w: 68, h: 68 }, part.s);
+    // Aria's pointer goes to the part's printed label when the picture has one: exactly where the word is.
+    add(part.id, label ? { x: label.x - 8, y: label.y - 6, w: label.w + 16, h: label.h + 12 } : { x: cx - 34, y: cy - 34, w: 68, h: 68 }, part.s);
     placed.push({ x: cx - 8, y: cy - 8, w: 16, h: 16 });
   }
 

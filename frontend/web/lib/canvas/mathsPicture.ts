@@ -9,6 +9,7 @@ import type OpenAI from "openai";
 import { costFor, priceFor } from "../modelPricing";
 import { locateParts, pngPixelsOnly, prepareStoredIllustration } from "../illustratedBoard";
 import { loadSharedCanvasImage, loadSharedDiagramRecord, saveSharedCanvasImage, saveSharedDiagramRecord } from "./store";
+import { printedLabelBoxes } from "./labelLeaders";
 import { labelsInRecognisedText, mustFix, type Inspection, type PictureFields } from "./coursePicturePrompt";
 import { mathsFieldsPrompt, mathsPictureKey, mathsPicturePrompt, parseMathsFields, type MathsBoardContext } from "./mathsPicturePrompt";
 import type { CanvasBoardSpec } from "./types";
@@ -39,7 +40,7 @@ export type MathsPicture = {
   display: Buffer;
   fields: PictureFields;
   /** Each drawn label: its text, the part it names, the sentence that names it, and where the part is. */
-  labels: Array<{ text: string; part: string; sentence: number; x: number; y: number }>;
+  labels: Array<{ text: string; part: string; sentence: number; x: number; y: number; /** Where its printed words are (lib/canvas/labelLeaders.ts). */ box?: { x: number; y: number; w: number; h: number } }>;
   description: string;
   cached: boolean;
   costUsd: number;
@@ -162,7 +163,7 @@ async function drawMathsPicture(openai: OpenAI, ctx: MathsBoardContext, options:
     costUsd += inspect.costUsd + located.costUsd;
     spent.usd = costUsd;
     const byPart = new Map(located.parts.map((p) => [p.name.toLowerCase(), p]));
-    const labels = targets.map((l) => ({ l, at: byPart.get(l.pointsTo.toLowerCase()) })).filter((x) => x.at).map(({ l, at }) => ({ text: l.text, part: l.pointsTo, sentence: l.sentence, x: Math.round(at!.x * 1000) / 1000, y: Math.round(at!.y * 1000) / 1000 }));
+    const labels: MathsPicture["labels"] = targets.map((l) => ({ l, at: byPart.get(l.pointsTo.toLowerCase()) })).filter((x) => x.at).map(({ l, at }) => ({ text: l.text, part: l.pointsTo, sentence: l.sentence, x: Math.round(at!.x * 1000) / 1000, y: Math.round(at!.y * 1000) / 1000 }));
     const description = String(inspect.json.description ?? "").replace(/\s+/g, " ").trim().slice(0, 900);
     // No Tesseract: the spelling is left to the examiner's look rather than a second paid read.
     const spelling = ocr !== null ? labelsInRecognisedText(expectedText, ocr) : { ok: true, missing: [], extra: [] };
@@ -171,6 +172,9 @@ async function drawMathsPicture(openai: OpenAI, ctx: MathsBoardContext, options:
       corrections = problems.slice(0, 8);
       continue;
     }
+    // Where each printed label is (white on black, read inverted): Aria's pointer goes there, never to a guessed point.
+    const boxes = await printedLabelBoxes(picture.display, labels.map((l) => l.text), { inverted: true }).catch(() => new Map<string, NonNullable<MathsPicture["labels"][number]["box"]>>());
+    for (const l of labels) { const b = boxes.get(l.text); if (b) l.box = b; }
     await options.save(key, picture.display);
     if (options.share) {
       await saveSharedCanvasImage(key, picture.display);
@@ -192,7 +196,7 @@ export function withMathsPicture(spec: CanvasBoardSpec, pic: Pick<MathsPicture, 
     const mine = stage.parts.find((p) => !used.has(p.id) && (p.name.toLowerCase() === l.part.toLowerCase() || p.name.toLowerCase() === l.text.toLowerCase()));
     const id = mine ? mine.id : `label-${i + 1}`;
     used.add(id);
-    return { id, name: l.text, s: l.sentence, x: l.x, y: l.y };
+    return { id, name: l.text, s: l.sentence, x: l.x, y: l.y, ...(l.box ? { labelBox: l.box } : {}) };
   });
   const kept = new Set(parts.map((p) => p.id));
   return {
