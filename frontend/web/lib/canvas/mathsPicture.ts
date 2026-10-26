@@ -119,7 +119,7 @@ export async function mathsPicture(openai: OpenAI, ctx: MathsBoardContext, optio
   }
 }
 
-async function drawMathsPicture(openai: OpenAI, ctx: MathsBoardContext, options: { share: boolean; budget: { left: () => number }; save: (key: string, display: Buffer) => Promise<void>; /** The second drawing of a rejected code figure: shown as drawn, never refused (owner, 2026-10-26). */ asDrawn?: boolean }, spent: { usd: number } = { usd: 0 }): Promise<MathsPicture> {
+async function drawMathsPicture(openai: OpenAI, ctx: MathsBoardContext, options: { share: boolean; budget: { left: () => number }; save: (key: string, display: Buffer) => Promise<void> }, spent: { usd: number } = { usd: 0 }): Promise<MathsPicture> {
   let costUsd = 0;
   const planned = mathsFieldsPrompt(ctx);
   const plan = await json(openai, PLAN_MODEL, planned.system, planned.user);
@@ -152,7 +152,7 @@ async function drawMathsPicture(openai: OpenAI, ctx: MathsBoardContext, options:
     const picture = await prepareStoredIllustration(await onBoardBlack(Buffer.from(b64, "base64")));
     const url = { type: "image_url" as const, image_url: { url: `data:image/jpeg;base64,${picture.jpeg.toString("base64")}` } };
     // The redraw, or a first picture with no time left for one, is shown as it is.
-    const final = options.asDrawn === true || attempt === 2 || options.budget.left() < 110_000;
+    const final = attempt === 2 || options.budget.left() < 110_000;
     const facts = `The figure should be: ${fields.diagramType} (${fields.scope}), ${fields.view}\nFacts that must be true:\n${fields.mustBeTrue.map((x) => `- ${x}`).join("\n")}\nLabels and the part each names:\n${fields.labels.map((l) => `- "${l.text}" → ${l.pointsTo}`).join("\n")}${fields.exactText.length ? `\nOther text that must appear exactly as written: ${fields.exactText.map((t) => `"${t}"`).join(", ")}` : ""}${fields.arrows ? `\nArrows: ${fields.arrows}` : ""}`;
     const [ocr, inspect, located] = await Promise.all([
       final ? Promise.resolve(null) : inverted(picture.display, "png").then(tesseract),

@@ -8,7 +8,7 @@ const env = Object.fromEntries(readFileSync(".env.local", "utf8").split("\n").fi
 for (const [k, v] of Object.entries(env)) process.env[k] ??= v as string;
 const { createOpenAI } = await import("../../lib/openaiClient");
 const { mathsPicture, withMathsPicture } = await import("../../lib/canvas/mathsPicture");
-const { asMathsPicture, mathsBoardContext, withMathsBoardWriting } = await import("../../lib/canvas/mathsPicturePrompt");
+const { mathsBoardContext, withMathsBoardWriting } = await import("../../lib/canvas/mathsPicturePrompt");
 const { boardPhoto } = await import("../../lib/canvas/boardLook");
 
 const [sessionPrefix, list, outArg] = process.argv.slice(2);
@@ -29,13 +29,14 @@ for (const n of list.split(",").map(Number)) {
   // The board as it shipped (free), for comparison.
   const before = await boardPhoto(shipped, { userId: s.userId, topic: s.topic });
   if (before) writeFileSync(`${out}/b${n}-before.png`, before);
-  // The second drawing: the board written for a picture keeps its heading and notes.
-  const switched = asMathsPicture({ objects: [], carry: [], inside: null, ...beat, stage: beat.stage === "equation" ? "equation" : "figure" });
-  const ctx = withMathsBoardWriting(mathsBoardContext(s.topic, switched), shipped);
+  // The picture board keeps the shipped board's heading and notes; gpt-image-2 sees the whole lecture.
+  const plan = s.plan.map((p: any) => ({ objects: [], carry: [], inside: null, ...(p.canvas ?? p) }));
+  const earlier = plan.slice(0, n - 1).map((_: unknown, i: number) => beats.find((b) => b.sequence === i)?.beat?.draw?.ops?.find((o: any) => o.kind === "canvasBoard")?.spec);
+  const ctx = withMathsBoardWriting(mathsBoardContext(s.topic, plan[n - 1], { plan, index: n - 1, earlier }), shipped);
   let display: Buffer | null = null;
   const started = Date.now();
   try {
-    const pic = await mathsPicture(openai, ctx, { share: false, asDrawn: true, budget: { left: () => 300_000 }, save: async (_key, d) => { display = d; } });
+    const pic = await mathsPicture(openai, ctx, { share: false, budget: { left: () => 300_000 }, save: async (_key, d) => { display = d; } });
     spent += pic.costUsd;
     if (!display) display = pic.display;
     writeFileSync(`${out}/b${n}-picture.jpg`, pic.display);

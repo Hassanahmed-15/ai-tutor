@@ -34,15 +34,6 @@ test("a typed-prompt maths lecture: EVERY drawing is a gpt-image-2 picture (owne
   assert.equal(before.b2.startsWith("figure") || before.b2.startsWith("equation"), true, "it was a code figure");
 });
 
-test("code-first (CANVAS_MATHS_CODE_FIGURES=on): the drawing no code figure fits is a gpt-image-2 picture; the rest is as before", () => {
-  const before = route(mathsPlan(), { mode: "prompt", topic: "Symmetry of polygons" });
-  const after = route(mathsPlan(), { mode: "prompt", topic: "Symmetry of polygons", mathsPictures: "code-first" });
-  assert.equal(after.b1, "illustration+maths-picture", "no code figure draws a hexagon's lines of symmetry");
-  assert.equal(before.b1, "sketch", "it was a sketch");
-  for (const id of ["b2", "b3", "b4"]) assert.equal(after[id], before[id], `${id} unchanged (${before[id]})`);
-  assert.match(after.b2, /figure:triangle|equation:triangle/, "a code figure still comes first");
-});
-
 test("a PDF maths lecture (reference and strict) gets it too", () => {
   for (const mode of ["reference", "strict"] as const) {
     assert.equal(route(mathsPlan(), { mode, topic: "Symmetry of polygons", mathsPictures: true }).b1, "illustration+maths-picture", mode);
@@ -99,24 +90,39 @@ test("on the board: a maths picture has no paper, frame or tape; every other pic
   assert.equal(picture(spec(false))?.onBoard, undefined);
 });
 
-test("code-first: rejected once, drawn by gpt-image-2 the second time — every code-drawn maths board is marked, nothing else", async () => {
-  const { asMathsPicture } = await import("../canvas/mathsPicturePrompt");
-  const out = applyLessonVisualPolicy(mathsPlan(), { mode: "prompt", topic: "Symmetry of polygons", mathsPictures: "code-first" }).beats;
-  const marked = (id: string) => out.find((b) => b.id === id)!.mathsPictureFallback === true;
-  assert.ok(marked("b2"), "a code figure board");
-  assert.ok(!marked("b1"), "already a picture");
-  assert.ok(!marked("b4"), "a flow is not a drawing");
-  const off = applyLessonVisualPolicy(mathsPlan(), { mode: "prompt", topic: "Symmetry of polygons" }).beats;
-  assert.ok(!off.some((b) => b.mathsPictureFallback), "never without the lecture asking");
-  const course = applyLessonVisualPolicy(mathsPlan().map((b) => ({ ...b, subject: "maths" as const, course: true })), { mode: "course", topic: "Symmetry of polygons", mathsPictures: "code-first" }).beats;
-  assert.ok(!course.some((b) => b.mathsPictureFallback || b.mathsPicture), "never a course lesson");
-  // The switch: a figure board becomes a picture board; a working board keeps its working, the picture beside it.
-  const figureBoard = asMathsPicture({ ...mathsPlan()[1], stage: "figure", figure: "triangle", mathsPictureFallback: true });
-  assert.equal(figureBoard.stage, "illustration");
-  assert.equal(figureBoard.figure, undefined);
-  assert.ok(figureBoard.mathsPicture && figureBoard.mathsPictureAsDrawn && !figureBoard.mathsPictureFallback);
-  const working = asMathsPicture({ ...mathsPlan()[2], figure: "triangle", mathsPictureFallback: true });
-  assert.equal(working.stage, "equation");
-  assert.equal(working.figure, undefined);
-  assert.ok(working.mathsPicture && working.mathsPictureAsDrawn);
+test("no code library in a maths lecture (owner, 2026-10-26): a graph is a picture too; a failed picture is written, never code-drawn", async () => {
+  const plan = [
+    beat("b1", "The graph of y = x² − 4", "graph", "The curve crosses the x-axis at −2 and 2. Its lowest point is (0, −4)."),
+    beat("b2", "Solving x² − 4 = 0", "equation", "We add 4 to both sides, so x² = 4, which gives x = 2 or x = −2."),
+  ];
+  const out = route(plan, { mode: "prompt", topic: "Solving quadratic equations", mathsPictures: true });
+  assert.equal(out.b1, "illustration+maths-picture", "the graph is drawn by gpt-image-2");
+  assert.match(out.b2, /^equation/, "working stays working");
+  const { fallbackSpec } = await import("../canvas/fallback");
+  const written = fallbackSpec({ ...plan[0], stage: "illustration", mathsPicture: true, boardNotes: [{ s: 0, text: "Roots: x = −2, x = 2" }, { s: 1, text: "Lowest point (0, −4)" }] });
+  assert.equal(written.stage.kind, "sketch");
+  assert.deepEqual((written.stage as { items: Array<{ type: string; text: string }> }).items.map((i) => i.type), ["text", "text"], "Aria's lines, written — no shapes");
+});
+
+test("gpt-image-2 sees the whole lecture: every board in order, this board's place, what the earlier boards wrote and drew, what comes next", () => {
+  const plan = [
+    beat("b1", "Lines of symmetry of a regular hexagon", "sketch", "A regular hexagon ABCDEF has six lines of symmetry."),
+    beat("b2", "Rotational symmetry of the hexagon", "sketch", "Turning ABCDEF by 60 degrees about its centre O maps it onto itself."),
+    beat("b3", "Symmetry of other polygons", "sketch", "A square has four lines of symmetry."),
+  ];
+  const earlier = [{ heading: "Lines of symmetry", notes: [{ text: "6 lines of symmetry" }], stage: { kind: "illustration", description: "Regular hexagon ABCDEF with its six dashed lines of symmetry through O." } }];
+  const ctx = mathsBoardContext("Symmetry of polygons", plan[1], { plan, index: 1, earlier });
+  assert.equal(ctx.lecture.position, "board 2 of 3");
+  assert.equal(ctx.lecture.outline.length, 3);
+  assert.match(ctx.lecture.outline[1], /← THIS BOARD/);
+  assert.match(ctx.lecture.earlier[0], /6 lines of symmetry/);
+  assert.match(ctx.lecture.earlier[0], /hexagon ABCDEF with its six dashed lines/, "the earlier picture, so letters stay the same");
+  assert.match(ctx.lecture.next, /Symmetry of other polygons/);
+  const fields = parseMathsFields({ diagram_type: "regular hexagon ABCDEF rotated 60 degrees about O", scope: "the whole hexagon", view: "flat", parts: [{ name: "centre O", where: "middle", looks: "a dot" }], must_be_true: ["six equal sides"], labels: [{ text: "O", points_to: "centre O", position: "beside the centre", sentence: 0 }] }, ctx)!;
+  const prompt = mathsPicturePrompt(ctx, fields) as Record<string, any>;
+  assert.equal(prompt.lecture_context.this_board, "board 2 of 3");
+  assert.equal(prompt.lecture_context.the_whole_lecture_board_by_board.length, 3);
+  assert.ok(prompt.lecture_context.what_the_boards_before_this_one_wrote_and_drew.length === 1);
+  assert.match(prompt.lecture_context.keep_consistent, /same letters/);
+  assert.match(mathsFieldsPrompt(ctx).user, /The whole lecture, board by board/);
 });

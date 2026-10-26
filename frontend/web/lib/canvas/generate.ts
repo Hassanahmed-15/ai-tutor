@@ -66,7 +66,7 @@ import { alignToNarration, anchorNotes, unshownSentences } from "./narrationSync
 import { coursePicture, coursePicturesOn, CoursePictureError } from "./coursePicture";
 import { withBoardWriting, withCoursePicture, type CourseBoardContext } from "./coursePicturePrompt";
 import { mathsPicture, MathsPictureError, withMathsPicture } from "./mathsPicture";
-import { asMathsPicture, withMathsBoardWriting, type MathsBoardContext } from "./mathsPicturePrompt";
+import { withMathsBoardWriting, type MathsBoardContext } from "./mathsPicturePrompt";
 import { courseCodeDiagramsOff, offInCourses } from "./courseFigures";
 
 
@@ -297,7 +297,8 @@ function plainBeat(beat: CanvasPlanBeat, allowFigure = true, lab = false, codeLa
   const base = { ...beat, figure: undefined, figureAsset: undefined, objects: [], requiredVisual: undefined, rejectedFigures: rejected(beat) };
   // A course lesson has no code diagrams (owner, 2026-10-24): its board is rebuilt as a gpt-image-2
   // picture board (or its working), never a figure, sketch, flow or boxes.
-  if (beat.course && courseCodeDiagramsOff()) return { ...base, objects: beat.objects, stage: calculation && beat.stage === "equation" ? "equation" : "illustration" };
+  // Nor has a typed-prompt or PDF maths lecture's picture board (owner, 2026-10-26: "remove code library from maths completely").
+  if ((beat.course && courseCodeDiagramsOff()) || beat.mathsPicture) return { ...base, objects: beat.objects, stage: calculation && beat.stage === "equation" ? "equation" : "illustration" };
   // Maths and CS never fall back to cards: the board is drawn live as a sketch (owner, 2026-10-20) —
   // a rejected graph of two lines became a scene of boxes with no graph (QA batch 1, 2026-10-21).
   if (lab) return { ...base, stage: calculation && beat.stage === "equation" ? "equation" : "sketch" };
@@ -360,7 +361,7 @@ function diagramKeyFor(beat: CanvasPlanBeat): string {
   return diagramCacheKey(`${beat.title} ${beat.brief}`, [...(beat.objects ?? []), ...(beat.requiredVisual?.mustShow ?? [])], nums);
 }
 
-export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; typed?: boolean; domain?: SubjectDomain; earlier?: EarlierStructure[]; continueCode?: string[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number; /** Its animation could not be made right: the faults each attempt was sent back for. */ incomplete?: string[]; /** The board it was written for, when that changed (a maths code figure switched to a picture). */ beat?: CanvasPlanBeat }> {
+export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; typed?: boolean; domain?: SubjectDomain; earlier?: EarlierStructure[]; continueCode?: string[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number; /** Its animation could not be made right: the faults each attempt was sent back for. */ incomplete?: string[] }> {
   if (beat.stage === "diagram") {
     const cached = await loadSharedDiagramRecord<{ spec: CanvasBoardSpec }>(diagramKeyFor(beat)).catch(() => null);
     if (cached?.spec?.stage?.kind === "diagram") return { spec: cached.spec, costUsd: 0, attempts: 1 };
@@ -492,20 +493,11 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   let examined: { spec: CanvasBoardSpec; faults: string[]; problems: MathsProblem[]; script: string } | null = null;
   // At most two reviews a board: the review must not turn a 2-minute lecture into a 6-minute one.
   const reviews = { used: 0 };
-  // A MATHS BOARD'S CODE FIGURE REJECTED ONCE (owner, 2026-10-26: "if it's rejected one time I want it to
-  // display the second time"): the board is written again for a gpt-image-2 picture, which is shown as
-  // drawn (lib/canvas/mathsPicture.ts). Typed-prompt and PDF maths lectures only (visualPolicy marks them).
-  const secondTimePicture = async (why: string) => {
-    const switched = asMathsPicture(beat);
-    console.log(`[canvas] ${beat.id}: its ${beat.stage}${beat.figure ? ` (${beat.figure})` : ""} was rejected once — drawn by gpt-image-2 the second time (${why.slice(0, 200)})`);
-    const again = await generateSpec(openai, topic, plan, switched, clock, [...extra, `This board's code-drawn figure was rejected (${why.slice(0, 300)}); it is drawn as a picture instead — write the board for that picture.`], plain, opts);
-    return { ...again, costUsd: again.costUsd + costUsd, beat: again.beat ?? switched };
-  };
   // Builds the same board again without its visual when the review rejected the visual itself.
   const rebuildPlain = async (why: string) => {
     // A course lesson's board is written again as a gpt-image-2 picture board with the fault named — never
     // a sketch, a vector diagram or plain boxes (owner, 2026-10-24: no code diagrams).
-    if (beat.course && courseCodeDiagramsOff()) {
+    if ((beat.course && courseCodeDiagramsOff()) || beat.mathsPicture) {
       console.log(`[canvas] ${beat.id}: its ${beat.stage} board was rejected — written again (${why.slice(0, 200)})`);
       const again = await generateSpec(openai, topic, plan, plainBeat(beat), clock, [...extra, `An earlier version of this board was rejected because ${why}. Correct exactly that.`], true);
       return { ...again, costUsd: again.costUsd + costUsd };
@@ -944,8 +936,6 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           fatal = serious.map((p) => ({ gate: "review", message: `${p.kind}: ${p.detail}` }));
           if (serious.some((p) => VISUAL_FAULTS.has(p.kind))) visualRejections++;
           console.log(`[canvas] ${beat.id}: board review sent it back — ${fatal.map((f) => f.message).join(" | ").slice(0, 400)}`);
-          const wrongFigure = serious.filter((p) => p.kind === "wrong-visual");
-          if (beat.mathsPictureFallback && wrongFigure.length && clock.left() > 100_000) return secondTimePicture(wrongFigure.map((p) => p.detail).join("; "));
         } else findings.push(...review.problems.map((p) => ({ gate: "review-note", message: `${p.kind}: ${p.detail}` })));
       }
       if (visualRejections >= 2 && !plain && (beat.stage === "figure" || beat.stage === "graph" || beat.stage === "illustration" || beat.stage === "diagram")) return rebuildPlain(fatal.map((f) => f.message).join("; "));
@@ -986,8 +976,6 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         }
         const drawn = verdict.problems.filter((p) => p.where === "board" || isMissingLine(p.kind));
         console.log(`[canvas] ${beat.id}: maths examiner (${MATHS_CHECK_MODEL}, ${Math.round(verdict.ms / 1000)}s, $${verdict.costUsd.toFixed(4)})${verdict.checked ? "" : " skipped"} — ${verdict.problems.length ? verdict.problems.map((p) => `${p.where}/${p.kind}: ${p.detail}`).join(" | ").slice(0, 500) : "ships"}`);
-        const contradicts = drawn.filter((p) => p.kind === "figure-contradicts");
-        if (beat.mathsPictureFallback && contradicts.length && clock.left() > 100_000) return secondTimePicture(contradicts.map((p) => p.detail).join("; "));
         const rewrite = (!hurried && mathsChecks < 2) || (mathsChecks < 3 && serious(drawn.map((p) => p.kind)));
         if (drawn.length && rewrite) {
           examined = { spec, faults: drawn.map((p) => `${p.kind}: ${p.detail}`), problems: drawn, script: beat.script };
@@ -1227,11 +1215,9 @@ function fallbackReason(error: unknown): "budget" | "generation" | "validation" 
 export function plainRebuild(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = []): () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null> {
   return async () => {
     if (clock.left() < 35_000) return null;
-    // A maths picture that could not be made: the board is drawn as the sketch it was before (lib/canvas/mathsPicture.ts).
-    if (beat.mathsPicture) {
-      const made = await generateSpec(openai, topic, plan, { ...beat, stage: "sketch", mathsPicture: undefined, requiredVisual: beat.requiredVisual ? { ...beat.requiredVisual, stages: ["sketch"] } : undefined }, clock, extra, true);
-      return { spec: made.spec, costUsd: made.costUsd };
-    }
+    // A maths picture that could not be made: the board is WRITTEN — what Aria writes as she speaks — never a
+    // code figure or a sketch (owner, 2026-10-26: "remove code library from maths completely").
+    if (beat.mathsPicture) return { spec: fallbackSpec(beat), costUsd: 0 };
     // With time left, the vector diagram first (it falls back to the plain board itself).
     const vector = VECTOR_DIAGRAMS && clock.left() > 110_000 && beat.stage === "illustration";
     const made = vector
@@ -1255,7 +1241,6 @@ async function mathsIllustration(openai: OpenAI, userId: string, lectureId: stri
     if (clock.left() < 90_000) throw new Error("no time left for a picture");
     const pic = await bounded(mathsPicture(openai, withMathsBoardWriting(ctx, spec), {
       share,
-      asDrawn: beat.mathsPictureAsDrawn,
       budget: { left: () => clock.left() - 50_000 },
       save: async (_key, display) => { if (!share) await saveCanvasImage(userId, own, display); },
     }), Math.min(240_000, clock.left() - 45_000), "maths picture");
@@ -1280,7 +1265,6 @@ async function mathsPictureBesideWorking(openai: OpenAI, userId: string, lecture
     if (clock.left() < 70_000) throw new Error("no time left for a picture");
     const pic = await bounded(mathsPicture(openai, withMathsBoardWriting(ctx, spec), {
       share,
-      asDrawn: beat.mathsPictureAsDrawn,
       budget: { left: () => clock.left() - 20_000 },
       save: async (_key, display) => { if (!share) await saveCanvasImage(userId, own, display); },
     }), Math.min(240_000, clock.left() - 15_000), "maths picture");

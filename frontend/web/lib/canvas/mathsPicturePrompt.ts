@@ -14,22 +14,6 @@ import { parsePictureFields, type PictureFields } from "./coursePicturePrompt";
  * where its labels point are lib/canvas/mathsPicture.ts.
  */
 
-/**
- * A maths board whose code figure (or sketch) was rejected once, drawn the second time by gpt-image-2 and
- * shown as drawn (owner, 2026-10-26). A working board keeps its working with the picture beside it; any
- * other board becomes a picture board.
- */
-export function asMathsPicture(beat: CanvasPlanBeat): CanvasPlanBeat {
-  const base = { ...beat, figure: undefined, figureAsset: undefined, plannedFigure: undefined, mathsPicture: true, mathsPictureAsDrawn: true, mathsPictureFallback: undefined };
-  if (beat.stage === "equation") return base;
-  return {
-    ...base,
-    stage: "illustration",
-    ...(beat.interaction === "try" ? { interaction: null } : {}),
-    requiredVisual: beat.requiredVisual ? { ...beat.requiredVisual, stages: ["illustration"] } : undefined,
-  };
-}
-
 export type MathsBoardContext = {
   /** The lecture's topic, as the student asked it. */
   topic: string;
@@ -46,9 +30,35 @@ export type MathsBoardContext = {
   source: string[];
   /** A strict PDF lecture: the picture may show only what the document says. */
   strict: boolean;
+  /**
+   * THE WHOLE LECTURE (owner, 2026-10-26: "give the full context of the lecture of what's going on to
+   * gpt-image-2"): every board in order, where this one sits, what the boards before it wrote and drew —
+   * so its figure uses the same letters, numbers and example — and what comes next.
+   */
+  lecture: { outline: string[]; position: string; earlier: string[]; next: string };
 };
 
-export function mathsBoardContext(topic: string, beat: CanvasPlanBeat, options: { source?: string[]; strict?: boolean } = {}): MathsBoardContext {
+/** What one earlier board showed: its heading, what it wrote, and its picture's description. */
+type EarlierBoard = { heading?: string; notes?: Array<{ text: string }>; stage?: { kind: string; description?: string; subject?: string; picture?: { description?: string; subject?: string } } } | undefined;
+
+function lectureContext(plan: CanvasPlanBeat[], index: number, earlier: EarlierBoard[]): MathsBoardContext["lecture"] {
+  const sentences = (script: string) => (script.match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) ?? []).map((x) => x.trim()).filter(Boolean);
+  const outline = plan.map((b, i) => `${i + 1}. ${b.title}${b.brief && b.brief !== b.title ? ` — ${b.brief.slice(0, 140)}` : ""}${i === index ? "  ← THIS BOARD" : ""}`).slice(0, 24);
+  // The four boards before this one: what was written and drawn (as built), else what was planned.
+  const before = plan.slice(Math.max(0, index - 4), index).map((b, k) => {
+    const i = Math.max(0, index - 4) + k;
+    const built = earlier[i];
+    const picture = built?.stage?.kind === "illustration" ? built.stage.description || built.stage.subject : built?.stage?.picture ? built.stage.picture.description || built.stage.picture.subject : undefined;
+    const wrote = (built?.notes ?? []).map((n) => n.text).filter(Boolean).slice(0, 6).join("; ");
+    return `Board ${i + 1} "${built?.heading ?? b.title}": ${wrote ? `wrote ${wrote}` : `taught ${sentences(b.script).slice(0, 2).join(" ").slice(0, 300)}`}${picture ? `; its picture: ${String(picture).slice(0, 300)}` : ""}`;
+  });
+  const after = plan[index + 1];
+  return { outline, position: `board ${index + 1} of ${plan.length}`, earlier: before, next: after ? `${after.title}${after.brief && after.brief !== after.title ? ` — ${after.brief.slice(0, 140)}` : ""}` : "this is the last board" };
+}
+
+export function mathsBoardContext(topic: string, beat: CanvasPlanBeat, options: { source?: string[]; strict?: boolean; plan?: CanvasPlanBeat[]; index?: number; earlier?: EarlierBoard[] } = {}): MathsBoardContext {
+  const plan = options.plan?.length ? options.plan : [beat];
+  const index = options.index ?? Math.max(0, plan.indexOf(beat));
   return {
     topic: topic.slice(0, 160),
     board: beat.title,
@@ -59,6 +69,7 @@ export function mathsBoardContext(topic: string, beat: CanvasPlanBeat, options: 
     mustShow: beat.requiredVisual?.mustShow ?? [],
     source: (options.source ?? []).map((s) => s.slice(0, 600)).slice(0, 8),
     strict: options.strict === true,
+    lecture: lectureContext(plan, index, options.earlier ?? []),
   };
 }
 
@@ -81,7 +92,10 @@ Return JSON {"family": "maths", "audience": string, "diagram_type": string, "exa
 - "exact_text": every OTHER piece of text the figure must contain exactly — values, units, angle sizes, coordinates, axis names, scale values, probabilities — at most 8, each at most 40 characters; only what the board says or writes, never an answer it does not give.
 - "arrows": the arrows drawn and which way each points (axes' arrowheads, vectors, a transformation's direction), or "" for none.`;
   const user = [
-    `Lecture: ${ctx.topic}`,
+    `Lecture: ${ctx.topic} — this is ${ctx.lecture.position}`,
+    `The whole lecture, board by board:\n${ctx.lecture.outline.join("\n")}`,
+    ctx.lecture.earlier.length ? `What the boards before this one wrote and drew (use the SAME letters, numbers, orientation and example in this figure):\n${ctx.lecture.earlier.join("\n")}` : "",
+    `Next board: ${ctx.lecture.next}`,
     `Board: ${ctx.board}`,
     `What it teaches: ${ctx.brief}`,
     `What Aria says, sentence by sentence (0-based):\n${ctx.sentences.map((s, i) => `${i}. ${s}`).join("\n")}`,
@@ -107,6 +121,14 @@ export function mathsPicturePrompt(ctx: MathsBoardContext, f: PictureFields, cor
   const n = f.labels.length;
   return {
     purpose: `An exact, correctly labelled school-textbook maths diagram for one lesson board, drawn white on a black board. For ${f.audience || "a secondary-school student"}.`,
+    lecture_context: {
+      lecture: ctx.topic,
+      this_board: ctx.lecture.position,
+      the_whole_lecture_board_by_board: ctx.lecture.outline,
+      ...(ctx.lecture.earlier.length ? { what_the_boards_before_this_one_wrote_and_drew: ctx.lecture.earlier } : {}),
+      next_board: ctx.lecture.next,
+      keep_consistent: "This figure belongs to the same lecture as the boards before it: use the same letters, numbers, orientation and worked example they use, unless this board starts a new one.",
+    },
     board_context: {
       lecture: ctx.topic,
       board: ctx.board,

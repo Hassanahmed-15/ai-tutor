@@ -43,7 +43,7 @@ import { figureFor } from "../figures/registry";
 import { findLibraryFigure } from "../figures/library";
 import { courseCoverageGaps, coverageMessage, requiredTermsOf, syllabusLost, type CoverageGap } from "./courseCoverage";
 import { mathsPicturesOn } from "./mathsPicture";
-import { asMathsPicture, mathsBoardContext } from "./mathsPicturePrompt";
+import { mathsBoardContext } from "./mathsPicturePrompt";
 import { boardNotesOf, mathsEllipsis } from "./plan";
 import { dropRowsWhere, formulaNotes, narrationArithmetic, saysNothing } from "./equationCheck";
 import { chemSubscripts } from "./chemText";
@@ -337,8 +337,8 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         }
         // A maths lecture from a typed prompt or a PDF (never a course or a video) draws what no code figure
         // fits with gpt-image-2, white on black (owner, 2026-10-25; lib/canvas/mathsPicture.ts).
-        // Every maths drawing by default (owner, 2026-10-26); CANVAS_MATHS_CODE_FIGURES=on puts code figures first again.
-        const mathsPictures = visualMode !== "course" && sourceMode !== "video" && mathsPicturesOn() ? (process.env.CANVAS_MATHS_CODE_FIGURES === "on" ? "code-first" as const : true) : false;
+        // Every maths drawing, no code figures (owner, 2026-10-26: "remove code library from maths completely").
+        const mathsPictures = visualMode !== "course" && sourceMode !== "video" && mathsPicturesOn();
         const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: visualMode === "course" && readyFiguresOffForCourses() ? undefined : findLibraryFigure, topic: input.topic, domain, mathsPictures });
         plan = { ...plan, beats: visualPolicy.beats };
         // Not for a course lesson drawn by gpt-image-2: there only a board that needs a picture gets one
@@ -492,7 +492,7 @@ export async function writeCanvasBoard(args: {
   // A course lesson's picture (gpt-image-2, checked, perhaps drawn twice) gets the time it needs: boards
   // 2+ are written while earlier ones play (lib/canvas/coursePicture.ts).
   const course = beat.stage === "illustration" || beat.pictureBeside ? courseBoardContext(args.document, args.topic, beat) : null;
-  const budget = BOARD_BUDGET_MS + (args.mathsCheck ? 60_000 : 0) + (course || ((beat.mathsPicture || beat.mathsPictureFallback) && !beat.course) ? 150_000 : 0);
+  const budget = BOARD_BUDGET_MS + (args.mathsCheck ? 60_000 : 0) + (course || (beat.mathsPicture && !beat.course) ? 150_000 : 0);
   const clock: Clock = { left: () => budget - (Date.now() - started) };
   const log: string[] = [];
   const colours = planConceptColours(plan);
@@ -515,15 +515,14 @@ export async function writeCanvasBoard(args: {
   if (typed && domainIsCs(domain, args.topic) && index > 0) extra.push(...lessonSoFar(args.earlier.slice(0, index)));
   if (args.strictSource) extra.push(...(args.strictSource.mode === "video" ? videoBoardLines(args.strictSource.doc, beat) : strictBoardLines(args.strictSource.doc, beat)));
   const codeDoc = args.document ?? (args.strictSource?.mode === "strict" ? args.strictSource.doc : null);
-  // A typed-prompt or PDF maths board drawn by gpt-image-2 (lib/canvas/mathsPicture.ts): the whole board's
-  // context, and for a PDF what the student's document says for it.
+  // A typed-prompt or PDF maths board drawn by gpt-image-2 (lib/canvas/mathsPicture.ts): the whole lecture —
+  // its boards in order, what the earlier ones wrote and drew — the whole board, and for a PDF what the
+  // student's document says for it.
   const mathsFor = (b: CanvasPlanBeat) => b.mathsPicture && !b.course && args.strictSource?.mode !== "video"
-    ? mathsBoardContext(args.topic, b, { source: args.document ? documentBoardLines(args.document, b) : args.strictSource ? strictBoardLines(args.strictSource.doc, b) : [], strict: args.strictSource?.mode === "strict" })
+    ? mathsBoardContext(args.topic, b, { source: args.document ? documentBoardLines(args.document, b) : args.strictSource ? strictBoardLines(args.strictSource.doc, b) : [], strict: args.strictSource?.mode === "strict", plan, index, earlier: args.earlier.slice(0, index) })
     : null;
-  // The board as it is finally drawn: a maths code figure rejected once is drawn the second time by gpt-image-2.
-  let drawnBeat = beat;
 
-  let made: { spec: CanvasBoardSpec; costUsd: number; attempts: number; incomplete?: string[]; beat?: CanvasPlanBeat };
+  let made: { spec: CanvasBoardSpec; costUsd: number; attempts: number; incomplete?: string[] };
   let pictured: { spec: CanvasBoardSpec; costUsd: number; picture?: CoursePictureState };
   // FIX 2 (owner, 2026-10-24): a course board's line of working that says nothing ("Na₂O = Na₂O") is
   // removed before anything is drawn from the board. Not maths, where "6 = 6" checks an answer.
@@ -548,8 +547,7 @@ export async function writeCanvasBoard(args: {
     // `earlier`: the structures the earlier boards drew, so a typed CS board stays on the lesson's one example.
     else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, typed, domain, earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined, continueCode: typed ? continuedCodeOf(beat, args.earlier[index - 1]) : undefined });
     dropEmptyRows(made.spec);
-    if (made.beat) drawnBeat = made.beat;
-    pictured = await illustrate(openai, args.userId, sessionId, drawnBeat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, drawnBeat, clock, extra), course, { maths: mathsFor(drawnBeat) });
+    pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra), course, { maths: mathsFor(beat) });
   } catch (error) {
     log.push(`${beat.id}: ${(error as Error).message}`);
     made = { spec: fallbackSpec(beat), costUsd: 0, attempts: -1 };
@@ -611,9 +609,6 @@ export async function writeCanvasBoard(args: {
       current = verdict.problems;
       log.push(`${beat.id}: looked at — refused: ${serious.map((p) => `${p.kind}${p.where ? ` (${p.where})` : ""}: ${p.detail}`).join(" | ").slice(0, 400)}`);
       if (!best || serious.length < best.serious) best = { spec, serious: serious.length, problems: verdict.problems, picture };
-      // The second drawing of a rejected maths code figure is shown as drawn (owner, 2026-10-26).
-      // Never swapped back for the earlier, rejected drawing.
-      if (drawnBeat.mathsPictureAsDrawn) { log.push(`${beat.id}: shipped as drawn (its gpt-image-2 picture is the second drawing)`); break; }
       if (round === 2 || clock.left() < 40_000) { settle("no time for more"); break; }
       try {
         if (courseBoard) {
@@ -639,22 +634,15 @@ export async function writeCanvasBoard(args: {
           picture = pic.picture;
           continue;
         }
-        // A MATHS CODE FIGURE REFUSED ONCE FOR ITS DRAWING: the second drawing is a gpt-image-2 picture, shown
-        // as drawn (owner, 2026-10-26: "if it's rejected one time I want it to display the second time").
-        if (drawnBeat.mathsPictureFallback && serious.some((p) => p.where !== "writing") && clock.left() > 100_000) {
-          const switched = asMathsPicture(drawnBeat);
-          log.push(`${beat.id}: its code figure was refused once — drawn by gpt-image-2 the second time`);
-          const again = await generateSpec(openai, args.topic, plan, switched, clock, [...extra, lookFeedback(verdict.problems)], false, opts);
-          const pic = await illustrate(openai, args.userId, sessionId, switched, again.spec, log, clock, plainRebuild(openai, args.topic, plan, switched, clock, extra), course, { maths: mathsFor(switched) });
-          lookCost += again.costUsd + pic.costUsd;
-          if (again.attempts >= 0) { drawnBeat = switched; spec = { ...pic.spec }; picture = pic.picture; continue; }
-        }
         if (round === 0 && !args.hurry?.() && clock.left() > 80_000) {
           const again = await generateSpec(openai, args.topic, plan, beat, clock, [...extra, lookFeedback(verdict.problems)], false, opts);
           const pic = await illustrate(openai, args.userId, sessionId, beat, again.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra), course, { maths: mathsFor(beat) });
           lookCost += again.costUsd + pic.costUsd;
           if (again.attempts >= 0) { spec = { ...pic.spec }; picture = pic.picture; continue; }
         }
+        // A maths picture board never falls back to a code figure (owner, 2026-10-26: "remove code library
+        // from maths completely"): the better of its pictures ships.
+        if (beat.mathsPicture) { settle("a maths picture is never swapped for a code figure"); break; }
         // Refused after its one redraw: an exact figure drawn by code when one fits (a library diagram
         // outside course lessons) — else the better of the drawings it has, never a plain board.
         const about = `${beat.title} ${beat.brief} ${beat.script}`;

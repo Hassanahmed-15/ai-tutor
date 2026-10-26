@@ -606,14 +606,6 @@ export type CanvasPlanBeat = {
    * On a working board: the picture goes beside the working.
    */
   mathsPicture?: boolean;
-  /**
-   * A code-figure or sketch board of a typed-prompt or PDF maths lecture: rejected ONCE for its drawing,
-   * it is drawn the second time by gpt-image-2 and shown (owner, 2026-10-26: "if it's rejected one time I
-   * want it to display the second time"). Never set in a course lesson.
-   */
-  mathsPictureFallback?: boolean;
-  /** That second drawing: the gpt-image-2 picture is shown as drawn — no check refuses it, no redraw. */
-  mathsPictureAsDrawn?: boolean;
   /** A course board with nothing to see: Aria's notes written as she speaks, no picture (lib/canvas/fallback.ts). */
   written?: boolean;
   title: string;

@@ -34,13 +34,14 @@ function fallbackBoard(beat: CanvasPlanBeat): CanvasBoardSpec {
   // A COURSE LESSON'S BOARD IS NEVER CODE-DRAWN (owner, 2026-10-24: "no code diagrams … gpt-image-2 for
   // everything"): when it cannot be made, it is WRITTEN — what Aria writes as she speaks, each line on the
   // sentence that says it — never boxes, arrows or a ready-made figure.
-  if (beat.course && courseCodeDiagramsOff()) {
+  // Nor is a typed-prompt or PDF maths lecture's picture board (owner, 2026-10-26: "remove code library from maths completely").
+  if ((beat.course && courseCodeDiagramsOff()) || beat.mathsPicture) {
     // In the order she says them (a note planned for sentence 0 was written fifth), formulas in print
     // ("CH₄", not "CH4"), a line that repeats an earlier one left out ("Metaphase plate" after "Equatorial
     // plane; metaphase plate"), and at most eight lines — a written board, not a wall of text.
     const stems = (t: string) => (t.toLowerCase().match(/[a-z0-9]{3,}/g) ?? []).map((w) => w.slice(0, 5));
     const kept: Array<{ text: string; s: number }> = [];
-    for (const n of (beat.boardNotes ?? []).filter((n) => n.text.trim()).map((n) => ({ text: chemSubscripts(n.text.trim()), s: Math.min(last, Math.max(0, n.s)) })).sort((a, b) => a.s - b.s)) {
+    for (const n of (beat.boardNotes ?? []).filter((n) => n.text.trim()).map((n) => ({ text: beat.course ? chemSubscripts(n.text.trim()) : n.text.trim(), s: Math.min(last, Math.max(0, n.s)) })).sort((a, b) => a.s - b.s)) {
       const mine = stems(n.text);
       const repeats = kept.some((k) => { const theirs = new Set(stems(k.text)); return mine.length > 0 && mine.filter((w) => theirs.has(w)).length / mine.length >= 0.6; });
       if (!repeats) kept.push(n);
