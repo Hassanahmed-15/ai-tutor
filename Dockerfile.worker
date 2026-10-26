@@ -23,6 +23,12 @@ COPY frontend/web ./frontend/web
 RUN python3 -m venv /opt/manim \
     && /opt/manim/bin/pip install --no-cache-dir -r frontend/web/scripts/manim/requirements.txt
 
+# Headless Chromium for the board look (frontend/web/lib/canvas/boardLook.ts): each finished board is drawn
+# by the web app's /board-render page (BOARD_RENDER_URL) and photographed for the vision check. Without it
+# the check is skipped and boards ship checked by code alone. Installed where the worker user can read it.
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+RUN npx playwright install --with-deps chromium && chmod -R a+rX /ms-playwright && rm -rf /var/lib/apt/lists/*
+
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV MANIM_PYTHON_BINARY=/opt/manim/bin/python
