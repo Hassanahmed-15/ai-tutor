@@ -378,6 +378,30 @@ function Sketch({ d, color, width = 2.2, fill, className, opacity }: { d: string
  * Board text set by lib/canvas/renderFit.ts fitText: the first baseline at `y`, each further line
  * `lead` × its size lower. One line renders exactly as a plain <text> did.
  */
+/**
+ * A stored picture that never shows the browser's broken-image icon. A load that fails (the sign-in
+ * token renewed mid-lecture, a network blip) is hidden and asked for again under a fresh URL — the
+ * browser would otherwise keep the failure — up to four times, 0.8 s to 6.4 s apart.
+ */
+function BoardImage({ src, ...rest }: { src: string } & Omit<React.SVGProps<SVGImageElement>, "href" | "onLoad" | "onError" | "ref">) {
+  const [load, setLoad] = useState({ attempt: 0, failed: false, hidden: false });
+  useEffect(() => {
+    if (!load.failed || load.attempt >= 4 || src.startsWith("data:")) return;
+    const timer = window.setTimeout(() => setLoad({ attempt: load.attempt + 1, failed: false, hidden: true }), 800 * 2 ** load.attempt);
+    return () => window.clearTimeout(timer);
+  }, [load, src]);
+  const href = load.attempt ? `${src}${src.includes("?") ? "&" : "?"}retry=${load.attempt}` : src;
+  return (
+    <image
+      {...rest}
+      href={href}
+      visibility={load.hidden ? "hidden" : undefined}
+      onLoad={() => setLoad((l) => (l.hidden ? { ...l, hidden: false } : l))}
+      onError={() => setLoad((l) => ({ ...l, failed: true, hidden: true }))}
+    />
+  );
+}
+
 function FitLines({ fit, x, y, lead = 1.15, ...rest }: { fit: { lines: string[]; size: number }; x: number; y: number; lead?: number } & Omit<React.SVGProps<SVGTextElement>, "x" | "y" | "fontSize" | "ref">) {
   return (
     <text x={x} y={y} fontSize={fit.size} {...rest}>
@@ -516,7 +540,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       if (mark.onBoard && mark.src) {
         return (
           <g className="cv-in" data-no-marker="">
-            <image href={mark.src} x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} preserveAspectRatio="xMidYMid slice" />
+            <BoardImage key={mark.src} src={mark.src} x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} preserveAspectRatio="xMidYMid slice" />
           </g>
         );
       }
@@ -537,7 +561,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
           </clipPath>
           <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={16} fill={mark.paper ?? "#f5f3ee"} />
           {mark.src ? (
-            <image href={mark.src} x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${mark.id})`} />
+            <BoardImage key={mark.src} src={mark.src} x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${mark.id})`} />
           ) : (
             <text x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2} textAnchor="middle" fontSize={18} fill={MUTED}>
               {mark.subject.slice(0, 60)}

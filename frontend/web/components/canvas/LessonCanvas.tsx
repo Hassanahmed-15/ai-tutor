@@ -913,6 +913,10 @@ function fetchAhead(src: string): void {
   if (typeof window === "undefined" || fetchedAhead.has(src)) return;
   const img = new Image();
   img.decoding = "async";
+  // A failed download is forgotten, so the next board update asks for it again.
+  img.onerror = () => {
+    if (fetchedAhead.get(src) === img) fetchedAhead.delete(src);
+  };
   img.src = src;
   fetchedAhead.set(src, img);
 }
