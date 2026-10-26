@@ -132,6 +132,12 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   // subject it was asked to be (lib/canvas/subjectDomain.ts); otherwise the look is read from the lecture
   // itself (its topic and its boards' headings), never the typed words alone. A sketch board is drawn by
   // the marker whatever the subject.
+  // PICTURES ARE FETCHED BEFORE THEIR BOARD COMES UP (owner, 2026-10-26: "images load too late"): every
+  // board's picture is requested the moment that board arrives — the boards ahead included — so the
+  // browser already has it when the board is shown, instead of starting the download then.
+  useEffect(() => {
+    for (const panel of panels) for (const src of pictureSources(panel.spec)) fetchAhead(src);
+  }, [panels]);
   const labLook = useMemo(() => {
     if (panels.some((p) => p.spec.stage.kind === "sketch")) return true;
     const subject = panels.find((p) => p.spec.subject)?.spec.subject;
@@ -894,6 +900,21 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       )}
     </div>
   );
+}
+
+/** Every stored picture a board shows (a picture board's, one beside working, a figure's), by its URL. */
+function pictureSources(spec: CanvasPanelInput["spec"]): string[] {
+  return [...new Set(JSON.stringify(spec).match(/\/api\/canvas-lecture\/image\/[A-Za-z0-9_.-]+/g) ?? [])];
+}
+
+/** Pictures already asked for (kept, so a download in flight is not dropped). */
+const fetchedAhead = new Map<string, HTMLImageElement>();
+function fetchAhead(src: string): void {
+  if (typeof window === "undefined" || fetchedAhead.has(src)) return;
+  const img = new Image();
+  img.decoding = "async";
+  img.src = src;
+  fetchedAhead.set(src, img);
 }
 
 const EMPTY: Record<string, number> = {};
