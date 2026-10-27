@@ -59,7 +59,7 @@ import { canvasSpecOf, connectToEarlier, planCanvasLecture, writeCanvasBoard } f
 import { examinerFor, mathsCheck, mathsFixes, type ExaminerSubject } from "./canvas/mathsCheck";
 import { isMissingLine, writeMissingLines } from "./canvas/writeMissing";
 import { canvasSentences } from "./canvas/plan";
-import { curriculumDocumentOf, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./canvas/lessonRequest";
+import { curriculumDocumentOf, referenceCsLesson, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./canvas/lessonRequest";
 import { extractLectureKnowledge } from "./knowledge/extract";
 import { knowledgeForPlanning, NO_PLANNING_KNOWLEDGE } from "./knowledge/planning";
 import { loadLectureKnowledge, mergeLectureIntoGraph, saveLectureKnowledge } from "./knowledge/store";
@@ -350,6 +350,10 @@ async function generateCanvasBoard(
   let typedPrompt = false;
   // Its subject, asked when the lesson was created (lib/canvas/subjectDomain.ts): CS, maths or neither.
   let subjectDomain: SubjectDomain | undefined;
+  // A CS PDF used as a reference (lib/canvas/lessonRequest.ts referenceCsLesson): written as a typed CS lesson.
+  let referenceCs = false;
+  // A reference PDF, for the first board's rewrite too (it used to be written again without its pages and code).
+  let referenceDoc: SuprnotesLessonInput | null = null;
   if (!beat) {
     await upsertProgressiveBeat(baseDoc);
     if (plan.length !== session.plan.length) throw new Error("The canvas lecture's plan is missing its boards.");
@@ -365,13 +369,15 @@ async function generateCanvasBoard(
     const strictSource = strictDoc ? { mode: "strict" as const, doc: strictDoc } : video ? { mode: "video" as const, doc: video } : null;
     // Taught from web research (lib/webResearch.ts): each slide cites the pages it drew on.
     typedPrompt = !document && !strictSource;
-    subjectDomain = typedPrompt ? input.subjectDomain : undefined;
+    referenceCs = referenceCsLesson(input);
+    referenceDoc = referenceDocumentOf(input);
+    subjectDomain = typedPrompt || referenceCs ? input.subjectDomain : undefined;
     const { practice, code } = teachingSettings(input.teachingChoices ?? []);
     const webSources = !document && !strictSource ? input.webSources ?? null : null;
     // The maths examiner reads boards 2 onwards before they ship (written while earlier ones play, so the
     // student never waits for it); the first board is read in the background once it is ready (below).
     // The maths or the CS examiner (lib/canvas/mathsCheck.ts) reads each board; never on a strict-source lesson.
-    const examiner = strictSource ? null : examinerFor(session.topic, plan, typedPrompt, subjectDomain);
+    const examiner = strictSource ? null : examinerFor(session.topic, plan, typedPrompt || referenceCs, subjectDomain);
     const mathsOn = examiner !== null;
     /*
      * THE STUDENT IS CLOSE: once the lecture has started, a board whose student is already on the board
@@ -394,7 +400,7 @@ async function generateCanvasBoard(
     const opening = sequence < CANVAS_OPENING_BOARDS;
     let written: Awaited<ReturnType<typeof writeCanvasBoard>>;
     try {
-      written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources, mathsCheck: mathsOn && sequence >= 1, examiner: examiner ?? undefined, hurry, opening, subjectDomain, practice, code });
+      written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources, mathsCheck: mathsOn && sequence >= 1, examiner: examiner ?? undefined, hurry, opening, subjectDomain, referenceCs, practice, code });
       /*
        * NO COMPROMISE ON THE ANIMATION (owner, 2026-10-25: "no need to compromise on animation and keep on
        * retrying; meanwhile the user at the board before is told the next board is being generated"). A board
@@ -405,9 +411,9 @@ async function generateCanvasBoard(
        * version written ships, so a lecture never stops for one board. Computer-science lectures only (owner,
        * 2026-10-25); other lectures keep the single rewrite of a board that fell back.
        */
-      const csLecture = typedPrompt && domainIsCs(subjectDomain, [session.topic, ...plan.map((b) => b.title)].join(" "));
+      const csLecture = (typedPrompt || referenceCs) && domainIsCs(subjectDomain, [session.topic, ...plan.map((b) => b.title)].join(" "));
       if (!csLecture && written.fallback && sequence >= 2) {
-        const again = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources, mathsCheck: mathsOn, examiner: examiner ?? undefined, subjectDomain, practice, code }).catch(() => null);
+        const again = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources, mathsCheck: mathsOn, examiner: examiner ?? undefined, subjectDomain, referenceCs, practice, code }).catch(() => null);
         if (again) {
           console.log(`[canvas] session=${sessionId} board ${sequence} fell back; rewrite ${again.fallback ? "fell back too" : "succeeded"}`);
           written = again.fallback ? { ...written, costUsd: written.costUsd + again.costUsd } : { ...again, costUsd: written.costUsd + again.costUsd, log: [...written.log, ...again.log] };
@@ -418,7 +424,7 @@ async function generateCanvasBoard(
           `Earlier attempts at this board could not draw its animation correctly. This version must fix every one of these:`,
           ...written.incomplete.map((fault, i) => `${i + 1}. ${fault}`),
         ];
-        const again = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, feedback, document, strictSource, webSources, mathsCheck: mathsOn, examiner: examiner ?? undefined, hurry, opening, subjectDomain, practice, code }).catch(() => null);
+        const again = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, feedback, document, strictSource, webSources, mathsCheck: mathsOn, examiner: examiner ?? undefined, hurry, opening, subjectDomain, referenceCs, practice, code }).catch(() => null);
         if (!again) break;
         console.log(`[canvas] session=${sessionId} board ${sequence}: animation incomplete — rewrite ${round} ${again.incomplete ? "still incomplete" : "succeeded"} (${written.incomplete.length} fault(s) passed on)`);
         const cost = written.costUsd + again.costUsd;
@@ -465,9 +471,9 @@ async function generateCanvasBoard(
   // The first board, read by the maths examiner AFTER it is ready: the student never waits for it. A board
   // with faults is written again with them named, and takes the first board's place only while the
   // student has not started — never under them mid-play.
-  const firstExaminer = examinerFor(session.topic, plan, typedPrompt, subjectDomain);
+  const firstExaminer = examinerFor(session.topic, plan, typedPrompt || referenceCs, subjectDomain);
   if (sequence === 0 && beat && !existing?.beat && firstExaminer) {
-    void recheckFirstBoard(userId, sessionId, session.topic, plan, beat, revision, firstExaminer, typedPrompt, subjectDomain).catch((error) => console.warn(`[canvas] session=${sessionId} first-board maths check failed: ${(error as Error).message}`));
+    void recheckFirstBoard(userId, sessionId, session.topic, plan, beat, revision, firstExaminer, typedPrompt, subjectDomain, { document: referenceDoc, referenceCs }).catch((error) => console.warn(`[canvas] session=${sessionId} first-board maths check failed: ${(error as Error).message}`));
   }
 }
 
@@ -491,7 +497,7 @@ async function reconnectLaterBoards(sessionId: string, plan: CanvasPlanBeat[], s
   }
 }
 
-async function recheckFirstBoard(userId: string, sessionId: string, topic: string, plan: Parameters<typeof writeCanvasBoard>[0]["plan"], beat: Beat, revision: number, subject: ExaminerSubject = "maths", typedPrompt = false, subjectDomain?: SubjectDomain): Promise<void> {
+async function recheckFirstBoard(userId: string, sessionId: string, topic: string, plan: Parameters<typeof writeCanvasBoard>[0]["plan"], beat: Beat, revision: number, subject: ExaminerSubject = "maths", typedPrompt = false, subjectDomain?: SubjectDomain, reference: { document: SuprnotesLessonInput | null; referenceCs: boolean } = { document: null, referenceCs: false }): Promise<void> {
   const spec = canvasSpecOf(beat);
   const apiKey = process.env.OPENAI_API_KEY;
   if (!spec || !apiKey) return;
@@ -527,7 +533,7 @@ async function recheckFirstBoard(userId: string, sessionId: string, topic: strin
     if (!wrote.left.length) return record(verdict.costUsd);
   }
   const earlier = plan.map(() => undefined);
-  const again = await writeCanvasBoard({ userId, sessionId, topic, plan, index: 0, earlier, notes: [], feedback: [mathsFixes([...drawn, ...missing])], typedPrompt, subjectDomain }).catch(() => null);
+  const again = await writeCanvasBoard({ userId, sessionId, topic, plan, index: 0, earlier, notes: [], feedback: [mathsFixes([...drawn, ...missing])], typedPrompt, subjectDomain, document: reference.document, referenceCs: reference.referenceCs }).catch(() => null);
   const latest = docs.find((d) => d.sequence === 0);
   if (!again || again.fallback || !latest || latest.revision !== revision || (await requiredSession(userId, sessionId)).playhead >= 0) {
     console.log(`[canvas] session=${sessionId} first board kept: ${!again || again.fallback ? "the rewrite fell back" : "playback had started"}`);

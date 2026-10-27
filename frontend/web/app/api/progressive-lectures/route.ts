@@ -14,6 +14,8 @@ import { sanitizeSourceScope } from "@/lib/sourceScope";
 import { sanitizeSourcePack } from "@/lib/webSources";
 import { isProgrammingTopic } from "@/lib/codeSpec";
 import { classifySubjectDomain } from "@/lib/canvas/subjectDomainClassifier";
+import { referenceDocumentOf } from "@/lib/canvas/lessonRequest";
+import { documentSections } from "@/lib/canvas/documentContext";
 import { emphasisedParts, sanitizeTeachingChoices, teachingSettings } from "@/lib/teachingQuestions";
 
 export const runtime = "nodejs";
@@ -96,17 +98,23 @@ export async function POST(request: Request) {
   // The student card: their grade, country, curriculum and subjects from the profile, as rules —
   // the grade applies to every subject, the subject list decides whether to follow their syllabus.
   // A typed lesson's subject, asked once (lib/canvas/subjectClassifier.ts): CS and maths get their own
-  // rules, anything else the normal pipeline. PDF, video and course lessons carry a source and never ask.
+  // rules, anything else the normal pipeline. Video, course and strict PDF lessons carry a source and never ask.
+  // A PDF used as a reference is asked too, from its own title and headings: a computer-science one is taught
+  // with the typed CS boards (owner, 2026-10-27; lib/canvas/lessonRequest.ts referenceCsLesson). Only "cs"
+  // is kept for it, so a maths or other reference PDF is planned exactly as before.
+  const referenceDoc = input.mode === "standard" ? referenceDocumentOf(input) : null;
   const [card, subject] = await Promise.all([
     studentCardFor(auth.userId, `${topic} ${input.focus ?? ""}`).catch(() => null),
     typedRequest(input)
       ? classifySubjectDomain([topic, input.focus, ...(outline?.subtopics.map((s) => s.title) ?? [])].filter(Boolean).join(" — "))
+      : referenceDoc
+      ? classifySubjectDomain([topic, input.focus, referenceDoc.lesson?.title, ...documentSections(referenceDoc).slice(0, 8)].filter(Boolean).join(" — "))
       : null,
   ]);
   if (card) input.studentCard = card;
-  if (subject) {
+  if (subject && (!referenceDoc || subject.domain === "cs")) {
     input.subjectDomain = subject.domain;
-    console.log(`[subject] "${topic}" → ${subject.domain} (${subject.source})`);
+    console.log(`[subject] "${topic}"${referenceDoc ? " (reference PDF)" : ""} → ${subject.domain} (${subject.source})`);
   }
 
   try {

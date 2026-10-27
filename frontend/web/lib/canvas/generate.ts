@@ -41,7 +41,7 @@ import { DRAWN_GUIDE, drawnFigure } from "../figures/drawn";
 import { findLibraryFigure, libraryAssetTitle, libraryStageAsset } from "../figures/library";
 import type { FigureComponent } from "../figures/types";
 import { loadSharedCanvasImage, loadSharedDiagramRecord, saveCanvasImage, saveCanvasLecture, saveSharedCanvasImage, saveSharedDiagramRecord, type CanvasLecture } from "./store";
-import { boardStructureProblem, dsaTeachingProblem, heapRepairHint, isDataStructureTopic, takeDroppedOps, withoutStructure } from "./structure";
+import { boardStructureProblem, dsaTeachingProblem, heapRepairHint, isDataStructureTopic, rotationRepairHint, takeDroppedOps, withoutStructure } from "./structure";
 import katex from "katex";
 import { mathifyBoard } from "./mathNotes";
 /** A LaTeX string KaTeX can typeset (a note that cannot stays as text). */
@@ -116,6 +116,26 @@ export const TYPED_DSA_RULES = [
   `- CODE: Python unless another language was asked for; lines at most 56 characters (break a longer statement inside its brackets); "reveal": "build".`,
   `The stage looks like this (fill it with THIS board's structure, values and lines):`,
   `{"kind": "code", "language": "python", "reveal": "build", "lines": ["color[start] = 0", "queue = [start]", "while queue:", "    v = queue.pop(0)", "    for w in graph[v]:", "        if w not in color:", "            color[w] = 1 - color[v]", "            queue.append(w)"], "structure": {"kind": "graph", "nodes": [{"id": "a", "value": "A"}, {"id": "b", "value": "B"}, {"id": "c", "value": "C"}, {"id": "d", "value": "D"}], "edges": [{"from": "a", "to": "b"}, {"from": "a", "to": "c"}, {"from": "b", "to": "d"}, {"from": "c", "to": "d"}]}, "steps": [{"s": 1, "lines": [1, 2], "state": {"queue": "[A]"}, "ops": [{"op": "group", "id": "a", "group": 0}]}, {"s": 2, "lines": [4], "state": {"queue": "[]", "v": "A"}, "ops": [{"op": "point", "name": "v", "to": "a"}, {"op": "mark", "id": "a", "as": "visit"}]}, {"s": 3, "lines": [7], "state": {"queue": "[B]", "v": "A"}, "ops": [{"op": "group", "id": "b", "group": 1}, {"op": "edge", "from": "a", "to": "b", "as": "tree"}]}]}`,
+];
+
+/**
+ * The same rules for a CS PDF used as a reference (owner, 2026-10-27: its AVL lecture drew circles in a free
+ * sketch where a typed lecture draws the tree): the document's example and its own code, and rotations shown
+ * as the re-links they are.
+ */
+export const DOCUMENT_DSA_RULES = [
+  ...TYPED_DSA_RULES.flatMap((line) =>
+    line.startsWith("- ONE SMALL EXAMPLE")
+      ? [`- THE DOCUMENT'S EXAMPLE: the values and links its figure uses (named in this board's brief), the same example the earlier boards used; values at most 4 characters.`]
+      : line.startsWith("- CODE:")
+      ? [`- CODE: the document's own listing, copied exactly in its own language ("language" is that language), as the lines about the document say — never rewritten in Python; "reveal": "build".`]
+      : line.startsWith("The stage looks like this")
+      ? [
+          `- A ROTATION IS DRAWN AS IT HAPPENS, on the sentence that says it: {"op": "link", "from": child, "to": parent, "side"} moves the child up into its parent's place (the parent hangs below it on that side), and {"op": "link", "from": parent, "to": movedSubtree, "side"} gives the parent the child's inner subtree — both in the SAME step's "ops". A double rotation is two rotations, each on its own step. The node whose balance breaks is marked first ({"op": "mark", "id", "as": "compare"}), on a tree that really is out of balance.`,
+          line,
+        ]
+      : [line],
+  ),
 ];
 
 /** Time left before the lecture must be finished, for this generation. */
@@ -361,7 +381,7 @@ function diagramKeyFor(beat: CanvasPlanBeat): string {
   return diagramCacheKey(`${beat.title} ${beat.brief}`, [...(beat.objects ?? []), ...(beat.requiredVisual?.mustShow ?? [])], nums);
 }
 
-export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; /** One of the opening boards the student waits for before the lesson starts: one review, no round to tidy notes. */ opening?: boolean; typed?: boolean; domain?: SubjectDomain; earlier?: EarlierStructure[]; continueCode?: string[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number; /** Its animation could not be made right: the faults each attempt was sent back for. */ incomplete?: string[] }> {
+export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; /** One of the opening boards the student waits for before the lesson starts: one review, no round to tidy notes. */ opening?: boolean; typed?: boolean; domain?: SubjectDomain; earlier?: EarlierStructure[]; continueCode?: string[]; /** A CS PDF used as a reference: the code is the document's own listing (DOCUMENT_DSA_RULES). */ documentCode?: boolean } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number; /** Its animation could not be made right: the faults each attempt was sent back for. */ incomplete?: string[] }> {
   if (beat.stage === "diagram") {
     const cached = await loadSharedDiagramRecord<{ spec: CanvasBoardSpec }>(diagramKeyFor(beat)).catch(() => null);
     if (cached?.spec?.stage?.kind === "diagram") return { spec: cached.spec, costUsd: 0, attempts: 1 };
@@ -457,7 +477,7 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   // A board that continues the last one's code keeps it exactly (BST review: insertion taught twice, two codes).
   const continuing = typedCs && beat.stage === "code" && opts.continueCode?.length ? [continuedCodeProblem([], opts.continueCode)!] : [];
   const askedBase = typedDsa
-    ? [...extra, ...TYPED_DSA_RULES, ...(picture ? [picture] : []), ...continuing]
+    ? [...extra, ...(opts.documentCode ? DOCUMENT_DSA_RULES : TYPED_DSA_RULES), ...(picture ? [picture] : []), ...continuing]
     : needsStructure && beat.stage === "code"
     ? [
         ...extra,
@@ -642,7 +662,8 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       // Step operations the parser could not understand: named in the retry, never dropped in silence.
       const droppedSteps = takeDroppedOps();
       const heapStart = spec && (spec.stage.kind === "structure" || spec.stage.kind === "code") ? spec.stage.structure : undefined;
-      if (typedCs && heapStart) heapHint = heapRepairHint(heapStart, `${beat.title} ${beat.brief} ${beat.script}`) ?? heapHint;
+      // A heap's exact swaps, or an AVL tree's exact rotations, for the retry (lib/canvas/structure.ts).
+      if (typedCs && heapStart) heapHint = heapRepairHint(heapStart, `${beat.title} ${beat.brief} ${beat.script}`) ?? rotationRepairHint(heapStart, `${beat.title} ${beat.brief} ${beat.script}`) ?? heapHint;
       if (spec) writtenFor.set(spec, beat.script);
       // TEXT THAT DOES NOT FIT IS REWRITTEN TO FIT, never cut (owner, 2026-10-17): every over-long
       // piece goes to one small call that rewrites it within its exact room, and the board is checked
@@ -1015,7 +1036,8 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         const steps = st.kind === "code" || st.kind === "structure" ? st.steps : null;
         const sentences = canvasSentences(beat.script);
         const serious = (steps && panelHere(st.kind) ? placeholderProblem(steps) : null)
-          ?? (st.kind === "code" ? continuedCodeProblem(st.lines, opts.continueCode) ?? hardcodedResultProblem(st.lines) : null)
+          // A reference PDF's code is the document's own listing: it is not judged as code the writer chose.
+          ?? (st.kind === "code" && !opts.documentCode ? continuedCodeProblem(st.lines, opts.continueCode) ?? hardcodedResultProblem(st.lines) : null)
           ?? (drawnStructure && steps ? structureChangeProblem(drawnStructure, steps, sentences) ?? pointerNameProblem(drawnStructure, steps) : null)
           ?? (drawnStructure ? claimedLinksProblem(drawnStructure, sentences) : null)
           ?? (steps && st.kind === "code" ? crowdedStepsProblem(steps) : null);

@@ -658,7 +658,10 @@ async function coverChecklist(client: OpenAI, outline: PlanOutline, pack: Source
   const as = (o: PlanOutline, gaps: string[]) => ({ covered: total - gaps.length, total, missing: gaps });
   if (missing.length <= Math.floor(total * 0.1)) return { outline, costUsd: 0, coverage: as(outline, missing), added: [] };
   try {
-    const current = { topic: outline.topic, subtopics: outline.subtopics.map((s) => ({ title: s.title, caption: s.caption, reason: s.reason })) };
+    // Each subtopic's status (the student's mark from planning, lib/canvas/conceptLadder.ts) goes through the
+    // rewrite: dropped here, every part of a whole PDF came back "new" (owner, 2026-10-27).
+    const marked = outline.subtopics.some((s) => s.status);
+    const current = { topic: outline.topic, subtopics: outline.subtopics.map((s) => ({ title: s.title, caption: s.caption, reason: s.reason, ...(s.status ? { status: s.status } : {}) })) };
     const completion = await client.chat.completions.create({
       model: MODEL,
       messages: [
@@ -667,7 +670,7 @@ async function coverChecklist(client: OpenAI, outline: PlanOutline, pack: Source
           role: "user",
           content:
             (document
-              ? `Current outline:\n${JSON.stringify(current)}\n\nRequested change: "The student asked to be taught their WHOLE document, and the outline leaves out these sections of it: ${missing.join("; ")}. Teach every one of them: fold each into the subtopic it belongs to and name it in that subtopic's caption; add a subtopic only for a section that fits none, and never have more than 14. Keep the document's order and everything else unchanged."`
+              ? `Current outline:\n${JSON.stringify(current)}\n\nRequested change: "The student asked to be taught their WHOLE document, and the outline leaves out these sections of it: ${missing.join("; ")}. Teach every one of them: fold each into the subtopic it belongs to and name it in that subtopic's caption; add a subtopic only for a section that fits none, and never have more than 14. Keep the document's order and everything else unchanged.${marked ? " Every subtopic keeps its \"status\" exactly; one you add has status \"new\"." : ""}"`
               : `Current outline:\n${JSON.stringify(current)}\n\nRequested change: "The student is covering this syllabus topic${pack.curriculum ? ` (${pack.curriculum})` : ""}, and the outline leaves out these points the syllabus expects: ${missing.join("; ")}. `) +
             (document ? "" : question
               ? `This outline answers ONE question: "${question}" — it stays an answer, never a lesson. Fold each missing point into the subtopic it belongs to and name it in that subtopic's caption; add a subtopic only for a point that fits none, and never have more than three. Add nothing the question did not ask. Keep everything else unchanged."`
@@ -684,6 +687,9 @@ async function coverChecklist(client: OpenAI, outline: PlanOutline, pack: Source
     const spent = costUsd(completion.usage);
     if (revised.subtopics.length === 0 || stillMissing.length >= missing.length || (question && revised.subtopics.length > 3) || (document && revised.subtopics.length > 14)) return { outline, costUsd: spent, coverage: as(outline, missing), added: [] };
     const added = missing.filter((m) => !stillMissing.includes(m));
+    // A status the rewrite left out is put back from the subtopic of the same title.
+    const before = new Map(outline.subtopics.map((s) => [s.title.trim().toLowerCase(), s.status]));
+    if (marked) revised.subtopics = revised.subtopics.map((s) => (s.status ? s : { ...s, status: before.get(s.title.trim().toLowerCase()) }));
     return { outline: { ...revised, ...(outline.scope ? { scope: outline.scope } : {}), ...(outline.depth ? { depth: outline.depth } : {}) }, costUsd: spent, coverage: as(revised, stillMissing), added };
   } catch {
     return { outline, costUsd: 0, coverage: as(outline, missing), added: [] };
@@ -820,8 +826,9 @@ function streamOutline(
         // The outline the student reviews shows the same titles the lecture will use.
         if (nounTitles) rawOutline.subtopics = rawOutline.subtopics.map((subtopic) => ({ ...subtopic, title: nounTitle(subtopic.title) }));
         // Every subtopic carries where the student stands on it (lib/canvas/conceptLadder.ts), so the
-        // lesson is built on the concept ladder; a syllabus or a document keeps everything it needs.
-        if (parts?.length && !question) rawOutline = { ...rawOutline, subtopics: withPartStatuses(rawOutline.subtopics, parts, { keepAll: Boolean(coverage && pack?.syllabusText) || Boolean(documentSections?.length) }) };
+        // lesson is built on the concept ladder; a syllabus or a document keeps everything it needs, and a
+        // question (only a reference PDF's gets parts) keeps the subtopics its answer was already held to.
+        if (parts?.length) rawOutline = { ...rawOutline, subtopics: withPartStatuses(rawOutline.subtopics, parts, { keepAll: Boolean(coverage && pack?.syllabusText) || Boolean(documentSections?.length) || Boolean(question) }) };
         const outline = focused
           ? {
               topic: rawOutline.topic || fallbackTopic,
@@ -1061,6 +1068,10 @@ export async function POST(req: Request) {
       ? ""
       : `\nUSE EXACTLY THESE ${groups.length} PARTS, in this order (each is what that part of the lesson will teach; name each with a short label in the student's words that covers ALL of its sections, never add, drop or merge one): ${groups.map((g, i) => `${i + 1}. ${g.join("; ")}`).join(" | ")}`;
     const strict = body.strict === true && sourceDocument ? "\nEvery check must be answerable from the document's own words: ask only what it says." : "";
+    // A QUESTION asked of a reference PDF (owner, 2026-10-27): its parts are what the answer needs, never the
+    // document's other sections — the lecture answers only the question, and is built from these marks.
+    const asked = body.question === true && sourceDocument && !given.length;
+    const questionParts = asked ? "\nThe student asked ONE QUESTION about their document (\"What the student asked\" above). The parts are ONLY what the answer to it needs, 2 to 5 of them, in learning order: the ideas it stands on first, then the answer's own steps. Never a part for the document's other sections." : "";
     // A check is read WITHOUT the document in front of the student ("Which two roles are named?" made
     // no sense; probe 2026-10-20): it asks about the subject itself, plainly, and every option is true to it.
     const standalone = sourceDocument ? "\nEach check must make sense on its own, without the document in front of the student: about the subject itself, never \"named\", \"shown\", \"listed\", \"in the text\" or \"the activity\". Every right option must be exactly true (you look at pollen grains WITH a microscope; you do not collect a microscope)." : "";
@@ -1072,7 +1083,7 @@ export async function POST(req: Request) {
       // The planning model, not the small one: a "right" answer that is wrong tells a student who
       // knows the part that they do not (the small model said electrolysis breaks down "water";
       // probe 2026-10-20). Started early by the page, so its few seconds are mostly hidden.
-      const { json, costUsd: spent } = await jsonCall(canvasClient(), PLAN_MODEL, INTAKE_PROMPT, `Topic: "${topic}"${request && request.toLowerCase() !== topic.toLowerCase() ? `\nWhat the student asked: "${request}"` : ""}${level}${wording}${fromSource}${strict}${standalone}${typedCard}${sourceDocument && given.length ? `\n\nThe document (for the checks):\n${summarizeSourceDocumentForPlanning(sourceDocument).slice(0, 6000)}` : ""}`, 1800);
+      const { json, costUsd: spent } = await jsonCall(canvasClient(), PLAN_MODEL, INTAKE_PROMPT, `Topic: "${topic}"${request && request.toLowerCase() !== topic.toLowerCase() ? `\nWhat the student asked: "${request}"` : ""}${level}${wording}${fromSource}${questionParts}${strict}${standalone}${typedCard}${sourceDocument && (given.length || asked) ? `\n\nThe document (for the checks):\n${summarizeSourceDocumentForPlanning(sourceDocument).slice(0, 6000)}` : ""}`, 1800);
       const named = sanitizeIntake(json);
       // A document's parts are exactly its groups: if the model named fewer, the missing ones keep
       // their first section's heading (unchecked) so no page is left out of what the student is asked.
@@ -1203,7 +1214,8 @@ export async function POST(req: Request) {
         messages: [
           { role: "system", content: TEACHING_QUESTIONS_PROMPT },
           { role: "user", content: `The student typed: "${requestText}"
-The lesson's subject: "${topic}"` },
+The lesson's subject: "${topic}"${body.document === true ? `
+This is ONE QUESTION the student asked about their own uploaded document, and the lesson answers only it: every question is about how to teach THIS answer, never other parts of the document. The document's code is its own: a "code" question asks only whether to show the document's code (option values "document" or "none"), never which language.` : ""}` },
         ],
         max_completion_tokens: 3000,
         response_format: { type: "json_object" },
@@ -1337,7 +1349,8 @@ The lesson's subject: "${topic}"` },
       : "")
       // The student's parts and what they know of each (lib/intake.ts): a lesson is planned FROM
       // them, each subtopic carrying its status for the concept ladder (lib/canvas/conceptLadder.ts).
-      + (sessionLearner?.parts?.length && !directQuestion ? ladderOutlineInstruction(sessionLearner.parts) : "");
+      // A question asked of a reference PDF too: its intake asked about the parts the answer needs (owner, 2026-10-27).
+      + (sessionLearner?.parts?.length && (!directQuestion || referencePdf) ? ladderOutlineInstruction(sessionLearner.parts) : "");
 
     /*
      * The chosen source scope reaches the PLANNER, not only the lecture writer — same reasoning
@@ -1409,10 +1422,12 @@ The lesson's subject: "${topic}"` },
     // Typed questions only: a question about a PDF keeps its short answer (one board, two at most —
     // the supervisor's standing ask; memory pdf-concise-answer-requirement).
     const shape = directQuestion && !codeQuestion && !sourceDocument ? await questionShape(client, questionText) : null;
+    // A question asked of a reference PDF keeps one subtopic per part the student was asked about.
+    const referenceMarks = directQuestion && referencePdf ? sessionLearner?.parts?.length ?? 0 : 0;
     const questionLine = codeQuestion
       ? documentCodeQuestionInstruction(questionText, codeListings, codeAsked)
       : directQuestion
-      ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument, shape })
+      ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument, shape, parts: referenceMarks })
       : topicRequest ? topicLessonInstruction(questionText) : "";
     // A typed CS lesson is 5 to 8 parts, none repeating another (lib/canvas/csLessons.ts).
     const csLengthLine = csTyped && !directQuestion && !syllabusAsked(null) && !overview ? `\n${CS_LESSON_LENGTH}` : "";
@@ -1463,7 +1478,7 @@ The parts, their order, their captions and how much each gets must follow these 
           checkCoverage: (pack) => syllabusAsked(pack) && pack.checklist.length > 0,
         }
       : undefined;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : shape === "process" ? 3 : shape === "fact" ? 1 : 2, overview && research ? { ...research, checkCoverage: () => false } : research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined, !directQuestion ? sessionLearner?.parts : undefined);
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : referenceMarks ? Math.min(6, Math.max(2, referenceMarks)) : shape === "process" ? 3 : shape === "fact" ? 1 : 2, overview && research ? { ...research, checkCoverage: () => false } : research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined, !directQuestion || referencePdf ? sessionLearner?.parts : undefined);
   }
 
   // mode === "revise"

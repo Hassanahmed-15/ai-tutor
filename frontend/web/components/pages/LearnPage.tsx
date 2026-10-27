@@ -2636,19 +2636,31 @@ type BuildCost =
    * The intake call on its own fetch (callPlanApi aborts whatever call came before it, and this one
    * runs alongside the others). A PDF's parts are its own sections (lib/canvas/documentContext.ts):
    * the chips name what the lesson will really teach, and the checks ask only what the pages say.
+   * A QUESTION asked of a reference PDF is asked about the parts its answer needs, not the whole
+   * document's sections (owner, 2026-10-27: "how single rotation works" was asked about all seven of an
+   * AVL chapter's sections, and the lecture then answered the question with none of the answers used).
    */
+  /** A question asked of a PDF used as a reference: the page narrowed its scope to the question. */
+  function referenceQuestionAsked(): boolean {
+    const scope = sourceScopeRef.current;
+    return scope.fidelity === "reference" && scope.breadth.kind !== "whole";
+  }
+
   function fetchIntake(subject: string, opts: { doc?: SuprnotesLessonInput | null; strict?: boolean; note?: string } = {}): Promise<IntakePart[]> {
     const doc = opts.doc ?? null;
-    const given = doc ? documentSections(doc) : [];
+    const scope = sourceScopeRef.current;
+    const question = doc && !opts.strict && scope.fidelity === "reference" && scope.breadth.kind !== "whole" ? scope.breadth.focus.trim() : "";
+    const given = doc && !question ? documentSections(doc) : [];
     return fetch("/api/plan-lesson", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         mode: "intake",
         topic: subject,
-        request: `${requestTextRef.current || subject}${opts.note ? ` (${opts.note})` : ""}`,
+        request: `${question || requestTextRef.current || subject}${opts.note ? ` (${opts.note})` : ""}`,
         ...(given.length ? { parts: given } : {}),
         ...(doc ? { sourceDocument: doc } : {}),
+        ...(question ? { question: true } : {}),
         ...(opts.strict ? { strict: true } : {}),
       }),
     })
@@ -2666,6 +2678,19 @@ type BuildCost =
     intakeThenRef.current = opts.then ?? null;
     setIntake({ stage: "loading", parts: [], known: [], answers: {}, tab: "parts" });
     const doc = opts.doc ?? intakeDocRef.current ?? (isSuprnotesLessonInput(sourceDocument) ? sourceDocument : null);
+    // A previous lesson's answers never reach this one's outline.
+    teachingChoicesRef.current = [];
+    /*
+     * A QUESTION ASKED OF A REFERENCE PDF IS ASKED ABOUT ITSELF (owner, 2026-10-27: "if a specific question is
+     * asked just ask questions about that certain subtopic, like how it shall be taught, and create a lecture
+     * catering to the specific question"): its parts (fetchIntake), and how they want THIS answer taught —
+     * the typed card's teaching questions, written for the question, last on the card.
+     */
+    const scope = sourceScopeRef.current;
+    const question = doc && !opts.strict && scope.fidelity === "reference" && scope.breadth.kind !== "whole" ? scope.breadth.focus.trim() : "";
+    const teaching = question
+      ? planFetch({ mode: "teaching", topic: subject, request: question, document: true }).then((data) => (Array.isArray(data?.questions) ? (data!.questions as TeachingQuestion[]) : []))
+      : null;
     const early = intakePrefetchRef.current;
     intakePrefetchRef.current = null;
     // A topic made clear by the student ("CNN": the neural network) asks again, with their answer.
@@ -2676,7 +2701,15 @@ type BuildCost =
       finishIntake(subject, [], {}, {});
       return;
     }
-    updateIntake({ stage: "card", parts, known: [], answers: {}, tab: "parts" }, subject);
+    updateIntake({ stage: "card", parts, known: [], answers: {}, tab: "parts", ...(teaching ? { loadingTeaching: true } : {}) }, subject);
+    void teaching?.then((questions) => {
+      const st = intakeRef.current;
+      if (!st || st.topic !== subject || st.stage !== "card") return;
+      // Waiting on their loading tab: the first of them opens — or, with none, the card is done.
+      const waiting = st.tab === `${TEACH_TAB_PREFIX}loading`;
+      updateIntake({ ...st, teaching: questions, loadingTeaching: false, ...(waiting && questions.length ? { tab: `${TEACH_TAB_PREFIX}${questions[0].id}` } : {}) });
+      if (waiting && !questions.length) void submitIntakeCard();
+    });
   }
 
   /** The card's state, kept in a ref too (the voice callbacks read it). */
@@ -3460,7 +3493,8 @@ type BuildCost =
       ...(!doc && !slides && researchRef.current ? { webSources: researchRef.current } : {}),
       ...(teachingPreference !== "adaptive" ? { teachingPreference } : {}),
       // How they asked for it to be taught (the question card): every board follows it (lib/teachingQuestions.ts).
-      ...(!doc && !slides && teachingChoicesRef.current.length ? { teaching: teachingChoicesRef.current } : {}),
+      // A reference PDF's question was asked how to teach it too (startIntake): its answers go with it.
+      ...((!doc || referenceQuestionAsked()) && !slides && teachingChoicesRef.current.length ? { teaching: teachingChoicesRef.current } : {}),
       // What lets the model read the pages instead of only a text extraction of them.
       ...(docImagesId ? { documentId: docImagesId } : {}),
       // Absent (defaults to "reference") for a topic with no upload — matches today's existing,

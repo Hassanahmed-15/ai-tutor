@@ -109,7 +109,8 @@ export function teachingSettings(choices: TeachingChoice[]): TeachingSettings {
   for (const c of choices) {
     const v = c.values[0];
     if (c.kind === "depth" && v) s.depth = v === "overview" ? "concise" : v === "deep" ? "deep" : "balanced";
-    if (c.kind === "code" && v) s.code = v === "none" ? { include: false } : { include: true, language: v };
+    // "document": a reference PDF's own code, in its own language (no language is asked of a PDF's question).
+    if (c.kind === "code" && v) s.code = v === "none" ? { include: false } : v === "document" ? { include: true } : { include: true, language: v };
     if (c.kind === "style" && v) s.examples = v === "practical" ? "real-world" : v === "visual" ? "visual" : v === "conceptual" ? "worked" : "mixed";
     if (c.kind === "practice" && (v === "none" || v === "some" || v === "lots")) s.practice = v;
     if (c.kind === "prior" && (v === "beginner" || v === "intermediate" || v === "advanced")) s.expertise = v;

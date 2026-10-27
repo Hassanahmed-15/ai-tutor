@@ -41,6 +41,9 @@ const flag = (name, fallback) => {
 const strict = args.includes("--strict") ? (args.splice(args.indexOf("--strict"), 1), true) : false;
 const expect = flag("--expect", "").split(",").map((s) => s.trim()).filter(Boolean);
 const watchSeconds = Number(flag("--watch", "0")) || 0;
+// The intake card's parts the student says they know (words of their labels); every other part is new.
+// Without it, "it's all new to me". Each known part's check is answered with its first option.
+const know = flag("--know", "").split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
 const tickPages = flag("--pages", "").split(",").map((n) => Number(n.trim())).filter((n) => n > 0);
 const [pdf, question, email, pwFile, outDir = path.resolve("reference-canvas-out")] = args;
 if (!pdf || question === undefined || !email || !pwFile) {
@@ -107,8 +110,17 @@ await ctx.addInitScript(() => {
   }, 700);
 });
 const page = await ctx.newPage();
-const login = await ctx.request.post(`${BASE}/api/auth/login`, { data: { email, password: fs.readFileSync(pwFile, "utf8").trim() } });
-if (!login.ok()) throw new Error(`login failed: ${login.status()}`);
+if (pwFile === "--local-token") {
+  // A local dev server: sign in as <email>'s user id with the server's own AUTH_SECRET (.env.local), no password.
+  const { SignJWT } = await import("jose");
+  const env = Object.fromEntries(fs.readFileSync(path.resolve(".env.local"), "utf8").split("\n").filter((l) => /^[A-Z_]+=/.test(l)).map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1).trim().replace(/^"|"$/g, "")]));
+  // The token's subject is the account's user id (LOCAL_USER_ID): the server reads that user's record.
+  const token = await new SignJWT({ email }).setProtectedHeader({ alg: "HS256" }).setSubject(process.env.LOCAL_USER_ID ?? email.split("@")[0]).setIssuedAt().setExpirationTime("3h").sign(new TextEncoder().encode(env.AUTH_SECRET));
+  await ctx.addCookies([{ name: "aria_access", value: token, domain: new URL(BASE).hostname, path: "/" }]);
+} else {
+  const login = await ctx.request.post(`${BASE}/api/auth/login`, { data: { email, password: fs.readFileSync(pwFile, "utf8").trim() } });
+  if (!login.ok()) throw new Error(`login failed: ${login.status()}`);
+}
 
 let payload = null;
 let sessionId = null;
@@ -170,8 +182,32 @@ if (promptTopic) {
 if ((!strict && !isVideo) || promptTopic) {
   // The outline's go button: "Start" since the redesign ("Build lesson" before).
   const build = page.getByRole("button", { name: /^\s*(?:Build lesson|Start)\s*$/i }).first();
+  // The intake card ("Which parts have you met before?", lib/intake.ts): answered on purpose, not by the first option.
+  const card = page.locator('section[aria-label="Questions before the lesson"]');
+  const answered = new Set();
   for (let i = 0; i < 200 && !payload; i++) {
     await page.waitForTimeout(1000);
+    if (await card.isVisible().catch(() => false)) {
+      const options = card.locator("ul li button");
+      const labels = (await options.evaluateAll((els) => els.map((el) => el.querySelector("span.block")?.textContent ?? ""))).map((l) => l.trim());
+      const heading = labels.join("|");
+      if (labels.length && !answered.has(heading)) {
+        answered.add(heading);
+        if (labels.some((l) => /all new to me/i.test(l))) {
+          const known = labels.filter((l) => know.some((k) => l.toLowerCase().includes(k)));
+          for (const label of known.length ? known : labels.filter((l) => /all new to me/i.test(l))) await options.filter({ hasText: label }).first().click().catch(() => {});
+          log(`intake parts: ${labels.filter((l) => !/all new to me/i.test(l)).map((l) => `"${l}"${known.includes(l) ? " (KNOWN)" : ""}`).join(", ")}`);
+          await page.screenshot({ path: path.join(outDir, "intake.png") });
+        } else {
+          await options.first().click().catch(() => {});
+          log(`intake check: picked "${labels[0]}"`);
+        }
+        await page.waitForTimeout(800);
+        const onward = card.getByRole("button", { name: /^\s*(?:Next|Build my plan)\s*$/ }).first();
+        if (await onward.isEnabled().catch(() => false)) await onward.click().catch(() => {});
+        continue;
+      }
+    }
     if (await build.isVisible().catch(() => false) && await build.isEnabled().catch(() => false) && !(await page.getByText("Planning…").isVisible().catch(() => false))) {
       await page.screenshot({ path: path.join(outDir, "outline.png") });
       await build.click();

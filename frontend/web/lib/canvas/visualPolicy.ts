@@ -316,8 +316,11 @@ export function applyLessonVisualPolicy(
   // is not about a list, tree, stack, queue, array, graph, hash table or algorithm is a flow of steps.
   // A typed CS lesson's mechanism board (a protocol's servers, a Bloom filter's bits) is a structure even
   // without these words: Raft planned six structure boards and all six became flows (CS test, 2026-10-23).
-  const domain = options.mode === "prompt" ? options.domain : undefined;
-  const csLessonText = options.mode === "prompt" && (!domain || domain === "cs") ? [options.topic ?? "", ...input.map((b) => b.title)].join(" ") : "";
+  // A CS PDF used as a reference is routed as a typed CS lesson (owner, 2026-10-27: its AVL boards drew no tree);
+  // the caller passes its domain only then (lib/canvas/lessonRequest.ts referenceCsLesson).
+  const csMode = options.mode === "prompt" || (options.mode === "reference" && options.domain === "cs");
+  const domain = csMode ? options.domain : undefined;
+  const csLessonText = csMode && (!domain || domain === "cs") ? [options.topic ?? "", ...input.map((b) => b.title)].join(" ") : "";
   for (const beat of beats) {
     const words = `${beat.title} ${beat.brief} ${beat.script}`;
     if (beat.stage !== "structure" || DATA_STRUCTURE_WORDS.test(words) || (csLessonText && csMechanismBoard(csLessonText, words))) continue;
@@ -1237,7 +1240,7 @@ export function applyLessonVisualPolicy(
   // that pattern as pseudocode and trace it" — went on a sketch, where no line is ever lit as Aria speaks.
   // A typed prompt also counts the niche CS topics the shared check misses (lib/canvas/csLessons.ts).
   const lessonTitles = [options.topic ?? "", ...beats.map((b) => b.title)].join(" ");
-  if (options.mode !== "strict" && asCs(subject, () => (options.mode === "prompt" ? domainIsCs(domain, lessonTitles) : isCsTopic(lessonTitles)))) {
+  if (options.mode !== "strict" && asCs(subject, () => (csMode ? domainIsCs(domain, lessonTitles) : isCsTopic(lessonTitles)))) {
     for (const beat of beats) {
       if (beat.refresher || beat.overview || examIds.has(beat.id) || (beat.stage !== "sketch" && beat.stage !== "flow" && beat.stage !== "scene")) continue;
       // The opening map only SAYS the lesson will write and trace code ("…then trace it in Python"): it stays the
@@ -1255,7 +1258,7 @@ export function applyLessonVisualPolicy(
   // A TYPED CS LESSON SHOWS ITS MECHANISM ON THE STRUCTURE (lib/canvas/csLessons.ts): a protocol's servers
   // and messages, a Bloom filter's bits, KMP's pattern sliding — Raft was six flow charts of concepts and
   // no server was ever drawn (CS test, 2026-10-23). The opening map board stays a flow.
-  if (options.mode === "prompt" && (!domain || domain === "cs")) {
+  if (csMode && (!domain || domain === "cs")) {
     const lessonText = lessonTitles;
     beats.forEach((beat, i) => {
       if (i === 0 || beat.refresher || beat.overview || examIds.has(beat.id)) return;
@@ -1274,10 +1277,14 @@ export function applyLessonVisualPolicy(
   // board of the CS rating run was a free sketch, where the model places each shape itself; a structure is
   // laid out by code. On a typed CS lesson, a sketch of a graph, tree, list, array, queue, stack, heap or
   // state machine (two such words on the board) is drawn as a structure.
-  if (options.mode === "prompt" && domainIsCs(domain, lessonTitles)) {
-    for (const beat of beats) {
+  if (csMode && domainIsCs(domain, lessonTitles)) {
+    // A CS reference PDF's tree or list board planned as a diagram (now a flow) is drawn as the structure too:
+    // "The middle node becomes the new root" was a flow of boxes (AVL chapter, 2026-10-27). Typed lessons keep their rule.
+    const drawnFlows = options.mode === "reference";
+    for (const [i, beat] of beats.entries()) {
       // A sketch, or a maths figure (the odd cycle came out as a geometry triangle with angle arcs, 2026-10-25).
-      if ((beat.stage !== "sketch" && beat.stage !== "figure") || beat.figureAsset || beat.refresher || beat.overview || examIds.has(beat.id) || keptStages.has(beat.id)) continue;
+      const loose = beat.stage === "sketch" || beat.stage === "figure" || (drawnFlows && i > 0 && (beat.stage === "flow" || beat.stage === "diagram"));
+      if (!loose || beat.figureAsset || beat.refresher || beat.overview || examIds.has(beat.id) || keptStages.has(beat.id)) continue;
       const found = new Set((`${beat.title} ${beat.brief} ${beat.script}`.toLowerCase().match(STRUCTURE_WORDS) ?? []).map((w) => w.replace(/(?:es|s)$/, "")));
       if (found.size < 2) continue;
       changes.push(`${beat.id}: ${beat.stage} → structure (${[...found].slice(0, 3).join(", ")}: drawn by code, not placed by hand)`);
@@ -1300,7 +1307,7 @@ export function applyLessonVisualPolicy(
   // address space a memory layout, a schedule a Gantt chart, two threads racing a sequence — all placed by
   // code (lib/canvas/osDiagrams.ts). A page's state machine or layer stack is redrawn the same way. A free
   // sketch is never kept: it becomes a flow, which code lays out.
-  if (options.mode === "prompt" && domainIsCs(domain, lessonTitles) && isTypedOsTopic(lessonTitles)) {
+  if (csMode && domainIsCs(domain, lessonTitles) && isTypedOsTopic(lessonTitles)) {
     beats.forEach((beat, i) => {
       if (beat.refresher || beat.overview || examIds.has(beat.id) || beat.stage === "code" || beat.stage === "exam") return;
       const page = beat.sourceDiagram?.kind;
@@ -1320,7 +1327,7 @@ export function applyLessonVisualPolicy(
   // no room were the first cause of boards failing every attempt. Every typed CS board is one code lays out — a
   // structure, sequence, state diagram, memory layout, Gantt chart, mapping, code or flow. What is left after
   // the rules above becomes a flow. Maths keeps its sketches (equations and graphs need them).
-  if (options.mode === "prompt" && domainIsCs(domain, lessonTitles)) {
+  if (csMode && domainIsCs(domain, lessonTitles)) {
     for (const beat of beats) {
       if (examIds.has(beat.id)) continue;
       const freeHand = beat.stage === "sketch" || beat.stage === "diagram" || (beat.stage === "figure" && (beat.figure === "drawn" || !beat.figure) && !beat.figureAsset);

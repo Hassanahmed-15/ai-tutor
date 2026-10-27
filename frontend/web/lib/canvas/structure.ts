@@ -987,6 +987,57 @@ export function heapRepairHint(start: DsStart, boardText: string): string | null
   return `THE CORRECT HEAP SORT, computed exactly from this board's starting ${kind} ${from} (node ids by position: ${ids.join(", ")}) — after each root swap the last position leaves the heap (show it as sorted: mark it "done"), then the new root sifts down; every swap in order, one or two per sentence, saying the same values:\n${lines.map((l, i) => `${i + 1}. ${l}`).join("\n")}`;
 }
 
+/**
+ * THE AVL REBALANCE, COMPUTED (owner, 2026-10-27: an AVL PDF's "second turn makes 15 the root" board drew its
+ * rotation out of search order twice and shipped as boxes). As for heaps (heapRepairHint), the board's starting
+ * tree decides it: the lowest node two levels out of balance, its case (left-left, left-right, right-right,
+ * right-left), and each rotation as the exact re-links that perform it, simulated here so every id is right.
+ * Null for a tree that is not out of balance, or a board that is not about rotating.
+ */
+export function rotationRepairHint(start: DsStart, boardText: string): string | null {
+  if (start.kind !== "tree" || start.variant === "heap" || !/\brotat|\bavl\b|\bbalanc|\bturn\b/i.test(boardText)) return null;
+  const valueOf = new Map(start.nodes.map((n) => [n.id, n.value]));
+  const kids = new Map<string, { left?: string; right?: string }>(start.nodes.map((n) => [n.id, {}]));
+  for (const e of start.edges) {
+    const k = kids.get(e.from);
+    if (!k || !kids.has(e.to) || (e.side !== "left" && e.side !== "right")) return null;
+    k[e.side] = e.to;
+  }
+  const parentOf = (id: string) => [...kids].find(([, k]) => k.left === id || k.right === id)?.[0];
+  const height = (id?: string): number => (id ? 1 + Math.max(height(kids.get(id)!.left), height(kids.get(id)!.right)) : 0);
+  const balance = (id: string) => height(kids.get(id)!.left) - height(kids.get(id)!.right);
+  // The lowest node out of balance: the one whose subtree is smallest.
+  const out = start.nodes.map((n) => n.id).filter((id) => Math.abs(balance(id)) >= 2).sort((a, b) => height(a) - height(b))[0];
+  if (!out) return null;
+  const v = (id: string) => valueOf.get(id) ?? id;
+  const steps: string[] = [];
+  // One rotation: `child` moves up into `parent`'s place, the parent hangs on the other side, and the child's
+  // inner subtree moves across to the parent — both re-links in the same step.
+  const rotate = (child: string, parent: string) => {
+    const side: "left" | "right" = kids.get(parent)!.left === child ? "right" : "left";
+    const inner = kids.get(child)![side];
+    const above = parentOf(parent);
+    if (above) { const k = kids.get(above)!; if (k.left === parent) k.left = child; else k.right = child; }
+    kids.get(parent)![side === "right" ? "left" : "right"] = inner;
+    kids.get(child)![side] = parent;
+    const ops = [`{"op": "link", "from": "${child}", "to": "${parent}", "side": "${side}"}`, ...(inner ? [`{"op": "link", "from": "${parent}", "to": "${inner}", "side": "${side === "right" ? "left" : "right"}"}`] : [])];
+    steps.push(`rotate ${v(child)} up over ${v(parent)} (${v(parent)} becomes its ${side} child${inner ? `, and ${v(inner)} moves across to ${v(parent)}` : ""}) — one step, "ops": [${ops.join(", ")}]`);
+  };
+  const leftHeavy = balance(out) > 0;
+  const child = leftHeavy ? kids.get(out)!.left! : kids.get(out)!.right!;
+  const inside = leftHeavy ? balance(child) < 0 : balance(child) > 0;
+  const kind = `${leftHeavy ? "left" : "right"}-${inside ? (leftHeavy ? "right" : "left") : leftHeavy ? "left" : "right"}`;
+  if (inside) rotate(leftHeavy ? kids.get(child)!.right! : kids.get(child)!.left!, child);
+  rotate(leftHeavy ? kids.get(out)!.left! : kids.get(out)!.right!, out);
+  const shape = (id?: string): string => {
+    if (!id) return "·";
+    const k = kids.get(id)!;
+    return k.left || k.right ? `${v(id)}(${shape(k.left)}, ${shape(k.right)})` : v(id);
+  };
+  const root = start.nodes.map((n) => n.id).find((id) => !parentOf(id))!;
+  return `THE CORRECT REBALANCE, computed exactly from this board's starting tree: ${v(out)} is out of balance (its ${leftHeavy ? "left" : "right"} side is ${Math.abs(balance(out))} levels deeper), the ${kind} case, so ${inside ? "TWO rotations" : "ONE rotation"}. Mark ${v(out)} first ({"op": "mark", "id": "${out}", "as": "compare"}), then:\n${steps.map((s, i) => `${i + 1}. ${s}`).join("\n")}\nThe tree after: ${shape(root)} — still in search order, balanced. Say each rotation with these same values on its own sentence.`;
+}
+
 /** The code board without its structure — kept when the structure could not be made right: never wrong, only plainer. */
 export function withoutStructure(spec: CanvasBoardSpec): CanvasBoardSpec | null {
   if (spec.stage.kind !== "code") return null;

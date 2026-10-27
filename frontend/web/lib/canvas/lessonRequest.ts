@@ -1,4 +1,4 @@
-import { isLadder, ladderBoardBudget, ladderCanvasSection, strictLadderSection } from "./conceptLadder";
+import { isLadder, ladderBoardBudget, ladderCanvasSection, strictLadderSection, withPartStatuses } from "./conceptLadder";
 import { courseCodeDiagramsOff } from "./courseFigures";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
 import type { PlanningKnowledge } from "../knowledge/graph";
@@ -137,7 +137,8 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   const pageBoards = strictDoc && !question && input.sourceScope?.breadth.kind === "whole" ? Math.max(0, Math.min(14, substantivePages(strictDoc).length) - boards) : 0;
   if (parts.length > 0 && isLadder(input.outline?.subtopics)) {
     // THE CONCEPT LADDER (owner, 2026-10-20): what the student does not know is built from scratch.
-    lines.push(...ladderCanvasSection(input.outline!.subtopics, typedCsLesson(input)));
+    lines.push(...ladderCanvasSection(input.outline!.subtopics, compactLadder(input)));
+    if (doc && question) lines.push(`- These parts are what the answer to the student's question needs, and nothing more: stay on the question.`);
   } else if (parts.length > 0) {
     lines.push(
       "",
@@ -182,7 +183,7 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // Strict: a question about something the pages never mention is answered by saying so (2026-10-18).
   const absent = strictDoc && question ? termsNotInDocument(strictQuestion || input.focus || input.topic, strictDoc) : [];
   if (absent.length) lines.push(`THE STUDENT'S DOCUMENT NEVER MENTIONS: ${absent.join(", ")}. The first sentence says so plainly ("Your document does not mention ${absent[0]}."); then, only if its pages say something closely related, teach that from the pages — never calling it "${absent[0]}" or by any name the pages do not use. Keep it to one short board.`);
-  if (question) lines.push(`This lesson ANSWERS ONE QUESTION: "${(strictQuestion || input.focus || input.topic).trim()}". ${doc || strictDoc ? "The first board answers it directly; anything after only completes the answer." : 'Each board is one step of the answer, in order, and together they answer it completely: the first gets straight to it (no introduction), a "how" explains the mechanism itself (what moves, contracts or changes), and no board repeats another.'} No interaction unless the student asked to practise.`);
+  if (question) lines.push(`This lesson ANSWERS ONE QUESTION: "${(strictQuestion || input.focus || input.topic).trim()}". ${doc && isLadder(input.outline?.subtopics) ? "It is built on the ladder above, part by part, for what this student does not know yet; together the boards answer it completely." : doc || strictDoc ? "The first board answers it directly; anything after only completes the answer." : 'Each board is one step of the answer, in order, and together they answer it completely: the first gets straight to it (no introduction), a "how" explains the mechanism itself (what moves, contracts or changes), and no board repeats another.'} No interaction unless the student asked to practise.`);
 
   // Depth buys WORDS PER BOARD, never boards (the rule the ordinary lecture planner follows too).
   const depth = p.depth;
@@ -211,14 +212,17 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // A typed-prompt computer-science lesson (lib/canvas/csLessons.ts): niche CS topics the shared checks
   // miss (KMP, Bloom filters, Raft, paging…) get the CS rules too. PDF, video and course lessons keep the shared checks.
   const typedPrompt = !doc && !strictDoc && !video && !course;
+  // A computer-science PDF used as a reference gets the typed CS rules too, with the document's own example and code.
+  const referenceCs = referenceCsLesson(input);
   const lessonText = planWords;
   // How the student asked for it to be taught, on the question card (lib/teachingQuestions.ts).
-  if (typedPrompt && input.teachingChoices?.length) lines.push(teachingLine(input.teachingChoices).trim());
+  // A reference PDF's question was asked the same (owner, 2026-10-27); strict, video and course lessons never are.
+  if ((typedPrompt || doc) && input.teachingChoices?.length) lines.push(teachingLine(input.teachingChoices).trim());
   // The subject was asked of a model when the lesson was created (lib/canvas/subjectDomain.ts): CS, maths or
   // neither — neither is the normal pipeline. The lecture's judged subject decides first; an older lecture
   // with neither keeps the keyword checks.
-  const domain = typedPrompt ? input.subjectDomain : undefined;
-  const typedCs = typedPrompt && (subject ? subject === "cs" : domainIsCs(domain, lessonText));
+  const domain = typedPrompt || referenceCs ? input.subjectDomain : undefined;
+  const typedCs = (typedPrompt || referenceCs) && (subject ? subject === "cs" : domainIsCs(domain, lessonText));
   const labLesson = typedCs || asMathsOrCs(subject, () => (typedPrompt ? domainIsLab(domain, lessonText) : isLabLookTopic(lessonText)));
   if (!strictDoc && !video && labLesson) {
     lines.push("A board that WORKS something out — a proof, a derivation, a worked example, a rearrangement — is as long as its steps, past the length above: ONE sentence per step, every step a textbook shows (each expansion, substitution, cancelling, rearrangement and the result), with its reason, up to 10 sentences; longer working continues on the next board by itself. Never compress working to fit a length (\"this gives the result\", \"simplifying, we get\" with the line missing).");
@@ -228,14 +232,14 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // A typed prompt (no PDF, video or course behind it) also counts the graph algorithms the shared list
   // misses: "BFT in Bipartite Graphs" got none of this and drew no graph (owner, 2026-10-23).
   const typedDsa = typedCs && isTypedDsaTopic(lessonText);
-  if (typedDsa) lines.push("", TYPED_DSA_PLAN);
+  if (typedDsa) lines.push("", doc ? REFERENCE_DSA_PLAN : TYPED_DSA_PLAN);
   // The picture each kind of CS topic needs: a protocol as machines and messages, KMP as cells and pointers.
   const picture = typedCs ? csPlanRule(lessonText) : null;
   if (picture) lines.push("", picture);
-  if (!strictDoc && !video && (typedPrompt ? typedDsa : asCodeLesson(subject, () => isDataStructureTopic(planWords)))) {
+  if (!strictDoc && !video && (typedPrompt || referenceCs ? typedDsa : asCodeLesson(subject, () => isDataStructureTopic(planWords)))) {
     lines.push(
       "",
-      "THIS IS A DATA STRUCTURES / ALGORITHMS LESSON: every board that runs an operation (insert, search, delete, traverse, rotate, push, pop, swap, BFS, DFS) is a \"code\" board in REAL code — Python, or the exam board's pseudocode when the syllabus uses it — every line a statement, never a description (\"shift 7 right\", \"search cost: inspect up to n nodes\") — with the structure drawn beside it, changing line by line; a board that explains the structure itself is a \"structure\" board; never illustration, flow or scene for a data structure. Each brief names the starting values and the operation, and the script walks it one step per sentence with those same values — a board that runs an operation may take up to 10 sentences for that.",
+      `THIS IS A DATA STRUCTURES / ALGORITHMS LESSON: every board that runs an operation (insert, search, delete, traverse, rotate, push, pop, swap, BFS, DFS) is a "code" board in REAL code — ${doc ? "the document's own listing, in its own language" : "Python, or the exam board's pseudocode when the syllabus uses it"} — every line a statement, never a description (\"shift 7 right\", \"search cost: inspect up to n nodes\") — with the structure drawn beside it, changing line by line; a board that explains the structure itself is a \"structure\" board; never illustration, flow or scene for a data structure. Each brief names the starting values and the operation, and the script walks it one step per sentence with those same values — a board that runs an operation may take up to 10 sentences for that.`,
     );
   }
   // MATHS AND COMPUTER SCIENCE are taught in a visible structure (owner, 2026-10-21: "keep your
@@ -248,7 +252,7 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // the visuals and code were nice but it "never really teaches" and did not explain its visuals).
   // Inside a CS course only a programming, algorithm or data-structure lesson is taught through code.
   if (!strictDoc && !video && (typedPrompt ? typedCs : asCodeLesson(subject, () => isCsTopic(subject ? `${planWords} ${(curriculumDocumentOf(input)?.lesson?.learningGoals ?? []).join(" ")}` : planWords)))) lines.push("", CS_TEACHING);
-  if (doc) lines.push("", documentPlanSection(doc, listings, Boolean(question)));
+  if (doc) lines.push("", documentPlanSection(doc, listings, Boolean(question), isLadder(input.outline?.subtopics)));
   if (strictDoc) lines.push("", strictPlanSection(strictDoc, strictQuestion));
   // What the student already knows of these pages (lib/intake.ts): how deep each part goes.
   if (strictDoc && !strictQuestion && input.learner?.parts?.length) lines.push(...strictLadderSection(input.learner.parts));
@@ -273,6 +277,22 @@ export const TYPED_DSA_PLAN = [
   "- EACH OPERATION HAS ITS OWN BOARD THAT SHOWS IT HAPPEN: a deletion lesson removes a leaf, re-links a one-child node and replaces a two-child node with its successor ON the structure, one case per sentence or board. A traversal visits the nodes one by one. An applications or comparison board is words and pictures, never a re-run of the operations.",
   "- STAY ON THE QUESTION ASKED: every board serves it. Never add a board on a different problem (asked how to detect a bipartite graph, there is no board on maximum matching, Hopcroft–Karp or flows).",
   "- Code is Python unless the student named another language.",
+].join("\n");
+
+/**
+ * The same, for a data-structures PDF used as a reference (owner, 2026-10-27): the structure is drawn on
+ * every working board as in a typed lesson, but the example, the values and the code are the document's.
+ */
+export const REFERENCE_DSA_PLAN = [
+  "THIS LESSON TEACHES A DATA STRUCTURE OR ALGORITHM FROM THE STUDENT'S DOCUMENT:",
+  "- Use the DOCUMENT'S OWN example (its figure's values, e.g. the tree its rotation figure starts from), and name it, with its values AND its links (\"3→1 left, 1→2 right\"), in EVERY board's brief. Every board uses that example; a later board continues from the state the earlier one ended in. Only when the document draws no example, choose one small one (4 to 7 nodes) and say it is yours.",
+  "- Every board that explains or runs an operation DRAWS THE STRUCTURE ITSELF (a \"code\" board with the structure beside the document's code, or a \"structure\" board) — a tree lesson draws the tree, a list lesson the list. Never teach a structure only in words, and never as a free sketch.",
+  "- EACH OPERATION HAS ITS OWN BOARD THAT SHOWS IT HAPPEN, on the structure, one step per sentence: an insertion places the node, a rotation re-links the nodes it moves (which child moves up, which subtree changes parent), a deletion removes and re-links. A rotation is shown on a tree that is really out of balance, and the brief names the node whose balance breaks.",
+  "- Linked-list and tree operations are shown ONE LINK AT A TIME: the brief says which link turns on which sentence.",
+  "- Code is the document's own listing, in its own language, as the section about the document below says — never rewritten in Python.",
+  // The AVL chapter's double rotation (2026-10-27): the example was the right-left case and the document's routine
+  // doubleWithLeftChild the left-right one, so its code board contradicted its own tree and lost the tree.
+  "- THE EXAMPLE IS THE CASE THE DOCUMENT'S CODE HANDLES: when the document gives code for only one of two mirror cases (doubleWithLeftChild is the left-right case: a node's LEFT child with a deeper RIGHT subtree; rotateWithLeftChild the left-left case), every board teaches that case, so the code and the tree say the same thing. The mirror case is named in one sentence, never drawn.",
 ].join("\n");
 
 /** How a maths or computer-science lesson is taught: its structure said out loud, proofs built step by step. */
@@ -403,7 +423,7 @@ function curriculumPlanSection(doc: SuprnotesLessonInput): string {
  * What the planner reads when the lesson is taught from the student's PDF: the rules, the code
  * listings it must not lose, and the whole document. The system prompt stays the typed prompt's.
  */
-function documentPlanSection(doc: SuprnotesLessonInput, listings: ReturnType<typeof documentListings>, question: boolean): string {
+function documentPlanSection(doc: SuprnotesLessonInput, listings: ReturnType<typeof documentListings>, question: boolean, ladder = false): string {
   const lines = [
     "THE STUDENT'S DOCUMENT — they uploaded it and asked you to teach FROM it, as a reference. It is printed in full at the end of this request, page by page.",
     "- Teach what the document teaches, in its order, with its own examples, numbers, names and figures (redraw its diagrams on the board — a tree, a table, a process — with its own values). Say where it comes from when it helps (\"your notes put it like this…\", \"the example on page 4…\"). You may explain beyond the document to make an idea clear, but never contradict it and never swap its example for a different one.",
@@ -415,6 +435,8 @@ function documentPlanSection(doc: SuprnotesLessonInput, listings: ReturnType<typ
     question
       ? "- The student's words are a QUESTION about this document: answer exactly that, completely, using everything the document says about it — every page that bears on it, not only the first."
       : "- No question was asked: the lesson covers the selected pages as a whole.",
+    // The student's marks from planning decide how deep each part goes (owner, 2026-10-27).
+    ...(ladder ? ["- THE STUDENT'S MARKS COME FIRST: how deep each part goes is the ladder's (above). A part they already KNOW is one recap sentence on the board of the part that builds on it — never boards of its own — and that board lists the known part's pages in \"source.pages\" too, so every page is still accounted for."] : []),
     "- Every board also carries \"source\": {\"pages\": [the page numbers it teaches from], \"listing\": the LISTING number it shows or null, \"lines\": [first, last] printed line numbers of that listing shown on this board, or null}.",
   ];
   if (listings.length) {
@@ -470,9 +492,39 @@ export function typedCsLesson(input: ProgressiveLectureInput): boolean {
   return domainIsCs(input.subjectDomain, [input.topic, input.focus ?? "", ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" "));
 }
 
+/**
+ * A COMPUTER-SCIENCE PDF USED AS A REFERENCE (owner, 2026-10-27: a DSA PDF's lecture drew no tree "as in
+ * the prompt lec… visuals should be at par with prompt"): its boards get the typed CS pipeline —
+ * structures, no free sketches, the CS checks and their retries — with the document's own example and
+ * code. Its subject is asked when it is created (app/api/progressive-lectures). Never a strict PDF.
+ */
+export function referenceCsLesson(input: ProgressiveLectureInput): boolean {
+  return Boolean(referenceDocumentOf(input)) && input.subjectDomain === "cs";
+}
+
+/**
+ * The compact ladder (one or two boards a new part, ten at most): a typed CS lesson, a CS reference PDF,
+ * and a question asked of a reference PDF, which stays an answer however much of it is new.
+ */
+export function compactLadder(input: ProgressiveLectureInput): boolean {
+  return typedCsLesson(input) || referenceCsLesson(input) || Boolean(referenceDocumentOf(input) && input.outline?.scope === "question");
+}
+
+/**
+ * A REFERENCE PDF'S PARTS CARRY THE STUDENT'S MARKS (owner, 2026-10-27: what the student answers in
+ * planning never reached the lecture). The outline planner attaches them, but an outline can arrive
+ * without them (the whole PDF's coverage rewrite once dropped every one): the intake's parts are then
+ * matched to the approved subtopics here, so the lecture climbs the ladder as a typed prompt's does.
+ */
+export function withLearnerStatuses(input: ProgressiveLectureInput): ProgressiveLectureInput {
+  const parts = input.learner?.parts ?? [];
+  if (!referenceDocumentOf(input) || !parts.length || !input.outline?.subtopics.length || isLadder(input.outline.subtopics)) return input;
+  return { ...input, outline: { ...input.outline, subtopics: withPartStatuses(input.outline.subtopics, parts, { keepAll: true }) } };
+}
+
 export function canvasBoardCount(input: ProgressiveLectureInput): number {
   // A lesson on the concept ladder (lib/canvas/conceptLadder.ts) may take up to its ladder's boards.
-  if (isLadder(input.outline?.subtopics)) return ladderBoardBudget(input.outline!.subtopics, typedCsLesson(input)).max;
+  if (isLadder(input.outline?.subtopics)) return ladderBoardBudget(input.outline!.subtopics, compactLadder(input)).max;
   const course = curriculumDocumentOf(input);
   const parts = course && !input.outline ? curriculumParts(course).length : input.outline?.subtopics.filter((s) => s.title.trim()).length ?? 0;
   if (parts > 0) return Math.min(14, parts);

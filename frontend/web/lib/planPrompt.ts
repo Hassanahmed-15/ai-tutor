@@ -325,13 +325,19 @@ export function isBroadTopicQuestion(text: string): boolean {
  * the title names what the answer is about ("Chlorophyll and Leaf Colour"), never "Why X Happens".
  * A document lecture keeps the answer-framing title it has always had.
  */
-export function directQuestionInstruction(question: string, options: { nounTitles?: boolean; shape?: QuestionShape | null } = {}): string {
+export function directQuestionInstruction(question: string, options: { nounTitles?: boolean; shape?: QuestionShape | null; /** A reference PDF's question with the student's marked parts of its answer. */ parts?: number } = {}): string {
   const titleRule = options.nounTitles
     ? `The first subtopic's title is a noun phrase naming what the answer is about (for "why do leaves look green?": ` +
       `"Chlorophyll and Leaf Colour"), never the question itself and never "Why X Happens". `
     : `The first subtopic's title states the answer's own framing (for "why does X happen?": "Why X Happens" or the ` +
       `cause itself), never just the topic's name. `;
-  const size = options.shape === "process"
+  // THE STUDENT'S PARTS OF THE ANSWER (owner, 2026-10-27): a question asked of a reference PDF was planned as one
+  // subtopic whatever the student said they knew; its parts, each marked, are the subtopics, so the marks decide the depth.
+  const size = options.parts
+    ? `The student was asked which parts of this answer they know; those ${options.parts} parts are listed above. Plan ` +
+      `ONE subtopic per part, in that order (${options.parts} in all), each carrying its "status": together they ` +
+      `answer the question completely, and nothing beyond it. `
+    : options.shape === "process"
     ? `This question asks how or why a PROCESS happens, in different stages: plan TWO or THREE subtopics, one per ` +
       `stage a teacher would draw to answer it completely at this student's level (for "how does the heart pump ` +
       `blood?": the heart's chambers and the route of the blood; the beat itself — the chambers contracting and the ` +

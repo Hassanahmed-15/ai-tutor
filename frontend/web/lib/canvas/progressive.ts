@@ -10,7 +10,7 @@ import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
 import { canvasBeatId, connectToEarlier } from "./connect";
 import { repairCues } from "./cueRepair";
-import { typedCsLesson, canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
+import { compactLadder, referenceCsLesson, withLearnerStatuses, canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
 import { codeSentenceBlocks, groundSourcePlan, strictBoardLines, ungroundedInPlan, videoBoardLines, videoParts } from "./sourceLessons";
 import { assignListings, documentBoardLines, documentListings, documentSections, extraBoardsForListings, faithfulCodeLines, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredPages, type DocumentListing } from "./documentContext";
 import type { SuprnotesLessonInput } from "../suprnotes";
@@ -109,7 +109,9 @@ async function lectureSubject(openai: ReturnType<typeof client>, input: Progress
   return { subject: judged.subject ?? undefined, costUsd: judged.costUsd };
 }
 
-export async function planCanvasLecture(input: ProgressiveLectureInput, knowledge?: PlanningKnowledge): Promise<{ plan: ProgressiveBeatPlan[]; costUsd: number }> {
+export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledge?: PlanningKnowledge): Promise<{ plan: ProgressiveBeatPlan[]; costUsd: number }> {
+  // A reference PDF's outline carries the student's marks from planning, whatever dropped them on the way.
+  const input = withLearnerStatuses(asked);
   const openai = client();
   // The subject is decided before the plan, whose rules depend on it — except for a lesson taught strictly
   // from a source, whose plan has no subject rules: there it is decided alongside the plan (no added wait).
@@ -119,7 +121,7 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
   const request = canvasPlanRequest(input, knowledge, early?.subject);
   // The approved outline sized the lecture; the plan may not grow it (only a refresher may be added).
   const outlined = canvasBoardCount(input);
-  const ladder = isLadder(input.outline?.subtopics) ? ladderBoardBudget(input.outline!.subtopics, typedCsLesson(input)) : null;
+  const ladder = isLadder(input.outline?.subtopics) ? ladderBoardBudget(input.outline!.subtopics, compactLadder(input)) : null;
   // A document's long code listings may each take consecutive boards (lib/canvas/documentContext.ts).
   // A strict lecture on the whole selection may add a board per page its outline missed (up to 14):
   // capped at the outline's count, the page check could never be met (pages 3-10 of 10; 2026-10-18).
@@ -147,7 +149,10 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
   // So must a REFERENCE lecture on the whole PDF: its outline fixed the boards, so a page left out is
   // folded into the board it belongs to (AVL chapter: 1 of 6 sections taught; PDF bench, 2026-10-18).
   const covering = Boolean(strictDoc || reference) && input.sourceScope?.breadth.kind === "whole";
-  const maxAttempts = covering ? 3 : 2;
+  let maxAttempts = covering ? 3 : 2;
+  // The planner's room: a document lecture reads more and writes longer code-board scripts.
+  let planTokens = fromDocument ? 16_000 : 9000;
+  let roomAdded = false;
   // A typed CS lesson that is not DSA redraws its reference pages' diagrams (lib/canvas/sourceDiagrams.ts):
   // they are read while the plan is written, so nobody waits for them.
   const lessonWords = [input.topic, input.focus ?? "", ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" ");
@@ -157,7 +162,7 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
   let diagramsUsed = false;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
-      const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, attempt > 1 && lastError ? `${request}\n\nYour previous plan could not be used: ${lastError}` : request, fromDocument ? 16_000 : 9000), fromDocument ? 180_000 : 120_000, "canvas plan");
+      const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, attempt > 1 && lastError ? `${request}\n\nYour previous plan could not be used: ${lastError}` : request, planTokens), (fromDocument ? 180_000 : 120_000) * Math.max(1, planTokens / (fromDocument ? 16_000 : 9000)), "canvas plan");
       costUsd += c;
       const valid = validatePlan(json);
       // Only a refresher the student's knowledge offered — the planner may not add its own (lib/canvas/plan.ts).
@@ -241,7 +246,7 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
       if (missing.length && attempt < maxAttempts) {
         lastError = strictDoc
           ? `page${missing.length === 1 ? "" : "s"} ${missing.join(", ")} ${missing.length === 1 ? "is" : "are"} not taught by any board — this lecture covers EVERY selected page: keep the boards you have and add the ones these pages need, in page order, each naming its pages in "source.pages"`
-          : `page${missing.length === 1 ? "" : "s"} ${missing.join(", ")} of the student's PDF ${missing.length === 1 ? "is" : "are"} taught by no board — this lecture teaches the WHOLE document: keep the same boards, and fold each missing page's points (its examples, activities, figures and numbers) into the board whose part it belongs to, naming the page in that board's "source.pages"`;
+          : `page${missing.length === 1 ? "" : "s"} ${missing.join(", ")} of the student's PDF ${missing.length === 1 ? "is" : "are"} taught by no board — this lecture teaches the WHOLE document: keep the same boards, and fold each missing page's points (its examples, activities, figures and numbers) into the board whose part it belongs to, naming the page in that board's "source.pages"${ladder ? ". A page of a part the student already KNOWS is only its recap sentence there, never taught again" : ""}`;
         console.log(`[canvas] plan sent back: ${lastError}`);
         continue;
       }
@@ -287,12 +292,14 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         // so each board is written once for the narration it plays with (lib/canvas/squeeze.ts).
         // A typed lesson's subject was asked when it was created (lib/canvas/subjectDomain.ts); others keep the keywords.
         // The lecture's judged subject decides first (lib/canvas/lessonSubject.ts).
-        const domain = visualMode === "prompt" ? input.subjectDomain : undefined;
+        // A CS PDF used as a reference is planned with the typed CS rules (lib/canvas/lessonRequest.ts referenceCsLesson).
+        const referenceCs = referenceCsLesson(input);
+        const domain = visualMode === "prompt" || referenceCs ? input.subjectDomain : undefined;
         const lessonTitles = [input.topic, ...plan.beats.map((b) => b.title)].join(" ");
         if (visualMode !== "strict" && asCs(subject, () => (visualMode === "prompt" ? domainIsCs(domain, lessonTitles) : isCsTopic(planWords)))) {
           // A typed prompt splits only the boards that trace something (code, a structure): an application
           // board split one-step-a-sentence read "They also use inserting 5." (BST review, 2026-10-23).
-          const squeezed = squeezedInPlan(visualMode === "prompt" ? plan.beats.filter((b) => b.stage === "code" || b.stage === "structure") : plan.beats).slice(0, 24);
+          const squeezed = squeezedInPlan(visualMode === "prompt" || referenceCs ? plan.beats.filter((b) => b.stage === "code" || b.stage === "structure") : plan.beats).slice(0, 24);
           if (squeezed.length) {
             try {
               const user = squeezed.map((x, i) => `[${i}] ${x.text}`).join("\n");
@@ -432,6 +439,13 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
     } catch (error) {
       costUsd += (error as { costUsd?: number }).costUsd ?? 0;
       lastError = (error as Error).message;
+      // OUT OF ROOM, NOT WRONG (2026-10-27): a reference AVL lecture's planner spent its whole budget thinking and
+      // wrote nothing, twice, and the lecture failed. The next attempt gets more room — one more attempt if needed.
+      if (/finish=length/.test(lastError)) {
+        planTokens = Math.round(planTokens * 1.75);
+        if (attempt === maxAttempts && !roomAdded) { roomAdded = true; maxAttempts++; }
+        console.warn(`[canvas] plan ran out of room; trying again with ${planTokens} tokens`);
+      }
     }
   }
   throw new Error(`The canvas lesson could not be planned: ${lastError}`);
@@ -480,13 +494,16 @@ export async function writeCanvasBoard(args: {
   typedPrompt?: boolean;
   /** A typed lesson's asked subject (lib/canvas/subjectDomain.ts): CS and maths boards follow their own rules. */
   subjectDomain?: SubjectDomain;
+  /** A CS PDF used as a reference (lib/canvas/lessonRequest.ts referenceCsLesson): typed CS boards, the document's own code. */
+  referenceCs?: boolean;
   /** How many check questions the student asked for on the question card (lib/teachingQuestions.ts). */
   practice?: "none" | "some" | "lots";
   /** The student's code choice on the question card: a language, or no code (lib/teachingQuestions.ts). */
   code?: { include: boolean; language?: string };
 }): Promise<{ beat: Beat; costUsd: number; fallback: boolean; incomplete?: string[]; log: string[] }> {
   const { plan, index, sessionId } = args;
-  const typed = args.typedPrompt ?? (!args.document && !args.strictSource);
+  // A CS reference PDF's boards are written as a typed CS lesson's, keeping the document's code (generateSpec documentCode).
+  const typed = (args.typedPrompt ?? (!args.document && !args.strictSource)) || Boolean(args.referenceCs);
   const domain = typed ? args.subjectDomain : undefined;
   const beat = plan[index];
   const started = Date.now();
@@ -547,7 +564,7 @@ export async function writeCanvasBoard(args: {
     else if (beat.written && beat.course) made = { spec: fallbackSpec(beat), costUsd: 0, attempts: 1 };
     // `typed`: a lesson from a typed prompt (no PDF, video or course behind it) gets the DSA teaching rules.
     // `earlier`: the structures the earlier boards drew, so a typed CS board stays on the lesson's one example.
-    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, opening: args.opening, typed, domain, earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined, continueCode: typed ? continuedCodeOf(beat, args.earlier[index - 1]) : undefined });
+    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, opening: args.opening, typed, domain, documentCode: Boolean(args.referenceCs), earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined, continueCode: typed && !args.referenceCs ? continuedCodeOf(beat, args.earlier[index - 1]) : undefined });
     dropEmptyRows(made.spec);
     pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra), course, { maths: mathsFor(beat) });
   } catch (error) {
