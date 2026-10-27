@@ -10,6 +10,7 @@ const globalForQueue = globalThis as unknown as {
   ariaStorageQueueReady?: Promise<QueueClient>;
   ariaProgressiveLocalQueue?: ProgressiveLectureTask[];
   ariaProgressiveLocalActive?: number;
+  ariaWorkerWokenAt?: number;
 };
 
 export function progressiveServiceBusConfigured(): boolean {
@@ -60,6 +61,27 @@ export async function readyProgressiveStorageQueue(): Promise<QueueClient> {
     });
   }
   return globalForQueue.ariaStorageQueueReady;
+}
+
+/**
+ * WAKE THE WORKER BEFORE IT IS NEEDED (owner, 2026-10-27: a blood lesson's first board appeared after four
+ * minutes, 56 s of them the worker starting from zero). The worker scales to zero when idle and starts when a
+ * message is queued; a "wake" message, sent when a student opens the lesson screen or starts preparing a
+ * lesson, has it running by the time the plan is queued. It does nothing else (scripts/progressive-lecture-
+ * worker.mts) and expires unread after five minutes. At most one a minute from each web server; none in
+ * development, where tasks run in-process.
+ */
+export async function wakeLectureWorker(): Promise<void> {
+  try {
+    if (progressiveQueueTransport() !== "azure-storage-queue") return;
+  } catch {
+    return;
+  }
+  const now = Date.now();
+  if (now - (globalForQueue.ariaWorkerWokenAt ?? 0) < 60_000) return;
+  globalForQueue.ariaWorkerWokenAt = now;
+  const queue = await readyProgressiveStorageQueue();
+  await queue.sendMessage(Buffer.from(JSON.stringify({ version: 1, type: "wake", enqueuedAt: now }), "utf8").toString("base64"), { messageTimeToLive: 300 });
 }
 
 export function encodeProgressiveTask(task: ProgressiveLectureTask): string {

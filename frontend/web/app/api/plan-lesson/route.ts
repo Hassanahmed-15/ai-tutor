@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth";
+import { wakeLectureWorker } from "@/lib/progressiveLectureQueue";
 import { studentCardFor } from "@/lib/learnerBasicsStore";
 import { buildTeachingPolicy, policyForPlanner, policyForQuestions } from "@/lib/teachingPolicy";
 import { INTAKE_PROMPT, sanitizeIntake } from "@/lib/intake";
@@ -856,6 +857,8 @@ export async function POST(req: Request) {
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json({ error: "OPENAI_API_KEY not set." }, { status: 503 });
   }
+  // The lecture worker starts while the lesson is planned with the student, not after (lib/progressiveLectureQueue.ts).
+  void wakeLectureWorker().catch(() => undefined);
 
   const body = await req.json().catch(() => ({}));
   const mode = typeof body.mode === "string" ? body.mode : "";

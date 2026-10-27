@@ -188,7 +188,7 @@ export function boardFacts(spec: CanvasBoardSpec): string {
   return lines.join("\n");
 }
 
-export const BOARD_REVIEW_PROMPT = `You are the strict final reviewer of ONE board of a narrated school lesson, judging it as a demanding exam teacher would before a student sees it. You get what Aria SAYS over the board and an exact account of what the board SHOWS. Return JSON only: {"ship": boolean, "problems": [{"kind": "wrong-visual" | "contradicts-narration" | "invented-data" | "empty-or-trivial" | "mislabelled" | "factually-wrong" | "off-topic" | "quiz", "detail": string}]}.
+export const BOARD_REVIEW_PROMPT = `You are the strict final reviewer of ONE board of a narrated school lesson, judging it as a demanding exam teacher would before a student sees it. You get what Aria SAYS over the board and an exact account of what the board SHOWS. Return JSON only: {"ship": boolean, "problems": [{"kind": "wrong-visual" | "contradicts-narration" | "invented-data" | "empty-or-trivial" | "mislabelled" | "factually-wrong" | "off-topic" | "quiz", "detail": string, "from"?: string, "to"?: string}]}.
 
 Fail the board (ship false) only for a problem a student would be misled or short-changed by:
 - wrong-visual: the main visual is not about what this board teaches (a membrane diagram on a board about which conditions the body keeps constant; a plasmid diagram on a board weighing risks).
@@ -199,7 +199,7 @@ Fail the board (ship false) only for a problem a student would be misled or shor
 - factually-wrong: anything on the board is false. Check every equation line as mathematics: each "=" must be true as written, with every factor, power and sign the narration gives ("ϕ(2r) = ϕ(r)" for "doubling the distance halves the potential" is false — it must be "ϕ(2r) = ϕ(r)/2").
 - off-topic: the board teaches something outside the lesson's topic.
 - quiz: the card is ambiguous, has no single right answer, or its wording itself gives the right option away (one option far longer or more detailed than the rest), or a wrong option no student would ever choose ("Oxygen stops existing"). The card is answered before Aria reveals the answer, so the narration revealing it later is correct, never a giveaway.
-Do not fail a board for style, for being simple, or for leaving out detail the narration does not mention. Each detail names the exact text on the board that is wrong and what it should be instead.`;
+Do not fail a board for style, for being simple, or for leaving out detail the narration does not mention. Each detail names the exact text on the board that is wrong and what it should be instead. When the whole problem is the wording of one note and a short rewording fixes it, also give "from" (that note's exact words on the board) and "to" (the words it should say instead, as short as the note).`;
 
 /** A curve's shape in words: "rises, then falls (peak about 60% of the way along)". */
 export function curveShape(expr: string, min: number, max: number): string {
@@ -221,14 +221,59 @@ export function boardReviewRequest(spec: CanvasBoardSpec, beat: Pick<CanvasPlanB
   return `Lesson: ${lessonTopic}\nBoard: ${beat.title}\n\nWHAT ARIA SAYS:\n${beat.script}\n\nWHAT THE BOARD SHOWS:\n${boardFacts(spec)}`;
 }
 
-export type BoardReview = { ship: boolean; problems: Array<{ kind: string; detail: string }> };
+export type BoardReview = { ship: boolean; problems: Array<{ kind: string; detail: string; /** One note's exact words, and what they should say (the review's own rewording). */ from?: string; to?: string }> };
 
 export function parseBoardReview(raw: unknown): BoardReview {
   const r = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
   const problems = (Array.isArray(r.problems) ? r.problems : [])
     .map((p) => (p && typeof p === "object" ? (p as Record<string, unknown>) : {}))
-    .map((p) => ({ kind: String(p.kind ?? "problem").slice(0, 40), detail: String(p.detail ?? "").slice(0, 400) }))
+    .map((p) => {
+      const words = (v: unknown) => (typeof v === "string" && v.trim() && v.length <= 120 ? v.trim() : undefined);
+      const from = words(p.from);
+      const to = words(p.to);
+      return { kind: String(p.kind ?? "problem").slice(0, 40), detail: String(p.detail ?? "").slice(0, 400), ...(from && to ? { from, to } : {}) };
+    })
     .filter((p) => p.detail);
   // A verdict that names no concrete problem cannot hold a board back.
   return { ship: r.ship !== false || !problems.length, problems };
 }
+
+/*
+ * A WRONG NOTE IS FIXED IN PLACE, AND NEVER SHIPS (owner, 2026-10-27: the first board of a blood lesson
+ * waited ~35 s for two rewrites, and still shipped "Complete blood cells", which the review had called
+ * factually wrong — its third version was not reviewed). The review's own rewording of a note is applied by
+ * code, with no rewrite; a note it called wrong that a rewrite kept is corrected or taken off before the
+ * board ships.
+ */
+const sameWords = (a: string, b: string) => plainWords(a) === plainWords(b);
+const plainWords = (t: string) => t.trim().replace(/^["“”'‘’]+|["“”'‘’.]+$/g, "").replace(/\s+/g, " ").toLowerCase();
+
+/** The review's rewording applied to the note whose words it quotes; false when no note has those words. */
+export function applyReviewWording(spec: CanvasBoardSpec, from: string, to: string): boolean {
+  const note = spec.notes.find((n) => !n.tex && sameWords(n.text, from));
+  if (!note || sameWords(from, to)) return false;
+  note.text = to.trim();
+  return true;
+}
+
+/** The notes on the board a serious problem calls wrong: its "from", or the board's notes it quotes. */
+export function notesCalledWrong(spec: CanvasBoardSpec, problem: BoardReview["problems"][number]): string[] {
+  if (problem.kind !== "factually-wrong" && problem.kind !== "contradicts-narration") return [];
+  const quoted = problem.from ? [problem.from] : [...problem.detail.matchAll(/["“]([^"”]{2,80})["”]/g)].map((m) => m[1]);
+  return quoted.filter((q) => spec.notes.some((n) => sameWords(n.text, q)));
+}
+
+/** Before a board ships: each note in `wrong` (words → the review's rewording, if any) is reworded or removed. */
+export function clearWrongNotes(spec: CanvasBoardSpec, wrong: Map<string, string | undefined>): string[] {
+  const done: string[] = [];
+  const key = (t: string) => plainWords(t);
+  spec.notes = spec.notes.flatMap((n) => {
+    if (n.tex || !wrong.has(key(n.text))) return [n];
+    const to = wrong.get(key(n.text));
+    done.push(to ? `"${n.text}" → "${to}"` : `"${n.text}" removed`);
+    return to ? [{ ...n, text: to }] : [];
+  });
+  return done;
+}
+
+export const wrongNoteKey = plainWords;

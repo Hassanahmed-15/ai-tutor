@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { costFor } from "@/lib/modelPricing";
+import { hedged, type SpeechCall } from "@/lib/ttsHedge";
 import { createOpenAI, spendScopeNow } from "@/lib/openaiClient";
 import { recordSpend } from "@/lib/spend/record";
 import { createTtsQueue } from "@/lib/ttsQueue";
@@ -152,9 +153,13 @@ const FALLBACK_TIMEOUT_MS = 12_000;
  * A sentence normally starts arriving in 1-2 s. A call with no answer at all after 6 s has hung
  * upstream (measured 2026-10-14: hung calls never answered, healthy ones answered in 1.4-1.7 s), so
  * it is dropped and asked again at once instead of holding a slot for the full 20 s. A call that never
- * connected is not billed.
+ * connected is not billed. Cut to 3 s, it killed calls that answered at 3-4 s on a slow connection
+ * (2026-10-27): the second call beside a slow one (below) is what shortens a stall.
  */
 const FIRST_BYTE_TIMEOUT_MS = 6_000;
+/** A call slower than this gets a second one beside it (lib/ttsHedge.ts): no answer yet, or answered and not finished. */
+const HEDGE_ANSWER_MS = 2_500;
+const HEDGE_FINISH_MS = 6_000;
 
 async function synthesize(input: string): Promise<Synthesis> {
   for (let attempt = 1; attempt <= 2; attempt++) {
@@ -199,17 +204,29 @@ function withDeadline<T>(work: Promise<T>): Promise<T> {
 async function synthesizeWithUsage(
   input: string,
 ): Promise<{ audio: Buffer; inputTokens: number; outputTokens: number }> {
-  // A hung upstream request held one sentence's clip, and with it the whole narration: no answer in
-  // FIRST_BYTE_TIMEOUT_MS, or no finished clip in MEASURED_TIMEOUT_MS, and the call is dropped.
+  // A slow call gets a second one beside it; the first to finish is used (lib/ttsHedge.ts).
+  return hedged(() => measuredCall(input), {
+    answerMs: HEDGE_ANSWER_MS,
+    finishMs: HEDGE_FINISH_MS,
+    onHedge: (why) => console.warn(`[tts] asked twice — ${why}`),
+  });
+}
+
+/**
+ * One measured call. A hung upstream request held one sentence's clip, and with it the whole narration: no
+ * answer in FIRST_BYTE_TIMEOUT_MS, or no finished clip in MEASURED_TIMEOUT_MS, and the call is dropped.
+ */
+function measuredCall(input: string): SpeechCall<{ audio: Buffer; inputTokens: number; outputTokens: number }> {
   const controller = new AbortController();
+  let answer = () => {};
+  const answered = new Promise<void>((resolve) => { answer = resolve; });
   const overall = setTimeout(() => controller.abort(new Error("timed out")), MEASURED_TIMEOUT_MS);
   const firstByte = setTimeout(() => controller.abort(new Error(`no answer in ${FIRST_BYTE_TIMEOUT_MS / 1000} s`)), FIRST_BYTE_TIMEOUT_MS);
-  try {
-    return await readMeasuredSpeech(input, controller.signal, () => clearTimeout(firstByte));
-  } finally {
+  const result = readMeasuredSpeech(input, controller.signal, () => { clearTimeout(firstByte); answer(); }).finally(() => {
     clearTimeout(overall);
     clearTimeout(firstByte);
-  }
+  });
+  return { result, answered, abort: () => controller.abort(new Error("the other call finished first")) };
 }
 
 async function readMeasuredSpeech(input: string, signal: AbortSignal, answered: () => void): Promise<{ audio: Buffer; inputTokens: number; outputTokens: number }> {

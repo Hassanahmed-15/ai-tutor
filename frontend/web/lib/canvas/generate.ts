@@ -60,7 +60,7 @@ import { diagramCacheKey } from "../diagrams/cache";
 import { componentFitsSubject, hasVisualForm, isGeometryOrMechanics, isRealProcess, needsVectorDiagram } from "../diagrams/visualForm";
 import { dropContradictingPoints } from "./graphCheck";
 import { auditBoardForRelease, figureDataIssues } from "./releaseAudit";
-import { BOARD_REVIEW_PROMPT, boardReviewRequest, parseBoardReview, type BoardReview } from "./boardReview";
+import { applyReviewWording, BOARD_REVIEW_PROMPT, boardReviewRequest, clearWrongNotes, notesCalledWrong, parseBoardReview, wrongNoteKey, type BoardReview } from "./boardReview";
 import { deferRevealLeaks, teachingCycleIssues } from "./predict";
 import { alignToNarration, anchorNotes, unshownSentences } from "./narrationSync";
 import { coursePicture, coursePicturesOn, CoursePictureError } from "./coursePicture";
@@ -361,7 +361,7 @@ function diagramKeyFor(beat: CanvasPlanBeat): string {
   return diagramCacheKey(`${beat.title} ${beat.brief}`, [...(beat.objects ?? []), ...(beat.requiredVisual?.mustShow ?? [])], nums);
 }
 
-export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; typed?: boolean; domain?: SubjectDomain; earlier?: EarlierStructure[]; continueCode?: string[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number; /** Its animation could not be made right: the faults each attempt was sent back for. */ incomplete?: string[] }> {
+export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = [], plain = false, opts: { mathsCheck?: boolean; examiner?: ExaminerSubject; hurry?: () => boolean; /** One of the opening boards the student waits for before the lesson starts: one review, no round to tidy notes. */ opening?: boolean; typed?: boolean; domain?: SubjectDomain; earlier?: EarlierStructure[]; continueCode?: string[] } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number; /** Its animation could not be made right: the faults each attempt was sent back for. */ incomplete?: string[] }> {
   if (beat.stage === "diagram") {
     const cached = await loadSharedDiagramRecord<{ spec: CanvasBoardSpec }>(diagramKeyFor(beat)).catch(() => null);
     if (cached?.spec?.stage?.kind === "diagram") return { spec: cached.spec, costUsd: 0, attempts: 1 };
@@ -493,6 +493,8 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
   let examined: { spec: CanvasBoardSpec; faults: string[]; problems: MathsProblem[]; script: string } | null = null;
   // At most two reviews a board: the review must not turn a 2-minute lecture into a 6-minute one.
   const reviews = { used: 0 };
+  // Notes a review called wrong (their words → its rewording, if it gave one): never shipped (boardReview.ts).
+  const wrongNotes = new Map<string, string | undefined>();
   // Builds the same board again without its visual when the review rejected the visual itself.
   const rebuildPlain = async (why: string) => {
     // A course lesson's board is written again as a gpt-image-2 picture board with the fault named — never
@@ -909,8 +911,9 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       // wrong code, a rewrite for minor faults, growing the narration, tidying notes. A student waiting
       // on a board loses more than a small blemish costs; fixes for real faults still run.
       const hurried = opts.hurry?.() ?? false;
-      // The review judges what the student will see; only its serious findings count as fatal.
-      if (!fatal.length && !(hurried && reviews.used >= 1)) {
+      // The review judges what the student will see; only its serious findings count as fatal. An opening board
+      // is reviewed once: the student is waiting for it before the lesson can start (owner, 2026-10-27).
+      if (!fatal.length && !((hurried || opts.opening) && reviews.used >= 1)) {
         const review = await reviewBoard(openai, topic, spec, beat, reviews);
         costUsd += review.costUsd;
         // A label on the WRONG part misleads a student (owner, 2026-10-17: labels "very very very
@@ -931,7 +934,16 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           spec.interaction = { ...spec.interaction, readouts: [] };
           review.problems = review.problems.filter((p) => !/\bread-?outs?\b/i.test(p.detail));
         }
-        const serious = review.problems.filter((p) => FATAL_REVIEW.has(p.kind) || (p.kind === "mislabelled" && !/\b(missing|not (?:visibly )?labell?ed|unlabell?ed|no label|lacks? (?:a |its )?label)/i.test(p.detail)));
+        // "There is no "White blood cell" label. Add the label" is a label missing, not a wrong one (blood lesson, 2026-10-27).
+        let serious = review.problems.filter((p) => FATAL_REVIEW.has(p.kind) || (p.kind === "mislabelled" && !/\b(missing|not (?:visibly )?labell?ed|unlabell?ed|no label|lacks? (?:a |its )?label)|\bno\s+["“'][^"”']{1,60}["”']\s+label|\badd (?:the |a |an )?label\b/i.test(p.detail)));
+        // A note's wording the review rewords itself is corrected here, with no rewrite (boardReview.ts).
+        const reworded = serious.filter((p) => p.from && p.to && applyReviewWording(spec, p.from, p.to));
+        if (reworded.length) {
+          console.log(`[canvas] ${beat.id}: the review's wording applied, no rewrite — ${reworded.map((p) => `"${p.from}" → "${p.to}"`).join(", ")}`);
+          serious = serious.filter((p) => !reworded.includes(p));
+          review.problems = review.problems.filter((p) => !reworded.includes(p));
+        }
+        for (const p of serious) for (const words of notesCalledWrong(spec, p)) wrongNotes.set(wrongNoteKey(words), p.to);
         if (serious.length) {
           fatal = serious.map((p) => ({ gate: "review", message: `${p.kind}: ${p.detail}` }));
           if (serious.some((p) => VISUAL_FAULTS.has(p.kind))) visualRejections++;
@@ -1024,12 +1036,14 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
       }
       // No serious fault. The first attempt with notes gets one more try to tidy them; after that the
       // best board ships — notes never send a lecture to the backup.
-      if (findings.length && attempt === 1 && !hurried && clock.left() > 60_000) {
+      if (findings.length && attempt === 1 && !hurried && !opts.opening && clock.left() > 60_000) {
         if (!softest || findings.length < softest.faults) softest = { spec, faults: findings.length };
         lastError = findings.slice(0, 3).map((f) => `${f.gate}: ${f.message}`).join("; ");
         continue;
       }
       const best = softest && softest.faults < findings.length ? softest.spec : spec;
+      const cleared = clearWrongNotes(best, wrongNotes);
+      if (cleared.length) console.log(`[canvas] ${beat.id}: a note the review called wrong was kept by the rewrite — ${cleared.join(", ")}`);
       if (findings.length) console.log(`[canvas] ${beat.id}: shipped with ${findings.length} note(s) — ${findings.map((f) => f.gate).join(", ")}`);
       if (best.stage.kind === "diagram") await saveSharedDiagramRecord(diagramKeyFor(beat), { spec: best }).catch(() => undefined);
       return { spec: inStep(best), costUsd, attempts: attempt };

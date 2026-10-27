@@ -474,6 +474,8 @@ export async function writeCanvasBoard(args: {
   feedback?: string[];
   /** True while the student is about to reach this board: polish passes are skipped (generateSpec). */
   hurry?: () => boolean;
+  /** One of the opening boards the lesson waits for before it starts: reviewed once, notes not tidied (generateSpec). */
+  opening?: boolean;
   /** A lesson from a typed prompt; when left out, a lesson with no document or source behind it. */
   typedPrompt?: boolean;
   /** A typed lesson's asked subject (lib/canvas/subjectDomain.ts): CS and maths boards follow their own rules. */
@@ -545,7 +547,7 @@ export async function writeCanvasBoard(args: {
     else if (beat.written && beat.course) made = { spec: fallbackSpec(beat), costUsd: 0, attempts: 1 };
     // `typed`: a lesson from a typed prompt (no PDF, video or course behind it) gets the DSA teaching rules.
     // `earlier`: the structures the earlier boards drew, so a typed CS board stays on the lesson's one example.
-    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, typed, domain, earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined, continueCode: typed ? continuedCodeOf(beat, args.earlier[index - 1]) : undefined });
+    else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, opening: args.opening, typed, domain, earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined, continueCode: typed ? continuedCodeOf(beat, args.earlier[index - 1]) : undefined });
     dropEmptyRows(made.spec);
     pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra), course, { maths: mathsFor(beat) });
   } catch (error) {

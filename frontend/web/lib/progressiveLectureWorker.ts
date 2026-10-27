@@ -389,9 +389,12 @@ async function generateCanvasBoard(
     watch.unref?.();
     let hurried = false;
     const hurry = () => { if (near) hurried = true; return near; };
+    // The lesson starts once its opening boards are ready: those are reviewed once and their notes not tidied
+    // (owner, 2026-10-27: a blood lesson's first board took 98 s, ~35 s of it two review rounds).
+    const opening = sequence < CANVAS_OPENING_BOARDS;
     let written: Awaited<ReturnType<typeof writeCanvasBoard>>;
     try {
-      written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources, mathsCheck: mathsOn && sequence >= 1, examiner: examiner ?? undefined, hurry, subjectDomain, practice, code });
+      written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources, mathsCheck: mathsOn && sequence >= 1, examiner: examiner ?? undefined, hurry, opening, subjectDomain, practice, code });
       /*
        * NO COMPROMISE ON THE ANIMATION (owner, 2026-10-25: "no need to compromise on animation and keep on
        * retrying; meanwhile the user at the board before is told the next board is being generated"). A board
@@ -415,7 +418,7 @@ async function generateCanvasBoard(
           `Earlier attempts at this board could not draw its animation correctly. This version must fix every one of these:`,
           ...written.incomplete.map((fault, i) => `${i + 1}. ${fault}`),
         ];
-        const again = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, feedback, document, strictSource, webSources, mathsCheck: mathsOn, examiner: examiner ?? undefined, hurry, subjectDomain, practice, code }).catch(() => null);
+        const again = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, feedback, document, strictSource, webSources, mathsCheck: mathsOn, examiner: examiner ?? undefined, hurry, opening, subjectDomain, practice, code }).catch(() => null);
         if (!again) break;
         console.log(`[canvas] session=${sessionId} board ${sequence}: animation incomplete — rewrite ${round} ${again.incomplete ? "still incomplete" : "succeeded"} (${written.incomplete.length} fault(s) passed on)`);
         const cost = written.costUsd + again.costUsd;

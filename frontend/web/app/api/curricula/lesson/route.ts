@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { lessonCaller } from "@/lib/auth";
+import { wakeLectureWorker } from "@/lib/progressiveLectureQueue";
 import { createOpenAI } from "@/lib/openaiClient";
 import { curriculumLessons } from "@/lib/db/cosmos";
 import { lessonDocument, lessonSpecText, type CurriculumLessonRequest, type Evidence, type LessonSpec } from "@/lib/curriculum/lessonSpec";
@@ -34,6 +35,8 @@ function gradeLabel(tree: CurriculumTree, grade: string): string {
 
 export async function POST(req: Request) {
   if (!(await lessonCaller())) return NextResponse.json({ error: "Sign in to start a course lesson." }, { status: 401 });
+  // The lecture worker starts while this lesson is prepared, not after (lib/progressiveLectureQueue.ts).
+  void wakeLectureWorker().catch(() => undefined);
   const body = (await req.json().catch(() => ({}))) as Partial<CurriculumLessonRequest>;
   const r: CurriculumLessonRequest = {
     courseId: String(body.courseId ?? ""), version: String(body.version ?? ""), grade: String(body.grade ?? ""),

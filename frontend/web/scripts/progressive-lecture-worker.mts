@@ -8,6 +8,7 @@ import {
   readyProgressiveStorageQueue,
 } from "../lib/progressiveLectureQueue";
 import { processProgressiveLectureTask } from "../lib/progressiveLectureWorker";
+import { runInSlots } from "../lib/progressiveWorkerSlots";
 import type { ProgressiveLectureTask } from "../lib/progressiveLectureTypes";
 
 const maxConcurrentCalls = Math.max(1, Math.min(12, Number(process.env.PROGRESSIVE_WORKER_CONCURRENCY ?? 4)));
@@ -22,6 +23,10 @@ function isTask(value: unknown): value is ProgressiveLectureTask {
     typeof task.userId === "string";
 }
 
+function isWake(value: unknown): value is { type: "wake"; enqueuedAt?: number } {
+  return Boolean(value && typeof value === "object" && (value as Record<string, unknown>).type === "wake");
+}
+
 async function runStorageQueue(): Promise<void> {
   const queue = await readyProgressiveStorageQueue();
   const queueName = process.env.AZURE_STORAGE_QUEUE as string;
@@ -29,17 +34,12 @@ async function runStorageQueue(): Promise<void> {
   await poison.createIfNotExists();
   console.log(`[progressive-worker] listening on Azure Storage Queue ${queueName} with concurrency ${maxConcurrentCalls}`);
 
-  while (!stopping) {
-    const response = await queue.receiveMessages({
-      numberOfMessages: Math.min(32, maxConcurrentCalls),
-      visibilityTimeout: 30 * 60,
-    });
-    if (response.receivedMessageItems.length === 0) {
-      await delay(1_000);
-      continue;
-    }
-    await Promise.all(response.receivedMessageItems.map((message) => processStorageMessage(queue, poison, message)));
-  }
+  await runInSlots({
+    slots: maxConcurrentCalls,
+    stopping: () => stopping,
+    receive: async (max) => (await queue.receiveMessages({ numberOfMessages: Math.min(32, max), visibilityTimeout: 30 * 60 })).receivedMessageItems,
+    handle: (message) => processStorageMessage(queue, poison, message),
+  });
 }
 
 async function processStorageMessage(queue: QueueClient, poison: QueueClient, message: DequeuedMessageItem): Promise<void> {
@@ -48,6 +48,13 @@ async function processStorageMessage(queue: QueueClient, poison: QueueClient, me
     raw = decodeProgressiveTask(message.messageText);
   } catch {
     await poison.sendMessage(message.messageText);
+    await queue.deleteMessage(message.messageId, message.popReceipt);
+    return;
+  }
+  // A wake-up (lib/progressiveLectureQueue.ts wakeLectureWorker): receiving it started this worker; nothing to do.
+  if (isWake(raw)) {
+    const waited = typeof raw.enqueuedAt === "number" ? Date.now() - raw.enqueuedAt : null;
+    console.log(`[timing] kind=wake${waited === null ? "" : ` ms=${waited}`}`);
     await queue.deleteMessage(message.messageId, message.popReceipt);
     return;
   }
@@ -80,6 +87,10 @@ async function runServiceBus(): Promise<void> {
   });
   const subscription = receiver.subscribe({
     processMessage: async (message: ServiceBusReceivedMessage) => {
+      if (isWake(message.body)) {
+        await receiver.completeMessage(message);
+        return;
+      }
       if (!isTask(message.body)) {
         await receiver.deadLetterMessage(message, {
           deadLetterReason: "Invalid progressive lecture task",

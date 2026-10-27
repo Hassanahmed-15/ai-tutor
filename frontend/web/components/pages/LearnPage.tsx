@@ -332,6 +332,11 @@ type BuildCost =
   useEffect(() => {
     sourceScopeRef.current = sourceScope;
   }, [sourceScope]);
+  // The lecture worker starts as the lesson screen opens, not when the lesson is queued (owner, 2026-10-27:
+  // 56 s of a four-minute wait for board 1 was the worker starting from zero).
+  useEffect(() => {
+    void fetch("/api/progressive-lectures/wake", { method: "POST" }).catch(() => {});
+  }, []);
   const [clarifyAnswers, setClarifyAnswers] = useState<{ question: string; answer: string }[]>([]);
   /**
    * The pre-lesson conversation about what the student already knows.
