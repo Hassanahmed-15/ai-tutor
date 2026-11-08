@@ -30,6 +30,8 @@ export type CurriculumLessonRequest = {
   unitId: string;
   topicId: string;
   lessonId: string;
+  /** Which lesson of its series to teach (lib/series/split.ts); absent = the student's next one. Not part of the cache key. */
+  part?: number;
 };
 
 export type Evidence = { page: number; code: string | null; text: string };
@@ -459,4 +461,111 @@ export function lessonSpecText(spec: LessonSpec): string {
     ...(spec.examPractice ?? []).map((q) => `Exam-style question on outcome ${q.outcomeRef}: "${q.question}" [${q.marks} marks]. Mark scheme (one mark each): ${q.markPoints.join("; ")}. Model answer: ${q.modelAnswer}. Candidates lose marks by: ${q.lostMarks}`),
     spec.outOfScope.length ? `Outside this level: ${spec.outOfScope.join("; ")}` : "",
   ].filter(Boolean).join("\n\n");
+}
+
+/** One lesson of a course lesson taught as a series (lib/series/split.ts), described for the student. */
+export type LessonSeries = { part: number; parts: number; titles: string[][]; outcomeRefs: number[] };
+
+/**
+ * ONE LESSON OF A SERIES (flag CANVAS_LESSON_SERIES=on; owner, 2026-11-08). The lesson document of the
+ * ideas this lesson teaches — their boards, and the exam question on their outcomes — framed the way a
+ * teacher frames a lesson:
+ *   - it OPENS with today's plan said out loud ("Today: 1… 2… 3… Next time: …"), and from Lesson 2 on
+ *     with a one-minute recap of the last lesson first;
+ *   - it ENDS with a short quiz (2 to 5 questions on today's outcomes, each answered), a one-sentence
+ *     recap of each idea, and what comes next.
+ * A lesson that fits in one lesson is framed the same way, as "Lesson 1 of 1" in all but name.
+ */
+export function lessonPartDocument(
+  spec: LessonSpec,
+  meta: Parameters<typeof lessonDocument>[1],
+  evidence: Evidence[],
+  parts: Array<{ part: number; ideas: number[]; outcomeRefs: number[]; titles: string[] }>,
+  index: number,
+): SuprnotesLessonInput {
+  const part = parts[index];
+  const refs = new Set(part.outcomeRefs);
+  const sub: LessonSpec = {
+    ...spec,
+    boards: part.ideas.map((i) => spec.boards[i]).filter(Boolean),
+    checkpoint: spec.checkpoint.filter((c) => refs.has(c.outcomeRef)),
+    examPractice: (spec.examPractice ?? []).filter((q) => refs.has(q.outcomeRef)),
+  };
+  const doc = lessonDocument(sub, meta, evidence);
+  const blocks = doc.contentBlocks ?? [];
+  const plan = doc.lessonPlan as { beats?: Array<Record<string, unknown>>; contentBlockIds?: string[]; targetBeatCount?: number };
+  const series = parts.length > 1;
+  const name = series ? `Lesson ${part.part} of ${parts.length}` : "This lesson";
+  const previous = parts[index - 1];
+  const next = parts[index + 1];
+  // The lesson's own rules ride on the first block: the planner's required terms are read from there.
+  const lessonHints = (blocks[0]?.teachingHints ?? []).filter((h) => /^(Level:|Use these terms:|Do not teach)/.test(h));
+
+  const lastTime = previous
+    ? `LAST TIME (${`Lesson ${previous.part}`}), recapped in about one minute — one or two sentences per idea, with its key point:\n${previous.ideas.map((i) => spec.boards[i]).filter(Boolean).map((b) => `- ${b.title}: ${b.keyPoints.slice(0, 2).map((k) => k.trim().replace(/[.;]+$/, "")).join("; ")}`).join("\n")}`
+    : "";
+  const planBlock: SuprnotesContentBlock = {
+    id: "plan",
+    type: "lesson-plan",
+    heading: series ? `${name}: today's plan` : "Today's plan",
+    text: [
+      lastTime,
+      // What this lesson builds on, reminded in a sentence each before it starts (the first lesson only).
+      !previous && spec.prerequisites.length ? `BEFORE WE START — what this builds on, one sentence reminding each:\n${spec.prerequisites.slice(0, 2).map((p) => `- ${p}`).join("\n")}` : "",
+      `TODAY (${name.toLowerCase()} of "${spec.lessonTitle}"), in this order:\n${part.titles.map((t, i) => `${i + 1}. ${t}`).join("\n")}`,
+      next ? `NEXT TIME (Lesson ${next.part}): ${next.titles.join("; ")}.` : series ? "This is the last lesson of this topic." : "",
+    ].filter(Boolean).join("\n\n"),
+    keyIdeas: [],
+    teachingHints: lessonHints,
+    facts: [],
+    sourceOrder: 0,
+  };
+
+  // The quiz: the plan's checks on today's outcomes, 2 to 5 of them, each with its answer.
+  const checks = sub.checkpoint.map((c) => ({ q: c.question, a: c.answer }));
+  for (const c of spec.outcomeContracts ?? []) {
+    if (checks.length >= 2) break;
+    if (refs.has(c.outcomeRef) && c.check && !checks.some((x) => x.q === c.check)) checks.push({ q: c.check, a: "" });
+  }
+  const quiz = checks.slice(0, 5);
+  const recapBlock: SuprnotesContentBlock = {
+    id: "recap",
+    type: "lesson-recap",
+    heading: "Check what you learned",
+    text: [
+      `QUIZ — ask each question, say "pause and think", then give the answer with its reason:\n${quiz.map((c, i) => `${i + 1}. ${c.q}${c.a ? ` — Answer: ${c.a}` : ""}`).join("\n")}`,
+      `RECAP — one sentence for each idea taught today:\n${part.titles.map((t) => `- ${t}`).join("\n")}`,
+      next ? `WHAT'S NEXT: Lesson ${next.part} — ${next.titles.join("; ")}.` : "WHAT'S NEXT: this topic is complete; say what the student can now do.",
+    ].join("\n\n"),
+    // The quiz questions are what the coverage check holds this board to (lib/canvas/courseCoverage.ts).
+    keyIdeas: quiz.map((c) => c.q),
+    teachingHints: lessonHints,
+    facts: [],
+    sourceOrder: blocks.length + 1,
+  };
+
+  const contentBlocks = [planBlock, ...blocks.map((b, i) => ({ ...b, sourceOrder: i + 1 })), recapBlock];
+  // The planner numbers this lesson's outcomes 1..n (its learningGoals); the plan's boards follow suit.
+  const local = new Map(part.outcomeRefs.map((r, i) => [r, i + 1]));
+  const renumber = (beat: Record<string, unknown>) => ({
+    ...beat,
+    outcomeRefs: ((beat.outcomeRefs as number[] | undefined) ?? []).map((r) => local.get(r)).filter((r): r is number => r !== undefined),
+    ...(typeof beat.objective === "string" ? { objective: beat.objective.replace(/\boutcome (\d+)\b/g, (m, n: string) => (local.has(Number(n)) ? `outcome ${local.get(Number(n))}` : m)) } : {}),
+  });
+  const beats = [
+    { id: "plan", title: planBlock.heading, objective: "Say what this lesson teaches and in what order.", outcomeRefs: [], visualRequirement: [], sourceBlockIds: ["plan"] },
+    ...(plan.beats ?? []).map(renumber),
+    { id: "recap", title: recapBlock.heading, objective: "Check today's ideas with a short quiz, recap them, and say what comes next.", outcomeRefs: [], visualRequirement: [], sourceBlockIds: ["recap"] },
+  ].map((b, i) => ({ ...b, id: `b${i + 1}` }));
+  return {
+    ...doc,
+    source: { ...(doc.source as object), lessonPart: series ? part.part : undefined } as SuprnotesLessonInput["source"],
+    lesson: doc.lesson ? {
+      ...doc.lesson,
+      title: series ? `${spec.lessonTitle} — ${name}` : spec.lessonTitle,
+      learningGoals: part.outcomeRefs.map((r) => spec.outcomes[r - 1]?.text).filter(Boolean) as string[],
+    } : doc.lesson,
+    contentBlocks,
+    lessonPlan: { ...(doc.lessonPlan as object), beats, contentBlockIds: contentBlocks.map((b) => b.id), targetBeatCount: contentBlocks.length, series: { part: part.part, parts: parts.length } } as SuprnotesLessonInput["lessonPlan"],
+  };
 }

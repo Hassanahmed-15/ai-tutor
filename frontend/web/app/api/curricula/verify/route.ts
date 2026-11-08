@@ -48,7 +48,7 @@ type Verification = {
 
 export async function POST(req: Request) {
   if (!(await lessonCaller())) return NextResponse.json({ error: "Sign in." }, { status: 401 });
-  const body = (await req.json().catch(() => ({}))) as { request?: CurriculumLessonRequest; boards?: Array<{ title?: string; script?: string; visual?: string }> };
+  const body = (await req.json().catch(() => ({}))) as { request?: CurriculumLessonRequest; boards?: Array<{ title?: string; script?: string; visual?: string }>; outcomeRefs?: unknown };
   if (!body.request || !Array.isArray(body.boards) || !body.boards.length) return NextResponse.json({ error: "request and boards are required" }, { status: 400 });
 
   const id = cacheId(body.request);
@@ -60,7 +60,10 @@ export async function POST(req: Request) {
     cached = undefined;
   }
   if (!cached?.spec) return NextResponse.json({ error: "Unknown lesson" }, { status: 404 });
-  const spec = cached.spec;
+  // One lesson of a series (lib/series/split.ts) is checked against its own outcomes only, numbered as
+  // that lesson numbers them, and its result is not saved as the whole course lesson's.
+  const scope = Array.isArray(body.outcomeRefs) ? new Set(body.outcomeRefs.filter((n): n is number => Number.isInteger(n))) : null;
+  const spec = scope?.size ? { ...cached.spec, outcomes: cached.spec.outcomes.filter((_, i) => scope.has(i + 1)) } : cached.spec;
 
   const boards = body.boards.slice(0, 20).map((b, i) =>
     `BOARD ${i + 1}: ${String(b.title ?? "").slice(0, 120)}\nNARRATION:\n${String(b.script ?? "").slice(0, 2500)}\nVISIBLE BOARD EVIDENCE:\n${String(b.visual ?? "(none supplied)").slice(0, 2500)}`,
@@ -100,7 +103,7 @@ export async function POST(req: Request) {
         return { n: index + 1, covered: judged?.covered === true, board: judged?.board ?? 0, note: judged?.note ?? "No visible evidence found.", text: outcome.text };
       }),
     };
-    try { await container?.items.upsert({ ...cached, verification: v }); } catch { /* best-effort */ }
+    if (!scope?.size) try { await container?.items.upsert({ ...cached, verification: v }); } catch { /* best-effort */ }
     return NextResponse.json(v);
   } catch {
     return NextResponse.json({ error: "Could not check this lesson." }, { status: 502 });

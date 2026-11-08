@@ -1,4 +1,6 @@
 import { checkNumbers, numberIssuesText } from "./numberCheck";
+import { withoutBannedWords } from "../teaching/styleCheck";
+import { teachingOrdersOn } from "../teaching/courseOrders";
 import "server-only";
 
 import type { Beat } from "../lessonContent";
@@ -327,7 +329,9 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         }
         // A maths or CS board says every step of its working; one longer than a board continues on the next.
         if (visualMode !== "strict" && asMathsOrCs(subject, () => (visualMode === "prompt" ? domainIsLab(domain, lessonTitles) : isLabLookTopic(planWords)))) {
-          const split = splitLongWorking(plan.beats);
+          // A lesson's opening plan and closing quiz (lib/curriculum/lessonSpec.ts) are not working to continue.
+          const framing = (curriculum?.contentBlocks ?? []).flatMap((block, i) => (block.type === "lesson-plan" || block.type === "lesson-recap" ? [plan!.beats.filter((b) => !b.refresher)[i]?.id].filter(Boolean) as string[] : []));
+          const split = splitLongWorking(plan.beats, new Set(framing));
           if (split.count) { plan = { ...plan, beats: split.beats }; console.log(`[canvas] ${split.count} long piece(s) of working continued on a second board: ${split.beats.length} board(s) now`); }
         }
         // What each board shows is chosen by one focused call (lib/canvas/visualChoice.ts), not by the
@@ -389,6 +393,16 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
               beat.script = scriptsBefore[i];
             }
           });
+        }
+        // WORDS ARIA NEVER SAYS ("basically", "obviously", "just do…"; lib/teaching/styleCheck.ts), taken out
+        // of a course lesson taught in teaching order after every rewrite. Sentences stay where they are.
+        if (curriculum && teachingOrdersOn()) {
+          let scrubbed = 0;
+          for (const beat of plan.beats) {
+            const clean = withoutBannedWords(beat.script);
+            if (clean !== beat.script) { beat.script = clean; scrubbed++; }
+          }
+          if (scrubbed) console.log(`[teaching] banned filler words taken out of ${scrubbed} script(s)`);
         }
         if (policy) {
           // Each board is written later, from its plan beat alone: it carries the policy's board brief.

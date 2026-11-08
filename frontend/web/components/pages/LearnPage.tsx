@@ -45,6 +45,7 @@ import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { matchSpokenAnswer } from "@/lib/spokenAnswer";
 import { learnerContextForPrompt, learnerProfileView } from "@/lib/learnerProfileView";
 import { takePendingBrief } from "@/lib/pendingBrief";
+import { savePendingCurriculum } from "@/lib/pendingTopic";
 import type { CurriculumLessonRequest } from "@/lib/curriculum/lessonSpec";
 import type { DocumentPage, NormalisedRect, PageSelection } from "@/components/upload/PageSelector";
 import { PageStack } from "@/components/upload/PageStack";
@@ -1623,6 +1624,9 @@ type BuildCost =
    */
   const curriculumRef = useRef<CurriculumLessonRequest | null>(null);
   const curriculumCheckedRef = useRef(false);
+  // The lesson of a series being taught (lib/series/split.ts; CANVAS_LESSON_SERIES=on), or null.
+  const [courseSeries, setCourseSeries] = useState<{ part: number; parts: number; titles: string[][]; outcomeRefs: number[]; completed: number[] } | null>(null);
+  const seriesDoneRef = useRef(false);
   const [curriculumCheck, setCurriculumCheck] = useState<CurriculumCheck | null>(null);
   async function ingestCurriculum(request: CurriculumLessonRequest) {
     ensureSpendTag();
@@ -1648,10 +1652,15 @@ type BuildCost =
     setCurriculumCheck(null);
     try {
       const res = await fetch("/api/curricula/lesson", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(request) });
-      const data = (await res.json().catch(() => ({}))) as { error?: string; request?: CurriculumLessonRequest; spec?: { lessonTitle: string }; document?: unknown; text?: string; verification?: CurriculumCheck | null };
+      const data = (await res.json().catch(() => ({}))) as { error?: string; request?: CurriculumLessonRequest; spec?: { lessonTitle: string }; document?: unknown; text?: string; verification?: CurriculumCheck | null; series?: { part: number; parts: number; titles: string[][]; outcomeRefs: number[]; completed: number[] } | null };
       if (!res.ok || !data.spec || !data.document || !data.request) throw new Error(data.error ?? "This lesson could not be prepared.");
-      const title = data.spec.lessonTitle;
+      const series = data.series ?? null;
+      // A lesson taught in several lessons says which one this is ("Respiration — Lesson 1 of 2").
+      const title = series && series.parts > 1 ? `${data.spec.lessonTitle} — Lesson ${series.part} of ${series.parts}` : data.spec.lessonTitle;
       curriculumRef.current = data.request;
+      setCourseSeries(series);
+      seriesDoneRef.current = false;
+      if (series) void fetch("/api/curricula/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ request: data.request, part: series.part, status: "started" }) }).catch(() => undefined);
       // A lesson already checked for an earlier student keeps its result; a new one is checked when built.
       if (data.verification?.version === 3) { curriculumCheckedRef.current = true; setCurriculumCheck(data.verification); }
       setSourceDocument(data.document);
@@ -1675,11 +1684,29 @@ type BuildCost =
     if (!progressiveComplete || !request || curriculumCheckedRef.current || !beats.length) return;
     curriculumCheckedRef.current = true;
     const boards = beats.map(curriculumBoardEvidence);
-    void fetch("/api/curricula/verify", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ request, boards }) })
+    // One lesson of a series is checked against its own outcomes (app/api/curricula/verify).
+    const outcomeRefs = courseSeries && courseSeries.parts > 1 ? courseSeries.outcomeRefs : undefined;
+    void fetch("/api/curricula/verify", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ request, boards, outcomeRefs }) })
       .then((r) => (r.ok ? r.json() : null))
       .then((v: CurriculumCheck | null) => { if (v) setCurriculumCheck(v); })
       .catch(() => { /* the lesson still plays; the check is for review */ });
-  }, [progressiveComplete, beats]);
+  }, [progressiveComplete, beats, courseSeries]);
+
+  // The student watched this lesson of the series to the end: the next visit opens the next one.
+  useEffect(() => {
+    const request = curriculumRef.current;
+    if (!lectureCompleted || !request || !courseSeries || seriesDoneRef.current) return;
+    seriesDoneRef.current = true;
+    void fetch("/api/curricula/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ request, part: courseSeries.part, status: "completed" }) }).catch(() => undefined);
+  }, [lectureCompleted, courseSeries]);
+
+  /** The next lesson of the series, opened the way the course browser opens a lesson (through home). */
+  function startNextCourseLesson() {
+    const request = curriculumRef.current;
+    if (!request || !courseSeries || courseSeries.part >= courseSeries.parts) return;
+    savePendingCurriculum({ ...request, part: courseSeries.part + 1 });
+    endLectureToHome();
+  }
 
   async function ingestFiles(files: File[]) {
     if (!files.length) return;
@@ -4130,9 +4157,20 @@ type BuildCost =
             Replay gives you this recording of {builtTopic || "your lecture"}. Asking again writes a new one.
           </p>
           <div className="hud-materialize mt-11 flex flex-wrap items-center gap-7" style={{ animationDelay: "0.18s" }}>
+            {/* The next lesson of this topic's series (lib/series/split.ts), when there is one. */}
+            {courseSeries && courseSeries.part < courseSeries.parts && (
+              <button
+                onClick={startNextCourseLesson}
+                data-next-lesson=""
+                className="hud-btn-primary rounded-[var(--radius)] px-9 py-4 text-[0.95rem]"
+                title={courseSeries.titles[courseSeries.part]?.join(" · ")}
+              >
+                Next: Lesson {courseSeries.part + 1} of {courseSeries.parts}
+              </button>
+            )}
             <button
               onClick={replayLecture}
-              className="hud-btn-primary rounded-[var(--radius)] px-9 py-4 text-[0.95rem]"
+              className={courseSeries && courseSeries.part < courseSeries.parts ? "text-sm font-semibold text-[var(--hud-text)] underline-offset-4 transition-colors hover:underline" : "hud-btn-primary rounded-[var(--radius)] px-9 py-4 text-[0.95rem]"}
             >
               Replay
             </button>

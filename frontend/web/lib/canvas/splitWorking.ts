@@ -14,12 +14,12 @@ export const WORKING_MAX = 10;
 
 const CONTINUE = "We continue the same working from the last board.";
 
-export function splitLongWorking(beats: CanvasPlanBeat[]): { beats: CanvasPlanBeat[]; count: number } {
+export function splitLongWorking(beats: CanvasPlanBeat[], keepWhole: Set<string> = new Set()): { beats: CanvasPlanBeat[]; count: number } {
   let count = 0;
   const out: CanvasPlanBeat[] = [];
   for (const beat of beats) {
     const sentences = canvasSentences(beat.script);
-    if (sentences.length <= WORKING_MAX || beat.refresher || beat.overview || beat.stage === "exam") {
+    if (sentences.length <= WORKING_MAX || beat.refresher || beat.overview || beat.stage === "exam" || keepWhole.has(beat.id)) {
       out.push(beat);
       continue;
     }

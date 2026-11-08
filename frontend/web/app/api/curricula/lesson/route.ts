@@ -5,7 +5,9 @@ import { lessonCaller } from "@/lib/auth";
 import { wakeLectureWorker } from "@/lib/progressiveLectureQueue";
 import { createOpenAI } from "@/lib/openaiClient";
 import { curriculumLessons } from "@/lib/db/cosmos";
-import { lessonDocument, lessonSpecText, type CurriculumLessonRequest, type Evidence, type LessonSpec } from "@/lib/curriculum/lessonSpec";
+import { lessonDocument, lessonPartDocument, lessonSpecText, type CurriculumLessonRequest, type Evidence, type LessonSeries, type LessonSpec } from "@/lib/curriculum/lessonSpec";
+import { lessonSeriesOn, splitIntoLessons } from "@/lib/series/split";
+import { nextPart, readSeries } from "@/lib/series/store";
 import { planLessonSpec } from "@/lib/curriculum/planSpec";
 import { lessonKey } from "@/lib/curriculum/mastery";
 import { cacheId, type CachedLesson } from "@/lib/curriculum/lessonCache";
@@ -34,10 +36,13 @@ function gradeLabel(tree: CurriculumTree, grade: string): string {
 }
 
 export async function POST(req: Request) {
-  if (!(await lessonCaller())) return NextResponse.json({ error: "Sign in to start a course lesson." }, { status: 401 });
+  const caller = await lessonCaller();
+  if (!caller) return NextResponse.json({ error: "Sign in to start a course lesson." }, { status: 401 });
   // The lecture worker starts while this lesson is prepared, not after (lib/progressiveLectureQueue.ts).
   void wakeLectureWorker().catch(() => undefined);
-  const body = (await req.json().catch(() => ({}))) as Partial<CurriculumLessonRequest>;
+  const body = (await req.json().catch(() => ({}))) as Partial<CurriculumLessonRequest> & { part?: unknown };
+  // Which lesson of a series (lib/series/split.ts) to teach; by default the student's next one.
+  const askedPart = Number.isInteger(body.part) ? Number(body.part) : null;
   const r: CurriculumLessonRequest = {
     courseId: String(body.courseId ?? ""), version: String(body.version ?? ""), grade: String(body.grade ?? ""),
     unitId: String(body.unitId ?? ""), topicId: String(body.topicId ?? ""), lessonId: String(body.lessonId ?? ""),
@@ -65,7 +70,7 @@ export async function POST(req: Request) {
     const { resource } = await container.item(id, id).read<CachedLesson>();
     if (resource?.spec) {
       const verification = (resource.verification as { version?: number } | undefined)?.version === 3 ? resource.verification : undefined;
-      return NextResponse.json(respond(resource.spec, r, tree, await evidenceFor(r), true, verification));
+      return NextResponse.json(respond(resource.spec, r, tree, await evidenceFor(r), true, verification, await seriesFor(caller.userId, r, resource.spec, askedPart)));
     }
   } catch {
     // No cache reachable: build it fresh (the lesson still works).
@@ -80,7 +85,7 @@ export async function POST(req: Request) {
     const { spec, modelGaps } = await planLessonSpec(client, MODEL, { courseLabel, level, title: s.title, outcomes, evidence });
     const doc: CachedLesson = { id, request: r, spec, createdAt: new Date().toISOString(), model: MODEL, modelGaps };
     try { await container?.items.upsert(doc); } catch { /* cache is best-effort */ }
-    return NextResponse.json(respond(spec, r, tree, evidence, false));
+    return NextResponse.json(respond(spec, r, tree, evidence, false, undefined, await seriesFor(caller.userId, r, spec, askedPart)));
   } catch {
     return NextResponse.json({ error: "Could not prepare this lesson — please try again." }, { status: 502 });
   }
@@ -102,13 +107,31 @@ async function evidenceFor(r: CurriculumLessonRequest): Promise<Evidence[]> {
   }
 }
 
-function respond(spec: LessonSpec, r: CurriculumLessonRequest, tree: CurriculumTree, evidence: Evidence[], cached: boolean, verification?: unknown) {
+/**
+ * The lessons this course lesson is taught in (flag CANVAS_LESSON_SERIES=on), and which one to teach now:
+ * the one asked for, else the student's next unfinished one. Off: null, and the lesson is built whole.
+ */
+async function seriesFor(userId: string, r: CurriculumLessonRequest, spec: LessonSpec, asked: number | null): Promise<(LessonSeries & { completed: number[]; split: ReturnType<typeof splitIntoLessons> }) | null> {
+  if (!lessonSeriesOn() || !spec.boards.length) return null;
+  const split = splitIntoLessons(spec.boards.map((b) => ({ title: b.title, outcomeRefs: b.outcomeRefs })));
+  const titles = split.map((p) => p.titles);
+  const progress = await readSeries(userId, r);
+  const part = asked && asked >= 1 && asked <= split.length ? asked : nextPart(progress, titles);
+  const sameSplit = progress && JSON.stringify(progress.titles) === JSON.stringify(titles);
+  return { part, parts: split.length, titles, outcomeRefs: split[part - 1].outcomeRefs, completed: sameSplit ? progress.completed : [], split };
+}
+
+function respond(spec: LessonSpec, r: CurriculumLessonRequest, tree: CurriculumTree, evidence: Evidence[], cached: boolean, verification?: unknown, series?: Awaited<ReturnType<typeof seriesFor>>) {
+  const meta = { request: r, framework: [tree.framework, tree.syllabusCode].filter(Boolean).join(" "), subject: tree.subject, sourceUrl: tree.source.urls[0] };
+  const { split, ...shown } = series ?? { split: null };
   return {
     request: r,
     cached,
     spec,
-    verification: verification ?? null,
-    document: lessonDocument(spec, { request: r, framework: [tree.framework, tree.syllabusCode].filter(Boolean).join(" "), subject: tree.subject, sourceUrl: tree.source.urls[0] }, evidence),
+    // A lesson checked whole says nothing about one lesson of its series: that one is checked by itself.
+    verification: series && series.parts > 1 ? null : verification ?? null,
+    document: series && split ? lessonPartDocument(spec, meta, evidence, split, series.part - 1) : lessonDocument(spec, meta, evidence),
     text: lessonSpecText(spec),
+    series: series ? shown : null,
   };
 }

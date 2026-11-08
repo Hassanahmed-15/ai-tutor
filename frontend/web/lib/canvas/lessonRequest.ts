@@ -19,6 +19,8 @@ import { asCodeLesson, asMaths, asMathsOrCs, courseLessonSubject, type LessonSub
 import { domainIsCs, domainIsLab } from "./subjectDomain";
 import { labVisualsOn, view3dPlanSection } from "./labVisuals";
 import { teachingLine } from "../teachingQuestions";
+import { teachingOrdersOn } from "../teaching/courseOrders";
+import { CS_TEACHING as CS_TEACHING_ORDERED, MATHS_TEACHING, TEACHING_EXAMPLES, TEACHING_RULES } from "../teaching/lessonTypes";
 
 /**
  * WHICH LECTURES ARE TAUGHT ON THE LESSON CANVAS, and what its planner is told about them.
@@ -246,13 +248,20 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // MATHS AND COMPUTER SCIENCE are taught in a visible structure (owner, 2026-10-21: "keep your
   // intentions clear and teach in a structured way — I really don't get how you teach"; "if there is
   // any proof it should build step by step"). Not for a lesson strictly from a source: its order is the source's.
-  if (!strictDoc && !video && labLesson) lines.push("", MATHS_CS_TEACHING);
+  // A course lesson taught in teaching order (CANVAS_TEACHING_ORDERS=on) takes the rewritten maths and CS
+  // rules instead (lib/teaching/lessonTypes.ts; owner, 2026-11-08: clearer, never an overview).
+  const ordered = Boolean(course) && teachingOrdersOn();
+  const codeLesson = !strictDoc && !video && (typedPrompt ? typedCs : asCodeLesson(subject, () => isCsTopic(subject ? `${planWords} ${(curriculumDocumentOf(input)?.lesson?.learningGoals ?? []).join(" ")}` : planWords)));
+  if (ordered) {
+    if (subject === "maths") lines.push("", MATHS_TEACHING);
+    else if (codeLesson) lines.push("", CS_TEACHING_ORDERED);
+  } else if (!strictDoc && !video && labLesson) lines.push("", MATHS_CS_TEACHING);
   // A typed maths lesson: every board moves the argument on, and "compare both" gets its own board (lib/canvas/repeatBoards.ts).
   if (typedPrompt && !typedCs && asMaths(subject, () => isMathsTopic(lessonText))) lines.push("", mathsNoRepeatRule(asksToCompare((input.teachingChoices ?? []).map((c) => c.answer))));
   // COMPUTER SCIENCE is taught as a CS teacher teaches it (owner's manager, a CS teacher, 2026-10-22:
   // the visuals and code were nice but it "never really teaches" and did not explain its visuals).
   // Inside a CS course only a programming, algorithm or data-structure lesson is taught through code.
-  if (!strictDoc && !video && (typedPrompt ? typedCs : asCodeLesson(subject, () => isCsTopic(subject ? `${planWords} ${(curriculumDocumentOf(input)?.lesson?.learningGoals ?? []).join(" ")}` : planWords)))) lines.push("", CS_TEACHING);
+  if (!ordered && codeLesson) lines.push("", CS_TEACHING);
   if (doc) lines.push("", documentPlanSection(doc, listings, Boolean(question), isLadder(input.outline?.subtopics)));
   if (strictDoc) lines.push("", strictPlanSection(strictDoc, strictQuestion));
   // What the student already knows of these pages (lib/intake.ts): how deep each part goes.
@@ -397,6 +406,16 @@ function curriculumPlanSection(doc: SuprnotesLessonInput): string {
     "Sentence counts per board (a ceiling as well as a guide):",
     ...(doc.contentBlocks ?? []).map((block, i) => {
       const n = courseBoardSentences(block);
+      // A lesson of a series opens on its plan and ends on its quiz (lib/curriculum/lessonSpec.ts lessonPartDocument).
+      if (block.type === "lesson-plan") {
+        const last = /LAST TIME/.test(block.text ?? "");
+        const before = /BEFORE WE START/.test(block.text ?? "");
+        return `- b${i + 1} (${block.heading}): a written board, interaction null, "visual": "concept", no picture. The script: ${last ? "first recap LAST TIME in about one minute — one or two sentences per idea, saying its key point; then " : ""}${before ? "first remind the student, one sentence each, of what this lesson builds on (BEFORE WE START); then " : ""}say what TODAY teaches, one sentence per idea in the order given, each with why it matters in plain words; then one sentence on what comes NEXT TIME (if given) → ${last ? "8 to 11" : before ? "6 to 9" : "5 to 7"} sentences. It is the lesson's planned opening, not a summary board.`;
+      }
+      if (block.type === "lesson-recap") {
+        const questions = block.keyIdeas?.length ?? 0;
+        return `- b${i + 1} (${block.heading}): a written board, interaction null, "visual": "concept", no picture. The script asks each QUIZ question in turn (${questions} of them): the question, then "Pause and think.", then the answer with its reason — three sentences each; then one sentence recapping each idea taught today; then one sentence on what's next → ${questions * 3 + 3} to ${questions * 3 + 5} sentences. It is the lesson's planned ending, not a summary board.`;
+      }
       if (block.exam) return `- b${i + 1} (${block.heading}): stage "exam", interaction null, diagram "none". The board shows the question, its marks and the mark scheme by itself. The script: read the question and say it is worth ${block.exam.marks} marks; say what the command word "${block.exam.commandWord}" asks for; then ${block.exam.levels?.length ? `say what lifts an answer from each level to the next, top level first, naming each level (${block.exam.levels.length} sentences), then the points a top answer makes` : `give the full-mark answer, ONE sentence per marking point, in the mark scheme's order and wording (${block.exam.markPoints.length} sentences)`}; then say how candidates lose marks and what examiners want instead → ${n} to ${n + 2} sentences.`;
       const steps = workedSteps(block.text);
       // The last board of each outcome closes with how that outcome is examined; the others end on their answer.
@@ -406,6 +425,15 @@ function curriculumPlanSection(doc: SuprnotesLessonInput): string {
     }),
     "",
     ...COURSE_EASY_WORDS,
+    // Taught in teaching order (lib/teaching/courseOrders.ts): each block says which step of its idea's order
+    // its board is; these are the rules every board follows, with what teaching looks like next to an overview.
+    ...(teachingOrdersOn() ? [
+      "",
+      'EACH IDEA IS TAUGHT OVER SEVERAL BOARDS, IN ITS TEACHING ORDER: a block that starts "TEACHING ORDER — board k of n" is one step of its idea; its board does exactly what that block says, in that order, and leaves the other steps to their own boards (it never jumps ahead to the rule, and never repeats an earlier board).',
+      ...TEACHING_RULES,
+      "",
+      ...TEACHING_EXAMPLES,
+    ] : []),
     ...(courseCodeDiagramsOff() ? ["", ...COURSE_PICTURES_WHERE_NEEDED] : []),
     "",
     courseCodeDiagramsOff()

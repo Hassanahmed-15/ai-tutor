@@ -5,6 +5,8 @@ import { databaseConfigured } from "@/lib/db/cosmos";
 import { normalizeLectureMode, normalizeLectureSourceType } from "@/lib/lectureArchive";
 import { dispatchProgressiveTasks, progressiveQueueTransport } from "@/lib/progressiveLectureQueue";
 import { createProgressiveLectureSession } from "@/lib/progressiveLectureStore";
+import { teachingOrdersOn, withTeachingOrders } from "@/lib/teaching/courseOrders";
+import { studentLevelFor } from "@/lib/teaching/lessonTypes";
 import { isLearnerProfileSnapshot, shouldIncludeCodeExamples, type LearnerProfileSnapshot, type ProgressiveLectureInput } from "@/lib/progressiveLectureTypes";
 import { sanitizeLearnerProfile } from "@/lib/learnerProfile";
 import { recordLesson, snapshotFrom } from "@/lib/learnerModel";
@@ -14,7 +16,7 @@ import { sanitizeSourceScope } from "@/lib/sourceScope";
 import { sanitizeSourcePack } from "@/lib/webSources";
 import { isProgrammingTopic } from "@/lib/codeSpec";
 import { classifySubjectDomain } from "@/lib/canvas/subjectDomainClassifier";
-import { referenceDocumentOf } from "@/lib/canvas/lessonRequest";
+import { curriculumDocumentOf, referenceDocumentOf } from "@/lib/canvas/lessonRequest";
 import { documentSections } from "@/lib/canvas/documentContext";
 import { emphasisedParts, sanitizeTeachingChoices, teachingSettings } from "@/lib/teachingQuestions";
 
@@ -115,6 +117,15 @@ export async function POST(request: Request) {
   if (subject && (!referenceDoc || subject.domain === "cs")) {
     input.subjectDomain = subject.domain;
     console.log(`[subject] "${topic}"${referenceDoc ? " (reference PDF)" : ""} → ${subject.domain} (${subject.source})`);
+  }
+
+  // A course lesson taught in teaching order (lib/teaching/courseOrders.ts, CANVAS_TEACHING_ORDERS=on):
+  // each idea's block becomes the boards of its order, once, here, so every worker step reads the same.
+  const course = curriculumDocumentOf(input);
+  if (course && teachingOrdersOn()) {
+    const level = studentLevelFor(input.learnerProfile.expertise);
+    input.suprnotes = withTeachingOrders(course, level);
+    console.log(`[teaching] "${topic}" taught for a ${level} student: ${JSON.stringify((input.suprnotes as { lessonPlan?: { teachingOrders?: { ideas?: string[] } } }).lessonPlan?.teachingOrders?.ideas ?? [])}, ${(input.suprnotes as { contentBlocks?: unknown[] }).contentBlocks?.length ?? 0} boards`);
   }
 
   try {

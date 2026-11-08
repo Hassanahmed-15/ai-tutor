@@ -158,6 +158,17 @@ export const CHECKIN_INVITE_CUE =
   "chat a little and ask again. Keep going until they agree. Never pressure them and never make " +
   "them feel bad for hesitating. Call resume_lecture only once they actually agree.";
 
+/** How a side question is answered in a course lesson taught in teaching order (lib/teaching/lessonTypes.ts). */
+const COURSE_QUICK_ANSWER = [
+  "ANSWERING A QUESTION DURING THE LESSON — the quick-answer order:",
+  "1. Answer it directly, in one or two short sentences, using the correct term and saying what it means.",
+  "2. Give one small concrete example (real numbers, a real case or a real object).",
+  "3. Check it landed: ask one quick question back, or ask whether that makes sense.",
+  "4. Go back to the lesson where it stopped.",
+  "If you cannot tell exactly what they misunderstood, ask one short question to find the exact mistake before you explain again. When they struggle, explain it a different way with a different example — never the same words louder.",
+  "Never say \"basically\", \"simply\", \"obviously\", \"clearly\", \"just\" (as in \"just do this\") or \"as you know\". Never invent a fact, date, quotation or source; say when you are not sure.",
+].join("\n");
+
 export function buildGeminiLiveInstructions(input: {
   topic: string;
   beatContext: string;
@@ -203,6 +214,9 @@ export function buildGeminiLiveInstructions(input: {
   const parts = [TUTOR_PERSONA];
   if (fidelity.strict) parts.push(STRICT_VOICE_RULES);
   else if (input.documentContext?.trim() && !video) parts.push(REFERENCE_VOICE_RULES);
+  // A course lesson taught in teaching order (CANVAS_TEACHING_ORDERS=on; lib/teaching/lessonTypes.ts):
+  // a side question gets the quick-answer order and the same words-never-said as the lesson.
+  if (process.env.CANVAS_TEACHING_ORDERS === "on" && /official curriculum course lesson/i.test(`${input.documentContext ?? ""} ${input.lessonContext}`)) parts.push(COURSE_QUICK_ANSWER);
   parts.push(`Lesson topic: ${input.topic || "the current lesson"}.`);
   if (input.lessonQuestion) parts.push(`This lesson was built to answer: "${input.lessonQuestion}". Keep every answer connected to it.`);
   /*
