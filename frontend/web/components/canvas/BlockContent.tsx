@@ -53,7 +53,8 @@ function CodeLine({ line }: { line: string }) {
 
 /** A block, its direction set by its own words: Urdu and Arabic run right to left, code never does. */
 export function BlockView(props: { block: BoardBlock; units: RevealUnit[]; shown: number }) {
-  return <div dir={props.block.kind === "code" || props.block.kind === "formula" ? "ltr" : "auto"}><BlockBody {...props} /></div>;
+  const rtl = props.block.kind !== "code" && props.block.kind !== "formula" && /[\u0590-\u08FF]/.test(props.block.board_text);
+  return <div dir={rtl ? "rtl" : "ltr"}><BlockBody {...props} /></div>;
 }
 
 function BlockBody({ block, units, shown }: { block: BoardBlock; units: RevealUnit[]; shown: number }) {
