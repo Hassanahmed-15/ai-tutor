@@ -17,7 +17,40 @@ export class AriaPencil extends Player {
 
   load(spec) {
     this.drawn = -1;
-    return super.load(withSentences(spec));
+    const st = super.load(withSentences(spec));
+    if (st.errors.length || !this.board) return st;
+    // The scene's x and y ranges are the model's guess: a cuboid's top can fall off them. Everything the
+    // lesson will show is measured once built, and the ranges are widened once to hold it with a margin.
+    const fit = this.#extent();
+    const bb = spec.board;
+    if (fit && (fit.x0 < bb.x[0] || fit.x1 > bb.x[1] || fit.y0 < bb.y[0] || fit.y1 > bb.y[1])) {
+      const mx = (fit.x1 - fit.x0) * 0.08 || 0.5, my = (fit.y1 - fit.y0) * 0.08 || 0.5;
+      const board = { ...bb, x: [Math.min(bb.x[0], fit.x0 - mx), Math.max(bb.x[1], fit.x1 + mx)], y: [Math.min(bb.y[0], fit.y0 - my), Math.max(bb.y[1], fit.y1 + my)] };
+      this.drawn = -1;
+      return super.load(withSentences({ ...spec, board }));
+    }
+    return st;
+  }
+
+  /** Where every point and line of the scene lands (hidden ones too: they are drawn later), in board units. */
+  #extent() {
+    let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+    const take = (x, y) => {
+      if (!Number.isFinite(x) || !Number.isFinite(y) || Math.abs(x) > 1e6 || Math.abs(y) > 1e6) return;
+      x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y);
+    };
+    for (const el of this.board.objectsList ?? []) {
+      if (el.elType === "text" || el.elType === "axis" || el.elType === "ticks" || el.elType === "grid") continue;
+      try {
+        if (el.elType === "point" || el.elType === "glider") take(el.X(), el.Y());
+        else if (el.point1 && el.point2 && el.elType === "segment") { take(el.point1.X(), el.point1.Y()); take(el.point2.X(), el.point2.Y()); }
+        else if (Array.isArray(el.vertices)) for (const v of el.vertices) take(v.X(), v.Y());
+        else if (Array.isArray(el.points) && el.elType === "curve") for (const c of el.points) take(c.usrCoords[1], c.usrCoords[2]);
+      } catch {
+        // An element with nothing to measure.
+      }
+    }
+    return Number.isFinite(x0) ? { x0, x1, y0, y1 } : null;
   }
 
   /** Draws every step up to sentence `s`; `msFor(s)` is how long that sentence is spoken. */

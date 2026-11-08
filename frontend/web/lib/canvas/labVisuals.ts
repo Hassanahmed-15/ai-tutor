@@ -21,7 +21,7 @@ for (const r of (RULES as { rules: Array<{ kind: string; template?: string | nul
 
 /** The templates a planner may put on a board: only those where 3-D carries real information. */
 export function view3dTemplates(): Array<{ id: string; title: string; topics: string[] }> {
-  return TEMPLATES.filter((t) => KIND.get(t.id) !== "both").map((t) => ({ id: t.id, title: t.title, topics: t.topics.slice(0, 5) }));
+  return TEMPLATES.filter((t) => KIND.get(t.id) !== "both").map((t) => ({ id: t.id, title: t.title, topics: t.topics.slice(0, 8) }));
 }
 
 export function isView3dTemplate(id: unknown): id is string {

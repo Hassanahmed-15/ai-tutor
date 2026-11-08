@@ -307,10 +307,14 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   /** MarkerWriter: about to draw `box`; answers how long the pen should wait for the camera. */
   /** Where the camera is and how the board sits, for timing a move (set below, read by the director). */
   const camRef = useRef<{ view: () => View; place?: PanelPlacement; aspect: number }>({ view: () => ({ x: 0, y: 0, w: 1, h: 1 }), aspect: 1 });
+  const labRectRef = useRef<Rect | null>(null);
   const onInkRegion = useCallback((box: Rect | null, ms: number, drawing: boolean) => {
     if (!directingRef.current) return 0;
     const was = stateFor();
-    const next = directInk(was, box, performance.now(), { w: PANEL_W, h: PANEL_H }, undefined, drawing, ms);
+    // A lab drawing (lib/canvas/labDrawing.ts) is what the working is about: a close-up keeps it in the shot.
+    const lab = labRectRef.current;
+    const framed = box && lab ? unionRects([box, lab]) : box;
+    const next = directInk(was, framed, performance.now(), { w: PANEL_W, h: PANEL_H }, undefined, drawing, ms);
     const qa = window as unknown as { __qaMarker?: boolean; __dirLog?: unknown[] };
     if (qa.__qaMarker) (qa.__dirLog ??= []).push({ t: Math.round(performance.now()), box: box && [box.x, box.y, box.w, box.h].map(Math.round), ms: Math.round(ms), drawing, was: was.shot && [was.shot.x, was.shot.w].map(Math.round), next: next.shot && [next.shot.x, next.shot.w].map(Math.round) });
     if (!applyShot(next, was)) return 0;
@@ -321,6 +325,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     const target = next.shot ? fitView(toWorld(next.shot, place), aspect, 0.03) : fitView(toWorld({ x: 0, y: 0, w: PANEL_W, h: PANEL_H }, place), aspect, 0.035);
     return flightMs(view(), target) + 150;
   }, [stateFor, applyShot]);
+  labRectRef.current = (currentLayout?.marks.find((m) => m.type === "lab") as { rect: Rect } | undefined)?.rect ?? null;
   // What Aria points at must be in the shot.
   const focusBox = focusId ? currentLayout?.targets[focusId] : undefined;
   const focusKey = focusBox ? `${boardKey}|${focusId}|${Math.round(focusBox.x)},${Math.round(focusBox.y)}` : "";

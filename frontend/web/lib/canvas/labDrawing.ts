@@ -132,14 +132,25 @@ async function view3d(openai: OpenAI, ctx: MathsBoardContext, templateId: string
     `You fill the data of a 3-D teaching model, "${t.title}", for one lesson board. Use the board's own numbers and names exactly as Aria says them; where she gives none, keep the default. Return the data JSON only, matching this JSON Schema:`,
     JSON.stringify(z.toJSONSchema(t.schema as never)),
     `Default data: ${JSON.stringify(t.defaults)}`,
+    "NEVER change a number the board says to make it fit. If the model cannot hold the board's numbers, reply {\"cannot\": \"why\"} instead.",
   ].join("\n");
   let user = boardText(ctx, { heading: ctx.board, notes: [], stage: { kind: "illustration" } } as unknown as CanvasBoardSpec);
+  const said = numbersIn([ctx.board, ...ctx.sentences, ...ctx.written].join(" "));
   let costUsd = 0;
   for (let attempt = 1; attempt <= 2; attempt++) {
     const r = await json(openai, system, user);
     costUsd += r.costUsd;
+    if (r.json && typeof r.json === "object" && "cannot" in r.json) {
+      log.push(`${id}: 3-D ${templateId} cannot hold this board — ${String((r.json as { cannot: unknown }).cannot).slice(0, 160)}`);
+      return { lab: null, costUsd };
+    }
     const parsed = t.schema.safeParse(r.json);
     let problem = parsed.success ? "" : parsed.error.issues.slice(0, 6).map((i) => `${i.path.join(".") || "data"}: ${i.message}`).join("; ");
+    // THE MODEL SHOWS THE BOARD'S NUMBERS (a 3 × 4 × 12 cuboid was once drawn 3 × 4 × 10 to fit a limit).
+    if (parsed.success) {
+      const unsaid = numbersIn(parsed.data).filter((n) => !said.some((m) => Math.abs(m - n) < 1e-9));
+      if (unsaid.length) problem = `the data has ${unsaid.join(", ")}, which the board never says: use only the board's own numbers`;
+    }
     if (parsed.success) {
       try {
         const result = await t.run(new RecordingBoard(), parsed.data as never);
@@ -156,6 +167,15 @@ async function view3d(openai: OpenAI, ctx: MathsBoardContext, templateId: string
     user = `${user}\n\nYour previous data: ${JSON.stringify(r.json).slice(0, 4000)}\nIt was refused: ${problem}\nReturn corrected data.`;
   }
   return { lab: null, costUsd };
+}
+
+/** Every number in a value: in data, its numbers; in text, the numbers written in it. */
+function numbersIn(v: unknown): number[] {
+  if (typeof v === "number") return [v];
+  if (typeof v === "string") return [...v.matchAll(/-?\d+(?:\.\d+)?/g)].map((m) => Number(m[0]));
+  if (Array.isArray(v)) return v.flatMap(numbersIn);
+  if (v && typeof v === "object") return Object.values(v).flatMap((x) => (typeof x === "string" ? [] : numbersIn(x)));
+  return [];
 }
 
 /** A placeholder picture: the board keeps its drawing area (beside the notes or the working) for the lab drawing. */
