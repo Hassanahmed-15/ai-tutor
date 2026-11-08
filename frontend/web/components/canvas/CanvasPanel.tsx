@@ -15,6 +15,7 @@ import { COURSE_FONT_FAMILY, COURSE_FONT_STACK } from "@/lib/anim/boardFont";
 import { stackAt } from "@/lib/canvas/callStack";
 import { SketchView } from "./SketchView";
 import { LabDrawingView } from "./LabDrawingView";
+import { LivingEquationView } from "./LivingEquationView";
 import { SequenceView } from "./SequenceView";
 import { OsGanttView, OsMappingView, OsMemoryView, OsStatesView } from "./OsDiagramView";
 import type { CardStyle } from "@/lib/canvas/cardStyle";
@@ -684,6 +685,8 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       );
     case "lab":
       return <LabDrawingView mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />;
+    case "living":
+      return <LivingEquationView mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />;
     case "figure":
       return <FigureView mark={mark} chalk={Boolean(chalk)} focusId={focusId} shownThrough={shownThrough} />;
     case "figure-label":

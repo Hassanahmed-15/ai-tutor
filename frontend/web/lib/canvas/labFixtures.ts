@@ -3,6 +3,8 @@
  * notes, and a 3-D model. `/canvas-lab?fixture=lab` — free, no model calls.
  */
 import trig from "../mathsEngine/examples/trig.json";
+// A real saved board (the geometric proof's "count the same area two ways"), with its term links added by hand.
+import livingProof from "./fixtures-living-proof.json";
 import type { CanvasBoardSpec } from "./types";
 
 export const LAB_FIXTURES: Array<{ id: string; script: string; spec: CanvasBoardSpec }> = [
@@ -16,4 +18,5 @@ export const LAB_FIXTURES: Array<{ id: string; script: string; spec: CanvasBoard
     script: "Here are two points in space, A and B. Go along x, then y, then up z. The straight line from A to B is the 3-D Pythagoras distance.",
     spec: { v: 1, heading: "Distance in 3-D", notes: [{ id: "n1", text: "d² = Δx² + Δy² + Δz²", s: 2 }], stage: { kind: "illustration", subject: "drawing", parts: [], labels: [] } as never, cues: [], lab: { kind: "view3d", template: "points_distance_3d", args: { A: [1, 2, 3], B: [4, 0, 1] }, stepSentence: [0, 1, 2], alt: "Two points A and B in 3-D and the distance between them" } },
   },
+  livingProof as unknown as { id: string; script: string; spec: CanvasBoardSpec },
 ];

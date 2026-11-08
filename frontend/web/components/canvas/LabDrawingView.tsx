@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { Mark } from "@/lib/canvas/layout";
+import { registerLabParts } from "@/lib/canvas/labParts";
 
 /**
  * THE LAB ENGINES' DRAWING ON ARIA'S BOARD (lib/canvas/labDrawing.ts): the pencil scene (lib/mathsEngine,
@@ -35,7 +36,8 @@ const PENCIL = (
   </svg>
 );
 
-type Pencil = { load(spec: unknown): { errors: string[]; warnings: string[] }; stepTo(s: number, msFor: (s: number) => number, animate: boolean): Promise<void>; destroy(): void; state: { errors: string[]; warnings: string[] } };
+type JxgEl = { rendNode: SVGGraphicsElement; visProp: { strokecolor?: string; fillcolor?: string } };
+type Pencil = { load(spec: unknown): { errors: string[]; warnings: string[] }; stepTo(s: number, msFor: (s: number) => number, animate: boolean): Promise<void>; destroy(): void; elementsOf(ids: string[]): JxgEl[]; state: { errors: string[]; warnings: string[] } };
 
 function PencilScene({ mark, shownThrough, reducedMotion }: { mark: LabMark; shownThrough: number; reducedMotion: boolean }) {
   const lab = mark.lab as Extract<LabMark["lab"], { kind: "pencil" }>;
@@ -53,6 +55,7 @@ function PencilScene({ mark, shownThrough, reducedMotion }: { mark: LabMark; sho
 
   useEffect(() => {
     let dead = false;
+    let unregister = () => {};
     (async () => {
       try {
         await loadJsxGraph();
@@ -63,6 +66,12 @@ function PencilScene({ mark, shownThrough, reducedMotion }: { mark: LabMark; sho
         if (st.errors.length) { setFailed(st.errors[0]); return; }
         player.current = p;
         last.current = -1;
+        // The living equation beside it finds its parts here (lib/canvas/labParts.ts).
+        unregister = registerLabParts(mark.key, {
+          nodes: (ids) => p.elementsOf(ids).map((el) => el.rendNode),
+          colour: (ids) => { const el = p.elementsOf(ids)[0]; const c = el?.visProp.strokecolor ?? el?.visProp.fillcolor; return c && c !== "none" ? c : null; },
+          glow: (ids, on) => { for (const el of p.elementsOf(ids)) { el.rendNode.style.filter = on ? "drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor)" : ""; el.rendNode.style.color = el.visProp.strokecolor ?? "#fff"; el.rendNode.style.strokeWidth = on ? "5px" : ""; } },
+        });
         setReady((r) => r + 1);
       } catch (error) {
         setFailed((error as Error).message);
@@ -70,10 +79,11 @@ function PencilScene({ mark, shownThrough, reducedMotion }: { mark: LabMark; sho
     })();
     return () => {
       dead = true;
+      unregister();
       player.current?.destroy();
       player.current = null;
     };
-  }, [id, sceneKey]);
+  }, [id, sceneKey, mark.key]);
 
   useEffect(() => {
     const p = player.current;

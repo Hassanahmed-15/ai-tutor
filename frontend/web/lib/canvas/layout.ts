@@ -49,7 +49,9 @@ export type Mark =
   | { type: "text"; id: string; rect: Rect; text: string; color: string; s: number; size: number }
   | { type: "figure"; id: string; rect: Rect; scale: number; drawing: FigureDrawing; s: number; asset?: string; timing?: Record<string, number> }
   /** The lab engines' drawing (lib/canvas/labDrawing.ts) in the board's drawing area: the pencil scene or the 3-D model. */
-  | { type: "lab"; id: string; rect: Rect; lab: LabDrawing; s: number }
+  | { type: "lab"; id: string; rect: Rect; lab: LabDrawing; s: number; /** Joins it to the board's living equation (its parts glow as their terms arrive). */ key: string }
+  /** The working as one living equation (components/canvas/LivingEquationView.tsx): its terms, steps and links to the drawing. */
+  | { type: "living"; id: string; rect: Rect; tokens: Array<{ id: string; text: string; tex?: string; color: string }>; steps: Array<{ s: number; order: string[]; highlight: string[]; caption?: string }>; links: Array<{ token: string; objects: string[]; name: string }>; drawing?: string; s: number }
   | { type: "figure-label"; id: string; part: string; lines: string[]; side: "left" | "right"; at: Pt; leader: Pt[]; size: number; s: number }
   | { type: "free-body"; id: string; body: SceneStage["items"][number]; bodyRect: Rect; forces: FreeBodyForce[]; s: number }
   | { type: "electrolytic-cell"; id: string; rect: Rect; parts: { power: SceneStage["items"][number]; electrolyte: SceneStage["items"][number]; anode: SceneStage["items"][number]; cathode: SceneStage["items"][number] }; s: number }
@@ -284,6 +286,9 @@ function sketchWritingToNotes(spec: CanvasBoardSpec): CanvasBoardSpec {
   }
   return { ...spec, notes: notes.map((n, i) => ({ n, i })).sort((a, b) => a.n.s - b.n.s || a.i - b.i).map(({ n }) => n), stage: { ...spec.stage, items: drawings } };
 }
+
+/** One board's lab drawing, as its living equation finds it on the page. */
+const labKeyOf = (spec: CanvasBoardSpec) => `${spec.heading}|${spec.lab?.kind === "pencil" ? String((spec.lab.scene as { id?: unknown }).id ?? "") : spec.lab?.kind ?? ""}`;
 
 export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
   const sketched = sketchWritingToNotes(given);
@@ -624,10 +629,29 @@ export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
       });
     }
   }
+  // ONE LIVING EQUATION (CanvasBoardSpec.living): the stacked lines of working give way to one area —
+  // beside the drawing when there is one — where the current step changes in place.
+  if (spec.living && spec.stage.kind === "equation") {
+    const eq = spec.stage;
+    const beside = Boolean(eq.figure || eq.picture);
+    const figW = Math.round(stage.w * 0.5);
+    const rect = beside ? { x: stage.x + figW + 24, y: stage.y, w: stage.w - figW - 24, h: stage.h } : stage;
+    const colours = new Map(marks.flatMap((m) => (m.type === "equation" ? m.tokens.map((t) => [t.id, t.color] as const) : [])));
+    for (let i = marks.length - 1; i >= 0; i--) if (marks[i].type === "equation") marks.splice(i, 1);
+    for (const t of eq.tokens) delete targets[t.id];
+    const links = spec.lab?.kind === "pencil" ? spec.lab.links ?? [] : [];
+    marks.push({
+      type: "living", id: "living", rect, s: 0, links,
+      tokens: eq.tokens.map((t) => ({ id: t.id, text: t.text, ...(t.tex ? { tex: t.tex } : {}), color: colours.get(t.id) ?? INK })),
+      steps: eq.steps.map((st) => ({ s: st.s, order: st.order, highlight: st.highlight ?? [], ...(st.caption ? { caption: st.caption } : {}) })),
+      ...(spec.lab?.kind === "pencil" ? { drawing: labKeyOf(spec) } : {}),
+    });
+    add("living", rect, 0);
+  }
   // A lab drawing takes the drawing area its placeholder picture held (lib/canvas/labDrawing.ts).
   if (spec.lab) {
     const at = marks.findIndex((m) => m.type === "picture");
-    if (at >= 0) marks[at] = { type: "lab", id: "lab", rect: (marks[at] as Extract<Mark, { type: "picture" }>).rect, lab: spec.lab, s: 0 };
+    if (at >= 0) marks[at] = { type: "lab", id: "lab", rect: (marks[at] as Extract<Mark, { type: "picture" }>).rect, lab: spec.lab, s: 0, key: labKeyOf(spec) };
   }
   return { marks, targets, stage };
 }

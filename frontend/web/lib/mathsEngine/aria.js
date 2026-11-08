@@ -100,6 +100,12 @@ export class AriaPencil extends Player {
     }
   }
 
+  /** The drawn elements of these objects or groups (for the living equation's links). */
+  elementsOf(ids) {
+    if (!this.scene) return [];
+    return ids.flatMap((id) => this.scene.allElements(id)).filter((el) => el && el.rendNode && el.elType !== "text");
+  }
+
   destroy() {
     this.stop();
     if (this.board) JXG.JSXGraph.freeBoard(this.board);

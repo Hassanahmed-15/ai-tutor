@@ -770,6 +770,9 @@ export async function writeCanvasBoard(args: {
       spec.cues = spec.cues.filter((c) => c.action !== "circle" && c.action !== "point");
     }
   }
+  // ONE LIVING EQUATION for a maths board's working (components/canvas/LivingEquationView.tsx): the
+  // board's own steps, shown changing in place. Not where a term is written over another (a condition over an arrow).
+  if (labVisualsOn() && mathsLesson && !beat.course && spec.stage.kind === "equation" && spec.stage.steps.length > 0 && !spec.stage.tokens.some((t) => t.on)) spec.living = true;
   // The pen never points at nothing (lib/canvas/cueRepair.ts): checked on the board as it ships.
   const shipped = layoutPanel(spec);
   const onBoard = new Set([...Object.keys(shipped.targets), ...shipped.marks.flatMap((m) => (m.type === "graph" ? (m.spec.markers ?? []).map((k) => k.id) : []))]);

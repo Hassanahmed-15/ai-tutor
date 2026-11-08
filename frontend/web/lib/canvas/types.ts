@@ -562,13 +562,24 @@ export type CanvasInteraction = TryItInteraction | DrawInteraction | QuizInterac
  * area (the figure or picture beside the notes or working).
  */
 export type LabDrawing =
-  | { kind: "pencil"; scene: Record<string, unknown>; sentenceMs: number[] }
+  | {
+      kind: "pencil";
+      scene: Record<string, unknown>;
+      sentenceMs: number[];
+      /** Which drawn objects each term of the working comes from, and the part's short name ("4 triangles"). */
+      links?: Array<{ token: string; objects: string[]; name: string }>;
+    }
   | { kind: "view3d"; template: string; args: Record<string, unknown>; stepSentence: number[]; alt: string };
 
 export type CanvasBoardSpec = {
   v: 1;
   /** The drawing the lab engines made for this board (lib/canvas/labDrawing.ts); absent unless CANVAS_LAB_VISUALS=on. */
   lab?: LabDrawing;
+  /**
+   * The working is ONE LIVING EQUATION (components/canvas/LivingEquationView.tsx; CANVAS_LAB_VISUALS=on,
+   * maths only): the current step's terms on one line that changes in place, earlier steps small above.
+   */
+  living?: boolean;
   /** The course lesson's subject (lib/canvas/lessonSubject.ts), so the player never guesses it; absent elsewhere. */
   subject?: import("./lessonSubject").LessonSubject;
   heading: string;

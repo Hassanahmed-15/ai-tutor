@@ -54,6 +54,7 @@ function boardText(ctx: MathsBoardContext, spec: CanvasBoardSpec): string {
     `What it teaches: ${ctx.brief}`,
     `What Aria says, sentence by sentence (0-based):\n${ctx.sentences.map((s, i) => `${i}. ${s}`).join("\n")}`,
     ctx.written.length || working.length ? `Written on the board beside the drawing (Aria writes this herself; never repeat it in the drawing):\n${[...ctx.written, ...working].join("\n")}` : "",
+    spec.stage.kind === "equation" && spec.stage.tokens.length ? `The working's terms (id: term), for "links":\n${spec.stage.tokens.filter((t) => !/^\s*[=+−×÷,()-]\s*$/.test(t.text)).slice(0, 60).map((t) => `${t.id}: ${t.text}`).join("\n")}` : "",
     ctx.mustShow.length ? `It must show: ${ctx.mustShow.join("; ")}` : "",
     ctx.source.length ? `What the student's document says for this board:\n${ctx.source.join("\n")}` : "",
   ].filter(Boolean).join("\n\n");
@@ -68,6 +69,7 @@ function pencilSystem(): string {
     "ARIA'S BOARD, NOT THE LAB PAGE: Aria writes the notes and the working herself beside the drawing, so a step has NO \"say\" and NO \"write\". Instead every step has \"s\": the 0-based sentence it is drawn on, in order; several steps may share a sentence; a sentence that names nothing new has no step.",
     "Draw EXACTLY what this board's sentences say, with the board's own letters, numbers and units: the fewest objects that teach it, nothing decorative, no answer the board does not give yet. A length written as \"8 cm\" must be 8 units long on the board (or set \"notToScale\": true on the board). Fit the board's x and y ranges around the drawing with a small margin; the drawing area is about as wide as it is tall.",
     "Labels: a length or a side's letter labels its SEGMENT (a polygon's own label sits in its middle, so use it only for an area or a name such as \"c²\"). Pieces that fit together (triangles round a square, parts of a composite shape) share their corner points exactly and never overlap.",
+    "LINKS: when the board's working has terms (listed with their ids), add a top-level \"links\" list joining each term that IS a part of the drawing to the objects it comes from: {\"token\": term id, \"objects\": [object or group ids], \"name\": the part's name in 1 to 3 words, e.g. \"4 triangles\", \"tilted square\", \"side a\"}. Only real links (a length to its side, an area to its shape); signs and plain numbers have none.",
     "Return the scene JSON only.",
     "",
     "# The format",
@@ -111,14 +113,31 @@ async function pencilScene(openai: OpenAI, ctx: MathsBoardContext, spec: CanvasB
     costUsd += r.costUsd;
     const problems = pencilProblems(r.json, ctx.sentences.length);
     if (!problems.length) {
-      const scene = r.json as Record<string, unknown>;
-      log.push(`${id}: pencil scene in ${attempt} attempt(s), ${(scene.objects as unknown[] | undefined)?.length ?? 0} objects, ${(scene.steps as unknown[]).length} steps`);
-      return { lab: { kind: "pencil", scene, sentenceMs: sentenceMs(ctx.sentences) }, costUsd };
+      const { links: rawLinks, ...scene } = r.json as Record<string, unknown>;
+      const links = checkedLinks(rawLinks, scene, spec);
+      log.push(`${id}: pencil scene in ${attempt} attempt(s), ${(scene.objects as unknown[] | undefined)?.length ?? 0} objects, ${(scene.steps as unknown[]).length} steps, ${links.length} term link(s)`);
+      return { lab: { kind: "pencil", scene, sentenceMs: sentenceMs(ctx.sentences), ...(links.length ? { links } : {}) }, costUsd };
     }
     log.push(`${id}: pencil scene attempt ${attempt} failed — ${problems.slice(0, 3).join("; ")}`);
     user = `${boardText(ctx, spec)}\n\nYour previous scene:\n${JSON.stringify(r.json).slice(0, 14000)}\n\nThe engine's checker found these problems. Fix every one and return the whole corrected scene:\n- ${problems.join("\n- ")}`;
   }
   return { lab: null, costUsd };
+}
+
+/** The links that join a real term of the working to real objects of the scene; the rest are dropped. */
+function checkedLinks(raw: unknown, scene: Record<string, unknown>, spec: CanvasBoardSpec): Array<{ token: string; objects: string[]; name: string }> {
+  if (!Array.isArray(raw) || spec.stage.kind !== "equation") return [];
+  const tokens = new Set(spec.stage.tokens.map((t) => t.id));
+  const objects = new Set([...((scene.objects as Array<{ id?: unknown }>) ?? []), ...((scene.groups as Array<{ id?: unknown }>) ?? [])].map((o) => String(o.id)));
+  const seen = new Set<string>();
+  return raw.flatMap((l) => {
+    const token = String((l as { token?: unknown })?.token ?? "");
+    const objs = Array.isArray((l as { objects?: unknown })?.objects) ? ((l as { objects: unknown[] }).objects.map(String).filter((o) => objects.has(o))) : [];
+    const name = String((l as { name?: unknown })?.name ?? "").trim().slice(0, 28);
+    if (!tokens.has(token) || !objs.length || seen.has(token)) return [];
+    seen.add(token);
+    return [{ token, objects: objs.slice(0, 8), name }];
+  });
 }
 
 /** How long Aria speaks each sentence, about 2.4 words a second (the pencil fits its strokes into it). */

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Working styles: linking the equations to the drawing</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<style>
+  :root { --a: #ffb15c; --b: #6fb7ff; --c: #ff7fb0; --tri: #3fd0c0; --sq: #f2d35b; --ink: #f4f4ee; --muted: #6b7280; }
+  html, body { margin: 0; background: #0b0c10; color: var(--ink); font-family: system-ui, sans-serif; }
+  .top { display: flex; gap: 10px; align-items: center; padding: 10px 16px; }
+  .top button { background: #1d1f27; color: var(--ink); border: 1px solid #2c2f3a; border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+  .top button[aria-pressed="true"] { background: #6d4cff; border-color: #6d4cff; }
+  #say { margin-left: 12px; color: #c9c9d1; font-size: 14px; }
+  .board { position: relative; width: 1200px; height: 640px; margin: 0 16px; background: #000; border-radius: 18px; overflow: hidden; }
+  h1 { position: absolute; left: 48px; top: 26px; margin: 0; font-size: 34px; font-weight: 800; letter-spacing: -0.5px; }
+  svg.fig { position: absolute; left: 60px; top: 130px; width: 440px; height: 440px; overflow: visible; }
+  svg.threads { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+  .glow { filter: drop-shadow(0 0 10px currentColor) drop-shadow(0 0 4px currentColor); }
+  .m { font-family: KaTeX_Main, "Times New Roman", serif; }
+  .i { font-family: KaTeX_Math, "Times New Roman", serif; font-style: italic; }
+
+  /* Style A: threads */
+  #work { position: absolute; left: 600px; top: 120px; width: 560px; }
+  .ln { display: flex; gap: 12px; align-items: baseline; justify-content: center; font-size: 40px; margin: 0 0 22px; transition: opacity .6s, transform .6s, font-size .6s; }
+  .ln.old { opacity: .32; font-size: 30px; }
+  .t { position: relative; display: inline-block; white-space: nowrap; }
+  .t .dot { position: absolute; left: 50%; bottom: -10px; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: currentColor; opacity: 0; transition: opacity .4s; }
+  .t.linked .dot { opacity: .9; }
+  .strike { position: absolute; left: -6%; top: 52%; width: 112%; height: 4px; background: #ff5a5a; border-radius: 3px; transform-origin: left; transform: rotate(-8deg) scaleX(0); transition: transform .5s ease-out; }
+  .t.cut .strike { transform: rotate(-8deg) scaleX(1); }
+  .t.cut { opacity: .55; }
+
+  /* Style B: one living equation */
+  #eq { position: absolute; left: 560px; top: 270px; width: 620px; display: flex; justify-content: center; align-items: baseline; gap: 14px; font-size: 54px; }
+  #eq .t { transition: none; }
+  #hist { position: absolute; left: 560px; top: 120px; width: 620px; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 24px; color: #8b8d98; }
+  #hist div { opacity: 0; transition: opacity .6s; }
+  .box { position: absolute; border: 3px solid var(--sq); border-radius: 14px; box-shadow: 0 0 18px rgba(242, 211, 91, .45); opacity: 0; transition: opacity .6s; pointer-events: none; }
+  .label { position: absolute; font-size: 18px; color: #9aa0ad; }
+</style>
+</head>
+<body>
+<div class="top">
+  <button id="bA" aria-pressed="true">A · Threads</button>
+  <button id="bB">B · One living equation</button>
+  <button id="replay">↻ Replay</button>
+  <span id="say"></span>
+</div>
+<div class="board" id="board">
+  <h1>Count the same area two ways</h1>
+  <svg class="fig" viewBox="-20 -20 390 390" id="fig"></svg>
+  <svg class="threads" id="threads"></svg>
+  <div id="work"></div>
+  <div id="hist"></div>
+  <div id="eq"></div>
+</div>
+<script type="module">
+// ── The figure (a = 3, b = 4, side 7, 50 px a unit; y up in maths, down on screen) ───────────────
+const S = 50, a = 3, b = 4, L = a + b;
+const P = (x, y) => [x * S, (L - y) * S];
+const fig = document.getElementById("fig");
+const NS = "http://www.w3.org/2000/svg";
+const poly = (id, pts, fill, stroke, op) => {
+  const p = document.createElementNS(NS, "polygon");
+  p.setAttribute("points", pts.map((q) => P(...q).join(",")).join(" "));
+  Object.assign(p.style, { fill, fillOpacity: op, stroke, strokeWidth: 3, strokeLinejoin: "round", color: stroke, transition: "filter .3s, stroke-width .3s" });
+  p.id = id;
+  fig.append(p);
+  return p;
+};
+const text = (t, x, y, colour, cls = "i") => {
+  const e = document.createElementNS(NS, "text");
+  e.textContent = t; e.setAttribute("x", x); e.setAttribute("y", y); e.setAttribute("class", cls);
+  Object.assign(e.style, { fill: colour, fontSize: "26px" });
+  fig.append(e);
+};
+const PARTS = {
+  outer: poly("outer", [[0, 0], [L, 0], [L, L], [0, L]], "none", "#9fe7ff", 0),
+  t1: poly("t1", [[0, 0], [a, 0], [0, b]], "var(--tri)", "var(--tri)", 0.28),
+  t2: poly("t2", [[L, 0], [L, a], [a, 0]], "var(--tri)", "var(--tri)", 0.28),
+  t3: poly("t3", [[L, L], [b, L], [L, a]], "var(--tri)", "var(--tri)", 0.28),
+  t4: poly("t4", [[0, L], [0, b], [b, L]], "var(--tri)", "var(--tri)", 0.28),
+  sq: poly("sq", [[a, 0], [L, a], [b, L], [0, b]], "var(--sq)", "var(--sq)", 0.3),
+};
+text("a", ...P(a / 2 - 0.15, -0.55), "var(--a)"); text("b", ...P(a + b / 2 - 0.15, -0.55), "var(--b)");
+text("c", ...P(a / 2 + 0.35, b / 2 + 0.3), "var(--c)"); text("c²", ...P(L / 2 - 0.3, L / 2 - 0.2), "var(--sq)");
+text("a + b", ...P(L / 2 - 0.9, L + 0.35), "#9fe7ff");
+
+// Which part of the drawing each term comes from.
+const FROM = { "(a+b)²": ["outer"], "2ab": ["t1", "t2", "t3", "t4"], "c²": ["sq"], "½ab": ["t1"], "a²": [], "b²": [] };
+const COLOUR = { "(a+b)²": "#9fe7ff", "2ab": "var(--tri)", "½ab": "var(--tri)", "c²": "var(--sq)", "a²": "var(--a)", "b²": "var(--b)", "4 ×": "var(--tri)" };
+const html = (t) => t.replace(/([abc])/g, '<span class="i">$1</span>').replace(/²/g, '<sup style="font-size:.6em">2</sup>');
+
+const say = (s) => (document.getElementById("say").textContent = s);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+let run = 0;
+const threads = document.getElementById("threads");
+const boardBox = () => document.getElementById("board").getBoundingClientRect();
+function centreOf(el) {
+  const r = el.getBoundingClientRect(), B = boardBox();
+  return [r.left - B.left + r.width / 2, r.top - B.top + r.height / 2];
+}
+function glow(ids, on) {
+  for (const id of ids) { PARTS[id].classList.toggle("glow", on); PARTS[id].style.strokeWidth = on ? 5 : 3; }
+}
+async function thread(fromIds, toEl, colour, my) {
+  if (!fromIds.length) return;
+  // From the edge of the shape nearest the term (a thread from a square's centre seemed to come from what is inside it).
+  const [x2, y2] = centreOf(toEl);
+  const pr = PARTS[fromIds[0]].getBoundingClientRect(), Bb = boardBox();
+  const x1 = Math.min(pr.right, Math.max(pr.left, x2 + Bb.left)) - Bb.left;
+  const y1 = Math.min(pr.bottom - 8, Math.max(pr.top + 8, y2 + Bb.top)) - Bb.top;
+  const path = document.createElementNS(NS, "path");
+  const mx = (x1 + x2) / 2, my2 = Math.min(y1, y2) - 70;
+  path.setAttribute("d", `M ${x1} ${y1} Q ${mx} ${my2} ${x2 - 6} ${y2 + 18}`);
+  Object.assign(path.style, { fill: "none", stroke: colour, strokeWidth: 2.5, strokeLinecap: "round", strokeDasharray: "6 7", opacity: 0.95 });
+  threads.append(path);
+  const len = path.getTotalLength();
+  path.animate([{ strokeDashoffset: len, clipPath: "inset(0 100% 0 0)" }, { strokeDashoffset: 0, clipPath: "inset(0 0 0 0)" }], { duration: 650, easing: "ease-out" });
+  await sleep(1400);
+  if (my === run) path.animate([{ opacity: 0.95 }, { opacity: 0 }], { duration: 600, fill: "forwards" }).onfinish = () => path.remove();
+}
+
+// ── Style A: threads ──────────────────────────────────────────────────────────────────────────────
+const LINES = [
+  ["Big square:", [["(a+b)²", "(a+b)²"]]],
+  ["Four triangles:", [["4 ×", "4 ×"], ["½ab", "½ab"], ["=", "="], ["2ab", "2ab"]]],
+  ["Same area:", [["(a+b)²", "(a+b)²"], ["=", "="], ["2ab", "2ab"], ["+", "+"], ["c²", "c²"]]],
+  ["Expand:", [["a²", "a²"], ["+", "+"], ["2ab", "2ab"], ["+", "+"], ["b²", "b²"], ["=", "="], ["2ab", "2ab"], ["+", "+"], ["c²", "c²"]]],
+  ["Cancel 2ab:", [["a²", "a²"], ["+", "+"], ["b²", "b²"], ["=", "="], ["c²", "c²"]]],
+];
+const SAYS = ["The big square has side a plus b, so its area is a plus b, squared.", "The four triangles: each is a half a b, so together 2ab.", "So the same square is also 2ab plus the tilted square c squared.", "Expand the bracket: a squared plus 2ab plus b squared.", "The 2ab on each side cancel, leaving a squared plus b squared equals c squared."];
+async function styleA(my) {
+  const work = document.getElementById("work");
+  for (let k = 0; k < LINES.length && my === run; k++) {
+    say(SAYS[k]);
+    const [, terms] = LINES[k];
+    const ln = document.createElement("div");
+    ln.className = "ln m";
+    work.append(ln);
+    [...work.children].slice(0, -3).forEach((o) => (o.style.display = "none"));
+    [...work.children].slice(0, -1).forEach((o) => o.classList.add("old"));
+    for (const [t] of terms) {
+      const span = document.createElement("span");
+      span.className = "t";
+      span.innerHTML = html(t) + '<span class="dot"></span><span class="strike"></span>';
+      span.style.color = COLOUR[t] ?? "var(--ink)";
+      span.style.clipPath = "inset(0 100% 0 0)";
+      ln.append(span);
+      const from = FROM[t] ?? [];
+      if (from.length) glow(from, true);
+      span.animate([{ clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0 0 0)" }], { duration: 420, fill: "forwards" });
+      if (from.length) { void thread(from, span, COLOUR[t], my); span.classList.add("linked"); }
+      await sleep(from.length ? 900 : 260);
+      if (from.length) glow(from, false);
+    }
+    if (k === 3) {
+      await sleep(500);
+      say("They cancel.");
+      ln.querySelectorAll(".t").forEach((s) => { if (s.textContent.startsWith("2ab")) s.classList.add("cut"); });
+    }
+    await sleep(1300);
+  }
+}
+
+// ── Style B: one living equation (FLIP morph; terms fly in from the figure) ──────────────────────
+const eq = document.getElementById("eq");
+function render(tokens) {
+  const old = new Map([...eq.children].map((c) => [c.dataset.id, c.getBoundingClientRect()]));
+  eq.replaceChildren(...tokens.map(([id, t]) => {
+    const s = document.createElement("span");
+    s.className = "t m"; s.dataset.id = id; s.innerHTML = html(t);
+    s.style.color = COLOUR[t] ?? "var(--ink)";
+    return s;
+  }));
+  const born = [];
+  for (const s of eq.children) {
+    const was = old.get(s.dataset.id), now = s.getBoundingClientRect();
+    if (was) s.animate([{ transform: `translate(${was.left - now.left}px, ${was.top - now.top}px)` }, { transform: "none" }], { duration: 700, easing: "cubic-bezier(.6,0,.2,1)" });
+    else born.push(s);
+  }
+  return born;
+}
+async function flyIn(span, ids, colour) {
+  // A copy of the drawing's part flies to the term and shrinks into it.
+  const B = boardBox(), target = span.getBoundingClientRect();
+  span.style.opacity = 0;
+  const ghosts = ids.map((id) => {
+    const r = PARTS[id].getBoundingClientRect();
+    const g = PARTS[id].cloneNode();
+    const sv = document.createElementNS(NS, "svg");
+    sv.setAttribute("viewBox", fig.getAttribute("viewBox"));
+    Object.assign(sv.style, { position: "absolute", left: fig.style.left || "60px", top: "130px", width: "440px", height: "440px", overflow: "visible", pointerEvents: "none" });
+    sv.append(g);
+    document.getElementById("board").append(sv);
+    const dx = target.left + target.width / 2 - (r.left + r.width / 2), dy = target.top + target.height / 2 - (r.top + r.height / 2);
+    const k = Math.max(0.12, Math.min(0.6, target.height / Math.max(r.height, 1)));
+    sv.animate([{ transform: "none", opacity: 1 }, { transform: `translate(${dx}px, ${dy}px) scale(${k})`, opacity: 0.0 }], { duration: 1100, easing: "cubic-bezier(.5,0,.2,1)", fill: "forwards" });
+    void B;
+    return sv;
+  });
+  glow(ids, true);
+  await sleep(850);
+  span.animate([{ opacity: 0, transform: "scale(1.6)" }, { opacity: 1, transform: "scale(1)" }], { duration: 450, fill: "forwards" });
+  span.style.opacity = "";
+  await sleep(350);
+  glow(ids, false);
+  ghosts.forEach((g) => g.remove());
+}
+function remember(text) {
+  const d = document.createElement("div");
+  d.className = "m"; d.innerHTML = html(text);
+  document.getElementById("hist").append(d);
+  requestAnimationFrame(() => (d.style.opacity = 1));
+}
+async function styleB(my) {
+  say(SAYS[0]);
+  let born = render([["L", "(a+b)²"]]);
+  await flyIn(born[0], ["outer"]);
+  await sleep(1100); if (my !== run) return;
+  say(SAYS[1] + " " + SAYS[2]);
+  born = render([["L", "(a+b)²"], ["e", "="], ["T", "2ab"], ["p", "+"], ["C", "c²"]]);
+  for (const s of born) if (s.dataset.id === "e" || s.dataset.id === "p") s.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
+  const T = born.find((s) => s.dataset.id === "T"), C = born.find((s) => s.dataset.id === "C");
+  await flyIn(T, ["t1", "t2", "t3", "t4"]);
+  await flyIn(C, ["sq"]);
+  await sleep(1200); if (my !== run) return;
+  remember("(a+b)² = 2ab + c²");
+  say(SAYS[3]);
+  const Lrect = eq.querySelector('[data-id="L"]').getBoundingClientRect();
+  born = render([["A", "a²"], ["p1", "+"], ["T2", "2ab"], ["p2", "+"], ["Bb", "b²"], ["e", "="], ["T", "2ab"], ["p", "+"], ["C", "c²"]]);
+  for (const s of born) {
+    const now = s.getBoundingClientRect();
+    s.animate([{ transform: `translate(${Lrect.left + Lrect.width / 2 - now.left - now.width / 2}px, 0) scale(.3)`, opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 800, easing: "cubic-bezier(.6,0,.2,1)" });
+  }
+  await sleep(2000); if (my !== run) return;
+  remember("a² + 2ab + b² = 2ab + c²");
+  say("The 2ab on each side cancel…");
+  const t2 = eq.querySelector('[data-id="T2"]'), t = eq.querySelector('[data-id="T"]');
+  const r2 = t2.getBoundingClientRect(), r = t.getBoundingClientRect(), mid = (r2.left + r.left + r.width) / 2;
+  for (const [el, rr] of [[t2, r2], [t, r]]) {
+    el.animate([{ transform: "none", color: "var(--tri)" }, { transform: "translateY(-18px)", color: "#ff5a5a", offset: 0.3 }, { transform: `translate(${mid - rr.left - rr.width / 2}px, -18px) scale(.2)`, opacity: 0 }], { duration: 1100, easing: "ease-in", fill: "forwards" });
+  }
+  eq.querySelectorAll('[data-id="p1"], [data-id="p"]').forEach((el) => el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 600, fill: "forwards" }));
+  await sleep(1150); if (my !== run) return;
+  say("…leaving a² + b² = c².");
+  render([["A", "a²"], ["p2", "+"], ["Bb", "b²"], ["e", "="], ["C", "c²"]]);
+  await sleep(800);
+  const box = document.createElement("div");
+  box.className = "box";
+  const er = eq.getBoundingClientRect(), Bx = boardBox(), first = eq.firstElementChild.getBoundingClientRect(), last = eq.lastElementChild.getBoundingClientRect();
+  Object.assign(box.style, { left: `${first.left - Bx.left - 18}px`, top: `${er.top - Bx.top - 10}px`, width: `${last.right - first.left + 36}px`, height: `${er.height + 20}px` });
+  document.getElementById("board").append(box);
+  requestAnimationFrame(() => (box.style.opacity = 1));
+  glow(["sq"], true);
+}
+
+// ── Controls ─────────────────────────────────────────────────────────────────────────────────────
+let style = new URLSearchParams(location.search).get("style") ?? "A";
+function reset() {
+  run++;
+  document.getElementById("work").replaceChildren();
+  document.getElementById("hist").replaceChildren();
+  eq.replaceChildren();
+  threads.replaceChildren();
+  document.querySelectorAll(".box").forEach((b) => b.remove());
+  Object.keys(PARTS).forEach((id) => glow([id], false));
+  document.getElementById("bA").setAttribute("aria-pressed", String(style === "A"));
+  document.getElementById("bB").setAttribute("aria-pressed", String(style === "B"));
+  const my = run;
+  window.__done = false;
+  (style === "A" ? styleA(my) : styleB(my)).then(() => { if (my === run) window.__done = true; });
+}
+document.getElementById("bA").onclick = () => { style = "A"; reset(); };
+document.getElementById("bB").onclick = () => { style = "B"; reset(); };
+document.getElementById("replay").onclick = reset;
+await document.fonts.ready;
+reset();
+</script>
+</body>
+</html>
