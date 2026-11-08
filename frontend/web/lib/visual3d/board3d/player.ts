@@ -1,7 +1,7 @@
 // Step player: play / pause / next / prev / reset / speed over a template's steps. "Previous" and
 // "reset" rebuild the scene and replay earlier steps instantly, so every state is exact.
-import type { Board } from "./board.ts";
-import type { Step } from "../contract.ts";
+import type { Board } from "./board";
+import type { Step } from "../contract";
 
 export type StepEvent =
   | { type: "step_started"; index: number; total: number; caption: string }

@@ -1,11 +1,11 @@
 // More multivariable calculus: tangent_plane, double_integral_volume (Riemann boxes; n adjustable),
 // parametric_curve_3d (r(t) with a moving point and its velocity) and vector_field_3d.
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board, Vec3 } from "../../board3d/board.ts";
-import { compile, fmt } from "../../expr.ts";
-import { surfaceFunction } from "./surface_plot.ts";
-import { partials } from "./calculus.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board, Vec3 } from "../../board3d/board";
+import { compile, fmt } from "../../expr";
+import { surfaceFunction } from "./surface_plot";
+import { partials } from "./calculus";
 
 const Expr = z.string().min(1).max(200);
 const fnOf = (src: string, vars: string[]) => { try { return compile(src, vars); } catch (e) { throw new VisualError(`I can't use "${src}": ${(e as Error).message}`); } };

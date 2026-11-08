@@ -1,11 +1,11 @@
 // Linear transformation of the unit cube by a 3×3 matrix: the cube and basis vectors morph from I to
 // A; the determinant is the new volume (negative = the space is flipped). Real 3×3 maths.
 import { z } from "zod/v4";
-import { defineTemplate, type Result } from "../../contract.ts";
-import type { Board, Vec3 } from "../../board3d/board.ts";
-import { vecLabel } from "../../board3d/helpers.ts";
-import { fmt } from "../../expr.ts";
-import { Matrix3S } from "../shared.ts";
+import { defineTemplate, type Result } from "../../contract";
+import type { Board, Vec3 } from "../../board3d/board";
+import { vecLabel } from "../../board3d/helpers";
+import { fmt } from "../../expr";
+import { Matrix3S } from "../shared";
 
 export type M3 = number[][];
 export const det3 = (m: M3) => m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);

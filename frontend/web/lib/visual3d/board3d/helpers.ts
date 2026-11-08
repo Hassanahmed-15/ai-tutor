@@ -1,8 +1,8 @@
 // Shared drawing helpers so templates stay small: a stage for vectors, a row of memory-style cells,
 // a binary-tree layout, a graph layout, and number formatting for labels.
-import type { Board, Vec3 } from "./board.ts";
-import type { ColorToken } from "../theme.ts";
-import { fmt } from "../expr.ts";
+import type { Board, Vec3 } from "./board";
+import type { ColorToken } from "../theme";
+import { fmt } from "../expr";
 
 export const vecLabel = (v: number[]) => `(${v.map((x) => fmt(x)).join(", ")})`;
 

@@ -1,7 +1,7 @@
 // The board interface templates draw on. Coordinates are maths coordinates: right-handed, z up.
 // Two implementations: ThreeBoard (browser, three.js) and RecordingBoard (Node tests). Templates
 // never touch three.js directly, so their logic and actions are testable without a GPU.
-import type { ColorToken } from "../theme.ts";
+import type { ColorToken } from "../theme";
 
 export type Vec3 = [number, number, number];
 export type CameraPreset = "front" | "iso" | "top" | "side";

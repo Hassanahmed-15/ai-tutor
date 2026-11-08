@@ -1,11 +1,11 @@
 // More geometry: points_distance_3d, cross_section (a plane slicing a cube) and net_unfold (a cube
 // unfolding to its net — the hinge maths from maths-lab's nets).
 import { z } from "zod/v4";
-import { defineTemplate, type Result, type Step } from "../../contract.ts";
-import { add, cross, dot, norm, scale, sub, type Board, type Vec3 } from "../../board3d/board.ts";
-import { vecLabel, vectorStage } from "../../board3d/helpers.ts";
-import { fmt } from "../../expr.ts";
-import { Vec3S } from "../shared.ts";
+import { defineTemplate, type Result, type Step } from "../../contract";
+import { add, cross, dot, norm, scale, sub, type Board, type Vec3 } from "../../board3d/board";
+import { vecLabel, vectorStage } from "../../board3d/helpers";
+import { fmt } from "../../expr";
+import { Vec3S } from "../shared";
 
 // ── points_distance_3d ──────────────────────────────────────────────────────────────────────────
 function pts(b: Board, A: Vec3, B: Vec3): Result {

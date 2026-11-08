@@ -27,7 +27,7 @@ test("an arrow through an item it does not join is named (sociology board 3)", a
   const fs = await import("node:fs");
   const path = await import("node:path");
   const { validateCanvasSpec } = await import("../canvas/validate");
-  const raw = JSON.parse(fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), "fixtures-e3-scene.json"), "utf8"));
+  const raw = JSON.parse(fs.readFileSync(path.join(process.cwd(), "lib/anim/fixtures-e3-scene.json"), "utf8"));
   const spec = validateCanvasSpec(raw, 7)!;
   const issues = layoutIssues(layoutPanel(spec), spec);
   assert.ok(issues.some((i) => /runs through "validity"/.test(i)), issues.join(" | "));

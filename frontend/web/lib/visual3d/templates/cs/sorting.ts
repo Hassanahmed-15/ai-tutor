@@ -1,9 +1,9 @@
 // Sorting template: one box per value (height = value), sorted by a real algorithm step by step.
 // Compare = both bars light up; swap = they trade places; merge = a run settles into order.
 import { z } from "zod/v4";
-import { defineTemplate, type Result, type Step } from "../../contract.ts";
-import type { Board, Vec3 } from "../../board3d/board.ts";
-import { ALGORITHMS, trace, type Op } from "./sortLogic.ts";
+import { defineTemplate, type Result, type Step } from "../../contract";
+import type { Board, Vec3 } from "../../board3d/board";
+import { ALGORITHMS, trace, type Op } from "./sortLogic";
 
 const Args = z.object({
   values: z.array(z.number().int().min(1).max(99)).min(2).max(10).describe("2 to 10 whole numbers from 1 to 99."),

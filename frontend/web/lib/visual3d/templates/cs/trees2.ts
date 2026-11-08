@@ -1,8 +1,8 @@
 // avl_tree (insert with LL / RR / LR / RL rotations recorded) and trie (insert and search words).
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board, Vec3 } from "../../board3d/board.ts";
-import { IntKey } from "../shared.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board, Vec3 } from "../../board3d/board";
+import { IntKey } from "../shared";
 
 interface N { v: number; l: N | null; r: N | null; h: number }
 const h = (n: N | null) => (n ? n.h : 0);

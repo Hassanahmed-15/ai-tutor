@@ -1,8 +1,8 @@
 // Hash table: chaining or open addressing with linear probing. hash(int) = k mod m; hash(text) =
 // sum of character codes mod m (said out loud so students can check). Collisions are real.
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board } from "../../board3d/board.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board } from "../../board3d/board";
 
 type Key = number | string;
 const KeyS = z.union([z.number().int().min(-9999).max(9999), z.string().min(1).max(10)]);

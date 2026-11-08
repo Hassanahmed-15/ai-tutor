@@ -1,9 +1,9 @@
 // Surface z = f(x, y): the expression is parsed by the safe parser (never eval), sampled on a grid,
 // coloured by height, with axes; follow-ups change the function, probe a point or show the mesh.
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result } from "../../contract.ts";
-import type { Board } from "../../board3d/board.ts";
-import { compile, fmt, ALLOWED_FUNCTIONS } from "../../expr.ts";
+import { defineTemplate, VisualError, type Result } from "../../contract";
+import type { Board } from "../../board3d/board";
+import { compile, fmt, ALLOWED_FUNCTIONS } from "../../expr";
 
 const Expr = z.string().min(1).max(200).describe(`z as a function of x and y, e.g. "x^2 - y^2" or "sin(x)*cos(y)". Functions: ${ALLOWED_FUNCTIONS.join(", ")}; constants pi, e.`);
 const Args = z.object({

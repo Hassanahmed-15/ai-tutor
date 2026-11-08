@@ -1,9 +1,9 @@
 // BST template: the tree stands in a vertical plane (in-order left to right, root at the top), with
 // insert, search, delete (all three cases) and traversals as step-by-step follow-ups.
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board, Vec3 } from "../../board3d/board.ts";
-import { BST, type Order } from "./bstLogic.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board, Vec3 } from "../../board3d/board";
+import { BST, type Order } from "./bstLogic";
 
 const Value = z.number().int().min(-999).max(999).describe("An integer key, -999 to 999.");
 const Args = z.object({

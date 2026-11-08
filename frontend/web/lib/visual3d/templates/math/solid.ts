@@ -1,9 +1,9 @@
 // Solids: cube, cuboid, triangular prism, square pyramid, cylinder, cone, sphere, hemisphere and the
 // platonic solids, with volume, surface area and (for polyhedra) faces/edges/vertices from formulas.
 import { z } from "zod/v4";
-import { defineTemplate, type Result, type Step } from "../../contract.ts";
-import type { Board, SolidShape } from "../../board3d/board.ts";
-import { fmt } from "../../expr.ts";
+import { defineTemplate, type Result, type Step } from "../../contract";
+import type { Board, SolidShape } from "../../board3d/board";
+import { fmt } from "../../expr";
 
 export const SOLID_TYPES = ["cube", "cuboid", "prism", "pyramid", "cylinder", "cone", "sphere", "hemisphere", "tetrahedron", "octahedron", "dodecahedron", "icosahedron"] as const;
 type T = (typeof SOLID_TYPES)[number];

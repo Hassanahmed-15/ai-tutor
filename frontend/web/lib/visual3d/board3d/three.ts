@@ -4,8 +4,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { CSS2DObject, CSS2DRenderer } from "three/addons/renderers/CSS2DRenderer.js";
-import { COLOR, FONT, MAX_PIXEL_RATIO, SIZE, STATE_MARK, type ColorToken } from "../theme.ts";
-import { ease, type AnimOpts, type Board, type CameraPreset, type Shape, type SolidShape, type Vec3 } from "./board.ts";
+import { COLOR, FONT, MAX_PIXEL_RATIO, SIZE, STATE_MARK, type ColorToken } from "../theme";
+import { ease, type AnimOpts, type Board, type CameraPreset, type Shape, type SolidShape, type Vec3 } from "./board";
 
 interface Entry { obj: THREE.Object3D; color?: ColorToken; labelEl?: HTMLElement; labelText?: string }
 

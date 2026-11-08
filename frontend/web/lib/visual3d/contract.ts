@@ -2,7 +2,7 @@
 // passes data only (numbers, vectors, expressions, lists); the template runs the real algorithm or
 // maths, lays everything out, and returns facts the tutor can say without guessing.
 import type { z } from "zod/v4";
-import type { Board } from "./board3d/board.ts";
+import type { Board } from "./board3d/board";
 
 export type Domain = "math" | "cs";
 

@@ -1,11 +1,11 @@
 // Heap: the tree view and the array view kept in sync. Insert (sift-up), extract (sift-down) and
 // heapify (build-heap) are real operations; every comparison and swap is a step.
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board } from "../../board3d/board.ts";
-import { cells, cellX, heapPos } from "../../board3d/helpers.ts";
-import { IntKey } from "../shared.ts";
-import { heapify, isHeap, siftDown, siftUp, type HeapKind, type HOp } from "./heapLogic.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board } from "../../board3d/board";
+import { cells, cellX, heapPos } from "../../board3d/helpers";
+import { IntKey } from "../shared";
+import { heapify, isHeap, siftDown, siftUp, type HeapKind, type HOp } from "./heapLogic";
 
 const MAX = 15;
 const Args = z.object({ values: z.array(IntKey).max(MAX).describe(`Up to ${MAX} keys; they are heapified first.`), kind: z.enum(["min", "max"]).default("min") });

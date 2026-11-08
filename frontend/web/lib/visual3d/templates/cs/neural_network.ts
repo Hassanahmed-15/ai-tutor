@@ -1,10 +1,10 @@
 // Neural network forward pass: layers left to right, neurons stacked, weights as lines (accent =
 // positive, warn = negative). Each step computes one layer for real and writes its values.
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board, Vec3 } from "../../board3d/board.ts";
-import { fmt } from "../../expr.ts";
-import { forward, makeNet, type Activation, type Net } from "./nnLogic.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board, Vec3 } from "../../board3d/board";
+import { fmt } from "../../expr";
+import { forward, makeNet, type Activation, type Net } from "./nnLogic";
 
 const Args = z.object({
   layers: z.array(z.number().int().min(1).max(8)).min(2).max(6).describe("Neurons in each layer, input first (2 to 6 layers, at most 8 neurons each)."),

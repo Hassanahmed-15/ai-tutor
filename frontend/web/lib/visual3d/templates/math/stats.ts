@@ -1,10 +1,10 @@
 // Statistics in 3D: bivariate_normal (the density surface; correlation tilts the ellipses) and
 // scatter_3d (points with a least-squares regression plane z = a + b x + c y).
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result } from "../../contract.ts";
-import type { Board, Vec3 } from "../../board3d/board.ts";
-import { fmt } from "../../expr.ts";
-import { det3 } from "./linear_transform.ts";
+import { defineTemplate, VisualError, type Result } from "../../contract";
+import type { Board, Vec3 } from "../../board3d/board";
+import { fmt } from "../../expr";
+import { det3 } from "./linear_transform";
 
 const BNArgs = z.object({ mu: z.tuple([z.number().min(-3).max(3), z.number().min(-3).max(3)]).default([0, 0]), sigma: z.tuple([z.number().min(0.3).max(3), z.number().min(0.3).max(3)]).default([1, 1]), rho: z.number().min(-0.95).max(0.95).default(0.6) });
 export const bvn = (mx: number, my: number, sx: number, sy: number, r: number) => (x: number, y: number) => {

@@ -2,8 +2,8 @@
 // frames during recursion), cpu_pipeline (5 stages over cycles, with a stall for a hazard) and
 // osi_layers (encapsulation down, decapsulation up).
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board } from "../../board3d/board.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board } from "../../board3d/board";
 
 // ── memory_hierarchy ────────────────────────────────────────────────────────────────────────────
 const LEVELS = [

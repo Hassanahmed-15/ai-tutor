@@ -1,9 +1,9 @@
 // Weighted-graph algorithms on a circle layout: graph (adjacency list / matrix as facts), dijkstra
 // (distance table updates), mst (Prim or Kruskal) and topological_sort (Kahn's algorithm).
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board } from "../../board3d/board.ts";
-import { circleLayout } from "../../board3d/helpers.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board } from "../../board3d/board";
+import { circleLayout } from "../../board3d/helpers";
 
 const Id = z.string().min(1).max(12);
 const WEdge = z.tuple([Id, Id, z.number().min(0).max(999)]);

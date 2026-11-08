@@ -2,10 +2,10 @@
 // derivatives as slices), gradient_on_surface (gradient arrows and level curves projected below)
 // and gradient_descent_surface (an optimiser walking downhill; the learning rate can overshoot).
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board, Vec3 } from "../../board3d/board.ts";
-import { fmt } from "../../expr.ts";
-import { surfaceFunction } from "./surface_plot.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board, Vec3 } from "../../board3d/board";
+import { fmt } from "../../expr";
+import { surfaceFunction } from "./surface_plot";
 
 type F = (x: number, y: number) => number;
 const H = 1e-4;

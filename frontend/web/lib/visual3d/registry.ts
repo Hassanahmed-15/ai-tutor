@@ -1,28 +1,28 @@
 // All Tier 1 templates. The router sees this list (ids, titles, topics); the voice model never sees
 // the templates themselves, only show_visual and visual_action.
 import { z } from "zod/v4";
-import type { Template } from "./contract.ts";
-import { bstTemplate } from "./templates/cs/bst.ts";
-import { sortingTemplate } from "./templates/cs/sorting.ts";
-import { neuralNetworkTemplate } from "./templates/cs/neural_network.ts";
-import { vectorCrossTemplate } from "./templates/math/vector_cross.ts";
-import { surfacePlotTemplate } from "./templates/math/surface_plot.ts";
-import { vectors3dTemplate, vectorAddTemplate, vectorDotTemplate } from "./templates/math/vectors.ts";
-import { linearTransformTemplate } from "./templates/math/linear_transform.ts";
-import { surfaceSlicesTemplate, gradientTemplate, gradientDescentTemplate } from "./templates/math/calculus.ts";
-import { solidTemplate } from "./templates/math/solid.ts";
-import { arrayMemoryTemplate, linkedListTemplate, stackTemplate } from "./templates/cs/linear.ts";
-import { heapTemplate } from "./templates/cs/heap.ts";
-import { hashTableTemplate } from "./templates/cs/hash_table.ts";
-import { binarySearchTemplate, graphTraversalTemplate } from "./templates/cs/search_graph.ts";
-import { eigenTemplate, spanTemplate, planesTemplate } from "./templates/math/la2.ts";
-import { tangentPlaneTemplate, doubleIntegralTemplate, parametricTemplate, vectorFieldTemplate } from "./templates/math/calc2.ts";
-import { pointsDistanceTemplate, crossSectionTemplate, netUnfoldTemplate } from "./templates/math/geo2.ts";
-import { bivariateTemplate, scatterTemplate } from "./templates/math/stats.ts";
-import { avlTemplate, trieTemplate } from "./templates/cs/trees2.ts";
-import { graphTemplate, dijkstraTemplate, mstTemplate, topoTemplate } from "./templates/cs/graphs2.ts";
-import { memoryTemplate, callStackTemplate, pipelineTemplate, osiTemplate } from "./templates/cs/systems.ts";
-import { kmeansTemplate, embeddingsTemplate, cnnTemplate } from "./templates/cs/ml2.ts";
+import type { Template } from "./contract";
+import { bstTemplate } from "./templates/cs/bst";
+import { sortingTemplate } from "./templates/cs/sorting";
+import { neuralNetworkTemplate } from "./templates/cs/neural_network";
+import { vectorCrossTemplate } from "./templates/math/vector_cross";
+import { surfacePlotTemplate } from "./templates/math/surface_plot";
+import { vectors3dTemplate, vectorAddTemplate, vectorDotTemplate } from "./templates/math/vectors";
+import { linearTransformTemplate } from "./templates/math/linear_transform";
+import { surfaceSlicesTemplate, gradientTemplate, gradientDescentTemplate } from "./templates/math/calculus";
+import { solidTemplate } from "./templates/math/solid";
+import { arrayMemoryTemplate, linkedListTemplate, stackTemplate } from "./templates/cs/linear";
+import { heapTemplate } from "./templates/cs/heap";
+import { hashTableTemplate } from "./templates/cs/hash_table";
+import { binarySearchTemplate, graphTraversalTemplate } from "./templates/cs/search_graph";
+import { eigenTemplate, spanTemplate, planesTemplate } from "./templates/math/la2";
+import { tangentPlaneTemplate, doubleIntegralTemplate, parametricTemplate, vectorFieldTemplate } from "./templates/math/calc2";
+import { pointsDistanceTemplate, crossSectionTemplate, netUnfoldTemplate } from "./templates/math/geo2";
+import { bivariateTemplate, scatterTemplate } from "./templates/math/stats";
+import { avlTemplate, trieTemplate } from "./templates/cs/trees2";
+import { graphTemplate, dijkstraTemplate, mstTemplate, topoTemplate } from "./templates/cs/graphs2";
+import { memoryTemplate, callStackTemplate, pipelineTemplate, osiTemplate } from "./templates/cs/systems";
+import { kmeansTemplate, embeddingsTemplate, cnnTemplate } from "./templates/cs/ml2";
 
 export const TEMPLATES: Template[] = [
   // math

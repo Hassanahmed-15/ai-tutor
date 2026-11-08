@@ -1,12 +1,12 @@
 // More linear algebra: eigenvectors_3d (real eigenpairs of a 3×3, checked Av = λv), span_basis
 // (rank → line / plane / all of space) and planes_system (three planes: point, line or nothing).
 import { z } from "zod/v4";
-import { defineTemplate, type Result, type Step } from "../../contract.ts";
-import { cross, norm, scale, sub, add, type Board, type Vec3 } from "../../board3d/board.ts";
-import { vecLabel, vectorStage } from "../../board3d/helpers.ts";
-import { fmt } from "../../expr.ts";
-import { Matrix3S, Vec3S } from "../shared.ts";
-import { apply3, det3, type M3 } from "./linear_transform.ts";
+import { defineTemplate, type Result, type Step } from "../../contract";
+import { cross, norm, scale, sub, add, type Board, type Vec3 } from "../../board3d/board";
+import { vecLabel, vectorStage } from "../../board3d/helpers";
+import { fmt } from "../../expr";
+import { Matrix3S, Vec3S } from "../shared";
+import { apply3, det3, type M3 } from "./linear_transform";
 
 /** Real roots of x³ + a x² + b x + c by bracketing and bisection (robust for school matrices). */
 function cubicRoots(a: number, b: number, c: number): number[] {

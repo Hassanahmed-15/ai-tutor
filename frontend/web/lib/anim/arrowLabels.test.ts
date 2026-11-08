@@ -6,7 +6,7 @@ import { layoutPanel, textObstacles, type Mark } from "../canvas/layout";
 import { validateCanvasSpec } from "../canvas/validate";
 
 // Sociology audit 2026-10-15, board 1: "values route" printed over "Sociologist's values".
-const raw = JSON.parse(fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), "fixtures-e1-flow.json"), "utf8"));
+const raw = JSON.parse(fs.readFileSync(path.join(process.cwd(), "lib/anim/fixtures-e1-flow.json"), "utf8"));
 
 test("arrow labels never print over a node, a name or another label", () => {
   const spec = validateCanvasSpec(raw, 6)!;

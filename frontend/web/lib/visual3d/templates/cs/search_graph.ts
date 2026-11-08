@@ -1,10 +1,10 @@
 // binary_search_array (low / mid / high on a sorted array) and graph_traversal (BFS with a queue,
 // DFS with a stack; neighbours in alphabetical order so the order is predictable).
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board } from "../../board3d/board.ts";
-import { cells, cellX, circleLayout } from "../../board3d/helpers.ts";
-import { IntKey } from "../shared.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board } from "../../board3d/board";
+import { cells, cellX, circleLayout } from "../../board3d/helpers";
+import { IntKey } from "../shared";
 
 // ── binary_search_array ─────────────────────────────────────────────────────────────────────────
 const BSArgs = z.object({ values: z.array(IntKey).min(1).max(16).describe("Up to 16 numbers (sorted first if they are not)."), target: IntKey });

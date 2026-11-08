@@ -2,11 +2,11 @@
 // (labelled points in 3D; nearest neighbours as facts) and cnn_convolution (a 3×3 filter sliding
 // over a small input; the feature map values are computed).
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board, Vec3 } from "../../board3d/board.ts";
-import { fmt } from "../../expr.ts";
-import { mulberry32 } from "./nnLogic.ts";
-import type { ColorToken } from "../../theme.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board, Vec3 } from "../../board3d/board";
+import { fmt } from "../../expr";
+import { mulberry32 } from "./nnLogic";
+import type { ColorToken } from "../../theme";
 
 const PALETTE: ColorToken[] = ["accent", "active", "done", "warn", "x", "z"];
 const d2 = (a: Vec3, b: Vec3) => (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2;

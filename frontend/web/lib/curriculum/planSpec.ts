@@ -1,6 +1,6 @@
 import type OpenAI from "openai";
-import { checkNumbers, numberIssuesText } from "@/lib/canvas/numberCheck";
-import { SPEC_SCHEMA, boardBudget, completeSpec, specGaps, specSystemPrompt, specUserMessage, type Evidence, type LessonSpec, type SpecOutcome } from "@/lib/curriculum/lessonSpec";
+import { checkNumbers, numberIssuesText } from "../canvas/numberCheck";
+import { SPEC_SCHEMA, boardBudget, completeSpec, specGaps, specSystemPrompt, specUserMessage, type Evidence, type LessonSpec, type SpecOutcome } from "./lessonSpec";
 
 type Planned = Omit<LessonSpec, "courseLabel" | "level" | "lessonTitle" | "outcomes">;
 

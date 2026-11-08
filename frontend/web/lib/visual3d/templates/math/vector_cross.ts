@@ -1,9 +1,9 @@
 // Cross product in 3D: a and b from the origin, the parallelogram they span, and a × b standing at
 // right angles to both, its length equal to the parallelogram's area (right-hand rule).
 import { z } from "zod/v4";
-import { defineTemplate, type Result, type Step } from "../../contract.ts";
-import { cross, dot, norm, scale, add, type Board, type Vec3 } from "../../board3d/board.ts";
-import { fmt } from "../../expr.ts";
+import { defineTemplate, type Result, type Step } from "../../contract";
+import { cross, dot, norm, scale, add, type Board, type Vec3 } from "../../board3d/board";
+import { fmt } from "../../expr";
 
 const Vec = z.tuple([z.number(), z.number(), z.number()]).describe("A 3-D vector [x, y, z]; each component from -10 to 10.")
   .refine((v) => v.every((c) => Math.abs(c) <= 10), "each component must be between -10 and 10");

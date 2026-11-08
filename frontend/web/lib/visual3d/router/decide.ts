@@ -2,7 +2,7 @@
 // Order, first match wins: preference → follow-up on the visual on screen → rules table → LLM
 // classifier (ambiguous only) → fallback; then the capability filter. Rules live in rules.json.
 import RULES from "./rules.json" with { type: "json" };
-import { templateIds } from "../registry.ts";
+import { templateIds } from "../registry";
 
 export type Renderer = "2d" | "3d_template" | "3d_scene" | "both" | "none";
 export interface VisualRequest { intent?: string; topic?: string; data?: unknown; preference?: "2d" | "3d" }

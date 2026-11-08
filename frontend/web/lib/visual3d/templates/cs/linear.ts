@@ -1,10 +1,10 @@
 // Linear structures: array_memory (cells with indices and addresses), linked_list (singly/doubly,
 // insert/delete/search), and stack / queue / deque in one template (push, pop, enqueue, dequeue…).
 import { z } from "zod/v4";
-import { defineTemplate, VisualError, type Result, type Step } from "../../contract.ts";
-import type { Board, Vec3 } from "../../board3d/board.ts";
-import { cells, cellX } from "../../board3d/helpers.ts";
-import { IntKey } from "../shared.ts";
+import { defineTemplate, VisualError, type Result, type Step } from "../../contract";
+import type { Board, Vec3 } from "../../board3d/board";
+import { cells, cellX } from "../../board3d/helpers";
+import { IntKey } from "../shared";
 
 // ── array_memory ────────────────────────────────────────────────────────────────────────────────
 const ArrArgs = z.object({ values: z.array(IntKey).min(1).max(12), base_address: z.number().int().min(0).max(1e6).default(1000), element_size: z.number().int().min(1).max(8).default(4).describe("Bytes per element.") });

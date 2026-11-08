@@ -1,12 +1,12 @@
 // Vector templates: vectors_3d (plot with components and magnitudes), vector_add (head-to-tail or
 // parallelogram, and subtraction) and vector_dot_projection (angle and projection onto b).
 import { z } from "zod/v4";
-import { defineTemplate, type Result, type Step } from "../../contract.ts";
-import { add, dot, norm, scale, sub, type Board, type Vec3 } from "../../board3d/board.ts";
-import { vecLabel, vectorStage } from "../../board3d/helpers.ts";
-import { fmt } from "../../expr.ts";
-import { Vec3S } from "../shared.ts";
-import type { ColorToken } from "../../theme.ts";
+import { defineTemplate, type Result, type Step } from "../../contract";
+import { add, dot, norm, scale, sub, type Board, type Vec3 } from "../../board3d/board";
+import { vecLabel, vectorStage } from "../../board3d/helpers";
+import { fmt } from "../../expr";
+import { Vec3S } from "../shared";
+import type { ColorToken } from "../../theme";
 
 const COLORS: ColorToken[] = ["accent", "active", "done", "warn", "x", "z"];
 const O: Vec3 = [0, 0, 0];

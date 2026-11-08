@@ -1,7 +1,7 @@
 // A headless Board for Node tests: it records every object and operation instead of drawing, so
 // template logic, steps and actions can be checked without a browser or GPU.
-import type { AnimOpts, Board, CameraPreset, Vec3 } from "./board.ts";
-import type { ColorToken } from "../theme.ts";
+import type { AnimOpts, Board, CameraPreset, Vec3 } from "./board";
+import type { ColorToken } from "../theme";
 
 export interface Recorded {
   kind: string;
