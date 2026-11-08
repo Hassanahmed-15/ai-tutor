@@ -21,6 +21,10 @@ import {
   buildVideoTranscriptText,
   isVideoSource,
   planVideoWindows,
+  refusalFollowUp,
+  refusalOf,
+  unreadNotice,
+  unreadParts,
   windowsBetween,
   type VideoChapterNotes,
   type VideoWindow,
@@ -161,6 +165,58 @@ const WINDOWS: VideoWindow[] = [
   { startSec: 0, endSec: 600, segments: [{ startSec: 4, text: "This is a three." }, { startSec: 700, text: "Out of order on purpose." }], onScreen: [{ startSec: 4, kind: "diagram", content: "A 28 by 28 pixel digit." }] },
   { startSec: 600, endSec: 1153, segments: [{ startSec: 640, text: "Each neuron holds a number." }], onScreen: [] },
 ];
+
+test("a refusal is told apart from an ordinary answer", () => {
+  const finished = (finishReason: string) => ({ candidates: [{ finishReason }] });
+  assert.equal(refusalOf(finished("RECITATION")), "copyright");
+  for (const reason of ["SAFETY", "PROHIBITED_CONTENT", "BLOCKLIST", "SPII"]) assert.equal(refusalOf(finished(reason)), "blocked", reason);
+  assert.equal(refusalOf({ candidates: [], promptFeedback: { blockReason: "OTHER" } }), "blocked");
+  for (const reason of ["STOP", "MAX_TOKENS"]) assert.equal(refusalOf(finished(reason)), null, reason);
+  assert.equal(refusalOf({}), null);
+  assert.equal(refusalOf(null), null);
+});
+
+test("a refused clip is split while long, summarised once short, and left alone when it was read", () => {
+  const refused = (startSec: number, endSec: number, reason: "copyright" | "blocked" = "copyright"): VideoWindow => ({ startSec, endSec, segments: [], onScreen: [], unread: [{ startSec, endSec, reason }] });
+  assert.equal(refusalFollowUp(refused(0, 600)), "split");
+  assert.equal(refusalFollowUp(refused(0, 300)), "summary");
+  assert.equal(refusalFollowUp(refused(600, 680)), "summary");
+  assert.equal(refusalFollowUp(refused(0, 600, "blocked")), "split");
+  assert.equal(refusalFollowUp(refused(0, 300, "blocked")), null, "a content block is not worked around");
+  assert.equal(refusalFollowUp({ startSec: 0, endSec: 600, segments: [], onScreen: [] }), null);
+  assert.equal(refusalFollowUp({ ...refused(0, 600), segments: [{ startSec: 4, text: "Most of it was read." }] }), null);
+});
+
+test("refused stretches are joined when they touch, and named to the student", () => {
+  const parts = unreadParts([
+    { unread: [{ startSec: 675, endSec: 750, reason: "copyright" }] },
+    {},
+    { unread: [{ startSec: 600, endSec: 675, reason: "copyright" }, { startSec: 1800, endSec: 1860, reason: "blocked" }] },
+  ]);
+  assert.deepEqual(parts, [{ startSec: 600, endSec: 750, reason: "copyright" }, { startSec: 1800, endSec: 1860, reason: "blocked" }]);
+  assert.equal(unreadNotice([]), "");
+  assert.equal(
+    unreadNotice([{ startSec: 600, endSec: 660, reason: "copyright" }]),
+    "Aria couldn't read 10:00–11:00 of this video because Google's copyright filter blocked that part, so this lecture doesn't cover it.",
+  );
+  assert.equal(
+    unreadNotice(parts),
+    "Aria couldn't read 10:00–12:30 and 30:00–31:00 of this video because Google's filters blocked those parts, so this lecture doesn't cover them.",
+  );
+});
+
+test("a refused last minute is recorded and said, and the rest is still taught", () => {
+  const windows: VideoWindow[] = [
+    { startSec: 0, endSec: 600, segments: [{ startSec: 4, text: "Respiration releases energy." }], onScreen: [] },
+    { startSec: 600, endSec: 660, segments: [], onScreen: [], unread: [{ startSec: 600, endSec: 660, reason: "copyright" }] },
+  ];
+  const chapters = [notesFor("Respiration", 0, [{ heading: "Energy", count: 4, from: 1 }]), notesFor("The end", 300, [{ heading: "Empty", count: 0, from: 1 }])];
+  const built = buildLessonInputFromVideo({ videoId: ID, url: `https://www.youtube.com/watch?v=${ID}`, title: "Respiration", durationSec: 660, chapters, windows });
+  assert.equal(built.pointCount, 4);
+  assert.ok(built.beatCount > 0);
+  assert.deepEqual((built.document.source as { leftOut: string[] }).leftOut, ["0:00 sponsor read", "10:00–11:00 could not be read (Google's copyright filter)"]);
+  assert.match(built.fullDocumentText, /\[10:00\] \(this part of the video, up to 11:00, could not be read\)/);
+});
 
 test("the adapter keeps every key point, in exactly one beat, in blocks the script writer will not truncate", () => {
   const chapters = [
