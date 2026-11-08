@@ -8,6 +8,7 @@ import { costFor } from "../modelPricing";
 import { expandSpec } from "../mathsEngine/expand.js";
 import { lintSpec } from "../mathsEngine/lint.js";
 import { withSentences } from "../mathsEngine/aria-spec.js";
+import { overlappingFills } from "../mathsEngine/overlap.js";
 import { getTemplate } from "../visual3d/registry";
 import { RecordingBoard } from "../visual3d/board3d/recording";
 import type { MathsBoardContext } from "./mathsPicturePrompt";
@@ -66,6 +67,7 @@ function pencilSystem(): string {
     "You write the ONE maths drawing for a lesson board as a scene in the JSON format below. A pencil draws it step by step while Aria speaks; every value is computed by the engine from your expressions, and every label is placed by the engine.",
     "ARIA'S BOARD, NOT THE LAB PAGE: Aria writes the notes and the working herself beside the drawing, so a step has NO \"say\" and NO \"write\". Instead every step has \"s\": the 0-based sentence it is drawn on, in order; several steps may share a sentence; a sentence that names nothing new has no step.",
     "Draw EXACTLY what this board's sentences say, with the board's own letters, numbers and units: the fewest objects that teach it, nothing decorative, no answer the board does not give yet. A length written as \"8 cm\" must be 8 units long on the board (or set \"notToScale\": true on the board). Fit the board's x and y ranges around the drawing with a small margin; the drawing area is about as wide as it is tall.",
+    "Labels: a length or a side's letter labels its SEGMENT (a polygon's own label sits in its middle, so use it only for an area or a name such as \"c²\"). Pieces that fit together (triangles round a square, parts of a composite shape) share their corner points exactly and never overlap.",
     "Return the scene JSON only.",
     "",
     "# The format",
@@ -90,8 +92,10 @@ export function pencilProblems(scene: unknown, sentences: number): string[] {
     if ("say" in st || "write" in st) problems.push(`steps[${i}]: no "say" or "write" on Aria's board (she says and writes it herself)`);
   }
   try {
-    const verdict = lintSpec(expandSpec(withSentences(scene)));
+    const expanded = expandSpec(withSentences(scene));
+    const verdict = lintSpec(expanded);
     problems.push(...verdict.errors);
+    if (!verdict.errors.length) problems.push(...overlappingFills(expanded));
   } catch (error) {
     problems.push((error as Error).message);
   }

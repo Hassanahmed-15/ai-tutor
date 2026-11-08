@@ -228,7 +228,7 @@ export function compile(source) {
         return NaN;
       }
       case "var": {
-        if (env.vars && n.name in env.vars) {
+        if (env.vars && Object.hasOwn(env.vars, n.name)) {
           const v = env.vars[n.name];
           return typeof v === "function" ? v() : v;
         }

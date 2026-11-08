@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { Mark } from "@/lib/canvas/layout";
 
 /**
@@ -39,6 +39,10 @@ type Pencil = { load(spec: unknown): { errors: string[]; warnings: string[] }; s
 
 function PencilScene({ mark, shownThrough, reducedMotion }: { mark: LabMark; shownThrough: number; reducedMotion: boolean }) {
   const lab = mark.lab as Extract<LabMark["lab"], { kind: "pencil" }>;
+  // The board hands down a fresh copy of its spec on every update: the scene is keyed by its content, so
+  // the drawing is built once and only ever moves on (a new object each sentence restarted it).
+  const sceneKey = useMemo(() => JSON.stringify(lab.scene), [lab.scene]);
+  const msKey = lab.sentenceMs.join(",");
   const id = `lab-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
   const wrap = useRef<HTMLDivElement>(null);
   const pen = useRef<HTMLDivElement>(null);
@@ -55,7 +59,7 @@ function PencilScene({ mark, shownThrough, reducedMotion }: { mark: LabMark; sho
         const { AriaPencil } = await import("@/lib/mathsEngine/aria.js");
         if (dead || !wrap.current || !pen.current) return;
         const p = new AriaPencil({ boxId: id, wrap: wrap.current, pencil: pen.current }) as unknown as Pencil;
-        const st = p.load(lab.scene);
+        const st = p.load(JSON.parse(sceneKey));
         if (st.errors.length) { setFailed(st.errors[0]); return; }
         player.current = p;
         last.current = -1;
@@ -69,17 +73,19 @@ function PencilScene({ mark, shownThrough, reducedMotion }: { mark: LabMark; sho
       player.current?.destroy();
       player.current = null;
     };
-  }, [id, lab.scene]);
+  }, [id, sceneKey]);
 
   useEffect(() => {
     const p = player.current;
     if (!p) return;
     const s = Number.isFinite(shownThrough) ? shownThrough : 1e6;
     // Going back (a replay, a jump to an earlier sentence): the scene is built again and drawn up to there.
-    if (s < last.current) p.load(lab.scene);
+    if (s === last.current) return;
+    if (s < last.current) p.load(JSON.parse(sceneKey));
     last.current = s;
-    void p.stepTo(s, (k) => lab.sentenceMs[k] ?? 3000, !reducedMotion);
-  }, [shownThrough, ready, reducedMotion, lab]);
+    const ms = msKey.split(",").map(Number);
+    void p.stepTo(s, (k) => ms[k] || 3000, !reducedMotion);
+  }, [shownThrough, ready, reducedMotion, sceneKey, msKey]);
 
   return (
     <div ref={wrap} style={{ position: "relative", width: mark.rect.w, height: mark.rect.h }} data-lab="pencil" data-lab-ready={ready > 0 ? "" : undefined} data-lab-error={failed ?? undefined}>
@@ -94,6 +100,7 @@ type Player3 = { load(steps: unknown[], rebuild: () => Promise<void>): void; see
 
 function View3D({ mark, shownThrough, reducedMotion }: { mark: LabMark; shownThrough: number; reducedMotion: boolean }) {
   const lab = mark.lab as Extract<LabMark["lab"], { kind: "view3d" }>;
+  const labKey = useMemo(() => JSON.stringify(lab), [lab]);
   const host = useRef<HTMLDivElement>(null);
   const player = useRef<Player3 | null>(null);
   const [ready, setReady] = useState(0);
@@ -107,6 +114,7 @@ function View3D({ mark, shownThrough, reducedMotion }: { mark: LabMark; shownThr
         const [{ ThreeBoard }, { StepPlayer }, { getTemplate }] = await Promise.all([import("@/lib/visual3d/board3d/three"), import("@/lib/visual3d/board3d/player"), import("@/lib/visual3d/registry")]);
         if (dead || !host.current) return;
         if (!ThreeBoard.supported()) { setFailed("WebGL is not available"); return; }
+        const lab = JSON.parse(labKey) as Extract<LabMark["lab"], { kind: "view3d" }>;
         const t = getTemplate(lab.template);
         if (!t) { setFailed(`no template ${lab.template}`); return; }
         const b = new ThreeBoard(host.current, { reducedMotion });
@@ -127,20 +135,20 @@ function View3D({ mark, shownThrough, reducedMotion }: { mark: LabMark; shownThr
       player.current = null;
       board?.destroy();
     };
-  }, [lab, reducedMotion]);
+  }, [labKey, reducedMotion]);
 
   useEffect(() => {
     const p = player.current;
     if (!p) return;
     const s = Number.isFinite(shownThrough) ? shownThrough : 1e6;
     // Every step whose sentence has come; the newest one animated, the rest at once.
-    const due = lab.stepSentence.filter((at) => at <= s).length;
+    const due = (JSON.parse(labKey) as typeof lab).stepSentence.filter((at) => at <= s).length;
     (async () => {
       if (due < p.index) await p.seek(due);
       else if (due > p.index + 1 || reducedMotion) await p.seek(due);
       else if (due === p.index + 1) await p.next(true);
     })();
-  }, [shownThrough, ready, reducedMotion, lab]);
+  }, [shownThrough, ready, reducedMotion, labKey]);
 
   return <div ref={host} role="img" aria-label={lab.alt} data-lab="view3d" data-lab-ready={ready > 0 ? "" : undefined} data-lab-error={failed ?? undefined} style={{ position: "relative", width: mark.rect.w, height: mark.rect.h, borderRadius: 12, overflow: "hidden" }} />;
 }
