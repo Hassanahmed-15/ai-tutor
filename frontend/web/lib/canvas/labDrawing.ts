@@ -209,7 +209,7 @@ const AREA: IllustrationStage = { kind: "illustration", subject: "drawing", part
  */
 export async function withLabDrawing(openai: OpenAI, ctx: MathsBoardContext, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[]): Promise<{ spec: CanvasBoardSpec; costUsd: number } | null> {
   const stage = spec.stage;
-  const area = stage.kind === "illustration" || stage.kind === "figure" || (stage.kind === "equation" && (beat.mathsPicture || beat.view3d || stage.figure || stage.picture));
+  const area = stage.kind === "illustration" || stage.kind === "figure" || (stage.kind === "equation" && (beat.mathsPicture || beat.pictureBeside || beat.view3d || stage.figure || stage.picture));
   if (!area) return null;
   const made = beat.view3d ? await view3d(openai, ctx, beat.view3d, log, beat.id, beat.audience) : { lab: null, costUsd: 0 };
   const drawn = made.lab ? made : await pencilScene(openai, ctx, spec, log, beat.id, beat.audience);

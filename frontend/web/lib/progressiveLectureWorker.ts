@@ -57,6 +57,7 @@ import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerm
 import { buildProgressivePlan, clean, isReferenceLesson, questionScoped, sourceRoleFor } from "./progressivePlan";
 import { canvasSpecOf, connectToEarlier, planCanvasLecture, writeCanvasBoard } from "./canvas/progressive";
 import { examinerFor, mathsCheck, mathsFixes, type ExaminerSubject } from "./canvas/mathsCheck";
+import { labVisualsOn } from "./canvas/labVisuals";
 import { isMissingLine, writeMissingLines } from "./canvas/writeMissing";
 import { canvasSentences } from "./canvas/plan";
 import { curriculumDocumentOf, referenceCsLesson, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./canvas/lessonRequest";
@@ -354,6 +355,9 @@ async function generateCanvasBoard(
   let referenceCs = false;
   // A reference PDF, for the first board's rewrite too (it used to be written again without its pages and code).
   let referenceDoc: SuprnotesLessonInput | null = null;
+  // A course lesson's syllabus document: the first board's correction is written with it too when the lab
+  // visuals are on (lib/canvas/labVisuals.ts) — without it the rewrite lost the board's drawing.
+  let courseDoc: SuprnotesLessonInput | null = null;
   if (!beat) {
     await upsertProgressiveBeat(baseDoc);
     if (plan.length !== session.plan.length) throw new Error("The canvas lecture's plan is missing its boards.");
@@ -371,6 +375,7 @@ async function generateCanvasBoard(
     typedPrompt = !document && !strictSource;
     referenceCs = referenceCsLesson(input);
     referenceDoc = referenceDocumentOf(input);
+    courseDoc = curriculumDocumentOf(input) ?? null;
     subjectDomain = typedPrompt || referenceCs ? input.subjectDomain : undefined;
     const { practice, code } = teachingSettings(input.teachingChoices ?? []);
     const webSources = !document && !strictSource ? input.webSources ?? null : null;
@@ -473,7 +478,7 @@ async function generateCanvasBoard(
   // student has not started — never under them mid-play.
   const firstExaminer = examinerFor(session.topic, plan, typedPrompt || referenceCs, subjectDomain);
   if (sequence === 0 && beat && !existing?.beat && firstExaminer) {
-    void recheckFirstBoard(userId, sessionId, session.topic, plan, beat, revision, firstExaminer, typedPrompt, subjectDomain, { document: referenceDoc, referenceCs }).catch((error) => console.warn(`[canvas] session=${sessionId} first-board maths check failed: ${(error as Error).message}`));
+    void recheckFirstBoard(userId, sessionId, session.topic, plan, beat, revision, firstExaminer, typedPrompt, subjectDomain, { document: referenceDoc ?? (labVisualsOn() ? courseDoc : null), referenceCs }).catch((error) => console.warn(`[canvas] session=${sessionId} first-board maths check failed: ${(error as Error).message}`));
   }
 }
 

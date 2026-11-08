@@ -66,7 +66,7 @@ import { alignToNarration, anchorNotes, unshownSentences } from "./narrationSync
 import { coursePicture, coursePicturesOn, CoursePictureError } from "./coursePicture";
 import { withBoardWriting, withCoursePicture, type CourseBoardContext } from "./coursePicturePrompt";
 import { mathsPicture, MathsPictureError, withMathsPicture } from "./mathsPicture";
-import { withMathsBoardWriting, type MathsBoardContext } from "./mathsPicturePrompt";
+import { mathsBoardContext, withMathsBoardWriting, type MathsBoardContext } from "./mathsPicturePrompt";
 import { labVisualsOn } from "./labVisuals";
 import { withLabDrawing } from "./labDrawing";
 import { courseCodeDiagramsOff, offInCourses } from "./courseFigures";
@@ -1321,6 +1321,17 @@ export type CoursePictureState = { redrawn: boolean; remember?: () => Promise<vo
 export async function illustrate(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock, rebuild?: () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null>, course?: CourseBoardContext | null, options: { redraw?: string[]; maths?: MathsBoardContext | null } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; picture?: CoursePictureState }> {
   // THE LAB ENGINES FIRST (lib/canvas/labVisuals.ts, only with CANVAS_LAB_VISUALS=on): a maths board's
   // drawing is the pencil engine's checked scene or a 3-D template; gpt-image-2 only when neither could be made.
+  // A MATHS COURSE lesson's board (owner, 2026-11-08: "for only maths in courses"): the same engines in
+  // place of its gpt-image-2 picture, told the syllabus block the board teaches. Other course subjects keep
+  // their pictures.
+  if (labVisualsOn() && beat.course && beat.subject === "maths" && course && (spec.stage.kind === "illustration" || (spec.stage.kind === "equation" && beat.pictureBeside))) {
+    const ctx: MathsBoardContext = { ...mathsBoardContext(course.lesson, beat), source: [course.syllabus, ...course.hints].filter(Boolean), mustShow: course.mustShow };
+    const lab = await withLabDrawing(openai, withMathsBoardWriting(ctx, spec), beat, spec, log).catch((error) => {
+      log.push(`${beat.id}: lab drawing failed — ${(error as Error).message}`);
+      return null;
+    });
+    if (lab) return lab;
+  }
   if (labVisualsOn() && beat.mathsPicture && !beat.course && options.maths) {
     const lab = await withLabDrawing(openai, withMathsBoardWriting(options.maths, spec), beat, spec, log).catch((error) => {
       log.push(`${beat.id}: lab drawing failed — ${(error as Error).message}`);

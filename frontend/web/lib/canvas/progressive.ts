@@ -759,7 +759,9 @@ export async function writeCanvasBoard(args: {
   }
   // THE LAB ENGINES on a board with a code figure, or one the planner put in 3-D (lib/canvas/labVisuals.ts,
   // only with CANVAS_LAB_VISUALS=on). Boards drawn by gpt-image-2 got theirs in illustrate() already.
-  if (labVisualsOn() && !spec.lab && !beat.course && args.strictSource?.mode !== "video" && (beat.view3d || (mathsLesson && (spec.stage.kind === "figure" || (spec.stage.kind === "equation" && spec.stage.figure))))) {
+  // A course lesson only when it is a maths course (its boards got their drawing in illustrate()).
+  const courseOk = !beat.course || beat.subject === "maths";
+  if (labVisualsOn() && !spec.lab && courseOk && args.strictSource?.mode !== "video" && (beat.view3d || (mathsLesson && (spec.stage.kind === "figure" || (spec.stage.kind === "equation" && (spec.stage.figure || (beat.course && beat.pictureBeside))))))) {
     // The same context a maths picture gets: the whole lecture, and for a PDF what the student's pages say (strict: only that).
     const ctx = withMathsBoardWriting(mathsFor(beat) ?? mathsBoardContext(args.topic, beat, { source: args.document ? documentBoardLines(args.document, beat) : args.strictSource ? strictBoardLines(args.strictSource.doc, beat) : [], strict: args.strictSource?.mode === "strict", plan, index, earlier: args.earlier.slice(0, index) }), spec);
     const lab = await withLabDrawing(client(), ctx, beat, spec, log).catch((error) => {
@@ -774,7 +776,7 @@ export async function writeCanvasBoard(args: {
   }
   // ONE LIVING EQUATION for a maths board's working (components/canvas/LivingEquationView.tsx): the
   // board's own steps, shown changing in place. Not where a term is written over another (a condition over an arrow).
-  if (labVisualsOn() && mathsLesson && !beat.course && spec.stage.kind === "equation" && spec.stage.steps.length > 0 && !spec.stage.tokens.some((t) => t.on)) spec.living = true;
+  if (labVisualsOn() && mathsLesson && (!beat.course || beat.subject === "maths") && spec.stage.kind === "equation" && spec.stage.steps.length > 0 && !spec.stage.tokens.some((t) => t.on)) spec.living = true;
   // The pen never points at nothing (lib/canvas/cueRepair.ts): checked on the board as it ships.
   const shipped = layoutPanel(spec);
   const onBoard = new Set([...Object.keys(shipped.targets), ...shipped.marks.flatMap((m) => (m.type === "graph" ? (m.spec.markers ?? []).map((k) => k.id) : []))]);

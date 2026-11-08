@@ -260,7 +260,7 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   if (video) lines.push("", videoPlanSection(video));
   if (course) lines.push("", curriculumPlanSection(course));
   // 3-D views from the lab templates (lib/canvas/labVisuals.ts), only with CANVAS_LAB_VISUALS=on.
-  if (labVisualsOn() && !strictDoc && !video && !course && labLesson) lines.push("", view3dPlanSection());
+  if (labVisualsOn() && !strictDoc && !video && (course ? subject === "maths" : labLesson)) lines.push("", view3dPlanSection());
   return lines.join("\n");
 }
 
