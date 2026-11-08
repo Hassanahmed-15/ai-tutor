@@ -23,6 +23,8 @@ type LivingMark = Extract<Mark, { type: "living" }>;
 
 const CHALK = "#E9EBF0";
 const ACCENT = "#F5C451";
+/** The accent as the board sets it: light mode gives it a colour that turns into amber (CANVAS_CSS --cv-gold). */
+const GOLD = `var(--cv-gold, ${ACCENT})`;
 const SIGN = /^\s*(?:[=+−×÷<>≤≥≈-]|\\times|\\div|\\cdot|\\pm|\\approx|\\le|\\ge|,)\s*$/;
 const html = (tex: string | undefined, text: string) => katex.renderToString(tex ?? text.replace(/([{}#$%&_])/g, "\\$1"), { throwOnError: false, output: "html" });
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -186,8 +188,8 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
             svg.setAttribute("viewBox", ownerSvg.getAttribute("viewBox") ?? `0 0 ${or.width} ${or.height}`);
             // The copy that flies is gold: it is the part being talked about.
             const copy = n.cloneNode(true) as SVGElement;
-            copy.style.stroke = ACCENT;
-            if (copy.getAttribute("fill") && copy.getAttribute("fill") !== "none") { copy.style.fill = ACCENT; copy.style.fillOpacity = "0.25"; }
+            copy.style.stroke = GOLD;
+            if (copy.getAttribute("fill") && copy.getAttribute("fill") !== "none") { copy.style.fill = GOLD; copy.style.fillOpacity = "0.25"; }
             svg.append(copy);
             document.body.append(svg);
             const k = Math.max(0.12, Math.min(0.7, r.height / Math.max(nr.height, 1)));
@@ -241,7 +243,7 @@ const LIVING_CSS = `
 .lv-line { position: relative; padding: 10px 22px; border-radius: 16px; border: 3px solid transparent; transition: border-color .6s, box-shadow .6s; }
 .lv-final { border-color: rgba(245, 196, 81, .85); box-shadow: 0 0 18px rgba(245, 196, 81, .22); }
 .lv-term { transition: color .35s, text-shadow .35s; }
-.lv-now { color: ${ACCENT} !important; text-shadow: 0 0 14px rgba(245, 196, 81, .45); }
+.lv-now { color: ${GOLD} !important; text-shadow: 0 0 14px rgba(245, 196, 81, .45); }
 .lv-terms { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: .32em; row-gap: .2em; }
 .lv-term { position: relative; display: inline-block; white-space: nowrap; }
 .lv-term .katex { font-size: 1em; color: inherit; }
@@ -251,7 +253,7 @@ const LIVING_CSS = `
 .lv-tag { position: absolute; left: 50%; top: 100%; transform: translate(-50%, .35em); font: 600 15px/1.1 "Aria Board", "Nunito", system-ui, sans-serif; white-space: nowrap; color: #c9ccd4; background: rgba(255,255,255,.05); border: 1px solid rgba(233,235,240,.35); border-radius: 999px; padding: 3px 9px; transition: opacity .5s, transform .5s; }
 .lv-tag-up { top: auto; bottom: 100%; transform: translate(-50%, -.35em); }
 .lv-tag.lv-settled { opacity: 0; transform: translate(-50%, 0); }
-.lv-hi { color: ${ACCENT} !important; }
+.lv-hi { color: ${GOLD} !important; }
 .lv-side { font-size: 24px; color: #c3c7d2; white-space: normal; text-align: center; max-width: 94%; animation: lv-in .6s ease-out both; }
 .lv-side .katex { font-size: 1em; }
 @keyframes lv-in { from { opacity: 0; transform: translateY(.4em); } to { opacity: 1; transform: none; } }

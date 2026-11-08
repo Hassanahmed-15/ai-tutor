@@ -20,6 +20,7 @@ import { YouTubeLauncher } from "@/components/pages/YouTubeLauncher";
 import { AriaMark } from "@/components/brand/AriaMark";
 import { AriaBot } from "@/components/pages/AriaBot";
 import { SpendPill } from "@/components/SpendPill";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 /**
  * THE FRONT PAGE, with as little to read as a page can have: Aria herself saying hello, one place
@@ -143,6 +144,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
         </span>
         <nav aria-label="Main" className="flex items-center gap-1 sm:gap-2">
           <IconWord icon={<CircleHelp size={18} strokeWidth={1.7} />} word="Guide" onClick={() => setGuideOpen(true)} pressed={guideOpen} />
+          <ThemeToggle />
           {user && (
             <>
               {/* Today's AI spend — Hassan's and Minahil's accounts only (renders nothing for anyone else). */}

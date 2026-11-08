@@ -32,7 +32,7 @@ function loadJsxGraph(): Promise<void> {
 }
 
 const PENCIL = (
-  <svg viewBox="0 0 48 48" aria-hidden="true" style={{ position: "absolute", left: -2, top: -46, width: 48, height: 48, overflow: "visible", filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.6))" }}>
+  <svg viewBox="0 0 48 48" aria-hidden="true" className="cv-natural" style={{ position: "absolute", left: -2, top: -46, width: 48, height: 48, overflow: "visible", filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.6))" }}>
     <g transform="rotate(-45 2 46)"><rect x="9" y="41" width="34" height="10" rx="1.5" fill="#ffcf48" stroke="#a27a12" strokeWidth="1" /><rect x="40" y="41" width="7" height="10" rx="2" fill="#ff8fb1" /><rect x="37" y="41" width="3" height="10" fill="#c9c9c9" /><path d="M9 41 L2 46 L9 51 Z" fill="#f1d6a8" /><path d="M4.2 44.4 L2 46 L4.2 47.6 Z" fill="#3a3a3a" /></g>
   </svg>
 );
@@ -76,8 +76,9 @@ function PencilScene({ mark, shownThrough, reducedMotion }: { mark: LabMark; sho
             for (const el of p.elementsOf(ids)) {
               const st = el.rendNode.style, filled = el.visProp.fillcolor && el.visProp.fillcolor !== "none";
               st.transition = "stroke .35s, fill .35s, fill-opacity .35s, filter .35s";
-              st.stroke = on ? ACCENT : "";
-              st.fill = on && filled ? ACCENT : "";
+              // The board's gold (CANVAS_CSS --cv-gold: light mode gives it a colour that turns into amber).
+              st.stroke = on ? `var(--cv-gold, ${ACCENT})` : "";
+              st.fill = on && filled ? `var(--cv-gold, ${ACCENT})` : "";
               st.fillOpacity = on && filled ? "0.22" : "";
               st.filter = on ? `drop-shadow(0 0 6px ${ACCENT}aa)` : "";
             }

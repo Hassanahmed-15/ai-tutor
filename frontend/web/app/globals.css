@@ -786,47 +786,49 @@ textarea {
      primary action, the selected item, the focus ring). Every other colour means
      a status and always comes with an icon or a word. Text and muted text clear
      4.5:1 on page and surface; icons, input borders and focus clear 3:1. */
-  --page: #F4EFE4;
-  --surface: #FBF8F1;
-  --surface-2: #ECE6D8;
-  --border: #DDD5C4;
-  --border-strong: #BFB5A0;
+  /* Light matches the night: the same violet on a cool white (owner, 2026-11-08: "a light mode … matching
+     the colours"); it was warm paper and vermilion before. */
+  --page: #F6F5FC;
+  --surface: #FFFFFF;
+  --surface-2: #EEEBF8;
+  --border: #E0DCF0;
+  --border-strong: #C4BEE0;
   /* The outline of a text field: 3:1 on surface and page, so the field can be found. */
-  --input-border: #8C8371;
-  --text: #1F1B15;
-  --text-muted: #5E574B;
-  --text-faint: #87806F;
-  --accent: #B8381F;
-  --accent-hover: #A02F18;
-  --accent-ink: #8E2A15;
-  --accent-on: #FFFBF4;
-  --accent-soft: #F6E3DC;
+  --input-border: #8B85AD;
+  --text: #15132B;
+  --text-muted: #56536F;
+  --text-faint: #7F7B99;
+  --accent: #6C3FE6;
+  --accent-hover: #5A2FD3;
+  --accent-ink: #5226C2;
+  --accent-on: #FFFFFF;
+  --accent-soft: #EEE7FF;
   --success: #2E6B45;
   --success-soft: #E4EFE6;
   --warning: #8A5A00;
   --warning-soft: #F8EDD6;
   --danger: #B4443A;
   --danger-soft: #F8E6E3;
-  --scrim: rgba(31, 27, 21, 0.36);
-  --warm: #D9743A;
-  /* Dot, the orb avatar (components/avatar/DotAvatar.tsx): Aria's orange on light, as the mark is. */
-  --dot-hi: #FFE6D3;
-  --dot-mid: #F6A673;
-  --dot-body: #E2773F;
-  --dot-edge: #B8381F;
-  --dot-rim: #B8381F;
-  --dot-cheek: #FF8A7A;
-  --dot-eye: #2A120A;
-  --dot-mouth: #4A1A0C;
-  --dot-lip: #F7B898;
-  --dot-trail: #D9743A;
-  --dot-shadow: rgba(184, 56, 31, 0.3);
+  --scrim: rgba(21, 19, 43, 0.36);
+  --warm: #B7791F;
+  /* Dot, the orb avatar (components/avatar/DotAvatar.tsx): violet in both themes, as the mark is. */
+  --dot-hi: #EFE6FF;
+  --dot-mid: #B892FF;
+  --dot-body: #8B5CF6;
+  --dot-edge: #6C3FE6;
+  --dot-rim: #5B7BFF;
+  --dot-cheek: #F0ABFC;
+  --dot-eye: #1B1030;
+  --dot-mouth: #2A1650;
+  --dot-lip: #C2A4FF;
+  --dot-trail: #8B5CF6;
+  --dot-shadow: rgba(108, 63, 230, 0.3);
   /* The library sheet: one step off the page, like a desk beside the sheet. */
-  --sidebar: #ECE6D8;
-  --sidebar-hover: #E2DBCA;
+  --sidebar: #EEEBF8;
+  --sidebar-hover: #E4E0F4;
 
   /* Knowledge map: one quiet tone per subject, each clearing 3:1 on the page. */
-  --map-1: #B8381F;
+  --map-1: #6C3FE6;
   --map-2: #2E6B45;
   --map-3: #8A5A00;
   --map-4: #2B57B8;
@@ -853,7 +855,7 @@ textarea {
   --hud-cyan: var(--accent);
   --hud-cyan-bright: var(--accent-ink);
   --hud-cyan-deep: var(--accent-ink);
-  --hud-cyan-glow: rgba(184, 56, 31, 0.14);
+  --hud-cyan-glow: rgba(108, 63, 230, 0.14);
   --hud-cyan-glow-soft: var(--accent-soft);
   --accent-gradient: linear-gradient(var(--accent), var(--accent));
 
@@ -862,7 +864,7 @@ textarea {
   --ok-dim: var(--success-soft);
   --listening: #2B57B8;
   --listening-dim: #E3E9F7;
-  --speaking: var(--accent);
+  --speaking: #B42FC4;
   --speaking-dim: var(--accent-soft);
   --hud-warn: var(--warning);
   --warn-dim: var(--warning-soft);
@@ -884,8 +886,8 @@ textarea {
 
   /* Depth comes from a lighter surface and a hairline; the soft shadow is kept for
      floating panels only. */
-  --elev-1: 0 1px 2px rgba(31, 27, 21, 0.06);
-  --elev-2: 0 1px 2px rgba(31, 27, 21, 0.06), 0 10px 28px rgba(31, 27, 21, 0.10);
+  --elev-1: 0 1px 2px rgba(21, 19, 43, 0.06);
+  --elev-2: 0 1px 2px rgba(21, 19, 43, 0.06), 0 10px 28px rgba(40, 24, 110, 0.10);
 
   --motion-fast: 120ms;
   --motion: 180ms;
@@ -1371,8 +1373,13 @@ html[data-reduced-motion="1"] *::after {
     radial-gradient(70% 90% at 50% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 75%),
     var(--surface);
 }
-/* The board keeps the lesson board's own slate in both themes. */
+/* The board is the lesson board's slate; in light mode it turns white with dark ink, as the lesson board does
+   (CanvasPanel CANVAS_CSS .cv-board). The border is set dark so it turns into a light hairline. */
 .welcome-board { background: #141428; }
+[data-theme="light"] .welcome-board { filter: invert(1) hue-rotate(180deg) saturate(1.5); border-color: #2c2844; box-shadow: none; }
+/* Its gold, like the lesson board's, starts from a colour that turns into amber (CANVAS_CSS --cv-gold). */
+[data-theme="light"] .welcome-board [stroke="#F5C86B"] { stroke: #b47327; }
+[data-theme="light"] .welcome-board .welcome-chalk-strong { fill: #b47327; }
 .welcome-chalk-title { font-family: var(--font-display); font-size: 26px; font-weight: 600; fill: #F5F3FF; }
 .welcome-chalk { font-family: var(--font-display); font-size: 18px; fill: #EDEAF7; }
 .welcome-chalk-strong { font-family: var(--font-display); font-size: 22px; font-weight: 600; fill: #F5C86B; }

@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 
 /**
- * THE TAB ICON FOLLOWS THE APP'S THEME — the same mark as the logo on the page, violet on dark and
- * red on light. `app/icon.svg` already switches with the device's setting before any script runs;
+ * THE TAB ICON FOLLOWS THE APP'S THEME — the same mark as the logo on the page, violet in both themes,
+ * a deeper violet on light. `app/icon.svg` already switches with the device's setting before any script runs;
  * this keeps the tab in step with the app's own choice (Settings → Appearance), which the device
  * cannot see. Renders nothing.
  */

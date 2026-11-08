@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { AriaLockup } from "@/components/brand/AriaMark";
 import { AuthScreen } from "@/components/auth/AuthScreen";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { DotAvatar, type DotGaze } from "@/components/avatar/DotAvatar";
 import { savePendingTopic } from "@/lib/pendingTopic";
 
@@ -97,6 +98,7 @@ export function WelcomePage({ onAuthenticated }: { onAuthenticated: () => void }
       <header className="relative z-20 mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:h-20 sm:px-6">
         <AriaLockup size={30} />
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <button
             type="button"
             onClick={() => open("login")}
@@ -275,8 +277,8 @@ function BoardPreview() {
           <span className="size-2.5 rounded-full bg-white/20" />
           <span className="size-2.5 rounded-full bg-white/20" />
           <span className="size-2.5 rounded-full bg-white/20" />
-                  </div>
-now        <svg viewBox="0 0 640 300" className="block h-auto w-full" aria-hidden="true">
+        </div>
+        <svg viewBox="0 0 640 300" className="block h-auto w-full" aria-hidden="true">
           <text x="34" y="52" className="welcome-chalk-title" fill="#F5F3FF">How a leaf makes food</text>
           <path className="welcome-draw" style={{ animationDelay: "0.2s" }} pathLength={1} d="M34 66 H300" stroke="#F5C86B" strokeWidth="3" fill="none" strokeLinecap="round" />
 

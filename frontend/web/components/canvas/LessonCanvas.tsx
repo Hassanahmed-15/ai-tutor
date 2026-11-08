@@ -15,7 +15,7 @@ import { setPointTarget } from "@/lib/avatar/pointTarget";
 import { CHALK, chalkCss, chalkTint, panelTheme, recolour, type BoardTheme } from "@/lib/canvas/theme";
 import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK, COURSE_FONT_FACE, COURSE_FONT_FAMILY, COURSE_FONT_RANGE } from "@/lib/anim/boardFont";
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
-import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint } from "./CanvasPanel";
+import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint, NaturalLayer } from "./CanvasPanel";
 import { quadPoints } from "@/lib/canvas/ink";
 import { cardSideView } from "@/lib/canvas/renderFit";
 import { playScratch, playTick, playWhoosh, setSoundEnabled, soundEnabled } from "./sound";
@@ -105,6 +105,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  // Light mode's lower layer: the white boards and their real pictures (CanvasPanel NaturalLayer).
+  const underRef = useRef<SVGSVGElement>(null);
   const [aspect, setAspect] = useState(16 / 9);
   /** The canvas's size on screen (px): a task card's column is measured in pixels, not board units. */
   const [boxSize, setBoxSize] = useState({ w: 0, h: 0 });
@@ -396,6 +398,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const applyView = useCallback((v: View) => {
     viewRef.current = v;
     svgRef.current?.setAttribute("viewBox", `${v.x} ${v.y} ${v.w} ${v.h}`);
+    underRef.current?.setAttribute("viewBox", `${v.x} ${v.y} ${v.w} ${v.h}`);
     const el = containerRef.current;
     if (el && v.w > 0) {
       const scale = el.clientWidth / v.w;
@@ -619,8 +622,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   return (
     <div
       ref={containerRef}
-      className="relative h-full w-full select-none overflow-hidden bg-[#0b0f14]"
-      style={{ touchAction: "none", cursor: drawing ? "crosshair" : mode === "follow" ? "default" : "grab", backgroundImage: "radial-gradient(circle at 2px 2px, #1f2a37 1.4px, transparent 1.8px)" }}
+      className="cv-room relative h-full w-full select-none overflow-hidden"
+      style={{ touchAction: "none", cursor: drawing ? "crosshair" : mode === "follow" ? "default" : "grab" }}
       onWheel={onWheel}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
@@ -629,7 +632,20 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       aria-label="Lesson canvas"
     >
       <style>{fontCss + CANVAS_CSS + CHALK_CSS}</style>
-      <svg ref={svgRef} className={`absolute inset-0 h-full w-full transition-opacity ${mode === "overview" ? "opacity-0" : "opacity-100"}`} preserveAspectRatio="xMidYMid meet" style={{ fontFamily: BOARD_FONT_STACK }}>
+      {/* Shown in light mode only (CANVAS_CSS .cv-under); the camera moves it with the board above. */}
+      <svg ref={underRef} aria-hidden="true" className={`cv-under pointer-events-none absolute inset-0 h-full w-full transition-opacity ${mode === "overview" ? "opacity-0" : "opacity-100"}`} preserveAspectRatio="xMidYMid meet" style={{ fontFamily: BOARD_FONT_STACK }}>
+        {panels.slice(0, reachedIndex + 1).map((panel, i) => {
+          const at = placements[panel.key];
+          const live = i === shownIndex && currentIndex >= 0;
+          return (
+            // Not .cv-chalk: its colour swaps are for the slate, and this layer is the white board itself.
+            <g key={panel.key} transform={`translate(${at.x},${at.y}) scale(${at.scale})`}>
+              <MemoNatural layout={layouts[i]} spec={specs[i]} theme={themes[i]} shownThrough={live && !finished ? sentence : Infinity} live={live} reducedMotion={reducedMotion} />
+            </g>
+          );
+        })}
+      </svg>
+      <svg ref={svgRef} className={`cv-board absolute inset-0 h-full w-full transition-opacity ${mode === "overview" ? "opacity-0" : "opacity-100"}`} preserveAspectRatio="xMidYMid meet" style={{ fontFamily: BOARD_FONT_STACK }}>
         <defs>
           {shadowUrl && <image id="cv-shadow-img" href={shadowUrl} x={-SHADOW_PAD} y={-SHADOW_PAD + 10} width={PANEL_W + SHADOW_PAD * 2} height={PANEL_H + SHADOW_PAD * 2} preserveAspectRatio="none" />}
           {grainUrl && (
@@ -637,6 +653,12 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               <image href={grainUrl} width={220} height={220} />
             </pattern>
           )}
+          {/* Light mode turns the whole board over (CANVAS_CSS .cv-board): this turns a real picture back, so a
+              sticky note or the pencil keeps its own colours on the white board: the flip again (it undoes
+              itself), after taking the colour boost back out (saturate 1 / 1.5). */}
+          <filter id="cv-natural" colorInterpolationFilters="sRGB">
+            <feColorMatrix type="matrix" values="0.3117 -1.1917 -0.12 0 1  -0.355 -0.525 -0.12 0 1  -0.355 -1.1917 0.5467 0 1  0 0 0 1 0" />
+          </filter>
           {/* The slate: room light falling across it (CanvasPanel SlateSurface). */}
           <radialGradient id="cv-slate-light" cx="45%" cy="30%" r="75%">
             <stop offset="0%" stopColor="#ffffff" stopOpacity={0.07} />
@@ -721,7 +743,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       </svg>
       {mode === "overview" && (
         <div
-          className="absolute inset-0 z-[5] overflow-y-auto bg-[#0b0f14]/95 px-4 pb-16 pt-16 backdrop-blur-sm"
+          className="cv-room-veil absolute inset-0 z-[5] overflow-y-auto px-4 pb-16 pt-16 backdrop-blur-sm"
           onPointerDown={(event) => event.stopPropagation()}
           aria-label="Whole lesson board map"
         >
@@ -931,6 +953,7 @@ const EMPTY: Record<string, number> = {};
 const CARD_COLUMN_PX = 320 + 16 + 12;
 const EMPTY_RECTS: Record<string, Rect> = {};
 const MemoPanel = memo(CanvasPanel);
+const MemoNatural = memo(NaturalLayer);
 
 function initialVars(panels: CanvasPanelInput[]): Record<string, Record<string, number>> {
   const out: Record<string, Record<string, number>> = {};

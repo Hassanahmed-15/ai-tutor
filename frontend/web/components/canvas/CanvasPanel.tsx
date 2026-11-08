@@ -94,7 +94,7 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
         {/* The shadow is a picture baked once (LessonCanvas paperShadow): a live blur filter under
             every board was re-blurred on every frame of a camera flight, and the flights stuttered. */}
         <use href="#cv-shadow-img" />
-        <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill={PAPER} stroke={chalk ? "#e7e2d6" : "#cfd6de"} strokeWidth={chalk ? 2 : 3} />
+        <rect className="cv-paper" x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill={PAPER} stroke={chalk ? "#e7e2d6" : "#cfd6de"} strokeWidth={chalk ? 2 : 3} />
         {/* Paper grain: a faint, soft texture baked once into an image pattern — no blend mode, which
             forced the whole board through an extra compositing pass per frame. */}
         {/* A whiteboard is clean: no paper grain. The slate stays for the chalk theme. */}
@@ -275,7 +275,7 @@ function StickyCard({ mark, no, focused, done, open }: CardProps) {
   // Motion (CANVAS_CSS .cv-sticky-*): stuck on with a slap, lifted and straightened while Aria is on
   // it (the others dim), its tick pops when its close-up is done.
   return (
-    <g className={`cv-sticky-note${focused ? " is-focus" : ""}${done ? " is-done" : ""}`} style={{ ["--order" as string]: Math.max(0, no - 1) }}>
+    <g className={`cv-sticky-note cv-natural${focused ? " is-focus" : ""}${done ? " is-done" : ""}`} style={{ ["--order" as string]: Math.max(0, no - 1) }}>
       <g className="cv-sticky-slap">
       <g className="cv-sticky-body" style={{ ["--tilt" as string]: `${tilt}deg` }}>
         <path className="cv-sticky-shadow" d={`M ${x + 2} ${y + 6} h ${w} v ${h - fold} l ${-fold} ${fold} h ${-(w - fold)} z`} fill="#000000" opacity={0.08} />
@@ -547,32 +547,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
           </g>
         );
       }
-      return (
-        // A course picture is already drawn: it is put up at once, not traced by the pencil (owner,
-        // 2026-10-25: tracing its frame held the board in "a long pause" before anything was written).
-        <g className="cv-in" data-no-marker={isCourseBoard(spec) ? "" : undefined}>
-          {/* On a chalkboard a picture is a photo taped to the board: a white border and two strips of tape. */}
-          {chalk && (
-            <>
-              <rect x={mark.rect.x - 12} y={mark.rect.y - 12} width={mark.rect.w + 24} height={mark.rect.h + 24} rx={6} fill="#f8f6f0" />
-              <rect x={mark.rect.x + 18} y={mark.rect.y - 26} width={92} height={28} fill="#efe3bf" opacity={0.82} transform={`rotate(-9 ${mark.rect.x + 64} ${mark.rect.y - 12})`} />
-              <rect x={mark.rect.x + mark.rect.w - 110} y={mark.rect.y - 26} width={92} height={28} fill="#efe3bf" opacity={0.82} transform={`rotate(8 ${mark.rect.x + mark.rect.w - 64} ${mark.rect.y - 12})`} />
-            </>
-          )}
-          <clipPath id={`clip-${mark.id}`}>
-            <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={16} />
-          </clipPath>
-          <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={16} fill={mark.paper ?? "#f5f3ee"} />
-          {mark.src ? (
-            <BoardImage key={mark.src} src={mark.src} x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${mark.id})`} />
-          ) : (
-            <text x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2} textAnchor="middle" fontSize={18} fill={MUTED}>
-              {mark.subject.slice(0, 60)}
-            </text>
-          )}
-          <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={16} fill="none" stroke="#e7e2d6" strokeWidth={2} />
-        </g>
-      );
+      return <PictureCard mark={mark} spec={spec} chalk={Boolean(chalk)} />;
     case "part":
       // A part is invisible until the pen or a label points at it — the picture carries it. A course or
       // maths picture's labels are printed in it: nothing is drawn on it (owner, 2026-10-25: the ring and
@@ -801,6 +776,56 @@ function FigureView({ mark, chalk, focusId, shownThrough = Infinity }: { mark: E
 }
 
 /**
+ * LIGHT MODE'S LOWER LAYER (LessonCanvas): the white board and its real pictures, drawn as they are. The
+ * board above is turned over to make its chalk dark (CANVAS_CSS .cv-board), its paper is see-through
+ * there and its pictures are hidden, so a picture shows its own colours with the labels still on top.
+ * A turned-back picture lost its bright yellows (a flip that inverts brightness cannot keep them).
+ */
+export function NaturalLayer({ layout, spec, shownThrough, live, reducedMotion, theme = "paper" }: { layout: PanelLayout; spec: CanvasBoardSpec; shownThrough: number; live: boolean; reducedMotion: boolean; theme?: BoardTheme }) {
+  const chalk = theme === "chalk";
+  const pictures = layout.marks.filter((m) => m.s <= shownThrough && ((m.type === "picture" && !m.onBoard) || (m.type === "figure" && m.asset)));
+  return (
+    <g className={live && !reducedMotion ? "cv-live" : "cv-settled"}>
+      <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="#ffffff" />
+      {pictures.map((m) => (m.type === "picture" ? <PictureCard key={m.id} mark={m} spec={spec} chalk={chalk} /> : m.type === "figure" ? <LibraryFigureView key={m.id} mark={m} chalk={chalk} /> : null))}
+    </g>
+  );
+}
+
+/**
+ * A picture put up on the board: drawn as it is, so in light mode it is drawn beneath the turned-over
+ * board (NaturalLayer) and its colours are its own.
+ */
+function PictureCard({ mark, spec, chalk }: { mark: Extract<Mark, { type: "picture" }>; spec: CanvasBoardSpec; chalk: boolean }) {
+  return (
+    // A course picture is already drawn: it is put up at once, not traced by the pencil (owner,
+    // 2026-10-25: tracing its frame held the board in "a long pause" before anything was written).
+    <g className="cv-in cv-picture" data-no-marker={isCourseBoard(spec) ? "" : undefined}>
+      {/* On a chalkboard a picture is a photo taped to the board: a white border and two strips of tape. */}
+      {chalk && (
+        <>
+          <rect x={mark.rect.x - 12} y={mark.rect.y - 12} width={mark.rect.w + 24} height={mark.rect.h + 24} rx={6} fill="#f8f6f0" />
+          <rect x={mark.rect.x + 18} y={mark.rect.y - 26} width={92} height={28} fill="#efe3bf" opacity={0.82} transform={`rotate(-9 ${mark.rect.x + 64} ${mark.rect.y - 12})`} />
+          <rect x={mark.rect.x + mark.rect.w - 110} y={mark.rect.y - 26} width={92} height={28} fill="#efe3bf" opacity={0.82} transform={`rotate(8 ${mark.rect.x + mark.rect.w - 64} ${mark.rect.y - 12})`} />
+        </>
+      )}
+      <clipPath id={`clip-${mark.id}`}>
+        <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={16} />
+      </clipPath>
+      <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={16} fill={mark.paper ?? "#f5f3ee"} />
+      {mark.src ? (
+        <BoardImage key={mark.src} src={mark.src} x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${mark.id})`} />
+      ) : (
+        <text x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2} textAnchor="middle" fontSize={18} fill={MUTED}>
+          {mark.subject.slice(0, 60)}
+        </text>
+      )}
+      <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={16} fill="none" stroke="#e7e2d6" strokeWidth={2} />
+    </g>
+  );
+}
+
+/**
  * A real textbook diagram from the library (lib/figures/library.ts): the art as an image, its own
  * words already taken off so the board's labels are the only ones. On the chalkboard it sits on a
  * paper card — the diagram's colours were drawn for white. The credit is required by its licence.
@@ -808,7 +833,7 @@ function FigureView({ mark, chalk, focusId, shownThrough = Infinity }: { mark: E
 function LibraryFigureView({ mark, chalk }: { mark: Extract<Mark, { type: "figure" }>; chalk: boolean }) {
   const { rect, drawing } = mark;
   return (
-    <g className="cv-in" role="img" aria-label={`Diagram with parts: ${drawing.parts.map((p) => p.name).join(", ")}`}>
+    <g className="cv-in cv-picture" role="img" aria-label={`Diagram with parts: ${drawing.parts.map((p) => p.name).join(", ")}`}>
       {chalk && <rect x={rect.x - 6} y={rect.y - 6} width={rect.w + 12} height={rect.h + 12} rx={10} fill="#f6f3ea" opacity={0.96} />}
       <image href={figureAssetHref(mark.asset!)} x={rect.x} y={rect.y} width={rect.w} height={rect.h} preserveAspectRatio="xMidYMid meet" />
       {drawing.credit && (
@@ -2356,6 +2381,33 @@ export function markerPoint(layout: PanelLayout, id: string, vars: Record<string
  * loops for decoration. The camera itself never bounces (lib/canvas/camera.ts).
  */
 export const CANVAS_CSS = `
+/* The room round the boards. */
+.cv-room { background-color: #0b0f14; background-image: radial-gradient(circle at 2px 2px, #1f2a37 1.4px, transparent 1.8px); }
+.cv-room-veil { background-color: rgba(11,15,20,.95); }
+/* LIGHT MODE (owner, 2026-11-08: "if light is chosen change the black board to white with matching text
+   colours"): the board is turned over as a whole, so the black slate becomes white and chalk-white ink
+   becomes black, while every colour keeps its hue (Aria's "the blue line" stays blue). One flip covers
+   every kind of ink (the pencil engine, KaTeX, the 3-D models, the marker) with nothing to keep in step.
+   A real picture is turned back (#cv-natural in LessonCanvas), so it shows its own colours. */
+[data-theme="light"] .cv-room { background-color: #ECEBF4; background-image: radial-gradient(circle at 2px 2px, #D3D0E2 1.4px, transparent 1.8px); }
+[data-theme="light"] .cv-room-veil { background-color: rgba(236,235,244,.95); }
+/* saturate: a colour turned dark loses its life (gold came out mud brown); a little more colour makes it amber.
+   Black, white and greys are untouched by it. */
+[data-theme="light"] .cv-board { filter: invert(1) hue-rotate(180deg) saturate(1.5); }
+/* Gold, the board's one accent, turned dark is mud brown, so light mode starts it from a colour that turns
+   into amber (#D97706); the yellow key words end as amber ink (#B45309). Values are before the flip. */
+.cv-board { --cv-gold: #F5C451; }
+[data-theme="light"] .cv-board { --cv-gold: #b47327; }
+[data-theme="light"] .cv-board [stroke="#f5c451" i] { stroke: var(--cv-gold); }
+[data-theme="light"] .cv-board [fill="#f5c451" i] { fill: var(--cv-gold); }
+[data-theme="light"] .cv-board [fill="#ffd76a" i] { fill: #d39261; }
+/* Pastel paper (a sticky note, the pencil) is simply turned back: pale colours survive the double flip. */
+[data-theme="light"] .cv-board .cv-natural { filter: url(#cv-natural); }
+/* Pictures and the board's surface are drawn beneath instead (NaturalLayer), exactly as they are. */
+.cv-under { display: none; }
+[data-theme="light"] .cv-under { display: block; }
+[data-theme="light"] .cv-board .cv-paper { fill: transparent; }
+[data-theme="light"] .cv-board .cv-picture, [data-theme="light"] .cv-board use[href="#cv-shadow-img"] { visibility: hidden; }
 /* A note's line to the part it names, and the pointer's ring on a course picture: drawn on quickly. */
 .cv-live .cv-link { animation: cv-link 700ms ease-out both; }
 @keyframes cv-link { from { opacity: 0; } to { opacity: .9; } }
