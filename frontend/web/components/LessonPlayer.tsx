@@ -420,6 +420,9 @@ export function LessonPlayer({
   const [waitingForNextBeat, setWaitingForNextBeat] = useState(false);
   // The next board is planned but not written yet (its animation may still be being retried).
   const nextBoardPending = holdForNextBoard && hasMoreBeats && index >= beats.length - 1 && index < displayBeatCount - 1;
+  // Aria's voice is late and the lecture is waiting for it (lib/voice.ts onVoiceWaiting): shown, never skipped.
+  const [voiceWaiting, setVoiceWaiting] = useState(false);
+  useEffect(() => setVoiceWaiting(false), [index]);
   useEffect(() => onBeatIndexChange?.(index), [index, onBeatIndexChange]);
   // The ADHD layer decides the face; the header renders it. Subscribed rather than passed, because
   // the layer is a CHILD of this component and props only travel downward.
@@ -2223,6 +2226,14 @@ export function LessonPlayer({
           tracePlayback("heard", { beat: index, board: sentenceIndex - bridge, ms: Math.round(spokenMs) });
           setHeard({ beat: index, sentence: sentenceIndex - bridge, ms: spokenMs, at: performance.now() });
         },
+        // Aria's voice is late: the lecture waits for it and says so (owner, 2026-11-07: "pause the lecture"
+        // rather than another voice or none). The wait is reported every 2 s, so the stall watchdog never
+        // mistakes it for a stall and restarts the part.
+        onVoiceWaiting: (waiting) => {
+          lastNarrationSignalRef.current = Date.now();
+          setVoiceWaiting(waiting);
+          if (waiting) tracePlayback("voice-waiting", { beat: index });
+        },
         onSentenceStart: (sentenceIndex, sentence, total) => {
           lastNarrationSignalRef.current = Date.now();
           previousAskedPrediction = sentenceIndex >= bridge && asksForPrediction(sentence);
@@ -3636,6 +3647,13 @@ export function LessonPlayer({
               <div role="status" aria-live="polite" data-next-board-pending className="pointer-events-none absolute bottom-4 right-4 z-40 flex items-center gap-2 rounded-full border border-[var(--hud-cyan)]/40 bg-black/70 px-3.5 py-1.5 text-xs font-semibold text-[var(--hud-text)] backdrop-blur-sm">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--hud-cyan)]" aria-hidden />
                 Next board is being prepared…
+              </div>
+            )}
+            {/* Her voice is late: the lecture is paused on this sentence until it comes — never another voice, never on in silence. */}
+            {voiceWaiting && (
+              <div role="status" aria-live="polite" data-voice-waiting className="pointer-events-none absolute left-1/2 top-4 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-[var(--hud-cyan)]/40 bg-black/70 px-3.5 py-1.5 text-xs font-semibold text-[var(--hud-text)] backdrop-blur-sm">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--hud-cyan)]" aria-hidden />
+                Paused — waiting for Aria&apos;s voice…
               </div>
             )}
 
