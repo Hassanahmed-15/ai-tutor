@@ -95,6 +95,8 @@ export function validateBlocks(raw: unknown, section: string, script: string): {
   const blocks: BoardBlock[] = [];
   list.slice(0, MAX_BLOCKS).forEach((item, i) => {
     const r = (item && typeof item === "object" ? item : {}) as Record<string, unknown>;
+    // The board has its title already: a heading block that opens it only says the title twice.
+    if (i === 0 && r.kind === "heading") return;
     let kind = r.kind as BoardBlockKind;
     if (!BLOCK_KINDS.includes(kind)) {
       faults.push(`block ${i + 1}: unknown kind "${String(r.kind)}"`);
@@ -107,7 +109,8 @@ export function validateBlocks(raw: unknown, section: string, script: string): {
       return;
     }
     const end = Number.isInteger(e) ? Math.min(last, Math.max(s, e)) : s;
-    const board_text = textOf(kind, r);
+    // A box has its own label: "Common mistake: …" under ⚠️ Common mistake says it twice.
+    const board_text = kind === "callout" ? textOf(kind, r).replace(/^\**(key idea|example|worked example|common mistake|mistake|check yourself|check|remember)\**\s*[:：]\s*\**\s*/i, "") : textOf(kind, r);
     if (!board_text) {
       faults.push(`block ${i + 1}: empty`);
       return;
@@ -206,6 +209,19 @@ function wordWeight(w: string): number {
   return Math.max(1, groups || Math.ceil(w.length / 3));
 }
 
+/** Each word of a sentence and how far through the sentence it starts (0..1), by how long the words before it take to say. */
+export function wordPositions(sentence: string): Array<{ word: string; at: number }> {
+  const words = wordsOf(sentence);
+  const weights = words.map(wordWeight);
+  const total = weights.reduce((x, y) => x + y, 0) || 1;
+  let run = 0;
+  return words.map((word, i) => {
+    const at = run / total;
+    run += weights[i];
+    return { word, at };
+  });
+}
+
 /** Words the student would recognise a phrase by: numbers, and words of three letters or more. */
 const SKIP = new Set("the and for are was were that this with from have has had but not you your they them then than its".split(" "));
 const distinctive = (words: string[]) => words.filter((w) => /\d/.test(w) || (w.length >= 3 && !SKIP.has(w)));
@@ -220,15 +236,7 @@ const distinctive = (words: string[]) => words.filter((w) => /\d/.test(w) || (w.
 export function revealUnits(b: BoardBlock): RevealUnit[] {
   const texts = unitTexts(b);
   const spoken = canvasSentences(b.spoken_text).flatMap((sentence, index) => {
-    const words = wordsOf(sentence);
-    const weights = words.map(wordWeight);
-    const total = weights.reduce((x, y) => x + y, 0) || 1;
-    let run = 0;
-    return words.map((word, i) => {
-      const at = b.s + index + run / total;
-      run += weights[i];
-      return { word, at };
-    });
+    return wordPositions(sentence).map(({ word, at }) => ({ word, at: b.s + index + at }));
   });
   const end = b.e + 1;
   const found: Array<number | null> = [];

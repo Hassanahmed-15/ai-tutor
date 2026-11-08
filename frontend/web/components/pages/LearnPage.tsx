@@ -4237,6 +4237,7 @@ type BuildCost =
         onOral={startOralTest}
         onSkip={endLecture}
         onGoDeeper={goDeeper}
+        next={courseSeries && courseSeries.part < courseSeries.parts ? { label: `Next: Lesson ${courseSeries.part + 1} of ${courseSeries.parts}`, detail: courseSeries.titles[courseSeries.part]?.join(" · ") ?? "", onClick: startNextCourseLesson } : undefined}
       />
       {/* The student lands here the moment the lecture ends — the summary is one click away. */}
       {!summaryOpen && !mindMapOpen && summaryButton}
@@ -4854,6 +4855,7 @@ function TestOfferScreen({
   onWritten,
   onOral,
   onSkip,
+  next,
   onGoDeeper,
 }: {
   mode: TrackMeta;
@@ -4864,6 +4866,8 @@ function TestOfferScreen({
   onWritten: () => void;
   onOral: () => void;
   onSkip: () => void;
+  /** The next lesson of a course lesson's series, when there is one. */
+  next?: { label: string; detail: string; onClick: () => void };
   onGoDeeper?: () => void;
 }) {
   /*
@@ -4896,12 +4900,23 @@ function TestOfferScreen({
           {/* The test is the recommended next step, so it is the one filled card. Blind mode takes
               the oral exam, because a typed exam is not a test it can sit; nobody else is asked
               to choose between the two. */}
+          {/* The next lesson of this topic's series comes first: it is what a student finishing Lesson 1 came for. */}
+          {next && (
+            <button type="button" onClick={next.onClick} data-next-lesson="" className={card} style={{ borderColor: "var(--hud-cyan)", background: "var(--hud-cyan-glow)" }}>
+              <span className="grid size-10 shrink-0 place-items-center rounded-full" style={{ background: "var(--hud-cyan)", color: "var(--hud-bg)" }}><ArrowRight aria-hidden="true" size={18} /></span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[1rem] font-semibold text-[var(--hud-text)]">{next.label}</span>
+                <span className="mt-0.5 block text-[0.85rem] leading-snug text-[var(--hud-text-dim)]">{next.detail}</span>
+              </span>
+              <ArrowRight aria-hidden="true" size={18} className="shrink-0 text-[var(--hud-text-dim)]" />
+            </button>
+          )}
           <button
             type="button"
             onClick={forceOral ? onOral : onWritten}
             disabled={loading}
             className={card}
-            style={{ borderColor: "var(--hud-cyan)", background: "var(--hud-cyan-glow)" }}
+            style={next ? undefined : { borderColor: "var(--hud-cyan)", background: "var(--hud-cyan-glow)" }}
           >
             <span className="grid size-10 shrink-0 place-items-center rounded-full" style={{ background: "var(--hud-cyan)", color: "var(--hud-bg)" }}>
               {loading ? <Loader2 aria-hidden="true" size={18} className="animate-spin" /> : forceOral ? <Mic aria-hidden="true" size={18} /> : <ClipboardCheck aria-hidden="true" size={18} />}

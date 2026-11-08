@@ -13,8 +13,9 @@ export type AskedNote = { id: string; index: number; question: string; answer: s
  * appearing as Aria says them, and the student's own questions with their answers. Older sections stay;
  * scrolling back does not stop her, and "Back to now" returns. Replay teaches a section again.
  */
-export function LessonNotesPanel({ sections, current, clock, asked, onReplay }: { sections: NotesSection[]; current: number; clock: number; asked: AskedNote[]; onReplay: (index: number) => void }) {
+export function LessonNotesPanel({ sections, current, clock, asked, onReplay, onOpenChange }: { sections: NotesSection[]; current: number; clock: number; asked: AskedNote[]; onReplay: (index: number) => void; onOpenChange?: (open: boolean) => void }) {
   const [open, setOpen] = useState(false);
+  useEffect(() => { onOpenChange?.(open); }, [open, onOpenChange]);
   const [away, setAway] = useState(false);
   const box = useRef<HTMLDivElement>(null);
   const timed = useMemo(() => sections.map((s) => ({ ...s, items: s.blocks.map((block) => ({ block, units: revealUnits(block) })) })), [sections]);

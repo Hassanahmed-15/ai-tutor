@@ -3220,6 +3220,8 @@ export function LessonPlayer({
    * it opens from the dock's Ask button, and opens itself the moment Aria answers or offers a
    * drawing, so nothing she says is missed. The deaf and ADHD panels stay: they carry the lesson.
    */
+  // Dot steps aside while the lesson notes are open: she flew over the words.
+  const [notesOpen, setNotesOpen] = useState(false);
   // "You asked": each real question with Aria's answer, under the section it was asked on.
   const chatBoards = useRef<number[]>([]);
   useEffect(() => {
@@ -3456,6 +3458,7 @@ export function LessonPlayer({
                       current={canvasIndex}
                       clock={stage === "board" ? timing.index + Math.min(0.999, timing.progress) : summaryUnlocked ? Infinity : -1}
                       asked={askedNotes}
+                      onOpenChange={setNotesOpen}
                       onReplay={(i) => { const at = beats.findIndex((b) => b.id === canvasPanels[i]?.key); if (at >= 0) goTo(at); }}
                     />
                   );
@@ -3961,7 +3964,7 @@ export function LessonPlayer({
           </div>
         </header>}
 
-        {showAvatar && (
+        {showAvatar && !notesOpen && (
           <BoardAvatar state={avatarState} mode={avatarMode} board={boardSurfaceRef} panel={askPanelRef} look={avatarLook} flies={avatarFlies} onUnavailable={() => setAvatarUnavailable(true)} />
         )}
 

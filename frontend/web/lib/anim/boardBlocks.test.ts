@@ -87,3 +87,15 @@ test("the board: blocks take the notes column beside a drawing, the whole board 
   const column = layoutPanel({ ...figure, blocks: plainBlocks("b", script) }).marks.find((m) => m.type === "blocks");
   assert.ok(column && column.type === "blocks" && column.rect.w < 420);
 });
+
+test("the board's title and a box's own label are not written twice", () => {
+  const { blocks } = validateBlocks({ blocks: [
+    { kind: "heading", s: 0, board_text: "Speed" },
+    { kind: "callout", callout: "mistake", s: 1, board_text: "**Common mistake:** adding them." },
+    { kind: "heading", s: 2, board_text: "A later section" },
+  ] }, "b1", script);
+  assert.ok(!blocks.some((b) => b.board_text === "Speed"), "the opening heading is dropped");
+  assert.ok(blocks.some((b) => b.s === 0 && b.kind === "paragraph"), "and its sentence is still written");
+  assert.equal(blocks.find((b) => b.kind === "callout")?.board_text, "adding them.");
+  assert.ok(blocks.some((b) => b.board_text === "A later section"), "a heading inside the board stays");
+});

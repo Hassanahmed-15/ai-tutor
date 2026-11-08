@@ -19,6 +19,7 @@ THE BOARD IS THE WHOLE LESSON. Someone who reads only the board, with no sound, 
 - Teacher talk that teaches nothing ("Let's begin", "Pause and think") is covered by the block around it and not written.
 - Mark key terms with **bold**. Write inline maths as $...$ in KaTeX.
 - Use the language of the sentences.
+- The board already shows its title: do not write it again. A callout already shows its label: do not start its text with "Key idea:", "Common mistake:" or the like.
 
 Reply as JSON: {"blocks":[{...}]}. Each block: "kind" (one of ${BLOCK_KINDS.join(", ")}), "s" (first sentence number it says), "e" (last), and "board_text" (its full words), plus:
 - steps: "items" (each step in full, with its reason)
