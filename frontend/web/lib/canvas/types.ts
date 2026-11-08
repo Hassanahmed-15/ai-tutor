@@ -584,6 +584,8 @@ export type CanvasBoardSpec = {
   subject?: import("./lessonSubject").LessonSubject;
   heading: string;
   notes: CanvasNote[];
+  /** The board's words in full (lib/canvas/blocks.ts; CANVAS_BLOCKS=on): they take the place of the short notes. */
+  blocks?: import("./blocks").BoardBlock[];
   stage: StageSpec;
   cues: CanvasCue[];
   /** Ids of elements that fly in from the previous panel, where an element with the same id sits. */

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { BlocksView } from "./BlocksView";
 import katex from "katex";
 import "katex/dist/katex.min.css";
 import { evalExpr } from "@/lib/canvas/expr";
@@ -660,6 +661,8 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       );
     case "lab":
       return <LabDrawingView mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />;
+    case "blocks":
+      return <BlocksView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} live={Number.isFinite(shownThrough)} reducedMotion={reducedMotion} />;
     case "living":
       return <LivingEquationView mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />;
     case "figure":
@@ -2393,6 +2396,37 @@ export const CANVAS_CSS = `
 [data-theme="light"] .cv-room-veil { background-color: rgba(236,235,244,.95); }
 /* saturate: a colour turned dark loses its life (gold came out mud brown); a little more colour makes it amber.
    Black, white and greys are untouched by it. */
+/* The full board's writing (BlocksView) and the lesson notes (LessonNotesPanel): one look, two sets of colours.
+   On the board colours are chalk, and light mode turns them over with the rest of the board. */
+.bk-board { --bk-ink: #f1eee4; --bk-key: var(--cv-key, #ffd76a); --bk-dim: #b9c3be; --bk-line: rgba(241,238,228,.28); --bk-soft: rgba(241,238,228,.07); color: var(--bk-ink); font-size: 21px; line-height: 1.36; overflow-y: auto; overflow-x: hidden; padding: 16px 10px 26px 2px; touch-action: pan-y; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16px); mask-image: linear-gradient(to bottom, transparent 0, #000 16px); scrollbar-width: thin; scrollbar-color: var(--bk-line) transparent; }
+.bk-board.bk-wide { font-size: 25px; padding-right: 26px; }
+.bk-panel { --bk-ink: var(--hud-text); --bk-key: var(--accent-ink); --bk-dim: var(--hud-text-dim); --bk-line: var(--hud-line-strong); --bk-soft: var(--hud-surface-2); color: var(--bk-ink); font-size: 15.5px; line-height: 1.55; }
+.bk-off { visibility: hidden; }
+.bk-on { animation: bk-in 260ms ease-out both; }
+.cv-settled .bk-on, .cv-paused .bk-on { animation: none; }
+@keyframes bk-in { from { opacity: 0; } to { opacity: 1; } }
+.bk-key { color: var(--bk-key); font-weight: 700; }
+.bk-dim { color: var(--bk-dim); }
+.bk-kw { color: var(--bk-key); }
+.bk-p, .bk-def, .bk-answer, .bk-caption, .bk-legend { margin: 0 0 .55em; }
+.bk-def { padding-inline-start: .6em; border-inline-start: 3px solid var(--bk-key); }
+.bk-answer { padding-inline-start: .6em; border-inline-start: 3px solid var(--bk-line); }
+.bk-caption, .bk-legend, .bk-sub { color: var(--bk-dim); font-size: .86em; }
+.bk-sub { display: block; }
+.bk-heading { margin: .2em 0 .4em; font-size: 1.14em; font-weight: 700; }
+.bk-steps { margin: 0 0 .6em; padding-inline-start: 1.4em; list-style: decimal; }
+.bk-steps li { margin-bottom: .25em; }
+.bk-formula { margin: .15em 0 .6em; }
+.bk-where { font-size: .84em; color: var(--bk-dim); }
+.bk-code { margin: 0 0 .6em; padding: .5em .6em; background: var(--bk-soft); border-radius: 6px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .74em; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bk-table { width: 100%; margin: 0 0 .6em; border-collapse: collapse; font-size: .86em; }
+.bk-table th, .bk-table td { padding: .2em .4em; border: 1px solid var(--bk-line); text-align: start; vertical-align: top; }
+.bk-quote { margin: 0 0 .6em; padding-inline-start: .7em; border-inline-start: 3px solid var(--bk-line); font-style: italic; }
+.bk-quote cite { display: block; font-size: .84em; font-style: normal; color: var(--bk-dim); }
+.bk-box { margin: 0 0 .65em; padding: .4em .6em; background: var(--bk-soft); border-radius: 8px; border-inline-start: 3px solid var(--bk-key); }
+.bk-label { font-size: .78em; font-weight: 700; color: var(--bk-dim); }
+.bk-debug { position: sticky; bottom: 0; font: 12px ui-monospace, monospace; color: #7CFFB2; background: #000c; padding: 2px 4px; }
+[data-theme="light"] .cv-board { --cv-key: #d39261; }
 [data-theme="light"] .cv-board { filter: invert(1) hue-rotate(180deg) saturate(1.5); }
 /* Gold, the board's one accent, turned dark is mud brown, so light mode starts it from a colour that turns
    into amber (#D97706); the yellow key words end as amber ink (#B45309). Values are before the flip. */

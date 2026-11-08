@@ -9,6 +9,7 @@
  * A panel is 1000 x 560: heading across the top, a notes column on the left, the stage on the right.
  */
 
+import type { BoardBlock } from "./blocks";
 import { stackView, type StackView } from "./callStack";
 import { layoutStructure, runStructure, type DsFrame, type DsLayout } from "./structure";
 import { evalExpr } from "./expr";
@@ -51,6 +52,7 @@ export type Mark =
   /** The lab engines' drawing (lib/canvas/labDrawing.ts) in the board's drawing area: the pencil scene or the 3-D model. */
   | { type: "lab"; id: string; rect: Rect; lab: LabDrawing; s: number; /** Joins it to the board's living equation (its parts glow as their terms arrive). */ key: string }
   /** The working as one living equation (components/canvas/LivingEquationView.tsx): its terms, steps and links to the drawing. */
+  | { type: "blocks"; id: string; rect: Rect; blocks: BoardBlock[]; s: number }
   | { type: "living"; id: string; rect: Rect; tokens: Array<{ id: string; text: string; tex?: string; color: string }>; steps: Array<{ s: number; order: string[]; highlight: string[]; caption?: string }>; links: Array<{ token: string; objects: string[]; name: string }>; drawing?: string; s: number }
   | { type: "figure-label"; id: string; part: string; lines: string[]; side: "left" | "right"; at: Pt; leader: Pt[]; size: number; s: number }
   | { type: "free-body"; id: string; body: SceneStage["items"][number]; bodyRect: Rect; forces: FreeBodyForce[]; s: number }
@@ -104,6 +106,9 @@ const COURSE_WORK_NOTE_SIZE = 24;
 const COURSE_WORK_STAGE: Rect = { x: 372, y: 108, w: 592, h: 424 };
 /** The notes column's writing: a little smaller than it was, so a page holds what Aria said over most of a board. */
 const COLUMN_NOTE_SIZE = 19;
+/** The full board's writing (lib/canvas/blocks.ts): beside a drawing, or across a board with nothing drawn. */
+const BLOCKS_COLUMN: Rect = { x: 44, y: 104, w: 396, h: 436 };
+const BLOCKS_WHOLE_BOARD: Rect = { x: 48, y: 104, w: 904, h: 436 };
 const NOTES_X = 48;
 const NOTES_W = 268;
 const STAGE: Rect = { x: 352, y: 108, w: 612, h: 424 };
@@ -314,7 +319,11 @@ export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
   const split = spec.stage.kind === "code" && (Boolean(spec.stage.structure) || spec.stage.steps.some((p) => p.stack?.length || p.state?.length));
   // Working beside its figure needs the whole width too: its lines are the notes (no notes column).
   const working = spec.stage.kind === "equation" && Boolean(spec.stage.figure || spec.stage.picture);
-  const hasNotes = spec.notes.length > 0 && !split && !working;
+  // The full board (lib/canvas/blocks.ts): its words take the notes column, or the whole board when nothing is drawn.
+  // Boards that need every pixel for their own working keep it, and carry their words in the lesson notes.
+  const blockBoard = Boolean(spec.blocks?.length) && !split && !working && spec.stage.kind !== "exam";
+  const textOnly = blockBoard && spec.stage.kind === "sketch" && spec.stage.items.length === 0;
+  const hasNotes = spec.notes.length > 0 && !split && !working && !blockBoard;
   // Labelled textbook figures need horizontal room for the drawing and two boundary-label columns.
   // Putting their notes in the normal left rail made a correct 440 px scientific figure render at
   // roughly 150 CSS pixels. Figure boards therefore use the wide stage and place supporting facts
@@ -332,7 +341,7 @@ export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
     return Boolean(strip && beside && beside.scale > strip.scale * 1.12);
   })();
   const courseWork = course && spec.stage.kind === "equation" && !working;
-  const stage = besideNotes ? FIGURE_BESIDE_NOTES : figureWithNotes ? (spec.notes.length > 4 ? FIGURE_STAGE_WITH_TWO_ROWS : FIGURE_STAGE_WITH_NOTES) : hasNotes ? (courseWork ? COURSE_WORK_STAGE : course ? COURSE_STAGE : STAGE) : STAGE_WIDE;
+  const stage = blockBoard && !textOnly ? COURSE_STAGE : besideNotes ? FIGURE_BESIDE_NOTES : figureWithNotes ? (spec.notes.length > 4 ? FIGURE_STAGE_WITH_TWO_ROWS : FIGURE_STAGE_WITH_NOTES) : hasNotes ? (courseWork ? COURSE_WORK_STAGE : course ? COURSE_STAGE : STAGE) : STAGE_WIDE;
 
   // The heading steps down until it fits the board's width (a 60-character heading at 28 px reached
   // the edge); it is never cut.
@@ -652,6 +661,13 @@ export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
   if (spec.lab) {
     const at = marks.findIndex((m) => m.type === "picture");
     if (at >= 0) marks[at] = { type: "lab", id: "lab", rect: (marks[at] as Extract<Mark, { type: "picture" }>).rect, lab: spec.lab, s: 0, key: labKeyOf(spec) };
+  }
+  if (blockBoard) {
+    const rect = textOnly ? BLOCKS_WHOLE_BOARD : BLOCKS_COLUMN;
+    // The pencil lines from a note to a picture's part have no note to start from here.
+    for (let i = marks.length - 1; i >= 0; i--) if (marks[i].type === "partLink") marks.splice(i, 1);
+    marks.push({ type: "blocks", id: "blocks", rect, blocks: spec.blocks!, s: 0 });
+    add("blocks", rect, 0);
   }
   return { marks, targets, stage };
 }

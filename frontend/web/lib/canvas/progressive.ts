@@ -1,4 +1,5 @@
 import { checkNumbers, numberIssuesText } from "./numberCheck";
+import { canvasBlocksOn, writeBoardBlocks } from "./blocksWriter";
 import { withoutBannedWords } from "../teaching/styleCheck";
 import { teachingOrdersOn } from "../teaching/courseOrders";
 import "server-only";
@@ -795,6 +796,14 @@ export async function writeCanvasBoard(args: {
   // ONE LIVING EQUATION for a maths board's working (components/canvas/LivingEquationView.tsx): the
   // board's own steps, shown changing in place. Not where a term is written over another (a condition over an arrow).
   if (labVisualsOn() && mathsLesson && (!beat.course || beat.subject === "maths") && spec.stage.kind === "equation" && spec.stage.steps.length > 0 && !spec.stage.tokens.some((t) => t.on)) spec.living = true;
+  // THE FULL BOARD (lib/canvas/blocks.ts, CANVAS_BLOCKS=on, course lessons): every sentence written out, in typed blocks.
+  if (canvasBlocksOn() && beat.course && spec.stage.kind !== "exam") {
+    const facts = spec.notes.map((n) => n.text).join("; ");
+    const written = await writeBoardBlocks(client(), beat, facts);
+    spec = { ...spec, blocks: written.blocks };
+    labCost += written.costUsd;
+    log.push(`${beat.id}: full board — ${written.log}`);
+  }
   // The pen never points at nothing (lib/canvas/cueRepair.ts): checked on the board as it ships.
   const shipped = layoutPanel(spec);
   const onBoard = new Set([...Object.keys(shipped.targets), ...shipped.marks.flatMap((m) => (m.type === "graph" ? (m.spec.markers ?? []).map((k) => k.id) : []))]);

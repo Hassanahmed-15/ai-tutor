@@ -25,6 +25,9 @@ import { DSA_FIXTURES, SEQUENCE_FIXTURES, OS_FIXTURES } from "@/lib/canvas/dsaFi
 import { EQUATION_FIXTURES } from "@/lib/canvas/equationFixtures";
 import { CS_VISUAL_FIXTURES, LOGIC_FIXTURES, MATHS_VISUAL_FIXTURES, SKETCH_FIXTURES } from "@/lib/canvas/mathsVisualFixtures";
 import { canvasSentences } from "@/lib/canvas/plan";
+import { plainBlocks } from "@/lib/canvas/blocks";
+import { BLOCK_FIXTURES } from "@/lib/canvas/blockFixtures";
+import { LessonNotesPanel } from "@/components/canvas/LessonNotesPanel";
 import { validateCanvasSpec } from "@/lib/canvas/validate";
 
 type Lecture = { id: string; title: string; topic: string; beats: Beat[]; costUsd: number; ms: number; log: string[] };
@@ -71,6 +74,7 @@ export default function CanvasLab() {
     else if (params.get("snap") && process.env.NODE_ENV !== "production") {
       fetch(`/dev-snapshots/${encodeURIComponent(params.get("snap")!)}.json`).then((r) => r.json()).then((snap: { topic?: string; beats: Array<{ title: string; script: string; draw: Beat["draw"] }> }) => setLecture({ id: `snap-${params.get("snap")}`, title: snap.topic ?? "Snapshot", topic: snap.topic ?? "", beats: snap.beats.map((b, i) => ({ id: `snap-b${i + 1}`, title: b.title, script: b.script, draw: b.draw }) as unknown as Beat), costUsd: 0, ms: 0, log: [] })).catch(() => setError("That snapshot couldn't be loaded."));
     }
+    else if (fixture === "blocks" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture({ id: "fixture-blocks", title: "Full board", topic: "Speed", beats: BLOCK_FIXTURES.map((f) => ({ id: f.id, script: f.script, draw: { ops: [{ kind: "canvasBoard", spec: f.spec, at: 0, endAt: 1 }] } }) as unknown as Beat), costUsd: 0, ms: 0, log: [] }));
     else if (fixture === "lab" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture({ id: "fixture-lab", title: "Lab drawings", topic: "Pythagoras in 3-D", beats: LAB_FIXTURES.map((f) => ({ id: f.id, script: f.script, draw: { ops: [{ kind: "canvasBoard", spec: f.spec, at: 0, endAt: 1 }] } }) as unknown as Beat), costUsd: 0, ms: 0, log: [] }));
     else if (session && process.env.NODE_ENV !== "production") {
       fetch(`/api/progressive-lectures/${encodeURIComponent(session)}`)
@@ -271,10 +275,15 @@ function fixtureLecture(fixtures: typeof DSA_FIXTURES, topic = "Data structures"
  * and task card can be looked at without sitting through the narration. No voice, no player.
  */
 function Scrubber({ lecture }: { lecture: Lecture }) {
+  const [blocksParam] = useState(() => typeof window !== "undefined" && new URLSearchParams(window.location.search).get("blocks") === "1");
   const panels = lecture.beats.flatMap((b) => {
     const op = b.draw?.ops.find((o) => (o as { kind: string }).kind === "canvasBoard") as { spec?: CanvasBoardSpec } | undefined;
-    return op?.spec ? [{ key: b.id, spec: op.spec }] : [];
+    if (!op?.spec) return [];
+    // &blocks=1: a saved board with the full board's writing made from its own script (no model, free).
+    const spec = blocksParam && !op.spec.blocks?.length && op.spec.stage.kind !== "exam" ? { ...op.spec, blocks: plainBlocks(b.id, b.script ?? "") } : op.spec;
+    return [{ key: b.id, spec }];
   });
+  const notesSections = panels.filter((p) => p.spec.blocks?.length).map((p, i) => ({ key: p.key, index: i, title: p.spec.heading, blocks: p.spec.blocks! }));
   const [board, setBoard] = useState(0);
   const [sentence, setSentence] = useState(0);
   const [progress, setProgress] = useState(0.5);
@@ -347,6 +356,7 @@ function Scrubber({ lecture }: { lecture: Lecture }) {
         <span className="min-w-0 flex-1 truncate font-normal text-white/60">{sentences[sentence]}</span>
       </div>
       <div className="relative min-h-0 flex-1">
+        {notesSections.length > 0 && <LessonNotesPanel sections={notesSections} current={board} clock={sentence + Math.min(0.999, progress)} asked={[{ id: "demo", index: 0, question: "Why do we divide and not multiply?", answer: "Because speed is the distance for each single second, so we share the distance across the seconds." }]} onReplay={(i) => setBoard(i)} />}
         <LessonCanvas panels={panels} currentIndex={board} sentence={predict ? predict.at - 1 : sentence} sentenceProgress={predict ? 1 : progress} speed={labRate} finished={predict ? false : finished} waitingForStudent={predict ? true : finished} predictCard={predict?.card} checkFlow={Boolean(predict)} playing={!finished && !paused} topic={lecture.topic} onSpeak={(t) => console.log("[speak]", t)} onTellAria={(t) => console.log("[aria]", t)} onContinue={() => { setBoard((b) => Math.min(panels.length - 1, b + 1)); setSentence(0); setFinished(false); }} />
       </div>
     </main>

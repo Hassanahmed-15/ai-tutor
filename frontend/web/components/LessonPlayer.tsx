@@ -14,6 +14,8 @@ import { usePlaybackRate } from "@/lib/playbackPrefs";
 import { useLessonMachine } from "@/lib/lessonMachine";
 import { backstopRecovery, narrationRecovery, stallWatchdogAction } from "@/lib/narrationRecovery";
 import { isAdaptiveQuestion } from "@/lib/adaptiveQuestion";
+import { LessonNotesPanel, type AskedNote, type NotesSection } from "@/components/canvas/LessonNotesPanel";
+import { plainBlocks } from "@/lib/canvas/blocks";
 import { MAX_DEPTH_HELP_REQUESTS_PER_BOARD, requestDepthHelp } from "@/lib/adaptiveDepth";
 import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
@@ -1305,6 +1307,12 @@ export function LessonPlayer({
   const canvasPanels = useMemo(() => canvasPanelsOf(beats), [beats]);
   const canvasLesson = canvasPanels.length > 0;
   const canvasIndex = canvasLesson ? canvasPanels.findIndex((p) => p.key === beat.id) : -1;
+  // The full board's sections for the lesson notes (CANVAS_BLOCKS=on): empty unless this lecture has blocks.
+  // A board that keeps its whole width for its working still appears, in its script's own words.
+  const notesSections = useMemo<NotesSection[]>(() => {
+    if (!canvasPanels.some((p) => p.spec.blocks?.length)) return [];
+    return canvasPanels.map((p, i) => ({ key: p.key, index: i, title: p.spec.heading, blocks: p.spec.blocks?.length ? p.spec.blocks : plainBlocks(p.key, beats.find((b) => b.id === p.key)?.script ?? "") }));
+  }, [canvasPanels, beats]);
   const canvasTask = canvasIndex >= 0 ? canvasPanels[canvasIndex].spec.interaction : undefined;
   const canvasTaskRef = useRef(false);
   const canvasMidBoardTaskRef = useRef(false);
@@ -3212,6 +3220,25 @@ export function LessonPlayer({
    * it opens from the dock's Ask button, and opens itself the moment Aria answers or offers a
    * drawing, so nothing she says is missed. The deaf and ADHD panels stay: they carry the lesson.
    */
+  // "You asked": each real question with Aria's answer, under the section it was asked on.
+  const chatBoards = useRef<number[]>([]);
+  useEffect(() => {
+    while (chatBoards.current.length < chat.chat.length) chatBoards.current.push(Math.max(0, canvasIndex));
+  }, [chat.chat.length, canvasIndex]);
+  const askedNotes = useMemo<AskedNote[]>(() => {
+    if (!notesSections.length) return [];
+    const out: AskedNote[] = [];
+    chat.chat.forEach((turn, i) => {
+      if (turn.role === "you") {
+        if (isAdaptiveQuestion(turn.text)) out.push({ id: `q${i}`, index: chatBoards.current[i] ?? Math.max(0, canvasIndex), question: turn.text.trim(), answer: "" });
+        else out.push({ id: "", index: -1, question: "", answer: "" });
+      } else if (out.length && out[out.length - 1].id) {
+        const last = out[out.length - 1];
+        last.answer = last.answer ? `${last.answer} ${turn.text.trim()}` : turn.text.trim();
+      }
+    });
+    return out.filter((a) => a.id);
+  }, [chat.chat, notesSections.length, canvasIndex]);
   const [askOpen, setAskOpen] = useState(false);
   const chatCount = chat.chat.length;
   const chatExplaining = chat.explaining;
@@ -3421,6 +3448,18 @@ export function LessonPlayer({
               <div className="flex h-full flex-col">
               <div className="relative min-h-0 flex-1">
                 <PaintSignal key={beat.id} onPainted={handleBoardPainted} />
+                {notesSections.length > 0 && (() => {
+                  const timing = sentenceCue.beat === index ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress) : { index: 0, progress: 0 };
+                  return (
+                    <LessonNotesPanel
+                      sections={notesSections}
+                      current={canvasIndex}
+                      clock={stage === "board" ? timing.index + Math.min(0.999, timing.progress) : summaryUnlocked ? Infinity : -1}
+                      asked={askedNotes}
+                      onReplay={(i) => { const at = beats.findIndex((b) => b.id === canvasPanels[i]?.key); if (at >= 0) goTo(at); }}
+                    />
+                  );
+                })()}
                 <LessonCanvas
                   panels={canvasPanels}
                   currentIndex={canvasIndex}
