@@ -204,3 +204,20 @@ export async function deleteBlob(blobName: string): Promise<void> {
   const container = await lectureBlobContainer();
   await container.getBlobClient(blobName).deleteIfExists();
 }
+
+/** A whole stored blob's bytes, or null when there is no such blob (narration clips: lib/narrationAudio.ts). */
+export async function downloadRawBlob(blobName: string): Promise<Buffer | null> {
+  const container = await lectureBlobContainer();
+  try {
+    return await container.getBlobClient(blobName).downloadToBuffer();
+  } catch (error) {
+    if ((error as { statusCode?: number }).statusCode === 404) return null;
+    throw error;
+  }
+}
+
+/** Whether a blob is stored — a properties read, no download. */
+export async function blobExists(blobName: string): Promise<boolean> {
+  const container = await lectureBlobContainer();
+  return container.getBlobClient(blobName).exists();
+}

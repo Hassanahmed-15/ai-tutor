@@ -21,6 +21,7 @@ import { cardSideView } from "@/lib/canvas/renderFit";
 import { playScratch, playTick, playWhoosh, setSoundEnabled, soundEnabled } from "./sound";
 import { Confetti } from "./Confetti";
 import { preferredCardStyle, type CardStyle } from "@/lib/canvas/cardStyle";
+import { CHECK_PRAISE } from "@/lib/narrationText";
 
 /**
  * THE LESSON CANVAS — every board of the lecture on one world, taught by a camera and a pen.
@@ -1292,8 +1293,8 @@ function CheckCard({ question, options, onAnswer, onContinue }: { question: stri
   );
 }
 
-/** What Aria says to a right answer: praise only, no explanation (owner's direction, 2026-10-16). */
-const PRAISE = ["That's right — well done!", "Correct — nice work!", "Exactly right. Great job!", "Yes, that's it — well done!"];
+/** What Aria says to a right answer: praise only, no explanation (owner's direction, 2026-10-16). Made ahead by the worker (lib/narrationText.ts). */
+const PRAISE = CHECK_PRAISE;
 
 /**
  * The standard lecture's question card. Aria asks the question as it opens and the lecture waits.

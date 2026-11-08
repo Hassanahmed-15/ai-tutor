@@ -1023,7 +1023,9 @@ type BuildCost =
       const opening = snapshot.beats?.[0];
       if (opening?.script && !warmedOpeningRef.current) {
         warmedOpeningRef.current = true;
-        const bridge = openingSentence(opening.transitionIn, snapshot.topic ?? opening.title);
+        // A canvas board says its script with no opening line (LessonPlayer), so only its own words are warmed.
+        const canvas = opening.draw?.ops?.some((op) => (op as { kind: string }).kind === "canvasBoard");
+        const bridge = canvas ? "" : openingSentence(opening.transitionIn, snapshot.topic ?? opening.title);
         void warmNarration(splitNarrationSentences(`${bridge} ${opening.script}`).slice(0, 2));
       }
       // The worker keeps a running total, so each snapshot replaces the last rather than adding.

@@ -203,6 +203,8 @@ export type BeatTiming = {
   /** The whole visual step. */
   enrichMs?: number;
   readyAt?: string;
+  /** The board's narration made ahead before it was ready (lib/narrationAudio.ts prepareNarration). */
+  narration?: { sentences: number; stored: number; made: number; later?: number; failed: number; ms: number; costUsd: number };
   /** For animated boards: model, checks, critic, refine and every attempt. */
   animation?: import("./reactAnimationGen").AnimationTiming;
   /** How demanding the animation was judged to be, which decides the model (lib/animationTier.ts). */

@@ -17,8 +17,10 @@ import { prepareClipLipTrack, type ClipLipTrack } from "./avatar/clipLipSync";
 import { CLIP_FETCH_CONCURRENCY, SENTENCE_GAP_MS, sentenceAlignedProgress, sentenceWeight } from "./narrationClock";
 import { recordTtsResponse } from "./costLedger";
 import { ensureRunning, registerAudioContext, resumeAllAudio } from "./voice/audioOutput";
-import { withoutSourceTags } from "./webSources";
-import { withoutOldTransferPrompt } from "./canvas/oldTransferPrompt";
+import { splitNarrationSentences } from "./narrationText";
+
+// The sentences are split in one place for the player and the worker that makes them ahead (lib/narrationText.ts).
+export { splitNarrationSentences };
 
 export type NarrationHandle = {
   cancel: () => void;
@@ -54,6 +56,16 @@ const clampRate = (rate: number) =>
  * cloud TTS everywhere.
  */
 const CLOUD_TTS_DEFAULT = true;
+
+/**
+ * One clip's fetch, for the TTS test page (app/tts-lab): where it came from ("hit" memory, "stored", "shared",
+ * "miss" = made live), how long the request took, what it cost. Dev only — a window event, nothing else listens.
+ */
+export type ClipReport = { text: string; attempt: number; ms: number; status: number; source: string; costUsd: number };
+function reportClip(report: ClipReport) {
+  if (process.env.NODE_ENV === "production" || typeof window === "undefined") return;
+  window.dispatchEvent(new CustomEvent<ClipReport>("aria:tts-clip", { detail: report }));
+}
 
 /** Dev-only narration trace; `next dev` forwards it to the server log beside the [playback] lines. */
 function traceNarration(event: string, detail: Record<string, unknown>) {
@@ -114,6 +126,12 @@ export interface NarrationCallbacks {
   /** Fired from the active audio/timeline clock. `progress` is 0..1 for the current beat. */
   onProgress?: (progress: number, currentTimeMs: number, durationMs: number) => void;
   /**
+   * Aria's voice is late for sentence `sentence` ("silent" narration only): true when the lecture starts
+   * waiting for it — and again every 2 s while it waits, so a stall watchdog sees a deliberate wait, not a
+   * stall — false the moment the clip plays. The lecture is held there; nothing moves on without her voice.
+   */
+  onVoiceWaiting?: (waiting: boolean, sentence: number) => void;
+  /**
    * Fired as narration passes each word, for reading along.
    *
    * ESTIMATED, NOT MEASURED. Cloud TTS returns audio with a real clock but no word timings, so the
@@ -145,9 +163,11 @@ export interface NarrationCallbacks {
    * What happens when a part's FIRST clip cannot be synthesised (a failed /api/tts call, after its
    * retries). "browser" (the default): the whole part is read by the browser's own speech engine —
    * a different voice, with no lip sync. "silent": Aria's voice is ALWAYS kept — every sentence
-   * waits for its own clip, and one that never comes passes as a timed gap. The standard lecture,
-   * its chat answers and its checkpoint voice use "silent" (owner, 2026-10-17: "the voice of Aria
-   * changes and during that she doesn't lip sync — a very common and big issue").
+   * waits for its own clip, however long it takes, and the lecture waits with it (owner, 2026-11-07:
+   * "our last fallback should be pause — using the browser voice or no voice should never be an
+   * option"); see `onVoiceWaiting`. The standard lecture, its chat answers and its checkpoint voice
+   * use "silent" (owner, 2026-10-17: "the voice of Aria changes and during that she doesn't lip
+   * sync — a very common and big issue").
    */
   voiceFallback?: "browser" | "silent";
 }
@@ -257,11 +277,6 @@ export function unlockAudio() {
   }
 }
 
-export function splitNarrationSentences(text: string): string[] {
-  // A lecture written before 2026-10-16 may end its scripts with "Sources: [S1], [S2]." or with the
-  // old "Now try the same reasoning…" sentence — neither is said.
-  return withoutOldTransferPrompt(withoutSourceTags(text)).split(/(?<=[.!?۔؟])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
-}
 
 export function playNarration(text: string, callbacks: NarrationCallbacks): NarrationHandle {
   if (!callbacks.preserveActive) cancelActiveNarrations();
@@ -580,12 +595,16 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
      * one 7 s try for that clip: the student is waiting in silence for it.
      */
     const fetchClip = async (text: string, singleTry = false): Promise<Blob | null> => {
-      const deadline = performance.now() + CLIP_RETRY_WINDOW_MS;
+      // Aria's voice only ("silent"): a clip is asked for until it comes — the lecture waits for it,
+      // it never goes on without her (owner, 2026-11-07). Otherwise the retries stop at the window.
+      const unbounded = keepVoice && !singleTry;
+      const deadline = unbounded ? Number.POSITIVE_INFINITY : performance.now() + CLIP_RETRY_WINDOW_MS;
       for (let attempt = 0; !cancelled; attempt += 1) {
         if (!singleTry && typeof navigator !== "undefined" && navigator.onLine === false) {
-          await untilOnline(deadline - performance.now());
+          await untilOnline(Math.min(60_000, deadline - performance.now()));
           if (cancelled) return null;
         }
+        const asked = performance.now();
         try {
           const res = await fetch("/api/tts", {
             method: "POST",
@@ -594,10 +613,17 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
             signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(singleTry ? 7_000 : 10_000) : undefined,
           });
           recordTtsResponse(res);
-          if (res.ok) return await res.blob();
-          if (res.status < 500) return null;
+          if (res.ok) {
+            const clip = await res.blob();
+            reportClip({ text, attempt, ms: Math.round(performance.now() - asked), status: res.status, source: res.headers.get("X-TTS-Cache") ?? "", costUsd: Number(res.headers.get("X-Cost-Usd") ?? 0) });
+            return clip;
+          }
+          reportClip({ text, attempt, ms: Math.round(performance.now() - asked), status: res.status, source: "", costUsd: 0 });
+          // A 4xx is a real answer (nothing to say), except "too many" and "timed out", which pass.
+          if (res.status < 500 && res.status !== 429 && res.status !== 408) return null;
         } catch {
           /* timed out or dropped: try again */
+          reportClip({ text, attempt, ms: Math.round(performance.now() - asked), status: 0, source: "", costUsd: 0 });
         }
         traceNarration("clip-retry", { attempt: attempt + 1, text: text.slice(0, 40) });
         const wait = Math.min(4_000, 500 * 2 ** attempt);
@@ -730,14 +756,34 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
      * she doesn't lip sync" (2026-10-17). Every sentence now waits for its own clip (fetchClip keeps
      * retrying across a blip for CLIP_RETRY_WINDOW_MS); one that never comes passes as a timed gap.
      */
+    /*
+     * WAITING FOR HER VOICE IS SAID, NOT HIDDEN (owner, 2026-11-07: "in the worst case, if the voice does
+     * not work, it should pause the lecture"). The player is told the lecture is waiting — again every 2 s,
+     * so its stall watchdog sees a deliberate wait and never restarts the part — until the clip plays.
+     */
+    const waitForVoice = (i: number): (() => void) => {
+      callbacks.onVoiceWaiting?.(true, i);
+      const heartbeat = window.setInterval(() => callbacks.onVoiceWaiting?.(true, i), 2_000);
+      let done = false;
+      return () => {
+        if (done) return;
+        done = true;
+        window.clearInterval(heartbeat);
+        callbacks.onVoiceWaiting?.(false, i);
+      };
+    };
     const clipFor = async (i: number): Promise<Blob | null> => {
       let ready = false;
+      let stopWaiting: (() => void) | null = null;
       const slow = window.setTimeout(() => {
-        if (!ready) traceNarration("clip-waiting", { sentence: i, text: sentences[i].slice(0, 40) });
+        if (ready) return;
+        traceNarration("clip-waiting", { sentence: i, text: sentences[i].slice(0, 40) });
+        if (keepVoice) stopWaiting = waitForVoice(i);
       }, 1_500);
       const blob = await clipPromises[i];
       ready = true;
       window.clearTimeout(slow);
+      (stopWaiting as (() => void) | null)?.();
       if (!blob) traceNarration("clip-failed", { sentence: i, text: sentences[i].slice(0, 40) });
       return blob;
     };
@@ -749,7 +795,9 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       const blob = i === 0 && firstClip ? firstClip : await clipFor(i);
       if (cancelled) return;
 
-      // A clip that never came, after all its retries: a timed gap, so the board stays in step.
+      // A clip that never came, after all its retries: a timed gap, so the board stays in step. For Aria's
+      // voice only ("silent") its clip is asked for until it comes, so this is reached only when the server
+      // answers that there is nothing to say (a 4xx: an empty sentence), never because the voice failed.
       if (!blob) {
         callbacks.onSentenceHeard?.(i, estimatedSentenceMs(i));
         if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
@@ -820,6 +868,41 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         }
       }
       if (cancelled) return;
+      /*
+       * A CLIP THAT WILL NOT PLAY IS FETCHED AGAIN AND PLAYED — NEVER SKIPPED (Aria's voice only, owner
+       * 2026-11-07: the last fallback is a pause, never no voice). The lecture waits on this sentence,
+       * telling the player so, until it plays or the student leaves.
+       */
+      if (!played && keepVoice) {
+        const stopWaiting = waitForVoice(i);
+        for (let attempt = 0; !played && !cancelled; attempt += 1) {
+          await sleep(Math.min(4_000, 500 * 2 ** attempt));
+          if (cancelled) break;
+          const again = await fetchClip(sentences[i]);
+          if (cancelled) break;
+          if (!again) break;
+          if (objectUrl) URL.revokeObjectURL(objectUrl);
+          objectUrl = URL.createObjectURL(again);
+          audio.src = objectUrl;
+          audio.defaultPlaybackRate = rate;
+          audio.playbackRate = rate;
+          if (paused) await sleep(1);
+          if (cancelled) break;
+          try {
+            await audio.play();
+            played = true;
+          } catch (err) {
+            if (err instanceof DOMException && err.name === "NotAllowedError") {
+              stopWaiting();
+              activeNarrationCancelers.delete(cancel);
+              callbacks.onBlocked();
+              return;
+            }
+          }
+        }
+        stopWaiting();
+        if (cancelled) return;
+      }
       if (!played) {
         callbacks.onSentenceHeard?.(i, estimatedSentenceMs(i));
         if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
@@ -921,6 +1004,18 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       if (cancelled) return;
       // A clip given up on (stalled) must not start sounding later, over the next sentence.
       if (!audio.ended) audio.pause();
+      /*
+       * CUT SHORT, SAID AGAIN (Aria's voice only, owner 2026-11-07: never on without her voice). A clip that
+       * stalled or broke mid-sentence is fetched afresh and the SAME sentence is said again from its start;
+       * the next one waits. The fetch is shown as a wait for her voice if it is slow (clipFor).
+       */
+      if (keepVoice && !audio.ended) {
+        traceNarration("clip-replay", { sentence: clipIndex });
+        clipPromises[clipIndex] = fetchClip(sentences[clipIndex]);
+        if (clipIndex === 0) firstClip = null;
+        i -= 1;
+        continue;
+      }
 
       elapsedBeforeMs += (Number.isFinite(audio.duration) ? audio.duration : 0) * 1000;
       callbacks.onProgress?.(sentenceAlignedProgress(weights, clipIndex, 1), elapsedBeforeMs, estimatedTotalMs);
