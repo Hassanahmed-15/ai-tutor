@@ -350,18 +350,7 @@ export function lessonDocument(
     const pages = b.evidencePages.filter((p) => byPage.has(p));
     const excerpt = (pages.length ? pages : evidence.slice(0, 1).map((e) => e.page)).map((p) => byPage.get(p)!.text.slice(0, 700)).join("\n");
     const outs = b.outcomeRefs.map((r) => spec.outcomes[r - 1]).filter(Boolean);
-    return {
-      id: `c${i + 1}`,
-      type: "concept",
-      heading: b.title,
-      text: [
-        b.objective,
-        b.keyPoints.map((k) => `- ${k}`).join("\n"),
-        b.workedExample ? `Worked example: ${b.workedExample}` : "",
-        excerpt ? `Official syllabus (${meta.framework}):\n${excerpt}` : "",
-      ].filter(Boolean).join("\n\n"),
-      keyIdeas: b.keyPoints,
-      teachingHints: [
+    const teachingHints = [
         `Level: ${spec.level}. ${spec.depth}`,
         spec.requiredTerms.length ? `Use these terms: ${spec.requiredTerms.join(", ")}.` : "",
         spec.misconceptions.length ? `Watch for: ${spec.misconceptions.join("; ")}.` : "",
@@ -373,7 +362,21 @@ export function lessonDocument(
         ]),
         // How this board's outcome is examined: its last sentence asks a short question in this style.
         ...b.outcomeRefs.map((r) => spec.examPractice?.find((q) => q.outcomeRef === r)).filter(Boolean).map((q) => `How it is examined: "${q!.question}" [${q!.marks} marks] — the mark scheme credits: ${q!.markPoints.join("; ")}.`),
-      ].filter(Boolean),
+      ].filter(Boolean);
+    return {
+      id: `c${i + 1}`,
+      type: "concept",
+      heading: b.title,
+      text: [
+        b.objective,
+        b.keyPoints.map((k) => `- ${k}`).join("\n"),
+        b.workedExample ? `Worked example: ${b.workedExample}` : "",
+        // The board planner reads a block's text only: these lines never reached it, though its rules refer to them.
+        teachingHints.length ? `Teaching notes:\n${teachingHints.map((h) => `- ${h}`).join("\n")}` : "",
+        excerpt ? `Official syllabus (${meta.framework}):\n${excerpt}` : "",
+      ].filter(Boolean).join("\n\n"),
+      keyIdeas: b.keyPoints,
+      teachingHints,
       facts: outs.map((o) => ({ claim: o.text, source: `${meta.framework}${o.code ? ` ${o.code}` : ""}`, confidence: "official" })),
       pageNumber: pages[0] ?? evidence[0]?.page,
       sourceOrder: i,

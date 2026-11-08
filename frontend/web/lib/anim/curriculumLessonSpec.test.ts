@@ -38,6 +38,8 @@ test("Phase 2 budgets complex outcomes and carries teach-check-transfer requirem
   const doc = lessonDocument(s, { request: { courseId: "x", version: "v", grade: "10", unitId: "u", topicId: "t", lessonId: "l" }, framework: "Test syllabus", subject: "Physics" }, []);
   const block = doc.contentBlocks![0];
   assert.ok(block.teachingHints?.some((h) => h.startsWith("Required understanding check:")));
+  // The board planner reads the text alone, so the lesson's rules are written there too.
+  assert.match(block.text ?? "", /Teaching notes:[\s\S]*Watch for: Sugar always tastes sweet[\s\S]*Required understanding check:/);
   assert.ok(block.teachingHints?.some((h) => h.startsWith("Transfer task:")));
   assert.deepEqual((doc.lessonPlan as { boardBudget: typeof budget }).boardBudget, s.boardBudget);
 });
