@@ -35,6 +35,7 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
   const line = useRef<HTMLDivElement>(null);
   const shown = useRef<number>(-2);
   const named = useRef(new Set<string>());
+  const seen = useRef(new Set<string>());
   const [size, setSize] = useState(Math.min(52, Math.max(26, mark.rect.w / 12)));
 
   // Colours: a linked term takes its part's colour; others keep the board's.
@@ -75,8 +76,11 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
       const r = el.getBoundingClientRect();
       const g = el.cloneNode(true) as HTMLElement;
       Object.assign(g.style, { position: "fixed", left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px`, margin: "0", zIndex: "40", pointerEvents: "none" });
-      return { g, r, text: tokens.get(el.dataset.id!)?.text.replace(/\s+/g, "") ?? "" };
+      const t = tokens.get(el.dataset.id!);
+      return { g, r, text: t?.text.replace(/\s+/g, "") ?? "", key: (t?.tex ?? t?.text ?? "").replace(/\s+/g, ""), used: false };
     });
+    let tagCount = 0;
+    const firstTime = new Set(now.filter((id) => !seen.current.has((tokens.get(id)?.tex ?? tokens.get(id)?.text ?? "").replace(/\s+/g, ""))));
     box.replaceChildren(...now.map((id) => {
       const t = tokens.get(id)!;
       const el = document.createElement("span");
@@ -88,10 +92,11 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
       const l = links.get(id);
       if (l && !sign) {
         el.classList.add("lv-linked");
-        if (l.name && !named.current.has(id)) {
-          named.current.add(id);
+        const key = (t.tex ?? t.text).replace(/\s+/g, "");
+        if (l.name && !named.current.has(key)) {
+          named.current.add(key);
           const tag = document.createElement("span");
-          tag.className = "lv-tag";
+          tag.className = tagCount++ % 2 ? "lv-tag lv-tag-up" : "lv-tag";
           tag.textContent = l.name;
           el.append(tag);
           window.setTimeout(() => tag.classList.add("lv-settled"), animate ? 2600 : 0);
@@ -100,6 +105,7 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
       if (steps[current].highlight.includes(id)) el.classList.add("lv-hi");
       return el;
     }));
+    for (const id of now) seen.current.add((tokens.get(id)?.tex ?? tokens.get(id)?.text ?? "").replace(/\s+/g, ""));
     // Fit the line to its area on ONE line: smaller type before it would wrap, never under 22 (then it wraps).
     box.style.flexWrap = "nowrap";
     const w = box.scrollWidth, room = mark.rect.w * 0.9;
@@ -111,12 +117,19 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
 
     const parts = labPartsFor(mark.drawing);
     const born: HTMLElement[] = [];
+    const slide = (el: HTMLElement, was: DOMRect) => { const r = el.getBoundingClientRect(); el.animate([{ transform: `translate(${was.left - r.left}px, ${was.top - r.top}px)` }, { transform: "none" }], { duration: 750, easing: "cubic-bezier(.6,0,.2,1)" }); };
+    const norm = (id: string) => (tokens.get(id)?.tex ?? tokens.get(id)?.text ?? "").replace(/\s+/g, "");
     for (const el of [...box.children] as HTMLElement[]) {
       const was = old.get(el.dataset.id!);
-      const r = el.getBoundingClientRect();
-      if (was && oldIds.has(el.dataset.id!)) el.animate([{ transform: `translate(${was.left - r.left}px, ${was.top - r.top}px)` }, { transform: "none" }], { duration: 750, easing: "cubic-bezier(.6,0,.2,1)" });
-      else born.push(el);
+      if (was && oldIds.has(el.dataset.id!)) slide(el, was);
+      else {
+        // The same term under a new id (writers often number each step's copy): it slides, it is not new.
+        const twin = ghosts.findIndex((g) => !g.used && g.key === norm(el.dataset.id!));
+        if (twin >= 0) { ghosts[twin].used = true; slide(el, ghosts[twin].r); }
+        else born.push(el);
+      }
     }
+    for (let i = ghosts.length - 1; i >= 0; i--) if (ghosts[i].used) ghosts.splice(i, 1);
     // Leaving terms: equal pairs cancel (they meet and vanish); a lone term the new ones replace opens into them; the rest fade.
     const pairs = new Set<number>();
     ghosts.forEach((a, i) => { if (pairs.has(i) || SIGN.test(a.text)) return; const j = ghosts.findIndex((b, k) => k !== i && !pairs.has(k) && b.text === a.text); if (j >= 0) { pairs.add(i); pairs.add(j); } });
@@ -134,7 +147,9 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
       for (const el of born) {
         const id = el.dataset.id!;
         const l = links.get(id);
-        const nodes = l && parts ? parts.nodes(l.objects) : [];
+        // From the drawing only the first time the term comes; later it just lights its part.
+        const nodes = l && parts && firstTime.has(id) ? parts.nodes(l.objects) : [];
+        if (l && parts && !firstTime.has(id)) { parts.glow(l.objects, true); window.setTimeout(() => parts.glow(l.objects, false), 900); }
         const r = el.getBoundingClientRect();
         if (nodes.length) {
           // A copy of the part flies out of the drawing and becomes the term.
@@ -173,7 +188,9 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
 
   // Earlier steps, small above (the last three that differ from the current one).
   // Each earlier step's own equation (its first clause), shrunk to the column when it is long.
-  const history = Array.from({ length: Math.max(0, current) }, (_, k) => clausesAt(k)[0] ?? []).filter((c) => c.length).map((c) => c.map((id) => tokens.get(id)!)).slice(-3);
+  // A line whose two sides are the same ("(a + b)² = (a + b)²") says nothing: it is left out.
+  const saysNothing = (c: string[]) => { const txt = c.map((id) => (tokens.get(id)!.tex ?? tokens.get(id)!.text).replace(/\s+/g, "")).join(""); const [l, r, ...more] = txt.split("="); return !more.length && r !== undefined && l === r; };
+  const history = Array.from({ length: Math.max(0, current) }, (_, k) => clausesAt(k)[0] ?? []).filter((c) => c.length && !saysNothing(c)).map((c) => c.map((id) => tokens.get(id)!)).slice(-3);
   const last = current === steps.length - 1;
   useEffect(() => () => { shown.current = -2; }, []);
 
@@ -207,6 +224,7 @@ const LIVING_CSS = `
 .lv-linked::after { content: ""; position: absolute; left: 6%; right: 6%; bottom: -0.18em; height: 3px; border-radius: 2px; background: currentColor; opacity: 0; transition: opacity .5s; }
 .lv-linked:has(.lv-settled)::after, .lv-linked:not(:has(.lv-tag))::after { opacity: .75; }
 .lv-tag { position: absolute; left: 50%; top: 100%; transform: translate(-50%, .35em); font: 600 15px/1.1 system-ui, sans-serif; white-space: nowrap; color: currentColor; background: rgba(255,255,255,.06); border: 1px solid currentColor; border-radius: 999px; padding: 3px 9px; transition: opacity .5s, transform .5s; }
+.lv-tag-up { top: auto; bottom: 100%; transform: translate(-50%, -.35em); }
 .lv-tag.lv-settled { opacity: 0; transform: translate(-50%, 0); }
 .lv-hi { text-shadow: 0 0 12px currentColor; }
 .lv-side { font-size: 24px; color: #c3c7d2; white-space: normal; text-align: center; max-width: 94%; animation: lv-in .6s ease-out both; }

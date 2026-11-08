@@ -8,7 +8,7 @@ import { costFor } from "../modelPricing";
 import { expandSpec } from "../mathsEngine/expand.js";
 import { lintSpec } from "../mathsEngine/lint.js";
 import { withSentences } from "../mathsEngine/aria-spec.js";
-import { overlappingFills } from "../mathsEngine/overlap.js";
+import { coveredLabels, overlappingFills } from "../mathsEngine/overlap.js";
 import { getTemplate } from "../visual3d/registry";
 import { RecordingBoard } from "../visual3d/board3d/recording";
 import type { MathsBoardContext } from "./mathsPicturePrompt";
@@ -97,7 +97,7 @@ export function pencilProblems(scene: unknown, sentences: number): string[] {
     const expanded = expandSpec(withSentences(scene));
     const verdict = lintSpec(expanded);
     problems.push(...verdict.errors);
-    if (!verdict.errors.length) problems.push(...overlappingFills(expanded));
+    if (!verdict.errors.length) problems.push(...overlappingFills(expanded), ...coveredLabels(expanded));
   } catch (error) {
     problems.push((error as Error).message);
   }

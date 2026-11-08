@@ -50,6 +50,51 @@ function clip(P, Q) {
   return out;
 }
 
+const inside = (p, P) => {
+  let hit = false;
+  for (let i = 0, j = P.length - 1; i < P.length; j = i++) {
+    const [xi, yi] = P[i], [xj, yj] = P[j];
+    if (yi > p[1] !== yj > p[1] && p[0] < ((xj - xi) * (p[1] - yi)) / (yj - yi) + xi) hit = !hit;
+  }
+  return hit;
+};
+
+/**
+ * A shape's own label is written in its middle. When a smaller filled shape covers that middle (the big
+ * square of a proof round its tilted square), the label reads as the smaller shape's: it must go on a side
+ * or beside the shape instead.
+ */
+export function coveredLabels(spec) {
+  const { polys } = filledPolygons(spec, true);
+  const problems = [];
+  for (const a of polys) {
+    if (typeof a.label !== "string" || !a.label.trim()) continue;
+    const c = a.P.reduce((m, p) => [m[0] + p[0] / a.P.length, m[1] + p[1] / a.P.length], [0, 0]);
+    const cover = polys.find((b) => b !== a && b.filled && area(b.P) < area(a.P) && inside(c, b.P));
+    if (cover) problems.push(`object ${a.id}'s label "${a.label}" would be written in its middle, which ${cover.id} covers, so it would read as ${cover.id}'s: label ${a.id} on one of its sides (a segment's label) or with a text object beside it, and drop its own label`);
+  }
+  return problems;
+}
+
+function filledPolygons(spec, all = false) {
+  const vars = scope(spec);
+  const points = new Map();
+  for (const o of spec.objects ?? []) {
+    if (o.type === "point" && Array.isArray(o.at)) {
+      try {
+        const p = [num(o.at[0], vars), num(o.at[1], vars)];
+        if (p.every(Number.isFinite)) points.set(o.id, p);
+      } catch {
+        // Not a plain point.
+      }
+    }
+  }
+  const polys = (spec.objects ?? []).filter((o) => o.type === "polygon" && Array.isArray(o.points) && (all || (o.fill && o.fill !== "none" && (o.fillOpacity ?? 1) > 0)))
+    .map((o) => ({ id: o.id, label: o.label, filled: Boolean(o.fill && o.fill !== "none" && (o.fillOpacity ?? 1) > 0), P: corners(o, points, vars) }))
+    .filter((x) => x.P && x.P.length >= 3 && area(x.P) > 1e-9);
+  return { polys };
+}
+
 export function overlappingFills(spec) {
   const vars = scope(spec);
   const points = new Map();
