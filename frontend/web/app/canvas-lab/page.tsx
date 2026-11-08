@@ -67,6 +67,10 @@ export default function CanvasLab() {
     else if (fixture === "os" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(OS_FIXTURES, "Operating systems: processes and threads")));
     else if (fixture === "logic" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(LOGIC_FIXTURES, "Logic gates and truth tables")));
     else if ((fixture === "dsa" || fixture === "math" || fixture === "visuals") && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixture === "visuals" ? fixtureLecture([...MATHS_VISUAL_FIXTURES, ...CS_VISUAL_FIXTURES], "Algebra, Pythagoras and recursion: solving equations") : fixtureLecture(fixture === "math" ? EQUATION_FIXTURES : DSA_FIXTURES)));
+    // A bench run's saved snapshot (scripts/bench/*-bench.mts writes runs/<id>-snapshot.json): copy it to public/dev-snapshots/.
+    else if (params.get("snap") && process.env.NODE_ENV !== "production") {
+      fetch(`/dev-snapshots/${encodeURIComponent(params.get("snap")!)}.json`).then((r) => r.json()).then((snap: { topic?: string; beats: Array<{ title: string; script: string; draw: Beat["draw"] }> }) => setLecture({ id: `snap-${params.get("snap")}`, title: snap.topic ?? "Snapshot", topic: snap.topic ?? "", beats: snap.beats.map((b, i) => ({ id: `snap-b${i + 1}`, title: b.title, script: b.script, draw: b.draw }) as unknown as Beat), costUsd: 0, ms: 0, log: [] })).catch(() => setError("That snapshot couldn't be loaded."));
+    }
     else if (fixture === "lab" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture({ id: "fixture-lab", title: "Lab drawings", topic: "Pythagoras in 3-D", beats: LAB_FIXTURES.map((f) => ({ id: f.id, script: f.script, draw: { ops: [{ kind: "canvasBoard", spec: f.spec, at: 0, endAt: 1 }] } }) as unknown as Beat), costUsd: 0, ms: 0, log: [] }));
     else if (session && process.env.NODE_ENV !== "production") {
       fetch(`/api/progressive-lectures/${encodeURIComponent(session)}`)

@@ -26,12 +26,34 @@ const html = (tex: string | undefined, text: string) => katex.renderToString(tex
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark: LivingMark; shownThrough: number; reducedMotion: boolean }) {
-  const steps = mark.steps;
-  const s = Number.isFinite(shownThrough) ? shownThrough : 1e6;
-  // The step being said: the last one whose sentence has come.
-  const current = steps.reduce((k, st, i) => (st.s <= s ? i : k), -1);
   const tokens = useMemo(() => new Map(mark.tokens.map((t) => [t.id, t])), [mark.tokens]);
   const links = useMemo(() => new Map(mark.links.map((l) => [l.token, l])), [mark.links]);
+  // EACH EQUATION IS A STATE. A step may hold several, joined by "," or ";" ("h² = 289 − 64, h² = 225,
+  // h = 15 m"): they come one after another within its sentence, so the newest — the answer — is the
+  // living line and the ones before it go up into the history.
+  const steps = useMemo(() => mark.steps.flatMap((st) => {
+    const out: string[][] = [[]];
+    for (const id of st.order) {
+      const t = tokens.get(id);
+      if (!t) continue;
+      if (/^[,;]$/.test(t.text.trim())) { if (out[out.length - 1].length) out.push([]); continue; }
+      out[out.length - 1].push(id);
+    }
+    return out.filter((c) => c.length).map((order) => ({ ...st, order }));
+  }), [mark.steps, tokens]);
+  const s = Number.isFinite(shownThrough) ? shownThrough : 1e6;
+  // Where the board has got to: the last state whose sentence has come.
+  const target = steps.reduce((k, st, i) => (st.s <= s ? i : k), -1);
+  const [current, setCurrent] = useState(-1);
+  // States of one sentence come about 1.3 s apart; a jump (a replay, a later sentence) goes straight to that sentence's first.
+  useEffect(() => {
+    if (target === current) return;
+    if (reducedMotion || target < current) { setCurrent(target); return; }
+    const firstOfTarget = steps.findIndex((st) => st.s === steps[target].s);
+    if (current < firstOfTarget - 1) { setCurrent(firstOfTarget); return; }
+    const t = window.setTimeout(() => setCurrent((c) => Math.min(target, c + 1)), current < 0 || steps[current + 1]?.s !== steps[current]?.s ? 0 : 1300);
+    return () => window.clearTimeout(t);
+  }, [target, current, reducedMotion, steps]);
   const line = useRef<HTMLDivElement>(null);
   const shown = useRef<number>(-2);
   const named = useRef(new Set<string>());
@@ -44,21 +66,7 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
     const c = l ? labPartsFor(mark.drawing)?.colour(l.objects) : null;
     return c ?? tokens.get(id)?.color ?? "#f4f4ee";
   };
-
-  // A step may hold more than one equation, joined by "," or ";" (a said line added to it): the first is
-  // the living line, the others are written small under it.
-  const clausesAt = (k: number): string[][] => {
-    if (k < 0) return [];
-    const out: string[][] = [[]];
-    for (const id of steps[k].order) {
-      const t = tokens.get(id);
-      if (!t) continue;
-      if (/^[,;]$/.test(t.text.trim())) { if (out[out.length - 1].length) out.push([]); continue; }
-      out[out.length - 1].push(id);
-    }
-    return out.filter((c) => c.length);
-  };
-  const termsAt = (k: number) => clausesAt(k)[0] ?? [];
+  const termsAt = (k: number) => (k < 0 ? [] : steps[k].order);
 
   useLayoutEffect(() => {
     const box = line.current;
@@ -184,13 +192,13 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, reducedMotion]);
+  }, [current, reducedMotion, steps]);
 
   // Earlier steps, small above (the last three that differ from the current one).
   // Each earlier step's own equation (its first clause), shrunk to the column when it is long.
   // A line whose two sides are the same ("(a + b)² = (a + b)²") says nothing: it is left out.
   const saysNothing = (c: string[]) => { const txt = c.map((id) => (tokens.get(id)!.tex ?? tokens.get(id)!.text).replace(/\s+/g, "")).join(""); const [l, r, ...more] = txt.split("="); return !more.length && r !== undefined && l === r; };
-  const history = Array.from({ length: Math.max(0, current) }, (_, k) => clausesAt(k)[0] ?? []).filter((c) => c.length && !saysNothing(c)).map((c) => c.map((id) => tokens.get(id)!)).slice(-3);
+  const history = Array.from({ length: Math.max(0, current) }, (_, k) => termsAt(k)).filter((c) => c.length && !saysNothing(c)).map((c) => c.map((id) => tokens.get(id)!)).slice(-3);
   const last = current === steps.length - 1;
   useEffect(() => () => { shown.current = -2; }, []);
 
@@ -206,9 +214,6 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
         <div className={last && current > 0 ? "lv-line lv-final" : "lv-line"} style={{ fontSize: size }}>
           <div ref={line} className="lv-terms" />
         </div>
-        {clausesAt(current).slice(1).map((c, i) => (
-          <div key={`${current}-${i}`} className="lv-side" dangerouslySetInnerHTML={{ __html: c.map((id) => html(tokens.get(id)!.tex, tokens.get(id)!.text)).join("\u2009") }} />
-        ))}
         <div style={{ minHeight: 34, fontSize: 18, color: "#aeb4c2" }}>{current >= 0 ? steps[current].caption ?? "" : ""}</div>
       </div>
     </foreignObject>

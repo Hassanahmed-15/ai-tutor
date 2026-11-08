@@ -22,7 +22,7 @@ import type { PlanningKnowledge } from "../knowledge/graph";
 import { slug } from "./validate";
 import { sourcesForText, type SourcePack } from "../webSources";
 import { splitLongWorking } from "./splitWorking";
-import type { ExaminerSubject } from "./mathsCheck";
+import { examinerFor, type ExaminerSubject } from "./mathsCheck";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
 import { asCs, asMathsOrCs, courseLessonSubject, type LessonSubject } from "./lessonSubject";
 import { courseBoardContext } from "./coursePicturePrompt";
@@ -576,8 +576,9 @@ export async function writeCanvasBoard(args: {
   }
   let spec: CanvasBoardSpec = { ...pictured.spec };
   let labCost = 0;
-  // A maths lecture's board (its examiner is the maths one, or the lecture was asked as maths).
-  const mathsLesson = args.examiner === "maths" || domain === "maths" || beat.subject === "maths";
+  // A maths lecture's board: its examiner is the maths one, it was asked as maths, its boards are maths
+  // pictures, or — a strict PDF lesson, which has no examiner — its words are maths.
+  const mathsLesson = args.examiner === "maths" || domain === "maths" || beat.subject === "maths" || plan.some((b) => b.mathsPicture) || (!args.examiner && examinerFor(args.topic, plan, typed, domain) === "maths");
   let picture = pictured.picture;
   // EYES ON THE BOARD BEFORE A STUDENT SEES IT (lib/canvas/boardLook.ts; owner, 2026-10-23: "100 percent
   // accurate diagrams … I don't want to reduce the amount of visuals"). The finished board is drawn by the
@@ -758,8 +759,9 @@ export async function writeCanvasBoard(args: {
   }
   // THE LAB ENGINES on a board with a code figure, or one the planner put in 3-D (lib/canvas/labVisuals.ts,
   // only with CANVAS_LAB_VISUALS=on). Boards drawn by gpt-image-2 got theirs in illustrate() already.
-  if (labVisualsOn() && !spec.lab && !beat.course && (beat.view3d || (mathsLesson && (spec.stage.kind === "figure" || (spec.stage.kind === "equation" && spec.stage.figure))))) {
-    const ctx = withMathsBoardWriting(mathsFor(beat) ?? mathsBoardContext(args.topic, beat, { plan, index, earlier: args.earlier.slice(0, index) }), spec);
+  if (labVisualsOn() && !spec.lab && !beat.course && args.strictSource?.mode !== "video" && (beat.view3d || (mathsLesson && (spec.stage.kind === "figure" || (spec.stage.kind === "equation" && spec.stage.figure))))) {
+    // The same context a maths picture gets: the whole lecture, and for a PDF what the student's pages say (strict: only that).
+    const ctx = withMathsBoardWriting(mathsFor(beat) ?? mathsBoardContext(args.topic, beat, { source: args.document ? documentBoardLines(args.document, beat) : args.strictSource ? strictBoardLines(args.strictSource.doc, beat) : [], strict: args.strictSource?.mode === "strict", plan, index, earlier: args.earlier.slice(0, index) }), spec);
     const lab = await withLabDrawing(client(), ctx, beat, spec, log).catch((error) => {
       log.push(`${beat.id}: lab drawing failed — ${(error as Error).message}`);
       return null;

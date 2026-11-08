@@ -42,7 +42,7 @@ async function json(openai: OpenAI, system: string, user: string): Promise<{ jso
   return { json: parsed, costUsd: costFor(MODEL, res.usage) };
 }
 
-function boardText(ctx: MathsBoardContext, spec: CanvasBoardSpec): string {
+function boardText(ctx: MathsBoardContext, spec: CanvasBoardSpec, pitch?: string): string {
   const working = spec.stage.kind === "equation"
     ? spec.stage.steps.map((st, i) => `Working line ${i + 1}: ${st.order.map((id) => (spec.stage.kind === "equation" ? spec.stage.tokens.find((t) => t.id === id)?.text ?? "" : "")).join(" ")}`)
     : [];
@@ -57,6 +57,8 @@ function boardText(ctx: MathsBoardContext, spec: CanvasBoardSpec): string {
     spec.stage.kind === "equation" && spec.stage.tokens.length ? `The working's terms (id: term), for "links":\n${spec.stage.tokens.filter((t) => !/^\s*[=+−×÷,()-]\s*$/.test(t.text)).slice(0, 60).map((t) => `${t.id}: ${t.text}`).join("\n")}` : "",
     ctx.mustShow.length ? `It must show: ${ctx.mustShow.join("; ")}` : "",
     ctx.source.length ? `What the student's document says for this board:\n${ctx.source.join("\n")}` : "",
+    ctx.strict ? "STRICT SOURCE: the student's document is the only source. Draw ONLY what the document and this board say — every shape, value and label from them, nothing added from general knowledge." : "",
+    pitch ? `How this board is pitched for the student (presentation only — never change what is drawn): ${pitch}` : "",
   ].filter(Boolean).join("\n\n");
 }
 
@@ -104,9 +106,9 @@ export function pencilProblems(scene: unknown, sentences: number): string[] {
   return problems.slice(0, 20);
 }
 
-async function pencilScene(openai: OpenAI, ctx: MathsBoardContext, spec: CanvasBoardSpec, log: string[], id: string): Promise<{ lab: LabDrawing | null; costUsd: number }> {
+async function pencilScene(openai: OpenAI, ctx: MathsBoardContext, spec: CanvasBoardSpec, log: string[], id: string, pitch?: string): Promise<{ lab: LabDrawing | null; costUsd: number }> {
   const system = pencilSystem();
-  let user = boardText(ctx, spec);
+  let user = boardText(ctx, spec, pitch);
   let costUsd = 0;
   for (let attempt = 1; attempt <= 2; attempt++) {
     const r = await json(openai, system, user);
@@ -119,7 +121,7 @@ async function pencilScene(openai: OpenAI, ctx: MathsBoardContext, spec: CanvasB
       return { lab: { kind: "pencil", scene, sentenceMs: sentenceMs(ctx.sentences), ...(links.length ? { links } : {}) }, costUsd };
     }
     log.push(`${id}: pencil scene attempt ${attempt} failed — ${problems.slice(0, 3).join("; ")}`);
-    user = `${boardText(ctx, spec)}\n\nYour previous scene:\n${JSON.stringify(r.json).slice(0, 14000)}\n\nThe engine's checker found these problems. Fix every one and return the whole corrected scene:\n- ${problems.join("\n- ")}`;
+    user = `${boardText(ctx, spec, pitch)}\n\nYour previous scene:\n${JSON.stringify(r.json).slice(0, 14000)}\n\nThe engine's checker found these problems. Fix every one and return the whole corrected scene:\n- ${problems.join("\n- ")}`;
   }
   return { lab: null, costUsd };
 }
@@ -144,7 +146,7 @@ function checkedLinks(raw: unknown, scene: Record<string, unknown>, spec: Canvas
 const sentenceMs = (sentences: string[]) => sentences.map((s) => Math.round((s.split(/\s+/).filter(Boolean).length / 2.4) * 1000));
 
 // ── 3-D ─────────────────────────────────────────────────────────────────────────────────────────
-async function view3d(openai: OpenAI, ctx: MathsBoardContext, templateId: string, log: string[], id: string): Promise<{ lab: LabDrawing | null; costUsd: number }> {
+async function view3d(openai: OpenAI, ctx: MathsBoardContext, templateId: string, log: string[], id: string, pitch?: string): Promise<{ lab: LabDrawing | null; costUsd: number }> {
   const t = getTemplate(templateId);
   if (!t) return { lab: null, costUsd: 0 };
   const system = [
@@ -153,7 +155,7 @@ async function view3d(openai: OpenAI, ctx: MathsBoardContext, templateId: string
     `Default data: ${JSON.stringify(t.defaults)}`,
     "NEVER change a number the board says to make it fit. If the model cannot hold the board's numbers, reply {\"cannot\": \"why\"} instead.",
   ].join("\n");
-  let user = boardText(ctx, { heading: ctx.board, notes: [], stage: { kind: "illustration" } } as unknown as CanvasBoardSpec);
+  let user = boardText(ctx, { heading: ctx.board, notes: [], stage: { kind: "illustration" } } as unknown as CanvasBoardSpec, pitch);
   const said = numbersIn([ctx.board, ...ctx.sentences, ...ctx.written].join(" "));
   let costUsd = 0;
   for (let attempt = 1; attempt <= 2; attempt++) {
@@ -209,8 +211,8 @@ export async function withLabDrawing(openai: OpenAI, ctx: MathsBoardContext, bea
   const stage = spec.stage;
   const area = stage.kind === "illustration" || stage.kind === "figure" || (stage.kind === "equation" && (beat.mathsPicture || beat.view3d || stage.figure || stage.picture));
   if (!area) return null;
-  const made = beat.view3d ? await view3d(openai, ctx, beat.view3d, log, beat.id) : { lab: null, costUsd: 0 };
-  const drawn = made.lab ? made : await pencilScene(openai, ctx, spec, log, beat.id);
+  const made = beat.view3d ? await view3d(openai, ctx, beat.view3d, log, beat.id, beat.audience) : { lab: null, costUsd: 0 };
+  const drawn = made.lab ? made : await pencilScene(openai, ctx, spec, log, beat.id, beat.audience);
   const costUsd = made.costUsd + (drawn === made ? 0 : drawn.costUsd);
   if (!drawn.lab) return null;
   const next: CanvasBoardSpec = stage.kind === "equation"
