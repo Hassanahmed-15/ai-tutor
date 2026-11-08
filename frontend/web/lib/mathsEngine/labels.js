@@ -17,7 +17,7 @@ const GAP = 8;
 let ctx2d = null;
 function textBox(text, size) {
   ctx2d ??= document.createElement("canvas").getContext("2d");
-  ctx2d.font = `${size}px "Patrick Hand", cursive`;
+  ctx2d.font = `600 ${size}px "Aria Board", "Nunito", system-ui, sans-serif`;
   // Matches how the board draws text (its line box is taller than the font size).
   return { w: ctx2d.measureText(String(text)).width + 8, h: size * 1.4 };
 }

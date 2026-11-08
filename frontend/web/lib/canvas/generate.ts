@@ -1315,6 +1315,22 @@ async function mathsPictureBesideWorking(openai: OpenAI, userId: string, lecture
   }
 }
 
+/**
+ * NO gpt-image-2 FOR MATHS (owner, 2026-11-08: "gpt-image-2 diagrams are not mathematically correct
+ * sometimes"), with the lab visuals on: a board the pencil engine could not draw — or had nothing to draw,
+ * as a map of the lesson — is WRITTEN (Aria's notes as she says them); working simply stands alone.
+ */
+function withoutPicture(beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[]): { spec: CanvasBoardSpec; costUsd: number } {
+  if (spec.stage.kind === "equation") {
+    log.push(`${beat.id}: no drawing — the working stands alone`);
+    return { spec: { ...spec, stage: { ...spec.stage, picture: undefined } }, costUsd: 0 };
+  }
+  log.push(`${beat.id}: no drawing — written board`);
+  // The notes the board's writer already wrote, each on its sentence — written large, nothing beside them.
+  if (spec.notes.length) return { spec: { ...spec, notes: [], stage: { kind: "sketch", items: spec.notes.map((n, i) => ({ id: `line-${i + 1}`, type: "text" as const, text: n.text, s: n.s, col: "full" as const })) }, cues: [] }, costUsd: 0 };
+  return { spec: { ...fallbackSpec({ ...beat, mathsPicture: true }), ...(spec.course ? { course: spec.course, subject: spec.subject } : {}) }, costUsd: 0 };
+}
+
 /** A course picture's own state, for the board's vision check (lib/canvas/progressive.ts). */
 export type CoursePictureState = { redrawn: boolean; remember?: () => Promise<void> };
 
@@ -1330,14 +1346,14 @@ export async function illustrate(openai: OpenAI, userId: string, lectureId: stri
       log.push(`${beat.id}: lab drawing failed — ${(error as Error).message}`);
       return null;
     });
-    if (lab) return lab;
+    return lab ?? withoutPicture(beat, spec, log);
   }
   if (labVisualsOn() && beat.mathsPicture && !beat.course && options.maths) {
     const lab = await withLabDrawing(openai, withMathsBoardWriting(options.maths, spec), beat, spec, log).catch((error) => {
       log.push(`${beat.id}: lab drawing failed — ${(error as Error).message}`);
       return null;
     });
-    if (lab) return lab;
+    return lab ?? withoutPicture(beat, spec, log);
   }
   if (spec.stage.kind === "equation" && beat.pictureBeside && course) return pictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, course, options);
   if (spec.stage.kind === "equation" && beat.mathsPicture && !beat.course && options.maths) return mathsPictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, options.maths);

@@ -121,3 +121,44 @@ export function overlappingFills(spec) {
   }
   return problems;
 }
+
+/**
+ * An angle marked at a vertex needs both of its arms on the board: "∠ACB" drawn as an arc at C with no
+ * lines CA and CB marks an angle that is not there. An arm is a segment, line, ray or vector through the
+ * two points, or a side of a polygon. Only angles given by named points are checked.
+ */
+export function armlessAngles(spec) {
+  const objs = spec.objects ?? [];
+  const pts = new Set(objs.filter((o) => o.type === "point").map((o) => o.id));
+  // A point that only gives an arm its direction is hidden: that arm is drawn some other way (a vector, a slope).
+  const hidden = new Set(objs.filter((o) => o.type === "point" && o.hidden).map((o) => o.id));
+  // A point placed on a polygon's corner ("at": "T.2") is that corner: the polygon's sides join it to its neighbours.
+  const corner = new Map(objs.filter((o) => o.type === "point" && typeof o.at === "string" && /^[A-Za-z]\w*\.\d+$/.test(o.at)).map((o) => [o.id, o.at]));
+  const edges = new Set();
+  const join = (a, b) => { if (typeof a === "string" && typeof b === "string") { edges.add(`${a}|${b}`); edges.add(`${b}|${a}`); } };
+  const lines = [];
+  for (const o of objs) {
+    if (["segment", "line", "ray", "vector"].includes(o.type)) {
+      join(o.from, o.to);
+      if (o.type !== "segment" && o.type !== "vector") lines.push([o.from, o.to]);
+      if (Array.isArray(o.through)) lines.push(o.through);
+    }
+    if (o.type === "polygon" && Array.isArray(o.points)) {
+      o.points.forEach((p, i) => join(p, o.points[(i + 1) % o.points.length]));
+      const n = o.points.length;
+      for (let i = 1; i <= n; i++) join(`${o.id}.${i}`, `${o.id}.${(i % n) + 1}`);
+    }
+    if (o.type === "circle" && typeof o.center === "string" && typeof o.through === "string") join(o.center, o.through);
+  }
+  // A point on a drawn line through the vertex counts too (a diameter through the centre and an end).
+  const onLine = (v, p) => lines.some((l) => l.includes(v) && l.includes(p));
+  const problems = [];
+  for (const o of objs) {
+    if (o.type !== "angle" || !Array.isArray(o.points) || o.points.length !== 3 || !o.points.every((p) => typeof p === "string" && pts.has(p))) continue;
+    const [p, v, q] = o.points;
+    const as = (x) => corner.get(x) ?? x;
+    const missing = [p, q].filter((x) => !hidden.has(x) && !edges.has(`${v}|${x}`) && !edges.has(`${as(v)}|${as(x)}`) && !onLine(v, x));
+    if (missing.length) problems.push(`object ${o.id} marks the angle ${p}${v}${q}, but its arm${missing.length > 1 ? "s" : ""} ${missing.map((x) => `${v}${x}`).join(" and ")} ${missing.length > 1 ? "are" : "is"} not drawn: add the segment${missing.length > 1 ? "s" : ""} (or mark the angle the board really shows)`);
+  }
+  return problems;
+}

@@ -4,7 +4,10 @@
 // and every coordinate is computed from them. See maths-lab/SPEC.md for the format.
 import { compile, formatNumber } from "./expr.js";
 import * as G from "./geometry.js";
-import { INK, colour, HIDDEN, FONT, BOARD_BG } from "./style.js";
+import { INK, colour, HIDDEN, FONT, MATH_FONT, isMathLetter, BOARD_BG } from "./style.js";
+
+/** What a label says now (its template evaluated), or "" when it cannot be worked out yet. */
+const safeText = (f) => { try { return String(f()); } catch { return ""; } };
 import { insidePolygon } from "./contour.js";
 import { TYPES_2D } from "./types2d.js";
 import { TYPES_DATA } from "./typesdata.js";
@@ -213,7 +216,7 @@ export class Scene {
   text(get, content, d, size = 24) {
     const t = this.b.create("text", [() => get()[0], () => get()[1], content], {
       ...HIDDEN, strokeColor: colour(d.labelColor ?? d.color, INK.white), fontSize: d.size ?? size,
-      anchorX: "middle", anchorY: "middle", display: "html", cssStyle: FONT, parse: false, useMathJax: false,
+      anchorX: "middle", anchorY: "middle", display: "html", cssStyle: isMathLetter(typeof content === "function" ? safeText(content) : content) ? MATH_FONT : FONT, parse: false, useMathJax: false,
     });
     // Known without rendering, so layout can see texts that are still hidden.
     t.__content = typeof content === "function" ? content : () => String(content);

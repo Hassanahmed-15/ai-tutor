@@ -21,6 +21,8 @@ import { labPartsFor } from "@/lib/canvas/labParts";
  */
 type LivingMark = Extract<Mark, { type: "living" }>;
 
+const CHALK = "#E9EBF0";
+const ACCENT = "#F5C451";
 const SIGN = /^\s*(?:[=+−×÷<>≤≥≈-]|\\times|\\div|\\cdot|\\pm|\\approx|\\le|\\ge|,)\s*$/;
 const html = (tex: string | undefined, text: string) => katex.renderToString(tex ?? text.replace(/([{}#$%&_])/g, "\\$1"), { throwOnError: false, output: "html" });
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -60,12 +62,9 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
   const seen = useRef(new Set<string>());
   const [size, setSize] = useState(Math.min(52, Math.max(26, mark.rect.w / 12)));
 
-  // Colours: a linked term takes its part's colour; others keep the board's.
-  const colourOf = (id: string) => {
-    const l = links.get(id);
-    const c = l ? labPartsFor(mark.drawing)?.colour(l.objects) : null;
-    return c ?? tokens.get(id)?.color ?? "#f4f4ee";
-  };
+  // ONE CHALK WHITE for every term (owner, 2026-11-08: "I don't like the text being colourful"); the gold
+  // accent is kept for the term being talked about and its part of the drawing, together.
+  const colourOf = (_id: string) => CHALK;
   const termsAt = (k: number) => (k < 0 ? [] : steps[k].order);
 
   useLayoutEffect(() => {
@@ -97,6 +96,7 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
       el.innerHTML = html(t.tex, t.text);
       const sign = SIGN.test(t.tex ?? t.text);
       el.style.color = sign ? "#8b93a7" : colourOf(id);
+      if (!sign && links.has(id)) el.dataset.linked = "";
       const l = links.get(id);
       if (l && !sign) {
         el.classList.add("lv-linked");
@@ -121,6 +121,21 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
     const fitted = w > room ? Math.max(22, Math.floor((k * room) / w)) : Math.min(k, Math.min(52, Math.max(26, mark.rect.w / 12)));
     if (fitted !== k) { box.parentElement!.style.fontSize = `${fitted}px`; setSize(fitted); }
     if (box.scrollWidth > room) box.style.flexWrap = "wrap";
+    // IN STEP WITH THE DRAWING: every linked term that is new or highlighted in this state turns gold with
+    // its part of the drawing, together, for a moment — then both go back to chalk.
+    const litParts = labPartsFor(mark.drawing);
+    const lit = [...box.children].filter((el) => {
+      const id = (el as HTMLElement).dataset.id!;
+      return links.has(id) && (!oldIds.has(id) || steps[current].highlight.includes(id));
+    }) as HTMLElement[];
+    if (lit.length && litParts) {
+      const ids = lit.flatMap((el) => links.get(el.dataset.id!)!.objects);
+      window.setTimeout(() => {
+        lit.forEach((el) => el.classList.add("lv-now"));
+        litParts.glow(ids, true);
+        window.setTimeout(() => { lit.forEach((el) => el.classList.remove("lv-now")); litParts.glow(ids, false); }, animate ? 2400 : 0);
+      }, animate ? 900 : 0);
+    }
     if (!animate) return;
 
     const parts = labPartsFor(mark.drawing);
@@ -157,12 +172,10 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
         const l = links.get(id);
         // From the drawing only the first time the term comes; later it just lights its part.
         const nodes = l && parts && firstTime.has(id) ? parts.nodes(l.objects) : [];
-        if (l && parts && !firstTime.has(id)) { parts.glow(l.objects, true); window.setTimeout(() => parts.glow(l.objects, false), 900); }
         const r = el.getBoundingClientRect();
         if (nodes.length) {
           // A copy of the part flies out of the drawing and becomes the term.
           el.style.opacity = "0";
-          parts!.glow(l!.objects, true);
           for (const n of nodes) {
             const nr = n.getBoundingClientRect();
             const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -171,7 +184,11 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
             const or = ownerSvg.getBoundingClientRect();
             Object.assign(svg.style, { position: "fixed", left: `${or.left}px`, top: `${or.top}px`, width: `${or.width}px`, height: `${or.height}px`, overflow: "visible", pointerEvents: "none", zIndex: "40" });
             svg.setAttribute("viewBox", ownerSvg.getAttribute("viewBox") ?? `0 0 ${or.width} ${or.height}`);
-            svg.append(n.cloneNode(true));
+            // The copy that flies is gold: it is the part being talked about.
+            const copy = n.cloneNode(true) as SVGElement;
+            copy.style.stroke = ACCENT;
+            if (copy.getAttribute("fill") && copy.getAttribute("fill") !== "none") { copy.style.fill = ACCENT; copy.style.fillOpacity = "0.25"; }
+            svg.append(copy);
             document.body.append(svg);
             const k = Math.max(0.12, Math.min(0.7, r.height / Math.max(nr.height, 1)));
             svg.style.transformOrigin = `${nr.left - or.left + nr.width / 2}px ${nr.top - or.top + nr.height / 2}px`;
@@ -180,7 +197,6 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
           await sleep(800);
           el.style.opacity = "";
           el.animate([{ opacity: 0, transform: "scale(1.5)" }, { opacity: 1, transform: "none" }], { duration: 420 });
-          window.setTimeout(() => parts!.glow(l!.objects, false), 900);
           await sleep(250);
         } else if (source) {
           // Opens out of the term it replaces (a bracket expanding into its terms).
@@ -221,17 +237,21 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
 }
 
 const LIVING_CSS = `
+.lv-line { font-family: KaTeX_Main, "Times New Roman", serif; }
 .lv-line { position: relative; padding: 10px 22px; border-radius: 16px; border: 3px solid transparent; transition: border-color .6s, box-shadow .6s; }
-.lv-final { border-color: #f2d35b; box-shadow: 0 0 22px rgba(242, 211, 91, .35); }
+.lv-final { border-color: rgba(245, 196, 81, .85); box-shadow: 0 0 18px rgba(245, 196, 81, .22); }
+.lv-term { transition: color .35s, text-shadow .35s; }
+.lv-now { color: ${ACCENT} !important; text-shadow: 0 0 14px rgba(245, 196, 81, .45); }
 .lv-terms { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: .32em; row-gap: .2em; }
 .lv-term { position: relative; display: inline-block; white-space: nowrap; }
 .lv-term .katex { font-size: 1em; color: inherit; }
 .lv-linked::after { content: ""; position: absolute; left: 6%; right: 6%; bottom: -0.18em; height: 3px; border-radius: 2px; background: currentColor; opacity: 0; transition: opacity .5s; }
+.lv-term[data-linked]::after { background: rgba(233, 235, 240, .35); }
 .lv-linked:has(.lv-settled)::after, .lv-linked:not(:has(.lv-tag))::after { opacity: .75; }
-.lv-tag { position: absolute; left: 50%; top: 100%; transform: translate(-50%, .35em); font: 600 15px/1.1 system-ui, sans-serif; white-space: nowrap; color: currentColor; background: rgba(255,255,255,.06); border: 1px solid currentColor; border-radius: 999px; padding: 3px 9px; transition: opacity .5s, transform .5s; }
+.lv-tag { position: absolute; left: 50%; top: 100%; transform: translate(-50%, .35em); font: 600 15px/1.1 "Aria Board", "Nunito", system-ui, sans-serif; white-space: nowrap; color: #c9ccd4; background: rgba(255,255,255,.05); border: 1px solid rgba(233,235,240,.35); border-radius: 999px; padding: 3px 9px; transition: opacity .5s, transform .5s; }
 .lv-tag-up { top: auto; bottom: 100%; transform: translate(-50%, -.35em); }
 .lv-tag.lv-settled { opacity: 0; transform: translate(-50%, 0); }
-.lv-hi { text-shadow: 0 0 12px currentColor; }
+.lv-hi { color: ${ACCENT} !important; }
 .lv-side { font-size: 24px; color: #c3c7d2; white-space: normal; text-align: center; max-width: 94%; animation: lv-in .6s ease-out both; }
 .lv-side .katex { font-size: 1em; }
 @keyframes lv-in { from { opacity: 0; transform: translateY(.4em); } to { opacity: 1; transform: none; } }

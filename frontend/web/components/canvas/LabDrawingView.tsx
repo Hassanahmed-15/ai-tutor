@@ -3,6 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { Mark } from "@/lib/canvas/layout";
 import { registerLabParts } from "@/lib/canvas/labParts";
+import { ACCENT } from "@/lib/mathsEngine/style.js";
 
 /**
  * THE LAB ENGINES' DRAWING ON ARIA'S BOARD (lib/canvas/labDrawing.ts): the pencil scene (lib/mathsEngine,
@@ -69,8 +70,18 @@ function PencilScene({ mark, shownThrough, reducedMotion }: { mark: LabMark; sho
         // The living equation beside it finds its parts here (lib/canvas/labParts.ts).
         unregister = registerLabParts(mark.key, {
           nodes: (ids) => p.elementsOf(ids).map((el) => el.rendNode),
-          colour: (ids) => { const el = p.elementsOf(ids)[0]; const c = el?.visProp.strokecolor ?? el?.visProp.fillcolor; return c && c !== "none" ? c : null; },
-          glow: (ids, on) => { for (const el of p.elementsOf(ids)) { el.rendNode.style.filter = on ? "drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor)" : ""; el.rendNode.style.color = el.visProp.strokecolor ?? "#fff"; el.rendNode.style.strokeWidth = on ? "5px" : ""; } },
+          colour: () => null,
+          // The part being talked about turns gold with its term (the board's one accent), then back to chalk.
+          glow: (ids, on) => {
+            for (const el of p.elementsOf(ids)) {
+              const st = el.rendNode.style, filled = el.visProp.fillcolor && el.visProp.fillcolor !== "none";
+              st.transition = "stroke .35s, fill .35s, fill-opacity .35s, filter .35s";
+              st.stroke = on ? ACCENT : "";
+              st.fill = on && filled ? ACCENT : "";
+              st.fillOpacity = on && filled ? "0.22" : "";
+              st.filter = on ? `drop-shadow(0 0 6px ${ACCENT}aa)` : "";
+            }
+          },
         });
         setReady((r) => r + 1);
       } catch (error) {

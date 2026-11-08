@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { SignJWT } from "jose";
 import { chromium } from "playwright";
 const env = Object.fromEntries(readFileSync("/Users/hassanahmed/ai-tutor/frontend/web/.env.local", "utf8").split("\n").filter((l) => /^[A-Z_]+=/.test(l)).map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1).replace(/^["']|["']$/g, "")]));
-const token = await new SignJWT({ email: "local-dev-canvas@example.com" }).setProtectedHeader({ alg: "HS256" }).setSubject("local-dev-canvas").setIssuedAt().setExpirationTime("3h").sign(new TextEncoder().encode(env.AUTH_SECRET));
+const token = await new SignJWT({ email: "local-dev-canvas@example.com" }).setProtectedHeader({ alg: "HS256" }).setSubject(process.env.QA_USER ?? "local-dev-canvas").setIssuedAt().setExpirationTime("3h").sign(new TextEncoder().encode(env.AUTH_SECRET));
 // A session id, or a canvas-lab query such as "snap=pyth-pdf" (a bench snapshot in public/dev-snapshots).
 const session = process.argv[2];
 const query = session.includes("=") ? session : `session=${session}`;
