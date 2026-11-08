@@ -761,10 +761,14 @@ export async function writeCanvasBoard(args: {
   // only with CANVAS_LAB_VISUALS=on). Boards drawn by gpt-image-2 got theirs in illustrate() already.
   // A course lesson only when it is a maths course (its boards got their drawing in illustrate()).
   const courseOk = !beat.course || beat.subject === "maths";
-  if (labVisualsOn() && !spec.lab && courseOk && args.strictSource?.mode !== "video" && (beat.view3d || (mathsLesson && (spec.stage.kind === "figure" || (spec.stage.kind === "equation" && (spec.stage.figure || (beat.course && beat.pictureBeside))))))) {
+  // Working with no drawing whose board before had one: that figure is offered to it (the drawing writer
+  // draws it again beside the working when the working is about it — multiplying along a tree's paths).
+  const before = index > 0 ? args.earlier[index - 1] : undefined;
+  const previousFigure = mathsLesson && spec.stage.kind === "equation" && !spec.stage.figure && !spec.stage.picture && before?.lab?.kind === "pencil" ? before.lab.scene : undefined;
+  if (labVisualsOn() && !spec.lab && courseOk && args.strictSource?.mode !== "video" && (beat.view3d || previousFigure || (mathsLesson && (spec.stage.kind === "figure" || (spec.stage.kind === "equation" && (spec.stage.figure || (beat.course && beat.pictureBeside))))))) {
     // The same context a maths picture gets: the whole lecture, and for a PDF what the student's pages say (strict: only that).
     const ctx = withMathsBoardWriting(mathsFor(beat) ?? mathsBoardContext(args.topic, beat, { source: args.document ? documentBoardLines(args.document, beat) : args.strictSource ? strictBoardLines(args.strictSource.doc, beat) : [], strict: args.strictSource?.mode === "strict", plan, index, earlier: args.earlier.slice(0, index) }), spec);
-    const lab = await withLabDrawing(client(), ctx, beat, spec, log).catch((error) => {
+    const lab = await withLabDrawing(client(), ctx, beat, spec, log, { previous: previousFigure }).catch((error) => {
       log.push(`${beat.id}: lab drawing failed — ${(error as Error).message}`);
       return null;
     });

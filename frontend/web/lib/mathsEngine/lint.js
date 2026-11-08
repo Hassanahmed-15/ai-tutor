@@ -262,6 +262,10 @@ export function lintSpec(spec) {
   const groupMembers = new Set((spec.groups ?? []).filter((g) => drawn.has(g.id)).flatMap((g) => g.of));
   // The image of an animated transformation appears when the animation runs.
   const animatedTf = new Set((spec.steps ?? []).flatMap((st) => [].concat(st.animate ?? [])).map((a) => a.transform).filter(Boolean));
+  // A computed label ("R ({p1:frac})") must work out, or the board shows "?" (Aria's copy: a tree read
+  // "R (?)" after "{expr:firstR:frac}"). The form is {expression} or {expression:format}. Checked once
+  // every object is known, as a label may name its own point ("(X(P), Y(P))").
+  for (const d of spec.objects ?? []) for (const lab of [d.label, ...(Array.isArray(d.labels) ? d.labels : [])]) if (typeof lab === "string" && lab.includes("{")) templateCheck(`object ${d.id ?? "?"}.label`, lab);
   for (const d of spec.objects ?? []) if (d.image && animatedTf.has(d.image.by)) drawn.add(d.id);
   for (const d of spec.objects ?? []) {
     if (d.id && !drawn.has(d.id) && !d.hidden && !groupMembers.has(d.id)) warnings.push(`object ${d.id} is never drawn`);

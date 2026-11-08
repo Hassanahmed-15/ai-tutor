@@ -29,12 +29,15 @@ for (const index of wanted) {
   const t0 = Date.now();
   // As the worker does (lib/progressiveLectureWorker.ts): the plan's canvas boards, and the course lesson's document.
   const plan = s.plan.map((p: any) => p.canvas).filter(Boolean);
-  const made = await writeCanvasBoard({ userId: s.userId, sessionId, topic: s.topic, plan, index, earlier: [], notes: s.adaptationNotes ?? [], document: curriculumDocumentOf(input) });
+  // The boards before it, as saved (and as rewritten above): what the board continues from, as in the worker.
+  const specOf = (b: any) => b?.beat?.draw?.ops?.find((o: any) => o.kind === "canvasBoard")?.spec;
+  const earlier = plan.map((_: unknown, i: number) => (i < index ? specOf(saved.find((b) => b.sequence === i)) : undefined));
+  const made = await writeCanvasBoard({ userId: s.userId, sessionId, topic: s.topic, plan, index, earlier, notes: s.adaptationNotes ?? [], document: curriculumDocumentOf(input) });
   total += made.costUsd;
   const doc = saved.find((b) => b.sequence === index);
-  if (doc) await beatsC.items.upsert({ ...doc, beat: made.beat });
+  if (doc) { await beatsC.items.upsert({ ...doc, beat: made.beat }); doc.beat = made.beat; }
   const st = (made.beat.draw?.ops?.find((o: any) => o.kind === "canvasBoard") as any)?.spec?.stage;
-  console.log(`board ${index + 1} "${made.beat.title}": ${st?.kind}${st?.coursePicture ? " (gpt-image-2)" : ""} in ${Math.round((Date.now() - t0) / 1000)} s, $${made.costUsd.toFixed(3)}${made.fallback ? " FALLBACK" : ""}\n  ${made.log.filter((l: string) => /picture|look|illustration/i.test(l)).join("\n  ").slice(0, 600)}`);
+  console.log(`board ${index + 1} "${made.beat.title}": ${st?.kind}${st?.coursePicture ? " (gpt-image-2)" : ""} in ${Math.round((Date.now() - t0) / 1000)} s, $${made.costUsd.toFixed(3)}${made.fallback ? " FALLBACK" : ""}\n  ${made.log.filter((l: string) => /picture|look|illustration|pencil|figure|drawing|3-D/i.test(l)).join("\n  ").slice(0, 600)}`);
 }
 console.log(`rewrote ${wanted.length} board(s), $${total.toFixed(3)}`);
 process.exit(0);

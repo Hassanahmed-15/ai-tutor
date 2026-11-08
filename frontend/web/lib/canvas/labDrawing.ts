@@ -42,7 +42,7 @@ async function json(openai: OpenAI, system: string, user: string): Promise<{ jso
   return { json: parsed, costUsd: costFor(MODEL, res.usage) };
 }
 
-function boardText(ctx: MathsBoardContext, spec: CanvasBoardSpec, pitch?: string): string {
+function boardText(ctx: MathsBoardContext, spec: CanvasBoardSpec, pitch?: string, previous?: Record<string, unknown>): string {
   const working = spec.stage.kind === "equation"
     ? spec.stage.steps.map((st, i) => `Working line ${i + 1}: ${st.order.map((id) => (spec.stage.kind === "equation" ? spec.stage.tokens.find((t) => t.id === id)?.text ?? "" : "")).join(" ")}`)
     : [];
@@ -59,6 +59,7 @@ function boardText(ctx: MathsBoardContext, spec: CanvasBoardSpec, pitch?: string
     ctx.source.length ? `What the student's document says for this board:\n${ctx.source.join("\n")}` : "",
     ctx.strict ? "STRICT SOURCE: the student's document is the only source. Draw ONLY what the document and this board say — every shape, value and label from them, nothing added from general knowledge." : "",
     pitch ? `How this board is pitched for the student (presentation only — never change what is drawn): ${pitch}` : "",
+    previous ? `THE BOARD BEFORE DREW THIS FIGURE:\n${JSON.stringify(previous).slice(0, 9000)}\nIf this board's working is about that figure (it uses its parts, its numbers or its paths), draw the same figure again — the same ids, coordinates and labels, with only what this board needs — and link the working's terms to its parts. If the working has nothing to do with it, reply {"none": "why"}.` : "",
   ].filter(Boolean).join("\n\n");
 }
 
@@ -107,9 +108,9 @@ export function pencilProblems(scene: unknown, sentences: number): string[] {
   return problems.slice(0, 20);
 }
 
-async function pencilScene(openai: OpenAI, ctx: MathsBoardContext, spec: CanvasBoardSpec, log: string[], id: string, pitch?: string): Promise<{ lab: LabDrawing | null; costUsd: number; none?: boolean }> {
+async function pencilScene(openai: OpenAI, ctx: MathsBoardContext, spec: CanvasBoardSpec, log: string[], id: string, pitch?: string, previous?: Record<string, unknown>): Promise<{ lab: LabDrawing | null; costUsd: number; none?: boolean }> {
   const system = pencilSystem();
-  let user = boardText(ctx, spec, pitch);
+  let user = boardText(ctx, spec, pitch, previous);
   let costUsd = 0;
   for (let attempt = 1; attempt <= 2; attempt++) {
     const r = await json(openai, system, user);
@@ -126,7 +127,7 @@ async function pencilScene(openai: OpenAI, ctx: MathsBoardContext, spec: CanvasB
       return { lab: { kind: "pencil", scene, sentenceMs: sentenceMs(ctx.sentences), ...(links.length ? { links } : {}) }, costUsd };
     }
     log.push(`${id}: pencil scene attempt ${attempt} failed — ${problems.slice(0, 3).join("; ")}`);
-    user = `${boardText(ctx, spec, pitch)}\n\nYour previous scene:\n${JSON.stringify(r.json).slice(0, 14000)}\n\nThe engine's checker found these problems. Fix every one and return the whole corrected scene:\n- ${problems.join("\n- ")}`;
+    user = `${boardText(ctx, spec, pitch, previous)}\n\nYour previous scene:\n${JSON.stringify(r.json).slice(0, 14000)}\n\nThe engine's checker found these problems. Fix every one and return the whole corrected scene:\n- ${problems.join("\n- ")}`;
   }
   return { lab: null, costUsd };
 }
@@ -212,12 +213,13 @@ const AREA: IllustrationStage = { kind: "illustration", subject: "drawing", part
  * the board's own drawing). Only a board with a drawing area: an illustration, a figure, or working with
  * a figure or picture beside it.
  */
-export async function withLabDrawing(openai: OpenAI, ctx: MathsBoardContext, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[]): Promise<{ spec: CanvasBoardSpec; costUsd: number } | null> {
+export async function withLabDrawing(openai: OpenAI, ctx: MathsBoardContext, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], options: { previous?: Record<string, unknown> } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number } | null> {
   const stage = spec.stage;
-  const area = stage.kind === "illustration" || stage.kind === "figure" || (stage.kind === "equation" && (beat.mathsPicture || beat.pictureBeside || beat.view3d || stage.figure || stage.picture));
+  // Working with no drawing of its own may continue the figure of the board before it (options.previous).
+  const area = stage.kind === "illustration" || stage.kind === "figure" || (stage.kind === "equation" && (beat.mathsPicture || beat.pictureBeside || beat.view3d || stage.figure || stage.picture || options.previous));
   if (!area) return null;
   const made = beat.view3d ? await view3d(openai, ctx, beat.view3d, log, beat.id, beat.audience) : { lab: null, costUsd: 0 };
-  const drawn = made.lab ? made : await pencilScene(openai, ctx, spec, log, beat.id, beat.audience);
+  const drawn = made.lab ? made : await pencilScene(openai, ctx, spec, log, beat.id, beat.audience, options.previous);
   const costUsd = made.costUsd + (drawn === made ? 0 : drawn.costUsd);
   if (!drawn.lab) return null;
   const next: CanvasBoardSpec = stage.kind === "equation"
