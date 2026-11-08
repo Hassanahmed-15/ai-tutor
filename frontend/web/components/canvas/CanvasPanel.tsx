@@ -14,6 +14,7 @@ import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
 import { COURSE_FONT_FAMILY, COURSE_FONT_STACK } from "@/lib/anim/boardFont";
 import { stackAt } from "@/lib/canvas/callStack";
 import { SketchView } from "./SketchView";
+import { LabDrawingView } from "./LabDrawingView";
 import { SequenceView } from "./SequenceView";
 import { OsGanttView, OsMappingView, OsMemoryView, OsStatesView } from "./OsDiagramView";
 import type { CardStyle } from "@/lib/canvas/cardStyle";
@@ -681,6 +682,8 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
           {mark.label && <FitLines fit={fitText(mark.label, mark.rect.w - 12, mark.size, Math.max(12, Math.round(mark.size * 0.72)))} x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2 + 42} lead={1.15} textAnchor="middle" fontWeight={700} fill={INK} />}
         </g>
       );
+    case "lab":
+      return <LabDrawingView mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />;
     case "figure":
       return <FigureView mark={mark} chalk={Boolean(chalk)} focusId={focusId} shownThrough={shownThrough} />;
     case "figure-label":

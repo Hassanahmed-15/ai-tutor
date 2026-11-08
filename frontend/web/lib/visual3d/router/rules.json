@@ -1,0 +1,1501 @@
+{
+ "_about": "Router rules (spec §2.3). Edit freely: each rule matches keywords in the request; the longest keyword match wins, then the higher priority. kind '3d' = 3D is essential (3d_template if the template exists, else 3d_scene); kind 'both' = 2D primary + 3D button when a template exists (else plain 2D); kind '2d' = existing 2D board; kind 'none' = just talk. 'template' names the template that would serve it (it may not be built yet). 'weakKeywords' are broad words that only count when no other keyword matched.",
+ "formatWords2d": [
+  "flowchart",
+  "flow chart",
+  "sequence diagram",
+  "state diagram",
+  "state machine",
+  "uml",
+  "class diagram",
+  "er diagram",
+  "entity relationship",
+  "truth table",
+  "pseudocode",
+  "gantt",
+  "timeline",
+  "venn",
+  "mind map",
+  "on paper",
+  "in 2d",
+  "2d diagram",
+  "flat diagram",
+  "simple diagram",
+  "number line",
+  "tree diagram",
+  "recursion tree",
+  "call graph",
+  "architecture diagram",
+  "2d",
+  "2-d",
+  "two dimensional",
+  "two-dimensional",
+  "flat version",
+  "as a table",
+  "in a table",
+  "table of values",
+  "make a table",
+  "draw a table"
+ ],
+ "ask3d": [
+  "in 3d",
+  "in 3-d",
+  "3d version",
+  "3d view",
+  "three d",
+  "three-d",
+  "three dimensional",
+  "three-dimensional",
+  "show it in 3d",
+  "make it 3d",
+  "3d model",
+  "view in 3d",
+  "see it in 3d",
+  "in three dimensions",
+  "3d please"
+ ],
+ "followUpCues": [
+  "now ",
+  "again",
+  " it",
+  " that",
+  "this one",
+  "next",
+  "another",
+  "same tree",
+  "same list",
+  "same array",
+  "the tree",
+  "the list",
+  "the graph",
+  "the surface",
+  "the network",
+  "the vectors",
+  "what if",
+  "and then",
+  "then "
+ ],
+ "visualVerbs": [
+  "show",
+  "draw",
+  "visualize",
+  "visualise",
+  "illustrate",
+  "picture",
+  "diagram",
+  "graph",
+  "plot",
+  "sketch",
+  "animate",
+  "demonstrate",
+  "display",
+  "walk me through",
+  "see"
+ ],
+ "noneStrong": [
+  "why should",
+  "is it worth",
+  "do you think",
+  "how are you",
+  "thank you",
+  "thanks",
+  "who invented",
+  "who discovered",
+  "when was",
+  "history of",
+  "should i",
+  "motivate",
+  "how do i study",
+  "tips for",
+  "is it hard",
+  "good morning",
+  "hello",
+  "what time",
+  "how long will"
+ ],
+ "noneWeak": [
+  "what does",
+  "what is the meaning",
+  "define ",
+  "definition of",
+  "what's the difference between",
+  "difference between",
+  "what is a ",
+  "what is an ",
+  "what are ",
+  "explain what",
+  "tell me about",
+  "what's a ",
+  "what's an ",
+  "meaning of"
+ ],
+ "actions": {
+  "bst": {
+   "insert": [
+    "insert",
+    "add",
+    "put"
+   ],
+   "search": [
+    "search",
+    "find",
+    "look for",
+    "look up",
+    "is there",
+    "contains"
+   ],
+   "delete": [
+    "delete",
+    "remove",
+    "take out"
+   ],
+   "traverse": [
+    "traverse",
+    "traversal",
+    "in-order",
+    "inorder",
+    "preorder",
+    "pre-order",
+    "postorder",
+    "post-order",
+    "visit"
+   ]
+  },
+  "sorting": {
+   "sort_with": [
+    "with merge",
+    "with quick",
+    "with heap",
+    "with insertion",
+    "with selection",
+    "with bubble",
+    "using merge",
+    "using quick",
+    "using heap",
+    "using insertion",
+    "using selection",
+    "using bubble",
+    "try merge",
+    "try quick",
+    "try heap",
+    "try insertion",
+    "try selection",
+    "try bubble"
+   ],
+   "set_values": [
+    "new numbers",
+    "different numbers",
+    "these numbers",
+    "new values",
+    "different values"
+   ]
+  },
+  "vector_cross": {
+   "swap_order": [
+    "swap",
+    "other order",
+    "b × a",
+    "b x a",
+    "reverse the order",
+    "flip"
+   ],
+   "set_vectors": [
+    "new vectors",
+    "different vectors",
+    "these vectors"
+   ]
+  },
+  "surface_plot": {
+   "set_expr": [
+    "plot ",
+    "change it to",
+    "change the function",
+    "try z =",
+    "instead"
+   ],
+   "probe": [
+    "at the point",
+    "height at",
+    "value at",
+    "what is z at",
+    "probe"
+   ],
+   "toggle_wireframe": [
+    "wireframe",
+    "mesh",
+    "grid lines"
+   ]
+  },
+  "neural_network": {
+   "set_input": [
+    "input",
+    "feed in",
+    "feed it"
+   ],
+   "set_activation": [
+    "sigmoid",
+    "tanh",
+    "relu"
+   ]
+  },
+  "vectors_3d": {
+   "add_vector": [
+    "add a vector",
+    "another vector",
+    "add vector"
+   ]
+  },
+  "vector_add": {
+   "set_mode": [
+    "parallelogram",
+    "head to tail",
+    "head-to-tail"
+   ],
+   "subtract": [
+    "subtract",
+    "minus",
+    "a - b",
+    "a − b"
+   ]
+  },
+  "vector_dot_projection": {
+   "swap": [
+    "project b onto a",
+    "other way",
+    "swap"
+   ],
+   "set_vectors": [
+    "new vectors",
+    "different vectors"
+   ]
+  },
+  "linear_transform": {
+   "set_matrix": [
+    "another matrix",
+    "different matrix",
+    "this matrix",
+    "new matrix"
+   ]
+  },
+  "surface_slices": {
+   "move_point": [
+    "at the point",
+    "another point",
+    "move the point",
+    "at (",
+    "slice at"
+   ]
+  },
+  "gradient_on_surface": {
+   "move_point": [
+    "at the point",
+    "another point",
+    "move the point",
+    "at ("
+   ]
+  },
+  "solid": {
+   "set_type": [
+    "show a cube",
+    "show a cone",
+    "show a sphere",
+    "show a cylinder",
+    "now a",
+    "instead a",
+    "make it a"
+   ],
+   "set_dims": [
+    "radius",
+    "height",
+    "side",
+    "length",
+    "width"
+   ]
+  },
+  "array_memory": {
+   "access": [
+    "access",
+    "read",
+    "get index",
+    "element at",
+    "index"
+   ],
+   "set": [
+    "set index",
+    "write",
+    "change index"
+   ]
+  },
+  "linked_list": {
+   "insert": [
+    "insert",
+    "add"
+   ],
+   "delete": [
+    "delete",
+    "remove"
+   ],
+   "search": [
+    "search",
+    "find",
+    "look for"
+   ]
+  },
+  "stack": {
+   "push": [
+    "push"
+   ],
+   "pop": [
+    "pop"
+   ],
+   "peek": [
+    "peek",
+    "top"
+   ],
+   "enqueue": [
+    "enqueue"
+   ],
+   "dequeue": [
+    "dequeue"
+   ],
+   "push_front": [
+    "push front",
+    "add to the front"
+   ],
+   "push_back": [
+    "push back",
+    "add to the back"
+   ],
+   "pop_front": [
+    "pop front",
+    "remove from the front"
+   ],
+   "pop_back": [
+    "pop back",
+    "remove from the back"
+   ]
+  },
+  "heap": {
+   "insert": [
+    "insert",
+    "add",
+    "push"
+   ],
+   "extract": [
+    "extract",
+    "remove the top",
+    "pop",
+    "remove min",
+    "remove max",
+    "extract min",
+    "extract max"
+   ]
+  },
+  "hash_table": {
+   "insert": [
+    "insert",
+    "add",
+    "put"
+   ],
+   "search": [
+    "search",
+    "find",
+    "look up",
+    "lookup"
+   ],
+   "resize": [
+    "resize",
+    "rehash",
+    "more buckets",
+    "grow"
+   ]
+  },
+  "binary_search_array": {
+   "search": [
+    "search",
+    "find",
+    "look for"
+   ]
+  },
+  "graph_traversal": {
+   "run": [
+    "bfs",
+    "dfs",
+    "breadth",
+    "depth",
+    "start from",
+    "run it from"
+   ]
+  },
+  "gradient_descent_surface": {
+   "set_learning_rate": [
+    "learning rate",
+    "step size",
+    "bigger steps",
+    "smaller steps"
+   ],
+   "set_start": [
+    "start from",
+    "start at",
+    "another start"
+   ]
+  },
+  "eigenvectors_3d": {
+   "set_matrix": [
+    "another matrix",
+    "different matrix",
+    "new matrix",
+    "change the matrix",
+    "use the matrix"
+   ]
+  },
+  "span_basis": {
+   "set_vectors": [
+    "other vectors",
+    "different vectors",
+    "new vectors",
+    "change the vectors",
+    "use the vectors"
+   ]
+  },
+  "planes_system": {
+   "set_equations": [
+    "other equations",
+    "different equations",
+    "new equations",
+    "change the equations",
+    "another system"
+   ]
+  },
+  "tangent_plane": {
+   "move_point": [
+    "move the point",
+    "another point",
+    "at the point",
+    "different point",
+    "move it to"
+   ]
+  },
+  "double_integral_volume": {
+   "set_n": [
+    "more boxes",
+    "fewer boxes",
+    "more rectangles",
+    "boxes",
+    "finer",
+    "coarser",
+    "subdivisions"
+   ]
+  },
+  "cross_section": {
+   "set_plane": [
+    "another plane",
+    "different plane",
+    "cut with",
+    "new plane",
+    "slice with"
+   ]
+  },
+  "bivariate_normal": {
+   "set_rho": [
+    "correlation",
+    "rho",
+    "more correlated",
+    "less correlated"
+   ]
+  },
+  "avl_tree": {
+   "insert": [
+    "insert",
+    "add",
+    "put"
+   ]
+  },
+  "trie": {
+   "search": [
+    "search",
+    "find",
+    "look for",
+    "look up",
+    "is there",
+    "contains"
+   ]
+  }
+ },
+ "playerVerbs": {
+  "play": [
+   "play",
+   "animate it",
+   "start",
+   "go",
+   "run it",
+   "show me the steps"
+  ],
+  "pause": [
+   "pause",
+   "stop",
+   "hold on",
+   "wait"
+  ],
+  "next_step": [
+   "next step",
+   "next",
+   "step forward",
+   "one more step"
+  ],
+  "prev_step": [
+   "previous step",
+   "back a step",
+   "go back",
+   "step back",
+   "undo"
+  ],
+  "reset": [
+   "reset",
+   "start over",
+   "from the beginning",
+   "restart"
+  ],
+  "camera": [
+   "rotate",
+   "turn it",
+   "spin",
+   "look from",
+   "from above",
+   "from the side",
+   "from the front",
+   "top view",
+   "side view"
+  ],
+  "faster": [
+   "faster",
+   "speed up",
+   "quicker"
+  ],
+  "slower": [
+   "slower",
+   "slow down"
+  ]
+ },
+ "rules": [
+  {
+   "id": "cross",
+   "kind": "3d",
+   "template": "vector_cross",
+   "keywords": [
+    "cross product",
+    "vector product",
+    "right-hand rule",
+    "right hand rule",
+    "a × b",
+    "a x b",
+    "normal to both",
+    "perpendicular to both"
+   ]
+  },
+  {
+   "id": "dot",
+   "kind": "3d",
+   "template": "vector_dot_projection",
+   "keywords": [
+    "dot product",
+    "scalar product",
+    "projection of",
+    "project a onto",
+    "vector projection",
+    "angle between two vectors",
+    "angle between vectors"
+   ]
+  },
+  {
+   "id": "vec_add",
+   "kind": "3d",
+   "template": "vector_add",
+   "keywords": [
+    "add vectors",
+    "adding vectors",
+    "vector addition",
+    "vector subtraction",
+    "subtract vectors",
+    "head to tail",
+    "head-to-tail",
+    "parallelogram rule",
+    "resultant vector"
+   ]
+  },
+  {
+   "id": "vec3",
+   "kind": "3d",
+   "template": "vectors_3d",
+   "keywords": [
+    "vector in 3d",
+    "vectors in 3d",
+    "3d vector",
+    "vectors in r3",
+    "vector in r3",
+    "r^3",
+    "components of a vector",
+    "magnitude of the vector",
+    "position vector"
+   ],
+   "weakKeywords": [
+    "vector",
+    "vectors"
+   ]
+  },
+  {
+   "id": "lintrans",
+   "kind": "3d",
+   "template": "linear_transform",
+   "keywords": [
+    "linear transformation",
+    "linear transform",
+    "transformation matrix",
+    "3x3 matrix",
+    "3 by 3 matrix",
+    "determinant as volume",
+    "determinant is volume",
+    "unit cube",
+    "what a matrix does",
+    "matrix as a transformation",
+    "determinant means",
+    "determinant measure",
+    "determinant measures",
+    "determinant and volume",
+    "determinant as a volume",
+    "measure volume",
+    "scales volume"
+   ]
+  },
+  {
+   "id": "eigen",
+   "kind": "3d",
+   "template": "eigenvectors_3d",
+   "keywords": [
+    "eigenvector",
+    "eigenvectors",
+    "eigenvalue",
+    "eigenvalues"
+   ]
+  },
+  {
+   "id": "span",
+   "kind": "3d",
+   "template": "span_basis",
+   "keywords": [
+    "span",
+    "basis of",
+    "linearly independent",
+    "linear independence",
+    "linear combination",
+    "basis vectors"
+   ]
+  },
+  {
+   "id": "planes",
+   "kind": "3d",
+   "template": "planes_system",
+   "keywords": [
+    "three equations",
+    "3 equations",
+    "system of three",
+    "three planes",
+    "intersecting planes",
+    "planes intersect",
+    "system of linear equations in three"
+   ]
+  },
+  {
+   "id": "surface",
+   "kind": "3d",
+   "template": "surface_plot",
+   "keywords": [
+    "z =",
+    "z=",
+    "f(x,y)",
+    "f(x, y)",
+    "surface",
+    "saddle",
+    "paraboloid",
+    "function of two variables",
+    "two variables",
+    "3d graph",
+    "3d plot",
+    "graph in 3d",
+    "plot in 3d",
+    "hyperbolic paraboloid"
+   ]
+  },
+  {
+   "id": "slices",
+   "kind": "3d",
+   "template": "surface_slices",
+   "keywords": [
+    "partial derivative",
+    "partial derivatives",
+    "partial with respect",
+    "∂f",
+    "df/dx holding y",
+    "slice of the surface"
+   ]
+  },
+  {
+   "id": "gradient",
+   "kind": "3d",
+   "template": "gradient_on_surface",
+   "keywords": [
+    "gradient vector",
+    "gradient of f",
+    "gradient field",
+    "level curves",
+    "contour lines",
+    "steepest ascent",
+    "direction of steepest",
+    "level curve",
+    "contours on a surface"
+   ]
+  },
+  {
+   "id": "tangent_plane",
+   "kind": "3d",
+   "template": "tangent_plane",
+   "keywords": [
+    "tangent plane",
+    "linear approximation of f(x,y)"
+   ]
+  },
+  {
+   "id": "double_integral",
+   "kind": "3d",
+   "template": "double_integral_volume",
+   "keywords": [
+    "double integral",
+    "volume under",
+    "riemann boxes",
+    "integrate over a region",
+    "iterated integral"
+   ]
+  },
+  {
+   "id": "param3d",
+   "kind": "3d",
+   "template": "parametric_curve_3d",
+   "keywords": [
+    "helix",
+    "space curve",
+    "parametric curve in 3d",
+    "r(t) =",
+    "curve in space",
+    "3d curve"
+   ]
+  },
+  {
+   "id": "field3d",
+   "kind": "3d",
+   "template": "vector_field_3d",
+   "keywords": [
+    "vector field",
+    "curl",
+    "divergence",
+    "flux"
+   ]
+  },
+  {
+   "id": "revolution",
+   "kind": "3d",
+   "template": "solid_of_revolution",
+   "keywords": [
+    "solid of revolution",
+    "volume of revolution",
+    "rotate around the x-axis",
+    "rotated about the x-axis",
+    "disc method",
+    "disk method",
+    "washer method",
+    "shell method"
+   ]
+  },
+  {
+   "id": "lagrange",
+   "kind": "3d",
+   "template": "lagrange_multipliers",
+   "keywords": [
+    "lagrange multiplier",
+    "lagrange multipliers",
+    "constrained optimization",
+    "constrained optimisation"
+   ]
+  },
+  {
+   "id": "solid",
+   "kind": "3d",
+   "template": "solid",
+   "keywords": [
+    "cube",
+    "cuboid",
+    "prism",
+    "pyramid",
+    "cylinder",
+    "cone",
+    "sphere",
+    "tetrahedron",
+    "octahedron",
+    "dodecahedron",
+    "icosahedron",
+    "platonic solid",
+    "3d shape",
+    "3d shapes",
+    "solid shape",
+    "volume of a",
+    "surface area of a",
+    "surface area",
+    "faces edges",
+    "faces, edges",
+    "vertices of a"
+   ]
+  },
+  {
+   "id": "net",
+   "kind": "3d",
+   "template": "net_unfold",
+   "keywords": [
+    "net of a",
+    "nets of",
+    "unfold",
+    "unfolding",
+    "fold up into"
+   ]
+  },
+  {
+   "id": "section",
+   "kind": "3d",
+   "template": "cross_section",
+   "keywords": [
+    "cross section",
+    "cross-section",
+    "slice through",
+    "plane cuts",
+    "cut through the"
+   ]
+  },
+  {
+   "id": "dist3d",
+   "kind": "3d",
+   "template": "points_distance_3d",
+   "keywords": [
+    "distance between two points in 3d",
+    "3d coordinates",
+    "points in space",
+    "midpoint in 3d",
+    "distance in 3d",
+    "coordinates in three dimensions",
+    "distance formula in 3d",
+    "plot the point (",
+    "3d coordinate"
+   ]
+  },
+  {
+   "id": "rot3d",
+   "kind": "3d",
+   "template": "rotations_3d",
+   "keywords": [
+    "euler angles",
+    "rotation about an axis",
+    "rotate about the z-axis",
+    "3d rotation",
+    "rotation matrix in 3d",
+    "pitch yaw roll",
+    "yaw pitch roll"
+   ]
+  },
+  {
+   "id": "bivariate",
+   "kind": "3d",
+   "template": "bivariate_normal",
+   "keywords": [
+    "bivariate normal",
+    "joint distribution",
+    "joint density",
+    "joint pdf",
+    "multivariate normal",
+    "two random variables"
+   ]
+  },
+  {
+   "id": "scatter3d",
+   "kind": "3d",
+   "template": "scatter_3d",
+   "keywords": [
+    "3d scatter",
+    "scatter plot in 3d",
+    "regression plane",
+    "multiple regression",
+    "three variables data"
+   ]
+  },
+  {
+   "id": "hist3d",
+   "kind": "3d",
+   "template": "joint_histogram_3d",
+   "keywords": [
+    "3d histogram",
+    "joint histogram"
+   ]
+  },
+  {
+   "id": "gd",
+   "kind": "3d",
+   "template": "gradient_descent_surface",
+   "keywords": [
+    "gradient descent",
+    "loss landscape",
+    "loss surface",
+    "learning rate",
+    "optimizer",
+    "optimiser",
+    "local minimum",
+    "overshoot",
+    "stochastic gradient"
+   ]
+  },
+  {
+   "id": "kmeans",
+   "kind": "3d",
+   "template": "kmeans_3d",
+   "keywords": [
+    "k-means",
+    "kmeans",
+    "k means",
+    "clustering",
+    "clusters",
+    "centroid"
+   ]
+  },
+  {
+   "id": "embeddings",
+   "kind": "3d",
+   "template": "embeddings_cloud",
+   "keywords": [
+    "embedding",
+    "embeddings",
+    "word vectors",
+    "vector space of words",
+    "latent space",
+    "point cloud"
+   ]
+  },
+  {
+   "id": "cnn",
+   "kind": "3d",
+   "template": "cnn_convolution",
+   "keywords": [
+    "convolution",
+    "convolutional",
+    "cnn",
+    "filter slides",
+    "kernel slides",
+    "feature map"
+   ]
+  },
+  {
+   "id": "boundary",
+   "kind": "3d",
+   "template": "decision_boundary_3d",
+   "keywords": [
+    "decision boundary",
+    "separating hyperplane",
+    "svm",
+    "support vector"
+   ]
+  },
+  {
+   "id": "nn",
+   "kind": "3d",
+   "template": "neural_network",
+   "keywords": [
+    "neural network",
+    "neural net",
+    "forward pass",
+    "forward propagation",
+    "neurons",
+    "hidden layer",
+    "perceptron",
+    "multilayer perceptron",
+    "mlp",
+    "deep learning",
+    "softmax"
+   ]
+  },
+  {
+   "id": "graphics",
+   "kind": "3d",
+   "template": "coordinate_transforms",
+   "keywords": [
+    "view frustum",
+    "camera frustum",
+    "model view projection",
+    "mvp matrix",
+    "projection matrix",
+    "world space",
+    "camera space",
+    "surface normal",
+    "normals",
+    "phong",
+    "lighting model",
+    "homogeneous coordinates",
+    "frustum",
+    "perspective projection",
+    "orthographic projection"
+   ]
+  },
+  {
+   "id": "mem_hier",
+   "kind": "3d",
+   "template": "memory_hierarchy",
+   "keywords": [
+    "memory hierarchy",
+    "cache hierarchy",
+    "l1 cache",
+    "l2 cache",
+    "cache hit",
+    "cache miss",
+    "registers to disk",
+    "cache levels"
+   ]
+  },
+  {
+   "id": "pipeline",
+   "kind": "3d",
+   "template": "cpu_pipeline",
+   "keywords": [
+    "cpu pipeline",
+    "instruction pipeline",
+    "pipelining",
+    "pipeline hazard",
+    "fetch decode execute",
+    "fetch-decode-execute",
+    "data hazard"
+   ]
+  },
+  {
+   "id": "racks",
+   "kind": "3d",
+   "template": null,
+   "keywords": [
+    "server rack",
+    "data center",
+    "datacenter"
+   ]
+  },
+  {
+   "id": "bst",
+   "kind": "both",
+   "template": "bst",
+   "keywords": [
+    "binary search tree",
+    "bst",
+    "tree insert",
+    "insert into a tree",
+    "search a tree",
+    "delete from a tree",
+    "in-order successor",
+    "inorder successor"
+   ]
+  },
+  {
+   "id": "avl",
+   "kind": "both",
+   "template": "avl_tree",
+   "keywords": [
+    "avl",
+    "tree rotation",
+    "balanced tree",
+    "self-balancing",
+    "red-black",
+    "red black tree",
+    "b-tree"
+   ]
+  },
+  {
+   "id": "heap",
+   "kind": "both",
+   "template": "heap",
+   "keywords": [
+    "heap",
+    "priority queue",
+    "sift up",
+    "sift down",
+    "heapify",
+    "min-heap",
+    "max-heap",
+    "min heap",
+    "max heap"
+   ]
+  },
+  {
+   "id": "sorting",
+   "kind": "both",
+   "template": "sorting",
+   "keywords": [
+    "bubble sort",
+    "insertion sort",
+    "selection sort",
+    "merge sort",
+    "mergesort",
+    "quick sort",
+    "quicksort",
+    "heap sort",
+    "heapsort",
+    "sorting algorithm",
+    "sorting algorithms",
+    "how sorting works",
+    "sort these",
+    "sort the numbers",
+    "sort this list",
+    "sort an array"
+   ]
+  },
+  {
+   "id": "bsearch",
+   "kind": "both",
+   "template": "binary_search_array",
+   "keywords": [
+    "binary search"
+   ]
+  },
+  {
+   "id": "graph_trav",
+   "kind": "both",
+   "template": "graph_traversal",
+   "keywords": [
+    "bfs",
+    "dfs",
+    "breadth-first",
+    "breadth first",
+    "depth-first",
+    "depth first",
+    "graph traversal"
+   ]
+  },
+  {
+   "id": "dijkstra",
+   "kind": "both",
+   "template": "dijkstra",
+   "keywords": [
+    "dijkstra",
+    "shortest path",
+    "shortest paths"
+   ]
+  },
+  {
+   "id": "mst",
+   "kind": "both",
+   "template": "mst",
+   "keywords": [
+    "minimum spanning tree",
+    "spanning tree",
+    "prim's",
+    "kruskal"
+   ]
+  },
+  {
+   "id": "topo",
+   "kind": "both",
+   "template": "topological_sort",
+   "keywords": [
+    "topological sort",
+    "topological order"
+   ]
+  },
+  {
+   "id": "hash",
+   "kind": "both",
+   "template": "hash_table",
+   "keywords": [
+    "hash table",
+    "hash map",
+    "hashmap",
+    "hashing",
+    "collision",
+    "collisions",
+    "linear probing",
+    "chaining",
+    "open addressing"
+   ]
+  },
+  {
+   "id": "trie",
+   "kind": "both",
+   "template": "trie",
+   "keywords": [
+    "trie",
+    "prefix tree"
+   ]
+  },
+  {
+   "id": "stack",
+   "kind": "both",
+   "template": "stack",
+   "keywords": [
+    "stack",
+    "push and pop",
+    "push",
+    "pop",
+    "queue",
+    "enqueue",
+    "dequeue",
+    "deque",
+    "lifo",
+    "fifo"
+   ]
+  },
+  {
+   "id": "linked",
+   "kind": "both",
+   "template": "linked_list",
+   "keywords": [
+    "linked list",
+    "doubly linked",
+    "singly linked",
+    "next pointer"
+   ]
+  },
+  {
+   "id": "array_mem",
+   "kind": "both",
+   "template": "array_memory",
+   "keywords": [
+    "array in memory",
+    "array index",
+    "memory address",
+    "contiguous memory",
+    "how arrays are stored",
+    "array indexing"
+   ]
+  },
+  {
+   "id": "union_find",
+   "kind": "both",
+   "template": "union_find",
+   "keywords": [
+    "union find",
+    "union-find",
+    "disjoint set"
+   ]
+  },
+  {
+   "id": "osi",
+   "kind": "both",
+   "template": "osi_layers",
+   "keywords": [
+    "osi model",
+    "osi layers",
+    "osi",
+    "network layers",
+    "tcp/ip model",
+    "encapsulation",
+    "protocol stack"
+   ]
+  },
+  {
+   "id": "routing",
+   "kind": "both",
+   "template": "packet_routing",
+   "keywords": [
+    "packet routing",
+    "how a packet travels",
+    "router hops",
+    "packets travel"
+   ]
+  },
+  {
+   "id": "callstack",
+   "kind": "both",
+   "template": "stack_vs_heap_memory",
+   "keywords": [
+    "call stack",
+    "stack frame",
+    "stack frames",
+    "stack vs heap",
+    "stack and heap memory"
+   ]
+  },
+  {
+   "id": "paging",
+   "kind": "both",
+   "template": "virtual_memory_paging",
+   "keywords": [
+    "virtual memory",
+    "page table",
+    "paging"
+   ]
+  },
+  {
+   "id": "astar",
+   "kind": "both",
+   "template": "a_star_grid",
+   "keywords": [
+    "a* search",
+    "a-star",
+    "a star search",
+    "pathfinding"
+   ]
+  },
+  {
+   "id": "graph_ds",
+   "kind": "both",
+   "template": "graph",
+   "keywords": [
+    "adjacency list",
+    "adjacency matrix",
+    "graph data structure",
+    "weighted graph",
+    "directed graph"
+   ]
+  },
+  {
+   "id": "flow",
+   "kind": "2d",
+   "keywords": [
+    "flowchart",
+    "flow chart",
+    "decision tree",
+    "state machine",
+    "finite automaton",
+    "automata",
+    "dfa",
+    "nfa",
+    "turing machine",
+    "regular expression",
+    "pseudocode",
+    "control flow",
+    "if statement",
+    "while loop",
+    "for loop",
+    "loop works",
+    "algorithm steps"
+   ]
+  },
+  {
+   "id": "interactions",
+   "kind": "2d",
+   "keywords": [
+    "tcp handshake",
+    "three-way handshake",
+    "three way handshake",
+    "http request",
+    "dns",
+    "dns lookup",
+    "oauth",
+    "login flow",
+    "auth flow",
+    "sequence diagram",
+    "client and server",
+    "client-server",
+    "request and response",
+    "uml",
+    "class diagram",
+    "er diagram",
+    "database schema",
+    "architecture",
+    "inheritance",
+    "api call"
+   ]
+  },
+  {
+   "id": "math2d",
+   "kind": "2d",
+   "keywords": [
+    "y =",
+    "y=",
+    "f(x) =",
+    "f(x)=",
+    "graph of y",
+    "parabola",
+    "straight line",
+    "slope",
+    "gradient of a line",
+    "number line",
+    "inequality",
+    "inequalities",
+    "unit circle",
+    "sine wave",
+    "cosine",
+    "triangle",
+    "circle theorem",
+    "pythagoras",
+    "angle",
+    "venn diagram",
+    "truth table",
+    "logic gate",
+    "logic gates",
+    "proof",
+    "induction",
+    "recurrence",
+    "recursion tree",
+    "derivative of",
+    "tangent line",
+    "integral of",
+    "area under",
+    "limit",
+    "matrix multiplication",
+    "2x2 matrix",
+    "probability tree",
+    "histogram",
+    "bar chart",
+    "pie chart",
+    "box plot",
+    "normal distribution",
+    "bell curve",
+    "fractions",
+    "quadratic",
+    "polynomial",
+    "exponential",
+    "logarithm",
+    "complex number",
+    "argand",
+    "sequence",
+    "series",
+    "permutation",
+    "combination"
+   ]
+  },
+  {
+   "id": "tables",
+   "kind": "2d",
+   "keywords": [
+    "dp table",
+    "dynamic programming",
+    "memoization",
+    "memoisation",
+    "knapsack",
+    "longest common subsequence",
+    "edit distance",
+    "big-o",
+    "big o",
+    "time complexity",
+    "complexity comparison",
+    "gantt",
+    "scheduling",
+    "truth table",
+    "karnaugh"
+   ]
+  },
+  {
+   "id": "simple_ds",
+   "kind": "2d",
+   "weakKeywords": [
+    "array",
+    "arrays",
+    "list",
+    "string",
+    "graph",
+    "tree",
+    "recursion",
+    "fibonacci",
+    "factorial"
+   ],
+   "keywords": []
+  }
+ ]
+}

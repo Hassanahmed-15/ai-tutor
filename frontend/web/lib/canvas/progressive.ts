@@ -43,7 +43,9 @@ import { figureFor } from "../figures/registry";
 import { findLibraryFigure } from "../figures/library";
 import { courseCoverageGaps, coverageMessage, requiredTermsOf, syllabusLost, type CoverageGap } from "./courseCoverage";
 import { mathsPicturesOn } from "./mathsPicture";
-import { mathsBoardContext } from "./mathsPicturePrompt";
+import { mathsBoardContext, withMathsBoardWriting } from "./mathsPicturePrompt";
+import { labVisualsOn } from "./labVisuals";
+import { withLabDrawing } from "./labDrawing";
 import { boardNotesOf, mathsEllipsis } from "./plan";
 import { dropRowsWhere, formulaNotes, narrationArithmetic, saysNothing } from "./equationCheck";
 import { chemSubscripts } from "./chemText";
@@ -573,6 +575,9 @@ export async function writeCanvasBoard(args: {
     pictured = { spec: made.spec, costUsd: 0 };
   }
   let spec: CanvasBoardSpec = { ...pictured.spec };
+  let labCost = 0;
+  // A maths lecture's board (its examiner is the maths one, or the lecture was asked as maths).
+  const mathsLesson = args.examiner === "maths" || domain === "maths" || beat.subject === "maths";
   let picture = pictured.picture;
   // EYES ON THE BOARD BEFORE A STUDENT SEES IT (lib/canvas/boardLook.ts; owner, 2026-10-23: "100 percent
   // accurate diagrams … I don't want to reduce the amount of visuals"). The finished board is drawn by the
@@ -584,7 +589,9 @@ export async function writeCanvasBoard(args: {
   // null: not looked at (no photo, no verdict, the look off); true: passed; false: refused and shipped as settled.
   let lookPassed: boolean | null = null;
   const courseBoard = Boolean(beat.course && courseCodeDiagramsOff());
-  if (made.attempts >= 0 && boardLookOn() && beat.stage !== "exam" && !beat.overview) {
+  // A lab drawing (lib/canvas/labDrawing.ts) was checked by its engine; the board photo cannot draw it yet.
+  if (spec.lab) log.push(`${beat.id}: not looked at (lab ${spec.lab.kind} drawing, checked by its engine)`);
+  if (made.attempts >= 0 && boardLookOn() && beat.stage !== "exam" && !beat.overview && !spec.lab) {
     const openai = client();
     const opts = { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry };
     // LOOSENED (owner, 2026-10-24: "please loosen its check, it always rejects things"): a board is refused
@@ -749,6 +756,20 @@ export async function writeCanvasBoard(args: {
     spec.cues = partMentionCues(spec, beat.script);
     if (spec.cues.length !== before) log.push(`${beat.id}: picture talked through — ${spec.cues.filter((c) => c.action === "circle" || c.action === "point").length} pointer moves`);
   }
+  // THE LAB ENGINES on a board with a code figure, or one the planner put in 3-D (lib/canvas/labVisuals.ts,
+  // only with CANVAS_LAB_VISUALS=on). Boards drawn by gpt-image-2 got theirs in illustrate() already.
+  if (labVisualsOn() && !spec.lab && !beat.course && (beat.view3d || (mathsLesson && (spec.stage.kind === "figure" || (spec.stage.kind === "equation" && spec.stage.figure))))) {
+    const ctx = withMathsBoardWriting(mathsFor(beat) ?? mathsBoardContext(args.topic, beat, { plan, index, earlier: args.earlier.slice(0, index) }), spec);
+    const lab = await withLabDrawing(client(), ctx, beat, spec, log).catch((error) => {
+      log.push(`${beat.id}: lab drawing failed — ${(error as Error).message}`);
+      return null;
+    });
+    if (lab) {
+      spec = lab.spec;
+      labCost = lab.costUsd;
+      spec.cues = spec.cues.filter((c) => c.action !== "circle" && c.action !== "point");
+    }
+  }
   // The pen never points at nothing (lib/canvas/cueRepair.ts): checked on the board as it ships.
   const shipped = layoutPanel(spec);
   const onBoard = new Set([...Object.keys(shipped.targets), ...shipped.marks.flatMap((m) => (m.type === "graph" ? (m.spec.markers ?? []).map((k) => k.id) : []))]);
@@ -777,7 +798,7 @@ export async function writeCanvasBoard(args: {
   }
   // `incomplete`: its animation could not be made right (the code shipped without its structure, or the backup) —
   // the faults each attempt was sent back for, which a rewrite is given (lib/progressiveLectureWorker.ts).
-  return { beat: written, costUsd: made.costUsd + pictured.costUsd + cardCost + mentionCost + lookCost, fallback: made.attempts < 0 || Boolean(spec.visualFallback), ...(made.incomplete?.length || made.attempts < 0 ? { incomplete: made.incomplete ?? [] } : {}), log };
+  return { beat: written, costUsd: made.costUsd + pictured.costUsd + cardCost + mentionCost + lookCost + labCost, fallback: made.attempts < 0 || Boolean(spec.visualFallback), ...(made.incomplete?.length || made.attempts < 0 ? { incomplete: made.incomplete ?? [] } : {}), log };
 }
 
 /**

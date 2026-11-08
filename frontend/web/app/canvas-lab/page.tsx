@@ -12,6 +12,7 @@
  * `&fixture=dsa` loads hand-written data-structure boards (lib/canvas/dsaFixtures.ts) instead (`&fixture=math`: equation boards, lib/canvas/equationFixtures.ts), and
  * `&session=<id>` one of the student's real typed-prompt lectures (the boards it has so far).
  */
+import { LAB_FIXTURES } from "@/lib/canvas/labFixtures";
 import { predictCardFor } from "@/lib/canvas/predictCard";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -66,6 +67,7 @@ export default function CanvasLab() {
     else if (fixture === "os" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(OS_FIXTURES, "Operating systems: processes and threads")));
     else if (fixture === "logic" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixtureLecture(LOGIC_FIXTURES, "Logic gates and truth tables")));
     else if ((fixture === "dsa" || fixture === "math" || fixture === "visuals") && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture(fixture === "visuals" ? fixtureLecture([...MATHS_VISUAL_FIXTURES, ...CS_VISUAL_FIXTURES], "Algebra, Pythagoras and recursion: solving equations") : fixtureLecture(fixture === "math" ? EQUATION_FIXTURES : DSA_FIXTURES)));
+    else if (fixture === "lab" && process.env.NODE_ENV !== "production") queueMicrotask(() => setLecture({ id: "fixture-lab", title: "Lab drawings", topic: "Pythagoras in 3-D", beats: LAB_FIXTURES.map((f) => ({ id: f.id, script: f.script, draw: { ops: [{ kind: "canvasBoard", spec: f.spec, at: 0, endAt: 1 }] } }) as unknown as Beat), costUsd: 0, ms: 0, log: [] }));
     else if (session && process.env.NODE_ENV !== "production") {
       fetch(`/api/progressive-lectures/${encodeURIComponent(session)}`)
         .then((r) => r.json())

@@ -1,3 +1,4 @@
+import { isView3dTemplate, labVisualsOn } from "./labVisuals";
 import { trimToFit } from "../text/fit";
 import { CANVAS_STAGES, type CanvasPlanBeat, type CanvasStage } from "./types";
 import { slug } from "./validate";
@@ -90,6 +91,8 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
       ...planSource(b.source),
       // The planner's diagram, only when it names a real catalogue entry.
       ...(typeof b.diagram === "string" && figureComponent(b.diagram.trim()) ? { plannedFigure: b.diagram.trim() } : {}),
+      // A 3-D view the planner chose (lib/canvas/labVisuals.ts), only a real template id.
+      ...(labVisualsOn() && isView3dTemplate(b.view3d) ? { view3d: b.view3d } : {}),
       ...(typeof b.visual === "string" && ["thing", "diagram", "quantity", "math", "sequence", "comparison", "concept"].includes(b.visual.trim().toLowerCase()) ? { visualType: b.visual.trim().toLowerCase() as CanvasPlanBeat["visualType"] } : {}),
       // A sentence that states a formula has the formula as its note (equationCheck.ts formulaNotes).
       ...(() => {

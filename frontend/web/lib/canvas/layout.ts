@@ -25,7 +25,7 @@ import type { FigureDrawing } from "../figures/types";
 import { compileDiagram } from "../diagrams/render";
 import { sequenceGeometry, type SequenceGeometry } from "./sequence";
 import { ganttGeometry, mappingGeometry, memoryGeometry, statesGeometry, type GanttGeometry, type MappingGeometry, type MemoryGeometry, type StatesGeometry } from "./osDiagrams";
-import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type DiagramStage, type EquationStage, type ExamStage, type FigureStage, type FlowNode, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage, type SketchItem, type SketchShape as SketchShapeT, type SketchStage, type StructureStage } from "./types";
+import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type DsKind, type DsOp, type DsStart, type CompareStage, type DiagramStage, type EquationStage, type ExamStage, type FigureStage, type FlowNode, type FlowStage, type GraphStage, type IllustrationStage, type LabDrawing, type MoleculeStage, type SceneStage, type SketchItem, type SketchShape as SketchShapeT, type SketchStage, type StructureStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Pt = { x: number; y: number };
@@ -48,6 +48,8 @@ export type Mark =
   | { type: "box"; id: string; rect: Rect; label?: string; color: string; s: number; icon?: CanvasIcon; size: number; /** Wrapped content lines on a card (a box with no icon). */ detail?: string[]; /** The detail's font size when it was set smaller to fit whole (15 otherwise). */ detailSize?: number }
   | { type: "text"; id: string; rect: Rect; text: string; color: string; s: number; size: number }
   | { type: "figure"; id: string; rect: Rect; scale: number; drawing: FigureDrawing; s: number; asset?: string; timing?: Record<string, number> }
+  /** The lab engines' drawing (lib/canvas/labDrawing.ts) in the board's drawing area: the pencil scene or the 3-D model. */
+  | { type: "lab"; id: string; rect: Rect; lab: LabDrawing; s: number }
   | { type: "figure-label"; id: string; part: string; lines: string[]; side: "left" | "right"; at: Pt; leader: Pt[]; size: number; s: number }
   | { type: "free-body"; id: string; body: SceneStage["items"][number]; bodyRect: Rect; forces: FreeBodyForce[]; s: number }
   | { type: "electrolytic-cell"; id: string; rect: Rect; parts: { power: SceneStage["items"][number]; electrolyte: SceneStage["items"][number]; anode: SceneStage["items"][number]; cathode: SceneStage["items"][number] }; s: number }
@@ -621,6 +623,11 @@ export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
         marks.push({ type: "partLink", id: k ? `link-${note.id}-${k}` : `link-${note.id}`, from, to, s: note.s, until });
       });
     }
+  }
+  // A lab drawing takes the drawing area its placeholder picture held (lib/canvas/labDrawing.ts).
+  if (spec.lab) {
+    const at = marks.findIndex((m) => m.type === "picture");
+    if (at >= 0) marks[at] = { type: "lab", id: "lab", rect: (marks[at] as Extract<Mark, { type: "picture" }>).rect, lab: spec.lab, s: 0 };
   }
   return { marks, targets, stage };
 }

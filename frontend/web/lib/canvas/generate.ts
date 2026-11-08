@@ -67,6 +67,8 @@ import { coursePicture, coursePicturesOn, CoursePictureError } from "./coursePic
 import { withBoardWriting, withCoursePicture, type CourseBoardContext } from "./coursePicturePrompt";
 import { mathsPicture, MathsPictureError, withMathsPicture } from "./mathsPicture";
 import { withMathsBoardWriting, type MathsBoardContext } from "./mathsPicturePrompt";
+import { labVisualsOn } from "./labVisuals";
+import { withLabDrawing } from "./labDrawing";
 import { courseCodeDiagramsOff, offInCourses } from "./courseFigures";
 
 
@@ -1317,6 +1319,15 @@ async function mathsPictureBesideWorking(openai: OpenAI, userId: string, lecture
 export type CoursePictureState = { redrawn: boolean; remember?: () => Promise<void> };
 
 export async function illustrate(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock, rebuild?: () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null>, course?: CourseBoardContext | null, options: { redraw?: string[]; maths?: MathsBoardContext | null } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; picture?: CoursePictureState }> {
+  // THE LAB ENGINES FIRST (lib/canvas/labVisuals.ts, only with CANVAS_LAB_VISUALS=on): a maths board's
+  // drawing is the pencil engine's checked scene or a 3-D template; gpt-image-2 only when neither could be made.
+  if (labVisualsOn() && beat.mathsPicture && !beat.course && options.maths) {
+    const lab = await withLabDrawing(openai, withMathsBoardWriting(options.maths, spec), beat, spec, log).catch((error) => {
+      log.push(`${beat.id}: lab drawing failed — ${(error as Error).message}`);
+      return null;
+    });
+    if (lab) return lab;
+  }
   if (spec.stage.kind === "equation" && beat.pictureBeside && course) return pictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, course, options);
   if (spec.stage.kind === "equation" && beat.mathsPicture && !beat.course && options.maths) return mathsPictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, options.maths);
   if (spec.stage.kind !== "illustration") return { spec, costUsd: 0 };

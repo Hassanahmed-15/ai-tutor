@@ -555,8 +555,20 @@ export type QuizInteraction = {
 };
 export type CanvasInteraction = TryItInteraction | DrawInteraction | QuizInteraction;
 
+/**
+ * A board's drawing made by the lab engines (lib/canvas/labDrawing.ts, behind CANVAS_LAB_VISUALS=on):
+ * a maths scene drawn step by step by the pencil engine (lib/mathsEngine), each step on its sentence,
+ * or a 3-D template (lib/visual3d) whose steps follow the sentences. It takes the board's drawing
+ * area (the figure or picture beside the notes or working).
+ */
+export type LabDrawing =
+  | { kind: "pencil"; scene: Record<string, unknown>; sentenceMs: number[] }
+  | { kind: "view3d"; template: string; args: Record<string, unknown>; stepSentence: number[]; alt: string };
+
 export type CanvasBoardSpec = {
   v: 1;
+  /** The drawing the lab engines made for this board (lib/canvas/labDrawing.ts); absent unless CANVAS_LAB_VISUALS=on. */
+  lab?: LabDrawing;
   /** The course lesson's subject (lib/canvas/lessonSubject.ts), so the player never guesses it; absent elsewhere. */
   subject?: import("./lessonSubject").LessonSubject;
   heading: string;
@@ -615,6 +627,8 @@ export type CanvasPlanBeat = {
   mathsPicture?: boolean;
   /** A course board with nothing to see: Aria's notes written as she speaks, no picture (lib/canvas/fallback.ts). */
   written?: boolean;
+  /** The 3-D template the planner chose for this board (lib/visual3d), behind CANVAS_LAB_VISUALS=on. */
+  view3d?: string;
   title: string;
   script: string;
   stage: CanvasStage;
