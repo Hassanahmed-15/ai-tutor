@@ -1,5 +1,5 @@
 import katex from "katex";
-import type { BoardBlock, CalloutKind } from "../canvas/blocks";
+import { dollarMath, type BoardBlock, type CalloutKind } from "../canvas/blocks";
 
 /**
  * THE LESSON NOTES AS A PRINTABLE PAGE (owner, 2026-11-09: "allow the notes at the end to be exported as
@@ -19,7 +19,7 @@ const tex = (t: string, display = false) => katex.renderToString(t, { throwOnErr
 
 /** Board text as HTML: **key terms** in bold, $…$ typeset, everything else escaped. */
 export function inlineHtml(text: string): string {
-  return text.split(/(\*\*[^*]+\*\*|\$[^$]+\$)/g).filter(Boolean).map((part) => {
+  return dollarMath(text).split(/(\*\*[^*]+\*\*|\$[^$]+\$)/g).filter(Boolean).map((part) => {
     if (part.startsWith("**")) return `<strong>${inlineHtml(part.slice(2, -2))}</strong>`;
     if (part.startsWith("$") && part.length > 2) return tex(part.slice(1, -1));
     return esc(part);

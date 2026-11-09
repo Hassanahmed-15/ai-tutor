@@ -293,3 +293,8 @@ export function shownCount(units: RevealUnit[], clock: number): number {
   while (n < units.length && units[n].at <= clock) n++;
   return n;
 }
+
+/** "\\[ … \\]" and "\\( … \\)", which the model writes now and then, as the "$…$" the board typesets. */
+export function dollarMath(text: string): string {
+  return text.replace(/\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)/g, (_, a: string | undefined, b: string | undefined) => `$${(a ?? b ?? "").trim()}$`);
+}

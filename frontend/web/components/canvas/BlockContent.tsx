@@ -1,8 +1,8 @@
 "use client";
 
-import { Fragment, useMemo } from "react";
+import { Fragment, useLayoutEffect, useMemo, useRef } from "react";
 import katex from "katex";
-import type { BoardBlock, CalloutKind, RevealUnit } from "@/lib/canvas/blocks";
+import { dollarMath, type BoardBlock, type CalloutKind, type RevealUnit } from "@/lib/canvas/blocks";
 
 /**
  * ONE BLOCK OF THE FULL BOARD (lib/canvas/blocks.ts), drawn piece by piece: on the board (BlocksView) and in
@@ -18,14 +18,37 @@ export const CALLOUT_LABEL: Record<CalloutKind | "you_asked", { mark: string; wo
   you_asked: { mark: "🗣️", word: "You asked" },
 };
 
+/** The smallest a formula is drawn to stay in its column. */
+const FORMULA_MIN = 0.6;
+
 function Tex({ tex, display = false }: { tex: string; display?: boolean }) {
-  const html = useMemo(() => katex.renderToString(tex, { throwOnError: false, displayMode: display, trust: false }), [tex, display]);
-  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+  // A displayed formula is typeset inline in display style: that can break at "=" where the column is too narrow.
+  const breakable = display && !/\\begin\{/.test(tex);
+  const html = useMemo(() => katex.renderToString(breakable ? `\\displaystyle ${tex}` : tex, { throwOnError: false, displayMode: display && !breakable, trust: false }), [tex, display, breakable]);
+  const box = useRef<HTMLSpanElement>(null);
+  // What cannot break (one long fraction) is drawn smaller to stay in the column, not cut off at its edge.
+  useLayoutEffect(() => {
+    const el = box.current;
+    if (!display || !el) return;
+    let frame = 0, tries = 0, stopped = false;
+    const fit = () => {
+      if (stopped) return;
+      el.style.fontSize = "";
+      const room = el.parentElement?.clientWidth ?? 0;
+      // A board is often mounted before it has a width.
+      if (!room) { if (++tries < 40) frame = requestAnimationFrame(fit); return; }
+      if (el.scrollWidth > room) el.style.fontSize = `${Math.max(FORMULA_MIN, room / el.scrollWidth).toFixed(3)}em`;
+    };
+    fit();
+    void document.fonts?.ready.then(fit);
+    return () => { stopped = true; cancelAnimationFrame(frame); };
+  }, [html, display]);
+  return <span ref={box} className={display ? "bk-tex" : undefined} dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
 /** A line of board text: **key terms** stand out, $…$ is typeset, everything else is plain text. */
 export function Inline({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*|\$[^$]+\$)/g).filter(Boolean);
+  const parts = dollarMath(text).split(/(\*\*[^*]+\*\*|\$[^$]+\$)/g).filter(Boolean);
   return (
     <>
       {parts.map((part, i) =>

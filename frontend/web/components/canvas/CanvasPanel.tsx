@@ -2416,7 +2416,9 @@ export const CANVAS_CSS = `
 .bk-heading { margin: .2em 0 .4em; font-size: 1.14em; font-weight: 700; }
 .bk-steps { margin: 0 0 .6em; padding-inline-start: 1.4em; list-style: decimal; }
 .bk-steps li { margin-bottom: .25em; }
-.bk-formula { margin: .15em 0 .6em; }
+.bk-formula { margin: .15em 0 .6em; text-align: center; }
+.bk-formula .bk-where { text-align: start; }
+.bk-tex { display: inline-block; max-width: 100%; }
 .bk-where { font-size: .84em; color: var(--bk-dim); }
 .bk-code { margin: 0 0 .6em; padding: .5em .6em; background: var(--bk-soft); border-radius: 6px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .74em; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
 .bk-table { width: 100%; margin: 0 0 .6em; border-collapse: collapse; font-size: .86em; }

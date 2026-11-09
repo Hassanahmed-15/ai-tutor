@@ -1955,14 +1955,16 @@ export function texEm(s: string, script = false): number {
 }
 
 /** A step's terms on one line, or split onto two before an "=" (or a "+"/"−") near the middle when too wide. */
-function wrapRow(row: string[], width: (id: string) => number, isBreak: (id: string) => 0 | 1 | 2, maxW: number, gap: number): string[][] {
+function wrapRow(row: string[], width: (id: string) => number, isBreak: (id: string) => 0 | 1 | 2, maxW: number, gap: number, canBreak: (k: number) => boolean = () => true): string[][] {
   const total = row.reduce((w, id) => w + width(id), 0) + gap * Math.max(0, row.length - 1);
   if (total <= maxW || row.length < 2) return [row];
   let best = 1;
   let bestScore = Infinity;
   let acc = 0;
+  const anywhere = !row.some((_, k) => k > 0 && canBreak(k));
   for (let k = 1; k < row.length; k++) {
     acc += width(row[k - 1]) + gap;
+    if (!anywhere && !canBreak(k)) continue;
     const kind = isBreak(row[k]);
     const score = Math.abs(acc - total / 2) - (kind === 2 ? total * 0.25 : kind === 1 ? total * 0.1 : 0);
     if (score < bestScore) {
@@ -1990,7 +1992,11 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
   const maxW = box.w - 40;
   const gapEm = 12 / 44;
   const rows = steps.map((step) => step.order.filter((id) => em.has(id) && inRow(id)));
-  const rowEm = (row: string[]) => row.reduce((w, id) => w + em.get(id)!, 0) + gapEm * Math.max(0, row.length - 1);
+  // A course board's terms are packed by their real widths (CanvasPanel EquationView), which measured about
+  // 0.7 of these estimates (90th percentile: 0.79 for symbols and numbers, 0.85 for words; 2026-11-09). Deciding
+  // lines on the estimate split "F = (18 N × 0.25 m) ÷ 0.45 m = 10 N" across two lines with room to spare.
+  const realEm = (id: string) => em.get(id)! * (!course ? 1 : (tokens.find((t) => t.id === id)?.text.length ?? 0) > 6 ? 0.86 : 0.74);
+  const rowEm = (row: string[]) => row.reduce((w, id) => w + realEm(id), 0) + gapEm * Math.max(0, row.length - 1);
   // ONE EQUATION PER LINE (QA batch 4, 2026-10-21: "x + y = 10, y = 10 and y = 2x + 1, x + 2x + 1 = 10"
   // on one line): where a step joins whole equations with ",", ";", "and", "so", "then", each equation
   // starts its own line — the comma stays at the end of a line, the joining word starts the next.
@@ -2000,8 +2006,10 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
     let cur: string[] = [];
     row.forEach((id, i) => {
       const t = textOf(id);
-      const restHasEq = row.slice(i + 1).some((r) => /^[=≈]$/.test(textOf(r)));
-      const curHasEq = cur.some((c) => /^[=≈]$/.test(textOf(c)));
+      // A course term may be a whole equation in itself ("d = 0").
+      const isEq = (r: string) => (course ? /[=≈]/ : /^[=≈]$/).test(textOf(r));
+      const restHasEq = row.slice(i + 1).some(isEq);
+      const curHasEq = cur.some(isEq);
       // The comma that joined two equations is not written once each has its own line (a line ending
       // in "," read as unfinished; maths benchmark R5).
       if (/^[,;]$/.test(t) && curHasEq && restHasEq) { out.push(cur); cur = []; return; }
@@ -2014,12 +2022,21 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
   const widest = Math.max(1, ...rows.flatMap(clauses).map(rowEm));
   // One line as large as fits (down to 26); a step still too wide goes onto two lines, and the size
   // then fits the widest LINE (down to 18) — a long equation shrinks or wraps, never overflows.
-  let size = Math.max(26, Math.min(46, Math.floor(maxW / widest)));
+  let size = Math.max(course ? 24 : 26, Math.min(46, Math.floor(maxW / widest)));
   const breakOf = (id: string): 0 | 1 | 2 => {
     const text = tokens.find((t) => t.id === id)?.text ?? "";
     return /^[=→⇌]$/.test(text) ? 2 : /^[+−-]$/.test(text) ? 1 : 0;
   };
-  const wrapAt = (sz: number) => rows.map((row) => clauses(row).flatMap((c) => wrapRow(c, (id) => em.get(id)! * sz, breakOf, maxW, gapEm * sz)));
+  // A course line never splits inside brackets, and a comma or closing bracket never starts a line.
+  const canBreakIn = (row: string[]) => (k: number): boolean => {
+    if (!course) return true;
+    if (/^[,;)\]}]/.test(textOf(row[k]))) return false;
+    let depth = 0;
+    for (const id of row.slice(0, k)) for (const ch of textOf(id)) depth += "([{".includes(ch) ? 1 : ")]}".includes(ch) ? -1 : 0;
+    return depth <= 0;
+  };
+  const wrapped = (c: string[], sz: number) => wrapRow(c, (id) => realEm(id) * sz, breakOf, maxW, gapEm * sz, canBreakIn(c));
+  const wrapAt = (sz: number) => rows.map((row) => clauses(row).flatMap((c) => wrapped(c, sz)));
   let lined = wrapAt(size);
   const widestLine = Math.max(1, ...lined.flat().map(rowEm));
   if (widestLine * size > maxW) {
@@ -2074,7 +2091,7 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
     // Beside a figure the column is half the board: a little smaller text keeps the working on one page.
     // A course board's working is written at 24 at least (owner, 2026-10-24: "placement to be perfect").
     const PAGE_MIN = course ? 24 : box.w < 600 ? 22 : 26;
-    const linesAt = (sz: number) => added.map((row, k) => (writes[k] ? clauses(row).flatMap((c) => wrapRow(c, (id) => em.get(id)! * sz, breakOf, maxW, gapEm * sz)) : []));
+    const linesAt = (sz: number) => added.map((row, k) => (writes[k] ? clauses(row).flatMap((c) => wrapped(c, sz)) : []));
     type Page = { steps: number[]; size: number };
     let pages: Page[];
     // One page whenever some readable size fits it: lines wrapped at the largest size counted too many
