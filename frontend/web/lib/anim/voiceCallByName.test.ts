@@ -119,3 +119,187 @@ test("with the option off the gate behaves exactly as before", () => {
   callFiveTimes(voice.arbiter, [["hey aria", true]], "Hey Aria");
   assert.equal(voice.seen.pause, 0);
 });
+
+/*
+ * "You keep saying aria aria and it listens after multiple retries" (2026-11-10). The check at the
+ * end of speech was postponed by the repeats themselves, and until a first call succeeds there is
+ * no voice profile. The name check runs during the speech.
+ */
+function watch({ config = {}, on = true, second = false, speaking = true }: { config?: Record<string, number>; on?: boolean; second?: boolean; speaking?: boolean } = {}) {
+  const seen = { pause: 0, checks: 0, clip: 0 };
+  const arbiter = new TurnArbiter({
+    profile: "lecture",
+    config: { requireAddressingBeforeOpen: true, callByNameAlwaysHeard: on, ...config },
+    callbacks: {
+      onPauseTutor: () => { seen.pause += 1; },
+      onNameCheck: (audio) => { seen.checks += 1; seen.clip = audio.length; },
+      ...(second ? { onSecondOpinion: () => {} } : {}),
+    },
+  });
+  arbiter.setTutor({ speaking, expectingAnswer: false, speakingAs: "lecture" });
+  return { arbiter, seen };
+}
+function begin(arbiter: TurnArbiter, at: number): void {
+  arbiter.onEndpoint({ type: "onset", at } as never, at);
+  arbiter.onEndpoint({ type: "start", at: at + 200, preroll: [frame] } as never, at + 200);
+}
+function voice(arbiter: TurnArbiter, from: number, ms: number): number {
+  for (let t = from; t < from + ms; t += 20) arbiter.onFrame(frame, voiced, t);
+  return from + ms;
+}
+const gap = (arbiter: TurnArbiter, at: number) => arbiter.onEndpoint({ type: "pause", at, spokenMs: 400 } as never, at);
+
+test("the very first bare Aria is heard at the first small gap, with no voice profile", () => {
+  const { arbiter, seen } = watch();
+  begin(arbiter, 1_000);
+  gap(arbiter, voice(arbiter, 1_000, 400) + 150);
+  assert.equal(seen.checks, 1);
+  arbiter.provideNameCheck("Aria.", 2_000);
+  assert.equal(seen.pause, 1);
+});
+
+test("repeating her name keeps counting while a check is out, and the next one is heard", () => {
+  const { arbiter, seen } = watch();
+  begin(arbiter, 1_000);
+  let at = voice(arbiter, 1_000, 400) + 150;
+  gap(arbiter, at);
+  arbiter.provideNameCheck("", at + 500);
+  assert.equal(arbiter.getState(), "attending");
+  at = voice(arbiter, at + 1_300, 400) + 150;
+  gap(arbiter, at);
+  assert.equal(seen.checks, 2);
+  arbiter.provideNameCheck("Aria, Aria", at + 500);
+  assert.equal(seen.pause, 1);
+});
+
+test("her voice leaking into the mic leaves no gap, and the call is still heard", () => {
+  const { arbiter, seen } = watch();
+  begin(arbiter, 1_000);
+  let at = voice(arbiter, 1_000, 1_100);
+  assert.equal(seen.checks, 1);
+  assert.ok(seen.clip <= 65, "only the last moments are sent");
+  arbiter.provideNameCheck("the last plate you put on the pile", at);
+  assert.equal(seen.pause, 0);
+  at = voice(arbiter, at, 1_400);
+  assert.equal(seen.checks, 2);
+  arbiter.provideNameCheck("the last plate, Aria", at);
+  assert.equal(seen.pause, 1);
+});
+
+test("nothing but her literal name stops her through this check", () => {
+  for (const heard of ["and the teacher finds the total area", "So what is a stack?", "Maria", ""]) {
+    const { arbiter, seen } = watch();
+    begin(arbiter, 1_000);
+    gap(arbiter, voice(arbiter, 1_000, 400) + 150);
+    arbiter.provideNameCheck(heard, 2_000);
+    assert.equal(seen.pause, 0, heard);
+  }
+});
+
+test("a script that says her name does not stop her", () => {
+  const { arbiter, seen } = watch();
+  arbiter.setEchoText("Hi I am Aria and today we will look at stacks", 900);
+  begin(arbiter, 1_000);
+  gap(arbiter, voice(arbiter, 1_000, 400) + 150);
+  arbiter.provideNameCheck("I am Aria", 2_000);
+  assert.equal(seen.pause, 0);
+});
+
+test("a check still out when the speech ends decides the utterance", () => {
+  const heard = watch();
+  begin(heard.arbiter, 1_000);
+  let at = voice(heard.arbiter, 1_000, 400) + 150;
+  gap(heard.arbiter, at);
+  at += 700;
+  heard.arbiter.onEndpoint({ type: "end", reason: "silence", durationMs: 400, at } as never, at);
+  assert.equal(heard.arbiter.getState(), "verifying");
+  heard.arbiter.provideNameCheck("Aria", at + 300);
+  assert.equal(heard.seen.pause, 1);
+
+  const missed = watch();
+  begin(missed.arbiter, 1_000);
+  at = voice(missed.arbiter, 1_000, 400) + 150;
+  gap(missed.arbiter, at);
+  at += 700;
+  missed.arbiter.onEndpoint({ type: "end", reason: "silence", durationMs: 400, at } as never, at);
+  missed.arbiter.provideNameCheck("something else", at + 300);
+  assert.equal(missed.seen.pause, 0);
+  assert.equal(missed.arbiter.getState(), "refractory");
+});
+
+test("the name checks are rationed, one at a time", () => {
+  const busy = watch();
+  begin(busy.arbiter, 1_000);
+  voice(busy.arbiter, 1_000, 6_000);
+  assert.equal(busy.seen.checks, 1, "never a second while one is out");
+
+  const capped = watch({ config: { nameChecksMax: 2, nameCheckGapMs: 0 } });
+  begin(capped.arbiter, 1_000);
+  let at = 1_000;
+  for (let i = 0; i < 6; i++) {
+    at = voice(capped.arbiter, at, 1_100);
+    capped.arbiter.provideNameCheck("", at);
+  }
+  assert.equal(capped.seen.checks, 2);
+});
+
+test("no name check when she is silent or the option is off", () => {
+  for (const options of [{ speaking: false }, { on: false }]) {
+    const { arbiter, seen } = watch(options);
+    begin(arbiter, 1_000);
+    gap(arbiter, voice(arbiter, 1_000, 2_000) + 150);
+    assert.equal(seen.checks, 0);
+  }
+});
+
+
+test("a call that starts during a server check is joined and heard when the check ends", () => {
+  const { arbiter, seen } = watch({ second: true });
+  begin(arbiter, 1_000);
+  let at = voice(arbiter, 1_000, 400) + 150;
+  at += 700;
+  arbiter.onEndpoint({ type: "end", reason: "silence", durationMs: 400, at } as never, at);
+  assert.equal(arbiter.getState(), "verifying");
+  // The student calls now: the gate is busy and this onset does not open an episode.
+  arbiter.onEndpoint({ type: "onset", at: at + 50 } as never, at + 50);
+  arbiter.onEndpoint({ type: "start", at: at + 250, preroll: [frame] } as never, at + 250);
+  let t = voice(arbiter, at + 50, 500);
+  arbiter.provideSecondOpinion("the last plate you put on the pile", t);
+  assert.equal(arbiter.getState(), "refractory");
+  t = voice(arbiter, t, 500);
+  assert.equal(arbiter.getState(), "attending", "joined once the cooldown ended");
+  t += 150;
+  arbiter.onEndpoint({ type: "pause", at: t, spokenMs: 400 } as never, t);
+  arbiter.provideNameCheck("Aria", t + 400);
+  assert.equal(seen.pause, 1);
+});
+
+test("speech joined mid-way can only be accepted by her name", () => {
+  const { arbiter, seen } = watch({ second: true });
+  let asked = 0;
+  (arbiter as unknown as { callbacks: { onSecondOpinion: () => void } }).callbacks.onSecondOpinion = () => { asked += 1; };
+  begin(arbiter, 1_000);
+  let at = voice(arbiter, 1_000, 400) + 850;
+  arbiter.onEndpoint({ type: "end", reason: "silence", durationMs: 400, at } as never, at);
+  arbiter.onEndpoint({ type: "onset", at: at + 50 } as never, at + 50);
+  let t = voice(arbiter, at + 50, 500);
+  arbiter.provideSecondOpinion("nothing useful here", t);
+  t = voice(arbiter, t, 600);
+  assert.equal(arbiter.getState(), "attending");
+  t += 850;
+  arbiter.onEndpoint({ type: "end", reason: "silence", durationMs: 600, at: t } as never, t);
+  assert.equal(arbiter.getState(), "verifying");
+  assert.equal(asked, 2);
+  arbiter.provideSecondOpinion("Can you explain what that means for me?", t + 300);
+  assert.equal(seen.pause, 0);
+});
+
+test("with the option off nothing is joined", () => {
+  const { arbiter } = watch({ on: false, second: true });
+  arbiter.onEndpoint({ type: "onset", at: 1_000 } as never, 1_000);
+  arbiter.provideTranscript("hello there", true, 1_050);
+  arbiter.onEndpoint({ type: "abort", at: 1_100, reason: "blip" } as never, 1_100);
+  arbiter.onEndpoint({ type: "start", at: 1_200, preroll: [frame] } as never, 1_200);
+  voice(arbiter, 1_600, 600);
+  assert.notEqual(arbiter.getState(), "attending");
+});

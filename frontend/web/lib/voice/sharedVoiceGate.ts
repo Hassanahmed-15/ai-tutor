@@ -40,6 +40,8 @@ export interface SharedVoiceGateCallbacks {
   onDecision?: (decision: GateDecision) => void;
   /** A voice with no local words: transcribe this audio and call provideSecondOpinion. */
   onSecondOpinion?: (audio: Float32Array[]) => void;
+  /** While she teaches: transcribe this recent speech and call provideNameCheck. */
+  onNameCheck?: (audio: Float32Array[]) => void;
   onEvent?: (event: LabEvent) => void;
 }
 export interface SharedVoiceGateOptions {
@@ -95,6 +97,7 @@ export class SharedVoiceGate {
         onSecondOpinion: callbacks.onSecondOpinion
           ? (audio) => { this.decide("candidate", "second-opinion", "local words missing or unconvincing; asking the server what was said"); callbacks.onSecondOpinion?.(audio); }
           : undefined,
+        onNameCheck: callbacks.onNameCheck,
         // Why a voice was let go — without this the log said only "restore", and a dropped "hey
         // Aria" could not be told from a cough.
         onState: (_from, to, reason) => { if (to === "refractory" && /^(?:ignored|discarded)/.test(reason)) this.decide("refractory", "ignore", reason); },
@@ -131,6 +134,7 @@ export class SharedVoiceGate {
   setTranscriberAlive(alive: boolean, now: number): void { this.pipeline.setTranscriberAlive(alive, now); }
   setEchoText(text: string, now: number): void { this.pipeline.setEchoText(text, now); }
   provideSecondOpinion(text: string, now: number): void { this.pipeline.provideSecondOpinion(text, now); }
+  provideNameCheck(text: string, now: number): void { this.pipeline.provideNameCheck(text, now); }
   tick(now: number): void { this.pipeline.tick(now); }
   reset(now = 0): void { this.pipeline.reset(now); }
   getStage(): GateStage { return stageOf(this.pipeline.state); }

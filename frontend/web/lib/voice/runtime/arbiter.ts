@@ -99,6 +99,16 @@ export interface ArbiterConfig {
   extraCheckGapMs: number;
   /** …and at most this many per session; past it the gate behaves as it did before. */
   extraChecksMax: number;
+  /** While she teaches, how much recent speech one name check hears. Measured: 1.3 s hears a bare "Aria" best. */
+  nameCheckClipMs: number;
+  /** Voice with no gap this long earns a check anyway: her voice leaking into the mic may never leave one. */
+  nameCheckContinuousMs: number;
+  /** Less speech than this at a gap is not worth a check. */
+  nameCheckMinSpeechMs: number;
+  /** One check at a time, and no two starting closer than this. */
+  nameCheckGapMs: number;
+  /** Paid per clip. Past this the end-of-speech check still works. */
+  nameChecksMax: number;
 }
 
 export const DEFAULT_ARBITER_CONFIG: ArbiterConfig = {
@@ -119,6 +129,12 @@ export const DEFAULT_ARBITER_CONFIG: ArbiterConfig = {
   extraCheckGapMs: 3_000,
   // 200 clips of the 12 s most is 40 minutes of audio, about $0.12 at $0.003 a minute: the worst case.
   extraChecksMax: 200,
+  nameCheckClipMs: 1_300,
+  nameCheckContinuousMs: 1_000,
+  nameCheckMinSpeechMs: 250,
+  nameCheckGapMs: 1_200,
+  // 600 clips of 1.3 s is 13 minutes of audio, about 4 cents: the worst case.
+  nameChecksMax: 600,
 };
 
 export interface TutorStatus {
@@ -158,6 +174,8 @@ export interface ArbiterCallbacks {
    * transcription of exactly this audio — instead of dropping it. See provideSecondOpinion.
    */
   onSecondOpinion?: (audio: Float32Array[]) => void;
+  /** While she teaches: transcribe this recent speech and call provideNameCheck. See startNameCheck. */
+  onNameCheck?: (audio: Float32Array[]) => void;
 }
 
 export interface ArbiterOptions {
@@ -223,6 +241,19 @@ export class TurnArbiter {
   private verifyingNeedsName = false;
   private extraChecksUsed = 0;
   private lastExtraCheckAt = -Infinity;
+  private nameCheckInFlight = false;
+  private nameChecksUsed = 0;
+  private lastNameCheckAt = -Infinity;
+  private speechSinceNameCheck = 0;
+  /** The utterance ended with only a name check still out: it decides, nothing else was asked. */
+  private verifyingOnNameCheck = false;
+  /** The endpointer is inside an utterance, whether or not this gate is attending to it. */
+  private endpointActive = false;
+  /** That utterance's audio while the gate was busy, and how much of it was voice. */
+  private tailAudio: Float32Array[] = [];
+  private tailSpeechMs = 0;
+  /** This episode began mid-speech: only her literal name may accept it. */
+  private joinedEpisode = false;
 
   /**
    * A near-miss in the student's OWN voice is for her. Background speech lost the easy credit that
@@ -251,6 +282,85 @@ export class TurnArbiter {
     this.extraChecksUsed += 1;
     this.lastExtraCheckAt = now;
     return true;
+  }
+
+  /**
+   * LISTENING FOR HER NAME WHILE SHE TEACHES (owner, 2026-11-10: "you keep saying aria aria, it
+   * listens after multiple retries"). The server check used to wait for the speech to END, so
+   * "Aria… Aria… Aria" with short gaps kept postponing it, and her voice leaking into the mic could
+   * postpone it for 20 s. Until a first call succeeds there is no voice profile to help either.
+   * So at the first small gap, or after each second of unbroken voice, the last moments are checked
+   * and the episode keeps running: a repeated call still counts.
+   */
+  private startNameCheck(now: number): void {
+    const config = this.config;
+    if (!config.callByNameAlwaysHeard || !this.callbacks.onNameCheck || !this.tutor.speaking || this.state !== "attending") return;
+    if (this.addressedByWords || this.lastVerdict?.addressed || this.candidateAudio.length === 0) return;
+    if (this.nameCheckInFlight || this.nameChecksUsed >= config.nameChecksMax || now - this.lastNameCheckAt < config.nameCheckGapMs) return;
+    this.nameCheckInFlight = true;
+    this.nameChecksUsed += 1;
+    this.lastNameCheckAt = now;
+    this.speechSinceNameCheck = 0;
+    this.callbacks.onNameCheck(this.candidateAudio.slice(-Math.round(config.nameCheckClipMs / 20)));
+  }
+
+  /**
+   * SPEECH THAT STARTED WHILE THE GATE WAS BUSY. An onset only counts from `idle`, so a call begun
+   * during the 1-2 s server check of an earlier sound, or its cooldown, was never attended to: the
+   * endpointer stayed inside that utterance and fired no new onset. Measured on the real player with
+   * narration leaking into the mic, this was every missed first "Aria". Join it when the gate frees.
+   */
+  private collectSpeechUnderWay(pcm: Float32Array, speech: boolean, frameDelta: number, now: number): void {
+    if (!this.endpointActive || !this.config.callByNameAlwaysHeard || !this.tutor.speaking) return;
+    if (this.state !== "verifying" && this.state !== "refractory" && this.state !== "idle") return;
+    this.tailAudio.push(pcm);
+    if (this.tailAudio.length > 600) this.tailAudio.shift();
+    if (speech) this.tailSpeechMs += frameDelta;
+    if (this.state === "verifying" || (this.state === "refractory" && now < this.refractoryUntil)) return;
+    const audio = this.tailAudio;
+    const speechMs = this.tailSpeechMs;
+    if (this.state === "refractory") this.transition("idle", "refractory over", now);
+    this.clearEpisode();
+    this.tailAudio = [];
+    this.tailSpeechMs = 0;
+    this.candidateAudio = audio;
+    this.episodeSpeechMs = speechMs;
+    this.speechSinceNameCheck = speechMs;
+    this.joinedEpisode = true;
+    this.attendingSince = now;
+    this.transition("attending", "joined speech already under way", now);
+  }
+
+  /** The script itself saying her name ("I'm Aria") must not read as a call. */
+  private narrationSaysName(now: number): boolean {
+    return this.echoTexts.some((e) => now - e.at < 20_000 && [...e.words].some((word) => ARIA_SPOKEN.test(word)));
+  }
+
+  /** What the name check heard. Only her name, spelled as her name, does anything. */
+  provideNameCheck(text: string, now: number): void {
+    this.nameCheckInFlight = false;
+    const clean = text.trim();
+    const heard = ARIA_SPOKEN.test(clean) && !this.narrationSaysName(now);
+    if (this.state === "verifying") {
+      if (heard) {
+        this.verifyingOnNameCheck = false;
+        this.provideSecondOpinion(clean, now);
+      } else if (this.verifyingOnNameCheck) {
+        this.verifyingAudio = [];
+        this.verifyingNeedsName = false;
+        this.settle(now, "ignored: her name was not said");
+      }
+      return;
+    }
+    if (!heard || this.state !== "attending") return;
+    const verdict = classifyAddressing(clean, { expectingAnswer: this.tutor.expectingAnswer, tutorSpeaking: this.tutor.speaking, topicWords: this.topicWords, wakeNames: this.wakeNames });
+    if (!verdict.addressed) return;
+    this.lastTranscript = clean;
+    this.lastVerdict = verdict;
+    this.addressedByWords = true;
+    this.negativeFinal = false;
+    this.open(now, this.candidateAudio, `name check: ${verdict.reason}`);
+    if (this.tutor.speaking) this.commit(now, `name check: ${verdict.reason}`);
   }
 
   /** Whether a transcript is mostly the narration's own recent words (and names nobody). */
@@ -394,8 +504,11 @@ export class TurnArbiter {
        */
       if (this.candidateAudio.length > 600) this.candidateAudio.shift();
     }
+    this.collectSpeechUnderWay(pcm, verdict.speech, frameDelta, now);
     if (!verdict.speech) return;
     this.episodeSpeechMs += frameDelta;
+    this.speechSinceNameCheck += frameDelta;
+    if (this.state === "attending" && this.speechSinceNameCheck >= this.config.nameCheckContinuousMs) this.startNameCheck(now);
 
     const features = verdict.features;
     if (features.f0 !== null && features.voicing >= 0.5 && this.verifier.enrolled) {
@@ -431,6 +544,12 @@ export class TurnArbiter {
   }
 
   onEndpoint(event: EndpointEvent, now: number): void {
+    if (event.type === "onset" || event.type === "start") this.endpointActive = true;
+    if (event.type === "end" || event.type === "abort") {
+      this.endpointActive = false;
+      this.tailAudio = [];
+      this.tailSpeechMs = 0;
+    }
     switch (event.type) {
       case "onset":
         if (this.state === "refractory" && now < this.refractoryUntil) return;
@@ -459,6 +578,8 @@ export class TurnArbiter {
         }
         return;
       case "pause":
+        if (this.speechSinceNameCheck >= this.config.nameCheckMinSpeechMs) this.startNameCheck(now);
+        return;
       case "resume":
         return;
       case "abort":
@@ -595,6 +716,10 @@ export class TurnArbiter {
     this.restoreIfDucked("reset");
     this.clearEpisode();
     this.pausedTutor = false;
+    this.nameCheckInFlight = false;
+    this.endpointActive = false;
+    this.tailAudio = [];
+    this.tailSpeechMs = 0;
     this.transition("idle", "reset", now);
   }
 
@@ -663,12 +788,12 @@ export class TurnArbiter {
         const localWords = this.lastTranscript.trim().split(/\s+/).filter(Boolean).length;
         const localSaysEcho = this.lastVerdict?.reason === ECHO_REASON;
         const askable = !this.lastVerdict?.addressed && this.episodeSpeechMs >= SECOND_OPINION_MIN_SPEECH_MS && Boolean(this.callbacks.onSecondOpinion) && this.candidateAudio.length > 0;
-        const ordinary = !localSaysEcho && localWords <= SECOND_OPINION_MAX_WORDS && who !== "other";
+        const ordinary = !this.joinedEpisode && !localSaysEcho && localWords <= SECOND_OPINION_MAX_WORDS && who !== "other";
         /*
          * What used to be written off without a check: her echo, a voice that does not match, or a
          * long run of words under the narration (Chrome writing down her sentence over the call).
          */
-        const writtenOff = localSaysEcho || (who === "other" && localWords <= SECOND_OPINION_MAX_WORDS) || (localWords > SECOND_OPINION_MAX_WORDS && this.tutor.speaking);
+        const writtenOff = this.joinedEpisode || localSaysEcho || (who === "other" && localWords <= SECOND_OPINION_MAX_WORDS) || (localWords > SECOND_OPINION_MAX_WORDS && this.tutor.speaking);
         const extra = askable && !ordinary && writtenOff && this.takeExtraCheck(now);
         if (askable && (ordinary || extra)) {
           this.verifyingNeedsName = !ordinary;
@@ -679,6 +804,18 @@ export class TurnArbiter {
           this.restoreIfDucked("holding the utterance for a second opinion");
           this.transition("verifying", `${this.lastTranscript ? `local words "${this.lastTranscript.slice(0, 40)}" unconvincing` : "no local words"} for ${Math.round(this.episodeSpeechMs)} ms of voice; asking for a second opinion`, now);
           this.callbacks.onSecondOpinion?.(this.verifyingAudio);
+          return;
+        }
+        // A name check is still out on this speech: its answer decides, so a call is not dropped.
+        if (this.nameCheckInFlight && !this.lastVerdict?.addressed) {
+          this.verifyingOnNameCheck = true;
+          this.verifyingNeedsName = true;
+          this.verifyingAudio = [...this.candidateAudio];
+          this.verifyingSince = now;
+          this.verifyingDurationMs = durationMs;
+          this.candidateAudio = [];
+          this.restoreIfDucked("holding the utterance for the name check");
+          this.transition("verifying", "speech ended while a name check is out", now);
           return;
         }
         this.restoreIfDucked("speech ended without evidence it was for the tutor");
@@ -705,6 +842,9 @@ export class TurnArbiter {
     this.candidateAudio = [];
     this.episodeFeatures = [];
     this.episodeSpeechMs = 0;
+    this.speechSinceNameCheck = 0;
+    this.verifyingOnNameCheck = false;
+    this.joinedEpisode = false;
     this.speakerSum = 0;
     this.speakerWindows = 0;
     this.lastVerdict = null;

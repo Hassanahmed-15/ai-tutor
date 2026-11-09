@@ -1198,6 +1198,8 @@ export function LessonPlayer({
      * the hard way. The mic is live from Play (the browser asks once, inside that click); nothing
      * reaches the model until the gate hears words addressed to her. The mute button still mutes.
      */
+    // Standard lecture only: the accessibility tracks keep their screens exactly as they were.
+    ...(standardTransitionsEnabled ? { onSilentReply: () => chat.appendTurn("aria", "I couldn't answer that out loud. Please ask again.") } : {}),
     onOutputBlocked: () => {
       // Live Aria's output is held; the lecture's own narration may be fine. A tap resumes it.
       if (!voiceBlockedRef.current) blockedLiveOnlyRef.current = true;
@@ -1794,11 +1796,13 @@ export function LessonPlayer({
   // Short label for the chat mic button while a live session is active/connecting.
   const liveMicLabel =
     tutor.status === "connecting"
-      ? "Connecting…"
+      ? standardTransitionsEnabled && tutor.reconnecting ? "Reconnecting…" : "Connecting…"
       : tutor.status === "drawing"
         ? "Drawing…"
+        : standardTransitionsEnabled && tutor.status === "error"
+          ? "Voice disconnected"
         : tutor.speaking
-          ? "Aria speaking…"
+          ? standardTransitionsEnabled && !tutor.audible ? "Thinking…" : "Aria speaking…"
           // The mic is always open (2026-09-29: "the audio should always be open — just mute and
           // unmute"), so there is no call to end; the pill says what she is doing, Mute sits beside it.
           : tutor.muted
@@ -3201,7 +3205,7 @@ export function LessonPlayer({
     status: tutor.status,
     // Audible speech only. `isSpeaking()` also covers her thinking and drawing, which showed
     // "Aria is speaking" with nothing to hear.
-    ariaSpeaking: speaking || tutor.speaking || boardNarrating,
+    ariaSpeaking: speaking || (standardTransitionsEnabled ? tutor.audible : tutor.speaking) || boardNarrating,
     // What the voice session actually knows. This was "live, unmuted, and the lecture is quiet" —
     // true through every pause and every narrated board, so it read "You're speaking" at nobody.
     studentSpeaking: tutor.voiceSession.state === "USER_SPEAKING",

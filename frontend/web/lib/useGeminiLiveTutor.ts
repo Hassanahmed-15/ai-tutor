@@ -214,6 +214,8 @@ export type UseGeminiLiveTutorOptions = {
    * until the student interacts. Surfaced so the page can ask for a tap; any tap resumes it.
    */
   onOutputBlocked?: () => void;
+  /** A reply was expected and never made a sound, even after asking again. */
+  onSilentReply?: () => void;
   /**
    * How suspicious the voice gate is of sound in the room. See lib/voice/voiceGate.ts.
    *
@@ -439,6 +441,13 @@ const IDLE_TIMEOUT_MS = 60_000;
 const MAX_SESSION_MS = 5 * 60_000;
 const EXAM_MAX_SESSION_MS = 12 * 60_000;
 const SETTLE_MS = 500;
+/** A reply marked as coming that has made no sound for this long is not coming. */
+const NO_AUDIO_MS = 12_000;
+/**
+ * Google closes a session after about two minutes with nothing from the client. One silent 20 ms
+ * frame this often kept an idle session open past 6.5 minutes, and she said nothing unprompted.
+ */
+const KEEP_ALIVE_MS = 20_000;
 
 /**
  * Automatic recovery from a dropped Live socket.
@@ -525,6 +534,8 @@ function appendTranscript(current: string, fragment: string) {
 export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const [status, setStatus] = useState<GeminiLiveStatus>("idle");
   const [speaking, setSpeaking] = useState(false);
+  /** Her audio is actually playing: `speaking` also covers the moment a reply is only expected. */
+  const [audible, setAudible] = useState(false);
   const [muted, setMuted] = useState(false);
   const [micAvailable, setMicAvailable] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -639,6 +650,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const maxTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const settleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const noAudioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const keepAliveRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const sessionOpenedAtRef = useRef(0);
+  /** Sessions Google ended almost as soon as they opened: a loop, not a pause. */
+  const quickClosesRef = useRef(0);
   /**
    * The barge-in decision, owned entirely by the client. See `lib/interruptionGate.ts`.
    *
@@ -702,6 +718,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
     if (maxTimerRef.current) clearTimeout(maxTimerRef.current);
     if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
+    if (noAudioTimerRef.current) clearTimeout(noAudioTimerRef.current);
+    noAudioTimerRef.current = null;
+    if (keepAliveRef.current) clearInterval(keepAliveRef.current);
+    keepAliveRef.current = null;
     // A pending reconnect is a timer like any other: an explicit stop must cancel it, or the
     // session the student just ended dials itself back a second later.
     if (!preserveReconnect && reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
@@ -726,8 +746,20 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
    * student or to say it is reconnecting. Deliberate endings cannot enter this callback because
    * teardown marks them ended before closing the transport.
    */
-  const scheduleReconnect = useCallback((closeCode?: number): boolean => {
-    if (closeCode !== undefined && FATAL_CLOSE_CODES.has(closeCode)) return false;
+  const scheduleReconnect = useCallback((closeCode?: number, reason?: string): boolean => {
+    /*
+     * GOOGLE ENDING AN IDLE SESSION IS NOT A REFUSAL. Measured on the live site: about two minutes
+     * with nobody talking closes the session with 1008 "Session closed due to client inactivity.",
+     * the same code as a revoked key, so it counted as permanent. The microphone stayed off for the
+     * rest of the lecture while the screen said "Listening". Every other 1008 stays final.
+     */
+    const idleClose = closeCode === 1008 && /inactiv/i.test(reason ?? "");
+    const comesBack = optionsRef.current.alwaysOn === true && (idleClose || closeCode === 1000 || closeCode === 1005);
+    if (closeCode !== undefined && FATAL_CLOSE_CODES.has(closeCode) && !comesBack) return false;
+    if (comesBack) {
+      quickClosesRef.current = performance.now() - sessionOpenedAtRef.current < 20_000 ? quickClosesRef.current + 1 : 0;
+      if (quickClosesRef.current >= 3) return false;
+    }
     if (reconnectCountRef.current >= MAX_RECONNECTS) return false;
 
     const delay = RECONNECT_DELAYS_MS[reconnectCountRef.current];
@@ -853,6 +885,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       }
     }
     playingSourcesRef.current.clear();
+    setAudible(false);
+    if (noAudioTimerRef.current) clearTimeout(noAudioTimerRef.current);
+    noAudioTimerRef.current = null;
     nextPlayTimeRef.current = audioContextRef.current?.currentTime ?? 0;
     setSpeaking(false);
     // The bus this duck applied to is about to be discarded, so the gain never needs unwinding —
@@ -868,6 +903,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
 
   const finishTutorTurn = useCallback(() => {
     if (turnCompletedRef.current) return;
+    if (noAudioTimerRef.current) clearTimeout(noAudioTimerRef.current);
+    noAudioTimerRef.current = null;
     turnCompletedRef.current = true;
     responseInFlightRef.current = false;
     turnCompleteRef.current = false;
@@ -945,7 +982,40 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     turnCompletedRef.current = false;
     responseInFlightRef.current = true;
     turnCompleteRef.current = false;
-    if (!suppressCurrentTurnRef.current && !contextOnlyTurnRef.current && !muteRepliesUntilStudentRef.current && !isHeldReply()) setSpeaking(true);
+    if (suppressCurrentTurnRef.current || contextOnlyTurnRef.current || muteRepliesUntilStudentRef.current || isHeldReply()) return;
+    setSpeaking(true);
+    /*
+     * "Speaking" was set here with nothing to stop it staying set: a reply that never made a sound
+     * left "Aria speaking…" up for good. A board still being drawn is not a silent reply.
+     */
+    if (playingSourcesRef.current.size > 0 || noAudioTimerRef.current) return;
+    const arm = () => {
+      noAudioTimerRef.current = setTimeout(() => {
+        noAudioTimerRef.current = null;
+        if (endedRef.current || playingSourcesRef.current.size > 0) return;
+        if (boardChainPendingRef.current) return arm();
+        responseInFlightRef.current = false;
+        turnCompleteRef.current = false;
+        turnCompletedRef.current = true;
+        setSpeaking(false);
+        gateRef.current?.log.log("conn", "silent-reply", performance.now(), `no audio after ${NO_AUDIO_MS} ms`, "bad");
+        const unanswered = unansweredTurnRef.current;
+        if (!unanswered || replaysRef.current >= 1 || !sessionRef.current || activityOpenRef.current) {
+          optionsRef.current.onSilentReply?.();
+          return;
+        }
+        replaysRef.current += 1;
+        openActivityRef.current();
+        turnAudioRef.current = null;
+        for (const pcm of unanswered) sendFrameRef.current?.(pcm);
+        closeActivityRef.current();
+        unansweredTurnRef.current = unanswered;
+        window.setTimeout(() => {
+          if (!endedRef.current && playingSourcesRef.current.size === 0 && unansweredTurnRef.current === unanswered) optionsRef.current.onSilentReply?.();
+        }, NO_AUDIO_MS);
+      }, NO_AUDIO_MS);
+    };
+    arm();
   }, [isHeldReply]);
 
   const playAudioChunk = useCallback(
@@ -1013,6 +1083,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       source.connect(chunkGain);
       source.onended = () => {
         playingSourcesRef.current.delete(source);
+        if (playingSourcesRef.current.size === 0) setAudible(false);
         const currentGeneration = playbackControllerRef.current?.accept(playbackToken) === true;
         if (currentGeneration) playbackControllerRef.current?.notePlayed(playbackToken, samples.length);
         // Each chunk owns a gain node; leaving them attached would grow the graph for the whole
@@ -1051,6 +1122,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       chunkGain.gain.linearRampToValueAtTime(0, startAt + buffer.duration);
       source.start(startAt);
       playingSourcesRef.current.add(source);
+      if (noAudioTimerRef.current) clearTimeout(noAudioTimerRef.current);
+      noAudioTimerRef.current = null;
+      if (context.state === "running") setAudible(true);
       nextPlayTimeRef.current = startAt + buffer.duration;
       extendSpeechAudio(nextPlayTimeRef.current);
       // The mouth for this chunk, worked out now and keyed to when it will be heard.
@@ -1669,6 +1743,21 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
          * neighbour's sentence — so that answer is marked context-only before the close: its audio
          * and transcript are dropped, and the flag clears itself on turnComplete.
          */
+        ...(optionsRef.current.callByNameAlwaysHeard === true ? {
+          onNameCheck: (audio: Float32Array[]) => {
+            void fetch("/api/voice-transcribe", {
+              method: "POST",
+              headers: { "Content-Type": "audio/wav" },
+              body: pcmToWav(audio, INPUT_SAMPLE_RATE),
+              signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(4_500) : undefined,
+            })
+              .then((res) => (res.ok ? res.json() : { text: "" }))
+              .catch(() => ({ text: "" }))
+              .then((data: { text?: string }) => {
+                if (gateRef.current === gate) gate.provideNameCheck(data?.text ?? "", performance.now());
+              });
+          },
+        } : {}),
         onSecondOpinion: (audio) => {
           /*
            * The local recogniser heard nothing where the gate heard a voice. Ask the server what was
@@ -2060,7 +2149,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
              * The message is chosen by whether recovery is actually coming: promising a
              * reconnection that will not happen is worse than the blunt error it replaced.
              */
-            const recovering = scheduleReconnect(event?.code);
+            gateRef.current?.log.log("conn", "closed", performance.now(), `${event?.code ?? "?"} ${event?.reason ?? ""}`, "warn");
+            const recovering = scheduleReconnect(event?.code, event?.reason);
             setErrorMessage(
               recovering
                 ? null
@@ -2090,6 +2180,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       }
 
       sessionRef.current = session;
+      sessionOpenedAtRef.current = performance.now();
       connectingRef.current = false;
       setStatus("live");
       if (machineRef.current?.value.state === "RECONNECTING") {
@@ -2150,6 +2241,19 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
        */
       reconnectCountRef.current = 0;
       setReconnecting(false);
+
+      if (optionsRef.current.alwaysOn) {
+        const silence = float32ToPcm16Base64(new Float32Array(FRAME_SAMPLES));
+        if (keepAliveRef.current) clearInterval(keepAliveRef.current);
+        keepAliveRef.current = setInterval(() => {
+          if (sessionRef.current !== session || activityOpenRef.current || responseInFlightRef.current) return;
+          try {
+            session.sendRealtimeInput({ audio: { data: silence, mimeType: `audio/pcm;rate=${INPUT_SAMPLE_RATE}` } });
+          } catch {
+            // A socket that closed between ticks; its own close handler brings it back.
+          }
+        }, KEEP_ALIVE_MS);
+      }
 
       if (!optionsRef.current.alwaysOn) {
         resetIdleTimer();
@@ -2468,6 +2572,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     events: [...gateEventsRef.current],
   }), []);
 
+  // One console call explains a voice failure on the live site: window.__ariaVoice(). Local only.
+  useEffect(() => {
+    if (!optionsRef.current.alwaysOn) return;
+    const w = window as Window & { __ariaVoice?: typeof getVoiceDiagnostics };
+    w.__ariaVoice = getVoiceDiagnostics;
+    return () => {
+      if (w.__ariaVoice === getVoiceDiagnostics) delete w.__ariaVoice;
+    };
+  }, [getVoiceDiagnostics]);
+
   const forceReconnect = useCallback(() => {
     teardown("user");
     machineRef.current?.dispatch({ type: "RESET", at: performance.now() });
@@ -2509,6 +2623,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   return {
     status,
     speaking,
+    audible,
     muted,
     micAvailable,
     errorMessage,
