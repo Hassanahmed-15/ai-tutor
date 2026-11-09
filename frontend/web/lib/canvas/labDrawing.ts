@@ -8,7 +8,7 @@ import { costFor } from "../modelPricing";
 import { expandSpec } from "../mathsEngine/expand.js";
 import { lintSpec } from "../mathsEngine/lint.js";
 import { withSentences } from "../mathsEngine/aria-spec.js";
-import { armlessAngles, coveredLabels, overlappingFills } from "../mathsEngine/overlap.js";
+import { armlessAngles, chartProblems, coveredLabels, overlappingFills } from "../mathsEngine/overlap.js";
 import { getTemplate } from "../visual3d/registry";
 import { RecordingBoard } from "../visual3d/board3d/recording";
 import type { MathsBoardContext } from "./mathsPicturePrompt";
@@ -73,6 +73,7 @@ function pencilSystem(): string {
     "Draw EXACTLY what this board's sentences say, with the board's own letters, numbers and units: the fewest objects that teach it, nothing decorative, no answer the board does not give yet. A length written as \"8 cm\" must be 8 units long on the board (or set \"notToScale\": true on the board). Fit the board's x and y ranges around the drawing with a small margin; the drawing area is about as wide as it is tall.",
     "Labels: a length or a side's letter labels its SEGMENT (a polygon's own label sits in its middle, so use it only for an area or a name such as \"c²\"). Pieces that fit together (triangles round a square, parts of a composite shape) share their corner points exactly and never overlap.",
     "LINKS: when the board's working has terms (listed with their ids), add a top-level \"links\" list joining each term that IS a part of the drawing to the objects it comes from: {\"token\": term id, \"objects\": [object or group ids], \"name\": the part's name in 1 to 3 words, e.g. \"4 triangles\", \"tilted square\", \"side a\"}. Only real links (a length to its side, an area to its shape); signs and plain numbers have none.",
+    "CHARTS AND TABLES ARE BUILT, NEVER DRAWN BY HAND: a bar chart is \"bars\", frequency density is \"histogram\", a pie is \"pie\", symbols in rows are \"pictogram\", a table is \"table\", stem-and-leaf is \"stemleaf\". Never make one from polygons and text. One label per thing: never a single text holding several labels with spaces between them. Give a text room: nothing written on top of other writing, a line or a chart.",
     "ONE FIGURE: the board's one maths figure, large and uncluttered, at most 8 labels — never a row or grid of small diagrams, never a picture of the lesson's plan. A board with no single maths figure to draw (a map or list of the lesson's steps, a definition, a summary of what comes next) gets NO drawing: reply {\"none\": \"why\"} and the board is written instead.",
     "Return the scene JSON only.",
     "",
@@ -101,11 +102,22 @@ export function pencilProblems(scene: unknown, sentences: number): string[] {
     const expanded = expandSpec(withSentences(scene));
     const verdict = lintSpec(expanded);
     problems.push(...verdict.errors);
-    if (!verdict.errors.length) problems.push(...overlappingFills(expanded), ...coveredLabels(expanded), ...armlessAngles(expanded));
+    // A field the engine does not read is ignored, so what it meant silently does not happen (a pie's "at" put it at the origin, on top of the rest of the board).
+    problems.push(...verdict.warnings.filter((w) => /has no field/.test(w)));
+    if (!verdict.errors.length) problems.push(...overlappingFills(expanded), ...coveredLabels(expanded), ...armlessAngles(expanded), ...chartProblems(expanded));
   } catch (error) {
     problems.push((error as Error).message);
   }
   return problems.slice(0, 20);
+}
+
+function onlyLayout(scene: unknown, problems: string[]): boolean {
+  try {
+    const layout = new Set(chartProblems(expandSpec(withSentences(scene))));
+    return problems.every((p) => layout.has(p));
+  } catch {
+    return false;
+  }
 }
 
 async function pencilScene(openai: OpenAI, ctx: MathsBoardContext, spec: CanvasBoardSpec, log: string[], id: string, pitch?: string, previous?: Record<string, unknown>): Promise<{ lab: LabDrawing | null; costUsd: number; none?: boolean }> {
@@ -120,7 +132,9 @@ async function pencilScene(openai: OpenAI, ctx: MathsBoardContext, spec: CanvasB
       return { lab: null, costUsd, none: true };
     }
     const problems = pencilProblems(r.json, ctx.sentences.length);
-    if (!problems.length) {
+    // Second try and only layout complaints left: the engine draws around those, and a tidy-enough figure beats none.
+    if (!problems.length || (attempt === 2 && onlyLayout(r.json, problems))) {
+      if (problems.length) log.push(`${id}: pencil scene kept with — ${problems.slice(0, 3).join("; ")}`);
       const { links: rawLinks, ...scene } = r.json as Record<string, unknown>;
       const links = checkedLinks(rawLinks, scene, spec);
       log.push(`${id}: pencil scene in ${attempt} attempt(s), ${(scene.objects as unknown[] | undefined)?.length ?? 0} objects, ${(scene.steps as unknown[]).length} steps, ${links.length} term link(s)`);

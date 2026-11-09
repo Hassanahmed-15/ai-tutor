@@ -7,6 +7,7 @@
 import * as G from "./geometry.js";
 import { formatNumber } from "./expr.js";
 import { INK, colour, HIDDEN, SERIES } from "./style.js";
+import { normalizeTable } from "./overlap.js";
 
 const DEG = Math.PI / 180;
 const compass = (dx, dy) => {
@@ -175,7 +176,8 @@ export const TYPES_DATA = {
 
   /** A pie chart from values; each slice's angle is value ÷ total × 360°. */
   make_pie(d) {
-    const c = this.pointRef(d.center ?? [0, 0]);
+    // `at` is what every other chart calls it: a pie given one was silently drawn at the origin.
+    const c = this.pointRef(d.center ?? d.at ?? [0, 0]);
     const r = () => this.ev(d.radius ?? 3);
     const vals = () => this.numbers(d.values, "values");
     const start = this.ev(d.start ?? 90), dir = d.clockwise === false ? 1 : -1;
@@ -324,8 +326,9 @@ export const TYPES_DATA = {
    * shaded) or a list of [r, c]. "border": grid | outer | none. "gap" spaces the columns apart
    * (separate boxes) with an optional "joiner" text between. "shape": "triangle" (row r has r cells).
    */
-  make_table(d) {
-    const at = this.pointRef(d.at ?? [0, 0])();
+  make_table(raw) {
+    const d = normalizeTable(raw);
+    const at = [...this.pointRef(d.at ?? [0, 0])()];
     const head = d.header ?? {};
     const hr = head.cols ? 1 : 0, hc = head.rows ? 1 : 0;
     const bodyRows = d.rows ? d.rows.length : this.ev(d.rowCount ?? head.rows?.length ?? 1);
@@ -334,6 +337,15 @@ export const TYPES_DATA = {
     const nR = bodyRows + hr, nC = bodyCols + hc;
     const size = Array.isArray(d.cell) ? d.cell : [1, 1];
     const cw = d.colWidths ? this.numbers(d.colWidths) : Array(nC).fill(this.ev(size[0]));
+    // A column is as wide as its longest entry at full size: "Frequency" in a one-unit column was written tiny.
+    if (d.rows && !d.colWidths) {
+      const base = d.textSize ?? 24;
+      const entries = (c) => [...(head.cols && c >= hc ? [head.cols[c - hc]] : []), ...(head.rows && c < hc ? head.rows : []), ...d.rows.map((row) => row[c - hc])].filter((v) => v !== undefined);
+      const before = cw.reduce((a, b) => a + b, 0);
+      for (let c = 0; c < nC; c++) cw[c] = Math.max(cw[c], ...entries(c).map((v) => (String(v).length * 0.56 * base + 14) / this.b.unitX));
+      // The wider table grows away from the board's middle, where whatever it sits beside is.
+      if (at[0] + before / 2 < (this.bbox.x0 + this.bbox.x1) / 2) at[0] -= cw.reduce((a, b) => a + b, 0) - before;
+    }
     const rh = d.rowHeights ? this.numbers(d.rowHeights) : Array(nR).fill(this.ev(size[1]));
     const cellExpr = d.value;
     const gap = this.ev(d.gap ?? 0);
@@ -433,6 +445,35 @@ export const TYPES_DATA = {
   },
 
   /** A stem-and-leaf diagram (or back-to-back, with "left" data): leaves in fixed columns so they line up. */
+  /** A pictogram: rows of symbols, each worth `unit`, a half symbol for half of it, and its key. */
+  make_pictogram(d) {
+    const at = this.pointRef(d.at ?? [0, 0])();
+    const values = this.numbers(d.values, "values");
+    const unit = this.ev(d.unit ?? 1);
+    const names = (d.categories ?? []).map(String);
+    const rowH = this.ev(d.rowHeight ?? 0.9), slot = this.ev(d.slot ?? 0.8);
+    const size = d.textSize ?? Math.min(26, rowH * this.b.unitY * 0.62);
+    const glyph = d.symbol ?? "●";
+    const nameW = Math.max(1, ...names.map((n) => (n.length * 0.56 * size + 16) / this.b.unitX));
+    const o = this.register({ id: d.id, type: "pictogram", color: colour(d.color) });
+    o.parts = { names: [], symbols: [], key: [] };
+    o.order = ["names", "symbols", "key"];
+    values.forEach((value, k) => {
+      const y = at[1] - rowH * (k + 0.5);
+      if (names[k] !== undefined) o.parts.names.push(this.text(() => [at[0] + nameW / 2, y], names[k], { color: "white" }, size));
+      const count = value / unit, whole = Math.floor(count + 1e-9), half = count - whole >= 0.25 && glyph === "●";
+      const row = [];
+      for (let i = 0; i < whole + (half ? 1 : 0); i++) row.push(this.text(() => [at[0] + nameW + slot * (i + 0.5), y], i < whole ? glyph : "◐", { color: d.color ?? "white" }, size));
+      o.parts[`r${k + 1}`] = row;
+      o.parts.symbols.push(...row);
+    });
+    if (d.key !== false) {
+      const y = at[1] - rowH * (values.length + 0.45);
+      const words = typeof d.key === "string" ? d.key : "";
+      o.parts.key.push(this.text(() => [at[0] + (nameW + slot * 3) / 2, y], `Key: ${glyph} = ${formatNumber(unit)}${words ? ` ${words}` : ""}`, { color: "grey" }, Math.max(14, size * 0.8)));
+    }
+  },
+
   make_stemleaf(d) {
     const at = this.pointRef(d.at ?? [0, 0])();
     const unit = this.ev(d.stemUnit ?? 10), leafUnit = this.ev(d.leafUnit ?? 1);
@@ -446,7 +487,8 @@ export const TYPES_DATA = {
     const s0 = d.stems ? this.ev(d.stems[0]) : Math.min(...all.map((p) => p[0]));
     const s1 = d.stems ? this.ev(d.stems[1]) : Math.max(...all.map((p) => p[0]));
     const rowH = this.ev(d.rowHeight ?? 0.7), slot = this.ev(d.slot ?? 0.5), stemW = this.ev(d.stemWidth ?? 1.2);
-    const leavesOf = (list, s) => list.filter((p) => p[0] === s).map((p) => p[1]).sort((a, b) => a - b);
+    // `ordered: false` keeps the leaves as the data gave them: the "before sorting" diagram of a lesson.
+    const leavesOf = (list, s) => { const leaves = list.filter((p) => p[0] === s).map((p) => p[1]); return d.ordered === false ? leaves : leaves.sort((a, b) => a - b); };
     const maxLeft = left ? Math.max(1, ...Array.from({ length: s1 - s0 + 1 }, (_, k) => leavesOf(left, s0 + k).length)) : 0;
     const lineX = at[0] + maxLeft * slot + (left ? slot * 0.6 : 0) + stemW;
     const c = colour(d.color, INK.white);

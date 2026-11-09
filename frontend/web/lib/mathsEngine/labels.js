@@ -15,7 +15,7 @@ const DIRS = { n: [0, -1], s: [0, 1], e: [1, 0], w: [-1, 0], ne: [0.75, -0.75], 
 const GAP = 8;
 
 let ctx2d = null;
-function textBox(text, size) {
+export function textBox(text, size) {
   ctx2d ??= document.createElement("canvas").getContext("2d");
   ctx2d.font = `600 ${size}px "Aria Board", "Nunito", system-ui, sans-serif`;
   // Matches how the board draws text (its line box is taller than the font size).
@@ -82,7 +82,7 @@ function perpOf(board, lab) {
 }
 
 /** The best offset for one label, given obstacles (sample points and rectangles), in board pixels. */
-function choose(board, lab, anchor, box, strokes, rects) {
+function choose(board, scene, lab, anchor, box, strokes, rects) {
   const W = board.canvasWidth, H = board.canvasHeight;
   const perp = perpOf(board, lab);
   const pref0 = typeof lab.pref === "function" ? lab.pref() : lab.pref;
@@ -114,6 +114,14 @@ function choose(board, lab, anchor, box, strokes, rects) {
     for (const [x, y] of strokes) if (x > r.left - 2 && x < r.right + 2 && y > r.top - 2 && y < r.bottom + 2) hits++;
     score += hits * 6;
     if (r.left < 2 || r.right > W - 2 || r.top < 2 || r.bottom > H - 2) score += 5000;
+    // A circle's name inside a different circle names the wrong one.
+    if (lab.obj?.circle) {
+      for (const o of scene.objs.values()) {
+        if (o === lab.obj || !o.circle) continue;
+        const q = o.circle(), mid = toScreen(board, q.c);
+        if (Math.hypot((r.left + r.right) / 2 - mid[0], (r.top + r.bottom) / 2 - mid[1]) < q.r * board.unitX) score += 400;
+      }
+    }
     if (!best || score < best.score) best = { score, ox, oy, rect: r };
   });
   return best;
@@ -148,7 +156,7 @@ export function layoutAll(board, scene, finalEls, labels) {
     const tries = lab.candidates ? lab.candidates.map((f, k) => [k, f()]) : [[0, lab.anchor()]];
     for (const [k, a] of tries) {
       if (!a.every(Number.isFinite)) continue;
-      const pick = choose(board, lab, toScreen(board, a), box, strokes, rects);
+      const pick = choose(board, scene, lab, toScreen(board, a), box, strokes, rects);
       pick.score += k * 8;
       if (!best || pick.score < best.score) best = { ...pick, k };
     }
@@ -175,7 +183,7 @@ export function placeLabel(board, scene, lab) {
     const box = textBox(other.content(), other.size);
     rects.push({ left: oa[0] + other.offset[0] - box.w / 2, right: oa[0] + other.offset[0] + box.w / 2, top: oa[1] + other.offset[1] - box.h / 2, bottom: oa[1] + other.offset[1] + box.h / 2 });
   }
-  const best = choose(board, lab, toScreen(board, a), textBox(lab.content(), lab.size), strokes, rects);
+  const best = choose(board, scene, lab, toScreen(board, a), textBox(lab.content(), lab.size), strokes, rects);
   lab.offset = [best.ox, best.oy];
   lab.placed = true;
   board.update();
@@ -191,4 +199,79 @@ export function overlappingTexts(board) {
   const pairs = [];
   for (let i = 0; i < rects.length; i++) for (let j = i + 1; j < rects.length; j++) if (overlapArea(rects[i].r, rects[j].r) > 4) { n++; pairs.push([rects[i].t.plaintext ?? "", rects[j].t.plaintext ?? ""]); }
   return { n, pairs };
+}
+
+/**
+ * Writing the scene placed by hand may land on other writing, across a line or on a pie: each such piece
+ * moves the shortest distance that clears it, staying on the board. (Labels were placed clear already.)
+ * A piece that only touches a line moves a little at most: inside a Venn diagram, where it sits is its meaning.
+ */
+export function settleFreeText(board, scene, finalEls) {
+  const W = board.canvasWidth, H = board.canvasHeight;
+  const strokes = geometrySamples(board, finalEls.filter((el) => !el.__label));
+  const rectOf = (el) => {
+    const c = el.coords.scrCoords;
+    const box = textBox(el.__content(), el.__size ?? 24);
+    return { left: c[1] - box.w / 2, right: c[1] + box.w / 2, top: c[2] - box.h / 2, bottom: c[2] + box.h / 2 };
+  };
+  const others = new Map();
+  for (const el of finalEls) if (el?.elType === "text" && el.__content && String(el.__content()).trim()) others.set(el, rectOf(el));
+  for (const lab of scene.labels) if (!others.has(lab.el) && lab.placed && finalEls.includes(lab.el)) others.set(lab.el, rectOf(lab.el));
+  const solid = [];
+  for (const o of scene.objs.values()) {
+    if (o.type !== "sector" && o.type !== "pie") continue;
+    const P = o.poly?.();
+    if (o.type === "sector" && P?.length > 2) solid.push(P.map((p) => toScreen(board, p)));
+    if (o.type === "pie" && o.circle) { const { c, r } = o.circle(); solid.push(Array.from({ length: 48 }, (_, i) => toScreen(board, [c[0] + r * Math.cos((i * Math.PI) / 24), c[1] + r * Math.sin((i * Math.PI) / 24)]))); }
+  }
+  const inPoly = (x, y, P) => {
+    let inside = false;
+    for (let i = 0, j = P.length - 1; i < P.length; j = i++) if (P[i][1] > y !== P[j][1] > y && x < ((P[j][0] - P[i][0]) * (y - P[i][1])) / (P[j][1] - P[i][1]) + P[i][0]) inside = !inside;
+    return inside;
+  };
+  // Filled shapes (bars, shaded parts): writing already inside one may stay, writing outside must not move in.
+  const fills = [];
+  for (const el of finalEls) {
+    if (el?.elType !== "curve" || !((el.visProp.fillopacity ?? 0) > 0.05) || !(el.points?.length > 2)) continue;
+    const P = el.points.map((c) => [c.scrCoords[1], c.scrCoords[2]]).filter((p) => p.every(Number.isFinite));
+    if (P.length > 2) fills.push(P);
+  }
+  const enters = (el, r) => {
+    const home = others.get(el), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2, hx = (home.left + home.right) / 2, hy = (home.top + home.bottom) / 2;
+    return fills.some((P) => inPoly(x, y, P) && !inPoly(hx, hy, P));
+  };
+  const covers = (r) => [[r.left, r.top], [r.right, r.top], [r.left, r.bottom], [r.right, r.bottom], [(r.left + r.right) / 2, (r.top + r.bottom) / 2]].some(([x, y]) => solid.some((P) => inPoly(x, y, P)));
+  const hits = (el, r) => {
+    let writing = 0, line = false;
+    for (const [other, o] of others) if (other !== el && overlapArea(r, o) > 0) writing++;
+    for (const [x, y] of strokes) if (x > r.left && x < r.right && y > r.top && y < r.bottom) { line = true; break; }
+    const cost = writing * 4 + (covers(r) ? 3 : 0) + (enters(el, r) ? 3 : 0) + (line ? 1 : 0);
+    return { cost, hard: writing > 0 || covers(r) };
+  };
+  let moved = false;
+  for (const el of others.keys()) {
+    if (!el.__free || !el.__nudge) continue;
+    const r = others.get(el);
+    const now = hits(el, r);
+    if (!now.cost) continue;
+    const step = (r.bottom - r.top) / 2;
+    let best = null;
+    for (let ring = 1; ring <= (now.hard ? 16 : 4) && !(best && best.cost === 0); ring++) {
+      for (let k = 0; k < 16; k++) {
+        const a = (k * Math.PI) / 8, ox = Math.cos(a) * step * ring, oy = Math.sin(a) * step * ring;
+        const q = { left: r.left + ox, right: r.right + ox, top: r.top + oy, bottom: r.bottom + oy };
+        if (q.left < 4 || q.right > W - 4 || q.top < 4 || q.bottom > H - 4) continue;
+        const { cost } = hits(el, q);
+        if (!best || cost < best.cost) best = { cost, ox, oy, q };
+        if (cost === 0) break;
+      }
+    }
+    if (best && best.cost < now.cost) {
+      el.__nudge.x += best.ox / board.unitX;
+      el.__nudge.y -= best.oy / board.unitY;
+      others.set(el, best.q);
+      moved = true;
+    }
+  }
+  if (moved) board.update();
 }

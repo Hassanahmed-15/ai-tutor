@@ -46,12 +46,11 @@ export class Player {
       pan: { enabled: false }, zoom: { enabled: false }, renderer: "svg",
     });
     this.scene = new Scene(this.board, spec).build();
-    if (this.scene.problems.length) this.state.errors.push(...this.scene.problems);
-    else {
-      this.layout();
-      this.checkTypedAngles();
-      this.checkTypedLengths();
-    }
+    // One object that cannot be built is left out; the rest of the drawing is laid out and drawn.
+    if (this.scene.problems.length) this.state.warnings.push(...this.scene.problems);
+    this.layout();
+    this.checkTypedAngles();
+    this.checkTypedLengths();
     return this.state;
   }
 
@@ -76,6 +75,7 @@ export class Player {
         if (a.transform) for (const [id, o] of sc.objs) if (o.imageOf === a.transform && !o.hidden) add(sc.allElements(id).filter((el) => !el.__label));
       }
     }
+    this.finalEls = els;
     layoutAll(this.board, sc, els, els.filter((el) => el.__label).map((el) => el.__label));
   }
 

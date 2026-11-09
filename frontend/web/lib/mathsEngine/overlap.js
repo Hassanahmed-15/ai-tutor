@@ -162,3 +162,113 @@ export function armlessAngles(spec) {
   }
   return problems;
 }
+
+
+/**
+ * A table as it was meant: `header: { cols: true }` (the model's shorthand for "my first row is the header",
+ * which crashed the table), and a header repeated as the first row, which was written twice.
+ */
+export function normalizeTable(d) {
+  const head = d.header;
+  if (!head || !Array.isArray(d.rows) || !d.rows.length) return d;
+  let rows = d.rows;
+  const header = { ...head };
+  if (header.cols === true) { header.cols = rows[0].map(String); rows = rows.slice(1); }
+  else if (!Array.isArray(header.cols)) delete header.cols;
+  else if (rows[0].map(String).join("|") === header.cols.map(String).join("|")) rows = rows.slice(1);
+  if (header.rows === true) { header.rows = rows.map((r) => String(r[0])); rows = rows.map((r) => r.slice(1)); }
+  else if (!Array.isArray(header.rows)) delete header.rows;
+  return { ...d, header, rows };
+}
+
+/** "A      B      C" or "0   2   4": short labels spaced apart by hand. A readout ("θ = 30°    sin θ = 0.5") is fine. */
+const gluedLabels = (text) => {
+  const bits = text.trim().split(/ {2,}/);
+  return bits.length >= 2 && bits.every((b) => b.length <= 12 && !/[={≈]/.test(b));
+};
+const onlySymbol = (t) => t.length <= 4 && !/[\p{L}\p{N}]/u.test(t);
+
+/** The size a board's drawing area gives one unit, about: a little under the width beside the text column. */
+function unitPx(spec) {
+  const b = spec.board ?? {};
+  if (!b.x || !b.y) return 40;
+  return Math.min(500 / (b.x[1] - b.x[0]), 410 / (b.y[1] - b.y[0]));
+}
+
+/**
+ * Charts built the wrong way, and writing on writing. The engine has real bars, tables, pies and
+ * pictograms that compute and place everything; scenes that drew them by hand from rectangles and
+ * strings ("A        B        C") were the worst boards in the first audit of real maths courses (2026-11-09).
+ */
+export function chartProblems(spec) {
+  const out = [];
+  const vars = scope(spec);
+  const objects = spec.objects ?? [];
+  const texts = objects.filter((o) => o.type === "text" && typeof o.text === "string");
+  for (const t of texts) if (gluedLabels(t.text)) out.push(`text "${t.text.trim().slice(0, 30)}" packs several labels into one string with spaces: give each thing its own label (a chart's categories and scale come from "bars" or the axes)`);
+  const has = (type) => objects.some((o) => o.type === type);
+  const rects = objects.filter((o) => o.type === "polygon" && Array.isArray(o.points) && o.points.length === 4).map((o) => corners(o, new Map(), vars)).filter(Boolean).filter((P) => new Set(P.map((p) => p[0])).size === 2 && new Set(P.map((p) => p[1])).size === 2);
+  // Three or more of one width and different heights: two rectangles side by side are usually an area model.
+  const floors = new Map();
+  for (const P of rects) { const y = Math.min(...P.map((p) => p[1])); floors.set(y, [...(floors.get(y) ?? []), P]); }
+  const span = (P, k) => Math.round((Math.max(...P.map((p) => p[k])) - Math.min(...P.map((p) => p[k]))) * 100);
+  const isChart = (group) => group.length >= 3 && new Set(group.map((P) => span(P, 0))).size === 1 && new Set(group.map((P) => span(P, 1))).size >= 2;
+  if (!has("bars") && !has("histogram") && [...floors.values()].some(isChart)) out.push('rectangles on one baseline are a bar chart: use type "bars" (categories, values) so the bars, axis and labels are computed');
+  if (!has("pictogram") && texts.filter((t) => onlySymbol(t.text.trim())).length >= 3) out.push('rows of symbols are a pictogram: use type "pictogram" (categories, values, unit, symbol, key)');
+  for (const o of objects) {
+    if (o.type !== "pictogram" || !Array.isArray(o.values)) continue;
+    const unit = Number(o.unit ?? 1);
+    const whole = o.symbol && o.symbol !== "●";
+    for (const v of o.values) if (typeof v === "number" && !Number.isInteger((v / unit) * (whole ? 1 : 2))) out.push(`pictogram ${o.id}: ${v} is not a ${whole ? "whole" : "whole or half"} number of symbols of ${unit}: choose a unit that fits`);
+  }
+  const leaves = objects.filter((o) => o.type === "stemleaf");
+  for (let i = 0; i < leaves.length; i++) for (let j = i + 1; j < leaves.length; j++) if (JSON.stringify(leaves[i].data) === JSON.stringify(leaves[j].data) && (leaves[i].ordered === false) === (leaves[j].ordered === false)) out.push(`stemleaf ${leaves[i].id} and ${leaves[j].id} show the same thing: to show unsorted data give the first "ordered": false`);
+  // Writing placed on writing, at the size the board will draw it.
+  const u = unitPx(spec);
+  const boxes = texts.filter((t) => Array.isArray(t.at) && t.at.every((v) => typeof v === "number")).map((t) => {
+    const size = t.size ?? 24, hw = (t.text.length * 0.5 * size) / 2 / u, hh = (size * 0.6) / u;
+    return { t, x0: t.at[0] - hw, x1: t.at[0] + hw, y0: t.at[1] - hh, y1: t.at[1] + hh };
+  });
+  for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+    const a = boxes[i], b = boxes[j];
+    const w = Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0), h = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
+    if (w > 0 && h > 0 && (w * h) / Math.min((a.x1 - a.x0) * (a.y1 - a.y0), (b.x1 - b.x0) * (b.y1 - b.y0)) > 0.2) out.push(`text "${a.t.text.slice(0, 24)}" and text "${b.t.text.slice(0, 24)}" would sit on each other at this size: move one or shorten it`);
+  }
+  // A table beside a chart, measured the way the table will be drawn: columns widen to hold their longest entry.
+  const tableBox = (o) => {
+    if (!Array.isArray(o.at) || !o.at.every((v) => typeof v === "number") || !Array.isArray(o.rows)) return null;
+    const t = normalizeTable(o), cell = Array.isArray(t.cell) ? t.cell : [1, 1];
+    const all = [...(t.header?.cols ? [t.header.cols] : []), ...t.rows];
+    const cols = Math.max(...all.map((r) => r.length));
+    let w = 0;
+    for (let c = 0; c < cols; c++) w += Math.max(Number(cell[0]) || 1, ...all.map((r) => (String(r[c] ?? "").length * 0.56 * (t.textSize ?? 24) + 14) / u));
+    return { x0: o.at[0], x1: o.at[0] + w, y0: o.at[1] - all.length * (Number(cell[1]) || 1), y1: o.at[1] };
+  };
+  const barsBox = (o) => {
+    const v = Array.isArray(o.values) ? o.values.filter((n) => typeof n === "number") : [];
+    const x = Array.isArray(o.x) ? o.x.filter((n) => typeof n === "number") : Array.isArray(o.categories) ? o.categories.map((_, i) => i) : [];
+    if (!v.length || !x.length) return null;
+    const hw = (typeof o.width === "number" ? o.width : 0.7) / 2;
+    return { x0: Math.min(...x) - hw, x1: Math.max(...x) + hw, y0: 0, y1: Math.max(...v) };
+  };
+  const pieBox = (o) => {
+    const c = o.center ?? o.at ?? [0, 0], r = o.radius ?? 3;
+    return Array.isArray(c) && c.every((v) => typeof v === "number") && typeof r === "number" ? { x0: c[0] - r, x1: c[0] + r, y0: c[1] - r, y1: c[1] + r } : null;
+  };
+  const charts = [...objects.filter((o) => o.type === "bars").map((o) => [o, barsBox(o)]), ...objects.filter((o) => o.type === "pie").map((o) => [o, pieBox(o)])].filter(([, b]) => b);
+  for (const table of objects.filter((o) => o.type === "table")) {
+    const a = tableBox(table);
+    if (!a) continue;
+    for (const [c, b] of charts) if (a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1) out.push(`table ${table.id} and ${c.type} ${c.id} would sit on each other (the table's columns widen to hold their entries): move the table clear of it`);
+  }
+  for (const o of objects.filter((x) => x.type === "pie")) {
+    const c = o.center ?? o.at ?? [0, 0];
+    if (!Array.isArray(c) || !c.every((v) => typeof v === "number") || typeof (o.radius ?? 3) !== "number") continue;
+    const r = o.radius ?? 3;
+    for (const a of boxes) {
+      const dx = Math.max(a.x0 - c[0], 0, c[0] - a.x1), dy = Math.max(a.y0 - c[1], 0, c[1] - a.y1);
+      if (dx * dx + dy * dy < r * r) out.push(`text "${a.t.text.slice(0, 24)}" sits on pie ${o.id}: move it clear of the circle`);
+    }
+  }
+  return out;
+}

@@ -155,7 +155,8 @@ Parts are drawn with `"draw": ["id.part"]`, e.g. `S.mean`, `H.b3`, `G.row2`, `cu
 | `dotplot` | `values`, `y`, `marker` |
 | `boxplot` | `five: [min, Q1, median, Q3, max]` (expressions, e.g. read off a curve), or `data` |
 | `table` | `at` (top-left), `cell: [w, h]`, `rows: [[…]]`, or `value` (an expression in r, c, R, C) with `header: { cols, rows, corner }`. `shade` (an expression or a list of [r, c]), `gap` and `joiner` (slots), `border`, `shape: "triangle"` (Pascal). Parts: `grid`, `header`, `cells`, `row1…`, `cell2_3`, `shade` |
-| `stemleaf` | `at`, `data` (and `left` for back-to-back), `stemUnit`, `key`. Leaves sit in fixed columns, so they line up |
+| `stemleaf` | `at`, `data` (and `left` for back-to-back), `stemUnit`, `key`. Leaves sit in fixed columns, so they line up. `ordered: false` keeps the leaves in the data's order (the unsorted diagram) |
+| `pictogram` | `at` (top-left), `categories`, `values`, `unit` (what one symbol stands for), `symbol` (default ●, which can be halved), `key` (the word for what is counted, e.g. "students"; `false` for none). Each value must be a whole number of symbols, or a half with ●. Parts: `names`, `r1…`, `key` |
 
 ### 3-D (needs `board.view`)
 

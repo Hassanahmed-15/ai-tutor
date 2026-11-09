@@ -214,13 +214,15 @@ export class Scene {
     return { ...HIDDEN, strokeColor: colour(d.color, fallback), strokeWidth: d.width ?? width, strokeOpacity: d.opacity ?? 1, dash: d.dash ? 2 : 0, lineCap: "round" };
   }
   text(get, content, d, size = 24) {
-    const t = this.b.create("text", [() => get()[0], () => get()[1], content], {
+    const nudge = { x: 0, y: 0 };
+    const t = this.b.create("text", [() => get()[0] + nudge.x, () => get()[1] + nudge.y, content], {
       ...HIDDEN, strokeColor: colour(d.labelColor ?? d.color, INK.white), fontSize: d.size ?? size,
       anchorX: "middle", anchorY: "middle", display: "html", cssStyle: isMathLetter(typeof content === "function" ? safeText(content) : content) ? MATH_FONT : FONT, parse: false, useMathJax: false,
     });
     // Known without rendering, so layout can see texts that are still hidden.
     t.__content = typeof content === "function" ? content : () => String(content);
     t.__size = d.size ?? size;
+    t.__nudge = nudge;
     return t;
   }
 
@@ -274,7 +276,8 @@ export class Scene {
         const make = this[`make_${d.type}`];
         if (!make) throw new Error(`unknown type "${d.type}"`);
         this.curFrame = d.frame ? this.frameOf(d.frame) : null;
-        make.call(this, d);
+        // "fill": "none" means no fill; read as a colour it drew a grey shape over everything inside.
+        make.call(this, ["none", "transparent", ""].includes(d.fill) || d.fill === false ? (({ fill, ...rest }) => rest)(d) : d);
       } catch (err) {
         this.problems.push(`${d.id ?? "?"}: ${err.message}`);
       } finally {
@@ -282,6 +285,8 @@ export class Scene {
       }
     }
     for (const g of this.spec.groups ?? []) this.register({ id: g.id, type: "group", parts: { all: g.of.flatMap((id) => this.allInOrder(id)) }, order: ["all"] });
+    // Anything worked out while the scene was half built (where a circle's name goes, away from circles not made yet) is worked out again.
+    this.version++;
     this.b.update();
     for (const fn of this.afterBuild ?? []) fn();
     return this;
@@ -680,7 +685,10 @@ export class Scene {
     return this.memo(() => {
       const c = centre(), r = radius();
       const { x0, x1, y0, y1 } = this.bbox;
-      const dx = (c[0] - (x0 + x1) / 2) * this.b.unitX, dy = (c[1] - (y0 + y1) / 2) * this.b.unitY;
+      // Away from the other circles of the figure when there are some (a Venn diagram), else from the board's middle.
+      const round = [...this.objs.values()].filter((o) => o.circle).map((o) => o.circle().c);
+      const mid = round.length > 1 ? [round.reduce((n, q) => n + q[0], 0) / round.length, round.reduce((n, q) => n + q[1], 0) / round.length] : [(x0 + x1) / 2, (y0 + y1) / 2];
+      const dx = (c[0] - mid[0]) * this.b.unitX, dy = (c[1] - mid[1]) * this.b.unitY;
       const far = Math.hypot(dx, dy) > Math.min(this.b.canvasWidth, this.b.canvasHeight) * 0.12;
       const away = Math.atan2(dy, dx);
       const others = [...this.objs.values()].filter((o) => o.id !== selfId && (o.circle || (o.type === "ellipse" && o.poly)));
@@ -900,7 +908,14 @@ export class Scene {
       return [v[0] + k * Math.cos(m), v[1] + k * Math.sin(m)];
     };
     const text = d.label === "auto" || d.label === undefined ? (d.label === undefined ? undefined : `{angle(${d.points.join(",")}):${d.dp ?? 0}}°`) : d.label;
-    const lab = text === undefined ? null : this.text(at, this.template(text), d, 22);
+    // Laid out like every other label: on the bisector when it fits there, further along it, or outside the
+    // corner when the angle is too tight for its words ("α = 65.4°" in a thin triangle went across a side).
+    const along = (t) => () => {
+      const { v, a0, delta } = dirs();
+      const m = a0 + delta / 2, k = r() * (d.labelDistance ?? 1.9) * t;
+      return [v[0] + k * Math.cos(m), v[1] + k * Math.sin(m)];
+    };
+    const lab = text === undefined ? null : this.label(o, text, [at, along(1.5), along(-1.2)], "inside", { ...d, labelSize: 22 });
     o.parts = { mark: [el], label: lab ? [lab] : [] };
     o.order = ["mark", "label"];
   }
@@ -916,6 +931,8 @@ export class Scene {
     } else {
       if (!at) throw new Error("a text needs at [x, y] or an anchor object");
       el = this.text(at, this.template(d.text), d, d.size ?? 24);
+      // Placed by hand, so it may land on something: AriaPencil moves it aside when it does.
+      el.__free = true;
     }
     o.parts = { text: [el] };
     o.order = ["text"];
