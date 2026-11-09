@@ -1,6 +1,9 @@
 import { checkNumbers, numberIssuesText } from "./numberCheck";
 import { canvasBlocksOn, writeBoardBlocks } from "./blocksWriter";
 import { withoutBannedWords } from "../teaching/styleCheck";
+import { prepareNarration } from "../narrationAudio";
+import { splitNarrationSentences } from "../narrationText";
+import { CANVAS_OPENING_BOARDS } from "../progressiveWindow";
 import { teachingOrdersOn } from "../teaching/courseOrders";
 import "server-only";
 
@@ -167,7 +170,9 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
   let diagramsUsed = false;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
+      const startedCall = Date.now();
       const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, attempt > 1 && lastError ? `${request}\n\nYour previous plan could not be used: ${lastError}` : request, planTokens), (fromDocument ? 180_000 : 120_000) * Math.max(1, planTokens / (fromDocument ? 16_000 : 9000)), "canvas plan");
+      console.log(`[timing] kind=plan-call session=- ms=${Date.now() - startedCall} attempt=${attempt}`);
       costUsd += c;
       const valid = validatePlan(json);
       // Only a refresher the student's knowledge offered — the planner may not add its own (lib/canvas/plan.ts).
@@ -193,14 +198,28 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         const gaps = courseCoverageGaps(plan.beats, courseDoc.contentBlocks, requiredTermsOf(courseDoc.contentBlocks[0].teachingHints));
         if (gaps.boards.length || gaps.terms.length > 2) {
           lastError = `it leaves out parts of the syllabus lesson: ${coverageMessage(gaps)}`;
-          if (attempt < maxAttempts) { console.log(`[canvas] plan sent back for coverage: ${lastError.slice(0, 600)}`); continue; }
-          console.warn(`[canvas] plan kept with coverage gaps: ${lastError.slice(0, 600)}`);
-          // The gaps are repaired board by board instead of shipped: each board that left out key
-          // points has its own script rewritten to add them, everything else kept (a history lesson
-          // shipped without the 1960s dollar crisis this way, audit 2026-10-17).
-          const repaired = await repairBoardScripts(openai, plan.beats, gaps.boards);
-          costUsd += repaired.costUsd;
-          if (repaired.count) { plan = { ...plan, beats: repaired.beats }; console.log(`[canvas] ${repaired.count} board script(s) rewritten to teach their missing key points`); }
+          // A FEW BOARDS SHORT: those boards are rewritten, not the whole lesson planned again, which cost a
+          // minute of the student's wait (2026-11-09). Still short afterwards: the plan goes back, as it always did.
+          if (attempt < maxAttempts && gaps.boards.length && gaps.boards.length <= 3 && gaps.terms.length <= 2) {
+            const repaired = await repairBoardScripts(openai, plan.beats, gaps.boards);
+            costUsd += repaired.costUsd;
+            const after = courseCoverageGaps(repaired.beats, courseDoc.contentBlocks, requiredTermsOf(courseDoc.contentBlocks[0].teachingHints));
+            if (!after.boards.length && after.terms.length <= 2) {
+              plan = { ...plan, beats: repaired.beats };
+              console.log(`[canvas] plan's ${repaired.count} short board(s) rewritten in place; it now covers every key point`);
+              lastError = "";
+            }
+          }
+          if (lastError && attempt < maxAttempts) { console.log(`[canvas] plan sent back for coverage: ${lastError.slice(0, 600)}`); continue; }
+          if (lastError) {
+            console.warn(`[canvas] plan kept with coverage gaps: ${lastError.slice(0, 600)}`);
+            // The gaps are repaired board by board instead of shipped: each board that left out key
+            // points has its own script rewritten to add them, everything else kept (a history lesson
+            // shipped without the 1960s dollar crisis this way, audit 2026-10-17).
+            const repaired = await repairBoardScripts(openai, plan.beats, gaps.boards);
+            costUsd += repaired.costUsd;
+            if (repaired.count) { plan = { ...plan, beats: repaired.beats }; console.log(`[canvas] ${repaired.count} board script(s) rewritten to teach their missing key points`); }
+          }
         } else console.log(`[canvas] plan covers every key point${gaps.terms.length ? ` (terms not used: ${gaps.terms.join(", ")})` : ""}`);
       }
       // THE CONCEPT LADDER (lib/canvas/conceptLadder.ts): each new part climbs its rungs over several
@@ -363,57 +382,26 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
           continue;
         }
         console.log(`[canvas] visual policy (${visualMode}): ${visualPolicy.audit.illustrations} generated picture(s), ${visualPolicy.audit.meaningfulVisuals}/${plan.beats.length} purpose-built visual board(s)${visualPolicy.audit.changes.length ? ` — ${visualPolicy.audit.changes.join(" | ")}` : ""}`);
-        // CHECK THE PITCH: a model told a grade still writes above it, so each script is measured
-        // and the ones too hard for this student are rewritten simpler (lib/studentCard.ts).
-        // The target is the policy's reading grade: plainer English or simpler language lowers it.
+        // THE WORDING IS POLISHED (polishBoards below). A COURSE LESSON polishes only the boards it waits for
+        // before it starts; each later board is polished when it is written, while earlier ones play
+        // (owner, 2026-11-09: planning took 2¼ minutes of a 5-minute wait). The same checks run on every board.
         const policy = canvasPolicy(input);
         // EASY WORDS IN A COURSE LESSON (owner, 2026-10-24: "simpler doesn't mean the text will be small, it
         // means easy wording"): its sentences are rewritten to grade 7 at most — everyday words, each
         // syllabus term kept and explained — whatever the student's level; the ideas stay at their level.
         // Course lessons came out at grade 10–11 (13.8–17.6 words a sentence, 3–5 unexplained terms).
         const pitch = curriculum ? Math.min(policy?.readingGrade ?? COURSE_READING_GRADE, COURSE_READING_GRADE) : policy?.readingGrade;
-        if (pitch !== undefined) {
-          const scriptsBefore = plan.beats.map((beat) => beat.script);
-          const fixed = await pitchScripts(openai, plan.beats.filter((beat) => beat.stage !== "exam"), pitch);
-          costUsd += fixed.costUsd;
-          // A simpler rewrite must not break a number: a script whose calculations got worse goes back.
-          // Nor drop the syllabus (owner, 2026-10-25: "does it still check all the outcomes?"): a board
-          // that no longer teaches a key point or required term it taught before keeps its old script.
-          const blocks = curriculum?.contentBlocks ?? [];
-          const terms = blocks.length ? requiredTermsOf(blocks[0].teachingHints) : [];
-          const lessonBeats = plan.beats.filter((beat) => !beat.refresher);
-          plan.beats.forEach((beat, i) => {
-            if (beat.script === scriptsBefore[i]) return;
-            if (checkNumbers(beat.script).length > checkNumbers(scriptsBefore[i]).length) {
-              beat.script = scriptsBefore[i];
-              return;
-            }
-            const lost = syllabusLost(scriptsBefore[i], beat.script, blocks[lessonBeats.indexOf(beat)], terms);
-            if (lost.length) {
-              console.log(`[pitch] ${beat.id}: simpler script kept out — it dropped ${lost.map((x) => `"${x.slice(0, 60)}"`).join(", ")}`);
-              beat.script = scriptsBefore[i];
-            }
-          });
-        }
-        // WORDS ARIA NEVER SAYS ("basically", "obviously", "just do…"; lib/teaching/styleCheck.ts), taken out
-        // of a course lesson taught in teaching order after every rewrite. Sentences stay where they are.
-        if (curriculum && teachingOrdersOn()) {
-          let scrubbed = 0;
-          for (const beat of plan.beats) {
-            const clean = withoutBannedWords(beat.script);
-            if (clean !== beat.script) { beat.script = clean; scrubbed++; }
-          }
-          if (scrubbed) console.log(`[teaching] banned filler words taken out of ${scrubbed} script(s)`);
-        }
         if (policy) {
           // Each board is written later, from its plan beat alone: it carries the policy's board brief.
           const audience = policyForBoards(policy);
           for (const beat of plan.beats) beat.audience = audience;
         }
-        // CHECK THE FACTS (prompt bench, 2026-10-18: "motion includes stillness", "antigens cause no
-        // disease" reached students). One call reads every sentence; a wrong one is corrected in place.
-        // Not on a PDF lesson: there the document is the authority, not a model's general knowledge.
-        if (!sourceMode && !referenceDocumentOf(input)) costUsd += (await factCheckScripts(openai, input.topic, plan.beats)).costUsd;
+        const factCheck = !sourceMode && !referenceDocumentOf(input);
+        const polishNow = curriculum ? plan.beats.slice(0, CANVAS_OPENING_BOARDS) : plan.beats;
+        const startedPolish = Date.now();
+        costUsd += await polishBoards(openai, input.topic, plan.beats, polishNow, { grade: pitch, course: curriculum, factCheck });
+        console.log(`[timing] kind=plan-polish session=- ms=${Date.now() - startedPolish} boards=${polishNow.length}/${plan.beats.length}`);
+        if (curriculum) for (const beat of plan.beats.slice(CANVAS_OPENING_BOARDS)) beat.polishLater = { grade: pitch, factCheck };
         // STRICT: every sentence checked against its passages before any board is drawn, and each
         // sentence given the passage the PDF panel boxes while it is spoken.
         const source = strictDoc ?? video;
@@ -523,6 +511,18 @@ export async function writeCanvasBoard(args: {
   const typed = (args.typedPrompt ?? (!args.document && !args.strictSource)) || Boolean(args.referenceCs);
   const domain = typed ? args.subjectDomain : undefined;
   const beat = plan[index];
+  let polishCost = 0;
+  // A later board of a course lesson gets its wording checks now (planCanvasLecture). Once: a rewrite of the board reuses them.
+  if (beat.polishLater) {
+    const { grade, factCheck } = beat.polishLater;
+    delete beat.polishLater;
+    const t0 = Date.now();
+    polishCost += await polishBoards(client(), args.topic, plan, [beat], { grade, course: args.document, factCheck }).catch((error: Error) => { console.warn(`[canvas] ${beat.id}: wording checks skipped — ${error.message}`); return 0; });
+    console.log(`[timing] kind=board-polish session=${sessionId} ms=${Date.now() - t0} board=${index}`);
+  }
+  // A COURSE BOARD'S VOICE IS MADE WHILE THE BOARD IS DRAWN: it needs only the words, and it used to wait for
+  // the picture and then hold the board up. Clips are kept by their exact text, so a sentence changed later is simply made again.
+  const voice = beat.course ? prepareNarration(splitNarrationSentences(beat.script), { concurrency: 3, deadlineMs: index < CANVAS_OPENING_BOARDS ? 20_000 : 60_000 }).catch(() => []) : null;
   const started = Date.now();
   // An examined board may need one rewrite: it gets a minute more (boards 2+ are written while earlier ones play).
   // A course lesson's picture (gpt-image-2, checked, perhaps drawn twice) gets the time it needs: boards
@@ -805,6 +805,8 @@ export async function writeCanvasBoard(args: {
     log.push(`${beat.id}: full board — ${written.log}`);
   }
   // The pen never points at nothing (lib/canvas/cueRepair.ts): checked on the board as it ships.
+  for (const clip of (await voice) ?? []) labCost += clip.costUsd;
+  labCost += polishCost;
   const shipped = layoutPanel(spec);
   const onBoard = new Set([...Object.keys(shipped.targets), ...shipped.marks.flatMap((m) => (m.type === "graph" ? (m.spec.markers ?? []).map((k) => k.id) : []))]);
   const pen = repairCues(spec, beat, onBoard);
@@ -867,6 +869,54 @@ export async function pitchScripts(openai: ReturnType<typeof client>, beats: Can
     }
   }
   return { costUsd };
+}
+
+/**
+ * The wording of `boards` made right: pitched to the student's reading grade, Aria's banned filler words taken
+ * out of a course lesson, every sentence fact-checked. `all` is the whole lesson, for finding each board's syllabus block.
+ */
+async function polishBoards(openai: ReturnType<typeof client>, topic: string, all: CanvasPlanBeat[], boards: CanvasPlanBeat[], options: { grade?: number; course?: SuprnotesLessonInput | null; factCheck: boolean }): Promise<number> {
+  let costUsd = 0;
+  const { grade, course } = options;
+  if (grade !== undefined) {
+    const scriptsBefore = new Map(boards.map((beat) => [beat, beat.script]));
+    const fixed = await pitchScripts(openai, boards.filter((beat) => beat.stage !== "exam"), grade);
+    costUsd += fixed.costUsd;
+    // A simpler rewrite must not break a number: a script whose calculations got worse goes back.
+    // Nor drop the syllabus (owner, 2026-10-25: "does it still check all the outcomes?"): a board
+    // that no longer teaches a key point or required term it taught before keeps its old script.
+    const blocks = course?.contentBlocks ?? [];
+    const terms = blocks.length ? requiredTermsOf(blocks[0].teachingHints) : [];
+    const lessonBeats = all.filter((beat) => !beat.refresher);
+    for (const beat of boards) {
+      const before = scriptsBefore.get(beat)!;
+      if (beat.script === before) continue;
+      if (checkNumbers(beat.script).length > checkNumbers(before).length) {
+        beat.script = before;
+        continue;
+      }
+      const lost = syllabusLost(before, beat.script, blocks[lessonBeats.indexOf(beat)], terms);
+      if (lost.length) {
+        console.log(`[pitch] ${beat.id}: simpler script kept out — it dropped ${lost.map((x) => `"${x.slice(0, 60)}"`).join(", ")}`);
+        beat.script = before;
+      }
+    }
+  }
+  // WORDS ARIA NEVER SAYS ("basically", "obviously", "just do…"; lib/teaching/styleCheck.ts), taken out
+  // of a course lesson taught in teaching order after every rewrite. Sentences stay where they are.
+  if (course && teachingOrdersOn()) {
+    let scrubbed = 0;
+    for (const beat of boards) {
+      const clean = withoutBannedWords(beat.script);
+      if (clean !== beat.script) { beat.script = clean; scrubbed++; }
+    }
+    if (scrubbed) console.log(`[teaching] banned filler words taken out of ${scrubbed} script(s)`);
+  }
+  // CHECK THE FACTS (prompt bench, 2026-10-18: "motion includes stillness", "antigens cause no
+  // disease" reached students). One call reads every sentence; a wrong one is corrected in place.
+  // Not on a PDF lesson: there the document is the authority, not a model's general knowledge.
+  if (options.factCheck) costUsd += (await factCheckScripts(openai, topic, boards)).costUsd;
+  return costUsd;
 }
 
 const PITCH_MODEL = process.env.CANVAS_PITCH_MODEL ?? "gpt-5.6-luna";

@@ -160,9 +160,22 @@ export async function coursePicture(openai: OpenAI, ctx: CourseBoardContext, opt
     const inspection = inspect.json as Inspection;
     // In a no-writing picture there are no labels whose line could point anywhere.
     if (!inPicture) inspection.pointers = [];
-    const spelling = read.ocr !== undefined
+    let spelling = read.ocr !== undefined
       ? (inPicture ? labelsInRecognisedText(expectedText, read.ocr) : { ok: true, missing: [], extra: [] })
       : labelsMatch(expectedText, ((read.json.texts ?? []) as Array<{ letters?: string; text?: string }>).map((t) => (t.letters ? lettersToText(t.letters) : String(t.text ?? ""))));
+    // Text recognition often misses a word that is printed perfectly well, and each miss cost a 40-second redraw
+    // (2026-11-09: labels "missing" in about half of the redraws). A picture is redrawn for a label only if the
+    // careful letter-by-letter reader cannot find it either.
+    if (!spelling.ok && read.ocr !== undefined) {
+      const second = await json(openai, READ_MODEL, READ_PROMPT, [url]).catch(() => null);
+      if (second) {
+        costUsd += second.costUsd;
+        const seen = ((second.json.texts ?? []) as Array<{ letters?: string; text?: string }>).map((t) => (t.letters ? lettersToText(t.letters) : String(t.text ?? "")));
+        const still = labelsMatch(expectedText, seen);
+        console.log(`[picture] text recognition missed ${spelling.missing.join(", ")}; second reader: ${still.ok ? "all there" : `still missing ${still.missing.join(", ")}`}`);
+        spelling = still;
+      }
+    }
     const problems = final ? [] : mustFix(spelling, inspection);
     if (problems.length) {
       corrections = problems.slice(0, 8);

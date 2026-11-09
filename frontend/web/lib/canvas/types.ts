@@ -625,6 +625,8 @@ export type CanvasBoardOp = {
 
 /** One board of a canvas lecture as the plan writes it, before its spec is written. */
 export type CanvasPlanBeat = {
+  /** A later board of a course lesson: its wording checks are still to run, when the board is written. */
+  polishLater?: { grade?: number; factCheck: boolean };
   id: string;
   /** A course lesson's board (set by the visual policy): its pictures are drawn by gpt-image-2 (lib/canvas/courseFigures.ts). */
   course?: boolean;

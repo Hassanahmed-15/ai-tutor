@@ -175,6 +175,8 @@ export type PreparedClip = { text: string; source: "stored" | "made" | "later" |
  * goes on past it (2026-11-07: an opening board's 20 s ran out with 2 of 6 sentences unmade and they
  * were simply dropped): those are "later", stored while the earlier boards play. Never throws.
  */
+const making = new Map<string, Promise<PreparedClip>>();
+
 export async function prepareNarration(sentences: string[], opts: { concurrency?: number; deadlineMs?: number } = {}): Promise<PreparedClip[]> {
   const unique = [...new Set(sentences.map(narrationInput).filter(Boolean))];
   const results = new Map<string, PreparedClip>();
@@ -182,20 +184,27 @@ export async function prepareNarration(sentences: string[], opts: { concurrency?
     return unique.map((text) => ({ text, source: "failed" as const, ms: 0, costUsd: 0 }));
   }
   let next = 0;
+  const makeOne = async (text: string, t0: number): Promise<PreparedClip> => {
+    try {
+      const made = await synthesizeNarration(text);
+      await recordNarrationSpend(made);
+      const kept = await storeNarration(text, made.buffer);
+      return { text, source: kept ? "made" : "failed", ms: Date.now() - t0, costUsd: made.costUsd ?? 0 };
+    } catch (error) {
+      console.warn(`[tts] could not make a clip ahead: ${(error as Error).message}`);
+      return { text, source: "failed", ms: Date.now() - t0, costUsd: 0 };
+    }
+  };
   const work = async () => {
     while (next < unique.length) {
       const text = unique[next++];
       const t0 = Date.now();
-      if (await narrationExists(text)) { results.set(text, { text, source: "stored", ms: Date.now() - t0, costUsd: 0 }); continue; }
-      try {
-        const made = await synthesizeNarration(text);
-        await recordNarrationSpend(made);
-        const kept = await storeNarration(text, made.buffer);
-        results.set(text, { text, source: kept ? "made" : "failed", ms: Date.now() - t0, costUsd: made.costUsd ?? 0 });
-      } catch (error) {
-        console.warn(`[tts] could not make a clip ahead: ${(error as Error).message}`);
-        results.set(text, { text, source: "failed", ms: Date.now() - t0, costUsd: 0 });
-      }
+      // Being made already (the board's voice starts while the board is drawn): the same clip is never paid for twice.
+      const already = making.get(text);
+      if (already) { const clip = await already; results.set(text, { ...clip, source: clip.source === "made" ? "stored" : clip.source, costUsd: 0 }); continue; }
+      const start = (async () => (await narrationExists(text) ? { text, source: "stored" as const, ms: Date.now() - t0, costUsd: 0 } : makeOne(text, t0)))().finally(() => making.delete(text));
+      making.set(text, start);
+      results.set(text, await start);
     }
   };
   const all = Promise.all(Array.from({ length: Math.max(1, Math.min(opts.concurrency ?? 3, unique.length)) }, work));

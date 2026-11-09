@@ -9,8 +9,8 @@ import { lessonDocument, lessonPartDocument, lessonSpecText, type CurriculumLess
 import { lessonSeriesOn, splitIntoLessons } from "@/lib/series/split";
 import { nextPart, readSeries } from "@/lib/series/store";
 import { planLessonSpec } from "@/lib/curriculum/planSpec";
-import { lessonKey } from "@/lib/curriculum/mastery";
 import { cacheId, type CachedLesson } from "@/lib/curriculum/lessonCache";
+import { evidenceFor, gradeLabel } from "@/lib/curriculum/lessonSources";
 import type { CurriculumTree } from "@/lib/curriculum/types";
 
 /**
@@ -28,12 +28,6 @@ import type { CurriculumTree } from "@/lib/curriculum/types";
  */
 const MODEL = process.env.CURRICULUM_SPEC_MODEL ?? "gpt-5.6-luna";
 const DATA = path.join(process.cwd(), "data/curricula");
-
-function gradeLabel(tree: CurriculumTree, grade: string): string {
-  if (grade === "all") return tree.qualification ?? tree.framework;
-  if (/^\d+$/.test(grade)) return tree.region === "PK" ? `Class ${grade}` : `Grade ${grade}`;
-  return grade;
-}
 
 export async function POST(req: Request) {
   const caller = await lessonCaller();
@@ -88,22 +82,6 @@ export async function POST(req: Request) {
     return NextResponse.json(respond(spec, r, tree, evidence, false, undefined, await seriesFor(caller.userId, r, spec, askedPart)));
   } catch {
     return NextResponse.json({ error: "Could not prepare this lesson — please try again." }, { status: 502 });
-  }
-}
-
-async function evidenceFor(r: CurriculumLessonRequest): Promise<Evidence[]> {
-  try {
-    const file = JSON.parse(await readFile(path.join(DATA, "sources", `${r.courseId}.json`), "utf8")) as { lessons: Record<string, Evidence[]> };
-    const exact = file.lessons[lessonKey(r.grade, r.unitId, r.topicId, r.lessonId)] ?? [];
-    if (exact.length) return exact;
-    // A syllabus may split one tree subtopic into several source-sized lessons. The course tree
-    // remains the stable student address; when its exact leaf is absent, use the source entries
-    // for the same topic so the generated lesson still has official page evidence.
-    return Object.entries(file.lessons)
-      .filter(([key]) => key.split("/").includes(r.topicId))
-      .flatMap(([, evidence]) => evidence);
-  } catch {
-    return [];
   }
 }
 
