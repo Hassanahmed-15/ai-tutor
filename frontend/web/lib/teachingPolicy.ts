@@ -261,8 +261,9 @@ export function policyForWriter(p: TeachingPolicy, options: { strict?: boolean; 
     depthLine(p, options.source),
     wordsLine(p),
     `Assume ${p.language.assume}.`,
-    ABSTRACTION_LINE[p.abstraction],
-    GUIDANCE_LINE[p.guidance],
+    // A course lesson teaches the theory before the numericals (owner, 2026-11-09; lib/teaching/lessonTypes.ts).
+    options.source === "course" && (p.abstraction === "concrete" || p.abstraction === "concrete-first") ? "Teach each idea first in plain words, with something they can picture; real cases and numbers come straight after it." : ABSTRACTION_LINE[p.abstraction],
+    options.source === "course" && p.guidance === "worked" ? "Teach the idea and the method first, then show a fully worked example, saying every step out loud." : GUIDANCE_LINE[p.guidance],
     pacingLine(p),
     examplesLine(p, options.source),
     questionsLine(p),

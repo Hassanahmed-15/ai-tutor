@@ -108,7 +108,7 @@ export function withTeachingOrders(doc: SuprnotesLessonInput, level: StudentLeve
         objective ? `What the student will understand: ${objective}` : "",
         points
           ? `Key points this board MUST teach (each in its own sentence, with its reason where it is a how or why):\n${(block.keyIdeas ?? []).map((p) => `- ${p}`).join("\n")}`
-          : `The key points of "${heading}" are stated on board ${pointsAt + 1} of ${order.length}; this board builds up to them and does not list them.`,
+          : `The key points of "${heading}" are stated on board ${pointsAt + 1} of ${order.length}; ${k < pointsAt ? "this board leads up to them" : "this board uses them, already taught, with examples and practice"} and does not list them.`,
         board.gets.includes("worked") && worked ? worked : "",
         board.gets.includes("check") && check ? `The understanding check to ask: ${check}${transfer ? ` (or, for a stronger student, this new-context task: ${transfer})` : ""}` : "",
         last && examined.length ? examined.join("\n") : "",

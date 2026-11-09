@@ -4,8 +4,8 @@
  * Every idea of a lesson is tagged with a `LessonType` — what kind of thing it is to learn — and the
  * student's `StudentLevel`, and each pair has a TEACHING ORDER: the steps a good teacher takes, in order.
  * A course lesson teaches each idea over the boards its order needs (lib/teaching/courseOrders.ts), so
- * a new idea is built up — why it matters, a picture, a real example, the rule, a check — rather than
- * stated once.
+ * a new idea is built up — why it matters, the idea itself, then real examples and numbers, then a check —
+ * rather than stated once. THE THEORY COMES FIRST (owner, 2026-11-09: it was teaching the numericals first).
  *
  * Pure (no app imports), so it is unit-tested (lib/anim/teachingOrders.test.ts).
  */
@@ -43,20 +43,20 @@ const ORDERS: Record<Exclude<LessonType, "quick_answer">, { beginner: OrderBoard
         gets: [],
       },
       {
-        title: (t) => `${t}: a real example`,
+        title: (t) => `${t}: the idea`,
         does: [
-          "A CONCRETE EXAMPLE: one real case — real numbers, a real object, a real named example — walked one step per sentence, each step with its reason (\"because…\", \"which means…\").",
+          "THE IDEA: explain what it is and why it works, in general, using the correct term, which is explained simply the first time and used the same way after. No worked numbers on this board.",
         ],
-        gets: ["worked"],
+        gets: ["keyPoints"],
       },
       {
-        title: (t) => `${t}: the rule`,
+        title: (t) => `${t}: a real example`,
         does: [
-          "THE GENERAL RULE OR DEFINITION: now say it in general, using the correct term, which is explained simply the first time and used the same way after.",
-          "Where it helps, one example and one NON-example side by side, or the common mistake and why it is wrong.",
+          "A CONCRETE EXAMPLE of the idea just explained: one real case — real numbers, a real object, a real named example — walked one step per sentence, each step with its reason (\"because…\", \"which means…\").",
+          "Where it helps, one NON-example beside it, or the common mistake and why it is wrong.",
           "EXPLAIN IT BACK: end on one check question the student answers: ask it, say \"pause and think\", then give the answer with its reason.",
         ],
-        gets: ["keyPoints", "check"],
+        gets: ["worked", "check"],
       },
     ],
     advanced: [
@@ -81,9 +81,17 @@ const ORDERS: Record<Exclude<LessonType, "quick_answer">, { beginner: OrderBoard
   procedure: {
     beginner: [
       {
+        title: (t) => `${t}: the idea and the steps`,
+        does: [
+          "THE IDEA FIRST: what this is, what each quantity means, and why the method works, in plain words. Say any formula in words as well as symbols, with every symbol explained. No numbers are worked on this board.",
+          "THE GENERAL STEPS: the method as numbered steps in plain words, each with when and why it is used, and the step students most often get wrong.",
+        ],
+        gets: ["keyPoints"],
+      },
+      {
         title: (t) => `${t}: a worked example`,
         does: [
-          "ONE WORKED EXAMPLE, start to answer: each step in its own sentence, with WHY that step is done (\"we divide both sides by 2 because we want x on its own\"). Every value and unit is said.",
+          "ONE WORKED EXAMPLE using the steps just taught, start to answer: each step in its own sentence, with WHY that step is done (\"we divide both sides by 2 because we want x on its own\"). Every value and unit is said.",
         ],
         gets: ["worked"],
       },
@@ -91,16 +99,9 @@ const ORDERS: Record<Exclude<LessonType, "quick_answer">, { beginner: OrderBoard
         title: (t) => `${t}: your turn`,
         does: [
           "THE STUDENT TRIES A SIMILAR ONE: give a new example of the same kind with different numbers; ask the student to try it; say \"pause and try it\"; then walk the answer step by step with the reason for each step.",
-        ],
-        gets: ["check"],
-      },
-      {
-        title: (t) => `${t}: the steps`,
-        does: [
-          "THE GENERAL STEPS: the method as numbered steps in plain words, each with when and why it is used, and the step students most often get wrong.",
           "MORE PRACTICE, A LITTLE HARDER: one harder question; ask, pause, then answer it step by step.",
         ],
-        gets: ["keyPoints"],
+        gets: ["check"],
       },
     ],
     advanced: [
@@ -147,9 +148,10 @@ const ORDERS: Record<Exclude<LessonType, "quick_answer">, { beginner: OrderBoard
         title: (t) => `${t}: the goal and the idea`,
         does: [
           "THE GOAL: the problem this code solves, in one concrete situation.",
-          "THE IDEA: how it works, done by hand on a picture of the data with small real values, one step per sentence.",
+          "THE CONCEPT: the general idea and its correct term, in plain words, before any code.",
+          "THE IDEA AT WORK: how it works, done by hand on a picture of the data with small real values, one step per sentence.",
         ],
-        gets: [],
+        gets: ["keyPoints"],
       },
       {
         title: (t) => `${t}: build it together`,
@@ -163,9 +165,9 @@ const ORDERS: Record<Exclude<LessonType, "quick_answer">, { beginner: OrderBoard
         does: [
           "RUN IT: trace it on real input, one executed line per sentence — each variable's new value and what is printed.",
           "CHANGE ONE THING: change one line or value; ask the student to predict the new output; pause; then show it and say why.",
-          "NAME THE CONCEPT: the general idea, its correct term, its edge cases (empty input, the boundary) and, when the level includes it, its cost.",
+          "EDGE CASES: empty input, the boundary and, when the level includes it, the cost.",
         ],
-        gets: ["keyPoints", "check"],
+        gets: ["check"],
       },
     ],
     advanced: [
@@ -188,20 +190,20 @@ const ORDERS: Record<Exclude<LessonType, "quick_answer">, { beginner: OrderBoard
   problem_solving: {
     beginner: [
       {
-        title: (t) => `${t}: the problem`,
+        title: (t) => `${t}: the idea you need`,
         does: [
-          "THE PROBLEM FIRST: state it in full with its data, before any method.",
-          "THE STUDENT ATTEMPTS IT: ask them to try; say \"pause and try\"; then give only the smallest first hint.",
+          "THE IDEA FIRST: the ideas and the method this kind of problem needs, each explained in plain words with why it works. No problem is worked on this board.",
         ],
-        gets: [],
+        gets: ["keyPoints"],
       },
       {
-        title: (t) => `${t}: the approach`,
+        title: (t) => `${t}: the problem`,
         does: [
-          "HINTS, ONE AT A TIME, smallest first: this board's FIRST sentence is a hint about the problem, never a definition. Each hint says one thing to try, then what it gives us.",
-          "THE APPROACH REVEALED: the full solution, step by step, each with its reason, to the answer with units. Each key point comes in at the moment the solution needs it, tied to this problem's numbers.",
+          "THE PROBLEM: state it in full with its data. THE STUDENT ATTEMPTS IT: ask them to try; say \"pause and try\".",
+          "HINTS, ONE AT A TIME, smallest first: each says one thing to try, using the idea just taught.",
+          "THE FULL SOLUTION: step by step, each with its reason, to the answer with units.",
         ],
-        gets: ["keyPoints", "worked"],
+        gets: ["worked"],
       },
       {
         title: (t) => `${t}: a similar problem`,
@@ -259,21 +261,20 @@ const ORDERS: Record<Exclude<LessonType, "quick_answer">, { beginner: OrderBoard
   language: {
     beginner: [
       {
-        title: (t) => `${t}: examples in context`,
-        does: [
-          "THE LANGUAGE OF THE LESSON: explain in the language the key points are written in. Only the example sentences and the practice are in the language being learned.",
-          "EXAMPLE SENTENCES IN CONTEXT: three or four real sentences that use the pattern (with a translation, and how to say it where that helps).",
-          "NOTICE THE PATTERN: ask the student what is the same in them; pause; then point it out.",
-        ],
-        gets: [],
-      },
-      {
         title: (t) => `${t}: the rule`,
         does: [
-          "THE RULE, SIMPLY, with its correct grammar term explained the first time.",
+          "THE LANGUAGE OF THE LESSON: explain in the language the key points are written in. Only the example sentences and the practice are in the language being learned.",
+          "THE RULE, SIMPLY, with its correct grammar term explained the first time, and when it is used.",
+        ],
+        gets: ["keyPoints"],
+      },
+      {
+        title: (t) => `${t}: examples in context`,
+        does: [
+          "EXAMPLE SENTENCES IN CONTEXT: three or four real sentences that use the rule (with a translation, and how to say it where that helps), pointing out the rule in each.",
           "GUIDED PRACTICE: one sentence the student completes with the rule; pause; then the answer with why.",
         ],
-        gets: ["keyPoints", "worked"],
+        gets: ["worked"],
       },
       {
         title: (t) => `${t}: your turn`,
@@ -429,7 +430,7 @@ export const TEACHING_RULES = [
   "- Short sentences, one idea per sentence, clear everyday words.",
   "- Simple does not mean dropping the real terms: teach the correct term, explain it simply the first time it is said, then use the same term every time.",
   "- Show every step, and say WHY each step is done.",
-  "- Real numbers, real cases and real objects come before anything abstract.",
+  "- Explain the idea first, in plain words, with why it works. Real numbers, worked examples and calculations come after the idea has been taught, never before it.",
   "- Check understanding after each idea: ask, say \"pause and think\", then give the answer with its reason.",
   "- NEVER SAY: \"basically\", \"simply\", \"obviously\", \"clearly\", \"just\" (as in \"just do this\"), \"as you know\". They tell a student who is lost that it should be easy.",
   "- A comparison must be honest: when no everyday comparison works the same way, use definition → examples AND non-examples → properties instead. Never a misleading analogy.",
@@ -457,7 +458,7 @@ export const TEACHING_EXAMPLES = [
   "✅ \"In 1914, Europe's great powers were split into two alliances. An alliance is a promise to fight for each other. So when Austria-Hungary declared war on Serbia in July 1914, the promises pulled in Russia, then Germany, then France and Britain. That is why one local war became a world war. Historians disagree on how much each cause mattered. Some put most weight on the alliances. Others say Germany's choices in July 1914 mattered more. Which cause do you think mattered most, and what is your evidence?\"",
   "LANGUAGE (English, the past simple):",
   "❌ \"The past simple is formed by adding -ed to regular verbs.\"",
-  "✅ \"Look at these: 'Yesterday I walked to school.' 'Last week she played cricket.' What is the same? Both verbs end in -ed, and both actions are finished, in the past. This is the past simple tense. For most verbs, we add -ed: walk becomes walked. Your turn: put 'jump' in the past simple.\"",
+  "✅ \"We use the past simple tense for an action that is finished, in the past. For most verbs, we add -ed: walk becomes walked. Look: 'Yesterday I walked to school.' 'Last week she played cricket.' Both verbs end in -ed, and both actions are finished. Your turn: put 'jump' in the past simple.\"",
   "MEMORIZATION (Chemistry, the first elements):",
   "❌ \"The first five elements are hydrogen, helium, lithium, beryllium and boron.\"",
   "✅ \"The elements are listed in order of their atomic number, the number of protons in one atom. Number 1 is hydrogen, the lightest. Number 2 is helium, the gas in party balloons. Then come lithium (3), beryllium (4) and boron (5). A sentence helps you remember them: 'Happy Henry Likes Beans Bubbling', for H, He, Li, Be, B. Quick check: which element is number 3?\"",
@@ -473,7 +474,7 @@ export const TEACHING_EXAMPLES = [
  */
 export const MATHS_TEACHING = [
   "THIS IS A MATHS LESSON — THE STUDENT MUST UNDERSTAND EVERY STEP, NOT JUST SEE THE ANSWER:",
-  "- Start every new idea from something the student can picture: a real quantity, a drawing, a pattern in real numbers. Name the idea only after they have seen it.",
+  "- Teach every new idea before any calculation: what it is, what each quantity means and why it works, with a drawing or something the student can picture. Numbers and worked examples come after that.",
   "- Say WHAT we are trying to find before any working (\"We want the length of the side we cannot measure.\").",
   "- Every step gets its own sentence with its PURPOSE first, then the step: \"To get x on its own, we subtract 3 from both sides: 2x = 8.\" Never a step without its reason.",
   "- Never skip a line of algebra: each expansion, cancellation and rearrangement is said and written. One operation on both sides is one line, and the operation named is the one that gives that line.",

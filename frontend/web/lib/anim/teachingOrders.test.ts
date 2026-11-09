@@ -25,8 +25,13 @@ test("every lesson type and level has a teaching order whose key points are taug
   }
   // A new concept for a beginner is built up: why, a picture, an example — the rule only on the last board.
   const concept = orderBoards("concept", "beginner");
-  assert.deepEqual(concept.map((b) => b.gets), [[], ["worked"], ["keyPoints", "check"]]);
+  assert.deepEqual(concept.map((b) => b.gets), [[], ["keyPoints"], ["worked", "check"]]);
   assert.match(concept[0].does.join(" "), /WHY IT MATTERS/);
+  // The theory is taught before any numbers (owner, 2026-11-09), in every order that has both.
+  for (const type of ["concept", "procedure", "coding", "problem_solving", "language"] as const) {
+    const boards = orderBoards(type, "beginner");
+    assert.ok(boards.findIndex((b) => b.gets.includes("keyPoints")) < boards.findIndex((b) => b.gets.includes("worked")), `${type}: the idea before the worked example`);
+  }
   assert.match(concept[0].does.join(" "), /Never a comparison that teaches something false/);
 });
 
