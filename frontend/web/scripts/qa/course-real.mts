@@ -50,6 +50,8 @@ await ctx.route("**/api/tts", async (route) => {
 });
 let sessionId = reuse ?? "";
 const errors: string[] = [];
+const trace: Array<{ t: number; msg: string }> = [];
+page.on("console", (m) => { if (m.text().startsWith("[playback]")) trace.push({ t: Date.now(), msg: m.text().slice(0, 200) }); });
 page.on("pageerror", (e) => errors.push(e.message.slice(0, 200)));
 page.on("response", async (res) => {
   const url = res.url();
@@ -173,6 +175,25 @@ for (const row of log) {
 const q = (xs: number[], p: number) => { const a = [...xs].sort((x, y) => x - y); return Math.round(a[Math.min(a.length - 1, Math.floor(a.length * p))] ?? NaN); };
 console.log(`pieces appeared: ${log.length}, shown twice ${log.length - new Set(log.map((r) => r.section + r.key)).size}; vs the playing audio (${late.length} measured): median ${q(late, 0.5)} ms, 90th ${q(late, 0.9)} ms, worst ${q(late, 0.999)} ms`);
 
+// How long she is silent between one clip ending and the next starting, and where.
+const firstOfBoard = new Map(beats.map((b, i) => [canvasSentences(b.script)[0], i + 1]));
+const gaps: Array<{ ms: number; into: string; board: number | null }> = [];
+let lastEnd: number | null = null;
+for (const e of sync) {
+  if (e.ev === "ended") lastEnd = e.t;
+  else if (e.ev === "playing" && e.at < 0.05 && lastEnd !== null) {
+    const text = bySize.get(e.size) ?? "";
+    gaps.push({ ms: Math.round(e.t - lastEnd), into: text.slice(0, 60), board: firstOfBoard.get(text) ?? null });
+    lastEnd = null;
+  }
+}
+const inside = gaps.filter((g) => g.board === null).map((g) => g.ms);
+const between = gaps.filter((g) => g.board !== null);
+console.log(`silence between sentences (${inside.length}): median ${q(inside, 0.5)} ms, 90th ${q(inside, 0.9)} ms, worst ${q(inside, 0.999)} ms`);
+console.log(`silence into a new board: ${between.map((g) => `b${g.board} ${(g.ms / 1000).toFixed(1)}s`).join(", ")}`);
+console.log("longest:", [...gaps].sort((a, b) => b.ms - a.ms).slice(0, 6).map((g) => `${(g.ms / 1000).toFixed(1)}s before "${g.into}"`).join(" | "));
+writeFileSync(`${out}/gaps.json`, JSON.stringify({ gaps, trace }, null, 1));
+if (process.env.NO_WHISPER) { await browser.close(); process.exit(0); }
 // 2. Where each word really starts in her voice (a transcription of 14 real clips) against the estimate.
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const errs: number[] = [];

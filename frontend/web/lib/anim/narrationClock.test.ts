@@ -125,7 +125,7 @@ test("the weight formula is the one the whole app already uses", () => {
 
 test("the pacing constants keep the rhythm students already hear", () => {
   // Matches the browser voice's existing `spokenMs + 240`, so switching voices changes nothing.
-  assert.equal(SENTENCE_GAP_MS, 240);
+  assert.equal(SENTENCE_GAP_MS, 40);
   assert.ok(CLIP_FETCH_CONCURRENCY >= 2 && CLIP_FETCH_CONCURRENCY <= 8);
 });
 

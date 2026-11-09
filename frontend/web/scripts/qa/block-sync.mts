@@ -111,4 +111,9 @@ const keys = log.map((r) => r.key + r.section);
 console.log(`speed ${SPEED}x, ${beats.length} boards: ${log.length} of ${total} pieces appeared, ${keys.length - new Set(keys).size} shown twice`);
 console.log(`measured ${sorted.length}: appeared vs audio — median ${pct(0.5)} ms, 10th ${pct(0.1)} ms, 90th ${pct(0.9)} ms, worst ${Math.round(sorted[sorted.length - 1])} ms`);
 console.log(`pieces that appeared during a 3.5 s pause: ${duringPause}`);
+const gaps: number[] = [];
+let lastEnd: number | null = null;
+for (const e of sync) { if (e.ev === "ended") lastEnd = e.t; else if (e.ev === "playing" && e.at < 0.05 && lastEnd !== null) { gaps.push(Math.round(e.t - lastEnd)); lastEnd = null; } }
+gaps.sort((a, b) => a - b);
+console.log(`silence between clips: median ${gaps[Math.floor(gaps.length / 2)]} ms, worst ${gaps[gaps.length - 1]} ms (${gaps.length})`);
 await browser.close();

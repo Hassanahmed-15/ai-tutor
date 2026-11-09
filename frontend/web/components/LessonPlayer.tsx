@@ -275,7 +275,8 @@ function isShortAgreement(text: string): boolean {
 const wallClock = () => Date.now();
 
 /** How long a finished board stays on screen after its narration ends, before the next slide. */
-const BOARD_HOLD_AFTER_NARRATION_MS = 2500;
+// Owner, 2026-11-09: "the voice is gone for seconds whenever it has to make a board" (measured: 2.7 s at every board change, 2.5 s of it this hold).
+const BOARD_HOLD_AFTER_NARRATION_MS = 350;
 /**
  * HER NEXT SENTENCE WAITS FOR THE PEN (owner, 2026-10-23: "100 percent synchronisation with voice"). A
  * sentence whose drawing does not fit in the time she takes to say it — even with the pen at its
@@ -283,7 +284,9 @@ const BOARD_HOLD_AFTER_NARRATION_MS = 2500;
  * never races to catch her up. Bounded (at 1x; twice as long at 0.5x), so a pen that will not finish
  * never stops the lecture.
  */
-const PEN_WAIT_MAX_MS = 12_000;
+const PEN_WAIT_MAX_MS = 600;
+/** The most her voice waits for the pen between two sentences (owner, 2026-11-09: "the voice is gone for seconds"). */
+const PEN_BREATH_MS = 500;
 
 /** Thinking time Aria leaves after a prediction question on a board with no task card to answer it. */
 const THINK_PAUSE_MS = 4_000;
@@ -2202,7 +2205,13 @@ export function LessonPlayer({
         // The board's pen first finishes what she has said on it (lib/canvas/penClock.ts).
         waitBefore: (sentenceIndex) => {
           const pen = sentenceIndex > bridge ? penRemainingMs() : 0;
-          return pen > 30 ? pen + 40 : 0;
+          if (pen <= 30) return 0;
+          // Her voice never stops for seconds to let the pen finish (owner, 2026-11-09): a short
+          // breath at most, then the pen catches up while she talks.
+          const now = wallClock();
+          if (penWaitRef.current.sentence !== sentenceIndex || penWaitRef.current.beat !== beat.id) penWaitRef.current = { beat: beat.id, sentence: sentenceIndex, from: now };
+          const left = PEN_BREATH_MS / rateRef.current - (now - penWaitRef.current.from);
+          return left > 0 ? Math.min(pen + 40, left) : 0;
         },
         holdBefore: (sentenceIndex) => {
           // A maths/CS board's own prediction card: held before its reveal sentence, whatever was said.
@@ -3223,6 +3232,7 @@ export function LessonPlayer({
    * it opens from the dock's Ask button, and opens itself the moment Aria answers or offers a
    * drawing, so nothing she says is missed. The deaf and ADHD panels stay: they carry the lesson.
    */
+  const penWaitRef = useRef({ beat: "", sentence: -1, from: 0 });
   // Dot steps aside while the lesson notes are open: she flew over the words.
   const [notesOpen, setNotesOpen] = useState(false);
   // "You asked": each real question with Aria's answer, under the section it was asked on.

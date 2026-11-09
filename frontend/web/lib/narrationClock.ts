@@ -47,11 +47,11 @@ export function sentenceAlignedProgress(weights: number[], index: number, fracti
 /**
  * How long to wait between sentence clips.
  *
- * A clip ends where its speech ends, so without a gap sentences run together with none of the pause
- * a speaker leaves at a full stop. Matches the browser path's existing `spokenMs + 240`, so switching
- * voices does not change the rhythm the student hears.
+ * Almost nothing: measured 2026-11-09, each clip already ends in about half a second of quiet, which is
+ * the pause a speaker leaves at a full stop. With 240 ms added on top, her voice seemed to drop out
+ * between sentences (owner: "make sure the voice is not gone like this for seconds").
  */
-export const SENTENCE_GAP_MS = 240;
+export const SENTENCE_GAP_MS = 40;
 
 /**
  * How many sentence clips may be synthesising at once.

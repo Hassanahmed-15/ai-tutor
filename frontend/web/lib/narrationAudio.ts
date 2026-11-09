@@ -17,16 +17,13 @@ import { narrationInput } from "@/lib/narrationText";
  * stored clip, and a clip made live is stored too — so no sentence is paid for or waited on twice,
  * across servers and restarts. A change of voice or model is a new path, never an old clip.
  */
-export const TTS_VOICE = process.env.OPENAI_TTS_VOICE ?? "nova"; // brighter and more classroom-friendly than the old darker narrator voice
-export const TTS_MODEL = process.env.OPENAI_TTS_MODEL ?? "gpt-4o-mini-tts";
+export const TTS_VOICE = process.env.OPENAI_TTS_VOICE ?? "shimmer";
+// The dated model and Shimmer, picked by the owner from samples (2026-11-09: "change the voice to a human").
+export const TTS_MODEL = process.env.OPENAI_TTS_MODEL ?? "gpt-4o-mini-tts-2025-12-15";
 
 const TEACHER_TONE =
-  "You are Aria, a kind classroom teacher helping one curious student. Speak with a clear, " +
-  "friendly teacher style: patient, reassuring, lightly upbeat, and never theatrical. Use gentle " +
-  "enthusiasm, natural pauses, and a small smile in the voice. Do not sound stern, sarcastic, " +
-  "ominous, intimidating, seductive, mocking, sadistic, or like a dramatic narrator. If the text " +
-  "contains a surprising idea, present it with wonder, not menace. Keep the volume and projection " +
-  "confident and easy to hear without rushing.";
+  "You are a warm, friendly teacher talking to one student. Sound like a real person in a relaxed conversation: " +
+  "natural rhythm at an easy, steady pace, gentle rises when you ask something. Keep moving: no long pauses. Never sound like an announcer or a narrator.";
 
 /** Where a clip is stored: its model, voice and the hash of its exact text. */
 export function narrationBlobName(text: string): string {
