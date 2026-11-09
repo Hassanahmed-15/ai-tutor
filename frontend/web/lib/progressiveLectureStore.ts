@@ -1,6 +1,7 @@
 import "server-only";
 
 import { CODE_BEAT_PATTERN } from "./codeSpec";
+import { cleanStrayChars } from "./strayChars";
 import { canvasEngineFor } from "./canvas/lessonRequest";
 import { CANVAS_OPENING_BOARDS } from "./progressiveWindow";
 
@@ -188,13 +189,13 @@ export async function progressiveBeat(sessionId: string, sequence: number): Prom
   const { resource } = await progressiveLectureBeats()
     .item(progressiveBeatId(sessionId, sequence), sessionId)
     .read<ProgressiveBeatDoc>();
-  return resource ?? null;
+  return resource ? cleanStrayChars(resource) : null;
 }
 
 export async function upsertProgressiveBeat(doc: ProgressiveBeatDoc): Promise<void> {
   await ensureContainers();
   await retryDropped(() => progressiveLectureBeats().items.upsert({
-    ...doc,
+    ...cleanStrayChars(doc),
     updatedAt: new Date().toISOString(),
   }));
 }
@@ -207,7 +208,7 @@ export async function progressiveBeats(sessionId: string): Promise<ProgressiveBe
       parameters: [{ name: "@sessionId", value: sessionId }],
     }, { partitionKey: sessionId })
     .fetchAll();
-  return resources;
+  return resources.map(cleanStrayChars);
 }
 
 export async function progressiveSnapshot(
