@@ -294,6 +294,7 @@ export function LessonPlayer({
   onCheckpointGraded,
   onComplete,
   onUnderstood,
+  onAskedNotes,
   beats = demoBeats,
   title = "Photosynthesis",
   mode = "standard",
@@ -349,6 +350,8 @@ export function LessonPlayer({
   onComplete?: () => void;
   /** The "Got it" button: the student understood, so the lesson ends now (see BoardDock). */
   onUnderstood?: () => void;
+  /** The student's questions with Aria's answers so far, for the notes PDF at the end. */
+  onAskedNotes?: (asked: AskedNote[]) => void;
   beats?: Beat[];
   title?: string;
   mode?: "standard" | "deaf";
@@ -3241,6 +3244,7 @@ export function LessonPlayer({
     });
     return out.filter((a) => a.id);
   }, [chat.chat, notesSections.length, canvasIndex]);
+  useEffect(() => { onAskedNotes?.(askedNotes); }, [askedNotes, onAskedNotes]);
   const [askOpen, setAskOpen] = useState(false);
   const chatCount = chat.chat.length;
   const chatExplaining = chat.explaining;

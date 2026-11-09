@@ -46,6 +46,8 @@ import { matchSpokenAnswer } from "@/lib/spokenAnswer";
 import { learnerContextForPrompt, learnerProfileView } from "@/lib/learnerProfileView";
 import { takePendingBrief } from "@/lib/pendingBrief";
 import { savePendingCurriculum } from "@/lib/pendingTopic";
+import { NotesPdfButton } from "@/components/canvas/NotesPdfButton";
+import type { AskedNote } from "@/components/canvas/LessonNotesPanel";
 import type { CurriculumLessonRequest } from "@/lib/curriculum/lessonSpec";
 import type { DocumentPage, NormalisedRect, PageSelection } from "@/components/upload/PageSelector";
 import { PageStack } from "@/components/upload/PageStack";
@@ -1629,6 +1631,8 @@ type BuildCost =
   // The lesson of a series being taught (lib/series/split.ts; CANVAS_LESSON_SERIES=on), or null.
   const [courseSeries, setCourseSeries] = useState<{ part: number; parts: number; titles: string[][]; outcomeRefs: number[]; completed: number[] } | null>(null);
   const seriesDoneRef = useRef(false);
+  // The student's questions, for the notes PDF (the player has gone by the time the end screen shows).
+  const [askedNotes, setAskedNotes] = useState<AskedNote[]>([]);
   const [curriculumCheck, setCurriculumCheck] = useState<CurriculumCheck | null>(null);
   async function ingestCurriculum(request: CurriculumLessonRequest) {
     ensureSpendTag();
@@ -4143,6 +4147,11 @@ type BuildCost =
     endLecture();
   }
 
+  // The notes as a PDF, once this lecture has the full board's writing (CANVAS_BLOCKS=on).
+  const notesPdf = progressiveSessionId && beats.some((b) => b.draw?.ops.some((o) => (o as { kind: string; spec?: { blocks?: unknown[] } }).kind === "canvasBoard" && Boolean((o as { spec?: { blocks?: unknown[] } }).spec?.blocks?.length)))
+    ? <NotesPdfButton sessionId={progressiveSessionId} asked={askedNotes} />
+    : null;
+
   if (phase === "finished") {
     return (
       <main className="hud-canvas hud-grain relative flex min-h-screen items-center justify-center px-6">
@@ -4176,6 +4185,7 @@ type BuildCost =
             >
               Replay
             </button>
+            {notesPdf}
             <button
               onClick={() => setPhase("test-offer")}
               className="text-sm text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
@@ -4237,6 +4247,7 @@ type BuildCost =
         onOral={startOralTest}
         onSkip={endLecture}
         onGoDeeper={goDeeper}
+        notesPdf={notesPdf}
         next={courseSeries && courseSeries.part < courseSeries.parts ? { label: `Next: Lesson ${courseSeries.part + 1} of ${courseSeries.parts}`, detail: courseSeries.titles[courseSeries.part]?.join(" · ") ?? "", onClick: startNextCourseLesson } : undefined}
       />
       {/* The student lands here the moment the lecture ends — the summary is one click away. */}
@@ -4346,7 +4357,7 @@ type BuildCost =
         player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={playerScope} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={playerScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onAskedNotes={setAskedNotes} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={playerScope} captions={profile?.captions === true} />;
         break;
       case "demo":
       default:
@@ -4354,7 +4365,7 @@ type BuildCost =
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
         // The mic is on when the lecture opens (owner, 2026-10-18): the student talks to Aria without
         // finding a button first. It opens on Play — the click the browser needs to ask for it.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} holdForNextBoard={clickableMindMap && csLecture} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onAskedNotes={setAskedNotes} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} holdForNextBoard={clickableMindMap && csLecture} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">
@@ -4856,6 +4867,7 @@ function TestOfferScreen({
   onOral,
   onSkip,
   next,
+  notesPdf,
   onGoDeeper,
 }: {
   mode: TrackMeta;
@@ -4868,6 +4880,8 @@ function TestOfferScreen({
   onSkip: () => void;
   /** The next lesson of a course lesson's series, when there is one. */
   next?: { label: string; detail: string; onClick: () => void };
+  /** The notes as a PDF, when this lecture has them. */
+  notesPdf?: React.ReactNode;
   onGoDeeper?: () => void;
 }) {
   /*
@@ -4957,6 +4971,7 @@ function TestOfferScreen({
         </div>
 
         <div className="mt-6 text-center">
+          {notesPdf && <div className="mb-3 flex justify-center">{notesPdf}</div>}
           <button
             type="button"
             onClick={onSkip}
