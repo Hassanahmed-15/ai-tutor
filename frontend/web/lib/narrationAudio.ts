@@ -5,6 +5,7 @@ import { createOpenAI, spendScopeNow } from "@/lib/openaiClient";
 import { recordSpend } from "@/lib/spend/record";
 import { blobExists, blobStorageConfigured, downloadRawBlob, uploadRawBlob } from "@/lib/blobStorage";
 import { narrationInput } from "@/lib/narrationText";
+import { trimNarrationTail } from "@/lib/narrationTail";
 
 /**
  * ARIA'S NARRATION, MADE AHEAD AND KEPT (owner, 2026-11-07: "I want no delay … sometimes it does not
@@ -35,7 +36,9 @@ export function narrationBlobName(text: string): string {
 /** A stored clip, or null when there is none (or storage is not configured or not reachable). */
 export async function storedNarration(text: string): Promise<Buffer | null> {
   if (!blobStorageConfigured()) return null;
-  return downloadRawBlob(narrationBlobName(text)).catch(() => null);
+  const audio = await downloadRawBlob(narrationBlobName(text)).catch(() => null);
+  // Clips stored before this check are mended as they are read (about 4 ms).
+  return audio ? trimNarrationTail(audio, narrationInput(text)) : null;
 }
 
 /** Keeps a clip. Never throws: a clip that could not be stored is only made again later. */
@@ -81,7 +84,8 @@ export function synthesizeNarration(text: string): Promise<Synthesis> {
   const input = narrationInput(text);
   let timer: ReturnType<typeof setTimeout> | undefined;
   const deadline = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error("synthesis deadline")), SYNTHESIS_DEADLINE_MS); });
-  return Promise.race([synthesize(input), deadline]).finally(() => clearTimeout(timer));
+  const made = synthesize(input).then(async (clip) => ({ ...clip, buffer: await trimNarrationTail(clip.buffer, input) }));
+  return Promise.race([made, deadline]).finally(() => clearTimeout(timer));
 }
 
 /** Narration is billed per sentence; the spend log needs every one (the badge, today's total). */

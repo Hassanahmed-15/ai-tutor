@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { BlocksView } from "./BlocksView";
+import { isWebKit, WebKitHtml } from "./webkitHtml";
 import katex from "katex";
 import "katex/dist/katex.min.css";
 import { evalExpr } from "@/lib/canvas/expr";
@@ -2101,6 +2102,7 @@ function EquationView({ mark, stage, shownThrough, focusId, reducedMotion, packe
  * its overflow says, and a tall fraction outgrew the fixed one.
  */
 function TexTerm({ tex, size, w, color, onElement, onWidth, align = "center" }: { tex: string; size: number; w: number; color: string; onElement: (el: HTMLDivElement | null) => void; onWidth?: (w: number) => void; /** A note starts at its bullet; a term centred in its slot. */ align?: "left" | "center" }) {
+  const webkit = useMemo(() => isWebKit(), []);
   const html = useMemo(() => katex.renderToString(tex, { throwOnError: false, displayMode: false }), [tex]);
   const onWidthRef = useRef(onWidth);
   onWidthRef.current = onWidth;
@@ -2112,10 +2114,11 @@ function TexTerm({ tex, size, w, color, onElement, onWidth, align = "center" }: 
   const h = size * (tall ? 2.3 : 1.7);
   const top = -size * (tall ? 1.45 : 1.15);
   useLayoutEffect(() => {
-    const inner = wrap.current;
-    const fo = box.current;
-    if (!inner) return;
     const fit = (): boolean => {
+      // In WebKit the term arrives a frame later, in its own layer.
+      const inner = wrap.current;
+      const fo = box.current;
+      if (!inner) return false;
       // Inside a foreignObject, CSS pixels ARE board units, whatever the camera's zoom.
       inner.style.transform = "";
       // An inline box ignores a transform (and reports no height of its own).
@@ -2141,7 +2144,7 @@ function TexTerm({ tex, size, w, color, onElement, onWidth, align = "center" }: 
         fo.setAttribute("height", height.toFixed(1));
       }
       inner.style.transformOrigin = "0 50%";
-      inner.style.transform = `translateX(${((leftAlign ? 0 : (w - shown) / 2) - left).toFixed(1)}px) scale(${scale.toFixed(3)})`;
+      inner.style.transform = `translateX(${((leftAlign ? 0 : (w - shown) / 2) - (fo ? left : 0)).toFixed(1)}px) scale(${scale.toFixed(3)})`;
       onWidthRef.current?.(shown);
       return true;
     };
@@ -2160,12 +2163,16 @@ function TexTerm({ tex, size, w, color, onElement, onWidth, align = "center" }: 
       alive = false;
       cancelAnimationFrame(raf);
     };
-  }, [html, w, h, top, align]);
+  }, [html, w, h, top, align, webkit]);
+  const term = (
+    <div ref={onElement} style={{ display: "flex", alignItems: "center", height: "100%", whiteSpace: "nowrap", color, fontSize: size * 0.84, lineHeight: 1 }}>
+      <span ref={wrap} dangerouslySetInnerHTML={{ __html: html }} />
+    </div>
+  );
+  if (webkit) return <WebKitHtml rect={{ x: 0, y: top, w: Math.max(4, w), h }}>{term}</WebKitHtml>;
   return (
     <foreignObject ref={box} x={0} y={top} width={Math.max(4, w)} height={h} overflow="visible" className="cv-in">
-      <div ref={onElement} style={{ display: "flex", alignItems: "center", height: "100%", whiteSpace: "nowrap", color, fontSize: size * 0.84, lineHeight: 1 }}>
-        <span ref={wrap} dangerouslySetInnerHTML={{ __html: html }} />
-      </div>
+      {term}
     </foreignObject>
   );
 }

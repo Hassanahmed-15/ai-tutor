@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
   // an external server package so Next/Turbopack doesn't try to bundle the native addon into the
   // route handler (which makes the runtime import/require fail). Used by the vision board critic
   // (lib/boardVisionCritic.ts), the PDF export route, and the PDF upload parser (parse-pdf route).
-  serverExternalPackages: ["@resvg/resvg-js", "@napi-rs/canvas", "pdfjs-dist"],
+  serverExternalPackages: ["@resvg/resvg-js", "@napi-rs/canvas", "pdfjs-dist", "mpg123-decoder"],
   /**
    * Cache the voice model and its runtime.
    *

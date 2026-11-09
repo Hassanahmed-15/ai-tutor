@@ -5,6 +5,7 @@ import { texEm, textWidth, type Mark, type Rect, type SketchPlaced } from "@/lib
 import { SKETCH_TEX_MACROS } from "@/lib/canvas/sketch";
 import type { SketchColor, SketchItem, SketchShape } from "@/lib/canvas/types";
 import { evalExpr } from "@/lib/canvas/expr";
+import { isWebKit } from "./webkitHtml";
 
 /**
  * A SKETCH BOARD, DRAWN (2026-10-20): the Visuals Lab's way of drawing a maths or computer-science
@@ -24,7 +25,8 @@ const MOVE = "transform 1100ms cubic-bezier(.65,0,.25,1), opacity 450ms ease";
 const unitWidth = (t: string) => t.split(/(\$[^$]+\$)/).reduce((w, part) => w + (/^\$[^$]+\$$/.test(part) ? texEm(part.slice(1, -1).replace(/\\(?:blue|orange|green|pink|yellow|muted)\b/g, "")) * 1.05 : textWidth(part, 1)), 0);
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-const tex = (src: string) => katex.renderToString(src, { throwOnError: false, output: "html", macros: { ...SKETCH_TEX_MACROS } });
+// WebKit paints KaTeX's positioned pieces in the wrong place inside an SVG: native maths has none.
+const tex = (src: string) => katex.renderToString(src, { throwOnError: false, output: isWebKit() ? "mathml" : "html", macros: { ...SKETCH_TEX_MACROS } });
 /** Writing with $…$ maths in it, as HTML. */
 const writingHtml = (t: string) => t.split(/(\$[^$]+\$)/).map((part) => (/^\$[^$]+\$$/.test(part) ? tex(part.slice(1, -1)) : esc(part))).join("");
 

@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import katex from "katex";
 import type { Mark } from "@/lib/canvas/layout";
 import { labPartsFor } from "@/lib/canvas/labParts";
+import { isWebKit, WebKitHtml } from "./webkitHtml";
 
 /**
  * ONE LIVING EQUATION (owner, 2026-11-08: "mostly B … A with better labelling … a general system for
@@ -220,8 +221,9 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
   const last = current === steps.length - 1;
   useEffect(() => () => { shown.current = -2; }, []);
 
-  return (
-    <foreignObject x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} data-no-marker="" className="cv-in">
+  const [webkit, setWebkit] = useState(false);
+  useLayoutEffect(() => { setWebkit(isWebKit()); }, []);
+  const body = (
       <div style={{ width: mark.rect.w, height: mark.rect.h, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18, color: "#f4f4ee" }} data-living="" data-step={current}>
         <style>{LIVING_CSS}</style>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, minHeight: 90, justifyContent: "flex-end" }}>
@@ -234,6 +236,11 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
         </div>
         <div style={{ minHeight: 34, fontSize: 18, color: "#aeb4c2" }}>{current >= 0 ? steps[current].caption ?? "" : ""}</div>
       </div>
+  );
+  if (webkit) return <WebKitHtml rect={mark.rect}>{body}</WebKitHtml>;
+  return (
+    <foreignObject x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} data-no-marker="" className="cv-in">
+      {body}
     </foreignObject>
   );
 }

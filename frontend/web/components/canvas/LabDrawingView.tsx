@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { isWebKit, WebKitHtml } from "./webkitHtml";
 import type { Mark } from "@/lib/canvas/layout";
 import { registerLabParts } from "@/lib/canvas/labParts";
 import { ACCENT } from "@/lib/mathsEngine/style.js";
@@ -176,9 +177,13 @@ function View3D({ mark, shownThrough, reducedMotion }: { mark: LabMark; shownThr
 }
 
 export function LabDrawingView({ mark, shownThrough, reducedMotion }: { mark: LabMark; shownThrough: number; reducedMotion: boolean }) {
+  const [webkit, setWebkit] = useState(false);
+  useLayoutEffect(() => { setWebkit(isWebKit()); }, []);
+  const drawing = mark.lab.kind === "pencil" ? <PencilScene mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} /> : <View3D mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />;
+  if (webkit) return <WebKitHtml rect={mark.rect}>{drawing}</WebKitHtml>;
   return (
     <foreignObject x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} className="cv-in" data-no-marker="">
-      {mark.lab.kind === "pencil" ? <PencilScene mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} /> : <View3D mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />}
+      {drawing}
     </foreignObject>
   );
 }
