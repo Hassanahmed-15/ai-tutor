@@ -43,6 +43,16 @@ const SECOND_OPINION_MAX_WORDS = 14;
  */
 const SECOND_OPINION_MIN_SPEECH_MS = 250;
 
+/** Her name as a transcriber spells it when it knows the word; "area" or "tutor" do not count here. */
+const ARIA_SPOKEN = /\b(?:aria|arya|ariya|aaria|ariah)\b/i;
+const NAMED_BY = /\bby name\b/;
+
+/** The verdict rests on her being called: not merely on the words "teacher" or "tutor" appearing. */
+function calledByName(text: string, verdict: AddressingVerdict): boolean {
+  if (!verdict.addressed || !NAMED_BY.test(verdict.reason)) return false;
+  return verdict.reason !== "addressed by name" || !/\b(?:teacher|tutor)\b/i.test(text) || ARIA_SPOKEN.test(text);
+}
+
 export type TurnState = "idle" | "attending" | "verifying" | "listening" | "committed" | "processing" | "refractory";
 
 export interface ArbiterConfig {
@@ -79,6 +89,16 @@ export interface ArbiterConfig {
    * cost of waiting forever is an assistant that cannot be spoken to at all.
    */
   addressingTimeoutMs: number;
+  /**
+   * A call by name is never lost (owner, 2026-11-09: "I keep calling Aria and she does not respond").
+   * The voice check can no longer veto her name, and speech the gate would have written off as
+   * her own echo or another voice is still checked by the server, which can only accept her name.
+   */
+  callByNameAlwaysHeard: boolean;
+  /** Those extra checks are paid for, so at most one in this long… */
+  extraCheckGapMs: number;
+  /** …and at most this many per session; past it the gate behaves as it did before. */
+  extraChecksMax: number;
 }
 
 export const DEFAULT_ARBITER_CONFIG: ArbiterConfig = {
@@ -95,6 +115,10 @@ export const DEFAULT_ARBITER_CONFIG: ArbiterConfig = {
   // Long enough that a working recogniser almost always wins the race (interim results arrive in
   // 200-600 ms), short enough that a student does not conclude the tutor is deaf.
   addressingTimeoutMs: 1600,
+  callByNameAlwaysHeard: false,
+  extraCheckGapMs: 3_000,
+  // 200 clips of the 12 s most is 40 minutes of audio, about $0.12 at $0.003 a minute: the worst case.
+  extraChecksMax: 200,
 };
 
 export interface TutorStatus {
@@ -195,6 +219,10 @@ export class TurnArbiter {
   private verifyingDurationMs = 0;
   /** The narration's recent sentences (see setEchoText). */
   private echoTexts: Array<{ words: Set<string>; at: number }> = [];
+  /** The held utterance reached the server only to look for her name: nothing else may accept it. */
+  private verifyingNeedsName = false;
+  private extraChecksUsed = 0;
+  private lastExtraCheckAt = -Infinity;
 
   /**
    * A near-miss in the student's OWN voice is for her. Background speech lost the easy credit that
@@ -206,6 +234,23 @@ export class TurnArbiter {
   private creditStudentVoice(verdict: AddressingVerdict): AddressingVerdict {
     if (verdict.addressed || verdict.score < 0.4 || this.speakerVerdict() !== "student") return verdict;
     return { addressed: true, score: Math.min(1, verdict.score + 0.1), reason: `${verdict.reason} + the student's own voice` };
+  }
+
+  /**
+   * The voice check may turn away vague speech, never her name. A wrong voice profile lasts the
+   * whole lecture and rejected calls cannot correct it, so a veto here locked the student out.
+   */
+  private nameOverridesVoice(text: string, verdict: AddressingVerdict): boolean {
+    return this.config.callByNameAlwaysHeard && calledByName(text, verdict);
+  }
+
+  /** May one more name-only server check be spent now? Counts it when it may. */
+  private takeExtraCheck(now: number): boolean {
+    if (!this.config.callByNameAlwaysHeard) return false;
+    if (this.extraChecksUsed >= this.config.extraChecksMax || now - this.lastExtraCheckAt < this.config.extraCheckGapMs) return false;
+    this.extraChecksUsed += 1;
+    this.lastExtraCheckAt = now;
+    return true;
   }
 
   /** Whether a transcript is mostly the narration's own recent words (and names nobody). */
@@ -290,6 +335,8 @@ export class TurnArbiter {
     if (this.state !== "verifying") return;
     const audio = this.verifyingAudio;
     this.verifyingAudio = [];
+    const needsName = this.verifyingNeedsName;
+    this.verifyingNeedsName = false;
     const clean = text.trim();
     if (clean) this.everTranscribed = true;
     let verdict = clean
@@ -301,10 +348,16 @@ export class TurnArbiter {
      * the server transcriber hears it perfectly, and its words were judged with no check that the
      * voice was the student's or that they were not the lecture's own narration coming back.
      */
-    if (verdict.addressed && this.speakerVerdict() === "other") {
+    if (verdict.addressed && this.speakerVerdict() === "other" && !this.nameOverridesVoice(clean, verdict)) {
       verdict = { addressed: false, score: verdict.score, reason: `${verdict.reason}, but the voice is not the student's` };
     }
     verdict = this.creditStudentVoice(verdict);
+    /*
+     * ONLY HER NAME, SPELLED AS HER NAME. This clip is mostly the narration or another voice, so
+     * anything looser lets the lecture stop itself: a script saying "the teacher", or ending on
+     * "area", is a call by the ordinary rules.
+     */
+    if (needsName && !ARIA_SPOKEN.test(clean)) verdict = { addressed: false, score: 0, reason: "extra check: her name was not said" };
     if (verdict.addressed && this.isEcho(clean, now) && !/\bby name\b/.test(verdict.reason)) {
       verdict = { addressed: false, score: 0, reason: ECHO_REASON };
     }
@@ -444,7 +497,7 @@ export class TurnArbiter {
       topicWords: this.topicWords,
       wakeNames: this.wakeNames,
     });
-    if (verdict.addressed && this.speakerVerdict() === "other") {
+    if (verdict.addressed && this.speakerVerdict() === "other" && !this.nameOverridesVoice(text, verdict)) {
       verdict = { addressed: false, score: verdict.score, reason: `${verdict.reason}, but the voice is not the student's` };
     }
     verdict = this.creditStudentVoice(verdict);
@@ -609,17 +662,23 @@ export class TurnArbiter {
          */
         const localWords = this.lastTranscript.trim().split(/\s+/).filter(Boolean).length;
         const localSaysEcho = this.lastVerdict?.reason === ECHO_REASON;
-        if (
-          !this.lastVerdict?.addressed && !localSaysEcho && localWords <= SECOND_OPINION_MAX_WORDS &&
-          this.episodeSpeechMs >= SECOND_OPINION_MIN_SPEECH_MS && who !== "other" && this.callbacks.onSecondOpinion && this.candidateAudio.length
-        ) {
+        const askable = !this.lastVerdict?.addressed && this.episodeSpeechMs >= SECOND_OPINION_MIN_SPEECH_MS && Boolean(this.callbacks.onSecondOpinion) && this.candidateAudio.length > 0;
+        const ordinary = !localSaysEcho && localWords <= SECOND_OPINION_MAX_WORDS && who !== "other";
+        /*
+         * What used to be written off without a check: her echo, a voice that does not match, or a
+         * long run of words under the narration (Chrome writing down her sentence over the call).
+         */
+        const writtenOff = localSaysEcho || (who === "other" && localWords <= SECOND_OPINION_MAX_WORDS) || (localWords > SECOND_OPINION_MAX_WORDS && this.tutor.speaking);
+        const extra = askable && !ordinary && writtenOff && this.takeExtraCheck(now);
+        if (askable && (ordinary || extra)) {
+          this.verifyingNeedsName = !ordinary;
           this.verifyingAudio = [...this.candidateAudio];
           this.verifyingSince = now;
           this.verifyingDurationMs = durationMs;
           this.candidateAudio = [];
           this.restoreIfDucked("holding the utterance for a second opinion");
           this.transition("verifying", `${this.lastTranscript ? `local words "${this.lastTranscript.slice(0, 40)}" unconvincing` : "no local words"} for ${Math.round(this.episodeSpeechMs)} ms of voice; asking for a second opinion`, now);
-          this.callbacks.onSecondOpinion(this.verifyingAudio);
+          this.callbacks.onSecondOpinion?.(this.verifyingAudio);
           return;
         }
         this.restoreIfDucked("speech ended without evidence it was for the tutor");

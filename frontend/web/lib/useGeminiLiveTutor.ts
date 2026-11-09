@@ -223,6 +223,8 @@ export type UseGeminiLiveTutorOptions = {
   gateProfile?: GateProfile;
   /** Enrol and match the student's voice (default on). Off means the gate judges words alone. */
   speakerVerification?: boolean;
+  /** A call by name is never lost (lib/voice/runtime/arbiter.ts). Off by default. */
+  callByNameAlwaysHeard?: boolean;
   /**
    * Is the tutor audibly speaking right now, beyond the Live audio this hook plays itself?
    *
@@ -1132,6 +1134,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       void audioContextRef.current?.close().catch(() => undefined);
       sessionRef.current = null;
       audioContextRef.current = null;
+      // The next session gets a new context whose clock starts at 0. Left at this one's time, her
+      // reply after a reconnect was queued that far ahead: "Aria speaking…" with nothing to hear.
+      nextPlayTimeRef.current = 0;
       micStreamRef.current = null;
       micSourceRef.current = null;
       micProcessorRef.current = null;
@@ -1581,6 +1586,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       profile: optionsRef.current.gateProfile ?? profileForSurface(optionsRef.current.voiceSurface ?? "shared"),
       verifier,
       semanticPrefilter: browserSemanticPrefilterAvailable(),
+      callByNameAlwaysHeard: optionsRef.current.callByNameAlwaysHeard === true,
       callbacks: {
         /*
          * AUDIO REACHES GEMINI ONLY INSIDE A TURN. The old pipeline streamed every frame and let

@@ -982,6 +982,8 @@ export function LessonPlayer({
     ...(standardTransitionsEnabled ? { voiceName: ARIA_LIVE_VOICE } : {}),
     // Minutes of narration at a time: nothing stops her without positive evidence.
     gateProfile: "lecture",
+    // Standard lecture only: the accessibility tracks keep their gate exactly as it was.
+    callByNameAlwaysHeard: standardTransitionsEnabled,
     // She is shown the uploaded pages themselves, not only their extracted text.
     documentId,
     getTutorSpeaking: () => narrationAudibleRef.current || boardNarratingRef.current,

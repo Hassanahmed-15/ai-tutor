@@ -48,6 +48,8 @@ export interface SharedVoiceGateOptions {
   callbacks?: SharedVoiceGateCallbacks;
   wakeNames?: string[];
   semanticPrefilter?: boolean;
+  /** See ArbiterConfig.callByNameAlwaysHeard. Standard lecture only. */
+  callByNameAlwaysHeard?: boolean;
 }
 
 function stageOf(state: string): GateStage {
@@ -81,7 +83,7 @@ export class SharedVoiceGate {
       verifier: options.verifier,
       wakeNames: options.wakeNames,
       log: this.log,
-      arbiter: { requireAddressingBeforeOpen: options.semanticPrefilter === true },
+      arbiter: { requireAddressingBeforeOpen: options.semanticPrefilter === true, callByNameAlwaysHeard: options.callByNameAlwaysHeard === true },
       callbacks: {
         onDuck: (gain, reason) => { this.decide("candidate", "duck", reason); callbacks.onDuck?.(gain); },
         onRestore: (reason) => { this.decide("refractory", "restore", reason); callbacks.onRestore?.(); },
