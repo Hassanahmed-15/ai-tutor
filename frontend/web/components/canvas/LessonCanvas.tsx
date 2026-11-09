@@ -292,10 +292,14 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   useEffect(() => {
     boardStartRef.current = { key: boardKey, at: performance.now() };
   }, [boardKey]);
+  // The full board's words (lib/canvas/blocks.ts) appear with no pen, so a camera that follows the pen never
+  // learns she has gone back to them: a close-up on the drawing cut them off for the rest of the board
+  // (owner, 2026-11-09). The whole board stays in view; the words scroll themselves to follow her.
+  const blocksBoard = Boolean(currentLayout?.marks.some((m) => m.type === "blocks"));
   const directingRef = useRef(false);
   useEffect(() => {
-    directingRef.current = labLook && !taskOpen && !finished;
-  }, [labLook, taskOpen, finished]);
+    directingRef.current = labLook && !taskOpen && !finished && !blocksBoard;
+  }, [labLook, taskOpen, finished, blocksBoard]);
   const stateFor = useCallback((): Shot => {
     const d = directorRef.current;
     return d.board === boardStartRef.current.key ? d : { shot: null, changedAt: boardStartRef.current.at };
@@ -339,7 +343,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     // Keyed on the target only.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focusKey]);
-  const directorShot = director.board === boardKey ? director.shot : null;
+  const directorShot = director.board === boardKey && !blocksBoard ? director.shot : null;
   useEffect(() => {
     const qa = window as unknown as { __qaMarker?: boolean; __director?: unknown };
     if (qa.__qaMarker) qa.__director = { ...director, boardKey, place: currentPlace, directing: directingRef.current };
@@ -351,7 +355,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     // The recap's tour: while a sentence recalls an earlier board, the camera is back on it.
     if (visitIndex >= 0 && visitIndex < shownIndex) return fitView(worldRects[visitIndex], aspect, 0.06);
     // Maths/CS: the director's shot (above) is the camera; the writer's own zoom cues are not used.
-    const zoomTarget = cueState.zoom && !labLook ? currentLayout.targets[cueState.zoom] : undefined;
+    const zoomTarget = cueState.zoom && !labLook && !blocksBoard ? currentLayout.targets[cueState.zoom] : undefined;
     // Zooming onto something that already fills most of the board only crops it.
     const zoomLimit = 0.28;
     const nearest = 0.55;
@@ -367,7 +371,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     if (labLook && !taskOpen && !finished && directorShot) return fitView(toWorld(directorShot, currentPlace), aspect, 0.03);
     // Sticky notes (lib/canvas/cardStyle.ts): the camera leans gently toward the note Aria is on —
     // most of the board stays in view, so the note is in its context and nobody feels the motion.
-    const note = cardStyle === "sticky" && focusId && !taskOpen ? currentLayout.marks.find((m) => m.type === "box" && !m.icon && m.id === focusId) : undefined;
+    const note = cardStyle === "sticky" && focusId && !taskOpen && !blocksBoard ? currentLayout.marks.find((m) => m.type === "box" && !m.icon && m.id === focusId) : undefined;
     if (note) {
       const t = (note as { rect: Rect }).rect;
       const w = PANEL_W * 0.9;
@@ -383,7 +387,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     if (beside) return beside;
     const room = taskOpen ? PANEL_W * 0.52 : 0;
     return fitView(toWorld({ x: 0, y: 0, w: PANEL_W + room, h: PANEL_H }, currentPlace), aspect, 0.035);
-  }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, boxSize, taskOpen, visitIndex, shownIndex, worldRects, cardStyle, focusId, labLook, directorShot]);
+  }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, boxSize, taskOpen, visitIndex, shownIndex, worldRects, cardStyle, focusId, labLook, directorShot, blocksBoard]);
 
   const viewRef = useRef<View>(followView);
   useEffect(() => {
