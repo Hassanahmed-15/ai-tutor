@@ -666,7 +666,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
     case "blocks":
       return <BlocksView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} live={Number.isFinite(shownThrough)} reducedMotion={reducedMotion} said={isCourseBoard(spec) ? partNamed(layout, focusId) : undefined} />;
     case "living":
-      return <LivingEquationView mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />;
+      return <LivingEquationView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} reducedMotion={reducedMotion} />;
     case "figure":
       return <FigureView mark={mark} chalk={Boolean(chalk)} focusId={focusId} shownThrough={shownThrough} />;
     case "figure-label":

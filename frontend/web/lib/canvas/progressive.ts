@@ -4,6 +4,7 @@ import { withoutBannedWords } from "../teaching/styleCheck";
 import { prepareNarration } from "../narrationAudio";
 import { splitNarrationSentences } from "../narrationText";
 import { CANVAS_OPENING_BOARDS } from "../progressiveWindow";
+import { retimeLivingSteps } from "./livingTiming";
 import { teachingOrdersOn } from "../teaching/courseOrders";
 import "server-only";
 
@@ -798,7 +799,7 @@ export async function writeCanvasBoard(args: {
   }
   // ONE LIVING EQUATION for a maths board's working (components/canvas/LivingEquationView.tsx): the
   // board's own steps, shown changing in place. Not where a term is written over another (a condition over an arrow).
-  if (labVisualsOn() && mathsLesson && (!beat.course || beat.subject === "maths") && spec.stage.kind === "equation" && spec.stage.steps.length > 0 && !spec.stage.tokens.some((t) => t.on)) spec.living = true;
+  if (labVisualsOn() && mathsLesson && (!beat.course || beat.subject === "maths") && spec.stage.kind === "equation" && spec.stage.steps.length > 0 && !spec.stage.tokens.some((t) => t.on)) { spec.living = true; spec.stage = retimeLivingSteps(spec.stage, canvasSentences(beat.script)); }
   // THE FULL BOARD (lib/canvas/blocks.ts, CANVAS_BLOCKS=on): every sentence written out, in typed blocks — course
   // lessons, and every maths lecture, typed or from a PDF (owner, 2026-11-11: "a little more text, like it is now for maths").
   if (canvasBlocksOn() && (beat.course || mathsLesson) && spec.stage.kind !== "exam") {

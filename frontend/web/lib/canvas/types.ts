@@ -156,6 +156,8 @@ export type EquationToken = {
   on?: string;
 };
 export type EquationStep = {
+  /** How far into its sentence (0–1) the step comes: where Aria says what it shows (lib/canvas/livingTiming.ts). */
+  at?: number;
   s: number;
   /** The token ids in reading order for this step. Tokens not listed are hidden in this step. */
   order: string[];

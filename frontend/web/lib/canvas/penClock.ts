@@ -24,3 +24,25 @@ export function penRemainingMs(): number {
     return 0;
   }
 }
+
+/**
+ * HOW LONG THE BOARD'S LIVING EQUATION STILL NEEDS (components/canvas/LivingEquationView.tsx): the states she
+ * has said that it has not shown yet, and a moment to read the last one. The player waits for it before the
+ * next board (bounded), so the working is never cut off at the end of a board (owner, 2026-11-11).
+ */
+let equation: (() => number) | null = null;
+
+export function reportEquationRemaining(read: () => number): () => void {
+  equation = read;
+  return () => {
+    if (equation === read) equation = null;
+  };
+}
+
+export function equationRemainingMs(): number {
+  try {
+    return equation ? Math.max(0, equation()) : 0;
+  } catch {
+    return 0;
+  }
+}

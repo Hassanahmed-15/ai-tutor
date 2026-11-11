@@ -90,7 +90,7 @@ import { DrawOverlay } from "./sketch/DrawOverlay";
 import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { DeafSigningExtension } from "./sign-language/DeafSigningExtension";
 import { openingSentence, transitionSentence } from "@/lib/beatPresentation";
-import { penRemainingMs } from "@/lib/canvas/penClock";
+import { equationRemainingMs, penRemainingMs } from "@/lib/canvas/penClock";
 import type { HeardSentence } from "./canvas/MarkerWriter";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
@@ -285,6 +285,8 @@ const BOARD_HOLD_AFTER_NARRATION_MS = 350;
  * never stops the lecture.
  */
 const PEN_WAIT_MAX_MS = 600;
+/** The most a board waits, at its end, for its living equation to show what she said and let the answer be read. */
+const EQUATION_WAIT_MAX_MS = 4500;
 /** The most her voice waits for the pen between two sentences (owner, 2026-11-09: "the voice is gone for seconds"). */
 const PEN_BREATH_MS = 500;
 
@@ -2350,6 +2352,12 @@ export function LessonPlayer({
               const pen = penRemainingMs();
               if (pen > 30 && waited < PEN_WAIT_MAX_MS / rateRef.current) {
                 window.setTimeout(() => afterPen(waited + Math.min(pen, 200)), Math.min(pen, 200));
+                return;
+              }
+              // The working on the right finishes what she said, and its answer is seen, before the board goes.
+              const working = equationRemainingMs();
+              if (working > 30 && waited < EQUATION_WAIT_MAX_MS / rateRef.current) {
+                window.setTimeout(() => afterPen(waited + Math.min(working, 200)), Math.min(working, 200));
                 return;
               }
               window.setTimeout(holdThenAdvance, BOARD_HOLD_AFTER_NARRATION_MS / rateRef.current);

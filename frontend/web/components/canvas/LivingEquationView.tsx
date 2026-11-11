@@ -4,6 +4,8 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import katex from "katex";
 import type { Mark } from "@/lib/canvas/layout";
 import { labPartsFor } from "@/lib/canvas/labParts";
+import { stateTimes } from "@/lib/canvas/livingTiming";
+import { reportEquationRemaining } from "@/lib/canvas/penClock";
 import { isWebKit, WebKitHtml } from "./webkitHtml";
 
 /**
@@ -30,7 +32,7 @@ const SIGN = /^\s*(?:[=+−×÷<>≤≥≈-]|\\times|\\div|\\cdot|\\pm|\\approx|
 const html = (tex: string | undefined, text: string) => katex.renderToString(tex ?? text.replace(/([{}#$%&_])/g, "\\$1"), { throwOnError: false, output: "html" });
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark: LivingMark; shownThrough: number; reducedMotion: boolean }) {
+export function LivingEquationView({ mark, shownThrough, sentenceProgress = 0, reducedMotion }: { mark: LivingMark; shownThrough: number; sentenceProgress?: number; reducedMotion: boolean }) {
   const tokens = useMemo(() => new Map(mark.tokens.map((t) => [t.id, t])), [mark.tokens]);
   const links = useMemo(() => new Map(mark.links.map((l) => [l.token, l])), [mark.links]);
   // EACH EQUATION IS A STATE. A step may hold several, joined by "," or ";" ("h² = 289 − 64, h² = 225,
@@ -51,19 +53,36 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
     });
     return out.filter((c) => c.length).map((order) => ({ ...st, order }));
   }), [mark.steps, tokens]);
-  const s = Number.isFinite(shownThrough) ? shownThrough : 1e6;
-  // Where the board has got to: the last state whose sentence has come.
-  const target = steps.reduce((k, st, i) => (st.s <= s ? i : k), -1);
+  // Where her voice is: the sentence playing and how far through it.
+  const clock = Number.isFinite(shownThrough) ? shownThrough + Math.min(0.999, Math.max(0, sentenceProgress)) : 1e6;
+  // EACH STATE COMES WHEN SHE SAYS IT (lib/canvas/livingTiming.ts): at its place in its sentence, not 1.3 s
+  // after the last one — that ran a sentence's steps past faster than she could talk them through.
+  const times = useMemo(() => stateTimes(steps), [steps]);
+  const target = times.reduce((k, t, i) => (t <= clock ? i : k), -1);
   const [current, setCurrent] = useState(-1);
-  // States of one sentence come about 1.3 s apart; a jump (a replay, a later sentence) goes straight to that sentence's first.
+  // One state at a time, each held long enough to be read (at least 1.6 s) when several are due together;
+  // a jump back or far ahead goes straight there.
+  // The player waits, at the end of the board, for the states still to come and a moment to read the last.
+  const due = useRef({ target, current, shownAt: 0 });
+  due.current.target = target;
+  const live = Number.isFinite(shownThrough);
+  useEffect(() => {
+    if (!live) return;
+    return reportEquationRemaining(() => {
+      const { target: t, current: c, shownAt } = due.current;
+      return Math.max(0, t - c) * 1600 + Math.max(0, shownAt + 1800 - performance.now());
+    });
+  }, [live]);
+  useEffect(() => {
+    due.current.current = current;
+    due.current.shownAt = performance.now();
+  }, [current]);
   useEffect(() => {
     if (target === current) return;
-    if (reducedMotion || target < current) { setCurrent(target); return; }
-    const firstOfTarget = steps.findIndex((st) => st.s === steps[target].s);
-    if (current < firstOfTarget - 1) { setCurrent(firstOfTarget); return; }
-    const t = window.setTimeout(() => setCurrent((c) => Math.min(target, c + 1)), current < 0 || steps[current + 1]?.s !== steps[current]?.s ? 0 : 1300);
+    if (reducedMotion || target < current || target - current > 3) { setCurrent(target); return; }
+    const t = window.setTimeout(() => setCurrent((c) => Math.min(target, c + 1)), current < 0 ? 0 : 1600);
     return () => window.clearTimeout(t);
-  }, [target, current, reducedMotion, steps]);
+  }, [target, current, reducedMotion]);
   const line = useRef<HTMLDivElement>(null);
   const shown = useRef<number>(-2);
   const named = useRef(new Set<string>());

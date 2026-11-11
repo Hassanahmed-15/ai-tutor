@@ -53,7 +53,7 @@ export type Mark =
   | { type: "lab"; id: string; rect: Rect; lab: LabDrawing; s: number; /** Joins it to the board's living equation (its parts glow as their terms arrive). */ key: string }
   /** The working as one living equation (components/canvas/LivingEquationView.tsx): its terms, steps and links to the drawing. */
   | { type: "blocks"; id: string; rect: Rect; blocks: BoardBlock[]; s: number }
-  | { type: "living"; id: string; rect: Rect; tokens: Array<{ id: string; text: string; tex?: string; color: string }>; steps: Array<{ s: number; order: string[]; highlight: string[]; caption?: string }>; links: Array<{ token: string; objects: string[]; name: string }>; drawing?: string; s: number }
+  | { type: "living"; id: string; rect: Rect; tokens: Array<{ id: string; text: string; tex?: string; color: string }>; steps: Array<{ s: number; at?: number; order: string[]; highlight: string[]; caption?: string }>; links: Array<{ token: string; objects: string[]; name: string }>; drawing?: string; s: number }
   | { type: "figure-label"; id: string; part: string; lines: string[]; side: "left" | "right"; at: Pt; leader: Pt[]; size: number; s: number }
   | { type: "free-body"; id: string; body: SceneStage["items"][number]; bodyRect: Rect; forces: FreeBodyForce[]; s: number }
   | { type: "electrolytic-cell"; id: string; rect: Rect; parts: { power: SceneStage["items"][number]; electrolyte: SceneStage["items"][number]; anode: SceneStage["items"][number]; cathode: SceneStage["items"][number] }; s: number }
@@ -652,7 +652,7 @@ export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
     marks.push({
       type: "living", id: "living", rect, s: 0, links,
       tokens: eq.tokens.map((t) => ({ id: t.id, text: t.text, ...(t.tex ? { tex: t.tex } : {}), color: colours.get(t.id) ?? INK })),
-      steps: eq.steps.map((st) => ({ s: st.s, order: st.order, highlight: st.highlight ?? [], ...(st.caption ? { caption: st.caption } : {}) })),
+      steps: eq.steps.map((st) => ({ s: st.s, ...(st.at !== undefined ? { at: st.at } : {}), order: st.order, highlight: st.highlight ?? [], ...(st.caption ? { caption: st.caption } : {}) })),
       ...(spec.lab?.kind === "pencil" ? { drawing: labKeyOf(spec) } : {}),
     });
     add("living", rect, 0);
