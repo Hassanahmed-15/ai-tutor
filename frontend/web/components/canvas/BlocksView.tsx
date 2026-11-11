@@ -26,7 +26,7 @@ function debugOn(): boolean {
  * interruption holds the writing exactly where her voice stopped. What does not fit scrolls, following her
  * and keeping everything above it; nothing is cut.
  */
-export function BlocksView({ mark, shownThrough, sentenceProgress, live, reducedMotion }: { mark: BlocksMark; shownThrough: number; sentenceProgress: number; live: boolean; reducedMotion: boolean }) {
+export function BlocksView({ mark, shownThrough, sentenceProgress, live, reducedMotion, said }: { mark: BlocksMark; shownThrough: number; sentenceProgress: number; live: boolean; reducedMotion: boolean; said?: string }) {
   const timed = useMemo(() => mark.blocks.map((block) => ({ block, units: revealUnits(block) })), [mark.blocks]);
   const clock = live && Number.isFinite(shownThrough) ? shownThrough + Math.min(0.999, Math.max(0, sentenceProgress)) : Infinity;
   const box = useRef<HTMLDivElement>(null);
@@ -90,7 +90,7 @@ export function BlocksView({ mark, shownThrough, sentenceProgress, live, reduced
       onWheel={(e) => { e.stopPropagation(); studentScrolled(); }}
       onPointerDown={(e) => { e.stopPropagation(); studentScrolled(); }}
     >
-      {timed.map(({ block, units }, i) => (shown[i] > 0 ? <BlockView key={block.id} block={block} units={units} shown={shown[i]} /> : null))}
+      {timed.map(({ block, units }, i) => (shown[i] > 0 ? <BlockView key={block.id} block={block} units={units} shown={shown[i]} said={said && Number.isFinite(clock) ? { name: said, sentence: Math.floor(clock) } : undefined} /> : null))}
       {debug && <div className="bk-debug">sync: last {Math.round(debug.last)} ms · median {Math.round(debug.median)} ms · {debug.n} pieces</div>}
     </div>
   );

@@ -46,15 +46,26 @@ function Tex({ tex, display = false }: { tex: string; display?: boolean }) {
   return <span ref={box} className={display ? "bk-tex" : undefined} dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
-/** A line of board text: **key terms** stand out, $…$ is typeset, everything else is plain text. */
-export function Inline({ text }: { text: string }) {
+/** The picture part Aria is naming, as it is written in the text: the name or its plural, as a whole word. */
+export function partWords(name: string): RegExp {
+  const words = name.trim().split(/\s+/).map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("\\s+");
+  return new RegExp(`(?<![\\p{L}\\p{N}])(${words}(?:e?s)?)(?![\\p{L}\\p{N}])`, "giu");
+}
+
+/** A line of board text: **key terms** stand out, $…$ is typeset, everything else is plain text. `lit`: words lit while she says them. */
+export function Inline({ text, lit }: { text: string; lit?: RegExp }) {
   const parts = dollarMath(text).split(/(\*\*[^*]+\*\*|\$[^$]+\$)/g).filter(Boolean);
+  const plain = (t: string, key: number) => {
+    if (!lit) return <Fragment key={key}>{t}</Fragment>;
+    const bits = t.split(lit);
+    return <Fragment key={key}>{bits.map((b, k) => (k % 2 ? <mark key={k} className="bk-said">{b}</mark> : b))}</Fragment>;
+  };
   return (
     <>
       {parts.map((part, i) =>
-        part.startsWith("**") ? <strong key={i} className="bk-key"><Inline text={part.slice(2, -2)} /></strong>
+        part.startsWith("**") ? <strong key={i} className="bk-key"><Inline text={part.slice(2, -2)} lit={lit} /></strong>
         : part.startsWith("$") && part.length > 2 ? <Tex key={i} tex={part.slice(1, -1)} />
-        : <Fragment key={i}>{part}</Fragment>,
+        : plain(part, i),
       )}
     </>
   );
@@ -75,14 +86,17 @@ function CodeLine({ line }: { line: string }) {
 }
 
 /** A block, its direction set by its own words: Urdu and Arabic run right to left, code never does. */
-export function BlockView(props: { block: BoardBlock; units: RevealUnit[]; shown: number }) {
+export function BlockView(props: { block: BoardBlock; units: RevealUnit[]; shown: number; said?: { name: string; sentence: number } }) {
   const rtl = props.block.kind !== "code" && props.block.kind !== "formula" && /[\u0590-\u08FF]/.test(props.block.board_text);
   return <div dir={rtl ? "rtl" : "ltr"}><BlockBody {...props} /></div>;
 }
 
-function BlockBody({ block, units, shown }: { block: BoardBlock; units: RevealUnit[]; shown: number }) {
+function BlockBody({ block, units, shown, said }: { block: BoardBlock; units: RevealUnit[]; shown: number; said?: { name: string; sentence: number } }) {
   const on = (i: number) => (i < shown ? "bk-on" : "bk-off");
-  const lines = units.map((u, i) => <span key={u.key} data-bk-unit={i < shown ? "" : undefined} className={on(i)}><Inline text={u.text} /></span>);
+  // The part of the picture she is naming lights up in the words of the sentence she is saying (PictureSpotlight).
+  const words = useMemo(() => (said ? partWords(said.name) : undefined), [said?.name]);
+  const litAt = (i: number) => (words && said && i < shown && Math.floor(units[i]?.at ?? -1) === said.sentence ? words : undefined);
+  const lines = units.map((u, i) => <span key={u.key} data-bk-unit={i < shown ? "" : undefined} className={on(i)}><Inline text={u.text} lit={litAt(i)} /></span>);
   const label = (kind: CalloutKind | "you_asked") => (
     <div className="bk-label"><span className="cv-natural bk-emoji" aria-hidden="true">{CALLOUT_LABEL[kind].mark}</span> {CALLOUT_LABEL[kind].word}</div>
   );
@@ -90,13 +104,14 @@ function BlockBody({ block, units, shown }: { block: BoardBlock; units: RevealUn
     case "heading":
       return <h3 className="bk-heading">{lines}</h3>;
     case "steps":
-      return <ol className="bk-steps">{units.map((u, i) => <li key={u.key} data-bk-unit={i < shown ? "" : undefined} className={on(i)}><Inline text={u.text} /></li>)}</ol>;
+      // A step written with its own number ("1. Food enters…") is numbered once, by the list.
+      return <ol className="bk-steps">{units.map((u, i) => <li key={u.key} data-bk-unit={i < shown ? "" : undefined} className={on(i)}><Inline text={u.text.replace(/^\s*\d+[.)]\s+/, "")} lit={litAt(i)} /></li>)}</ol>;
     case "formula":
     case "chemical_equation":
       return (
         <div className="bk-formula">
           <div data-bk-unit={shown > 0 ? "" : undefined} className={on(0)}><Tex tex={units[0]?.text ?? ""} display /></div>
-          {units.length > 1 && <div className="bk-where"><span className={on(1)}>where:</span>{units.slice(1).map((u, i) => <div key={u.key} data-bk-unit={i + 1 < shown ? "" : undefined} className={on(i + 1)}><Inline text={u.text} /></div>)}</div>}
+          {units.length > 1 && <div className="bk-where"><span className={on(1)}>where:</span>{units.slice(1).map((u, i) => <div key={u.key} data-bk-unit={i + 1 < shown ? "" : undefined} className={on(i + 1)}><Inline text={u.text} lit={litAt(i + 1)} /></div>)}</div>}
         </div>
       );
     case "code":
@@ -107,7 +122,7 @@ function BlockBody({ block, units, shown }: { block: BoardBlock; units: RevealUn
         return (
           <table className="bk-table">
             {block.columns?.length ? <thead className={on(0)}><tr>{block.columns.map((c, i) => <th key={i}><Inline text={c} /></th>)}</tr></thead> : null}
-            <tbody>{block.rows.map((row, r) => <tr key={r} data-bk-unit={r < shown ? "" : undefined} className={on(r)}>{row.map((cell, c) => <td key={c}><Inline text={cell} /></td>)}</tr>)}</tbody>
+            <tbody>{block.rows.map((row, r) => <tr key={r} data-bk-unit={r < shown ? "" : undefined} className={on(r)}>{row.map((cell, c) => <td key={c}><Inline text={cell} lit={litAt(r)} /></td>)}</tr>)}</tbody>
           </table>
         );
       }

@@ -106,6 +106,7 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
         {visible.map((mark) => (
           <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} chalk={chalk} cardLook={cards} cardNo={cardNumbers ? (cardNumbers.get(mark.id) ?? 0) : undefined} cardDone={doneIds?.has(mark.id)} cardOpen={openId === mark.id} pencil={pencil} />
         ))}
+        {isCourseBoard(spec) && <PictureSpotlight layout={layout} focusId={focusId} live={live && !reducedMotion} />}
       </g>
     </g>
     </InkDrawing.Provider>
@@ -663,7 +664,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
     case "lab":
       return <LabDrawingView mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />;
     case "blocks":
-      return <BlocksView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} live={Number.isFinite(shownThrough)} reducedMotion={reducedMotion} />;
+      return <BlocksView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} live={Number.isFinite(shownThrough)} reducedMotion={reducedMotion} said={isCourseBoard(spec) ? partNamed(layout, focusId) : undefined} />;
     case "living":
       return <LivingEquationView mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />;
     case "figure":
@@ -731,6 +732,56 @@ function figureInk(ink: string | undefined, chalk: boolean): string {
 }
 
 /** A code-drawn textbook figure (lib/figures): its shapes, scaled into place; the focused part is drawn bolder. */
+type PartMark = Extract<Mark, { type: "part" }>;
+
+/** The name of the picture part Aria is on now, for the text to light up (BlocksView). */
+function partNamed(layout: PanelLayout, focusId?: string): string | undefined {
+  return focusId ? (layout.marks.find((m) => m.type === "part" && m.id === focusId) as PartMark | undefined)?.name : undefined;
+}
+
+/**
+ * THE PART SHE IS TALKING ABOUT STAYS BRIGHT (owner, 2026-11-11: "do something with the picture itself so the
+ * student knows which part the teacher is talking about"). While Aria's sentence names a part of a course
+ * picture, the rest of the picture dims a little, the part and its printed label stay lit, and at the end of
+ * the sentence it all comes back. Nothing is drawn on the picture: no ring or dot (owner, 2026-10-25).
+ */
+function PictureSpotlight({ layout, focusId, live }: { layout: PanelLayout; focusId?: string; live: boolean }) {
+  const picture = layout.marks.find((m) => m.type === "picture") as Extract<Mark, { type: "picture" }> | undefined;
+  const parts = layout.marks.filter((m): m is PartMark => m.type === "part");
+  const focus = parts.find((p) => p.id === focusId);
+  // The last part lit stays in place while the dimming fades out, so the light does not jump as it goes.
+  const last = useRef<PartMark | undefined>(undefined);
+  if (focus) last.current = focus;
+  const part = focus ?? last.current;
+  const id = useId().replace(/:/g, "");
+  if (!picture || !part) return null;
+  const r = picture.rect;
+  const side = Math.min(r.w, r.h);
+  // As far as the part can light without lighting its neighbours: most of the way to the nearest other part.
+  const nearest = Math.min(Infinity, ...parts.filter((p) => p !== part).map((p) => Math.hypot(p.cx - part.cx, p.cy - part.cy)));
+  const radius = Math.max(side * 0.08, Math.min(side * 0.2, Number.isFinite(nearest) ? nearest * 0.6 : side * 0.15));
+  const label = part.label;
+  return (
+    <g data-spotlight={focus ? "on" : "off"} pointerEvents="none" style={{ opacity: focus ? 1 : 0, transition: live ? "opacity 380ms ease" : "none" }}>
+      <defs>
+        <radialGradient id={`${id}-g`}>
+          <stop offset="0%" style={{ stopColor: "rgb(0,0,0)" }} />
+          <stop offset="40%" style={{ stopColor: "rgb(0,0,0)" }} />
+          <stop offset="70%" style={{ stopColor: "rgb(85,85,85)" }} />
+          <stop offset="100%" style={{ stopColor: "rgb(255,255,255)" }} />
+        </radialGradient>
+        <mask id={`${id}-m`} maskUnits="userSpaceOnUse" x={r.x} y={r.y} width={r.w} height={r.h}>
+          {/* Colours as styles: the board's dark theme recolours white and black fills, which turned the mask dark. */}
+          <rect x={r.x} y={r.y} width={r.w} height={r.h} style={{ fill: "rgb(255,255,255)" }} />
+          <circle cx={part.cx} cy={part.cy} r={radius} style={{ fill: `url(#${id}-g)` }} />
+          {label && <rect x={label.x - 6} y={label.y - 5} width={label.w + 12} height={label.h + 10} rx={8} style={{ fill: "rgb(0,0,0)" }} />}
+        </mask>
+      </defs>
+      <rect x={r.x} y={r.y} width={r.w} height={r.h} style={{ fill: "rgb(0,0,0)", opacity: 0.42 }} mask={`url(#${id}-m)`} />
+    </g>
+  );
+}
+
 function FigureView({ mark, chalk, focusId, shownThrough = Infinity }: { mark: Extract<Mark, { type: "figure" }>; chalk: boolean; focusId?: string; shownThrough?: number }) {
   const { rect, scale, drawing } = mark;
   if (mark.asset) return <LibraryFigureView mark={mark} chalk={chalk} />;
@@ -2426,6 +2477,7 @@ export const CANVAS_CSS = `
 .bk-formula { margin: .15em 0 .6em; text-align: center; }
 .bk-formula .bk-where { text-align: start; }
 .bk-tex { display: inline-block; max-width: 100%; }
+.bk-said { background: rgba(255, 215, 106, .26); color: var(--bk-key); border-radius: 4px; padding: 0 2px; box-shadow: 0 0 0 1px rgba(255, 215, 106, .35); }
 .bk-where { font-size: .84em; color: var(--bk-dim); }
 .bk-code { margin: 0 0 .6em; padding: .5em .6em; background: var(--bk-soft); border-radius: 6px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .74em; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
 .bk-table { width: 100%; margin: 0 0 .6em; border-collapse: collapse; font-size: .86em; }

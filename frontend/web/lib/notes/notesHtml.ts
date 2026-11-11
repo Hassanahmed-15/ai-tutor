@@ -33,7 +33,7 @@ function blockHtml(b: BoardBlock): string {
   const inner = (() => {
     switch (b.kind) {
       case "heading": return `<h3>${text}</h3>`;
-      case "steps": return b.items?.length ? `<ol>${b.items.map((i) => `<li>${inlineHtml(i)}</li>`).join("")}</ol>` : `<p>${text}</p>`;
+      case "steps": return b.items?.length ? `<ol>${b.items.map((i) => `<li>${inlineHtml(i.replace(/^\s*\d+[.)]\s+/, ""))}</li>`).join("")}</ol>` : `<p>${text}</p>`;
       case "formula":
       case "chemical_equation":
         return `<div class="formula">${tex(b.tex ?? b.board_text, true)}${b.where?.length ? `<div class="where">where:${b.where.map((w) => `<div>${inlineHtml(w)}</div>`).join("")}</div>` : ""}</div>`;
