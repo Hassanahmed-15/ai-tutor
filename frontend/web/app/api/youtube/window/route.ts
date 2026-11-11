@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth";
-import { VideoReadError, mayStartPastEnd, readVideoWindow } from "@/lib/youtube/geminiVideo";
-import { MAX_VIDEO_SEC, VIDEO_WINDOW_SEC } from "@/lib/youtube/videoSource";
+import { VideoReadError, mayStartPastEnd, readVideoSummary, readVideoWindow } from "@/lib/youtube/geminiVideo";
+import { MAX_VIDEO_SEC, VIDEO_SUMMARY_MAX_SEC, VIDEO_WINDOW_SEC, refusalFollowUp } from "@/lib/youtube/videoSource";
 import { parseYouTubeUrl } from "@/lib/youtube/videoUrl";
 
 export const runtime = "nodejs";
@@ -17,13 +17,18 @@ export async function POST(req: Request) {
   const startSec = Math.floor(Number(body.startSec));
   const endSec = Math.floor(Number(body.endSec));
   const durationSec = Math.floor(Number(body.durationSec));
-  if (!(startSec >= 0) || !(endSec > startSec) || endSec - startSec > VIDEO_WINDOW_SEC || endSec > MAX_VIDEO_SEC) {
+  const summary = body.summary === true;
+  if (!(startSec >= 0) || !(endSec > startSec) || endSec - startSec > (summary ? VIDEO_SUMMARY_MAX_SEC : VIDEO_WINDOW_SEC) || endSec > MAX_VIDEO_SEC) {
     return NextResponse.json({ error: "Invalid clip." }, { status: 400 });
   }
   try {
     const pastEndOk = durationSec > 0 && mayStartPastEnd(startSec, durationSec);
-    const { cached, costUsd, model, promptTokens, outputTokens, ...window } = await readVideoWindow(link.videoId, link.url, startSec, endSec, pastEndOk);
-    return NextResponse.json({ window, cached, costUsd, model, promptTokens, outputTokens });
+    const { cached, costUsd, model, promptTokens, outputTokens, ...window } = summary
+      ? await readVideoSummary(link.videoId, link.url, startSec, endSec)
+      : await readVideoWindow(link.videoId, link.url, startSec, endSec, pastEndOk);
+    // A refusal is answered at once; the browser asks for the next step as its own short request.
+    const followUp = summary ? null : refusalFollowUp(window);
+    return NextResponse.json({ window, cached, costUsd, model, promptTokens, outputTokens, ...(followUp ? { followUp } : {}) });
   } catch (error) {
     if (error instanceof VideoReadError) return NextResponse.json({ error: error.message, retryable: error.retryable }, { status: error.status });
     return NextResponse.json({ error: error instanceof Error ? error.message : "Could not read the video.", retryable: true }, { status: 502 });

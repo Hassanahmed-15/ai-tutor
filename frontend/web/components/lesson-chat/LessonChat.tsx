@@ -8,6 +8,9 @@ import { EquationBoard } from "@/components/sketch/EquationBoard";
 import type { EquationSpec } from "@/lib/equationSpec";
 import type { CodeSpec } from "@/lib/codeSpec";
 import { ReactAnimationSandbox } from "@/components/sketch/ReactAnimationSandbox";
+import { LessonCanvas } from "@/components/canvas/LessonCanvas";
+import { canvasSentences } from "@/lib/canvas/plan";
+import type { CanvasBoardSpec } from "@/lib/canvas/types";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
 import { recordJsonCost } from "@/lib/costLedger";
 import { asksForVisual, isAffirmative, isFormulaQuestion, isNegative } from "@/lib/drawConsent";
@@ -528,6 +531,13 @@ function BoardSection({ board, progress }: { board: { script: string; draw?: Dra
     (op): op is Extract<typeof op, { kind: "codeBoard" }> => op.kind === "codeBoard" && Boolean(op.spec)
   );
   if (codeOp?.spec) return <CodeBoard key={board.script.slice(0, 24)} spec={codeOp.spec as CodeSpec} progress={progress} />;
+  // A canvas lecture's slide (lib/canvas/questionBoard.ts): the lecture's own board, drawn sentence by sentence as Aria reads it.
+  const canvasOp = board.draw?.ops.find((op) => (op as { kind: string }).kind === "canvasBoard") as { spec?: CanvasBoardSpec } | undefined;
+  if (canvasOp?.spec) {
+    const total = Math.max(1, canvasSentences(board.script).length);
+    const sentence = Math.max(0, Math.min(total - 1, Math.round(progress * total) - 1));
+    return <LessonCanvas key={board.script.slice(0, 24)} panels={[{ key: `question-${board.script.slice(0, 16)}`, spec: canvasOp.spec }]} currentIndex={0} sentence={sentence} sentenceProgress={1} finished={progress >= 1} waitingForStudent={false} topic="" onSpeak={() => {}} onTellAria={() => {}} onContinue={() => {}} />;
+  }
   // A formula question's answer: the formula, typeset by KaTeX (app/api/explain/route.ts).
   const equationOp = board.draw?.ops.find(
     (op): op is Extract<typeof op, { kind: "equationBoard" }> => op.kind === "equationBoard" && Boolean(op.spec)

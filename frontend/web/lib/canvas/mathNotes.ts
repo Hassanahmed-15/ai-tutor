@@ -63,6 +63,9 @@ export function unicodeToTex(math: string): string {
   }
   return out
     .replace(/\^\(([^()]*)\)/g, "^{($1)}") // rₜ₊₁^(i) → r_{t+1}^{(i)}
+    // "65^2753 mod 3233": a power of several digits is one superscript, and "mod" is the operator.
+    .replace(/\^(\d{2,})/g, "^{$1}")
+    .replace(/\s*\bmod\b\s*/g, " \\bmod ")
     // ρ₀:t and ρ₀:ₜ are one subscript, "0:t".
     .replace(/_\{([^}]*)\}:_\{([^}]*)\}/g, "_{$1:$2}")
     .replace(/_\{([^}]*)\}:([a-zA-Z]\w*)/g, "_{$1:$2}")
@@ -87,6 +90,8 @@ export function noteTex(text: string, opts: { acronyms?: boolean } = {}): string
   if (words.length >= 3) return null;
   // A word in the maths is text — never a command's name (\gamma, \prod, \times).
   let body = unicodeToTex(math).replace(/(?<![\\A-Za-z])([A-Za-z]{4,})\b/g, "\\text{$1}");
+  // A unit after a number is upright, not variables: "5 × 2 ns = 10 ns" was set as italic n·s (CPU lecture, 2026-11-11).
+  body = body.replace(/(\d)\s*(ns|ms|µs|us|ps|kHz|MHz|GHz|Hz|KB|MB|GB|TB|Kb|Mb|Gb|bps)\b/g, "$1\\,\\text{$2}");
   // A CS acronym is a name, not three variables multiplied: "ACK = 1000 + 1" sets ACK upright.
   if (opts.acronyms) body = body.replace(/(?<![\\A-Za-z{])([A-Z]{3})(?![A-Za-z}])/g, "\\text{$1}");
   return label ? `\\text{${label}: }${body}` : body;

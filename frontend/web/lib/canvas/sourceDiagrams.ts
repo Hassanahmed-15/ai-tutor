@@ -223,7 +223,7 @@ export async function readSourceDiagrams(openai: OpenAI, topic: string, pack: So
   }
 }
 
-const DIAGRAM_STAGE: Record<SourceDiagram["kind"], CanvasStage> = { sequence: "sequence", "state-machine": "structure", layers: "flow", flow: "flow" };
+export const DIAGRAM_STAGE: Record<SourceDiagram["kind"], CanvasStage> = { sequence: "sequence", "state-machine": "structure", layers: "flow", flow: "flow" };
 
 function diagramWords(d: SourceDiagram): Set<string> {
   return new Set(words([d.title, ...(d.lanes ?? []), ...(d.messages ?? []).flatMap((m) => [m.label, m.detail ?? ""]), ...(d.states ?? []).map((s) => s.label), ...(d.transitions ?? []).flatMap((t) => [t.from, t.to, t.label ?? ""]), ...(d.layers ?? []), ...(d.boxes ?? [])].join(" ")));

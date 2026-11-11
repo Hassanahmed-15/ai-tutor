@@ -170,6 +170,58 @@ function familiesOf(text: string): Family[] {
   return FAMILIES.filter((f) => familyMatches(f, text));
 }
 
+const SUPERSCRIPT_DIGITS: Record<string, string> = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9" };
+const MOD_POW = /(\d{1,12})\s*(?:\^\s*\{?\s*(\d{1,8})\s*\}?|([⁰¹²³⁴⁵⁶⁷⁸⁹]{1,8}))\s*(?:mod|\\bmod|%)\s*(\d{1,12})\s*=\s*(\d{1,12})/g;
+
+function modPow(base: bigint, exp: bigint, mod: bigint): bigint {
+  let result = BigInt(1);
+  let b = base % mod;
+  let e = exp;
+  while (e > BigInt(0)) {
+    if (e % BigInt(2) === BigInt(1)) result = (result * b) % mod;
+    b = (b * b) % mod;
+    e /= BigInt(2);
+  }
+  return result;
+}
+
+/**
+ * EVERY "a^b mod n = r" ON A BOARD IS COMPUTED (RSA board, 2026-11-11: the notes said s = 65^2753 mod 3233
+ * = 2200 and 2200^17 mod 3233 = 65, while Aria said 588 — and 588 is right). Returns the faults, or null.
+ */
+export function modPowProblem(texts: string[]): string | null {
+  const wrong: string[] = [];
+  for (const text of texts) {
+    for (const m of text.matchAll(MOD_POW)) {
+      const exp = m[2] ?? [...(m[3] ?? "")].map((c) => SUPERSCRIPT_DIGITS[c]).join("");
+      const n = BigInt(m[4]);
+      if (n < BigInt(2) || !exp) continue;
+      const right = modPow(BigInt(m[1]), BigInt(exp), n);
+      if (right !== BigInt(m[5])) wrong.push(`${m[1]}^${exp} mod ${m[4]} is ${right}, not ${m[5]}`);
+    }
+  }
+  return wrong.length ? `the arithmetic is wrong: ${[...new Set(wrong)].join("; ")} — every number on the board and in the narration must be the computed value, and the steps must use the same values` : null;
+}
+
+/** DSA, OS and networking: their own board types draw them (owner, 2026-11-11: "they should work as they are"). */
+const OWN_BOARD_FAMILIES = new Set(["strings", "hashing", "union-find", "advanced-structures", "dynamic-programming", "game-search", "message-exchange", "protocols", "operating-systems"]);
+/** Computing that is not DSA even though it draws structures: compilers, automata, databases, theory. */
+const OTHER_FAMILIES = new Set(["compilers", "automata", "databases", "theory"]);
+
+/**
+ * A typed CS lesson OUTSIDE data structures and algorithms, operating systems and networking — computer
+ * architecture, cryptography, compilers, databases, machine learning… — whose boards get an image searched
+ * for them (lib/canvas/boardImages.ts). Judged on the lesson's topic, not its boards' words.
+ */
+export function isOtherCsLesson(text: string | null | undefined): boolean {
+  const t = text ?? "";
+  if (!t.trim() || !isTypedCsTopic(t)) return false;
+  const families = familiesOf(t);
+  if (families.some((f) => OWN_BOARD_FAMILIES.has(f.id))) return false;
+  if (families.some((f) => OTHER_FAMILIES.has(f.id))) return true;
+  return !isTypedDsaTopic(t);
+}
+
 // "Stacks, arches and stumps", "heaps of sediment", multiplication "arrays": a data-structure word that
 // is also an everyday word counts only when something else says computing.
 const EVERYDAY = /\b(?:stacks?|queues?|heaps?|arrays?|tries)\b/gi;

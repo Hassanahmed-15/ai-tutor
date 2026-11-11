@@ -15,7 +15,8 @@ import type { EquationStage, EquationToken } from "./types";
  * writer's own tokens (their colours and highlights) and adding only the terms that were missing.
  */
 
-const OPERATOR = /^(?:=|≠|≈|≤|≥|<|>|\+|−|-|–|×|÷|·|→|⇒|⇌|±|,|or|and|so|gives|then)$/;
+// "mod" joins two terms as an operator does: "65^2753 mod 3233" is one expression (RSA board, 2026-11-11).
+const OPERATOR = /^(?:=|≠|≈|≤|≥|<|>|\+|−|-|–|×|÷|·|→|⇒|⇌|±|,|or|and|so|gives|then|mod)$/;
 // The words Aria joins two equations with ("x − 2 = 0 or x − 3 = 0"), kept between them on the board.
 const CONNECTOR = /^(?:or|and|so|gives|then|giving)$/i;
 const UNITS = new Set(["kg", "g", "mg", "m", "cm", "mm", "km", "s", "ms", "h", "min", "n", "kn", "j", "kj", "w", "kw", "v", "mv", "a", "ma", "ω", "kω", "pa", "kpa", "hz", "mol", "k", "°c", "°", "%", "m/s", "m/s²", "m²", "m³", "cm²", "cm³", "dm³", "g/cm³", "kg/m³", "n/m", "j/kg", "w/m²", "newtons", "volts", "amps", "ohms", "joules", "watts", "metres", "meters", "seconds"]);
@@ -29,7 +30,7 @@ const isMathChunk = (chunk: string) => {
   // ± and √ are maths too: without them "x = (−b ± √(b² − 4ac)) ÷ 2a" was read as "x = (−b" (benchmark).
   // sin/cos/tan as words: "sin θ = 3/5" was read as "θ = 3/5" (maths benchmark round 1).
   return /[0-9²³⁴()[\]+\-−–×÷·/=^≠≈<>≤≥→⇒±∓√∛∑∫π∠]/.test(chunk) || /^[a-zα-ω]$/i.test(c) || /^log_?[a-z0-9₀-₉]+$/i.test(c) || UNITS.has(c.toLowerCase())
-    || /^(?:sin|cos|tan|sec|cosec|cot|ln|lim|exp)$/.test(c) || /[₀-₉ᵃ-ᶻⁿ⁺⁻]/.test(c)
+    || /^(?:sin|cos|tan|sec|cosec|cot|ln|lim|exp|mod)$/.test(c) || /[₀-₉ᵃ-ᶻⁿ⁺⁻]/.test(c)
     || (/^(?:[A-Zλμσθ][a-zᵤₙ₀-₉]?){1,3}$/.test(c) && !SHORT_WORDS.test(c));
 };
 
@@ -90,7 +91,7 @@ export function equationTerms(eq: string): string[] {
     if ("([{".includes(c)) depth++;
     if (")]}".includes(c)) depth = Math.max(0, depth - 1);
     const rest = text.slice(k);
-    const word = depth === 0 && /^\s(?:or|and|so|gives|then)(?=\s)/.exec(rest);
+    const word = depth === 0 && /^\s(?:or|and|so|gives|then|mod)(?=\s)/.exec(rest);
     const op = depth === 0 && (SPLIT.exec(rest) || (/^-(?=\s)/.test(rest) && /\s$/.test(buf) ? ["-"] : null));
     if (word) { pieces.push(buf, word[0].trim()); buf = ""; k += word[0].length - 1; continue; }
     if (op) { pieces.push(buf, op[0]); buf = ""; k += op[0].length - 1; continue; }
@@ -151,6 +152,7 @@ export function plainTex(term: string): string {
   const lim = /^lim\s*\(?\s*([a-zα-ω])\s*(?:→|->)\s*([^)\s]+)\s*\)?\s*(.*)$/i.exec(t);
   if (lim) return `\\lim_{${lim[1]} \\to ${lim[2].replace(/[−–]/g, "-")}}${lim[3] ? plainTex(lim[3]) : ""}`;
   if (t === ",") return ",\\quad";
+  if (t === "mod") return "\\bmod";
   if (CONNECTOR.test(t)) return `\\quad\\text{${t}}\\quad`;
   // Every superscript and subscript, letters and signs too: "8ᵏ⁺¹" was set as "8ᵏ⁺^{1}", which KaTeX
   // could not read and drew in red (maths benchmark round 1).
@@ -170,6 +172,8 @@ export function plainTex(term: string): string {
   // Words first, keeping the spaces around them ("P(A and defect)" was set as "P(Aanddefect)"), and
   // before the operators turn into commands ("2×3" was set as "2\\text{times} 3"; maths benchmark).
   return powers(t)
+    // A power of several digits is one superscript: "65^2753" was set as 65² followed by 753.
+    .replace(/\^(\d{2,})/g, "^{$1}")
     .replace(/[−–]/g, "-")
     // "log_bM" is log base b of M: "bM" was set as one word in the subscript (maths benchmark V4).
     .replace(/\blog_([A-Za-z0-9])\s*/g, "log_{$1} ")

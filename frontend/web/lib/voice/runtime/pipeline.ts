@@ -129,6 +129,12 @@ export class TurnPipeline {
     if (verdict) this.log.log("words", verdict.addressed ? "for-tutor" : "not-for-tutor", now, `${verdict.reason} (${verdict.score.toFixed(2)})`, verdict.addressed ? "ok" : "warn");
   }
 
+  provideNameCheck(text: string, now: number): void {
+    this.now = now;
+    this.log.log("words", "name-check", now, text || "(nothing)");
+    this.arbiter.provideNameCheck(text, now);
+  }
+
   setEchoText(text: string, now: number): void {
     this.arbiter.setEchoText(text, now);
   }

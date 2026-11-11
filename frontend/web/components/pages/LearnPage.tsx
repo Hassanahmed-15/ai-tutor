@@ -963,6 +963,8 @@ type BuildCost =
   const [uploadError, setUploadError] = useState<string | null>(null);
   /** How far the reading of a YouTube video has got; null whenever no video is being read. */
   const [videoProgress, setVideoProgress] = useState<VideoIngestProgress | null>(null);
+  /** Which minutes of a video could not be read, said on the lecture screen. Null when none, or dismissed. */
+  const [videoUnreadNotice, setVideoUnreadNotice] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   // Second, separate hidden input for a task-folder pick (webkitdirectory forces the native picker
   // into folder-selection mode, so it must be its own <input> — it can't share fileInputRef, which
@@ -1578,6 +1580,7 @@ type BuildCost =
     setUploadPhase("reading");
     setUploadError(null);
     setVideoProgress({ stage: "opening", label: "Opening the video", fraction: 0 });
+    setVideoUnreadNotice(null);
     const scope: SourceScope = { fidelity: "strict", breadth: { kind: "whole" }, documentLabels: [] };
     setSourceScope(scope);
     sourceScopeRef.current = scope;
@@ -1598,6 +1601,7 @@ type BuildCost =
       const video = await ingestYouTubeVideo(url, { onProgress: setVideoProgress, signal: controller.signal });
       if (controller.signal.aborted) return;
       addCost("document", video.costUsd);
+      setVideoUnreadNotice(video.unreadNotice || null);
       setSourceDocument(video.document);
       // The whole transcript, for the chat and the voice tutor: the lesson is short, the video is not.
       setFullDocumentText(video.fullDocumentText);
@@ -4371,6 +4375,14 @@ type BuildCost =
       <div className="relative">
         {player}
         {summaryOverlay}
+        {/* Minutes of the video Aria could not read. In the middle of the header bar, where a course
+            lesson's check sits; a video lesson never has both. Normal lecture only. */}
+        {clickableMindMap && videoUnreadNotice && uploadedFile?.kind === "youtube" && (
+          <div role="status" className="pointer-events-auto fixed left-1/2 top-2 z-50 flex w-[min(28rem,calc(100vw-2rem))] -translate-x-1/2 items-start gap-2 rounded-2xl border border-[var(--hud-line)] bg-[var(--warn-dim)] px-3 py-2 text-[0.75rem] leading-snug text-[var(--hud-text)] shadow-[var(--elev-2)]" data-video-unread-notice>
+            <span className="flex-1">{videoUnreadNotice}</span>
+            <button type="button" aria-label="Dismiss" onClick={() => setVideoUnreadNotice(null)} className="shrink-0 px-1 font-bold text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]">×</button>
+          </div>
+        )}
         {/* A course lesson's check against its syllabus outcomes: small, and only once it has run.
             It sits in the empty middle of the header bar: bottom-left it covered Play, Previous and
             Next (audit 2026-10-15). Opened, its list drops down over the board top. */}

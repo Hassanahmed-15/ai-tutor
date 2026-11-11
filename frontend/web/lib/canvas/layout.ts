@@ -2154,7 +2154,9 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
         for (const id of step.order.filter((o) => hosted.has(o))) {
           const host = place[hosted.get(id)!];
           const t = sized.find((m) => m.id === id)!;
-          if (host) place[id] = { x: host.x + sized.find((m) => m.id === hosted.get(id))!.w / 2 - t.w / 2, y: host.y - pSize * 1.05 };
+          // Several labels on one term are stacked, not written over each other ("Authenticity" and "Integrity" over s).
+          const above = step.order.filter((o) => hosted.get(o) === hosted.get(id)).indexOf(id);
+          if (host) place[id] = { x: host.x + sized.find((m) => m.id === hosted.get(id))!.w / 2 - t.w / 2, y: host.y - pSize * 1.05 * (1 + above * 0.6) };
         }
         const own = sized.filter((t) => place[t.id]);
         marks.push({ type: "equation", id: k ? `equation-${k + 1}` : "equation", tokens: own, steps: [{ s: step.s, place, highlight: [] }], size: pSize, captionY: box.y + box.h + 400, center, s: step.s, ...(until !== undefined && until > step.s ? { until } : {}) });
@@ -2184,7 +2186,9 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
       const host = place[hosted.get(id)!];
       const hostW = measured.find((m) => m.id === hosted.get(id))!.w;
       const t = measured.find((m) => m.id === id)!;
-      if (host) place[id] = { x: host.x + hostW / 2 - t.w / 2, y: host.y - size * 1.05 };
+      // Several labels on one term are stacked, not written over each other.
+      const above = order.filter((o) => hosted.get(o) === hosted.get(id)).indexOf(id);
+      if (host) place[id] = { x: host.x + hostW / 2 - t.w / 2, y: host.y - size * 1.05 * (1 + above * 0.6) };
     }
     return { s: step.s, place, highlight: step.highlight ?? [], caption: step.caption };
   });

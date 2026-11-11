@@ -4,7 +4,7 @@ import { GoogleGenAI } from "@google/genai";
 import { costFor } from "../modelPricing";
 import { readVideoCache, writeVideoCache } from "./videoCache";
 import { parseTimestamp } from "./videoUrl";
-import type { VideoOnScreen, VideoSegment, VideoWindow } from "./videoSource";
+import { refusalOf, type VideoOnScreen, type VideoSegment, type VideoUnreadPart, type VideoWindow } from "./videoSource";
 import { spendScopeNow } from "../openaiClient";
 import { recordSpend } from "../spend/record";
 
@@ -50,6 +50,19 @@ Return JSON only, in this shape:
 "onScreen" is everything shown that the speech does not say in full: slide text, equations (as LaTeX), code, and a precise description of each diagram (what is drawn, its labelled parts, how they connect). Leave out logos, the speaker's appearance and decoration.
 Every "t" is the time measured from the start of the WHOLE video, not of this clip.
 Only if the clip has no voice at all and shows nothing, return {"segments":[],"onScreen":[]}.`;
+
+/**
+ * For a short clip the reader refused to transcribe. It asks for the ideas in the model's own words
+ * and for no quoted text at all, so what comes back is a summary, marked as one (SUMMARY_MARK).
+ */
+const SUMMARY_PROMPT = `You are making study notes on one short clip of a lecture video for a student who will not watch it.
+Return JSON only, in this shape:
+{"segments":[{"t":"M:SS","text":"..."}],"onScreen":[]}
+"segments" holds the main ideas this clip teaches, in your own words, one short entry per idea. Do not quote or transcribe anything: no sentences from the speech, no lyrics, no text copied from the screen.
+Every "t" is the time measured from the start of the WHOLE video, not of this clip.
+If the clip teaches nothing (only music, credits or a sign-off), return {"segments":[],"onScreen":[]}.`;
+/** How a summarised stretch is labelled, so the chat never presents it as the speaker's words. */
+const SUMMARY_MARK = "(summary of this part)";
 
 export type VideoReadCost = { costUsd: number; promptTokens: number; outputTokens: number };
 export type VideoWindowRead = VideoWindow & VideoReadCost & { cached: boolean; model: string };
@@ -240,6 +253,26 @@ async function generateClipWith(model: string, url: string, startSec: number, en
   );
 }
 
+/** What one answer cost, recorded against the student's spend. */
+function costOf(response: { usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number; thoughtsTokenCount?: number } }, model: string): VideoReadCost {
+  const usage = response.usageMetadata ?? {};
+  const promptTokens = usage.promptTokenCount ?? 0;
+  const outputTokens = (usage.candidatesTokenCount ?? 0) + (usage.thoughtsTokenCount ?? 0);
+  const cost: VideoReadCost = {
+    costUsd: costFor(model, { prompt_tokens: promptTokens, completion_tokens: outputTokens }),
+    promptTokens,
+    outputTokens,
+  };
+  void spendScopeNow().then((scope) => recordSpend({ tag: scope.tag, userId: scope.userId, kind: "video", model, endpoint: "gemini-video", usd: cost.costUsd })).catch(() => {});
+  return cost;
+}
+
+const addCosts = (...costs: VideoReadCost[]): VideoReadCost => ({
+  costUsd: costs.reduce((sum, cost) => sum + cost.costUsd, 0),
+  promptTokens: costs.reduce((sum, cost) => sum + cost.promptTokens, 0),
+  outputTokens: costs.reduce((sum, cost) => sum + cost.outputTokens, 0),
+});
+
 async function readClip(url: string, startSec: number, endSec: number): Promise<VideoWindow & VideoReadCost> {
   let { response, model } = await generateClip(url, startSec, endSec);
   /*
@@ -263,36 +296,73 @@ async function readClip(url: string, startSec: number, endSec: number): Promise<
       }
     }
   }
-  const usage = response.usageMetadata ?? {};
-  const promptTokens = usage.promptTokenCount ?? 0;
-  const outputTokens = (usage.candidatesTokenCount ?? 0) + (usage.thoughtsTokenCount ?? 0);
-  const cost: VideoReadCost = {
-    costUsd: costFor(model, { prompt_tokens: promptTokens, completion_tokens: outputTokens }),
-    promptTokens,
-    outputTokens,
-  };
-  void spendScopeNow().then((scope) => recordSpend({ tag: scope.tag, userId: scope.userId, kind: "video", model, endpoint: "gemini-video", usd: cost.costUsd })).catch(() => {});
-  const parsed = parseWindow(response.text ?? "", startSec, endSec);
+  const cost = costOf(response, model);
+  const refusal = refusalOf(response);
+  const parsed = refusal ? null : parseWindow(response.text ?? "", startSec, endSec);
   const cutShort = response.candidates?.[0]?.finishReason === "MAX_TOKENS";
   /*
    * A clip whose answer ran out of room (a fast talker over dense slides) is read again as two
    * halves rather than kept with its ending missing: the lecture is built on this being complete.
    */
-  if ((cutShort || !parsed) && endSec - startSec > 120) {
+  if (!refusal && (cutShort || !parsed) && endSec - startSec > 120) {
     const middle = Math.round((startSec + endSec) / 2);
     const [first, second] = [await readClip(url, startSec, middle), await readClip(url, middle, endSec)];
+    const unread = [...(first.unread ?? []), ...(second.unread ?? [])];
     return {
       startSec,
       endSec,
       segments: [...first.segments, ...second.segments],
       onScreen: [...first.onScreen, ...second.onScreen],
-      costUsd: cost.costUsd + first.costUsd + second.costUsd,
-      promptTokens: cost.promptTokens + first.promptTokens + second.promptTokens,
-      outputTokens: cost.outputTokens + first.outputTokens + second.outputTokens,
+      ...(unread.length > 0 ? { unread } : {}),
+      ...addCosts(cost, first, second),
     };
+  }
+  /*
+   * A REFUSAL IS AN ANSWER, NOT A GLITCH. Asking the same thing again gets the same refusal, so this
+   * never throws a retryable error. It is reported as unread straight away, and the route says what
+   * to ask next (refusalFollowUp): one reader call per request.
+   */
+  if (refusal) {
+    console.log(`[youtube] clip ${startSec}-${endSec}s refused by ${model}: ${response.candidates?.[0]?.finishReason ?? response.promptFeedback?.blockReason}`);
+    const unread: VideoUnreadPart[] = [{ startSec, endSec, reason: refusal }];
+    return { startSec, endSec, segments: [], onScreen: [], unread, ...cost };
   }
   if (!parsed) throw new VideoReadError("The video reader returned something unreadable for part of the video. Try again.", 502, true);
   return { startSec, endSec, ...parsed, ...cost };
+}
+
+/**
+ * The main ideas of a clip the reader would not transcribe. Asked once and kept, whatever came back:
+ * a clip of only music or credits answers with nothing, which is a real answer here. Refused again,
+ * the stretch stays unread and no other wording is tried.
+ */
+export async function readVideoSummary(videoId: string, url: string, startSec: number, endSec: number): Promise<VideoWindowRead> {
+  const model = FALLBACK_MODEL !== MODEL && Date.now() < mainModelSpentUntil ? FALLBACK_MODEL : MODEL;
+  const cacheName = `summary-${startSec}-${endSec}-${MODEL.replace(/[^A-Za-z0-9_-]/g, "-")}-${READ_VERSION}`;
+  const cached = await readVideoCache<VideoWindow>(videoId, cacheName);
+  if (cached && Array.isArray(cached.segments) && Array.isArray(cached.onScreen)) {
+    return { ...cached, costUsd: 0, promptTokens: 0, outputTokens: 0, cached: true, model };
+  }
+  try {
+    const response = await withRetry(
+      () => client().models.generateContent({
+        model,
+        contents: [{ role: "user", parts: [videoPart(url, startSec, endSec), { text: SUMMARY_PROMPT }] }],
+        config: { responseMimeType: "application/json", temperature: 0, maxOutputTokens: 4_000 },
+      }),
+      `clip ${startSec}-${endSec}s on ${model} (summary)`,
+    );
+    const cost = costOf(response, model);
+    const parsed = refusalOf(response) ? null : parseWindow(response.text ?? "", startSec, endSec);
+    const window: VideoWindow = parsed
+      ? { startSec, endSec, segments: parsed.segments.map((segment) => ({ ...segment, text: `${SUMMARY_MARK} ${segment.text}` })), onScreen: [] }
+      : { startSec, endSec, segments: [], onScreen: [], unread: [{ startSec, endSec, reason: "copyright" }] };
+    console.log(`[youtube] summary of ${videoId} ${startSec}-${endSec}s: ${window.segments.length} ideas${window.unread ? " (refused again)" : ""}`);
+    await writeVideoCache(videoId, cacheName, window);
+    return { ...window, ...cost, cached: false, model };
+  } catch (error) {
+    throw readError(error, "read the video");
+  }
 }
 
 /**
@@ -313,15 +383,16 @@ export async function readVideoWindow(videoId: string, url: string, startSec: nu
   const cacheName = `window-${startSec}-${endSec}-${MODEL.replace(/[^A-Za-z0-9_-]/g, "-")}-${READ_VERSION}`;
   const cached = await readVideoCache<VideoWindow>(videoId, cacheName);
   // An empty reading is never served from the cache: it is exactly the answer worth asking again.
-  if (cached && Array.isArray(cached.segments) && Array.isArray(cached.onScreen) && (cached.segments.length > 0 || cached.onScreen.length > 0)) {
+  // A refused stretch is: asking again costs money and gets the same refusal.
+  if (cached && Array.isArray(cached.segments) && Array.isArray(cached.onScreen) && (cached.segments.length > 0 || cached.onScreen.length > 0 || Boolean(cached.unread?.length))) {
     return { ...cached, costUsd: 0, promptTokens: 0, outputTokens: 0, cached: true, model: MODEL };
   }
   try {
     const startedAt = Date.now();
     const read = await readClip(url, startSec, endSec);
     console.log(`[youtube] read ${videoId} ${startSec}-${endSec}s in ${Math.round((Date.now() - startedAt) / 1000)}s: ${read.segments.length} segments, ${read.onScreen.length} on screen, ${read.promptTokens} tokens in`);
-    const window: VideoWindow = { startSec, endSec, segments: read.segments, onScreen: read.onScreen };
-    if (window.segments.length > 0 || window.onScreen.length > 0) await writeVideoCache(videoId, cacheName, window);
+    const window: VideoWindow = { startSec, endSec, segments: read.segments, onScreen: read.onScreen, ...(read.unread?.length ? { unread: read.unread } : {}) };
+    if (window.segments.length > 0 || window.onScreen.length > 0 || window.unread) await writeVideoCache(videoId, cacheName, window);
     return { ...read, cached: false, model: MODEL };
   } catch (error) {
     if (pastEndOk && !isBusy(error)) {

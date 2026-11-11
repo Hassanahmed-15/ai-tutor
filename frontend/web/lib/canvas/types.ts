@@ -108,6 +108,8 @@ export type IllustrationStage = {
    * lib/canvas/mathsPicture.ts): put straight on the board — no paper, frame or tape — and not traced by the pencil.
    */
   onBoard?: boolean;
+  /** An openly licensed image found for this board (lib/canvas/boardImages.ts), shown with its credit. */
+  credit?: { title: string; creator: string; license: string; sourceUrl: string; provider: string; /** Redrawn by the image model from it, not the original. */ redrawn?: boolean };
 };
 
 /**
@@ -610,6 +612,8 @@ export type CanvasBoardSpec = {
   /** A short refresher of a prerequisite, before the topic proper (lib/knowledge). */
   refresher?: boolean;
   /** A planned rich visual could not be produced, so the student sees a simpler grounded diagram. */
+  /** The library image this board was made from, redrawn or shown (lib/canvas/boardImages.ts). */
+  imageSource?: BoardImageSource;
   visualFallback?: {
     from: "illustration";
     reason: "budget" | "generation" | "validation" | "storage";
@@ -704,7 +708,17 @@ export type CanvasPlanBeat = {
    * the board redraws it natively, synced to the narration. Typed non-DSA CS lessons only.
    */
   sourceDiagram?: SourceDiagram;
+  /** An image searched for this board and SHOWN on it, credited (lib/canvas/boardImages.ts): the board is an illustration. */
+  foundImage?: FoundBoardImage;
+  /** Where this board's image came from, whether it is redrawn or shown (lib/canvas/boardImages.ts). */
+  imageSource?: BoardImageSource;
 };
+
+/** An openly licensed library image a board was made from (lib/canvas/boardImages.ts). */
+export type BoardImageSource = { title: string; imageUrl: string; pageUrl: string; creator: string; license: string; provider: string };
+
+/** A library image shown on its board, with what it shows and the labels printed in it. */
+export type FoundBoardImage = BoardImageSource & { shows: string; labels: string[] };
 
 /**
  * WHAT A REFERENCE PAGE'S DIAGRAM SHOWS (owner, 2026-10-24: "take visuals from the images in the links

@@ -1,9 +1,12 @@
 import {
   buildLessonInputFromVideo,
+  unreadNotice,
+  unreadParts,
   windowsBetween,
   type VideoBuildResult,
   type VideoChapter,
   type VideoChapterNotes,
+  type VideoFollowUp,
   type VideoWindow,
 } from "./videoSource";
 import { formatTimestamp } from "./videoUrl";
@@ -20,6 +23,11 @@ import { formatTimestamp } from "./videoUrl";
  * NOTHING IS SKIPPED QUIETLY. A clip or a chapter that cannot be read fails the whole ingest with
  * its reason. A lecture missing ten minutes of its video with no sign of it is the one outcome this
  * feature exists to prevent.
+ *
+ * THE ONE EXCEPTION, AND IT IS SAID ALOUD. A stretch Google's filters refuse to read (usually closing
+ * music or credits) is refused every time, so failing on it would lose the whole video to one minute
+ * of it. The lecture is built from the rest and the student is told which minutes are missing
+ * (`unreadNotice` on the result).
  */
 
 export type VideoIngestProgress = {
@@ -37,6 +45,8 @@ export type VideoIngestResult = VideoBuildResult & {
   costUsd: number;
   /** How many clips were served from the cache — a fully cached video costs nothing to read. */
   cachedWindows: number;
+  /** What to tell the student about minutes that could not be read. "" when all of it was. */
+  unreadNotice: string;
 };
 
 type IngestOptions = { onProgress?: (progress: VideoIngestProgress) => void; signal?: AbortSignal };
@@ -113,21 +123,45 @@ export async function ingestYouTubeVideo(url: string, options: IngestOptions = {
     fraction: 0.05 + 0.65 * (info.windows.length ? read / info.windows.length : 1),
   });
   reading(0);
-  const windows = await mapPool(info.windows, info.readConcurrency, async (clip) => {
-    const data = await post<{ window: VideoWindow; cached: boolean; costUsd: number }>(
-      "/api/youtube/window",
-      { url: info.url, startSec: clip.startSec, endSec: clip.endSec, durationSec: info.durationSec },
-      signal,
-      (isWaiting) => {
-        waiting += isWaiting ? 1 : -1;
-        reading(readSoFar());
-      },
-    );
+  type Clip = { startSec: number; endSec: number };
+  const askClip = (clip: Clip, summary: boolean) => post<{ window: VideoWindow; cached: boolean; costUsd: number; followUp?: VideoFollowUp }>(
+    "/api/youtube/window",
+    { url: info.url, startSec: clip.startSec, endSec: clip.endSec, durationSec: info.durationSec, ...(summary ? { summary: true } : {}) },
+    signal,
+    (isWaiting) => {
+      waiting += isWaiting ? 1 : -1;
+      reading(readSoFar());
+    },
+  );
+  /** A clip, and whatever a refusal of it calls for next: its two halves, or its main ideas. */
+  const readPiece = async (clip: Clip): Promise<VideoWindow> => {
+    const data = await askClip(clip, false);
     spent(data.costUsd);
     if (data.cached) cachedWindows++;
+    if (data.followUp === "split") {
+      const middle = Math.round((clip.startSec + clip.endSec) / 2);
+      const [first, second] = await Promise.all([readPiece({ startSec: clip.startSec, endSec: middle }), readPiece({ startSec: middle, endSec: clip.endSec })]);
+      const unread = [...(first.unread ?? []), ...(second.unread ?? [])];
+      return { ...clip, segments: [...first.segments, ...second.segments], onScreen: [...first.onScreen, ...second.onScreen], ...(unread.length > 0 ? { unread } : {}) };
+    }
+    if (data.followUp === "summary") {
+      // A summary that cannot be had leaves the stretch unread and said; it never costs the video.
+      const summary = await askClip(clip, true).catch((error: unknown) => {
+        if (signal?.aborted) throw error;
+        return null;
+      });
+      if (summary) {
+        spent(summary.costUsd);
+        return summary.window;
+      }
+    }
+    return data.window;
+  };
+  const windows = await mapPool(info.windows, info.readConcurrency, async (clip) => {
+    const window = await readPiece(clip);
     read++;
     reading(readSoFar());
-    return data.window;
+    return window;
   });
 
   const segments = windows.flatMap((window) => window.segments).sort((a, b) => a.startSec - b.startSec);
@@ -137,7 +171,9 @@ export async function ingestYouTubeVideo(url: string, options: IngestOptions = {
    * for it when the topics are found.
    */
   const shown = windows.flatMap((window) => window.onScreen).sort((a, b) => a.startSec - b.startSec);
-  if (segments.length === 0 && shown.length === 0) throw new Error("Nothing could be heard or read in that video, so there is nothing to build a lesson from.");
+  const unread = unreadParts(windows);
+  const blockedMessage = "Google's filters blocked Aria from reading this video, so there is nothing to build a lesson from. Try a different video.";
+  if (segments.length === 0 && shown.length === 0) throw new Error(unread.length > 0 ? blockedMessage : "Nothing could be heard or read in that video, so there is nothing to build a lesson from.");
   const topicSource = segments.length > 0 ? segments : shown.map((item) => ({ startSec: item.startSec, text: item.content }));
 
   onProgress?.({ stage: "chapters", label: "Finding the topics it covers", fraction: 0.72 });
@@ -170,7 +206,8 @@ export async function ingestYouTubeVideo(url: string, options: IngestOptions = {
 
   const built = buildLessonInputFromVideo({ videoId: info.videoId, url: info.url, title, durationSec: info.durationSec, chapters, windows });
   if (built.beatCount === 0) {
+    if (unread.length > 0) throw new Error(blockedMessage);
     throw new Error("Aria watched the whole video but found nothing in it to teach. It may be music or entertainment rather than a lecture or tutorial; this feature summarises lectures, talks and explainers.");
   }
-  return { ...built, videoId: info.videoId, url: info.url, durationSec: info.durationSec, costUsd, cachedWindows };
+  return { ...built, videoId: info.videoId, url: info.url, durationSec: info.durationSec, costUsd, cachedWindows, unreadNotice: unreadNotice(unread) };
 }

@@ -77,7 +77,17 @@ export const VIDEO_SCRIPT_WORDS_PER_NOTE_WORD = 1.3;
 
 export type VideoSegment = { startSec: number; text: string };
 export type VideoOnScreen = { startSec: number; kind: string; content: string };
-export type VideoWindow = { startSec: number; endSec: number; segments: VideoSegment[]; onScreen: VideoOnScreen[] };
+/** Why the video reader would not answer for a stretch of the video. */
+export type VideoUnreadReason = "copyright" | "blocked";
+export type VideoUnreadPart = { startSec: number; endSec: number; reason: VideoUnreadReason };
+export type VideoWindow = {
+  startSec: number;
+  endSec: number;
+  segments: VideoSegment[];
+  onScreen: VideoOnScreen[];
+  /** Stretches of this clip the reader refused to answer for. Absent when the whole clip was read. */
+  unread?: VideoUnreadPart[];
+};
 export type VideoChapter = { title: string; startSec: number; endSec: number };
 export type VideoKeyPoint = { text: string; startSec?: number };
 export type VideoNoteSection = { heading: string; points: VideoKeyPoint[] };
@@ -87,6 +97,67 @@ export type VideoChapterNotes = {
   /** What was deliberately not kept (a sponsor read, a recap of last week), so nothing vanishes silently. */
   leftOut: string[];
 };
+
+/** Finish reasons that mean the model will not answer for this content, however often it is asked. */
+const BLOCKED_FINISH_REASONS = new Set(["SAFETY", "PROHIBITED_CONTENT", "BLOCKLIST", "SPII"]);
+
+/**
+ * Did the video reader refuse this clip, rather than fail at it?
+ *
+ * A refusal comes back as a normal answer with no text in it, and the same clip is refused every time
+ * it is asked. Taken for a glitch, it was retried five times and then failed the whole video: an
+ * 11-minute lecture was lost to its last minute (2026-11-08, finish reason RECITATION).
+ */
+export function refusalOf(response: { candidates?: Array<{ finishReason?: unknown }>; promptFeedback?: { blockReason?: unknown } } | null | undefined): VideoUnreadReason | null {
+  const finishReason = String(response?.candidates?.[0]?.finishReason ?? "");
+  if (finishReason === "RECITATION") return "copyright";
+  if (BLOCKED_FINISH_REASONS.has(finishReason) || response?.promptFeedback?.blockReason) return "blocked";
+  return null;
+}
+
+/** A refused clip longer than this is read again as two halves; one this short is asked for its main ideas. */
+export const VIDEO_SUMMARY_MAX_SEC = 300;
+export type VideoFollowUp = "split" | "summary";
+
+/**
+ * What to ask next about a clip that was refused outright; null when there is nothing more to ask.
+ *
+ * Each step is its own request, driven by the browser. One reader call can take minutes (the last
+ * minute of a video took 5.0 minutes for two calls, measured 2026-11-08), and a request past the 240
+ * seconds Container Apps allows is cut off, so a refusal must never be worked through inside one.
+ */
+export function refusalFollowUp(window: Pick<VideoWindow, "startSec" | "endSec" | "segments" | "onScreen" | "unread">): VideoFollowUp | null {
+  if (!window.unread?.length || window.segments.length > 0 || window.onScreen.length > 0) return null;
+  if (window.endSec - window.startSec > VIDEO_SUMMARY_MAX_SEC) return "split";
+  return window.unread.some((part) => part.reason === "copyright") ? "summary" : null;
+}
+
+/** Every refused stretch across the clips, in order, with touching stretches joined into one. */
+export function unreadParts(windows: Array<Pick<VideoWindow, "unread">>): VideoUnreadPart[] {
+  const sorted = windows.flatMap((window) => window.unread ?? []).sort((a, b) => a.startSec - b.startSec);
+  const joined: VideoUnreadPart[] = [];
+  for (const part of sorted) {
+    const last = joined[joined.length - 1];
+    if (last && last.reason === part.reason && part.startSec <= last.endSec) last.endSec = Math.max(last.endSec, part.endSec);
+    else joined.push({ ...part });
+  }
+  return joined;
+}
+
+const partRange = (part: VideoUnreadPart): string => `${formatTimestamp(part.startSec)}–${formatTimestamp(part.endSec)}`;
+const filterName = (reasons: VideoUnreadReason[]): string => {
+  if (reasons.every((reason) => reason === "copyright")) return "Google's copyright filter";
+  return reasons.every((reason) => reason === "blocked") ? "Google's content filter" : "Google's filters";
+};
+
+/** What the student is told about the stretches the lecture cannot cover. "" when there are none. */
+export function unreadNotice(parts: VideoUnreadPart[]): string {
+  if (parts.length === 0) return "";
+  const ranges = parts.map(partRange);
+  const list = ranges.length === 1 ? ranges[0] : `${ranges.slice(0, -1).join(", ")} and ${ranges[ranges.length - 1]}`;
+  const one = parts.length === 1;
+  return `Aria couldn't read ${list} of this video because ${filterName(parts.map((part) => part.reason))} blocked ${one ? "that part" : "those parts"}, so this lecture doesn't cover ${one ? "it" : "them"}.`;
+}
 
 const clean = (value: unknown): string => (typeof value === "string" ? value.replace(/\s+/g, " ").trim() : "");
 const wordCount = (text: string): number => text.split(/\s+/).filter((word) => /[A-Za-z0-9]/.test(word)).length;
@@ -215,6 +286,8 @@ function transcriptEntries(windows: VideoWindow[]): Array<[number, string]> {
     .flatMap((window) => [
       ...window.segments.map((segment) => ({ at: segment.startSec, order: 1, text: clean(segment.text) })),
       ...window.onScreen.map((shown) => ({ at: shown.startSec, order: 0, text: clean(shown.content) ? `(on screen, ${clean(shown.kind) || "text"}) ${clean(shown.content)}` : "" })),
+      // So the tutor says this stretch could not be read, rather than that the video does not cover it.
+      ...unreadParts([window]).map((part) => ({ at: part.startSec, order: 2, text: `(this part of the video, up to ${formatTimestamp(part.endSec)}, could not be read)` })),
     ])
     .filter((line) => line.text)
     .sort((a, b) => a.at - b.at || a.order - b.order)
@@ -393,7 +466,10 @@ export function buildLessonInputFromVideo(input: VideoBuildInput): VideoBuildRes
       videoId: input.videoId,
       url: input.url,
       durationSec: Math.round(input.durationSec),
-      leftOut: input.chapters.flatMap((notes) => notes.leftOut.map((item) => `${formatTimestamp(notes.chapter.startSec)} ${clean(item)}`)).filter(Boolean),
+      leftOut: [
+        ...input.chapters.flatMap((notes) => notes.leftOut.map((item) => `${formatTimestamp(notes.chapter.startSec)} ${clean(item)}`)).filter(Boolean),
+        ...unreadParts(input.windows).map((part) => `${partRange(part)} could not be read (${filterName([part.reason])})`),
+      ],
       // What the video said and showed, as [seconds, text]: the strict check's vocabulary (videoTranscriptStretch).
       transcript: transcriptEntries(input.windows),
     },

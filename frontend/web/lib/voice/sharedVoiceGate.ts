@@ -40,6 +40,8 @@ export interface SharedVoiceGateCallbacks {
   onDecision?: (decision: GateDecision) => void;
   /** A voice with no local words: transcribe this audio and call provideSecondOpinion. */
   onSecondOpinion?: (audio: Float32Array[]) => void;
+  /** While she teaches: transcribe this recent speech and call provideNameCheck. */
+  onNameCheck?: (audio: Float32Array[]) => void;
   onEvent?: (event: LabEvent) => void;
 }
 export interface SharedVoiceGateOptions {
@@ -48,6 +50,8 @@ export interface SharedVoiceGateOptions {
   callbacks?: SharedVoiceGateCallbacks;
   wakeNames?: string[];
   semanticPrefilter?: boolean;
+  /** See ArbiterConfig.callByNameAlwaysHeard. Standard lecture only. */
+  callByNameAlwaysHeard?: boolean;
 }
 
 function stageOf(state: string): GateStage {
@@ -81,7 +85,7 @@ export class SharedVoiceGate {
       verifier: options.verifier,
       wakeNames: options.wakeNames,
       log: this.log,
-      arbiter: { requireAddressingBeforeOpen: options.semanticPrefilter === true },
+      arbiter: { requireAddressingBeforeOpen: options.semanticPrefilter === true, callByNameAlwaysHeard: options.callByNameAlwaysHeard === true },
       callbacks: {
         onDuck: (gain, reason) => { this.decide("candidate", "duck", reason); callbacks.onDuck?.(gain); },
         onRestore: (reason) => { this.decide("refractory", "restore", reason); callbacks.onRestore?.(); },
@@ -93,6 +97,7 @@ export class SharedVoiceGate {
         onSecondOpinion: callbacks.onSecondOpinion
           ? (audio) => { this.decide("candidate", "second-opinion", "local words missing or unconvincing; asking the server what was said"); callbacks.onSecondOpinion?.(audio); }
           : undefined,
+        onNameCheck: callbacks.onNameCheck,
         // Why a voice was let go — without this the log said only "restore", and a dropped "hey
         // Aria" could not be told from a cough.
         onState: (_from, to, reason) => { if (to === "refractory" && /^(?:ignored|discarded)/.test(reason)) this.decide("refractory", "ignore", reason); },
@@ -100,10 +105,13 @@ export class SharedVoiceGate {
     });
   }
 
-  setTutorSpeaking(speaking: boolean, now: number): void {
+  setTutorSpeaking(speaking: boolean, now: number, inConversation = false): void {
     this.tutorSpeaking = speaking;
-    this.pipeline.setTutor({ speaking, expectingAnswer: this.expecting(), speakingAs: this.speakingAs }, now);
+    this.inConversation = inConversation;
+    this.pipeline.setTutor({ speaking, expectingAnswer: this.expecting(), speakingAs: this.speakingAs, inConversation }, now);
   }
+  /** See TutorStatus.inConversation: a slide the student asked for is being explained. */
+  private inConversation = false;
   /*
    * An answer comes soon after the question. "Expecting an answer" used to last until her next
    * turn, so after "say continue whenever you're ready?" any voice minutes later — the TV, a phone
@@ -120,7 +128,7 @@ export class SharedVoiceGate {
   }
   setTopicWords(words: Iterable<string>): void { this.pipeline.setTopicWords(words); }
   push(pcm: Float32Array, now: number, vadProbability: number | null = null): void {
-    this.pipeline.setTutor({ speaking: this.tutorSpeaking, expectingAnswer: this.expecting(), speakingAs: this.speakingAs }, now);
+    this.pipeline.setTutor({ speaking: this.tutorSpeaking, expectingAnswer: this.expecting(), speakingAs: this.speakingAs, inConversation: this.inConversation }, now);
     const verdict = this.pipeline.push(pcm, now, vadProbability);
     if (verdict.speech) this.lastReason = verdict.reason;
   }
@@ -129,6 +137,7 @@ export class SharedVoiceGate {
   setTranscriberAlive(alive: boolean, now: number): void { this.pipeline.setTranscriberAlive(alive, now); }
   setEchoText(text: string, now: number): void { this.pipeline.setEchoText(text, now); }
   provideSecondOpinion(text: string, now: number): void { this.pipeline.provideSecondOpinion(text, now); }
+  provideNameCheck(text: string, now: number): void { this.pipeline.provideNameCheck(text, now); }
   tick(now: number): void { this.pipeline.tick(now); }
   reset(now = 0): void { this.pipeline.reset(now); }
   getStage(): GateStage { return stageOf(this.pipeline.state); }

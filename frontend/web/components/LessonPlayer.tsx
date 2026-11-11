@@ -10,7 +10,7 @@ import { cancelActiveNarrations, unlockAudio, splitNarrationSentences, playNarra
 import { scriptClockFromNarration, sentenceWeight, timingFromProgress } from "@/lib/narrationClock";
 import { animationChipDetail } from "@/lib/animationModels";
 import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
-import { usePlaybackRate } from "@/lib/playbackPrefs";
+import { PLAYBACK_RATES, rateLabel, usePlaybackRate } from "@/lib/playbackPrefs";
 import { useLessonMachine } from "@/lib/lessonMachine";
 import { backstopRecovery, narrationRecovery, stallWatchdogAction } from "@/lib/narrationRecovery";
 import { isAdaptiveQuestion } from "@/lib/adaptiveQuestion";
@@ -992,9 +992,16 @@ export function LessonPlayer({
     ...(standardTransitionsEnabled ? { voiceName: ARIA_LIVE_VOICE } : {}),
     // Minutes of narration at a time: nothing stops her without positive evidence.
     gateProfile: "lecture",
+    // Standard lecture only: the accessibility tracks keep their gate exactly as it was.
+    callByNameAlwaysHeard: standardTransitionsEnabled,
     // She is shown the uploaded pages themselves, not only their extracted text.
     documentId,
     getTutorSpeaking: () => narrationAudibleRef.current || boardNarratingRef.current,
+    // A slide the student asked for, being explained, is a conversation with them: a plain question is heard
+    // (lib/voice/runtime/addressing.ts inConversation). Standard lecture only.
+    ...(standardTransitionsEnabled ? { getInConversation: () => boardNarratingRef.current } : {}),
+    // A canvas lecture's slide is a canvas board like the lecture's own (lib/canvas/questionBoard.ts). Standard lecture only.
+    ...(standardTransitionsEnabled ? { getCanvasBoard: () => (canvasLesson ? { sessionId: canvasSessionId } : null) } : {}),
     topic: title,
     // What is ON the board — the code listing, the diagram, the chalk lines — not only the script,
     // plus the text inside a sandboxed board and every mark the student made on it.
@@ -1206,6 +1213,18 @@ export function LessonPlayer({
      * the hard way. The mic is live from Play (the browser asks once, inside that click); nothing
      * reaches the model until the gate hears words addressed to her. The mute button still mutes.
      */
+    // Standard lecture only: the accessibility tracks keep their screens exactly as they were.
+    ...(standardTransitionsEnabled ? { onSilentReply: () => chat.appendTurn("aria", "I couldn't answer that out loud. Please ask again.") } : {}),
+    // "Slow down" by voice moves the player's speed one step, and a drawn slide's narration with it.
+    ...(standardTransitionsEnabled ? {
+      onSpeedRequest: (direction: "slower" | "faster") => {
+        const at = PLAYBACK_RATES.indexOf(rate);
+        const next = PLAYBACK_RATES[Math.max(0, Math.min(PLAYBACK_RATES.length - 1, (at < 0 ? PLAYBACK_RATES.indexOf(1) : at) + (direction === "slower" ? -1 : 1)))];
+        if (next === rate) return;
+        setRate(next);
+        chat.appendTurn("aria", `${direction === "slower" ? "Slowing down" : "Speeding up"}: the lecture now plays at ${rateLabel(next)}.`);
+      },
+    } : {}),
     onOutputBlocked: () => {
       // Live Aria's output is held; the lecture's own narration may be fine. A tap resumes it.
       if (!voiceBlockedRef.current) blockedLiveOnlyRef.current = true;
@@ -1808,11 +1827,13 @@ export function LessonPlayer({
   // Short label for the chat mic button while a live session is active/connecting.
   const liveMicLabel =
     tutor.status === "connecting"
-      ? "Connecting…"
+      ? standardTransitionsEnabled && tutor.reconnecting ? "Reconnecting…" : "Connecting…"
       : tutor.status === "drawing"
         ? "Drawing…"
+        : standardTransitionsEnabled && tutor.status === "error"
+          ? "Voice disconnected"
         : tutor.speaking
-          ? "Aria speaking…"
+          ? standardTransitionsEnabled && !tutor.audible ? "Thinking…" : "Aria speaking…"
           // The mic is always open (2026-09-29: "the audio should always be open — just mute and
           // unmute"), so there is no call to end; the pill says what she is doing, Mute sits beside it.
           : tutor.muted
@@ -3227,7 +3248,7 @@ export function LessonPlayer({
     status: tutor.status,
     // Audible speech only. `isSpeaking()` also covers her thinking and drawing, which showed
     // "Aria is speaking" with nothing to hear.
-    ariaSpeaking: speaking || tutor.speaking || boardNarrating,
+    ariaSpeaking: speaking || (standardTransitionsEnabled ? tutor.audible : tutor.speaking) || boardNarrating,
     // What the voice session actually knows. This was "live, unmuted, and the lecture is quiet" —
     // true through every pause and every narrated board, so it read "You're speaking" at nobody.
     studentSpeaking: tutor.voiceSession.state === "USER_SPEAKING",
