@@ -569,6 +569,12 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
             </text>
           )}
           <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={16} fill="none" stroke="#e7e2d6" strokeWidth={2} />
+          {/* A library image found for the board (lib/canvas/boardImages.ts) carries its author and licence. */}
+          {spec.stage.kind === "illustration" && spec.stage.credit && (
+            <text x={mark.rect.x + mark.rect.w - 14} y={mark.rect.y + mark.rect.h - 10} textAnchor="end" fontSize={12} fill="#6b6b6b" data-image-credit="">
+              {`${spec.stage.credit.redrawn ? "Redrawn from " : ""}${spec.stage.credit.creator.slice(0, 40)} · ${spec.stage.credit.license} · ${spec.stage.credit.provider}`}
+            </text>
+          )}
         </g>
       );
     case "part":

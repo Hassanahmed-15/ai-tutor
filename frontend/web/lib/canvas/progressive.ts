@@ -31,7 +31,8 @@ import { classifySubject, type SubjectEvidence } from "./subjectClassifier";
 import { mentionLabels } from "./labelMentions";
 import { boardLookOn, boardPhoto, lookAtBoard } from "./boardLook";
 import { lookFeedback, removeNamedLines, type LookKind, type LookProblem } from "./boardLookCheck";
-import { earlierStructures, isTypedDsaTopic, lessonSoFar } from "./csLessons";
+import { earlierStructures, isOtherCsLesson, isTypedDsaTopic, lessonSoFar } from "./csLessons";
+import { applyBoardImage, boardImagesOn, boardTakesImage, findBoardImage, foundImageBrief } from "./boardImages";
 import { matchDiagramsToBeats, readSourceDiagrams, sourceDiagramBrief } from "./sourceDiagrams";
 import { mergeRepeatedBoards } from "./repeatBoards";
 import { isMathsTopic } from "./predictCard";
@@ -156,7 +157,8 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
   // A typed CS lesson that is not DSA redraws its reference pages' diagrams (lib/canvas/sourceDiagrams.ts):
   // they are read while the plan is written, so nobody waits for them.
   const lessonWords = [input.topic, input.focus ?? "", ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" ");
-  const pageDiagrams = !fromDocument && !curriculumDocumentOf(input) && input.subjectDomain === "cs" && input.webSources?.sources.length && !isTypedDsaTopic(lessonWords) && process.env.CANVAS_SOURCE_DIAGRAMS !== "off"
+  // …except a lesson outside DSA, OS and networking, whose boards search for their own images instead (lib/canvas/boardImages.ts).
+  const pageDiagrams = !fromDocument && !curriculumDocumentOf(input) && input.subjectDomain === "cs" && input.webSources?.sources.length && !isTypedDsaTopic(lessonWords) && !(boardImagesOn() && isOtherCsLesson(input.topic)) && process.env.CANVAS_SOURCE_DIAGRAMS !== "off"
     ? readSourceDiagrams(openai, `${input.topic}${input.focus ? ` — ${input.focus}` : ""}`, input.webSources)
     : null;
   let diagramsUsed = false;
@@ -500,6 +502,8 @@ export async function writeCanvasBoard(args: {
   practice?: "none" | "some" | "lots";
   /** The student's code choice on the question card: a language, or no code (lib/teachingQuestions.ts). */
   code?: { include: boolean; language?: string };
+  /** No headless look at the finished board: a board for a question, wanted in about a minute (lib/canvas/questionBoard.ts). */
+  skipLook?: boolean;
 }): Promise<{ beat: Beat; costUsd: number; fallback: boolean; incomplete?: string[]; log: string[] }> {
   const { plan, index, sessionId } = args;
   // A CS reference PDF's boards are written as a typed CS lesson's, keeping the document's code (generateSpec documentCode).
@@ -507,11 +511,25 @@ export async function writeCanvasBoard(args: {
   const domain = typed ? args.subjectDomain : undefined;
   const beat = plan[index];
   const started = Date.now();
+  // AN IMAGE SEARCHED FOR THIS BOARD (lib/canvas/boardImages.ts): typed CS lessons outside DSA, OS and
+  // networking only. Redrawn when it is a diagram the board can draw, otherwise shown with its credit.
+  const imageLog: string[] = [];
+  let imageCost = 0;
+  if (typed && !args.document && !args.strictSource && domainIsCs(domain, args.topic) && boardImagesOn() && isOtherCsLesson(args.topic) && boardTakesImage(beat, index)) {
+    const used = new Set(args.earlier.flatMap((s) => (s?.imageSource ? [s.imageSource.imageUrl, s.imageSource.pageUrl] : [])));
+    const found = await findBoardImage(client(), args.topic, beat, used);
+    imageCost = found.costUsd;
+    imageLog.push(`${beat.id}: board image — ${found.log}`);
+    console.log(`[canvas] board image ${beat.id}: ${found.log}`);
+    console.log(`[canvas] board image trace ${JSON.stringify({ session: sessionId, ...found.trace })}`);
+    if (found.choice) applyBoardImage(beat, found.choice);
+  }
   // An examined board may need one rewrite: it gets a minute more (boards 2+ are written while earlier ones play).
   // A course lesson's picture (gpt-image-2, checked, perhaps drawn twice) gets the time it needs: boards
   // 2+ are written while earlier ones play (lib/canvas/coursePicture.ts).
   const course = beat.stage === "illustration" || beat.pictureBeside ? courseBoardContext(args.document, args.topic, beat) : null;
-  const budget = BOARD_BUDGET_MS + (args.mathsCheck ? 60_000 : 0) + (course || (beat.mathsPicture && !beat.course) ? 150_000 : 0);
+  // A found image redrawn by the image model (lib/canvas/boardImages.ts) gets a picture's time, as a course picture does.
+  const budget = BOARD_BUDGET_MS + (args.mathsCheck ? 60_000 : 0) + (course || (beat.mathsPicture && !beat.course) || beat.foundImage ? 150_000 : 0);
   const clock: Clock = { left: () => budget - (Date.now() - started) };
   const log: string[] = [];
   const colours = planConceptColours(plan);
@@ -529,6 +547,8 @@ export async function writeCanvasBoard(args: {
   if (args.document) extra.push(...documentBoardLines(args.document, beat));
   // The reference page's diagram this board redraws (lib/canvas/sourceDiagrams.ts).
   if (typed && beat.sourceDiagram) extra.push(sourceDiagramBrief(beat.sourceDiagram, beat.stage));
+  // The library image this board shows rather than redraws (lib/canvas/boardImages.ts).
+  if (typed && beat.foundImage) extra.push(foundImageBrief(beat.foundImage));
   // One lesson, not separate boards: the example, program and facts the earlier boards set (lib/canvas/csLessons.ts).
   // CS only: maths keeps the parent branch's board prompts (owner, 2026-10-25).
   if (typed && domainIsCs(domain, args.topic) && index > 0) extra.push(...lessonSoFar(args.earlier.slice(0, index)));
@@ -573,6 +593,9 @@ export async function writeCanvasBoard(args: {
     pictured = { spec: made.spec, costUsd: 0 };
   }
   let spec: CanvasBoardSpec = { ...pictured.spec };
+  if (beat.imageSource) spec.imageSource = beat.imageSource;
+  if (imageLog.length) log.unshift(...imageLog);
+  made = { ...made, costUsd: made.costUsd + imageCost };
   let picture = pictured.picture;
   // EYES ON THE BOARD BEFORE A STUDENT SEES IT (lib/canvas/boardLook.ts; owner, 2026-10-23: "100 percent
   // accurate diagrams … I don't want to reduce the amount of visuals"). The finished board is drawn by the
@@ -584,7 +607,7 @@ export async function writeCanvasBoard(args: {
   // null: not looked at (no photo, no verdict, the look off); true: passed; false: refused and shipped as settled.
   let lookPassed: boolean | null = null;
   const courseBoard = Boolean(beat.course && courseCodeDiagramsOff());
-  if (made.attempts >= 0 && boardLookOn() && beat.stage !== "exam" && !beat.overview) {
+  if (made.attempts >= 0 && boardLookOn() && !args.skipLook && beat.stage !== "exam" && !beat.overview) {
     const openai = client();
     const opts = { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry };
     // LOOSENED (owner, 2026-10-24: "please loosen its check, it always rejects things"): a board is refused

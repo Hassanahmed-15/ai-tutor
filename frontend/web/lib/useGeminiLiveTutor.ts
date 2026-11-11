@@ -97,6 +97,18 @@ const RESUME_COMMAND = /^(?:(?:ok(?:ay)?|alright|all\s+right|yes|yeah|right|sure
 
 export type StudentTurnKind = "incidental" | "pause" | "resume" | "drawing" | "question";
 
+/**
+ * "Slow down", "too fast", "explain it slowly", "speed up" (owner, 2026-11-11: asked Aria to slow down on
+ * a drawn slide and nothing happened — speed had no spoken control, and the slide's narration plays at
+ * the player's speed). The question in the same sentence is still answered.
+ */
+export function speedRequestOf(raw: string): "slower" | "faster" | null {
+  const t = raw.toLowerCase();
+  if (/\b(?:slow(?:er)?\s+(?:it\s+)?down|slower|too\s+(?:fast|quick(?:ly)?|rapid(?:ly)?)|(?:more\s+)?slowly|less\s+fast|not\s+so\s+fast)\b/.test(t)) return "slower";
+  if (/\b(?:speed\s+(?:it\s+)?up|faster|too\s+slow(?:ly)?|go\s+quicker|more\s+quickly)\b/.test(t)) return "faster";
+  return null;
+}
+
 export function classifyStudentTurn(raw: string): StudentTurnKind {
   const text = raw.trim();
   if (!text || !isAddressedToTeacher(text)) return "incidental";
@@ -214,6 +226,8 @@ export type UseGeminiLiveTutorOptions = {
    * until the student interacts. Surfaced so the page can ask for a tap; any tap resumes it.
    */
   onOutputBlocked?: () => void;
+  /** The student asked for the lecture to go slower or faster (speedRequestOf). */
+  onSpeedRequest?: (direction: "slower" | "faster") => void;
   /** A reply was expected and never made a sound, even after asking again. */
   onSilentReply?: () => void;
   /**
@@ -235,6 +249,8 @@ export type UseGeminiLiveTutorOptions = {
    * when it should have been highest.
    */
   getTutorSpeaking?: () => boolean;
+  /** True while what is being read aloud answers the student's own request (a slide they asked for). */
+  getInConversation?: () => boolean;
   adhdMode?: boolean;
   /**
    * Opens the session with the CASUAL check-in persona instead of the tutor one, and with
@@ -261,6 +277,8 @@ export type UseGeminiLiveTutorOptions = {
   /** Optional first name, so the tutor can address the student naturally. */
   studentName?: string;
   boardTextOnly?: boolean;
+  /** A canvas lecture: a slide asked for is drawn as a canvas board (lib/canvas/questionBoard.ts). Null otherwise. */
+  getCanvasBoard?: () => { sessionId?: string | null } | null;
   lectureControlTools?: boolean;
   startMuted?: boolean;
   examMode?: boolean;
@@ -787,6 +805,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     if (text) {
       optionsRef.current.onTranscript?.("student", text, true);
       turnKind = classifyStudentTurn(text);
+      const speed = turnKind !== "incidental" ? speedRequestOf(text) : null;
+      if (speed) optionsRef.current.onSpeedRequest?.(speed);
       if (turnKind === "incidental") {
         // Not a question or an instruction — a cough, a "mm-hm", or someone else in the room. The
         // audio already stopped (see beginStudentSpeech), but the lecture should pick up rather
@@ -1338,6 +1358,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           visualMode,
           reuseContext,
           previousBoard: optionsRef.current.getPreviousBoard?.() ?? "",
+          ...(() => { const canvas = optionsRef.current.getCanvasBoard?.(); return canvas ? { boardEngine: "canvas", ...(canvas.sessionId ? { lectureSessionId: canvas.sessionId } : {}) } : {}; })(),
         }),
       });
       const data = await response.json().catch(() => ({}));
@@ -1897,7 +1918,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           } else if (machine && !tutorSpeaking && machine.value.tutorAudible && ["TUTOR_SPEAKING", "POSSIBLE_INTERRUPTION", "FALSE_INTERRUPTION"].includes(machine.value.state)) {
             machine.dispatch({ type: "TUTOR_AUDIO_END", at: now, generation: machine.value.playbackGeneration });
           }
-          gate.setTutorSpeaking(tutorSpeaking, now);
+          gate.setTutorSpeaking(tutorSpeaking, now, Boolean(optionsRef.current.getInConversation?.()));
           const result = sileroRef.current ? await sileroRef.current.push(pcm) : null;
           gate.push(pcm, now, result?.ready ? result.speech : null);
         }).catch(() => gate.push(pcm, now, null));

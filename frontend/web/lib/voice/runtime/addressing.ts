@@ -11,6 +11,12 @@
 export interface AddressingContext {
   expectingAnswer: boolean;
   tutorSpeaking: boolean;
+  /**
+   * The student is in a conversation with her: what she is saying is the answer to THEIR request (a slide
+   * they asked for, read aloud). A plain question then needs no name (owner, 2026-11-11: "asked her
+   * something while she explained the new slide and she kept on listening").
+   */
+  inConversation?: boolean;
   topicWords?: Iterable<string>;
   wakeNames?: string[];
   /**
@@ -246,7 +252,10 @@ export function classifyAddressing(raw: string, context: AddressingContext): Add
     const hits = new Set(words.filter((w) => w.length >= 4 && topic.has(w))).size;
     if (hits > 0) { score += Math.min(0.6, 0.2 * hits); why.push(`${hits} topic word${hits > 1 ? "s" : ""}`); }
   }
-  if (context.tutorSpeaking) { score -= 0.25; why.push("tutor speaking"); }
+  // Only a question about the lesson or the slide counts as talking with her: "did you send that email" does not.
+  const tied = aboutLesson || DEICTIC.test(text) || BOARD_REFERENCE.test(text);
+  if (context.tutorSpeaking && context.inConversation && tied) { score += 0.15; why.push("talking with her"); }
+  else if (context.tutorSpeaking) { score -= 0.25; why.push("tutor speaking"); }
   /*
    * Idle credit is small on purpose (0.15 until 2026-09-29): with it, ANY question-shaped sentence
    * reached 0.5 while she was quiet — a phone video's "what is going on here?" or the TV's "can you

@@ -10,7 +10,7 @@ import { cancelActiveNarrations, unlockAudio, splitNarrationSentences, playNarra
 import { scriptClockFromNarration, sentenceWeight, timingFromProgress } from "@/lib/narrationClock";
 import { animationChipDetail } from "@/lib/animationModels";
 import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
-import { usePlaybackRate } from "@/lib/playbackPrefs";
+import { PLAYBACK_RATES, rateLabel, usePlaybackRate } from "@/lib/playbackPrefs";
 import { useLessonMachine } from "@/lib/lessonMachine";
 import { backstopRecovery, narrationRecovery, stallWatchdogAction } from "@/lib/narrationRecovery";
 import { isAdaptiveQuestion } from "@/lib/adaptiveQuestion";
@@ -987,6 +987,11 @@ export function LessonPlayer({
     // She is shown the uploaded pages themselves, not only their extracted text.
     documentId,
     getTutorSpeaking: () => narrationAudibleRef.current || boardNarratingRef.current,
+    // A slide the student asked for, being explained, is a conversation with them: a plain question is heard
+    // (lib/voice/runtime/addressing.ts inConversation). Standard lecture only.
+    ...(standardTransitionsEnabled ? { getInConversation: () => boardNarratingRef.current } : {}),
+    // A canvas lecture's slide is a canvas board like the lecture's own (lib/canvas/questionBoard.ts). Standard lecture only.
+    ...(standardTransitionsEnabled ? { getCanvasBoard: () => (canvasLesson ? { sessionId: canvasSessionId } : null) } : {}),
     topic: title,
     // What is ON the board — the code listing, the diagram, the chalk lines — not only the script,
     // plus the text inside a sandboxed board and every mark the student made on it.
@@ -1200,6 +1205,16 @@ export function LessonPlayer({
      */
     // Standard lecture only: the accessibility tracks keep their screens exactly as they were.
     ...(standardTransitionsEnabled ? { onSilentReply: () => chat.appendTurn("aria", "I couldn't answer that out loud. Please ask again.") } : {}),
+    // "Slow down" by voice moves the player's speed one step, and a drawn slide's narration with it.
+    ...(standardTransitionsEnabled ? {
+      onSpeedRequest: (direction: "slower" | "faster") => {
+        const at = PLAYBACK_RATES.indexOf(rate);
+        const next = PLAYBACK_RATES[Math.max(0, Math.min(PLAYBACK_RATES.length - 1, (at < 0 ? PLAYBACK_RATES.indexOf(1) : at) + (direction === "slower" ? -1 : 1)))];
+        if (next === rate) return;
+        setRate(next);
+        chat.appendTurn("aria", `${direction === "slower" ? "Slowing down" : "Speeding up"}: the lecture now plays at ${rateLabel(next)}.`);
+      },
+    } : {}),
     onOutputBlocked: () => {
       // Live Aria's output is held; the lecture's own narration may be fine. A tap resumes it.
       if (!voiceBlockedRef.current) blockedLiveOnlyRef.current = true;

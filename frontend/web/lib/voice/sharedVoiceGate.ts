@@ -105,10 +105,13 @@ export class SharedVoiceGate {
     });
   }
 
-  setTutorSpeaking(speaking: boolean, now: number): void {
+  setTutorSpeaking(speaking: boolean, now: number, inConversation = false): void {
     this.tutorSpeaking = speaking;
-    this.pipeline.setTutor({ speaking, expectingAnswer: this.expecting(), speakingAs: this.speakingAs }, now);
+    this.inConversation = inConversation;
+    this.pipeline.setTutor({ speaking, expectingAnswer: this.expecting(), speakingAs: this.speakingAs, inConversation }, now);
   }
+  /** See TutorStatus.inConversation: a slide the student asked for is being explained. */
+  private inConversation = false;
   /*
    * An answer comes soon after the question. "Expecting an answer" used to last until her next
    * turn, so after "say continue whenever you're ready?" any voice minutes later — the TV, a phone
@@ -125,7 +128,7 @@ export class SharedVoiceGate {
   }
   setTopicWords(words: Iterable<string>): void { this.pipeline.setTopicWords(words); }
   push(pcm: Float32Array, now: number, vadProbability: number | null = null): void {
-    this.pipeline.setTutor({ speaking: this.tutorSpeaking, expectingAnswer: this.expecting(), speakingAs: this.speakingAs }, now);
+    this.pipeline.setTutor({ speaking: this.tutorSpeaking, expectingAnswer: this.expecting(), speakingAs: this.speakingAs, inConversation: this.inConversation }, now);
     const verdict = this.pipeline.push(pcm, now, vadProbability);
     if (verdict.speech) this.lastReason = verdict.reason;
   }

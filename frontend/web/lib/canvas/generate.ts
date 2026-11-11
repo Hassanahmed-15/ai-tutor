@@ -29,6 +29,7 @@ import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat, type Fig
 import { slug, trimToFit, validateCanvasSpec, validationCutItems } from "./validate";
 import { fittedNote } from "../text/fit";
 import { fallbackSpec } from "./fallback";
+import { pictureFoundImage } from "./boardImages";
 import { figureComponent, figureFor } from "../figures/registry";
 import { classifyInstructionalTask } from "./instructionalTask";
 import { foreignFigureWords } from "../figures/foreignText";
@@ -46,6 +47,7 @@ import katex from "katex";
 import { mathifyBoard } from "./mathNotes";
 /** A LaTeX string KaTeX can typeset (a note that cannot stays as text). */
 const rendersAsTex = (tex: string): boolean => { try { katex.renderToString(tex, { throwOnError: true }); return true; } catch { return false; } };
+import { modPowProblem } from "./csLessons";
 import { anchorTraceNotes, claimedLinksProblem, continuedCodeProblem, crowdedStepsProblem, csPictureRule, removeCutNodes, retargetLineReferences, exampleProblem, hardcodedResultProblem, isCodeNote, isTypedDsaTopic, isTypedOsTopic, parentForestProblem, placeholderProblem, pointerNameProblem, protocolStartProblem, repairFromExample, structureChangeProblem, syncProblem, type EarlierStructure } from "./csLessons";
 import { dropBrokenRows, equationProblem, normalizeMath, orderNotesAsSaid, repeatsWorking, revealNotesWhenSaid, tidyNotes, withResultNotes } from "./equationCheck";
 import { MATHS_CHECK_MODEL, mathsCheck, mathsFixes, patchNarration, type ExaminerSubject, type MathsProblem } from "./mathsCheck";
@@ -1040,7 +1042,9 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
           ?? (st.kind === "code" && !opts.documentCode ? continuedCodeProblem(st.lines, opts.continueCode) ?? hardcodedResultProblem(st.lines) : null)
           ?? (drawnStructure && steps ? structureChangeProblem(drawnStructure, steps, sentences) ?? pointerNameProblem(drawnStructure, steps) : null)
           ?? (drawnStructure ? claimedLinksProblem(drawnStructure, sentences) : null)
-          ?? (steps && st.kind === "code" ? crowdedStepsProblem(steps) : null);
+          ?? (steps && st.kind === "code" ? crowdedStepsProblem(steps) : null)
+          // "a^b mod n = r" is computed: a wrong value teaches wrongly (lib/canvas/csLessons.ts).
+          ?? modPowProblem([...spec.notes.map((n) => n.text), beat.script]);
         const problem = serious ?? (hurried ? null
           : (drawnStructure && opts.earlier?.length ? exampleProblem(drawnStructure, opts.earlier, beat.script) : null)
           ?? (drawnStructure && steps ? parentForestProblem(topic, drawnStructure, steps) ?? protocolStartProblem(topic, drawnStructure, steps) : null)
@@ -1320,6 +1324,24 @@ export async function illustrate(openai: OpenAI, userId: string, lectureId: stri
   if (spec.stage.kind === "equation" && beat.pictureBeside && course) return pictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, course, options);
   if (spec.stage.kind === "equation" && beat.mathsPicture && !beat.course && options.maths) return mathsPictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, options.maths);
   if (spec.stage.kind !== "illustration") return { spec, costUsd: 0 };
+  // A library image found for this board (lib/canvas/boardImages.ts): put up as found, never drawn again.
+  if (beat.foundImage) {
+    const stage = spec.stage;
+    try {
+      const placed = await bounded(pictureFoundImage(openai, stage, beat.foundImage), Math.max(60_000, Math.min(260_000, clock.left() - 20_000)), "found image");
+      const kept = new Set(placed.stage.parts.map((p) => p.id));
+      log.push(`${beat.id}: found image redrawn — ${placed.log}; ${placed.located} of ${stage.parts.length} label(s) located (${beat.foundImage.provider}: ${beat.foundImage.title})`);
+      return { spec: { ...spec, stage: placed.stage, cues: spec.cues.filter((c) => !c.target || !stage.parts.some((p) => p.id === c.target) || kept.has(c.target)) }, costUsd: placed.costUsd };
+    } catch (error) {
+      log.push(`${beat.id}: found image not used — ${(error as Error).message}`);
+      beat.foundImage = undefined;
+      beat.imageSource = undefined;
+      console.log(`[canvas] board image ${beat.id}: redraw failed — ${(error as Error).message}`);
+      const rebuilt = rebuild ? await rebuild().catch(() => null) : null;
+      if (rebuilt) return { spec: rebuilt.spec, costUsd: rebuilt.costUsd };
+      return { spec: fallbackSpec(plainBeat(beat)), costUsd: 0 };
+    }
+  }
   if (beat.mathsPicture && !beat.course && options.maths) return mathsIllustration(openai, userId, lectureId, beat, spec, log, clock, rebuild, options.maths);
   const stage = spec.stage;
   const started = Date.now();

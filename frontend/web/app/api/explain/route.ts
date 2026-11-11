@@ -24,6 +24,8 @@ import {
   sanitizeBeatSourceGrounding,
 } from "@/lib/strictSourceAnswers";
 import { createOpenAI } from "@/lib/openaiClient";
+import { currentUser } from "@/lib/auth";
+import { writeQuestionBoard } from "@/lib/canvas/questionBoard";
 
 /**
  * The side-chat "explain this further" endpoint. Returns one spoken explanation plus a fresh
@@ -131,6 +133,32 @@ export async function POST(req: Request) {
   const pageImages = getDocumentImages(documentId);
 
   if (!question) return NextResponse.json({ error: "question is required" }, { status: 400 });
+
+  /*
+   * A CANVAS LECTURE'S SLIDE IS A CANVAS BOARD (lib/canvas/questionBoard.ts): the same board types and checks
+   * as the lecture around it, in fast mode. Never for a strict document, a video, an offer or a text-only
+   * board; on any failure, or past ~150 s (the host cuts a request at 240 s), the board below is drawn instead.
+   */
+  if (body.boardEngine === "canvas" && !strict && !videoContext && !curriculumContext && !offer && !textOnly) {
+    const user = await currentUser().catch(() => null);
+    if (user) {
+      const started = Date.now();
+      const made = await Promise.race([
+        writeQuestionBoard({
+          userId: user.userId,
+          sessionId: typeof body.lectureSessionId === "string" && /^[a-f0-9-]{36}$/.test(body.lectureSessionId) ? body.lectureSessionId : undefined,
+          topic,
+          question,
+          lessonContext,
+          beatContext,
+          previousBoard,
+        }).catch((error: Error) => { console.warn(`[explain] canvas board failed: ${error.message}`); return null; }),
+        new Promise<null>((resolve) => setTimeout(() => resolve(null), 150_000)),
+      ]);
+      console.log(`[explain] canvas board ${made ? "made" : "not made"} in ${Math.round((Date.now() - started) / 1000)}s${made ? ` for $${made.costUsd.toFixed(3)}` : ""}`);
+      if (made) return NextResponse.json({ script: made.script, draw: made.draw, canvas: true, costUsd: made.costUsd });
+    }
+  }
 
   // Priced across every attempt, including failed ones and the animation built for the answer.
   const meter = createCostMeter();

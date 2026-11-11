@@ -144,6 +144,8 @@ export interface TutorStatus {
   expectingAnswer: boolean;
   /** Speaking as a lecture (expensive to stop) or as a reply (cheap). Defaults to the profile. */
   speakingAs?: "lecture" | "reply";
+  /** What she is saying answers the student's own request (addressing.ts AddressingContext.inConversation). */
+  inConversation?: boolean;
 }
 
 export interface EndTurnInfo {
@@ -353,7 +355,7 @@ export class TurnArbiter {
       return;
     }
     if (!heard || this.state !== "attending") return;
-    const verdict = classifyAddressing(clean, { expectingAnswer: this.tutor.expectingAnswer, tutorSpeaking: this.tutor.speaking, topicWords: this.topicWords, wakeNames: this.wakeNames });
+    const verdict = classifyAddressing(clean, { expectingAnswer: this.tutor.expectingAnswer, tutorSpeaking: this.tutor.speaking, inConversation: this.tutor.inConversation === true, topicWords: this.topicWords, wakeNames: this.wakeNames });
     if (!verdict.addressed) return;
     this.lastTranscript = clean;
     this.lastVerdict = verdict;
@@ -450,7 +452,7 @@ export class TurnArbiter {
     const clean = text.trim();
     if (clean) this.everTranscribed = true;
     let verdict = clean
-      ? classifyAddressing(clean, { expectingAnswer: this.tutor.expectingAnswer, tutorSpeaking: this.tutor.speaking, topicWords: this.topicWords, wakeNames: this.wakeNames })
+      ? classifyAddressing(clean, { expectingAnswer: this.tutor.expectingAnswer, tutorSpeaking: this.tutor.speaking, inConversation: this.tutor.inConversation === true, topicWords: this.topicWords, wakeNames: this.wakeNames })
       : { addressed: false, score: 0, reason: "no words in the second opinion" };
     /*
      * The same two vetoes the local words get (provideTranscript). The second opinion is the path
@@ -615,6 +617,7 @@ export class TurnArbiter {
     let verdict = classifyAddressing(text, {
       expectingAnswer: this.tutor.expectingAnswer,
       tutorSpeaking: this.tutor.speaking,
+      inConversation: this.tutor.inConversation === true,
       topicWords: this.topicWords,
       wakeNames: this.wakeNames,
     });
