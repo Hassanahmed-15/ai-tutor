@@ -68,6 +68,9 @@ function PencilScene({ mark, shownThrough, reducedMotion }: { mark: LabMark; sho
         if (st.errors.length) { setFailed(st.errors[0]); return; }
         player.current = p;
         last.current = -1;
+        // QA (scripts/qa): the drawing's engine, to read where its labels went.
+        const qa = window as unknown as { __qaLab?: Record<string, unknown> };
+        if (qa.__qaLab) qa.__qaLab[mark.key] = p;
         // The living equation beside it finds its parts here (lib/canvas/labParts.ts).
         unregister = registerLabParts(mark.key, {
           nodes: (ids) => p.elementsOf(ids).map((el) => el.rendNode),

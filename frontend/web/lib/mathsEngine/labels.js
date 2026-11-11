@@ -28,19 +28,21 @@ const toScreen = (board, p) => [board.origin.scrCoords[1] + p[0] * board.unitX, 
 function geometrySamples(board, els) {
   const out = [];
   const W = board.canvasWidth, H = board.canvasHeight;
+  let owner = null;
   const along = (a, b) => {
     const len = Math.hypot(b[0] - a[0], b[1] - a[1]);
     const n = Math.max(1, Math.ceil(len / 5));
-    for (let i = 0; i <= n; i++) out.push([a[0] + ((b[0] - a[0]) * i) / n, a[1] + ((b[1] - a[1]) * i) / n]);
+    for (let i = 0; i <= n; i++) out.push([a[0] + ((b[0] - a[0]) * i) / n, a[1] + ((b[1] - a[1]) * i) / n, owner]);
   };
   for (const el of els) {
+    owner = el;
     if (!el || el.elType === "text") continue;
     // Faint lines (a grid) do not push labels away; a label can sit on squared paper.
     const stroked = (el.visProp.strokeopacity ?? 1) > 0.3 && (el.visProp.strokewidth ?? 1) > 0;
     if (!stroked) continue;
     if (el.elType === "point") {
       const c = el.coords.scrCoords;
-      out.push([c[1], c[2]], [c[1] + 4, c[2]], [c[1] - 4, c[2]], [c[1], c[2] + 4], [c[1], c[2] - 4]);
+      out.push([c[1], c[2], el], [c[1] + 4, c[2], el], [c[1] - 4, c[2], el], [c[1], c[2] + 4, el], [c[1], c[2] - 4, el]);
     } else if (el.points?.length > 1) {
       for (let i = 1; i < el.points.length; i++) {
         const a = el.points[i - 1].scrCoords, b = el.points[i].scrCoords;
@@ -82,7 +84,14 @@ function perpOf(board, lab) {
 }
 
 /** The best offset for one label, given obstacles (sample points and rectangles), in board pixels. */
+function inScreenPolygon([x, y], P) {
+  let inside = false;
+  for (let i = 0, j = P.length - 1; i < P.length; j = i++) if (P[i][1] > y !== P[j][1] > y && x < ((P[j][0] - P[i][0]) * (y - P[i][1])) / (P[j][1] - P[i][1]) + P[i][0]) inside = !inside;
+  return inside;
+}
+
 function choose(board, scene, lab, anchor, box, strokes, rects) {
+  const own = lab.obj?.id && scene.allElements ? new Set(safeElements(scene, lab.obj.id)) : null;
   const W = board.canvasWidth, H = board.canvasHeight;
   const perp = perpOf(board, lab);
   const pref0 = typeof lab.pref === "function" ? lab.pref() : lab.pref;
@@ -114,6 +123,25 @@ function choose(board, scene, lab, anchor, box, strokes, rects) {
     for (const [x, y] of strokes) if (x > r.left - 2 && x < r.right + 2 && y > r.top - 2 && y < r.bottom + 2) hits++;
     score += hits * 6;
     if (r.left < 2 || r.right > W - 2 || r.top < 2 || r.bottom > H - 2) score += 5000;
+    const mid = [(r.left + r.right) / 2, (r.top + r.bottom) / 2];
+    // A SIDE'S LABEL IS NEARER ITS OWN SIDE THAN ANY OTHER (2026-11-11: "a" for the bottom side sat in the
+    // triangle beside the vertical side, and read as that side's name).
+    if (own && (lab.kind === "segment" || lab.kind === "edge")) {
+      let mine = Infinity, other = Infinity;
+      for (const [x, y, el] of strokes) {
+        const d = Math.hypot(x - mid[0], y - mid[1]);
+        if (own.has(el)) mine = Math.min(mine, d);
+        else other = Math.min(other, d);
+      }
+      if (other + 6 < mine) score += 250;
+      // Never written across its own side.
+      if ([...strokes].some(([x, y, el]) => own.has(el) && x > r.left && x < r.right && y > r.top && y < r.bottom)) score += 150;
+    }
+    // A SHAPE'S NAME STAYS IN THE SHAPE ("Triangle 1" was pushed out of its triangle and named nothing).
+    if (lab.kind === "inside" && lab.obj?.poly) {
+      const P = lab.obj.poly().map((p) => toScreen(board, p));
+      if (P.length > 2 && !inScreenPolygon(mid, P)) score += 220;
+    }
     // A circle's name inside a different circle names the wrong one.
     if (lab.obj?.circle) {
       for (const o of scene.objs.values()) {
@@ -125,6 +153,10 @@ function choose(board, scene, lab, anchor, box, strokes, rects) {
     if (!best || score < best.score) best = { score, ox, oy, rect: r };
   });
   return best;
+}
+
+function safeElements(scene, id) {
+  try { return scene.allElements(id); } catch { return []; }
 }
 
 /** Plain texts already on the board (axis numbers, readouts), as rectangles in board pixels. */
@@ -148,9 +180,11 @@ export function layoutAll(board, scene, finalEls, labels) {
   board.update();
   const strokes = geometrySamples(board, finalEls.filter((el) => !el.__label));
   const rects = fixedTextRects(board, finalEls);
-  // Labels are placed on the finished board too (an image's label goes where the image ends up).
-  for (const lab of labels) {
-    const box = textBox(lab.content(), lab.size);
+  // Labels are placed on the finished board too (an image's label goes where the image ends up). The labels of
+  // sides, points and angles first: they belong at one place; a shape's name can go anywhere inside its shape.
+  const ordered = [...labels.filter((l) => l.kind !== "inside"), ...labels.filter((l) => l.kind === "inside")];
+  for (const lab of ordered) {
+    let box = textBox(lab.content(), lab.size);
     let best = null;
     // A label with several candidate anchors (along a curve) takes the clearest; earlier ones are preferred.
     const tries = lab.candidates ? lab.candidates.map((f, k) => [k, f()]) : [[0, lab.anchor()]];
@@ -159,6 +193,26 @@ export function layoutAll(board, scene, finalEls, labels) {
       const pick = choose(board, scene, lab, toScreen(board, a), box, strokes, rects);
       pick.score += k * 8;
       if (!best || pick.score < best.score) best = { ...pick, k };
+    }
+    // A shape's name that cannot sit inside its shape at full size is written smaller there, not outside it.
+    if (best && lab.kind === "inside" && best.score >= 60 && lab.obj?.poly) {
+      for (const k of [0.85, 0.72, 0.6]) {
+        const small = textBox(lab.content(), lab.size * k);
+        for (const [i, a] of tries) {
+          if (!a.every(Number.isFinite)) continue;
+          const pick = choose(board, scene, lab, toScreen(board, a), small, strokes, rects);
+          pick.score += i * 8 + (1 - k) * 40;
+          if (pick.score < best.score) best = { ...pick, k: i, shrink: k };
+        }
+        if (best.score < 60) break;
+      }
+      if (best.shrink) {
+        const size = Math.round(lab.size * best.shrink);
+        lab.size = size;
+        lab.el.__size = size;
+        lab.el.setAttribute({ fontSize: size });
+        box = textBox(lab.content(), size);
+      }
     }
     if (!best) continue;
     lab.pick = best.k;
@@ -236,6 +290,16 @@ export function settleFreeText(board, scene, finalEls) {
     const P = el.points.map((c) => [c.scrCoords[1], c.scrCoords[2]]).filter((p) => p.every(Number.isFinite));
     if (P.length > 2) fills.push(P);
   }
+  // Every closed shape of the scene: writing placed inside one is about it, and stays inside it.
+  const shapes = [];
+  for (const o of scene.objs.values()) {
+    if (o.type !== "polygon" && o.type !== "sector" && o.type !== "area") continue;
+    try { const P = o.poly?.(); if (P?.length > 2) shapes.push(P.map((p) => toScreen(board, p))); } catch { /* not measurable */ }
+  }
+  const leaves = (el, r) => {
+    const home = others.get(el), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2, hx = (home.left + home.right) / 2, hy = (home.top + home.bottom) / 2;
+    return shapes.some((P) => inPoly(hx, hy, P) && !inPoly(x, y, P));
+  };
   const enters = (el, r) => {
     const home = others.get(el), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2, hx = (home.left + home.right) / 2, hy = (home.top + home.bottom) / 2;
     return fills.some((P) => inPoly(x, y, P) && !inPoly(hx, hy, P));
@@ -245,7 +309,7 @@ export function settleFreeText(board, scene, finalEls) {
     let writing = 0, line = false;
     for (const [other, o] of others) if (other !== el && overlapArea(r, o) > 0) writing++;
     for (const [x, y] of strokes) if (x > r.left && x < r.right && y > r.top && y < r.bottom) { line = true; break; }
-    const cost = writing * 4 + (covers(r) ? 3 : 0) + (enters(el, r) ? 3 : 0) + (line ? 1 : 0);
+    const cost = writing * 4 + (covers(r) ? 3 : 0) + (enters(el, r) ? 3 : 0) + (leaves(el, r) ? 3 : 0) + (line ? 1 : 0);
     return { cost, hard: writing > 0 || covers(r) };
   };
   let moved = false;

@@ -618,7 +618,10 @@ export async function writeCanvasBoard(args: {
     let current: LookProblem[] = [];
     const settle = (why: string) => {
       let problems = current;
-      if (best && best.spec !== spec) {
+      // A drawing the pencil engine made is computed from the scene's numbers and was checked by its engine:
+      // it is never swapped back for a generated picture the look preferred (2026-11-11: a correct pencil
+      // drawing lost to a wrong gpt-image-2 one).
+      if (best && best.spec !== spec && !(spec.lab && !best.spec.lab)) {
         spec = best.spec;
         picture = best.picture;
         problems = best.problems;
@@ -796,8 +799,9 @@ export async function writeCanvasBoard(args: {
   // ONE LIVING EQUATION for a maths board's working (components/canvas/LivingEquationView.tsx): the
   // board's own steps, shown changing in place. Not where a term is written over another (a condition over an arrow).
   if (labVisualsOn() && mathsLesson && (!beat.course || beat.subject === "maths") && spec.stage.kind === "equation" && spec.stage.steps.length > 0 && !spec.stage.tokens.some((t) => t.on)) spec.living = true;
-  // THE FULL BOARD (lib/canvas/blocks.ts, CANVAS_BLOCKS=on, course lessons): every sentence written out, in typed blocks.
-  if (canvasBlocksOn() && beat.course && spec.stage.kind !== "exam") {
+  // THE FULL BOARD (lib/canvas/blocks.ts, CANVAS_BLOCKS=on): every sentence written out, in typed blocks — course
+  // lessons, and every maths lecture, typed or from a PDF (owner, 2026-11-11: "a little more text, like it is now for maths").
+  if (canvasBlocksOn() && (beat.course || mathsLesson) && spec.stage.kind !== "exam") {
     const facts = spec.notes.map((n) => n.text).join("; ");
     const written = await writeBoardBlocks(client(), beat, facts);
     spec = { ...spec, blocks: written.blocks };

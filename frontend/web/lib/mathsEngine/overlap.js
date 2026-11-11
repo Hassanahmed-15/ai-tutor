@@ -272,3 +272,79 @@ export function chartProblems(spec) {
   }
   return out;
 }
+
+const EPS = 1e-6;
+const dist = (p, q) => Math.hypot(p[0] - q[0], p[1] - q[1]);
+const angleAt = (P, i) => {
+  const a = P[(i + P.length - 1) % P.length], b = P[i], c = P[(i + 1) % P.length];
+  const u = [a[0] - b[0], a[1] - b[1]], v = [c[0] - b[0], c[1] - b[1]];
+  return (Math.acos(Math.max(-1, Math.min(1, (u[0] * v[0] + u[1] * v[1]) / (Math.hypot(...u) * Math.hypot(...v) || 1)))) * 180) / Math.PI;
+};
+const onSegment = (p, a, b, tol) => {
+  const l = dist(a, b) || 1;
+  const t = ((p[0] - a[0]) * (b[0] - a[0]) + (p[1] - a[1]) * (b[1] - a[1])) / (l * l);
+  if (t < -0.001 || t > 1.001) return false;
+  return dist(p, [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]) <= tol;
+};
+const inOrOn = (p, P, tol) => inside(p, P) || P.some((a, i) => onSegment(p, a, P[(i + 1) % P.length], tol));
+
+/** What a shape's own name or label says it is: a square, a rectangle, a right triangle, an equilateral triangle. */
+function claimedShape(o) {
+  const words = `${o.id ?? ""} ${typeof o.label === "string" ? o.label : ""}`.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
+  if (/\bsquares?\b/.test(words)) return "square";
+  if (/\brectangles?\b/.test(words)) return "rectangle";
+  if (/\bright[- ]?(?:angled )?triangle/.test(words)) return "right triangle";
+  if (/\bequilateral\b/.test(words)) return "equilateral triangle";
+  return null;
+}
+
+/**
+ * THE DRAWING IS WHAT THE BOARD SAYS IT IS (2026-11-11: a "central square" whose corners made no square, and
+ * four triangles that left a gap in the big square of a proof). For any maths scene: a shape named a square,
+ * rectangle, right triangle or equilateral triangle has that shape's sides and angles; pieces drawn inside a
+ * shape that nearly fill it fill it exactly; and the square on a labelled side carries that side's square
+ * (the square on side "a" is "a²").
+ */
+export function shapeProblems(spec) {
+  const out = [];
+  const { polys } = filledPolygons(spec, true);
+  const byId = new Map((spec.objects ?? []).map((o) => [o.id, o]));
+  const size = (P) => Math.max(...P.map((p) => p[0])) - Math.min(...P.map((p) => p[0])) + Math.max(...P.map((p) => p[1])) - Math.min(...P.map((p) => p[1]));
+  for (const a of polys) {
+    const claim = claimedShape(byId.get(a.id) ?? {});
+    if (!claim) continue;
+    const P = a.P, sides = P.map((p, i) => dist(p, P[(i + 1) % P.length]));
+    const equal = sides.every((x) => Math.abs(x - sides[0]) <= 0.02 * sides[0]);
+    const right = P.map((_, i) => Math.abs(angleAt(P, i) - 90) <= 1.5);
+    const bad =
+      claim === "square" ? !(P.length === 4 && equal && right.every(Boolean)) :
+      claim === "rectangle" ? !(P.length === 4 && right.every(Boolean)) :
+      claim === "right triangle" ? !(P.length === 3 && right.some(Boolean)) :
+      !(P.length === 3 && equal);
+    if (bad) out.push(`object ${a.id} is called a ${claim}, but its corners ${JSON.stringify(P.map((p) => p.map((v) => Math.round(v * 100) / 100)))} do not make one (sides ${sides.map((x) => x.toFixed(2)).join(", ")}): work its corners out again`);
+  }
+  // Pieces inside a shape that nearly fill it: a sliver left over means a corner is in the wrong place.
+  for (const c of polys) {
+    const tol = 0.004 * size(c.P);
+    const pieces = polys.filter((p) => p !== c && area(p.P) < area(c.P) && p.P.every((q) => inOrOn(q, c.P, tol)));
+    if (pieces.length < 3) continue;
+    const share = pieces.reduce((s, p) => s + area(p.P), 0) / area(c.P);
+    if (share > 0.85 && share < 0.985) out.push(`the pieces inside ${c.id} (${pieces.map((p) => p.id).join(", ")}) cover ${Math.round(share * 1000) / 10}% of it, leaving a gap: pieces that fill a shape share their corners exactly`);
+  }
+  // The square on a side carries that side's name.
+  const vars = scope(spec);
+  const points = new Map();
+  for (const o of spec.objects ?? []) if (o.type === "point" && Array.isArray(o.at)) { try { const p = [num(o.at[0], vars), num(o.at[1], vars)]; if (p.every(Number.isFinite)) points.set(o.id, p); } catch { /* skip */ } }
+  const end = (v) => (typeof v === "string" ? points.get(v) : Array.isArray(v) ? (() => { try { return [num(v[0], vars), num(v[1], vars)]; } catch { return null; } })() : null);
+  const sideLabels = (spec.objects ?? []).filter((o) => o.type === "segment" && typeof o.label === "string" && /^[a-z]$/i.test(o.label.trim())).map((o) => ({ id: o.id, name: o.label.trim(), a: end(o.from), b: end(o.to) })).filter((x) => x.a && x.b);
+  for (const sq of polys) {
+    const m = typeof sq.label === "string" ? /^\s*([a-z])\s*(?:²|\^\s*2)\s*$/i.exec(sq.label) : null;
+    if (!m || sq.P.length !== 4) continue;
+    const tol = 0.01 * size(sq.P);
+    for (const side of sideLabels) {
+      const onEdge = sq.P.some((p, i) => { const q = sq.P[(i + 1) % 4]; return (dist(p, side.a) <= tol && dist(q, side.b) <= tol) || (dist(p, side.b) <= tol && dist(q, side.a) <= tol); });
+      if (onEdge && side.name !== m[1]) out.push(`${sq.id} is the square on side ${side.id}, labelled "${side.name}", but it is labelled "${sq.label}": the square on side ${side.name} is ${side.name}²`);
+    }
+  }
+  return out;
+}

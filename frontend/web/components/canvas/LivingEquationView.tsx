@@ -38,12 +38,17 @@ export function LivingEquationView({ mark, shownThrough, reducedMotion }: { mark
   // living line and the ones before it go up into the history.
   const steps = useMemo(() => mark.steps.flatMap((st) => {
     const out: string[][] = [[]];
-    for (const id of st.order) {
+    const text = (id: string | undefined) => (id ? tokens.get(id)?.text.trim() ?? "" : "");
+    st.order.forEach((id, i) => {
       const t = tokens.get(id);
-      if (!t) continue;
-      if (/^[,;]$/.test(t.text.trim())) { if (out[out.length - 1].length) out.push([]); continue; }
+      if (!t) return;
+      if (/^[,;]$/.test(t.text.trim())) { if (out[out.length - 1].length) out.push([]); return; }
+      // Two equations with nothing between them ("3² + 4² = 25 c = 5 cm"): a number ends the first, and a
+      // letter about to be equated starts the second (lib/canvas/layout.ts does the same for written working).
+      const cur = out[out.length - 1];
+      if (cur.some((c) => /^[=≈]$/.test(text(c))) && /^[A-Za-z]/.test(t.text.trim()) && /^[=≈]$/.test(text(st.order[i + 1])) && /^[\d.,]+$/.test(text(st.order[i - 1]))) out.push([]);
       out[out.length - 1].push(id);
-    }
+    });
     return out.filter((c) => c.length).map((order) => ({ ...st, order }));
   }), [mark.steps, tokens]);
   const s = Number.isFinite(shownThrough) ? shownThrough : 1e6;

@@ -2014,6 +2014,9 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
       // in "," read as unfinished; maths benchmark R5).
       if (/^[,;]$/.test(t) && curHasEq && restHasEq) { out.push(cur); cur = []; return; }
       if (/^(?:and|so|then|therefore|hence|giving|gives)$/i.test(t) && curHasEq && restHasEq) { out.push(cur); cur = [id]; return; }
+      // Two equations written with nothing between them ("3² + 4² = 25 c = 5 cm"): a number ends the first,
+      // and a letter about to be equated starts the second.
+      if (curHasEq && /^[A-Za-z]/.test(t) && /^[=≈]$/.test(textOf(row[i + 1] ?? "")) && /^[\d.,]+$/.test(textOf(row[i - 1] ?? ""))) { out.push(cur); cur = [id]; return; }
       cur.push(id);
     });
     if (cur.length) out.push(cur);

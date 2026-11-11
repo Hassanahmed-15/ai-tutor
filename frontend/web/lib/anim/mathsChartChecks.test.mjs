@@ -59,3 +59,26 @@ test("a table that would widen onto the chart beside it is caught", () => {
   assert.ok(said({ objects: [table, { id: "b", type: "bars", x: [0, 1, 2], values: [2, 4, 3] }] }, /table t and bars b/));
   assert.ok(!said({ objects: [{ ...table, at: [-30, 4] }, { id: "b", type: "bars", x: [0, 1, 2], values: [2, 4, 3] }] }, /table t and bars b/));
 });
+
+import { shapeProblems } from "../mathsEngine/overlap.js";
+const shapes = (objects) => shapeProblems({ board: { x: [-1, 8], y: [-1, 8] }, objects });
+
+test("a shape called a square must be one", () => {
+  assert.ok(shapes([{ id: "centralSquare", type: "polygon", points: [[4, 0], [7, 3], [3, 7], [0, 3]] }]).some((p) => /called a square/.test(p)));
+  assert.deepEqual(shapes([{ id: "centralSquare", type: "polygon", points: [[4, 0], [7, 4], [3, 7], [0, 3]] }]), []);
+});
+
+test("pieces that nearly fill a shape must fill it", () => {
+  const big = { id: "big", type: "polygon", points: [[0, 0], [7, 0], [7, 7], [0, 7]] };
+  const tri = (id, P) => ({ id, type: "polygon", points: P, fill: "orange" });
+  const wrong = [big, tri("t1", [[0, 0], [4, 0], [0, 3]]), tri("t2", [[7, 0], [4, 0], [7, 3]]), tri("t3", [[7, 7], [7, 3], [3, 7]]), tri("t4", [[0, 7], [0, 4], [3, 7]]), tri("c", [[4, 0], [7, 3], [3, 7], [0, 3]])];
+  assert.ok(shapes(wrong).some((p) => /leaving a gap/.test(p)));
+  const right = [big, tri("t1", [[0, 0], [4, 0], [0, 3]]), tri("t2", [[7, 0], [7, 4], [4, 0]]), tri("t3", [[7, 7], [3, 7], [7, 4]]), tri("t4", [[0, 7], [0, 3], [3, 7]]), tri("c", [[4, 0], [7, 4], [3, 7], [0, 3]])];
+  assert.deepEqual(shapes(right), []);
+});
+
+test("the square on side a is labelled a²", () => {
+  const base = [{ id: "A", type: "point", at: [0, 0] }, { id: "B", type: "point", at: [4, 0] }, { id: "sideA", type: "segment", from: "A", to: "B", label: "a" }];
+  assert.ok(shapes([...base, { id: "sq", type: "polygon", points: [[0, 0], [4, 0], [4, -4], [0, -4]], label: "b²" }]).some((p) => /side a is a²/.test(p)));
+  assert.deepEqual(shapes([...base, { id: "sq", type: "polygon", points: [[0, 0], [4, 0], [4, -4], [0, -4]], label: "a²" }]), []);
+});

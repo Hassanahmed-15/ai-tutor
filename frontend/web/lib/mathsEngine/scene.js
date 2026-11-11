@@ -907,7 +907,9 @@ export class Scene {
       const k = r() * (d.labelDistance ?? 1.9);
       return [v[0] + k * Math.cos(m), v[1] + k * Math.sin(m)];
     };
-    const text = d.label === "auto" || d.label === undefined ? (d.label === undefined ? undefined : `{angle(${d.points.join(",")}):${d.dp ?? 0}}°`) : d.label;
+    // A right angle drawn as its square says 90° already: an "auto" label would only crowd the corner.
+    const squared = (() => { try { return isRight() && d.square !== false; } catch { return false; } })();
+    const text = d.label === "auto" || d.label === undefined ? (d.label === undefined || squared ? undefined : `{angle(${d.points.join(",")}):${d.dp ?? 0}}°`) : d.label;
     // Laid out like every other label: on the bisector when it fits there, further along it, or outside the
     // corner when the angle is too tight for its words ("α = 65.4°" in a thin triangle went across a side).
     const along = (t) => () => {

@@ -8,7 +8,7 @@ import { costFor } from "../modelPricing";
 import { expandSpec } from "../mathsEngine/expand.js";
 import { lintSpec } from "../mathsEngine/lint.js";
 import { withSentences } from "../mathsEngine/aria-spec.js";
-import { armlessAngles, chartProblems, coveredLabels, overlappingFills } from "../mathsEngine/overlap.js";
+import { armlessAngles, chartProblems, coveredLabels, overlappingFills, shapeProblems } from "../mathsEngine/overlap.js";
 import { getTemplate } from "../visual3d/registry";
 import { RecordingBoard } from "../visual3d/board3d/recording";
 import type { MathsBoardContext } from "./mathsPicturePrompt";
@@ -104,7 +104,7 @@ export function pencilProblems(scene: unknown, sentences: number): string[] {
     problems.push(...verdict.errors);
     // A field the engine does not read is ignored, so what it meant silently does not happen (a pie's "at" put it at the origin, on top of the rest of the board).
     problems.push(...verdict.warnings.filter((w) => /has no field/.test(w)));
-    if (!verdict.errors.length) problems.push(...overlappingFills(expanded), ...coveredLabels(expanded), ...armlessAngles(expanded), ...chartProblems(expanded));
+    if (!verdict.errors.length) problems.push(...overlappingFills(expanded), ...coveredLabels(expanded), ...armlessAngles(expanded), ...chartProblems(expanded), ...shapeProblems(expanded));
   } catch (error) {
     problems.push((error as Error).message);
   }
