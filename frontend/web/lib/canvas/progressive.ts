@@ -32,7 +32,7 @@ import { mentionLabels } from "./labelMentions";
 import { boardLookOn, boardPhoto, lookAtBoard } from "./boardLook";
 import { lookFeedback, removeNamedLines, type LookKind, type LookProblem } from "./boardLookCheck";
 import { earlierStructures, isOtherCsLesson, isTypedDsaTopic, lessonSoFar } from "./csLessons";
-import { applyBoardImage, boardImagesOn, boardTakesImage, findBoardImage, foundImageBrief } from "./boardImages";
+import { applyBoardImage, boardImagesOn, boardTakesImage, explainPictureScript, findBoardImage, foundImageBrief } from "./boardImages";
 import { matchDiagramsToBeats, readSourceDiagrams, sourceDiagramBrief } from "./sourceDiagrams";
 import { mergeRepeatedBoards } from "./repeatBoards";
 import { isMathsTopic } from "./predictCard";
@@ -522,7 +522,16 @@ export async function writeCanvasBoard(args: {
     imageLog.push(`${beat.id}: board image — ${found.log}`);
     console.log(`[canvas] board image ${beat.id}: ${found.log}`);
     console.log(`[canvas] board image trace ${JSON.stringify({ session: sessionId, ...found.trace })}`);
-    if (found.choice) applyBoardImage(beat, found.choice);
+    if (found.choice) {
+      applyBoardImage(beat, found.choice);
+      // The narration was planned before the picture: it is rewritten to explain what the board now shows.
+      const told = await explainPictureScript(client(), args.topic, beat, found.choice.verdict.shows, found.choice.verdict.englishLabels, found.choice.candidate.imageUrl);
+      if (told) {
+        beat.script = told.script;
+        imageCost += told.costUsd;
+        imageLog.push(`${beat.id}: narration rewritten to explain the picture`);
+      }
+    }
   }
   // An examined board may need one rewrite: it gets a minute more (boards 2+ are written while earlier ones play).
   // A course lesson's picture (gpt-image-2, checked, perhaps drawn twice) gets the time it needs: boards
@@ -797,6 +806,12 @@ export async function writeCanvasBoard(args: {
     const drawnFrom = d ? args.webSources.sources.find((s) => s.url === d.url) ?? { id: "D", title: d.title, url: d.url, site: d.site } : undefined;
     const all = drawnFrom ? [drawnFrom, ...cited.filter((c) => c.url !== drawnFrom.url)].slice(0, 3) : cited;
     if (all.length) written.sources = all.map(({ title, url, site }) => ({ title, url, site }));
+  }
+  // A library diagram the board was made from is credited in the Sources line, not on the picture (owner,
+  // 2026-11-11). Its licence (CC BY, CC BY-SA) asks for the credit; this is where the board's sources go.
+  if (beat.imageSource) {
+    const s = beat.imageSource;
+    written.sources = [{ title: `Diagram adapted from ${s.creator.slice(0, 50)} (${s.license})`, url: s.pageUrl, site: s.provider }, ...(written.sources ?? []).filter((x) => x.url !== s.pageUrl)].slice(0, 3);
   }
   // `incomplete`: its animation could not be made right (the code shipped without its structure, or the backup) —
   // the faults each attempt was sent back for, which a rewrite is given (lib/progressiveLectureWorker.ts).

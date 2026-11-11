@@ -404,6 +404,55 @@ export function applyBoardImage(beat: CanvasPlanBeat, choice: BoardImageChoice):
   if (beat.requiredVisual) beat.requiredVisual.stages = ["illustration"];
 }
 
+const SCRIPT_MODEL = process.env.CANVAS_PLAN_MODEL ?? "gpt-5.6-luna";
+
+/** What the narration rewrite is asked: teach FROM the picture now on the board. */
+export function pictureScriptPrompt(topic: string, title: string, script: string, shows: string, labels: string[]): string {
+  return [
+    `Lesson: ${topic}`,
+    `Board: ${title}`,
+    `The picture now on this board: ${shows}`,
+    labels.length ? `Its printed labels: ${labels.map((l) => `"${l}"`).join(", ")}` : "",
+    `The board's narration, written before the picture was chosen:\n${script}`,
+    "Rewrite the narration so Aria teaches FROM this picture: walk the student through it, naming each printed label as she explains it, in a natural order (top to bottom or left to right, or the order things happen).",
+    "Keep every fact, the example values and the teaching aim of the original, and about the same length (one sentence more at most). Never describe anything that is not in the picture or the original narration. When the picture shows a number, say which part of the picture it belongs to (\"without forwarding it takes 8 cycles\").",
+    "The picture is attached when available; its labels may be in another language, so say them in English as listed.",
+    'Spoken English for a student, no markdown, no lists, no quotation marks, no speaker name. Return JSON: {"script": "…"}.',
+  ].filter(Boolean).join("\n\n");
+}
+
+/**
+ * THE PICTURE IS EXPLAINED (owner, 2026-11-11: "that redrawn image Aria don't explain"). The narration is
+ * planned before the image is found, so it never talked about what the board now shows; it is rewritten
+ * around the picture, its labels named in order so Aria's pointer follows her. Null keeps the original.
+ */
+export async function explainPictureScript(openai: OpenAI, topic: string, beat: Pick<CanvasPlanBeat, "title" | "script">, shows: string, labels: string[], imageUrl?: string): Promise<{ script: string; costUsd: number } | null> {
+  try {
+    // The picture itself: from words alone, "8 cycles" was put under the wrong half of a timing chart.
+    const bytes = imageUrl ? await download(imageUrl).catch(() => null) : null;
+    const picture = bytes ? await boardJpeg(bytes).catch(() => null) : null;
+    const res = await openai.chat.completions.create({
+      model: SCRIPT_MODEL,
+      response_format: { type: "json_object" },
+      max_completion_tokens: 4000,
+      messages: [{ role: "user", content: picture
+        ? [{ type: "text", text: pictureScriptPrompt(topic, beat.title, beat.script, shows, labels) }, { type: "image_url", image_url: { url: `data:image/jpeg;base64,${picture.toString("base64")}`, detail: "high" } }]
+        : pictureScriptPrompt(topic, beat.title, beat.script, shows, labels) }],
+    }, { signal: AbortSignal.timeout(45_000) });
+    const script = String((JSON.parse(res.choices[0]?.message?.content ?? "{}") as { script?: unknown }).script ?? "")
+      .replace(/\s+/g, " ")
+      .replace(/^\s*aria\s*:\s*/i, "")
+      .replace(/[“”"]/g, "")
+      .trim();
+    const sentences = (s: string) => s.split(/(?<=[.!?])\s+/).filter(Boolean).length;
+    // A rewrite that lost most of the board, or ran on, is not used.
+    if (sentences(script) < 2 || sentences(script) > sentences(beat.script) + 2) return null;
+    return { script, costUsd: costFor(SCRIPT_MODEL, res.usage) };
+  } catch {
+    return null;
+  }
+}
+
 /** What the board writer is told about a picture it puts up rather than redraws. */
 export function foundImageBrief(found: FoundBoardImage): string {
   const labels = found.labels.length ? found.labels.map((l) => `"${l}"`).join(", ") : "none";

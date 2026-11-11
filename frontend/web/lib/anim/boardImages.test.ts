@@ -6,7 +6,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { isOtherCsLesson } from "../canvas/csLessons";
-import { applyBoardImage, boardTakesImage, conceptWords, inAnotherLanguage, decideUse, fallbackQueries, licenseOk, parseVerdict, rankCandidates, type ImageCandidate } from "../canvas/boardImages";
+import { applyBoardImage, boardTakesImage, pictureScriptPrompt, conceptWords, inAnotherLanguage, decideUse, fallbackQueries, licenseOk, parseVerdict, rankCandidates, type ImageCandidate } from "../canvas/boardImages";
 import type { CanvasPlanBeat } from "../canvas/types";
 
 test("DSA, OS and networking lessons keep their own boards", () => {
@@ -106,4 +106,11 @@ test("a diagram in another language is redrawn by the image model, never transcr
   assert.equal(decideUse(beat("flow"), dutch, "Compiler").use, "show", "translated labels mean another language");
   const english = parseVerdict({ relevant: true, score: 0.9, labels: ["Lexer"], english_labels: ["Lexer"], diagram: flowDiagram }, { pageUrl: "https://x", provider: "Wikimedia Commons" });
   assert.equal(decideUse(beat("flow"), english, "Compiler phases").use, "redraw");
+});
+
+test("the narration rewrite is asked to teach from the picture and its labels", () => {
+  const prompt = pictureScriptPrompt("How CPU pipelining works", "Data hazards", "A data hazard happens when…", "A timing chart with and without forwarding", ["stall", "8 cycles"]);
+  assert.match(prompt, /"stall", "8 cycles"/);
+  assert.match(prompt, /teaches FROM this picture/);
+  assert.match(prompt, /which part of the picture it belongs to/);
 });
