@@ -227,7 +227,7 @@ const AREA: IllustrationStage = { kind: "illustration", subject: "drawing", part
  * the board's own drawing). Only a board with a drawing area: an illustration, a figure, or working with
  * a figure or picture beside it.
  */
-export async function withLabDrawing(openai: OpenAI, ctx: MathsBoardContext, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], options: { previous?: Record<string, unknown> } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number } | null> {
+export async function withLabDrawing(openai: OpenAI, ctx: MathsBoardContext, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], options: { previous?: Record<string, unknown>; /** Filled in: the scene writer said the board has nothing to draw. */ outcome?: { nothing?: boolean } } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number } | null> {
   const stage = spec.stage;
   // Working with no drawing of its own may continue the figure of the board before it (options.previous).
   const area = stage.kind === "illustration" || stage.kind === "figure" || (stage.kind === "equation" && (beat.mathsPicture || beat.pictureBeside || beat.view3d || stage.figure || stage.picture || options.previous));
@@ -235,7 +235,10 @@ export async function withLabDrawing(openai: OpenAI, ctx: MathsBoardContext, bea
   const made = beat.view3d ? await view3d(openai, ctx, beat.view3d, log, beat.id, beat.audience) : { lab: null, costUsd: 0 };
   const drawn = made.lab ? made : await pencilScene(openai, ctx, spec, log, beat.id, beat.audience, options.previous);
   const costUsd = made.costUsd + (drawn === made ? 0 : drawn.costUsd);
-  if (!drawn.lab) return null;
+  if (!drawn.lab) {
+    if (options.outcome) options.outcome.nothing = Boolean((drawn as { none?: boolean }).none);
+    return null;
+  }
   const next: CanvasBoardSpec = stage.kind === "equation"
     ? { ...spec, stage: { ...stage, figure: undefined, picture: AREA }, lab: drawn.lab }
     : { ...spec, stage: AREA, lab: drawn.lab };

@@ -22,7 +22,7 @@ import type { CanvasBoardSpec } from "./types";
  *
  * Planned by the light model from the whole board, drawn once, its labels read back by Tesseract (free)
  * and the figure checked by an examiner (the light model, owner 2026-10-25); a must-fix fault redraws it
- * ONCE and the redraw is shown as drawn, as a course picture is. Where each label points is found on the
+ * ONCE, and the redraw is checked too: still wrong, it is not shown (owner, 2026-11-11). Where each label points is found on the
  * picture turned black-on-white, which is what the part locator reads.
  */
 const PLAN_MODEL = process.env.MATHS_PICTURE_PLAN_MODEL ?? "gpt-5.6-luna";
@@ -158,11 +158,12 @@ async function drawMathsPicture(openai: OpenAI, ctx: MathsBoardContext, options:
     if (!b64) throw new MathsPictureError("the image model returned no picture", costUsd);
     const picture = await prepareStoredIllustration(await onBoardBlack(Buffer.from(b64, "base64")));
     const url = { type: "image_url" as const, image_url: { url: `data:image/jpeg;base64,${picture.jpeg.toString("base64")}` } };
-    // The redraw, or a first picture with no time left for one, is shown as it is.
-    const final = attempt === 2 || options.budget.left() < 110_000;
+    // EVERY FIGURE IS CHECKED BEFORE A STUDENT SEES IT, the redraw too (owner, 2026-11-11: "100 percent
+    // correct"). One still wrong after its redraw, or wrong with no time left to redraw it, is not shown.
+    const last = attempt === 2 || options.budget.left() < 110_000;
     const facts = `The figure should be: ${fields.diagramType} (${fields.scope}), ${fields.view}\nFacts that must be true:\n${fields.mustBeTrue.map((x) => `- ${x}`).join("\n")}\nLabels and the part each names:\n${fields.labels.map((l) => `- "${l.text}" → ${l.pointsTo}`).join("\n")}${fields.exactText.length ? `\nOther text that must appear exactly as written: ${fields.exactText.map((t) => `"${t}"`).join(", ")}` : ""}${fields.arrows ? `\nArrows: ${fields.arrows}` : ""}`;
     const [ocr, inspect, located] = await Promise.all([
-      final ? Promise.resolve(null) : inverted(picture.display, "png").then(tesseract),
+      inverted(picture.display, "png").then(tesseract),
       json(openai, CHECK_MODEL, INSPECT_PROMPT, [{ type: "text", text: `Board: ${ctx.board}\nWhat the teacher says: ${ctx.sentences.join(" ")}\n${facts}` }, url]),
       inverted(picture.jpeg, "jpeg").then((dark) => locateParts(openai, dark, `${fields.diagramType}, ${fields.view}`, targets.map((l) => l.pointsTo))),
     ]);
@@ -172,9 +173,13 @@ async function drawMathsPicture(openai: OpenAI, ctx: MathsBoardContext, options:
     const labels: MathsPicture["labels"] = targets.map((l) => ({ l, at: byPart.get(l.pointsTo.toLowerCase()) })).filter((x) => x.at).map(({ l, at }) => ({ text: l.text, part: l.pointsTo, sentence: l.sentence, x: Math.round(at!.x * 1000) / 1000, y: Math.round(at!.y * 1000) / 1000 }));
     const description = String(inspect.json.description ?? "").replace(/\s+/g, " ").trim().slice(0, 900);
     // No Tesseract: the spelling is left to the examiner's look rather than a second paid read.
-    const spelling = ocr !== null ? labelsInRecognisedText(expectedText, ocr) : { ok: true, missing: [], extra: [] };
-    const problems = final ? [] : mustFix(spelling, inspect.json as Inspection);
+    const read = ocr !== null ? labelsInRecognisedText(expectedText, ocr) : { ok: true, missing: [], extra: [] };
+    // Text recognition misses letters a picture prints perfectly well: a label the examiner saw on its own part is there.
+    const seen = new Set(((inspect.json as Inspection).pointers ?? []).filter((p) => p.result === "right part" || p.result === "edge of right part").map((p) => String(p.label).toLowerCase()));
+    const spelling = { ...read, missing: read.missing.filter((m) => !seen.has(m.toLowerCase())) };
+    const problems = mustFix(spelling, inspect.json as Inspection);
     if (problems.length) {
+      if (last) throw new MathsPictureError(`not shown — still wrong ${attempt === 2 ? "after its redraw" : "with no time to redraw it"}: ${problems.slice(0, 3).join("; ").slice(0, 300)}`, costUsd);
       corrections = problems.slice(0, 8);
       continue;
     }
@@ -186,9 +191,9 @@ async function drawMathsPicture(openai: OpenAI, ctx: MathsBoardContext, options:
     if (options.share) {
       await saveSharedCanvasImage(key, picture.display);
       // Only a figure that passed its own check is reused for the next student.
-      if (!final) await saveSharedDiagramRecord(key, { key, kind: "maths-picture", fields, labels, description, model: MATHS_IMAGE_MODEL, createdAt: new Date().toISOString() } satisfies Record_).catch(() => undefined);
+      await saveSharedDiagramRecord(key, { key, kind: "maths-picture", fields, labels, description, model: MATHS_IMAGE_MODEL, createdAt: new Date().toISOString() } satisfies Record_).catch(() => undefined);
     }
-    const how = attempt === 1 ? (final ? "shown as drawn (no time for a check)" : "drawn and checked") : `redrawn once for: ${corrections.join("; ").slice(0, 200)} — shown as drawn`;
+    const how = attempt === 1 ? "drawn and checked" : `redrawn once for: ${corrections.join("; ").slice(0, 200)} — the redraw passed its check`;
     return { key, display: picture.display, fields, labels, description, cached: false, costUsd, log: `${MATHS_IMAGE_MODEL} ${QUALITY}: ${how}; ${labels.length}/${targets.length} labels located` };
   }
   throw new MathsPictureError("no picture was drawn", costUsd);

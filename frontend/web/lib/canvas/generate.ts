@@ -65,7 +65,7 @@ import { deferRevealLeaks, teachingCycleIssues } from "./predict";
 import { alignToNarration, anchorNotes, unshownSentences } from "./narrationSync";
 import { coursePicture, coursePicturesOn, CoursePictureError } from "./coursePicture";
 import { withBoardWriting, withCoursePicture, type CourseBoardContext } from "./coursePicturePrompt";
-import { mathsPicture, MathsPictureError, withMathsPicture } from "./mathsPicture";
+import { mathsPicture, MathsPictureError, mathsPicturesOn, withMathsPicture } from "./mathsPicture";
 import { mathsBoardContext, withMathsBoardWriting, type MathsBoardContext } from "./mathsPicturePrompt";
 import { labVisualsOn } from "./labVisuals";
 import { withLabDrawing } from "./labDrawing";
@@ -1316,9 +1316,22 @@ async function mathsPictureBesideWorking(openai: OpenAI, userId: string, lecture
 }
 
 /**
- * NO gpt-image-2 FOR MATHS (owner, 2026-11-08: "gpt-image-2 diagrams are not mathematically correct
- * sometimes"), with the lab visuals on: a board the pencil engine could not draw — or had nothing to draw,
- * as a map of the lesson — is WRITTEN (Aria's notes as she says them); working simply stands alone.
+ * WHEN NO TEMPLATE CAN DRAW A MATHS BOARD (owner, 2026-11-11: "if it doesn't have anything from the template,
+ * generate it with gpt-image-2 — mathematically correct, black background, 100 percent correct, simply
+ * labelled"; courses, typed topics and PDFs). The pencil engine and the 3-D templates go first; only a board
+ * they could not draw gets a gpt-image-2 figure, white on black, and only one that passes the examiner's
+ * check, redraw included (lib/canvas/mathsPicture.ts). A figure still wrong after its one redraw is not shown:
+ * the board is written, or its working stands alone. A board with nothing to draw gets no picture.
+ */
+async function checkedMathsPicture(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock, ctx: MathsBoardContext): Promise<{ spec: CanvasBoardSpec; costUsd: number }> {
+  if (!mathsPicturesOn()) return withoutPicture(beat, spec, log);
+  if (spec.stage.kind === "equation") return mathsPictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, ctx);
+  if (spec.stage.kind !== "illustration") return withoutPicture(beat, spec, log);
+  return mathsIllustration(openai, userId, lectureId, beat, spec, log, clock, async () => withoutPicture(beat, spec, log), ctx);
+}
+
+/**
+ * A board with no drawing: it is WRITTEN (Aria's notes as she says them); working simply stands alone.
  */
 function withoutPicture(beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[]): { spec: CanvasBoardSpec; costUsd: number } {
   if (spec.stage.kind === "equation") {
@@ -1342,18 +1355,20 @@ export async function illustrate(openai: OpenAI, userId: string, lectureId: stri
   // their pictures.
   if (labVisualsOn() && beat.course && beat.subject === "maths" && course && (spec.stage.kind === "illustration" || (spec.stage.kind === "equation" && beat.pictureBeside))) {
     const ctx: MathsBoardContext = { ...mathsBoardContext(course.lesson, beat), source: [course.syllabus, ...course.hints].filter(Boolean), mustShow: course.mustShow };
-    const lab = await withLabDrawing(openai, withMathsBoardWriting(ctx, spec), beat, spec, log).catch((error) => {
+    const outcome: { nothing?: boolean } = {};
+    const lab = await withLabDrawing(openai, withMathsBoardWriting(ctx, spec), beat, spec, log, { outcome }).catch((error) => {
       log.push(`${beat.id}: lab drawing failed — ${(error as Error).message}`);
       return null;
     });
-    return lab ?? withoutPicture(beat, spec, log);
+    return lab ?? (outcome.nothing ? withoutPicture(beat, spec, log) : checkedMathsPicture(openai, userId, lectureId, beat, spec, log, clock, ctx));
   }
   if (labVisualsOn() && beat.mathsPicture && !beat.course && options.maths) {
-    const lab = await withLabDrawing(openai, withMathsBoardWriting(options.maths, spec), beat, spec, log).catch((error) => {
+    const outcome: { nothing?: boolean } = {};
+    const lab = await withLabDrawing(openai, withMathsBoardWriting(options.maths, spec), beat, spec, log, { outcome }).catch((error) => {
       log.push(`${beat.id}: lab drawing failed — ${(error as Error).message}`);
       return null;
     });
-    return lab ?? withoutPicture(beat, spec, log);
+    return lab ?? (outcome.nothing ? withoutPicture(beat, spec, log) : checkedMathsPicture(openai, userId, lectureId, beat, spec, log, clock, options.maths));
   }
   if (spec.stage.kind === "equation" && beat.pictureBeside && course) return pictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, course, options);
   if (spec.stage.kind === "equation" && beat.mathsPicture && !beat.course && options.maths) return mathsPictureBesideWorking(openai, userId, lectureId, beat, spec, log, clock, options.maths);
