@@ -400,7 +400,7 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         const factCheck = !sourceMode && !referenceDocumentOf(input);
         const polishNow = curriculum ? plan.beats.slice(0, CANVAS_OPENING_BOARDS) : plan.beats;
         const startedPolish = Date.now();
-        costUsd += await polishBoards(openai, input.topic, plan.beats, polishNow, { grade: pitch, course: curriculum, factCheck });
+        costUsd += await polishBoards(openai, input.topic, plan.beats, polishNow, { grade: pitch, course: curriculum, factCheck, typed: visualMode === "prompt" });
         console.log(`[timing] kind=plan-polish session=- ms=${Date.now() - startedPolish} boards=${polishNow.length}/${plan.beats.length}`);
         if (curriculum) for (const beat of plan.beats.slice(CANVAS_OPENING_BOARDS)) beat.polishLater = { grade: pitch, factCheck };
         // STRICT: every sentence checked against its passages before any board is drawn, and each
@@ -802,7 +802,8 @@ export async function writeCanvasBoard(args: {
   if (labVisualsOn() && mathsLesson && (!beat.course || beat.subject === "maths") && spec.stage.kind === "equation" && spec.stage.steps.length > 0 && !spec.stage.tokens.some((t) => t.on)) { spec.living = true; spec.stage = retimeLivingSteps(spec.stage, canvasSentences(beat.script)); }
   // THE FULL BOARD (lib/canvas/blocks.ts, CANVAS_BLOCKS=on): every sentence written out, in typed blocks — course
   // lessons, and every maths lecture, typed or from a PDF (owner, 2026-11-11: "a little more text, like it is now for maths").
-  if (canvasBlocksOn() && (beat.course || mathsLesson) && spec.stage.kind !== "exam") {
+  // Typed lessons in every other subject too (owner, 2026-11-12) — not computer science, which keeps its own boards.
+  if (canvasBlocksOn() && (beat.course || mathsLesson || (typed && !args.document && !args.strictSource && !domainIsCs(domain, args.topic))) && spec.stage.kind !== "exam") {
     const facts = spec.notes.map((n) => n.text).join("; ");
     const written = await writeBoardBlocks(client(), beat, facts);
     spec = { ...spec, blocks: written.blocks };
@@ -880,7 +881,7 @@ export async function pitchScripts(openai: ReturnType<typeof client>, beats: Can
  * The wording of `boards` made right: pitched to the student's reading grade, Aria's banned filler words taken
  * out of a course lesson, every sentence fact-checked. `all` is the whole lesson, for finding each board's syllabus block.
  */
-async function polishBoards(openai: ReturnType<typeof client>, topic: string, all: CanvasPlanBeat[], boards: CanvasPlanBeat[], options: { grade?: number; course?: SuprnotesLessonInput | null; factCheck: boolean }): Promise<number> {
+async function polishBoards(openai: ReturnType<typeof client>, topic: string, all: CanvasPlanBeat[], boards: CanvasPlanBeat[], options: { grade?: number; course?: SuprnotesLessonInput | null; factCheck: boolean; typed?: boolean }): Promise<number> {
   let costUsd = 0;
   const { grade, course } = options;
   if (grade !== undefined) {
@@ -909,7 +910,7 @@ async function polishBoards(openai: ReturnType<typeof client>, topic: string, al
   }
   // WORDS ARIA NEVER SAYS ("basically", "obviously", "just do…"; lib/teaching/styleCheck.ts), taken out
   // of a course lesson taught in teaching order after every rewrite. Sentences stay where they are.
-  if (course && teachingOrdersOn()) {
+  if ((course || options.typed) && teachingOrdersOn()) {
     let scrubbed = 0;
     for (const beat of boards) {
       const clean = withoutBannedWords(beat.script);

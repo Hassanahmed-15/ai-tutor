@@ -256,6 +256,9 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
     if (subject === "maths") lines.push("", MATHS_TEACHING);
     else if (codeLesson) lines.push("", CS_TEACHING_ORDERED);
   } else if (!strictDoc && !video && labLesson) lines.push("", MATHS_CS_TEACHING);
+  // A TYPED LESSON IN ANY OTHER SUBJECT is taught as a course lesson is (owner, 2026-11-12: "make the courses change I
+  // did to the subjects to prompting, except CS and maths"): theory first, every idea built up, never an overview.
+  if (typedPrompt && !typedCs && !asMaths(subject, () => isMathsTopic(lessonText)) && teachingOrdersOn()) lines.push("", ...TYPED_TEACHING_ORDER, ...TEACHING_RULES, "", ...TEACHING_EXAMPLES);
   // A typed maths lesson: every board moves the argument on, and "compare both" gets its own board (lib/canvas/repeatBoards.ts).
   if (typedPrompt && !typedCs && asMaths(subject, () => isMathsTopic(lessonText))) lines.push("", mathsNoRepeatRule(asksToCompare((input.teachingChoices ?? []).map((c) => c.answer))));
   // COMPUTER SCIENCE is taught as a CS teacher teaches it (owner's manager, a CS teacher, 2026-10-22:
@@ -334,6 +337,16 @@ export const COURSE_PICTURES_WHERE_NEEDED = [
   "- A board with a picture TALKS THE STUDENT THROUGH IT: its script names each labelled part as the eye should go to it and says what each part, arrow or line shows — the picture is explained, never just shown.",
   "- Say WHERE each part is as you name it (\"at the top\", \"on the left\", \"where the tube joins the flask\") and come back to a part when a later sentence is about it again — the pointer goes to every part as you name it.",
   "- On a picture board, a note about a part names that part exactly as the picture labels it (\"Left ventricle: thickest wall\"), so the board can draw a line from the note to the part.",
+];
+
+/** The course teaching order, for a typed lesson: the boards the outline sized take each idea through it. */
+export const TYPED_TEACHING_ORDER = [
+  "EACH NEW IDEA IS TAUGHT IN THIS ORDER, THEORY FIRST — on one board or over the boards the outline gives it:",
+  "1. WHY IT MATTERS: one real situation from the student's life or the world where the idea matters, and the question it answers.",
+  "2. THE IDEA ITSELF: what it is and why it works, in plain words, with its correct term explained the first time and used the same way after. No worked numbers yet.",
+  "3. A REAL EXAMPLE: one real case walked one step per sentence, each step with its reason — and, where it helps, a non-example or the common mistake and why it is wrong.",
+  "4. A CHECK: one question the student answers — ask it, say \"pause and think\", then give the answer with its reason.",
+  "",
 ];
 
 export const MATHS_CS_TEACHING = [

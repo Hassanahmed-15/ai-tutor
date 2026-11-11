@@ -106,7 +106,8 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
         {visible.map((mark) => (
           <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} chalk={chalk} cardLook={cards} cardNo={cardNumbers ? (cardNumbers.get(mark.id) ?? 0) : undefined} cardDone={doneIds?.has(mark.id)} cardOpen={openId === mark.id} pencil={pencil} />
         ))}
-        {isCourseBoard(spec) && <PictureSpotlight layout={layout} focusId={focusId} live={live && !reducedMotion} />}
+        {/* Every picture board (owner, 2026-11-12: typed lessons as courses). */}
+        <PictureSpotlight layout={layout} focusId={focusId} live={live && !reducedMotion} />
       </g>
     </g>
     </InkDrawing.Provider>
@@ -555,7 +556,8 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       // A part is invisible until the pen or a label points at it — the picture carries it. A course or
       // maths picture's labels are printed in it: nothing is drawn on it (owner, 2026-10-25: the ring and
       // dot on the part she names were "a second kind of label" — removed).
-      return focused && !isCourseBoard(spec) && !pictureOf(spec)?.onBoard ? (
+      // The spotlight now shows the part on every picture board (PictureSpotlight): the dot only where there is no picture.
+      return focused && !isCourseBoard(spec) && !pictureOf(spec) ? (
         <g className="cv-in">
           <circle cx={mark.cx} cy={mark.cy} r={9} fill={ARIA_INK} stroke="#fff" strokeWidth={3} />
         </g>
@@ -664,7 +666,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
     case "lab":
       return <LabDrawingView mark={mark} shownThrough={shownThrough} reducedMotion={reducedMotion} />;
     case "blocks":
-      return <BlocksView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} live={Number.isFinite(shownThrough)} reducedMotion={reducedMotion} said={isCourseBoard(spec) ? partNamed(layout, focusId) : undefined} />;
+      return <BlocksView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} live={Number.isFinite(shownThrough)} reducedMotion={reducedMotion} said={partNamed(layout, focusId)} />;
     case "living":
       return <LivingEquationView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} reducedMotion={reducedMotion} />;
     case "figure":
