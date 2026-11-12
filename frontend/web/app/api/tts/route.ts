@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { recordNarrationSpend, storeNarration, storedNarration, synthesizeNarration, TTS_MODEL, TTS_VOICE, type Synthesis } from "@/lib/narrationAudio";
+import { narrationVoiceReady, recordNarrationSpend, storeNarration, storedNarration, synthesizeNarration, TTS_MODEL, TTS_VOICE, type Synthesis } from "@/lib/narrationAudio";
 import { narrationInput } from "@/lib/narrationText";
 import { createTtsQueue } from "@/lib/ttsQueue";
 import { ttsOutageLeftMs } from "@/lib/ttsOutage";
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
   if (ttsOutageLeftMs() > 0) return NextResponse.json({ error: "simulated voice outage" }, { status: 503 });
   const cacheKey = `${TTS_MODEL}:${TTS_VOICE}:${input}`;
   // THE TEST PAGE'S LIVE MEASURE (app/tts-lab, dev only): made now, bypassing memory and storage, kept nowhere.
-  if (process.env.NODE_ENV !== "production" && req.headers.get("x-tts-fresh") === "1" && process.env.OPENAI_API_KEY) {
+  if (process.env.NODE_ENV !== "production" && req.headers.get("x-tts-fresh") === "1" && narrationVoiceReady()) {
     const made = await synthesizeNarration(input).catch((error: Error) => error);
     if (made instanceof Error) return NextResponse.json({ error: made.message }, { status: 502 });
     await recordNarrationSpend(made);
@@ -67,7 +67,7 @@ export async function POST(req: Request) {
     return audioResponse(stored, "stored", 0);
   }
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!narrationVoiceReady()) {
     return NextResponse.json(
       { error: "OPENAI_API_KEY not set — add it to frontend/web/.env.local to enable the teacher voice." },
       { status: 503 }

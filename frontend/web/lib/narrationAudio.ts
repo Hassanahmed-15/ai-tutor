@@ -6,6 +6,7 @@ import { recordSpend } from "@/lib/spend/record";
 import { blobExists, blobStorageConfigured, downloadRawBlob, uploadRawBlob } from "@/lib/blobStorage";
 import { narrationInput } from "@/lib/narrationText";
 import { trimNarrationTail } from "@/lib/narrationTail";
+import { GEMINI_TTS_MODEL, geminiVoiceOn, geminiVoiceTag, synthesizeGeminiVoice } from "@/lib/geminiVoice";
 
 /**
  * ARIA'S NARRATION, MADE AHEAD AND KEPT (owner, 2026-11-07: "I want no delay … sometimes it does not
@@ -18,9 +19,17 @@ import { trimNarrationTail } from "@/lib/narrationTail";
  * stored clip, and a clip made live is stored too — so no sentence is paid for or waited on twice,
  * across servers and restarts. A change of voice or model is a new path, never an old clip.
  */
-export const TTS_VOICE = process.env.OPENAI_TTS_VOICE ?? "shimmer";
+// ARIA'S OWN CLONED VOICE when NARRATION_VOICE=gemini (lib/geminiVoice.ts); otherwise OpenAI's Shimmer.
+// The model and voice are part of every stored clip's path, so switching never plays an old clip in the wrong voice.
+const GEMINI_VOICE = geminiVoiceOn();
+export const TTS_VOICE = GEMINI_VOICE ? geminiVoiceTag() : (process.env.OPENAI_TTS_VOICE ?? "shimmer");
 // The dated model and Shimmer, picked by the owner from samples (2026-11-09: "change the voice to a human").
-export const TTS_MODEL = process.env.OPENAI_TTS_MODEL ?? "gpt-4o-mini-tts-2025-12-15";
+export const TTS_MODEL = GEMINI_VOICE ? GEMINI_TTS_MODEL : (process.env.OPENAI_TTS_MODEL ?? "gpt-4o-mini-tts-2025-12-15");
+
+/** Whether a clip can be made at all (the key the chosen voice needs is set). */
+export function narrationVoiceReady(): boolean {
+  return GEMINI_VOICE || Boolean(process.env.OPENAI_API_KEY);
+}
 
 const TEACHER_TONE =
   "You are a warm, friendly teacher talking to one student. Sound like a real person in a relaxed conversation: " +
@@ -95,6 +104,10 @@ export async function recordNarrationSpend(made: Synthesis): Promise<void> {
 }
 
 async function synthesize(input: string): Promise<Synthesis> {
+  if (GEMINI_VOICE) {
+    const made = await synthesizeGeminiVoice(input);
+    return { buffer: made.audio, costUsd: made.costUsd, estimated: false };
+  }
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
       const measured = await synthesizeWithUsage(input);
@@ -180,7 +193,7 @@ const making = new Map<string, Promise<PreparedClip>>();
 export async function prepareNarration(sentences: string[], opts: { concurrency?: number; deadlineMs?: number } = {}): Promise<PreparedClip[]> {
   const unique = [...new Set(sentences.map(narrationInput).filter(Boolean))];
   const results = new Map<string, PreparedClip>();
-  if (!process.env.OPENAI_API_KEY || !blobStorageConfigured()) {
+  if (!narrationVoiceReady() || !blobStorageConfigured()) {
     return unique.map((text) => ({ text, source: "failed" as const, ms: 0, costUsd: 0 }));
   }
   let next = 0;
@@ -207,7 +220,10 @@ export async function prepareNarration(sentences: string[], opts: { concurrency?
       results.set(text, await start);
     }
   };
-  const all = Promise.all(Array.from({ length: Math.max(1, Math.min(opts.concurrency ?? 3, unique.length)) }, work));
+  // The cloned voice takes ~6 s a clip where OpenAI took ~1.5 s, so it is made 6 at a time (persona-lab:
+  // 71 clips in 70 s at 6, no errors), or the opening boards' 20 s would run out with most clips unmade.
+  const width = GEMINI_VOICE ? Math.max(opts.concurrency ?? 3, Number(process.env.GEMINI_TTS_CONCURRENCY ?? 6)) : (opts.concurrency ?? 3);
+  const all = Promise.all(Array.from({ length: Math.max(1, Math.min(width, unique.length)) }, work));
   let timer: ReturnType<typeof setTimeout> | undefined;
   const deadline = new Promise<void>((resolve) => { timer = setTimeout(resolve, opts.deadlineMs ?? 60_000); });
   await Promise.race([all, deadline]).finally(() => clearTimeout(timer));
