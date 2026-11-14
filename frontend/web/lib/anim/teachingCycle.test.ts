@@ -15,10 +15,10 @@ test("no board is given a quiz or a predict/reveal cycle, however its script or 
   assert.equal(plan?.beats[0].teachingCycle, undefined);
 });
 
-test("a slider the plan asked for stays; a drawing task never does (2026-10-17)", () => {
-  assert.equal(teachingCycle("Explain it. Try it.", "try", false).interaction, "try");
+test("no board keeps a mid-lecture task: no sliders (2026-11-14), no drawing (2026-10-17)", () => {
+  assert.equal(teachingCycle("Explain it. Try it.", "try", false).interaction, null, "no 'Try it yourself' sliders (owner, 2026-11-14)");
   assert.equal(teachingCycle("Explain it. Draw it.", "draw", false).interaction, null, "no drawing tasks (2026-10-17)");
-  assert.equal(validatePlan({ beats: [{ title: "Light", script: "Light drives the rate. Move the slider and watch.", stage: "graph", objects: ["rate"], interaction: "try" }] })?.beats[0].interaction, "try");
+  assert.equal(validatePlan({ beats: [{ title: "Light", script: "Light drives the rate. Move the slider and watch.", stage: "graph", objects: ["rate"], interaction: "try" }] })?.beats[0].interaction, null);
 });
 
 test("the old 'Now try the same reasoning…' ending is never added, and is taken off old scripts and the voice", () => {

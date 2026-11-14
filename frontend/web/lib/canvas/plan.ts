@@ -31,16 +31,16 @@ export function canvasSentences(script: string): string[] {
 }
 
 /**
- * NO PREDICTION, NO QUIZ (owner's direction, 2026-10-16: remove "Predict it" from every lecture —
- * typed, PDF and video). A board keeps only a task the plan asked for because doing it IS the skill:
- * a "try" slider. Anything else — a "quiz", a "draw" (owner, 2026-10-17: drawing tasks removed), or
- * nothing — is no interaction and no
- * predict/reveal cycle, so the lecture never stops for an answer.
+ * NO MID-LECTURE TASKS. "Predict it" went 2026-10-16, "Draw it" 2026-10-17, and "Try it yourself" sliders
+ * 2026-11-14 (owner: "it doesn't really change anything or show any comparisons, so for many topics it's
+ * useless — remove it from everywhere in Aria"). No board asks for an interaction, so the lecture never
+ * stops; the verified end-of-board "Check it" card (lib/canvas/checkCard.ts) is added separately.
  */
-export function teachingCycle(_script: string, interaction: CanvasPlanBeat["interaction"], _overview: boolean): { interaction: CanvasPlanBeat["interaction"]; cycle?: CanvasPlanBeat["teachingCycle"] } {
+export function teachingCycle(_script: string, _interaction: CanvasPlanBeat["interaction"], _overview: boolean): { interaction: CanvasPlanBeat["interaction"]; cycle?: CanvasPlanBeat["teachingCycle"] } {
   void _script;
+  void _interaction;
   void _overview;
-  return { interaction: interaction === "try" ? interaction : null, cycle: undefined };
+  return { interaction: null, cycle: undefined };
 }
 
 export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBeat[] } | null {

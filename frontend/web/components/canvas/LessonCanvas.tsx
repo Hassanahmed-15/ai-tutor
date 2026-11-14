@@ -230,7 +230,10 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   // (lib/canvas/checkCard.ts) opens when Aria finishes the board, with the board's other tasks.
   // A maths/CS prediction card, while the board is held before its reveal, stands in for the board's task.
   const predicting = Boolean(predictCard && current && currentIndex >= 0);
-  const interaction = predicting ? predictCard : current?.spec.interaction?.kind === "quiz" && !current.spec.interaction.check ? undefined : current?.spec.interaction;
+  // No "Try it yourself" either (owner, 2026-11-14): a slider saved on a board is never shown or waited for.
+  // Its starting values still feed the board (initialVars), so a graph drawn from them is unchanged.
+  const savedTask = current?.spec.interaction;
+  const interaction = predicting ? predictCard : (savedTask?.kind === "quiz" && !savedTask.check) || savedTask?.kind === "try" ? undefined : savedTask;
   const taskOpen = Boolean(interaction) && currentIndex >= 0 && (predicting || waitingForStudent || (finished && !taskDone));
   /** One card per board, and the prediction its own: answering it never marks the end-of-board card done. */
   const cardKey = current ? `${current.key}${predicting ? ":predict" : ""}` : "";
@@ -819,20 +822,6 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
         </p>
       )}
 
-      {taskOpen && interaction?.kind === "try" && current && (
-        <TryItCard
-          task={interaction}
-          values={vars[current.key] ?? {}}
-          onChange={(v) => setVars((prev) => ({ ...prev, [current.key]: { ...(prev[current.key] ?? {}), ...v } }))}
-          onGrab={() => setGhostVars((prev) => ({ ...prev, [current.key]: { ...(vars[current.key] ?? {}) } }))}
-          onRelease={(v) => react(current.key, interaction, { ...(vars[current.key] ?? {}), ...v })}
-          onContinue={() => {
-            const values = vars[current.key] ?? {};
-            onTellAria(`The student finished trying the sliders (${interaction.controls.map((c) => `${c.label} = ${values[c.var]}`).join(", ")}) and continued the lesson.`);
-            onContinue();
-          }}
-        />
-      )}
       {taskOpen && interaction?.kind === "quiz" && current && !checkFlow && (
         <CheckCard
           key={cardKey}

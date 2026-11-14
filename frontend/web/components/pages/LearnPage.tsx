@@ -47,6 +47,7 @@ import { learnerContextForPrompt, learnerProfileView } from "@/lib/learnerProfil
 import { takePendingBrief } from "@/lib/pendingBrief";
 import { savePendingCurriculum } from "@/lib/pendingTopic";
 import { NotesPdfButton } from "@/components/canvas/NotesPdfButton";
+import { PastPaperPractice } from "@/components/courses/PastPaperPractice";
 import type { AskedNote } from "@/components/canvas/LessonNotesPanel";
 import type { CurriculumLessonRequest } from "@/lib/curriculum/lessonSpec";
 import type { DocumentPage, NormalisedRect, PageSelection } from "@/components/upload/PageSelector";
@@ -212,7 +213,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [topic, setTopic] = useState("");
   const [input, setInput] = useState("");
   const [phase, setPhase] = useState<
-    "ask" | "source-mode" | "outline" | "preview" | "building" | "teaching" | "finished" | "test-offer" | "test-written" | "test-oral" | "test-results" | "error"
+    "ask" | "source-mode" | "outline" | "preview" | "building" | "teaching" | "finished" | "past-papers" | "test-offer" | "test-written" | "test-oral" | "test-results" | "error"
   >("ask");
   const [beats, setBeats] = useState<Beat[]>([]);
   const [builtTopic, setBuiltTopic] = useState("");
@@ -3990,7 +3991,8 @@ type BuildCost =
     // Watched to the end: the one-slide summary unlocks, here and on every screen after this.
     setLectureCompleted(true);
     rememberLesson();
-    setPhase("test-offer");
+    // A course lesson ends with past-paper practice (components/courses/PastPaperPractice.tsx), then the test screen.
+    setPhase(curriculumRef.current ? "past-papers" : "test-offer");
   }
 
   /**
@@ -4008,7 +4010,7 @@ type BuildCost =
     }
     setLectureCompleted(true);
     rememberLesson();
-    setPhase("test-offer");
+    setPhase(curriculumRef.current ? "past-papers" : "test-offer");
   }
 
   /** "Go deeper" from the end screen: a fresh, deeper lesson on the same subject. */
@@ -4235,6 +4237,17 @@ type BuildCost =
         {summaryOverlay}
         {mindMapOverlay}
       </main>
+    );
+  }
+
+  if (phase === "past-papers" && curriculumRef.current) {
+    const r = curriculumRef.current;
+    return (
+      <PastPaperPractice
+        request={{ courseId: r.courseId, grade: r.grade, unitId: r.unitId, topicId: r.topicId, lessonId: r.lessonId }}
+        part={courseSeries?.part ?? 1}
+        onDone={() => setPhase("test-offer")}
+      />
     );
   }
 

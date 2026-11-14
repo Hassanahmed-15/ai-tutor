@@ -1,7 +1,7 @@
 {
  "id": "cie-igcse-mathematics-0580-2025-2027",
  "region": "INTL",
- "framework": "Cambridge IGCSE Mathematics (0580) syllabus 2025\u20132027",
+ "framework": "Cambridge IGCSE Mathematics (0580) syllabus 2025–2027",
  "board": "Cambridge",
  "qualification": "IGCSE",
  "subject": "Mathematics",
@@ -13,7 +13,7 @@
    "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/"
   ],
   "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
-  "licence": "\u00a9 Cambridge University Press & Assessment; structure + our own wording only",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
   "firstExam": "2025"
  },
  "grades": [
@@ -75,6 +75,10 @@
           {
            "code": "C1.3",
            "text": "Calculate with squares, square roots, cubes, cube roots and other powers and roots, recalling common values."
+          },
+          {
+           "code": "C1.3",
+           "text": "Includes recall of squares and their corresponding roots from 1 to 15, and recall of cubes and their corresponding roots of 1, 2, 3, 4, 5 and 10"
           }
          ]
         }
@@ -95,6 +99,18 @@
           {
            "code": null,
            "text": "Recognise equivalence and convert between fractions, decimals and percentages."
+          },
+          {
+           "code": "C1.4",
+           "text": "Candidates are expected to be able to write fractions in their simplest form."
+          },
+          {
+           "code": "C1.4",
+           "text": "Candidates are not expected to use recurring decimal notation."
+          },
+          {
+           "code": "C1.4",
+           "text": "Candidates are not expected to demonstrate the conversion of a recurring decimal to a fraction and vice versa."
           }
          ]
         }
@@ -127,6 +143,10 @@
           {
            "code": "C1.6",
            "text": "Use the four operations with integers, fractions and decimals, with correct order of operations and brackets."
+          },
+          {
+           "code": "C1.6",
+           "text": "Includes: improper fractions; mixed numbers; practical situations, e.g. temperature changes."
           }
          ]
         }
@@ -167,6 +187,14 @@
           {
            "code": null,
            "text": "Calculate with values in standard form."
+          },
+          {
+           "code": "C1.8",
+           "text": "Use the standard form A × 10n where n is a positive or negative integer and 1 ⩽ A < 10."
+          },
+          {
+           "code": "C1.8",
+           "text": "Core candidates are expected to calculate with standard form only on Paper 3."
           }
          ]
         }
@@ -207,6 +235,10 @@
           {
            "code": "C1.10",
            "text": "Give upper and lower bounds for data rounded to a specified accuracy."
+          },
+          {
+           "code": "C1.10",
+           "text": "Candidates are not expected to find the bounds of the results of calculations which have used data rounded to a specified accuracy."
           }
          ]
         }
@@ -247,6 +279,18 @@
           {
            "code": null,
            "text": "Solve average speed problems."
+          },
+          {
+           "code": "C1.12",
+           "text": "Required formulas will be given in the question."
+          },
+          {
+           "code": "C1.12",
+           "text": "Knowledge of speed/distance/time formula is required."
+          },
+          {
+           "code": "C1.12",
+           "text": "Notation used will be, e.g. m/s (metres per second), g/cm3 (grams per cubic centimetre)."
           }
          ]
         }
@@ -271,6 +315,14 @@
           {
            "code": null,
            "text": "Calculate with simple and compound interest, discounts, profit and loss."
+          },
+          {
+           "code": "C1.13",
+           "text": "Formulas are not given."
+          },
+          {
+           "code": "C1.13",
+           "text": "Percentage calculations may include: deposit; earnings; percentages over 100%."
           }
          ]
         }
@@ -319,6 +371,10 @@
           {
            "code": null,
            "text": "Read clocks and timetables, including time zones and time differences."
+          },
+          {
+           "code": "C1.15",
+           "text": "1 year = 365 days."
           }
          ]
         }
@@ -389,6 +445,10 @@
           {
            "code": null,
            "text": "Factorise fully by extracting common factors."
+          },
+          {
+           "code": "C2.2",
+           "text": "Simplify means give the answer in its simplest form."
           }
          ]
         }
@@ -409,6 +469,10 @@
           {
            "code": null,
            "text": "Understand and use the rules of indices in algebraic expressions."
+          },
+          {
+           "code": "C2.4",
+           "text": "Knowledge of logarithms is not required."
           }
          ]
         }
@@ -437,6 +501,18 @@
           {
            "code": null,
            "text": "Change the subject of simple formulas."
+          },
+          {
+           "code": "C2.5",
+           "text": "Includes constructing linear simultaneous equations."
+          },
+          {
+           "code": "C2.5",
+           "text": "the subject only appears once"
+          },
+          {
+           "code": "C2.5",
+           "text": "there is not a power or root of the subject."
           }
          ]
         }
@@ -453,6 +529,14 @@
           {
            "code": "C2.6",
            "text": "Represent and interpret inequalities, including on a number line."
+          },
+          {
+           "code": "C2.6",
+           "text": "open circles should be used to represent strict inequalities (<, >)"
+          },
+          {
+           "code": "C2.6",
+           "text": "closed circles should be used to represent inclusive inequalities (⩽, ⩾)"
           }
          ]
         }
@@ -517,6 +601,14 @@
           {
            "code": null,
            "text": "Solve equations graphically, finding and interpreting roots."
+          },
+          {
+           "code": "C2.10",
+           "text": "Construct tables of values, and draw, recognise and interpret graphs for functions of the following forms: ± x² + ax + b; a/x (x ≠ 0)"
+          },
+          {
+           "code": "C2.10",
+           "text": "where a and b are integer constants."
           }
          ]
         }
@@ -533,6 +625,10 @@
           {
            "code": "C2.11",
            "text": "Recognise, sketch and interpret linear and quadratic graphs, using symmetry and roots."
+          },
+          {
+           "code": "C2.11",
+           "text": "Knowledge of turning points is not required."
           }
          ]
         }
@@ -571,6 +667,10 @@
           {
            "code": "C3.2",
            "text": "Draw straight-line graphs for linear equations."
+          },
+          {
+           "code": "C3.2",
+           "text": "Equations will be given in the form y = mx + c (e.g. y = –2x + 5), unless a table of values is given."
           }
          ]
         }
@@ -603,6 +703,14 @@
           {
            "code": "C3.5",
            "text": "Interpret and obtain the equation of a straight line in the form y = mx + c."
+          },
+          {
+           "code": "C3.5",
+           "text": "Questions may: • use and request lines in the forms y = mx + c x=k; • involve finding the equation when the graph is given; • ask for the gradient or y-intercept of a graph from an equation, e.g. find the gradient and y-intercept of the graph with the equation y = 6x + 3."
+          },
+          {
+           "code": "C3.5",
+           "text": "Candidates are expected to give equations of a line in a fully simplified form."
           }
          ]
         }
@@ -649,6 +757,14 @@
           {
            "code": null,
            "text": "Use the vocabulary of a circle: radius, diameter, chord, tangent, arc, sector, segment."
+          },
+          {
+           "code": "C4.1",
+           "text": "3 Use and interpret the vocabulary of a circle."
+          },
+          {
+           "code": "C4.1",
+           "text": "Includes the following terms: centre; radius (plural radii); circumference; semicircle"
           }
          ]
         }
@@ -749,6 +865,22 @@
           {
            "code": null,
            "text": "Know and use angle properties of regular polygons."
+          },
+          {
+           "code": "C4.6",
+           "text": "Calculate unknown angles and give simple explanations using the following geometrical properties: sum of angles at a point = 360°; sum of angles at a point on a straight line = 180°; vertically opposite angles are equal; angle sum of a triangle = 180° and angle sum of a quadrilateral = 360°."
+          },
+          {
+           "code": "C4.6",
+           "text": "Calculate unknown angles and give geometric explanations for angles formed within parallel lines: corresponding angles are equal; alternate angles are equal; co-interior angles sum to 180° (supplementary)."
+          },
+          {
+           "code": "C4.6",
+           "text": "Knowledge of three-letter notation for angles is required, e.g. angle ABC."
+          },
+          {
+           "code": "C4.6",
+           "text": "Candidates are expected to use the correct geometrical terminology when giving reasons for answers."
           }
          ]
         }
@@ -765,6 +897,14 @@
           {
            "code": "C4.7",
            "text": "Calculate angles using the angle in a semicircle and the tangent-radius right angle."
+          },
+          {
+           "code": "C4.7",
+           "text": "Calculate unknown angles and give explanations using the following geometrical properties of circles: angle in a semicircle = 90°; angle between tangent and radius = 90°."
+          },
+          {
+           "code": "C4.7",
+           "text": "Candidates will be expected to use the geometrical properties listed in the syllabus when giving reasons for answers."
           }
          ]
         }
@@ -803,6 +943,10 @@
           {
            "code": "C5.2",
            "text": "Calculate perimeter and area of rectangles, triangles, parallelograms and trapezia."
+          },
+          {
+           "code": "C5.2",
+           "text": "Except for area of a triangle, formulas are not given."
           }
          ]
         }
@@ -823,6 +967,10 @@
           {
            "code": null,
            "text": "Calculate arc length and sector area as fractions of the whole circle."
+          },
+          {
+           "code": "C5.3",
+           "text": "Formulas are given in the List of formulas."
           }
          ]
         }
@@ -901,6 +1049,14 @@
           {
            "code": null,
            "text": "Solve two-dimensional problems using Pythagoras and trigonometry."
+          },
+          {
+           "code": "C6.2",
+           "text": "Angles will be given in degrees and answers should be written in degrees, with decimals correct to one decimal place."
+          },
+          {
+           "code": "C6.2",
+           "text": "Knowledge of bearings may be required."
           }
          ]
         }
@@ -935,6 +1091,18 @@
           {
            "code": null,
            "text": "Recognise, describe and draw translations by a vector."
+          },
+          {
+           "code": "C7.1",
+           "text": "Recognise, describe and draw the following transformations: Rotation of a shape about the origin, vertices or midpoints of edges of the shape, through multiples of 90°.; Enlargement of a shape from a centre by a scale factor."
+          },
+          {
+           "code": "C7.1",
+           "text": "Questions will not involve combinations of transformations."
+          },
+          {
+           "code": "C7.1",
+           "text": "A ruler must be used for all straight edges."
           }
          ]
         }
@@ -965,6 +1133,18 @@
           {
            "code": null,
            "text": "Understand that P(not A) = 1 - P(A)."
+          },
+          {
+           "code": "C8.1",
+           "text": "Probability notation is not required."
+          },
+          {
+           "code": "C8.1",
+           "text": "Probabilities should be given as a fraction, decimal or percentage."
+          },
+          {
+           "code": "C8.1",
+           "text": "Problems may require using information from tables, graphs or Venn diagrams (limited to two sets)."
           }
          ]
         }
@@ -1001,6 +1181,18 @@
           {
            "code": "C8.3",
            "text": "Calculate probabilities of combined events using sample space, Venn and tree diagrams."
+          },
+          {
+           "code": "C8.3",
+           "text": "Combined events will only be with replacement."
+          },
+          {
+           "code": "C8.3",
+           "text": "Venn diagrams will be limited to two sets."
+          },
+          {
+           "code": "C8.3",
+           "text": "In tree diagrams, outcomes will be written at the end of the branches and probabilities by the side of the branches."
           }
          ]
         }
@@ -1063,6 +1255,10 @@
           {
            "code": "C9.3",
            "text": "Calculate mean, median, mode and range for individual data and know when each is used."
+          },
+          {
+           "code": "C9.3",
+           "text": "Data may be in a list or frequency table, but will not be grouped."
           }
          ]
         }
@@ -1079,6 +1275,14 @@
           {
            "code": "C9.4",
            "text": "Draw and interpret bar charts, pie charts, pictograms, stem-and-leaf diagrams and simple frequency distributions."
+          },
+          {
+           "code": "C9.4",
+           "text": "Includes composite (stacked) and dual side-by-side bar charts."
+          },
+          {
+           "code": "C9.4",
+           "text": "Stem-and-leaf diagrams should have ordered data with a key."
           }
          ]
         }
@@ -1103,6 +1307,22 @@
           {
            "code": null,
            "text": "Draw by eye, interpret and use a line of best fit."
+          },
+          {
+           "code": "C9.5",
+           "text": "Plotted points should be clearly marked, for example as small crosses (×)."
+          },
+          {
+           "code": "C9.5",
+           "text": "A line of best fit should be a single ruled line drawn by inspection"
+          },
+          {
+           "code": "C9.5",
+           "text": "A line of best fit should extend across the full data set"
+          },
+          {
+           "code": "C9.5",
+           "text": "A line of best fit does not need to coincide exactly with any of the points but there should be a roughly even distribution of points either side of the line over its entire length."
           }
          ]
         }
@@ -1153,6 +1373,14 @@
           {
            "code": null,
            "text": "Use set notation: membership, complement, empty set, subset, union and intersection."
+          },
+          {
+           "code": "E1.2",
+           "text": "n(A) Number of elements in set A"
+          },
+          {
+           "code": "E1.2",
+           "text": "Universal set"
           }
          ]
         }
@@ -1189,6 +1417,10 @@
           {
            "code": null,
            "text": "Recognise equivalence and convert between forms, including recurring decimals and fractions."
+          },
+          {
+           "code": "E1.4",
+           "text": "Use the language and notation of the following in appropriate contexts: proper fractions; improper fractions"
           }
          ]
         }
@@ -1221,6 +1453,10 @@
           {
            "code": "E1.6",
            "text": "Use the four operations with integers, fractions and decimals, with correct order of operations and brackets."
+          },
+          {
+           "code": "E1.6",
+           "text": "Includes: practical situations, e.g. temperature changes."
           }
          ]
         }
@@ -1345,6 +1581,14 @@
           {
            "code": null,
            "text": "Solve average speed problems."
+          },
+          {
+           "code": "E1.12",
+           "text": "Knowledge of speed/distance/time formula is required."
+          },
+          {
+           "code": "E1.12",
+           "text": "Notation used will be, e.g. m/s (metres per second), g/cm3 (grams per cubic centimetre)."
           }
          ]
         }
@@ -1421,6 +1665,10 @@
           {
            "code": null,
            "text": "Read clocks and timetables, including time zones and time differences."
+          },
+          {
+           "code": "E1.15",
+           "text": "1 year = 365 days."
           }
          ]
         }
@@ -1581,6 +1829,10 @@
           {
            "code": null,
            "text": "Understand and use the rules of indices in algebraic expressions."
+          },
+          {
+           "code": "E2.4",
+           "text": "Knowledge of logarithms is not required."
           }
          ]
         }
@@ -1627,6 +1879,10 @@
           {
            "code": null,
            "text": "Change the subject of formulas, including subjects appearing twice or with powers and roots."
+          },
+          {
+           "code": "E2.5",
+           "text": "The quadratic formula is given in the List of formulas."
           }
          ]
         }
@@ -1657,6 +1913,36 @@
            "text": "List inequalities that define a given region."
           }
          ]
+        },
+        {
+         "id": "inequalities-more",
+         "title": "Inequalities (more)",
+         "outcomes": [
+          {
+           "code": "E2.6",
+           "text": "Open circles should be used to represent strict inequalities (<, >)."
+          },
+          {
+           "code": "E2.6",
+           "text": "Closed circles should be used to represent inclusive inequalities (⩽, ⩾)."
+          },
+          {
+           "code": "E2.6",
+           "text": "Broken lines should be used to represent strict inequalities (<, >)."
+          },
+          {
+           "code": "E2.6",
+           "text": "Solid lines should be used to represent inclusive inequalities (⩽, ⩾)."
+          },
+          {
+           "code": "E2.6",
+           "text": "Shading should be used to represent unwanted regions unless otherwise directed in the question."
+          },
+          {
+           "code": "E2.6",
+           "text": "Linear programming problems are not included."
+          }
+         ]
         }
        ]
       },
@@ -1679,6 +1965,10 @@
           {
            "code": null,
            "text": "Find and use the nth term of sequences."
+          },
+          {
+           "code": "E2.7",
+           "text": "Subscript notation may be used, e.g. Tn is the nth term of sequence T."
           }
          ]
         }
@@ -1695,6 +1985,14 @@
           {
            "code": "E2.8",
            "text": "Express direct and inverse proportion in algebraic terms and find unknown quantities."
+          },
+          {
+           "code": "E2.8",
+           "text": "Includes linear, square, square root, cube and cube root proportion."
+          },
+          {
+           "code": "E2.8",
+           "text": "Knowledge of proportional symbol (∝) is required."
           }
          ]
         }
@@ -1723,6 +2021,10 @@
           {
            "code": null,
            "text": "Calculate distance travelled as area under a speed-time graph."
+          },
+          {
+           "code": "E2.9",
+           "text": "Areas will involve linear sections of the graph only."
           }
          ]
         }
@@ -1767,6 +2069,10 @@
           {
            "code": null,
            "text": "Identify turning points, roots, symmetry and asymptotes, finding quadratic turning points by completing the square."
+          },
+          {
+           "code": "E2.11",
+           "text": "Functions will be equivalent to: ax + by = c; y = ax2 + bx + c; y = ax3 + b; y = ax3 + bx2 + cx; y = a/x + b; y = arx + b, where a, b and c are rational numbers and r is a rational, positive number."
           }
          ]
         }
@@ -1795,6 +2101,14 @@
           {
            "code": null,
            "text": "Distinguish maxima from minima by sketch, second derivative or gradient inspection."
+          },
+          {
+           "code": "E2.12",
+           "text": "dy/dx notation will be expected."
+          },
+          {
+           "code": "E2.12",
+           "text": "Candidates are not expected to identify points of inflection."
           }
          ]
         }
@@ -1819,6 +2133,14 @@
           {
            "code": null,
            "text": "Form composite functions."
+          },
+          {
+           "code": "E2.13",
+           "text": "Candidates are not expected to find the domains and ranges of composite functions."
+          },
+          {
+           "code": "E2.13",
+           "text": "This topic may include mapping diagrams."
           }
          ]
         }
@@ -1999,6 +2321,14 @@
           {
            "code": null,
            "text": "Draw, use and interpret nets."
+          },
+          {
+           "code": "E4.2",
+           "text": "Constructions of perpendicular bisectors and angle bisectors are not required."
+          },
+          {
+           "code": "E4.2",
+           "text": "Construction arcs must be shown."
           }
          ]
         }
@@ -2019,6 +2349,14 @@
           {
            "code": null,
            "text": "Use and interpret three-figure bearings."
+          },
+          {
+           "code": "E4.3",
+           "text": "Bearings are measured clockwise from north (000° to 360°)."
+          },
+          {
+           "code": "E4.3",
+           "text": "Includes an understanding of the terms north, east, south and west."
           }
          ]
         }
@@ -2043,6 +2381,14 @@
           {
            "code": null,
            "text": "Solve problems and give explanations involving similarity."
+          },
+          {
+           "code": "E4.4",
+           "text": "Includes use of scale factor, e.g. Volume of A / Volume of B = (Length of A / Length of B)³."
+          },
+          {
+           "code": "E4.4",
+           "text": "Includes showing that two triangles are similar using geometric reasons."
           }
          ]
         }
@@ -2063,6 +2409,14 @@
           {
            "code": null,
            "text": "Recognise symmetry of prisms, cylinders, pyramids and cones."
+          },
+          {
+           "code": "E4.5",
+           "text": "Includes properties of triangles, quadrilaterals and polygons directly related to their symmetries."
+          },
+          {
+           "code": "E4.5",
+           "text": "Includes identifying planes and axes of symmetry."
           }
          ]
         }
@@ -2089,6 +2443,40 @@
            "text": "Know and use angle properties of regular and irregular polygons."
           }
          ]
+        },
+        {
+         "id": "angle-facts-more",
+         "title": "Angle facts: Angles (Extended) (more)",
+         "outcomes": [
+          {
+           "code": "E4.6",
+           "text": "Calculate unknown angles and give simple explanations using the following geometrical properties:"
+          },
+          {
+           "code": "E4.6",
+           "text": "Calculate unknown angles and give simple explanations using the following geometrical properties: sum of angles at a point = 360°; sum of angles at a point on a straight line = 180°; vertically opposite angles are equal; angle sum of a triangle = 180° and angle sum of a quadrilateral = 360°."
+          },
+          {
+           "code": "E4.6",
+           "text": "Knowledge of 3-letter notation for angles is required, e.g. angle ABC."
+          },
+          {
+           "code": "E4.6",
+           "text": "Candidates are expected to use the correct geometrical terminology when giving reasons."
+          },
+          {
+           "code": "E4.6",
+           "text": "Calculate unknown angles and give geometric explanations for angles formed within parallel lines:"
+          },
+          {
+           "code": "E4.6",
+           "text": "Calculate unknown angles and give geometric explanations for angles formed within parallel lines: corresponding angles are equal; alternate angles are equal; co-interior angles sum to 180° (supplementary)."
+          },
+          {
+           "code": "E4.6",
+           "text": "Includes exterior and interior angles, and angle sum."
+          }
+         ]
         }
        ]
       },
@@ -2111,6 +2499,14 @@
           {
            "code": null,
            "text": "Use opposite angles of a cyclic quadrilateral and the alternate segment theorem."
+          },
+          {
+           "code": "E4.7",
+           "text": "Calculate unknown angles and give explanations using the following geometrical properties of circles: angle in a semicircle = 90°; angle between tangent and radius = 90°; angle at the centre is twice the angle at the circumference; angles in the same segment are equal; opposite angles of a cyclic quadrilateral sum to 180° (supplementary); alternate segment theorem."
+          },
+          {
+           "code": "E4.7",
+           "text": "Candidates are expected to use the geometrical properties listed in the syllabus when giving reasons for answers."
           }
          ]
         }
@@ -2131,6 +2527,10 @@
           {
            "code": null,
            "text": "Use the fact that tangents from an external point are equal in length."
+          },
+          {
+           "code": "E4.8",
+           "text": "Candidates are expected to use the geometrical properties listed in the syllabus when giving reasons for answers."
           }
          ]
         }
@@ -2169,6 +2569,10 @@
           {
            "code": "E5.2",
            "text": "Calculate perimeter and area of rectangles, triangles, parallelograms and trapezia."
+          },
+          {
+           "code": "E5.2",
+           "text": "Except for the area of a triangle, formulas are not given."
           }
          ]
         }
@@ -2189,6 +2593,14 @@
           {
            "code": null,
            "text": "Calculate arc length and sector area, including minor and major sectors."
+          },
+          {
+           "code": "E5.3",
+           "text": "Answers may be asked for in terms of π."
+          },
+          {
+           "code": "E5.3",
+           "text": "Formulas are given in the List of formulas."
           }
          ]
         }
@@ -2205,6 +2617,18 @@
           {
            "code": "E5.4",
            "text": "Calculate surface area and volume of cuboids, prisms, cylinders, spheres, pyramids and cones."
+          },
+          {
+           "code": "E5.4",
+           "text": "Answers may be asked for in terms of π."
+          },
+          {
+           "code": "E5.4",
+           "text": "The following formulas are given in the List of formulas: curved surface area of a cylinder; curved surface area of a cone; surface area of a sphere; volume of a prism; volume of a pyramid; volume of a cylinder; volume of a cone; volume of a sphere."
+          },
+          {
+           "code": "E5.4",
+           "text": "The term prism refers to any solid with a uniform cross-section, e.g. a cylindrical sector."
           }
          ]
         }
@@ -2225,6 +2649,10 @@
           {
            "code": null,
            "text": "Calculate surface areas and volumes of compound solids and parts of solids, such as frustums."
+          },
+          {
+           "code": "E5.5",
+           "text": "Answers may be asked for in terms of π."
           }
          ]
         }
@@ -2275,6 +2703,14 @@
           {
            "code": null,
            "text": "Calculate with angles of elevation and depression."
+          },
+          {
+           "code": "E6.2",
+           "text": "Angles will be given in degrees and answers should be written in degrees, with decimals correct to one decimal place."
+          },
+          {
+           "code": "E6.2",
+           "text": "Knowledge of bearings may be required."
           }
          ]
         }
@@ -2335,6 +2771,14 @@
           {
            "code": null,
            "text": "Use the area formula (1/2) ab sin C."
+          },
+          {
+           "code": "E6.5",
+           "text": "Includes problems involving obtuse angles and the ambiguous case."
+          },
+          {
+           "code": "E6.5",
+           "text": "The sine and cosine rules and the formula for area of a triangle are given in the List of formulas."
           }
          ]
         }
@@ -2385,6 +2829,10 @@
           {
            "code": null,
            "text": "Recognise, describe and draw translations by a vector, including combinations of transformations."
+          },
+          {
+           "code": "E7.1",
+           "text": "A ruler must be used for all straight edges."
           }
          ]
         }
@@ -2425,6 +2873,18 @@
           {
            "code": "E7.3",
            "text": "Calculate the magnitude of a vector."
+          },
+          {
+           "code": "E7.3",
+           "text": "The magnitudes of vectors will be denoted by modulus signs."
+          },
+          {
+           "code": "E7.3",
+           "text": "a is the magnitude of a."
+          },
+          {
+           "code": "E7.3",
+           "text": "AB is the magnitude of AB."
           }
          ]
         }
@@ -2479,6 +2939,10 @@
           {
            "code": null,
            "text": "Understand that P(not A) = 1 - P(A)."
+          },
+          {
+           "code": "E8.1",
+           "text": "Probabilities should be given as a fraction, decimal or percentage."
           }
          ]
         }
@@ -2515,6 +2979,14 @@
           {
            "code": "E8.3",
            "text": "Calculate probabilities of combined events, with or without replacement, using sample space, Venn and tree diagrams."
+          },
+          {
+           "code": "E8.3",
+           "text": "The notation P(A ∩ B) and P(A ∪ B) may be used in the context of Venn diagrams."
+          },
+          {
+           "code": "E8.3",
+           "text": "On tree diagrams outcomes will be written at the end of branches and probabilities by the side of the branches."
           }
          ]
         }
@@ -2601,6 +3073,10 @@
           {
            "code": null,
            "text": "Identify the modal class from a grouped frequency distribution."
+          },
+          {
+           "code": "E9.3",
+           "text": "Calculate the mean, median, mode, quartiles, range and interquartile range for individual data and distinguish between the purposes for which these are used."
           }
          ]
         }
@@ -2617,6 +3093,14 @@
           {
            "code": "E9.4",
            "text": "Draw and interpret bar charts, pie charts, pictograms, stem-and-leaf diagrams and simple frequency distributions."
+          },
+          {
+           "code": "E9.4",
+           "text": "Includes composite (stacked) and dual (side-by-side) bar charts."
+          },
+          {
+           "code": "E9.4",
+           "text": "Stem-and-leaf diagrams should have ordered data with a key."
           }
          ]
         }
@@ -2641,6 +3125,14 @@
           {
            "code": null,
            "text": "Draw by eye, interpret and use a line of best fit."
+          },
+          {
+           "code": "E9.5",
+           "text": "Plotted points should be clearly marked, for example as small crosses (×)."
+          },
+          {
+           "code": "E9.5",
+           "text": "A line of best fit: • should be a single ruled line drawn by inspection • should extend across the full data set • does not need to coincide exactly with any of the points but there should be a roughly even distribution of points either side of the line over its entire length."
           }
          ]
         }
@@ -2661,6 +3153,10 @@
           {
            "code": null,
            "text": "Estimate and interpret median, percentiles, quartiles and interquartile range from them."
+          },
+          {
+           "code": "E9.6",
+           "text": "Plotted points on a cumulative frequency diagram should be clearly marked, for example as small crosses (×), and be joined with a smooth curve."
           }
          ]
         }
@@ -2681,6 +3177,10 @@
           {
            "code": null,
            "text": "Calculate with frequency density (frequency divided by class width)."
+          },
+          {
+           "code": "E9.7",
+           "text": "On histograms, the vertical axis is labelled ‘Frequency density’."
           }
          ]
         }
@@ -2692,19 +3192,25 @@
   }
  ],
  "build": {
-  "builtAt": "2026-10-14T09:52:10.529Z",
+  "builtAt": "2026-11-14T11:12:59.583338Z",
   "model": "claude-agent",
   "usd": 0,
   "expectedCodes": 125,
-  "coverage": 1,
+  "coverage": 1.0,
   "missingCodes": [],
   "counts": {
    "grades": 1,
    "units": 18,
    "topics": 125,
-   "subtopics": 127,
-   "outcomes": 262
+   "subtopics": 129,
+   "outcomes": 384
   },
-  "warnings": []
+  "warnings": [],
+  "pointCheck": {
+   "date": "2026-11-14",
+   "method": "every official learning point checked against the course (luna) with numbering and wording checks; points not fully taught added verbatim",
+   "addedVerbatim": 157,
+   "rebuiltTopics": []
+  }
  }
 }

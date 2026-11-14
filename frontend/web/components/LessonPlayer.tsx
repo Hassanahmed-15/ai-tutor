@@ -1340,7 +1340,9 @@ export function LessonPlayer({
     if (!canvasPanels.some((p) => p.spec.blocks?.length)) return [];
     return canvasPanels.map((p, i) => ({ key: p.key, index: i, title: p.spec.heading, blocks: p.spec.blocks?.length ? p.spec.blocks : plainBlocks(p.key, beats.find((b) => b.id === p.key)?.script ?? "") }));
   }, [canvasPanels, beats]);
-  const canvasTask = canvasIndex >= 0 ? canvasPanels[canvasIndex].spec.interaction : undefined;
+  // A saved "Try it yourself" slider is no task (owner, 2026-11-14): the lecture never holds for it.
+  const canvasTaskRaw = canvasIndex >= 0 ? canvasPanels[canvasIndex].spec.interaction : undefined;
+  const canvasTask = canvasTaskRaw?.kind === "try" ? undefined : canvasTaskRaw;
   const canvasTaskRef = useRef(false);
   const canvasMidBoardTaskRef = useRef(false);
   /**

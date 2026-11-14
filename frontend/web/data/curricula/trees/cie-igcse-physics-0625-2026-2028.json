@@ -30,11 +30,41 @@
        "subtopics": [
         {
          "id": "1-1-physical-quantities-and-measurement-techniqu",
-         "title": "1.1 Physical quantities and measurement techniques",
+         "title": "Measuring Length Volume and Time",
          "outcomes": [
           {
            "code": "1.1",
-           "text": "Use rulers and measuring cylinders to measure lengths and volumes."
+           "text": "Describe the use of rulers and measuring cylinders to find a length or a volume"
+          },
+          {
+           "code": "1.1",
+           "text": "Describe how to measure a variety of time intervals using clocks and digital timers"
+          },
+          {
+           "code": "1.1",
+           "text": "Determine an average value for a small distance and for a short interval of time by measuring multiples (including the period of oscillation of a pendulum)"
+          }
+         ]
+        },
+        {
+         "id": "1-1-physical-quantities-and-measurement-techniqu-scalars-vectors-and-resultants",
+         "title": "Scalars Vectors and Resultants",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Understand that a scalar quantity has magnitude (size) only and that a vector quantity has magnitude and direction"
+          },
+          {
+           "code": "1.1",
+           "text": "Know that the following quantities are scalars: distance, speed, time, mass, energy and temperature"
+          },
+          {
+           "code": "1.1",
+           "text": "Know that the following quantities are vectors: force, weight, velocity, acceleration, momentum, electric field strength and gravitational field strength"
+          },
+          {
+           "code": "1.1",
+           "text": "Determine, by calculation or graphically, the resultant of two vectors at right angles, limited to forces or velocities only"
           }
          ]
         }
@@ -46,11 +76,77 @@
        "subtopics": [
         {
          "id": "1-2-motion",
-         "title": "1.2 Motion",
+         "title": "Speed and Velocity",
          "outcomes": [
           {
            "code": "1.2",
-           "text": "Define speed as distance divided by time and use the speed equation."
+           "text": "Define speed as distance travelled per unit time; recall and use the equation v = s / t"
+          },
+          {
+           "code": "1.2",
+           "text": "Define velocity as speed in a given direction"
+          },
+          {
+           "code": "1.2",
+           "text": "Recall and use the equation average speed = total distance travelled / total time taken"
+          }
+         ]
+        },
+        {
+         "id": "1-2-motion-motion-graphs",
+         "title": "Motion Graphs",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Sketch, plot and interpret distance–time and speed–time graphs"
+          },
+          {
+           "code": "1.2",
+           "text": "Determine, qualitatively, from given data or the shape of a distance–time graph or speed–time graph when an object is: (a) at rest (b) moving with constant speed (c) accelerating (d) decelerating"
+          },
+          {
+           "code": "1.2",
+           "text": "Calculate speed from the gradient of a straight-line section of a distance–time graph"
+          },
+          {
+           "code": "1.2",
+           "text": "Calculate the area under a speed–time graph to determine the distance travelled for motion with constant speed or constant acceleration"
+          }
+         ]
+        },
+        {
+         "id": "1-2-motion-acceleration-and-free-fall",
+         "title": "Acceleration and Free Fall",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "State that the acceleration of free fall g for an object near to the surface of the Earth is approximately constant and is approximately 9.8 m / s2"
+          },
+          {
+           "code": "1.2",
+           "text": "Define acceleration as change in velocity per unit time; recall and use the equation a = Δv / Δt"
+          },
+          {
+           "code": "1.2",
+           "text": "Determine from given data or the shape of a speed–time graph when an object is moving with: (a) constant acceleration (b) changing acceleration"
+          }
+         ]
+        },
+        {
+         "id": "1-2-motion-acceleration-calculations",
+         "title": "Acceleration Calculations",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Calculate acceleration from the gradient of a speed–time graph"
+          },
+          {
+           "code": "1.2",
+           "text": "Know that a deceleration is a negative acceleration and use this in calculations"
+          },
+          {
+           "code": "1.2",
+           "text": "Describe the motion of objects falling in a uniform gravitational field with and without air/liquid resistance, including reference to terminal velocity"
           }
          ]
         }
@@ -62,11 +158,27 @@
        "subtopics": [
         {
          "id": "1-3-mass-and-weight",
-         "title": "1.3 Mass and weight",
+         "title": "Mass, Weight and Gravity",
          "outcomes": [
           {
            "code": "1.3",
-           "text": "State that mass measures the amount of matter in an object."
+           "text": "State that mass is a measure of the quantity of matter in an object at rest relative to the observer"
+          },
+          {
+           "code": "1.3",
+           "text": "State that weight is a gravitational force on an object that has mass"
+          },
+          {
+           "code": "1.3",
+           "text": "Define gravitational field strength as force per unit mass; recall and use the equation g = W/m and know that this is equivalent to the acceleration of free fall"
+          },
+          {
+           "code": "1.3",
+           "text": "Know that weights (and masses) may be compared using a balance"
+          },
+          {
+           "code": "1.3",
+           "text": "Describe, and use the concept of, weight as the effect of a gravitational field on a mass"
           }
          ]
         }
@@ -78,11 +190,29 @@
        "subtopics": [
         {
          "id": "1-4-density",
-         "title": "1.4 Density",
+         "title": "Density and Its Equation",
          "outcomes": [
           {
            "code": "1.4",
-           "text": "Define density as mass per volume and use ρ = m/V."
+           "text": "Define density as mass per unit volume; recall and use the equation ρ = m/V"
+          },
+          {
+           "code": "1.4",
+           "text": "Describe how to determine the density of a liquid, of a regularly shaped solid and of an irregularly shaped solid which sinks in a liquid (volume by displacement), including appropriate calculations"
+          }
+         ]
+        },
+        {
+         "id": "1-4-density-floating-and-liquid-layers",
+         "title": "Floating and Liquid Layers",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Determine whether an object floats based on density data"
+          },
+          {
+           "code": "1.4",
+           "text": "Determine whether one liquid will float on another liquid based on density data given that the liquids do not mix"
           }
          ]
         }
@@ -372,11 +502,23 @@
        "subtopics": [
         {
          "id": "1-6-momentum",
-         "title": "1.6 Momentum",
+         "title": "Momentum, Impulse and Forces",
          "outcomes": [
           {
            "code": "1.6",
-           "text": "Define momentum as mass times velocity and use p = mv."
+           "text": "Define momentum as mass × velocity; recall and use the equation p = mv"
+          },
+          {
+           "code": "1.6",
+           "text": "Define impulse as force × time for which force acts; recall and use the equation impulse = F∆t = ∆(mv)"
+          },
+          {
+           "code": "1.6",
+           "text": "Apply the principle of the conservation of momentum to solve simple problems in one dimension"
+          },
+          {
+           "code": "1.6",
+           "text": "Define resultant force as the change in momentum per unit time; recall and use the equation F = ∆p/∆t"
           }
          ]
         }
@@ -401,6 +543,10 @@
           {
            "code": "1.7.2",
            "text": "Understand that mechanical or electrical work equals transferred energy."
+          },
+          {
+           "code": "1.7.2",
+           "text": "Recall and use the equation for mechanical working W = Fd = ∆E"
           }
          ]
         },
@@ -423,6 +569,72 @@
            "text": "Define power as work done or energy transferred per unit time and use both equations."
           }
          ]
+        },
+        {
+         "id": "1-7-energy-work-and-power-energy",
+         "title": "Energy",
+         "outcomes": [
+          {
+           "code": "1.7.1",
+           "text": "Describe how energy is transferred between stores during events and processes, including examples of transfer by forces (mechanical work done), electrical currents (electrical work done), heating, and by electromagnetic, sound and other waves"
+          },
+          {
+           "code": "1.7.1",
+           "text": "Know the principle of the conservation of energy and apply this principle to simple examples including the interpretation of simple flow diagrams"
+          },
+          {
+           "code": "1.7.1",
+           "text": "Recall and use the equation for kinetic energy Ek = 1/2 mv²"
+          },
+          {
+           "code": "1.7.1",
+           "text": "Recall and use the equation for the change in gravitational potential energy ∆Ep = mg∆h"
+          },
+          {
+           "code": "1.7.1",
+           "text": "Know the principle of the conservation of energy and apply this principle to complex examples involving multiple stages, including the interpretation of Sankey diagrams"
+          }
+         ]
+        },
+        {
+         "id": "1-7-energy-work-and-power-energy-resources-1",
+         "title": "Energy resources (1)",
+         "outcomes": [
+          {
+           "code": "1.7.3",
+           "text": "Describe how useful energy may be obtained, or electrical power generated, from: (a) chemical energy stored in fossil fuels (b) chemical energy stored in biofuels (c) water, including the energy stored in waves, in tides and in water behind hydroelectric dams (d) geothermal resources (e) nuclear fuel (f) light from the Sun to generate electrical power (solar cells) (g) infrared and other electromagnetic waves from the Sun to heat water (solar panels) and be the source of wind energy including references to a boiler, turbine and generator where they are used"
+          },
+          {
+           "code": "1.7.3",
+           "text": "Describe advantages and disadvantages of each method in terms of renewability, availability, reliability, scale and environmental impact"
+          },
+          {
+           "code": "1.7.3",
+           "text": "Understand, qualitatively, the concept of efficiency of energy transfer"
+          },
+          {
+           "code": "1.7.3",
+           "text": "Know that radiation from the Sun is the main source of energy for all our energy resources except geothermal, nuclear and tidal"
+          },
+          {
+           "code": "1.7.3",
+           "text": "Know that energy is released by nuclear fusion in the Sun"
+          }
+         ]
+        },
+        {
+         "id": "1-7-energy-work-and-power-energy-resources-2",
+         "title": "Energy resources (2)",
+         "outcomes": [
+          {
+           "code": "1.7.3",
+           "text": "Know that research is being carried out to investigate how energy released by nuclear fusion can be used to produce electrical energy on a large scale"
+          },
+          {
+           "code": "1.7.3",
+           "text": "Define efficiency as: (a) (%) efficiency = (useful energy output / total energy input) × 100% (b) (%) efficiency = (useful power output / total power input) × 100% recall and use these equations"
+          }
+         ]
         }
        ]
       },
@@ -432,11 +644,29 @@
        "subtopics": [
         {
          "id": "1-8-pressure",
-         "title": "1.8 Pressure",
+         "title": "Pressure, Force and Area",
          "outcomes": [
           {
            "code": "1.8",
-           "text": "Define pressure as force per area and use p = F/A."
+           "text": "Define pressure as force per unit area; recall and use the equation p = F/A"
+          },
+          {
+           "code": "1.8",
+           "text": "Describe how pressure varies with force and area in the context of everyday examples"
+          }
+         ]
+        },
+        {
+         "id": "1-8-pressure-pressure-in-liquids",
+         "title": "Pressure in Liquids",
+         "outcomes": [
+          {
+           "code": "1.8",
+           "text": "Describe, qualitatively, how the pressure beneath the surface of a liquid changes with depth and density of the liquid"
+          },
+          {
+           "code": "1.8",
+           "text": "Recall and use the equation for the change in pressure beneath the surface of a liquid ∆p = ρg∆h"
           }
          ]
         }
@@ -955,6 +1185,28 @@
            "text": "Understand wave energy transfer, wave motion, wave features and speed, transverse and longitudinal waves, reflection, refraction and diffraction."
           }
          ]
+        },
+        {
+         "id": "3-1-general-properties-of-waves-general-properties-of-waves",
+         "title": "General properties of waves",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Know that for a transverse wave, the direction of vibration is at right angles to the direction of propagation and understand that electromagnetic radiation, water waves and seismic S-waves (secondary) can be modelled as transverse"
+          },
+          {
+           "code": "3.1",
+           "text": "Know that for a longitudinal wave, the direction of vibration is parallel to the direction of propagation and understand that sound waves and seismic P-waves (primary) can be modelled as longitudinal"
+          },
+          {
+           "code": "3.1",
+           "text": "Describe how waves can undergo: (a) reflection at a plane surface (b) refraction due to a change of speed (c) diffraction through a narrow gap"
+          },
+          {
+           "code": "3.1",
+           "text": "Describe the use of a ripple tank to show: (a) reflection at a plane surface (b) refraction due to a change in speed caused by a change in depth (c) diffraction due to a gap (d) diffraction due to an edge"
+          }
+         ]
         }
        ]
       },
@@ -1223,6 +1475,10 @@
           {
            "code": null,
            "text": "Explain that digital signalling enables faster data transmission and longer range through accurate regeneration."
+          },
+          {
+           "code": "3.3",
+           "text": "Know that many important systems of communications rely on electromagnetic radiation including: (a) mobile phones (cell phones) and wireless internet use microwaves because microwaves can penetrate some walls and only require a short aerial for transmission and reception (b) Bluetooth uses radio waves because radio waves pass through walls but the signal is weakened on doing so (c) optical fibres (visible light or infrared) are used for cable television and high-speed broadband because glass is transparent to visible light and some infrared; visible light and short wavelength infrared can carry high rates of data"
           }
          ]
         }
@@ -1237,7 +1493,7 @@
          "title": "Sound production and transmission",
          "outcomes": [
           {
-           "code": null,
+           "code": "3.4",
            "text": "Describe sound production by vibrating sources."
           },
           {
@@ -1465,7 +1721,7 @@
            "text": "Explain magnetic forces as interactions between magnetic fields."
           },
           {
-           "code": null,
+           "code": "4.1",
            "text": "Describe attraction and repulsion between magnetic poles and magnets and magnetic materials, including magnetisation and pole terminology."
           },
           {
@@ -1787,6 +2043,10 @@
           {
            "code": null,
            "text": "Draw and interpret circuits containing diodes and LEDs, including their behaviour."
+          },
+          {
+           "code": "4.3.1",
+           "text": "Draw and interpret circuit diagrams containing cells, batteries, power supplies, generators, potential dividers, switches, resistors (fixed and variable), heaters, thermistors (NTC only), light-dependent resistors (LDRs), lamps, motors, bells, ammeters, voltmeters, magnetising coils, transformers, fuses and relays and know how these components behave in the circuit"
           }
          ]
         },
@@ -1979,6 +2239,10 @@
           {
            "code": null,
            "text": "Interpret e.m.f.–time graphs and relate features to generator-coil positions."
+          },
+          {
+           "code": "4.5.2",
+           "text": "Sketch and interpret graphs of e.m.f. against time for simple a.c. generators and relate the position of the generator coil to the peaks, troughs and zeros of the e.m.f."
           }
          ]
         },
@@ -2005,6 +2269,10 @@
           {
            "code": null,
            "text": "Describe field changes when current magnitude or direction changes."
+          },
+          {
+           "code": "4.5.3",
+           "text": "Describe an experiment to identify the pattern of the magnetic field (including direction) due to currents in straight wires and in solenoids"
           }
          ]
         },
@@ -2159,6 +2427,10 @@
           {
            "code": null,
            "text": "State relative proton, neutron and electron charges as +1, 0 and −1."
+          },
+          {
+           "code": "5.1.1",
+           "text": "Describe how the scattering of alpha (α) particles by a sheet of thin metal supports the nuclear model of the atom, by providing evidence for: (a) a very small nucleus surrounded by mostly empty space (b) a nucleus containing most of the mass of the atom (c) a nucleus that is positively charged"
           }
          ]
         },
@@ -2195,6 +2467,10 @@
           {
            "code": null,
            "text": "Relate nucleon number to relative nuclear mass."
+          },
+          {
+           "code": "5.1.2",
+           "text": "Describe the processes of nuclear fission and nuclear fusion as the splitting or joining of nuclei, to include the nuclide equation and qualitative description of mass and energy changes without values"
           }
          ]
         },
@@ -2267,6 +2543,10 @@
           {
            "code": null,
            "text": "Explain relative ionisation using kinetic energy and electric charge."
+          },
+          {
+           "code": "5.2.2",
+           "text": "Identify alpha (α), beta (β) and gamma (γ) emissions from the nucleus by recalling: (a) their nature (b) their relative ionising effects (c) their relative penetrating abilities (β+ are not included, β-particles will be taken to refer to β –)"
           }
          ]
         },
@@ -2293,6 +2573,10 @@
           {
            "code": null,
            "text": "Use nuclide equations for alpha, beta and gamma decay."
+          },
+          {
+           "code": "5.2.3",
+           "text": "Describe the effect of α-decay, β-decay and γ-emissions on the nucleus, including an increase in stability and a reduction in the number of excess neutrons; the following change in the nucleus occurs during β-emission neutron → proton + electron"
           }
          ]
         },
@@ -2311,6 +2595,14 @@
           {
            "code": null,
            "text": "Choose isotopes for applications using radiation type and half-life."
+          },
+          {
+           "code": "5.2.4",
+           "text": "Define the half-life of a particular isotope as the time taken for half the nuclei of that isotope in any sample to decay; recall and use this definition in simple calculations, which might involve information in tables or decay curves (calculations will not include background radiation)"
+          },
+          {
+           "code": "5.2.4",
+           "text": "Explain how the type of radiation emitted and the half-life of an isotope determine which isotope is used for applications including: (a) household fire (smoke) alarms (b) irradiating food to kill bacteria (c) sterilisation of equipment using gamma rays (d) measuring and controlling thicknesses of materials with the choice of radiations used linked to penetration and absorption (e) diagnosis and treatment of cancer using gamma rays"
           }
          ]
         },
@@ -2457,6 +2749,32 @@
            "text": "Relate a planet’s surface gravitational field to its mass and distance from the planet."
           }
          ]
+        },
+        {
+         "id": "6-1-the-earth-and-the-solar-system-the-solar-system",
+         "title": "The Solar System",
+         "outcomes": [
+          {
+           "code": "6.1.2",
+           "text": "Calculate the time it takes light to travel a significant distance such as between objects in the Solar System"
+          },
+          {
+           "code": "6.1.2",
+           "text": "Know that the Sun contains most of the mass of the Solar System and this explains why the planets orbit the Sun"
+          },
+          {
+           "code": "6.1.2",
+           "text": "Know that the force that keeps an object in orbit around the Sun is the gravitational attraction of the Sun"
+          },
+          {
+           "code": "6.1.2",
+           "text": "Know that the strength of the Sun’s gravitational field decreases and that the orbital speeds of the planets decrease as the distance from the Sun increases"
+          },
+          {
+           "code": "6.1.2",
+           "text": "Know that an object in an elliptical orbit travels faster when closer to the Sun and explain this using the conservation of energy"
+          }
+         ]
         }
        ]
       },
@@ -2519,6 +2837,10 @@
           {
            "code": null,
            "text": "Describe stellar evolution from interstellar cloud and protostar through stable star, giant stages and final remnants."
+          },
+          {
+           "code": "6.2.2",
+           "text": "Describe the life cycle of a star: (a) a star is formed from interstellar clouds of gas and dust that contain hydrogen (b) a protostar is an interstellar cloud collapsing and increasing in temperature as a result of its internal gravitational attraction (c) a protostar becomes a stable star when the inward force of gravitational attraction is balanced by an outward force due to the high temperature in the centre of the star (d) all stars eventually run out of hydrogen as fuel for the nuclear reaction (e) most stars expand to form red giants and more massive stars expand to form red supergiants when most of the hydrogen in the centre of the star has been converted to helium (f) a red giant from a less massive star forms a planetary nebula with a white dwarf star at its centre (g) a red supergiant explodes as a supernova, forming a nebula containing hydrogen and new heavier elements, leaving behind a neutron star or a black hole at its centre (h) the nebula from a supernova may form new stars with orbiting planets"
           }
          ]
         },
@@ -2569,6 +2891,58 @@
            "text": "Describe star formation, development into giants or supergiants, and possible endpoints including white dwarfs, neutron stars and black holes."
           }
          ]
+        },
+        {
+         "id": "6-2-stars-and-the-universe-the-universe-1",
+         "title": "The Universe (1)",
+         "outcomes": [
+          {
+           "code": "6.2.3",
+           "text": "Describe redshift as an increase in the observed wavelength of electromagnetic radiation emitted from receding stars and galaxies"
+          },
+          {
+           "code": "6.2.3",
+           "text": "Know that the light emitted from distant galaxies appears redshifted in comparison with light emitted on the Earth"
+          },
+          {
+           "code": "6.2.3",
+           "text": "Know that redshift in the light from distant galaxies is evidence that the Universe is expanding and supports the Big Bang Theory"
+          },
+          {
+           "code": "6.2.3",
+           "text": "Know that microwave radiation of a specific frequency is observed at all points in space around us and is known as cosmic microwave background radiation (CMBR)"
+          },
+          {
+           "code": "6.2.3",
+           "text": "Explain that the CMBR was produced shortly after the Universe was formed and that this radiation has been expanded into the microwave region of the electromagnetic spectrum as the Universe expanded"
+          }
+         ]
+        },
+        {
+         "id": "6-2-stars-and-the-universe-the-universe-2",
+         "title": "The Universe (2)",
+         "outcomes": [
+          {
+           "code": "6.2.3",
+           "text": "Know that the speed v at which a galaxy is moving away from the Earth can be found from the change in wavelength of the galaxy’s starlight due to redshift"
+          },
+          {
+           "code": "6.2.3",
+           "text": "Know that the distance d of a far galaxy can be determined using the brightness of a supernova in that galaxy"
+          },
+          {
+           "code": "6.2.3",
+           "text": "Define the Hubble constant H₀ as the ratio of the speed at which the galaxy is moving away from the Earth to its distance from the Earth; recall and use the equation H₀ = v/d"
+          },
+          {
+           "code": "6.2.3",
+           "text": "Know that the current estimate for H₀ is 2.2 × 10 –18 per second"
+          },
+          {
+           "code": "6.2.3",
+           "text": "Know that the equation d/v = 1/H₀ represents an estimate for the age of the Universe and that this is evidence for the idea that all the matter in the Universe was present at a single point"
+          }
+         ]
         }
        ]
       }
@@ -2578,28 +2952,34 @@
   }
  ],
  "build": {
-  "builtAt": "2026-10-14T05:38:33.810Z",
+  "builtAt": "2026-11-14T11:12:59.520023Z",
   "model": "gpt-5.6-luna",
   "usd": 0.0705,
   "expectedCodes": 71,
-  "coverage": 0.9154929577464789,
-  "missingCodes": [
-   "1.5",
-   "2.1",
-   "3.3",
-   "3.4",
-   "4.1",
-   "6.2"
-  ],
+  "coverage": 1.0,
+  "missingCodes": [],
   "counts": {
    "grades": 1,
    "units": 6,
    "topics": 24,
-   "subtopics": 131,
-   "outcomes": 397
+   "subtopics": 144,
+   "outcomes": 471
   },
   "warnings": [
    "10 invented code(s) dropped: 3.3.1, 3.3.2, 3.3.3, 3.3.4, 3.3.5, 3.3.6, 3.3.7, 3.3.8"
-  ]
+  ],
+  "pointCheck": {
+   "date": "2026-11-14",
+   "method": "every official learning point checked against the course (luna) with numbering and wording checks; points not fully taught added verbatim",
+   "addedVerbatim": 80,
+   "rebuiltTopics": [
+    "1.1",
+    "1.2",
+    "1.3",
+    "1.4",
+    "1.6",
+    "1.8"
+   ]
+  }
  }
 }
