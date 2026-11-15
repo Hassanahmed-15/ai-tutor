@@ -1,6 +1,6 @@
 // Aria desktop: a window onto the live Aria website. Nothing of Aria's own code is copied in,
 // so the app always shows exactly what the website shows, and updates when the website does.
-const { app, BrowserWindow, Menu, shell, session, systemPreferences } = require("electron");
+const { app, BrowserWindow, Menu, Notification, Tray, nativeImage, shell, session, systemPreferences } = require("electron");
 const path = require("node:path");
 const fs = require("node:fs");
 const marks = require("./screen");
@@ -8,6 +8,12 @@ const marks = require("./screen");
 const ARIA_URL = process.env.ARIA_URL || "https://aria-tutor.jollyfield-0fda1d9b.westus2.azurecontainerapps.io";
 const ARIA_ORIGIN = new URL(ARIA_URL).origin;
 const isMac = process.platform === "darwin";
+// Windows (and Linux) keep Aria running by the clock when its window is closed, so the screen-mark
+// shortcut still works over other apps. ARIA_FORCE_TRAY=1 tries that on a Mac.
+const useTray = !isMac || process.env.ARIA_FORCE_TRAY === "1";
+let tray = null;
+let quitting = false;
+let toldAboutTray = false;
 
 // "Continue with Google/Apple/Microsoft" leaves Aria for the provider's page and comes back.
 // Those pages stay inside the app so the sign-in cookie lands in the app, not in a browser.
@@ -140,9 +146,12 @@ function createWindow() {
   win.on("close", () => saveWindowState(win));
   win.on("closed", () => {
     if (mainWindow === win) mainWindow = null;
-    // The screen overlay is a window too, so closing Aria's own window has to quit by itself on
-    // Windows. A Mac app keeps running (with its hotkey) until it is quit, as Mac apps do.
-    if (!isMac && !mainWindow) app.quit();
+    // Closing the window does not quit: Aria stays by the clock (or in the Dock on a Mac) so the
+    // screen-mark shortcut keeps working over other apps. Quit from the tray icon or the menu.
+    if (useTray && !quitting && !mainWindow && !toldAboutTray) {
+      toldAboutTray = true;
+      notify("Aria is still running", `Press ${shortcutWords()} anywhere to mark your screen. To quit, right-click the Aria icon by the clock.`);
+    }
   });
 
   win.loadURL(ARIA_URL);
@@ -216,7 +225,7 @@ function buildMenu() {
             ],
           },
         ]
-      : [{ label: "File", submenu: [markItem, { type: "separator" }, { role: "quit" }] }]),
+      : [{ label: "File", submenu: [markItem, { label: "Screen-mark log (for help)", click: () => marks.openLog() }, { type: "separator" }, { role: "quit" }] }]),
     // Without an Edit menu, copy and paste shortcuts do nothing on a Mac.
     { role: "editMenu" },
     {
@@ -264,24 +273,66 @@ function buildMenu() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
+// ---- the icon by the clock (Windows) ----
+
+function shortcutWords() {
+  const hk = marks.hotkeyAccelerator();
+  if (!hk) return "the Aria icon by the clock → Mark something on screen";
+  return isMac ? hk.replace("Control", "Control").replace("Alt", "Option").replace(/\+/g, " + ") : hk.replace("Control", "Ctrl").replace(/\+/g, " + ");
+}
+
+function notify(title, body) {
+  marks.logLine(`told the student: ${title}: ${body}`);
+  if (tray && process.platform === "win32") return tray.displayBalloon({ title, content: body, iconType: "info" });
+  if (Notification.isSupported()) new Notification({ title, body }).show();
+}
+
+function openAria() {
+  if (!mainWindow) return createWindow();
+  if (mainWindow.isMinimized()) mainWindow.restore();
+  mainWindow.show();
+  mainWindow.focus();
+}
+
+function makeTray() {
+  const icon = nativeImage.createFromPath(path.join(__dirname, "build", "icon.png")).resize({ width: 32, height: 32 });
+  tray = new Tray(icon);
+  tray.setToolTip(`Aria: ${shortcutWords()} marks your screen`);
+  tray.setContextMenu(
+    Menu.buildFromTemplate([
+      { label: `Mark something on screen${marks.hotkeyAccelerator() ? `   (${shortcutWords()})` : ""}`, click: () => marks.startMark() },
+      { label: "Open Aria", click: openAria },
+      { type: "separator" },
+      { label: "Screen-mark log (for help)", click: () => marks.openLog() },
+      { label: "Quit Aria", click: () => app.quit() },
+    ]),
+  );
+  tray.on("click", openAria);
+  tray.on("double-click", openAria);
+}
+
 // ---- start ----
 
 if (!app.requestSingleInstanceLock()) {
   app.quit();
 } else {
-  app.on("second-instance", () => {
-    if (!mainWindow) return createWindow();
-    if (mainWindow.isMinimized()) mainWindow.restore();
-    mainWindow.focus();
-  });
+  app.on("second-instance", openAria);
+  app.on("before-quit", () => (quitting = true));
 
   app.on("web-contents-created", (_event, contents) => guardNavigation(contents));
 
   app.whenReady().then(() => {
     setUpPermissions(session.defaultSession);
+    if (process.platform === "win32") app.setAppUserModelId("com.aria.tutor.desktop");
     marks.setUpScreenMarks({ ariaUrl: ARIA_URL, test: process.env.ARIA_SCREEN_SELFTEST === "1" });
+    marks.setTroubleHandler((message) => notify("Aria", message));
+    if (useTray && process.env.ARIA_SCREEN_SELFTEST !== "1") makeTray();
     buildMenu();
     createWindow();
+    // Another app already holds both shortcuts: say so once, and how to mark instead.
+    if (!marks.hotkeyAccelerator() && process.env.ARIA_SCREEN_SELFTEST !== "1") {
+      setTimeout(() => notify("Aria's screen shortcut is taken", "Another app uses Ctrl + Alt + A and Ctrl + Alt + M. Use the Aria icon by the clock → Mark something on screen."), 4000);
+    }
 
     app.on("activate", () => {
       if (!mainWindow) createWindow();
@@ -289,6 +340,7 @@ if (!app.requestSingleInstanceLock()) {
   });
 
   app.on("window-all-closed", () => {
-    if (!isMac) app.quit();
+    // With the tray icon Aria keeps running; it quits from the icon or the menu.
+    if (!isMac && !useTray) app.quit();
   });
 }

@@ -8,6 +8,7 @@
 // does; this file only captures the screen and passes the mouse to it.
 const { app, BrowserWindow, desktopCapturer, globalShortcut, ipcMain, screen, shell, systemPreferences } = require("electron");
 const path = require("node:path");
+const fs = require("node:fs");
 
 const isMac = process.platform === "darwin";
 const HOTKEYS = ["Control+Alt+A", "Control+Alt+M"]; // the second only if something else holds the first
@@ -19,6 +20,30 @@ let marking = false;
 let hotkey = null;
 let watching = null;
 let selfTest = false;
+let onTrouble = () => {};
+
+// A short log of every mark (userData/screen-marks.log), so a fault on a computer we cannot test
+// on (Windows) can be read afterwards: the app's menu and tray icon open it.
+const logFile = () => path.join(app.getPath("userData"), "screen-marks.log");
+function logLine(text) {
+  try {
+    const file = logFile();
+    if (fs.existsSync(file) && fs.statSync(file).size > 300_000) fs.renameSync(file, `${file}.old`);
+    fs.appendFileSync(file, `${new Date().toISOString()}  ${text}\n`);
+  } catch {
+    // A log that cannot be written is never worth an error.
+  }
+}
+
+/** Says something went wrong where the student can see it, even while the overlay is hidden. */
+function trouble(message) {
+  logLine(`TROUBLE: ${message}`);
+  if (overlay && !overlay.isDestroyed()) {
+    if (!overlay.isVisible()) overlay.showInactive();
+    overlay.webContents.send("notice", message);
+  }
+  onTrouble(message);
+}
 
 function isOverlay(contents) {
   return Boolean(overlay && !overlay.isDestroyed() && overlay.webContents === contents);
@@ -57,6 +82,7 @@ function createOverlay() {
   overlay.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   overlay.setIgnoreMouseEvents(true, { forward: true });
   overlay.setBounds(screen.getPrimaryDisplay().bounds);
+  overlay.webContents.on("did-finish-load", () => logLine(`overlay page loaded: ${overlay?.webContents.getURL()}`));
   overlay.on("closed", () => {
     overlay = null;
     marking = false;
@@ -91,19 +117,41 @@ function prepare() {
 }
 
 async function captureDisplay(display) {
-  const size = { width: Math.round(display.size.width * display.scaleFactor), height: Math.round(display.size.height * display.scaleFactor) };
-  const sources = await desktopCapturer.getSources({ types: ["screen"], thumbnailSize: size });
-  const source = sources.find((s) => s.display_id === String(display.id)) ?? sources[0];
-  if (!source || source.thumbnail.isEmpty()) return null;
-  return `data:image/jpeg;base64,${source.thumbnail.toJPEG(92).toString("base64")}`;
+  // Full detail first; some Windows graphics drivers return an empty picture at that size, so then
+  // the screen's own size, then a smaller one.
+  const full = { width: Math.round(display.size.width * display.scaleFactor), height: Math.round(display.size.height * display.scaleFactor) };
+  const sizes = [full, { width: display.size.width, height: display.size.height }, { width: 1600, height: Math.round((1600 * display.size.height) / display.size.width) }];
+  for (const size of sizes) {
+    const sources = await desktopCapturer.getSources({ types: ["screen"], thumbnailSize: size });
+    const source = sources.find((s) => s.display_id === String(display.id)) ?? sources[0];
+    const got = source && !source.thumbnail.isEmpty() ? source.thumbnail.getSize() : null;
+    logLine(`capture ${size.width}x${size.height}: ${sources.length} screens, display_id "${source?.display_id ?? ""}" (want ${display.id}), picture ${got ? `${got.width}x${got.height}` : "EMPTY"}`);
+    if (got) return { image: `data:image/jpeg;base64,${source.thumbnail.toJPEG(92).toString("base64")}`, scale: got.width / display.size.width };
+  }
+  return null;
 }
 
 /** Ctrl+Alt+A: picture of the screen under the cursor, then mark mode. Pressed again, it cancels. */
 async function startMark() {
+  try {
+    await startMarkSteps();
+  } catch (err) {
+    marking = false;
+    trouble(`Marking failed: ${err instanceof Error ? err.message : err}. Try again.`);
+  }
+}
+
+async function startMarkSteps() {
+  logLine("mark: shortcut or menu pressed");
   ensureOverlay();
   if (marking) return overlay.webContents.send("mark:cancel");
-  if (overlay.webContents.isLoading()) await new Promise((r) => overlay.webContents.once("did-finish-load", r));
+  if (overlay.webContents.isLoading()) {
+    // The page comes from the website: with no internet it never finishes, so give up after a while.
+    const loaded = await Promise.race([new Promise((r) => overlay.webContents.once("did-finish-load", () => r(true))), new Promise((r) => setTimeout(() => r(false), 15000))]);
+    if (!loaded) return trouble("Aria can't reach the internet, so marking can't start. Check the connection and try again.");
+  }
   const display = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
+  logLine(`mark: display ${JSON.stringify(display.bounds)} scale ${display.scaleFactor}`);
   overlay.setBounds(display.bounds);
   if (isMac && systemPreferences.getMediaAccessStatus("screen") !== "granted") {
     // Asking once puts Aria in the Screen Recording list.
@@ -111,10 +159,14 @@ async function startMark() {
     if (systemPreferences.getMediaAccessStatus("screen") !== "granted") return askPermission();
   }
   await prepare();
-  const image = await captureDisplay(display).catch(() => null);
-  if (!image) return askPermission();
+  const shot = await captureDisplay(display).catch((err) => {
+    logLine(`capture error: ${err?.message ?? err}`);
+    return null;
+  });
+  if (!shot) return isMac ? askPermission() : trouble("Aria could not take a picture of the screen. Try again, or restart Aria.");
   marking = true;
-  overlay.webContents.send("mark:start", { image, scale: display.scaleFactor });
+  overlay.webContents.send("mark:start", { image: shot.image, scale: shot.scale });
+  logLine(`mark: marking (overlay visible ${overlay.isVisible()}, bounds ${JSON.stringify(overlay.getBounds())})`);
   clickThrough(false);
   if (!overlay.isVisible()) overlay.showInactive();
   escapeCancels(true);
@@ -206,6 +258,7 @@ function setUpScreenMarks({ ariaUrl, test = false }) {
   overlayUrl = `${new URL("/screen/overlay.html", ariaUrl).href}${query ? `?${query}` : ""}`;
   createOverlay();
   if (!test) hotkey = HOTKEYS.find((accel) => globalShortcut.register(accel, startMark)) ?? null;
+  logLine(`start: ${process.platform} app ${app.getVersion()}, ${screen.getAllDisplays().length} display(s), shortcut ${hotkey ?? "NONE (another app holds Ctrl+Alt+A and Ctrl+Alt+M)"}`);
   if (isMac && !test) watchPointer();
   screen.on("display-removed", () => overlay?.setBounds(screen.getPrimaryDisplay().bounds));
   app.on("will-quit", () => globalShortcut.unregisterAll());
@@ -221,4 +274,16 @@ function hotkeyAccelerator() {
   return hotkey ?? "";
 }
 
-module.exports = { setUpScreenMarks, startMark, isOverlay, overlayLoadFailed, hotkeyAccelerator, screenSettings: () => shell.openExternal(PRIVACY_PANE), overlayWindow: () => overlay };
+module.exports = {
+  setUpScreenMarks,
+  startMark,
+  isOverlay,
+  overlayLoadFailed,
+  hotkeyAccelerator,
+  screenSettings: () => shell.openExternal(PRIVACY_PANE),
+  overlayWindow: () => overlay,
+  /** Where trouble is also told (the tray balloon on Windows). */
+  setTroubleHandler: (fn) => (onTrouble = fn),
+  openLog: () => shell.openPath(logFile()),
+  logLine,
+};

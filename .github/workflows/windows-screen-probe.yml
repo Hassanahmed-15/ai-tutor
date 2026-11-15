@@ -1,0 +1,29 @@
+# Runs the desktop app's screen marks on a real Windows machine (desktop-app/test/win-probe.js):
+# real overlay window, real Ctrl+Alt+A and a real mouse circle. Only on the probe branch.
+name: windows-screen-probe
+on:
+  push:
+    branches: [probe/windows-screen]
+jobs:
+  probe:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: desktop-app
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install
+        working-directory: desktop-app
+        run: npm ci --no-audit --no-fund
+      - name: Probe
+        working-directory: desktop-app
+        run: npx electron test/win-probe.js
+        timeout-minutes: 5
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: probe-out
+          path: desktop-app/probe-out
