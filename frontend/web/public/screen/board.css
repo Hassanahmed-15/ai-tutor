@@ -63,3 +63,17 @@ button { font: inherit; color: var(--text); cursor: pointer; }
 /* The footer holds timings for testing (?debug, ?mock); students never see it. */
 .b-meta { display: none; }
 body.debug .b-meta { display: block; }
+
+/* The live pencil board (sketch.js): a 560 x 420 world scaled to the board's width. */
+.board.sketching { width: 460px; }
+.b-slide.sketch { aspect-ratio: auto; }
+.b-sketch[hidden] { display: none; }
+.sk { position: relative; width: 100%; overflow: hidden; background: #000; }
+.sk-world { position: absolute; left: 0; top: 0; width: 560px; height: 420px; transform-origin: 0 0; }
+.sk-svg { position: absolute; left: 0; top: 0; width: 560px; height: 420px; overflow: visible; }
+.sk-text { position: absolute; left: 0; top: 0; line-height: 1.12; white-space: normal; overflow-wrap: normal; word-break: normal; hyphens: none; pointer-events: none; }
+.sk-eq { white-space: nowrap; line-height: 1.25; }
+.sk-eq .katex { font-size: 1em; }
+.sk-eq .katex-display { margin: 0; }
+.sk-nib { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%; background: #fff7c2; box-shadow: 0 0 8px 3px rgba(255, 228, 92, 0.5); opacity: 0; transition: opacity 0.35s; pointer-events: none; }
+.b-slide.sketch [data-act="bigger"] { display: none; }

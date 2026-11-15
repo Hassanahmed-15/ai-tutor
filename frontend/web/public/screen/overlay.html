@@ -5,6 +5,8 @@
   <title>Aria: mark your screen</title>
   <link rel="stylesheet" href="board.css">
   <link rel="stylesheet" href="overlay.css">
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <script src="vendor/katex/katex.min.js"></script>
 </head>
 <body class="overlay">
   <canvas id="ink"></canvas>
@@ -19,6 +21,7 @@
     <div class="b-text"></div>
     <div class="b-slide">
       <video muted playsinline></video>
+      <div class="b-sketch" hidden></div>
       <div class="b-slide-state"></div>
       <div class="b-slide-tools">
         <button class="b-btn" data-act="replay" title="Play again">↻</button>

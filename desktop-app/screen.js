@@ -197,11 +197,12 @@ function watchPointer() {
 
 /**
  * Sets up the hotkey and the overlay. `ariaUrl` is the website the overlay page comes from.
- * ARIA_SCREEN_MOCK=1 runs every mark with no paid call (canned words, the sample slide).
+ * ARIA_SCREEN_MOCK=1 runs every mark with no paid call (canned words, a fixed pencil board or the
+ * sample slide). ARIA_SCREEN_DRAW=manim brings back the Manim slide instead of the pencil board.
  */
 function setUpScreenMarks({ ariaUrl, test = false }) {
   selfTest = test;
-  const query = [process.env.ARIA_SCREEN_MOCK === "1" && "mock=1", test && "selftest=1"].filter(Boolean).join("&");
+  const query = [process.env.ARIA_SCREEN_MOCK === "1" && "mock=1", process.env.ARIA_SCREEN_DRAW === "manim" && "draw=manim", test && "selftest=1"].filter(Boolean).join("&");
   overlayUrl = `${new URL("/screen/overlay.html", ariaUrl).href}${query ? `?${query}` : ""}`;
   createOverlay();
   if (!test) hotkey = HOTKEYS.find((accel) => globalShortcut.register(accel, startMark)) ?? null;

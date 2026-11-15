@@ -1,8 +1,10 @@
 // The tiny blackboard on the desktop app's screen overlay (overlay.js; first built in screen-lab/public).
 // Aria's words stream in from /api/screen/explain and are spoken sentence by sentence in her lesson
 // voice (/api/tts, each finished sentence asked for at once and played in order), then a one-slide
-// Manim video plays under them (/api/screen/slide). The server keeps nothing between calls, so each
-// call carries the mark's picture and what Aria said.
+// pencil board draws in step with her sentences (sketch.js, planned by /api/screen/sketch; the
+// default) or a one-slide Manim video plays (/api/screen/slide, with ?draw=manim). The server keeps
+// nothing between calls, so each call carries the mark's picture and what Aria said.
+import { Sketch } from "./sketch.js";
 
 /** Reads a newline-delimited JSON response, one event at a time. */
 export async function readEvents(responsePromise, onEvent) {
@@ -33,14 +35,23 @@ export async function readEvents(responsePromise, onEvent) {
   }
 }
 
-function createVoice({ mock, enabled }) {
+function createVoice({ mock, enabled, onStart = () => {} }) {
   // Mock mode speaks with the browser's own free voice, to test the sentence queue without spending.
-  const speakFree = (text, gen, voice) =>
+  // onStart(idx, ms) tells the pencil board which sentence she has just begun and how long it lasts.
+  const estimateMs = (text) => (text.split(/\s+/).length / 2.6) * 1000;
+  const speakFree = (text, gen, voice, idx) =>
     new Promise((resolve) => {
-      if (!window.speechSynthesis || gen !== voice.gen) return resolve();
+      if (gen !== voice.gen) return resolve();
+      onStart(idx, estimateMs(text));
+      if (!window.speechSynthesis) return setTimeout(resolve, estimateMs(text));
       const u = new SpeechSynthesisUtterance(text);
       u.rate = 1.05;
-      u.onend = u.onerror = () => resolve();
+      // Some browsers never say a sentence ended: move on after its spoken length.
+      const safety = setTimeout(resolve, estimateMs(text) * 1.6 + 800);
+      u.onend = u.onerror = () => {
+        clearTimeout(safety);
+        resolve();
+      };
       speechSynthesis.speak(u);
     });
   return {
@@ -48,6 +59,7 @@ function createVoice({ mock, enabled }) {
     chain: Promise.resolve(),
     audio: null,
     gen: 0,
+    count: 0, // sentences queued
     feed(text) {
       this.buf += text;
       for (;;) {
@@ -65,8 +77,18 @@ function createVoice({ mock, enabled }) {
     },
     say(sentence) {
       const text = sentence.trim();
-      if (!text || !enabled()) return;
+      if (!text) return;
+      const idx = ++this.count;
       const gen = this.gen;
+      if (!enabled()) {
+        // Silent: the board still moves on at a speaking pace.
+        this.chain = this.chain.then(async () => {
+          if (gen !== this.gen) return;
+          onStart(idx, estimateMs(text));
+          await new Promise((r) => setTimeout(r, estimateMs(text)));
+        });
+        return;
+      }
       const clip = mock
         ? null
         : fetch("/api/tts", { method: "POST", headers: { "content-type": "application/json", "x-aria-spend": "screen" }, body: JSON.stringify({ text }) })
@@ -81,13 +103,14 @@ function createVoice({ mock, enabled }) {
             });
       this.chain = this.chain.then(async () => {
         if (gen !== this.gen) return;
-        if (mock) return speakFree(text, gen, this);
+        if (mock) return speakFree(text, gen, this, idx);
         const blob = await clip;
         if (gen !== this.gen) return console.info("[voice] skipped a sentence: the board moved on");
-        if (blob) await this.play(blob);
+        if (blob) await this.play(blob, (ms) => onStart(idx, ms || estimateMs(text)));
+        else onStart(idx, 0);
       });
     },
-    play(blob) {
+    play(blob, started = () => {}) {
       return new Promise((resolve) => {
         const a = new Audio(URL.createObjectURL(blob));
         this.audio = a;
@@ -96,7 +119,10 @@ function createVoice({ mock, enabled }) {
           resolve();
         };
         a.onended = done;
-        a.onplaying = () => console.info(`[voice] playing a sentence (${a.duration.toFixed(1)} s)`);
+        a.onplaying = () => {
+          console.info(`[voice] playing a sentence (${a.duration.toFixed(1)} s)`);
+          started(Number.isFinite(a.duration) ? a.duration * 1000 : 0);
+        };
         a.onerror = () => {
           console.warn(`[voice] the clip would not play (media error ${a.error?.code})`);
           done();
@@ -111,6 +137,7 @@ function createVoice({ mock, enabled }) {
       if (this.audio && !this.audio.paused) console.info("[voice] stopped mid-sentence");
       this.gen++;
       this.buf = "";
+      this.count = 0;
       this.audio?.pause();
       this.audio = null;
       window.speechSynthesis?.cancel();
@@ -122,11 +149,11 @@ function createVoice({ mock, enabled }) {
 export class Board {
   /**
    * opts: mock, voiceOn(), slideOn(), stayOpen() (closing shows an idle board instead of hiding it),
-   * onClose(), onSpend(), onBigger(url), onPop().
+   * drawMode() ("pencil" or "manim"), onClose(), onSpend(), onBigger(url), onPop().
    */
   constructor(el, opts = {}) {
     this.el = el;
-    this.opts = { mock: false, voiceOn: () => true, slideOn: () => true, stayOpen: () => false, ...opts };
+    this.opts = { mock: false, voiceOn: () => true, slideOn: () => true, stayOpen: () => false, drawMode: () => "pencil", ...opts };
     const $ = (sel) => el.querySelector(sel);
     this.p = {
       title: $(".b-title"),
@@ -134,6 +161,7 @@ export class Board {
       orb: $(".orb"),
       slide: $(".b-slide"),
       slideVideo: $(".b-slide video"),
+      sketch: $(".b-sketch"),
       slideState: $(".b-slide-state"),
       meta: $(".b-meta"),
       ask: $(".b-ask"),
@@ -141,13 +169,24 @@ export class Board {
       full: $(".b-full"),
     };
     this.current = null; // the mark being explained: { abort, run, shot, box }
-    this.voice = createVoice({ mock: this.opts.mock, enabled: () => this.opts.voiceOn() });
+    this.voice = createVoice({
+      mock: this.opts.mock,
+      enabled: () => this.opts.voiceOn(),
+      onStart: (idx, ms) => {
+        const me = this.current;
+        if (!me) return;
+        me.spoken = idx;
+        (me.msOf ??= {})[idx] = ms;
+        me.sketch?.sentence(idx, ms);
+      },
+    });
 
     el.addEventListener("click", (e) => {
       const act = e.target.closest("[data-act]")?.dataset.act;
       if (act === "close") this.close();
       else if (act === "pop") this.opts.onPop?.();
       else if (act === "replay") {
+        if (this.current?.sketch) return void this.current.sketch.replay();
         this.p.slideVideo.currentTime = 0;
         this.p.slideVideo.play().catch(() => {});
       } else if (act === "bigger") this.opts.onBigger?.(this.p.slideVideo.currentSrc || this.p.slideVideo.src);
@@ -187,8 +226,10 @@ export class Board {
   /** Beside the mark: right of it, else left, else under or above it; always inside W x H. */
   place(box, W, H) {
     if (this.opts.stayOpen()) return;
-    const bw = this.el.offsetWidth || 340;
-    const bh = Math.max(this.el.offsetHeight, 420);
+    // Room for the pencil board, which widens the board once she names the idea.
+    const pencil = this.opts.slideOn() && this.opts.drawMode() === "pencil";
+    const bw = Math.max(this.el.offsetWidth || 340, pencil ? 460 : 0);
+    const bh = Math.max(this.el.offsetHeight, pencil ? 560 : 420);
     const gap = 18;
     let left = box.right + gap;
     let top = box.top - 10;
@@ -233,7 +274,12 @@ export class Board {
     v.load();
     this.p.slide.classList.remove("ready");
     this.p.slide.hidden = state === "off";
-    this.p.slideState.textContent = state === "waiting" ? "A slide comes next…" : "";
+    this.sketchView?.destroy();
+    this.sketchView = null;
+    if (this.p.sketch) this.p.sketch.hidden = true;
+    this.p.slide.classList.remove("sketch");
+    this.el.classList.remove("sketching");
+    this.p.slideState.textContent = state === "waiting" ? (this.opts.drawMode() === "pencil" ? "" : "A slide comes next…") : "";
   }
 
   showError(message) {
@@ -285,7 +331,11 @@ export class Board {
         (ev) => {
           if (this.current !== me) return;
           if (ev.t === "run") me.run = ev.run;
-          else if (ev.t === "concept" && !question) p.title.textContent = ev.concept;
+          else if (ev.t === "concept" && !question) {
+            p.title.textContent = ev.concept;
+            // The pencil board opens now with its heading, while she starts to speak.
+            if (this.opts.slideOn() && this.opts.drawMode() === "pencil" && !/^unclear$/i.test(ev.concept)) this.openSketch(me).preTitle(ev.concept);
+          }
           else if (ev.t === "text") {
             if (!first) {
               first = performance.now() - t0;
@@ -298,10 +348,15 @@ export class Board {
             me.concept = ev.concept ?? "";
             me.said = ev.said ?? "";
             this.addMeta(`words in ${(first / 1000).toFixed(1)} s`);
-            this.voice.end(() => this.current === me && this.setOrb("idle"));
+            this.voice.end(() => {
+              if (this.current !== me) return;
+              this.setOrb("idle");
+              me.voiceDone = true;
+              me.sketch?.finish();
+            });
             if (!this.opts.voiceOn()) this.setOrb("idle");
             const clear = !/^unclear$/i.test(ev.concept ?? "");
-            if (this.opts.slideOn() && clear) this.makeSlide(me);
+            if (this.opts.slideOn() && clear) this.opts.drawMode() === "pencil" ? this.makeSketch(me) : this.makeSlide(me);
             else this.resetSlide("off");
             p.full.hidden = !clear;
             this.opts.onSpend?.();
@@ -314,6 +369,53 @@ export class Board {
         const down = err instanceof TypeError && /fetch/i.test(err.message);
         this.showError(down ? "Can't reach Aria. Check the internet connection and mark again." : err?.message ?? String(err));
       }
+    }
+  }
+
+  /** The live pencil board: one fast call plans it, then it draws as she speaks each sentence. */
+  openSketch(me) {
+    const p = this.p;
+    if (me.view && this.sketchView === me.view) return me.view;
+    p.slide.hidden = false;
+    p.slide.classList.add("sketch");
+    this.el.classList.add("sketching");
+    p.sketch.hidden = false;
+    p.slideState.textContent = "";
+    this.sketchView?.destroy();
+    this.sketchView = new Sketch(p.sketch);
+    me.view = this.sketchView;
+    return me.view;
+  }
+
+  async makeSketch(me) {
+    const t0 = performance.now();
+    const p = this.p;
+    this.openSketch(me);
+    try {
+      await readEvents(
+        fetch("/api/screen/sketch", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(this.markOf(me)), signal: me.abort.signal }),
+        async (ev) => {
+          if (this.current !== me) return;
+          if (ev.t === "scene") {
+            const view = this.sketchView;
+            const first = !me.sketch;
+            await view.load(ev.scene, ev.sentences ?? []);
+            for (const [k, ms] of Object.entries(me.msOf ?? {})) if (ms) view.sentenceMs.set(Number(k), ms);
+            if (this.current !== me) return;
+            me.sketch = view;
+            p.slide.classList.add("ready");
+            if (first) this.addMeta(`board in ${((performance.now() - t0) / 1000).toFixed(1)} s`);
+            if (me.voiceDone) view.finish();
+            else view.sentence(me.spoken ?? 1, 0);
+            window.__sketchReport = view.report;
+          } else if (ev.t === "done") {
+            if (!ev.ok) p.slideState.textContent = "No board this time.";
+            this.opts.onSpend?.();
+          } else if (ev.t === "error") p.slideState.textContent = ev.error;
+        },
+      );
+    } catch (err) {
+      if (err?.name !== "AbortError" && this.current === me) p.slideState.textContent = "The board failed.";
     }
   }
 

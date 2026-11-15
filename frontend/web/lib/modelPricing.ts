@@ -56,6 +56,9 @@ const PRICES: Record<string, Price> = {
   "gemini-3.8-flash": { input: 0.75, output: 3.75 },
   "gemini-3.7-flash": { input: 0.75, output: 3.75 },
   "gemini-3.5-flash-lite": { input: 0.3, output: 2.5 },
+  // Qwen 3.8 27B on Cerebras (screen marks' pencil board, lib/screen/sketch.ts): $0.99 in / $1.49 out
+  // per 1M tokens, from Cerebras's pricing page, checked 2026-11-03.
+  "qwen-3.8-27b": { input: 0.99, output: 1.49 },
 };
 
 /** The most expensive entry, used when a model id is unrecognised. See the header note. */

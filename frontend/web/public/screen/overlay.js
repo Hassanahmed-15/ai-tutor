@@ -28,6 +28,8 @@ let fadeTimer = null;
 
 const board = new Board($("#board"), {
   mock: MOCK,
+  // The live pencil board by default; ?draw=manim brings back the one-slide Manim video.
+  drawMode: () => (params.get("draw") === "manim" ? "manim" : "pencil"),
   onClose: () => {
     clearMark();
     closeBig();
@@ -233,6 +235,14 @@ if (params.has("selftest")) {
     text: board.p.text.textContent,
     meta: board.p.meta.textContent,
     video: board.p.slideVideo.getAttribute("src"),
+    // The pencil board: how many of its strokes and words are on the board, and its layout check.
+    sketch: board.sketchView
+      ? {
+          drawn: [...document.querySelectorAll(".sk-text")].filter((e) => e.style.visibility === "visible").length + [...document.querySelectorAll(".sk-svg path")].filter((p) => p.style.strokeDashoffset && parseFloat(p.style.strokeDashoffset) < 1).length,
+          report: board.sketchView.report ?? null,
+          width: board.el.getBoundingClientRect().width,
+        }
+      : null,
     boardBox: board.el.hidden ? null : board.el.getBoundingClientRect().toJSON(),
   });
 }

@@ -1,5 +1,5 @@
 // Runs the screen-mark overlay (screen.js) off screen with a stand-in picture of the screen: the mark,
-// the tiny board's words, the slide video, and a second mark replacing the first. Free: mock mode.
+// the tiny board's words, the pencil board (or with ARIA_SCREEN_DRAW=manim the slide video), and a second mark replacing the first. Free: mock mode.
 // Run: ARIA_URL=http://localhost:3000 npm run test:screen   (a local Aria dev server must be running)
 process.env.ARIA_SCREEN_SELFTEST = "1";
 process.env.ARIA_SCREEN_MOCK = "1";
@@ -62,23 +62,39 @@ app.whenReady().then(async () => {
     });
     check("a circle is taken as a mark", await js(`window.__testMark(${JSON.stringify(ring)})`));
 
+    const manim = process.env.ARIA_SCREEN_DRAW === "manim";
     let state = null;
     for (let i = 0; i < 60; i++) {
       state = await js("window.__testState()");
-      if (state.video) break;
+      if (manim ? state.video : state.sketch?.drawn > 3) break;
       await wait(500);
     }
     check("board opens beside the mark", Boolean(state.boardBox), JSON.stringify(state.boardBox && { x: Math.round(state.boardBox.x), y: Math.round(state.boardBox.y) }));
     check("board names the idea", state.title === "Pythagoras' theorem", state.title);
     check("Aria's words stream in", state.text.length > 60, state.text.slice(0, 60));
-    check("slide video arrives from the server", /^\/api\/screen\/media\/.+\/slide-1\.mp4$/.test(state.video ?? ""), state.video);
-    // Playing means its clock moves (it may have only just started when it arrived).
-    const clock = `(() => { const v = document.querySelector(".b-slide video"); return { t: v.currentTime, ready: v.readyState, w: v.videoWidth }; })()`;
-    await wait(1500);
-    const first = await js(clock);
-    await wait(1200);
-    const playing = await js(clock);
-    check("slide video plays", playing.t > first.t + 0.5 && playing.w > 0, `${first.t.toFixed(2)} s → ${playing.t.toFixed(2)} s, ${playing.w} px wide`);
+    if (manim) {
+      check("slide video arrives from the server", /^\/api\/screen\/media\/.+\/slide-1\.mp4$/.test(state.video ?? ""), state.video);
+      // Playing means its clock moves (it may have only just started when it arrived).
+      const clock = `(() => { const v = document.querySelector(".b-slide video"); return { t: v.currentTime, ready: v.readyState, w: v.videoWidth }; })()`;
+      await wait(1500);
+      const first = await js(clock);
+      await wait(1200);
+      const playing = await js(clock);
+      check("slide video plays", playing.t > first.t + 0.5 && playing.w > 0, `${first.t.toFixed(2)} s → ${playing.t.toFixed(2)} s, ${playing.w} px wide`);
+    } else {
+      check("pencil board starts drawing", state.sketch?.drawn > 3, JSON.stringify(state.sketch));
+      // It keeps drawing as she speaks: wait for the rest, then check nothing overlaps or sits off the board.
+      for (let i = 0; i < 40; i++) {
+        await wait(500);
+        const now = await js("window.__testState()");
+        if (now.sketch?.drawn === state.sketch?.drawn && i > 6) break;
+        state = now;
+      }
+      const box = state.boardBox;
+      check("pencil board keeps drawing", state.sketch?.drawn > 6, `${state.sketch?.drawn} strokes and words`);
+      check("pencil board layout is clean", state.sketch?.report && !state.sketch.report.overlaps?.length && !state.sketch.report.outside?.length, JSON.stringify(state.sketch?.report));
+      check("pencil board fits on the screen", box && box.x >= 0 && box.y >= 0 && box.x + box.width <= bounds.width && box.y + box.height <= bounds.height, JSON.stringify(box && { x: box.x, y: box.y, w: box.width, h: box.height }));
+    }
     const png = (await contents.capturePage()).toPNG();
     fs.writeFileSync(path.join(shots, "screen-mark.png"), png);
 
