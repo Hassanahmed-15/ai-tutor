@@ -88,6 +88,8 @@ export function ScreenMarkHelp() {
               </span>
             ))}
           </div>
+          {/* The other computer's shortcut, small, for a student who uses both. */}
+          <p className="mt-1.5 text-[0.75rem] text-[var(--hud-text-faint)]">{mac ? "On Windows: Ctrl + Alt + A" : "On a Mac: Control + Option + A"}</p>
 
           <ol className="mt-3.5 grid gap-2.5 text-[0.85rem] text-[var(--hud-text)]">
             <Step icon={<MousePointerClick size={16} strokeWidth={1.8} />}>
@@ -98,7 +100,11 @@ export function ScreenMarkHelp() {
               Want more? Say <b className="font-medium">“Aria, …”</b> and your question, or type it under the board.
             </Step>
           </ol>
-          {mac && <p className="mt-3 text-[0.72rem] leading-snug text-[var(--hud-text-faint)]">First time on a Mac: allow Aria under System Settings → Privacy &amp; Security → Screen Recording and Microphone.</p>}
+          <p className="mt-3 text-[0.72rem] leading-snug text-[var(--hud-text-faint)]">
+            {mac
+              ? "First time on a Mac: allow Aria under System Settings → Privacy & Security → Screen Recording and Microphone."
+              : "If Aria can't hear you on Windows: Settings → Privacy & security → Microphone → let desktop apps use it."}
+          </p>
         </section>
       )}
     </div>
