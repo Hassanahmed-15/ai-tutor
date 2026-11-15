@@ -54,6 +54,9 @@ os.umask(0)
 os.chdir(WORK)
 os.environ.clear()
 os.environ.update({"HOME": WORK, "LANG": "en_US.UTF-8", "NO_COLOR": "1", "TERM": "dumb", "PATH": "/usr/bin:/bin", "MPLCONFIGDIR": WORK})
+# Fontconfig's cache is kept outside the work folder (and reused between slides): it makes its own
+# folders private, which the server, as another user, could not delete.
+os.environ["XDG_CACHE_HOME"] = os.path.join(TMP, f"aria-screen-cache-{os.getuid()}")
 sys.path.insert(0, KIT)
 
 
@@ -151,4 +154,13 @@ def guard(event, args):
 sys.addaudithook(guard)
 
 sys.argv = ["manim", "render", "-qm", "--disable_caching", "--format", "mp4", "--media_dir", os.path.join("media", NAME), "-o", NAME, SCENE, "Slide"]
-manim_main.main()
+try:
+    manim_main.main()
+finally:
+    # Everything made here opened up, so the server (another user) can read the video and delete the folder.
+    for root, dirs, files in os.walk(WORK):
+        for name in dirs + files:
+            try:
+                os.chmod(os.path.join(root, name), 0o777 if name in dirs else 0o666, follow_symlinks=False)
+            except (OSError, NotImplementedError):
+                pass

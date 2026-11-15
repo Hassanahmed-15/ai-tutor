@@ -113,7 +113,6 @@ WORKDIR /app
 #                          that composed preview, so a broken install costs fidelity not uploads.
 #   libcairo2, libpango  — Manim, for the screen-mark slides (the venv comes from the manim stage)
 #   ffmpeg               — joins a screen-mark video's scenes with Aria's voice (lib/screen/video.ts)
-#   sudo                 — runs a slide's model-written code as the "slides" user (see below)
 RUN apt-get update && apt-get install -y --no-install-recommends \
       python3 python3-pip python3-venv \
       tesseract-ocr \
@@ -124,7 +123,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       libreoffice-impress \
       libcairo2 libpango-1.0-0 libpangocairo-1.0-0 \
       ffmpeg \
-      sudo \
       ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
@@ -150,18 +148,10 @@ RUN groupadd --system --gid 1001 nodejs \
 
 # A screen-mark slide is Python an AI wrote from what a student marked, so it runs as its own user,
 # "slides" (scripts/screen/runner.py also sandboxes it). Another user's /proc/<pid>/environ is closed,
-# so a slide can never read the server's keys. The server may start exactly this one command as
-# "slides" and nothing else.
-RUN useradd --system --uid 1002 --gid nogroup --no-create-home --shell /usr/sbin/nologin slides \
-    && printf '%s\n' \
-      'Defaults:nextjs !use_pty, !syslog, !lecture' \
-      'nextjs ALL=(slides) NOPASSWD: /opt/manimenv/bin/python /app/frontend/web/scripts/screen/runner.py *' \
-      > /etc/sudoers.d/screen-slides \
-    && chmod 0440 /etc/sudoers.d/screen-slides \
-    && visudo -cf /etc/sudoers.d/screen-slides
+# so a slide can never read the server's keys.
+RUN useradd --system --uid 1002 --gid nogroup --no-create-home --shell /usr/sbin/nologin slides
 COPY --from=manim /opt/manimenv /opt/manimenv
 ENV SCREEN_MANIM_PYTHON=/opt/manimenv/bin/python
-ENV SCREEN_RENDER_AS=slides
 
 # Next's standalone output already contains the minimal node_modules it needs,
 # so nothing else is copied from the build stage.
@@ -172,7 +162,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/frontend/web/public ./frontend/we
 # it explicitly so a tracing change can never silently break PDF uploads.
 COPY --from=builder --chown=nextjs:nodejs /app/frontend/web/scripts ./frontend/web/scripts
 
-USER nextjs
+# The container starts as root for one reason: scripts/screen/broker.mjs keeps root only to start
+# slide renders as "slides" (Azure starts containers with no_new_privs, so sudo cannot work), and runs
+# the server itself as nextjs. Nothing else runs as root.
 EXPOSE 3000
 
 # Container Apps also probes /api/health; this HEALTHCHECK makes `docker run`
@@ -180,4 +172,4 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
   CMD node -e "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
-CMD ["node", "frontend/web/server.js"]
+CMD ["node", "frontend/web/scripts/screen/broker.mjs", "node", "frontend/web/server.js"]

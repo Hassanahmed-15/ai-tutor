@@ -1,7 +1,8 @@
 import "server-only";
 
-import { spawn, type ChildProcessWithoutNullStreams } from "node:child_process";
+import { spawn } from "node:child_process";
 import { copyFile, readdir, readFile, writeFile } from "node:fs/promises";
+import { createConnection } from "node:net";
 import path from "node:path";
 import { appPath } from "@/lib/appPaths";
 import { chat, inSlot, keep, type Caller } from "./common";
@@ -14,20 +15,63 @@ import { chat, inSlot, keep, type Caller } from "./common";
  * THE CODE IS HOSTILE. It is written from whatever the student marked, and a page can carry text meant
  * to steer the model. Two walls: `unsafe()` refuses any import or name a slide never needs before it
  * runs, and scripts/screen/runner.py renders it in a sandbox (no network, no processes, no files outside
- * its folder, no other process's environment) as its own system user in production (SCREEN_RENDER_AS).
+ * its folder, no other process's environment). In production it also runs as its own system user:
+ * the container's root helper (scripts/screen/broker.mjs) starts it as "slides" when asked over the
+ * socket in SCREEN_RENDER_BROKER, so it can never read the server's keys. With no helper (local dev)
+ * the runner is started directly.
  */
 
 const KIT = appPath("scripts", "screen");
 const RUNNER = path.join(KIT, "runner.py");
 const PYTHON = process.env.SCREEN_MANIM_PYTHON ?? path.join(KIT, ".venv", "bin", "python");
-const RENDER_AS = process.env.SCREEN_RENDER_AS ?? "";
+const BROKER = process.env.SCREEN_RENDER_BROKER ?? "";
 const RENDER_TIMEOUT_MS = 120_000;
 
-/** The runner, as the render user when one is set. A clean environment: the server's keys never reach the model's code. */
-function runner(args: string[], cwd?: string): ChildProcessWithoutNullStreams {
-  const env = { PATH: "/usr/local/bin:/usr/bin:/bin", LANG: "en_US.UTF-8" } as unknown as NodeJS.ProcessEnv;
-  const command = RENDER_AS ? ["sudo", "-n", "-u", RENDER_AS, "--", PYTHON, RUNNER, ...args] : [PYTHON, RUNNER, ...args];
-  return spawn(command[0], command.slice(1), { cwd, env });
+type Ran = { code: number | null; out: string };
+
+/**
+ * Runs runner.py with `args`: through the root helper as the "slides" user when there is one, else
+ * directly. A clean environment either way: the server's keys never reach the model's code.
+ */
+function runSandboxed(args: string[], cwd: string | undefined, timeoutMs: number): Promise<Ran> {
+  return new Promise((resolve) => {
+    let out = "";
+    let settled = false;
+    const finish = (ran: Ran) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve(ran);
+    };
+    const timer = setTimeout(() => {
+      stop();
+      finish({ code: null, out });
+    }, timeoutMs);
+    let stop = () => {};
+    if (BROKER) {
+      const socket = createConnection(BROKER);
+      stop = () => socket.destroy();
+      socket.setEncoding("utf8");
+      socket.on("connect", () => socket.write(`${JSON.stringify({ args })}\n`));
+      socket.on("data", (d) => (out += d));
+      socket.on("error", (error) => finish({ code: 1, out: `The renderer could not start: ${error.message}` }));
+      socket.on("close", () => {
+        try {
+          finish(JSON.parse(out.trim().split("\n").pop() ?? "") as Ran);
+        } catch {
+          finish({ code: 1, out: "The renderer gave no answer." });
+        }
+      });
+      return;
+    }
+    const env = { PATH: "/usr/local/bin:/usr/bin:/bin", LANG: "en_US.UTF-8" } as unknown as NodeJS.ProcessEnv;
+    const child = spawn(PYTHON, [RUNNER, ...args], { cwd, env });
+    stop = () => child.kill("SIGKILL");
+    child.stdout.on("data", (d) => (out += d));
+    child.stderr.on("data", (d) => (out += d));
+    child.on("error", (error) => finish({ code: 1, out: `The renderer could not start: ${error.message}` }));
+    child.on("close", (code) => finish({ code, out }));
+  });
 }
 
 /** What every scene file must look like, the kit it is written against, and the rules that keep it renderable and accurate. */
@@ -89,67 +133,40 @@ export type Rendered = { ok: boolean; video: string | null; issues: string[]; er
 
 /** Renders scene file `file` (in `dir`) to `<dir>/<name>.mp4` at 720p30, inside the sandbox. */
 export function renderScene(dir: string, file: string, name: string): Promise<Rendered> {
-  return inSlot(
-    () =>
-      new Promise<Rendered>((resolve) => {
-        const child = runner([dir, file, name], dir);
-        let out = "";
-        child.stdout.on("data", (d) => (out += d));
-        child.stderr.on("data", (d) => (out += d));
-        const timer = setTimeout(() => child.kill("SIGKILL"), RENDER_TIMEOUT_MS);
-        child.on("error", (error) => {
-          clearTimeout(timer);
-          resolve({ ok: false, video: null, issues: [], error: `The renderer could not start: ${error.message}` });
-        });
-        child.on("close", async (code) => {
-          clearTimeout(timer);
-          out = out.replace(/\x1b\[[0-9;]*m/g, "");
-          const layout = /ARIA_LAYOUT (\{.*\})/.exec(out);
-          let issues: string[] = [];
-          try {
-            issues = layout ? (JSON.parse(layout[1]).issues as string[]) : [];
-          } catch {
-            issues = [];
-          }
-          const found = code === 0 ? await findMp4(path.join(dir, "media", name, "videos"), `${name}.mp4`) : null;
-          let video: string | null = null;
-          if (found) {
-            video = path.join(dir, `${name}.mp4`);
-            await copyFile(found, video);
-          }
-          const error = code === null ? `Rendering took longer than ${RENDER_TIMEOUT_MS / 1000} seconds and was stopped.` : out.split("\n").filter((l) => l.trim()).slice(-30).join("\n");
-          if (!video && /sudo/i.test(error) && /password|not allowed|no new privileges/i.test(error)) console.error(`[screen] sandbox user unavailable: ${error.slice(-300)}`);
-          resolve({ ok: Boolean(video), video, issues, error });
-        });
-      }),
-  );
+  return inSlot(async () => {
+    const ran = await runSandboxed([dir, file, name], dir, RENDER_TIMEOUT_MS);
+    const out = ran.out.replace(/\x1b\[[0-9;]*m/g, "");
+    const layout = /ARIA_LAYOUT (\{.*\})/.exec(out);
+    let issues: string[] = [];
+    try {
+      issues = layout ? (JSON.parse(layout[1]).issues as string[]) : [];
+    } catch {
+      issues = [];
+    }
+    const found = ran.code === 0 ? await findMp4(path.join(dir, "media", name, "videos"), `${name}.mp4`) : null;
+    let video: string | null = null;
+    if (found) {
+      video = path.join(dir, `${name}.mp4`);
+      await copyFile(found, video);
+    }
+    const error = ran.code === null ? `Rendering took longer than ${RENDER_TIMEOUT_MS / 1000} seconds and was stopped.` : out.split("\n").filter((l) => l.trim()).slice(-30).join("\n");
+    if (!video && /could not start|no answer|refused: not a render job/.test(error)) console.error(`[screen] slide renderer unavailable: ${error.slice(-300)}`);
+    return { ok: Boolean(video), video, issues, error };
+  });
 }
 
 /**
  * Is the sandbox in place? Runs the runner's check as the render user: Manim importable, and the
  * server's own environment (its keys) unreadable from there. Booleans only.
  */
-export function sandboxCheck(): Promise<{ separateUser: boolean; serverEnvHidden: boolean; manim: boolean; error?: string }> {
-  return new Promise((resolve) => {
-    const child = runner(["--check", String(process.pid)]);
-    let out = "";
-    child.stdout.on("data", (d) => (out += d));
-    child.stderr.on("data", (d) => (out += d));
-    const timer = setTimeout(() => child.kill("SIGKILL"), 60_000);
-    child.on("error", (error) => {
-      clearTimeout(timer);
-      resolve({ separateUser: false, serverEnvHidden: false, manim: false, error: error.message.slice(0, 120) });
-    });
-    child.on("close", () => {
-      clearTimeout(timer);
-      try {
-        const seen = JSON.parse(/\{.*\}/.exec(out)?.[0] ?? "") as { uid: number; serverEnvReadable: boolean; manim: boolean };
-        resolve({ separateUser: seen.uid !== process.getuid?.(), serverEnvHidden: !seen.serverEnvReadable, manim: seen.manim });
-      } catch {
-        resolve({ separateUser: false, serverEnvHidden: false, manim: false, error: out.trim().split("\n").slice(-1)[0]?.slice(0, 160) });
-      }
-    });
-  });
+export async function sandboxCheck(): Promise<{ separateUser: boolean; serverEnvHidden: boolean; manim: boolean; error?: string }> {
+  const { out } = await runSandboxed(["--check", String(process.pid)], undefined, 60_000);
+  try {
+    const seen = JSON.parse(/\{"uid".*?\}/.exec(out)?.[0] ?? "") as { uid: number; serverEnvReadable: boolean; manim: boolean };
+    return { separateUser: seen.uid !== process.getuid?.(), serverEnvHidden: !seen.serverEnvReadable, manim: seen.manim };
+  } catch {
+    return { separateUser: false, serverEnvHidden: false, manim: false, error: out.trim().split("\n").slice(-1)[0]?.slice(0, 160) };
+  }
 }
 
 async function findMp4(root: string, name: string): Promise<string | null> {

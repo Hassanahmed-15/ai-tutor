@@ -72,9 +72,13 @@ app.whenReady().then(async () => {
     check("board names the idea", state.title === "Pythagoras' theorem", state.title);
     check("Aria's words stream in", state.text.length > 60, state.text.slice(0, 60));
     check("slide video arrives from the server", /^\/api\/screen\/media\/.+\/slide-1\.mp4$/.test(state.video ?? ""), state.video);
-    await wait(2500);
-    const playing = await js(`(() => { const v = document.querySelector(".b-slide video"); return { t: v.currentTime, ready: v.readyState, w: v.videoWidth }; })()`);
-    check("slide video plays", playing.t > 0.5 && playing.w > 0, JSON.stringify(playing));
+    // Playing means its clock moves (it may have only just started when it arrived).
+    const clock = `(() => { const v = document.querySelector(".b-slide video"); return { t: v.currentTime, ready: v.readyState, w: v.videoWidth }; })()`;
+    await wait(1500);
+    const first = await js(clock);
+    await wait(1200);
+    const playing = await js(clock);
+    check("slide video plays", playing.t > first.t + 0.5 && playing.w > 0, `${first.t.toFixed(2)} s → ${playing.t.toFixed(2)} s, ${playing.w} px wide`);
     const png = (await contents.capturePage()).toPNG();
     fs.writeFileSync(path.join(shots, "screen-mark.png"), png);
 
