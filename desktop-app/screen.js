@@ -6,7 +6,7 @@
 // the apps underneath except while marking or over the board. Its page comes from the Aria website
 // (frontend/web/public/screen/), so it uses the app's own Aria sign-in and changes when the website
 // does; this file only captures the screen and passes the mouse to it.
-const { app, BrowserWindow, desktopCapturer, dialog, globalShortcut, ipcMain, screen, shell, systemPreferences } = require("electron");
+const { app, BrowserWindow, desktopCapturer, globalShortcut, ipcMain, screen, shell, systemPreferences } = require("electron");
 const path = require("node:path");
 
 const isMac = process.platform === "darwin";
@@ -38,6 +38,10 @@ function createOverlay() {
     fullscreenable: false,
     focusable: true,
     skipTaskbar: true,
+    // On a Mac a "panel" takes the mouse and keys without making Aria the front app, so marking
+    // over Chrome never brings Aria's own window up in front of it.
+    ...(isMac && !selfTest ? { type: "panel" } : {}),
+    acceptFirstMouse: true,
     enableLargerThanScreen: true,
     webPreferences: {
       preload: path.join(__dirname, "overlay-preload.js"),
@@ -113,8 +117,20 @@ async function startMark() {
   overlay.webContents.send("mark:start", { image, scale: display.scaleFactor });
   clickThrough(false);
   if (!overlay.isVisible()) overlay.showInactive();
-  app.focus({ steal: true });
-  overlay.focus();
+  escapeCancels(true);
+  if (isMac) {
+    // Never app.focus() here: on a Mac it raises every Aria window over the app being marked.
+    overlay.moveTop();
+  } else {
+    app.focus({ steal: true });
+    overlay.focus();
+  }
+}
+
+/** While marking, Esc cancels even though the overlay may not have the keyboard. */
+function escapeCancels(on) {
+  if (on && !globalShortcut.isRegistered("Escape")) globalShortcut.register("Escape", () => marking && overlay?.webContents.send("mark:cancel"));
+  if (!on && globalShortcut.isRegistered("Escape")) globalShortcut.unregister("Escape");
 }
 
 /**
@@ -122,17 +138,10 @@ async function startMark() {
  * on (macOS's own "Quit & Reopen" works too, but the student would have to find it).
  */
 function askPermission() {
-  overlay?.webContents.send("notice", isMac ? "Aria needs permission to see your screen. Turn on Aria in System Settings." : "Aria could not see the screen. Try again.");
+  overlay?.webContents.send("notice", isMac ? "Aria needs permission to see your screen: turn on Aria in the settings that just opened. Aria restarts by itself." : "Aria could not see the screen. Try again.");
   if (!isMac) return;
-  app.focus({ steal: true });
-  dialog
-    .showMessageBox({
-      type: "info",
-      message: "Aria needs to see your screen",
-      detail: "In System Settings → Privacy & Security → Screen & System Audio Recording, turn on Aria.\n\nAria restarts by itself as soon as the switch is on.",
-      buttons: ["Open System Settings", "Not now"],
-    })
-    .then(({ response }) => response === 0 && shell.openExternal(PRIVACY_PANE));
+  // Straight to the switch, with no Aria dialog: a dialog would bring Aria's window over the screen.
+  shell.openExternal(PRIVACY_PANE);
   watching ??= setInterval(() => {
     if (systemPreferences.getMediaAccessStatus("screen") !== "granted") return;
     clearInterval(watching);
@@ -142,13 +151,49 @@ function askPermission() {
 }
 
 ipcMain.on("overlay:interactive", (event, on) => {
-  if (isOverlay(event.sender) && !marking) clickThrough(!on);
+  if (isOverlay(event.sender) && !marking) pointerOnBoard(Boolean(on));
 });
 ipcMain.on("mark:ended", (event) => {
   if (!isOverlay(event.sender)) return;
   marking = false;
+  overBoard = false;
+  escapeCancels(false);
   clickThrough(true);
 });
+
+// On a Mac, while another app is in front, the click-through overlay hears only some mouse moves,
+// so it cannot tell when the pointer comes onto the board. Watch the pointer here instead and let
+// clicks reach the board (its question box, buttons) whenever the pointer is over it.
+let overBoard = false;
+let lastPoint = "";
+
+/**
+ * The pointer came onto the board (or left it). On a Mac the panel also takes the keyboard then:
+ * until it does, clicks on the board are dropped. A panel takes it without making Aria the front
+ * app, so Aria's own window stays behind the app being marked.
+ */
+function pointerOnBoard(on) {
+  overBoard = on;
+  clickThrough(!on);
+  if (on && isMac && !overlay.isFocused()) overlay.focus();
+}
+function watchPointer() {
+  setInterval(async () => {
+    if (!overlay || overlay.isDestroyed() || marking || !overlay.isVisible()) return;
+    const p = screen.getCursorScreenPoint();
+    const at = `${p.x},${p.y}`;
+    if (at === lastPoint) return;
+    lastPoint = at;
+    // Measured from the page's own place on the screen (the window's reported bounds can be off by
+    // the menu bar's height).
+    const over = await overlay.webContents
+      .executeJavaScript(
+        `(() => { const x = ${p.x} - window.screenX, y = ${p.y} - window.screenY; const big = document.querySelector("#big"); if (big && !big.hidden) return true; const board = document.querySelector("#board"); if (!board || board.hidden) return false; const r = board.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; })()`,
+      )
+      .catch(() => false);
+    if (!marking && over !== overBoard && overlay && !overlay.isDestroyed()) pointerOnBoard(over);
+  }, 60);
+}
 
 /**
  * Sets up the hotkey and the overlay. `ariaUrl` is the website the overlay page comes from.
@@ -160,6 +205,7 @@ function setUpScreenMarks({ ariaUrl, test = false }) {
   overlayUrl = `${new URL("/screen/overlay.html", ariaUrl).href}${query ? `?${query}` : ""}`;
   createOverlay();
   if (!test) hotkey = HOTKEYS.find((accel) => globalShortcut.register(accel, startMark)) ?? null;
+  if (isMac && !test) watchPointer();
   screen.on("display-removed", () => overlay?.setBounds(screen.getPrimaryDisplay().bounds));
   app.on("will-quit", () => globalShortcut.unregisterAll());
 }
