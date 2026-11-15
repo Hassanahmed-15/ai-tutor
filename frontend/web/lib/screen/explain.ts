@@ -26,9 +26,10 @@ How to explain:
 
 export type Explained = { concept: string; said: string };
 
-export async function explainMark(input: { crop: string; context: string | null; question: string; signal: AbortSignal; send: (e: Record<string, unknown>) => void }): Promise<Explained> {
-  const { crop, context, question, signal, send } = input;
-  const text = question ? `The student asks about it: "${question}"\n\nAnswer their question about what they marked.` : "Explain what they marked.";
+export async function explainMark(input: { crop: string; context: string | null; question: string; before?: string; signal: AbortSignal; send: (e: Record<string, unknown>) => void }): Promise<Explained> {
+  const { crop, context, question, before, signal, send } = input;
+  const earlier = before ? `You have already told them about it: """${before}"""\nBuild on that; do not repeat it unless they ask you to say it again.\n\n` : "";
+  const text = question ? `${earlier}The student asks about it (they may have said it aloud, so read past small speech-to-text slips): "${question}"\n\nAnswer their question about what they marked. The CONCEPT line names what your answer explains.` : "Explain what they marked.";
   const stream = await openai().chat.completions.create(
     {
       model: MODEL,

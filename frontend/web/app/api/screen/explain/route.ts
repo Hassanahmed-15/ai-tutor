@@ -15,11 +15,13 @@ export async function POST(req: Request) {
   if (!crop) return Response.json({ error: "No picture of the mark came with the request." }, { status: 400 });
   const context = dataImage(body.context);
   const question = cleanText(body.question, 300);
+  // A follow-up carries what Aria already said about this mark, so she builds on it.
+  const before = question ? cleanText(body.before, 1000) : "";
   return ndjson(req, async (send, signal) => {
     const run = runId();
     send({ t: "run", run });
     const started = Date.now();
-    const result = mock ? await mockExplain(send) : await spendAs(caller, "questions", () => explainMark({ crop, context, question, signal, send }));
+    const result = mock ? await mockExplain(send) : await spendAs(caller, "questions", () => explainMark({ crop, context, question, before, signal, send }));
     send({ t: "done", ...result, ms: Date.now() - started });
   });
 }

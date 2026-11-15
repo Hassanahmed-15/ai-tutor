@@ -98,6 +98,42 @@ app.whenReady().then(async () => {
     const png = (await contents.capturePage()).toPNG();
     fs.writeFileSync(path.join(shots, "screen-mark.png"), png);
 
+    // A spoken follow-up ("Aria, …"): asked about the same mark and drawn again.
+    const drawnBefore = state.sketch?.drawn ?? 0;
+    await js(`window.__testHeard("Hey Aria, why is c the longest side?")`);
+    let follow = null;
+    for (let i = 0; i < 30; i++) {
+      await wait(500);
+      follow = await js("window.__testState()");
+      if (follow.sketch?.drawn > 3 && follow.text.length > 60) break;
+    }
+    check("“Aria, …” asks a follow-up", follow.title === "why is c the longest side?", follow.title);
+    check("the follow-up is drawn again", manim || (follow.sketch?.drawn > 3 && follow.sketch.drawn <= drawnBefore + 40), JSON.stringify(follow.sketch));
+    await js(`window.__testHeard("I think the area is twelve")`);
+    await wait(800);
+    check("talk not addressed to Aria is ignored", (await js("window.__testState()")).title === follow.title);
+    fs.writeFileSync(path.join(shots, "screen-followup.png"), (await contents.capturePage()).toPNG());
+
+    // One click marks what is under it (the formula on the stand-in screen).
+    contents.send("mark:prepare");
+    await wait(300);
+    contents.send("mark:start", { image: picture, scale: 1 });
+    await wait(400);
+    const clicked = await js(`window.__testMark([[260, 340]])`);
+    const markBox = await js("window.__testMarkBox()");
+    const fits = markBox && markBox.left < 140 && markBox.right > 380 && markBox.right < 700 && markBox.top > 250 && markBox.bottom < 420;
+    check("a click marks the thing under it", clicked && fits, JSON.stringify(markBox && { l: Math.round(markBox.left), t: Math.round(markBox.top), r: Math.round(markBox.right), b: Math.round(markBox.bottom) }));
+    await wait(1500);
+    // A click on empty space marks nothing and keeps mark mode on.
+    contents.send("mark:prepare");
+    await wait(300);
+    contents.send("mark:start", { image: picture, scale: 1 });
+    await wait(400);
+    const empty = await js(`window.__testMark([[${Math.round(bounds.width * 0.8)}, ${Math.round(bounds.height * 0.8)}]])`);
+    check("a click on empty space marks nothing", !empty && (await js(`document.body.classList.contains("marking")`)));
+    await js(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }))`);
+    await wait(300);
+
     // A second mark replaces the first board.
     contents.send("mark:prepare");
     await wait(300);

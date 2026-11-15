@@ -4,7 +4,8 @@
 // student's drag on top of it is the mark, cut from that picture (mark.js) and explained on the tiny
 // blackboard (board.js). It is served by the Aria website, so it uses the app's own Aria sign-in.
 import { Board } from "./board.js";
-import { MIN_MARK_PX, bounds, drawStroke, pathLength, shotFrom, showVideo } from "./mark.js";
+import { MIN_MARK_PX, bounds, boxPoints, drawStroke, pathLength, regionAt, shotFrom, showVideo, snipBox } from "./mark.js";
+import { createListener } from "./listen.js";
 
 const params = new URLSearchParams(location.search);
 const MOCK = params.has("mock");
@@ -12,7 +13,7 @@ document.body.classList.toggle("debug", params.has("debug") || MOCK);
 const aria = window.aria ?? { on() {}, prepared() {}, setInteractive() {}, markEnded() {} };
 const $ = (sel) => document.querySelector(sel);
 
-const HINT = "Circle or underline anything · Esc to cancel";
+const HINT = "Click anything, or circle it · Esc to cancel";
 const inkCanvas = $("#ink");
 const ink = inkCanvas.getContext("2d");
 let frame = null; // the screen as it was when the hotkey was pressed
@@ -34,9 +35,45 @@ const board = new Board($("#board"), {
     clearMark();
     closeBig();
     setInteractive(false);
+    listener.stop();
   },
   onBigger: openBig,
+  onMic: () => {
+    // The mic light turns listening off and on; the choice is remembered.
+    const on = !listener.on;
+    try {
+      localStorage.setItem("aria-screen-mic", on ? "on" : "off");
+    } catch {
+      // Private storage: the choice lasts until the board closes.
+    }
+    if (on) listener.start();
+    else listener.stop();
+  },
 });
+
+// "Aria, …" while the board is open: asked and drawn again (listen.js). Off in mock tests unless ?listen.
+const listener = createListener({
+  speaking: () => board.voice.speaking,
+  onState: (state) => board.setMic(state),
+  onQuestion: (text) => {
+    if (!board.ask(text)) return;
+    board.p.ask.q.value = "";
+  },
+  onStop: ({ quiet } = {}) => {
+    // "Aria, stop", or just "Aria" (she stops talking and waits for the question).
+    board.hush();
+    if (quiet) board.setMic("waiting");
+  },
+});
+
+function micWanted() {
+  if (MOCK && !params.has("listen")) return false;
+  try {
+    return localStorage.getItem("aria-screen-mic") !== "off";
+  } catch {
+    return true;
+  }
+}
 
 const big = $("#big");
 const bigVideo = $("#big video");
@@ -164,6 +201,8 @@ function finishMark() {
   const shot = shotFrom(frame, ([x, y]) => [x * scale, y * scale], box, mark.points);
   if (!shot) return clearMark();
   board.explain(shot, { box, W: innerWidth, H: innerHeight });
+  if (micWanted()) listener.start();
+  else board.setMic("off");
   fadeMarkSoon();
   return true;
 }
@@ -190,10 +229,33 @@ window.addEventListener("pointermove", (e) => {
 window.addEventListener("pointerup", () => {
   if (!drawing) return;
   drawing = false;
-  // A click in mark mode means "never mind".
-  if (pathLength(mark.points) < MIN_MARK_PX) return cancel();
-  finishMark();
+  endMark();
 });
+
+/** The pointer went up: a click, a snip or a drawn mark. */
+function endMark() {
+  const [x, y] = mark.points[0];
+  if (pathLength(mark.points) < MIN_MARK_PX) {
+    // A click marks what is under it: the word, line, formula or picture there, boxed.
+    const found = regionAt(frame, scale, x, y, innerWidth, innerHeight);
+    if (!found) {
+      // Empty space: stay in mark mode and say what to do.
+      clearMark();
+      const hint = $("#hint");
+      hint.textContent = "Nothing there: click on a word, formula or picture · Esc to cancel";
+      clearTimeout(hint.timer);
+      hint.timer = setTimeout(() => (hint.textContent = HINT), 2500);
+      return;
+    }
+    mark.points = boxPoints(found);
+  } else {
+    // A quick corner-to-corner drag is a snip of that box.
+    const snip = snipBox(mark.points);
+    if (snip) mark.points = boxPoints(snip, 2);
+  }
+  drawMark();
+  return finishMark();
+}
 
 window.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
@@ -210,8 +272,11 @@ if (params.has("selftest")) {
   window.__testMark = (points) => {
     mark = { points };
     drawMark();
-    return Boolean(finishMark());
+    return Boolean(endMark());
   };
+  // A spoken follow-up, as if speech-to-text had just returned this text.
+  window.__testHeard = (text) => listener.heard(text);
+  window.__testMarkBox = () => (mark ? bounds(mark.points) : null);
   // Plays a clip through the board's own voice player; how long it took shows whether it really played.
   window.__testVoice = async (url) => {
     const blob = await (await fetch(url)).blob();

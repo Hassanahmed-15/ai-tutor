@@ -133,6 +133,10 @@ function createVoice({ mock, enabled, onStart = () => {} }) {
         });
       });
     },
+    /** True while she is saying something (the listener then needs a louder voice to count). */
+    get speaking() {
+      return Boolean((this.audio && !this.audio.paused) || window.speechSynthesis?.speaking);
+    },
     stop() {
       if (this.audio && !this.audio.paused) console.info("[voice] stopped mid-sentence");
       this.gen++;
@@ -149,7 +153,8 @@ function createVoice({ mock, enabled, onStart = () => {} }) {
 export class Board {
   /**
    * opts: mock, voiceOn(), slideOn(), stayOpen() (closing shows an idle board instead of hiding it),
-   * drawMode() ("pencil" or "manim"), onClose(), onSpend(), onBigger(url), onPop().
+   * drawMode() ("pencil" or "manim"), onClose(), onSpend(), onBigger(url), onPop(), onMic() (the
+   * microphone light was pressed).
    */
   constructor(el, opts = {}) {
     this.el = el;
@@ -162,6 +167,7 @@ export class Board {
       slide: $(".b-slide"),
       slideVideo: $(".b-slide video"),
       sketch: $(".b-sketch"),
+      mic: $(".b-mic"),
       slideState: $(".b-slide-state"),
       meta: $(".b-meta"),
       ask: $(".b-ask"),
@@ -185,6 +191,7 @@ export class Board {
       const act = e.target.closest("[data-act]")?.dataset.act;
       if (act === "close") this.close();
       else if (act === "pop") this.opts.onPop?.();
+      else if (act === "mic") this.opts.onMic?.();
       else if (act === "replay") {
         if (this.current?.sketch) return void this.current.sketch.replay();
         this.p.slideVideo.currentTime = 0;
@@ -198,8 +205,7 @@ export class Board {
     });
     this.p.ask.addEventListener("submit", (e) => {
       e.preventDefault();
-      const question = this.p.ask.q.value.trim();
-      if (question && this.current?.run) this.explain(this.current.shot, { box: this.current.box, question });
+      this.ask(this.p.ask.q.value);
     });
     // Drag the board by its heading.
     this.p.head.addEventListener("pointerdown", (e) => {
@@ -213,6 +219,41 @@ export class Board {
       view.addEventListener("pointermove", move);
       view.addEventListener("pointerup", () => view.removeEventListener("pointermove", move), { once: true });
     });
+  }
+
+  /** A follow-up about the same mark (typed, or said as "Aria, …"): answered and drawn afresh. */
+  ask(text) {
+    const question = String(text ?? "").trim();
+    const now = this.current;
+    if (!question || !now?.run) return false;
+    // What she has said about this mark so far, so the answer builds on it instead of repeating it.
+    const before = [now.before, now.said].filter(Boolean).join(" ").slice(-1000);
+    this.explain(now.shot, { box: now.box, question, before });
+    return true;
+  }
+
+  /** Stops her talking (the student said "Aria, stop" or just "Aria"). */
+  hush() {
+    this.voice.stop();
+    if (this.current) this.setOrb("idle");
+  }
+
+  /** The microphone light: "off" | "listening" | "hearing" | "waiting" | "blocked". */
+  setMic(state) {
+    const b = this.p.mic;
+    if (!b) return;
+    // Mock tests start with the microphone off and keep the light out of the way.
+    b.hidden = state === "off" && this.opts.mock && !b.dataset.used;
+    if (state !== "off") b.dataset.used = "1";
+    b.dataset.state = state;
+    b.title = {
+      listening: "Listening: say “Aria, …” to ask (click to turn off)",
+      hearing: "Hearing you…",
+      waiting: "Yes? Ask your question",
+      blocked: "No microphone: allow Aria in System Settings → Privacy & Security → Microphone",
+      off: "Microphone off (click to listen for “Aria, …”)",
+    }[state] ?? "";
+    this.p.ask.q.placeholder = state === "off" || state === "blocked" ? "Ask about this…" : state === "waiting" ? "Yes? I'm listening…" : "Ask, or say “Aria, …”";
   }
 
   get isOpen() {
@@ -299,10 +340,10 @@ export class Board {
   }
 
   /** shot: { crop, context }. Opens the board beside `box` (page pixels) when given. */
-  async explain(shot, { box, question, W, H } = {}) {
+  async explain(shot, { box, question, before, W, H } = {}) {
     this.current?.abort.abort();
     this.voice.stop();
-    const me = { abort: new AbortController(), run: null, shot, box, concept: "", said: "" };
+    const me = { abort: new AbortController(), run: null, shot, box, concept: "", said: "", before: before ?? "" };
     this.current = me;
     const p = this.p;
     const t0 = performance.now();
@@ -325,14 +366,15 @@ export class Board {
         fetch("/api/screen/explain", {
           method: "POST",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ crop: shot.crop, context: shot.context, question, mock: this.opts.mock }),
+          body: JSON.stringify({ crop: shot.crop, context: shot.context, question, before, mock: this.opts.mock }),
           signal: me.abort.signal,
         }),
         (ev) => {
           if (this.current !== me) return;
           if (ev.t === "run") me.run = ev.run;
-          else if (ev.t === "concept" && !question) {
-            p.title.textContent = ev.concept;
+          else if (ev.t === "concept") {
+            // A follow-up keeps the question as the board's title; the pencil board gets the idea.
+            if (!question) p.title.textContent = ev.concept;
             // The pencil board opens now with its heading, while she starts to speak.
             if (this.opts.slideOn() && this.opts.drawMode() === "pencil" && !/^unclear$/i.test(ev.concept)) this.openSketch(me).preTitle(ev.concept);
           }

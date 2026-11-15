@@ -77,3 +77,14 @@ body.debug .b-meta { display: block; }
 .sk-eq .katex-display { margin: 0; }
 .sk-nib { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%; background: #fff7c2; box-shadow: 0 0 8px 3px rgba(255, 228, 92, 0.5); opacity: 0; transition: opacity 0.35s; pointer-events: none; }
 .b-slide.sketch [data-act="bigger"] { display: none; }
+
+/* The microphone light in the heading: dim green while listening, bright while hearing, yellow when
+   she heard her name and waits for the question, red when there is no microphone. */
+.b-mic { display: inline-flex; align-items: center; }
+.b-mic[hidden] { display: none; }
+.b-mic[data-state="off"] { color: var(--muted); opacity: 0.6; }
+.b-mic[data-state="listening"] { color: #4ade80; opacity: 0.7; }
+.b-mic[data-state="hearing"] { color: #4ade80; opacity: 1; filter: drop-shadow(0 0 4px #4ade80); }
+.b-mic[data-state="waiting"] { color: #ffe45c; animation: talk 0.5s ease-in-out infinite alternate; }
+.b-mic[data-state="blocked"] { color: #f87171; }
+body.overlay .board.sketching { width: 460px; }
