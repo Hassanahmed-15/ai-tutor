@@ -286,6 +286,8 @@ export const FAMILIES = {
       "Counts are exact: the number of blocks, dots, squares, sections, branches, bars or objects equals the listed number.",
       "Probability trees run left to right, each branch carrying its probability as listed and each end its outcome.",
       "Charts are exactly proportional to the listed values.",
+      "EASY TO READ: one figure that shows only what this board teaches; at most six labels, large and clear, each next to what it names; plenty of white space; no background, no grid unless it is coordinate work, no extra shapes, lines or numbers.",
+      "Use the letters and values exactly as the working uses them, so the student can match the picture to each line of working.",
     ],
     style: "Clean textbook maths figure: thin even dark lines on white, flat fills in a few soft colours to tell parts apart, no shading and no decoration.",
     frame: "75%",

@@ -1,4 +1,5 @@
 import { CODE_DIAGRAM_STAGES, courseCodeDiagramsOff, offInCourses } from "./courseFigures";
+import { mathsLikeCoursesOn } from "./mathsCourse";
 
 /** Boards that are writing, not drawing: a course lesson keeps them as the planner wrote them. */
 const WRITTEN_STAGES = new Set<CanvasStage>(["compare", "equation", "code"]);
@@ -1411,7 +1412,11 @@ export function applyLessonVisualPolicy(
         const drawing = beat.stage === "illustration" || CODE_DIAGRAM_STAGES.has(beat.stage);
         const kind = beat.visualType;
         const seen = kind !== undefined && SEEN_KINDS.has(kind);
-        if (drawing && !seen && (kind !== undefined || (plannedStage && WRITTEN_STAGES.has(plannedStage)))) {
+        // A MATHS COURSE KEEPS EVERY DRAWING AS A PICTURE (owner, 2026-11-14: "I want ready-made diagrams for maths, no
+        // hand-drawn or pencil-drawn diagrams at all"): a shape, angle, graph or chart is never turned into plain
+        // working or written notes here; it becomes a gpt-image-2 picture below (lib/canvas/mathsCourse.ts).
+        const mathsDrawing = mathsLikeCoursesOn() && beat.subject === "maths";
+        if (drawing && !seen && !mathsDrawing && (kind !== undefined || (plannedStage && WRITTEN_STAGES.has(plannedStage)))) {
           const next: CanvasStage = plannedStage && WRITTEN_STAGES.has(plannedStage) ? plannedStage : kind === "comparison" ? "compare" : kind === "math" ? "equation" : "sketch";
           const written = next === "sketch";
           changes.push(`${beat.id}: ${beat.stage} → ${written ? "written notes" : next} (${kind ?? "planned as writing"}: no picture needed)`);
@@ -1427,6 +1432,10 @@ export function applyLessonVisualPolicy(
         } else if (beat.stage === "equation" && beat.figure) {
           changes.push(`${beat.id}: working beside the ${beat.figure} figure → working beside a gpt-image-2 picture`);
           Object.assign(beat, { figure: undefined, figureAsset: undefined, pictureBeside: true });
+        } else if (mathsDrawing && beat.stage === "equation" && !beat.pictureBeside && kind !== undefined && kind !== "math") {
+          // A maths course's working about something to SEE (the planner's visual is not pure symbols): its picture beside it.
+          changes.push(`${beat.id}: working about a ${kind} → working beside a gpt-image-2 picture (maths course)`);
+          Object.assign(beat, { pictureBeside: true });
         }
         continue;
       }

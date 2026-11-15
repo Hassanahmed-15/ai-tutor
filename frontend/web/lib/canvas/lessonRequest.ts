@@ -18,6 +18,7 @@ import { isCsTopic, isLabLookTopic } from "./subjectLook";
 import { asCodeLesson, asMaths, asMathsOrCs, courseLessonSubject, type LessonSubject } from "./lessonSubject";
 import { domainIsCs, domainIsLab } from "./subjectDomain";
 import { labVisualsOn, view3dPlanSection } from "./labVisuals";
+import { MATHS_STEP_BY_STEP, mathsLikeCoursesOn } from "./mathsCourse";
 import { teachingLine } from "../teachingQuestions";
 import { teachingOrdersOn } from "../teaching/courseOrders";
 import { CS_TEACHING as CS_TEACHING_ORDERED, MATHS_TEACHING, TEACHING_EXAMPLES, TEACHING_RULES } from "../teaching/lessonTypes";
@@ -253,7 +254,8 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   const ordered = Boolean(course) && teachingOrdersOn();
   const codeLesson = !strictDoc && !video && (typedPrompt ? typedCs : asCodeLesson(subject, () => isCsTopic(subject ? `${planWords} ${(curriculumDocumentOf(input)?.lesson?.learningGoals ?? []).join(" ")}` : planWords)));
   if (ordered) {
-    if (subject === "maths") lines.push("", MATHS_TEACHING);
+    // CANVAS_MATHS_LIKE_COURSES=on: maths keeps only the step-by-step rules on top of the course rules every subject gets.
+    if (subject === "maths") lines.push("", mathsLikeCoursesOn() ? MATHS_STEP_BY_STEP : MATHS_TEACHING);
     else if (codeLesson) lines.push("", CS_TEACHING_ORDERED);
   } else if (!strictDoc && !video && labLesson) lines.push("", MATHS_CS_TEACHING);
   // A TYPED LESSON IN ANY OTHER SUBJECT is taught as a course lesson is (owner, 2026-11-12: "make the courses change I

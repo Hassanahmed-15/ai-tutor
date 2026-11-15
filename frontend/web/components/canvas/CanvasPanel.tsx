@@ -18,6 +18,7 @@ import { stackAt } from "@/lib/canvas/callStack";
 import { SketchView } from "./SketchView";
 import { LabDrawingView } from "./LabDrawingView";
 import { LivingEquationView } from "./LivingEquationView";
+import { StepBuilderView } from "./StepBuilderView";
 import { SequenceView } from "./SequenceView";
 import { OsGanttView, OsMappingView, OsMemoryView, OsStatesView } from "./OsDiagramView";
 import type { CardStyle } from "@/lib/canvas/cardStyle";
@@ -668,6 +669,8 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
     case "blocks":
       return <BlocksView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} live={Number.isFinite(shownThrough)} reducedMotion={reducedMotion} said={partNamed(layout, focusId)} />;
     case "living":
+      // A maths course's working line under line (CANVAS_MATHS_LIKE_COURSES, lib/canvas/mathsCourse.ts); else one living line.
+      if (mark.stack) return <StepBuilderView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} reducedMotion={reducedMotion} />;
       return <LivingEquationView mark={mark} shownThrough={shownThrough} sentenceProgress={sentenceProgress} reducedMotion={reducedMotion} />;
     case "figure":
       return <FigureView mark={mark} chalk={Boolean(chalk)} focusId={focusId} shownThrough={shownThrough} />;

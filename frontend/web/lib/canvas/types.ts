@@ -584,6 +584,8 @@ export type CanvasBoardSpec = {
    * maths only): the current step's terms on one line that changes in place, earlier steps small above.
    */
   living?: boolean;
+  /** "stack": the working shown line under line, each step's change lit and its operation beside it (StepBuilderView). */
+  livingMode?: "stack";
   /** The course lesson's subject (lib/canvas/lessonSubject.ts), so the player never guesses it; absent elsewhere. */
   subject?: import("./lessonSubject").LessonSubject;
   heading: string;

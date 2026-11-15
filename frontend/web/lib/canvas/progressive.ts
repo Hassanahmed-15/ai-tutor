@@ -53,6 +53,7 @@ import { courseCoverageGaps, coverageMessage, requiredTermsOf, syllabusLost, typ
 import { mathsPicturesOn } from "./mathsPicture";
 import { mathsBoardContext, withMathsBoardWriting } from "./mathsPicturePrompt";
 import { labVisualsOn } from "./labVisuals";
+import { isCourseMaths, mathsLikeCoursesOn } from "./mathsCourse";
 import { withLabDrawing } from "./labDrawing";
 import { boardNotesOf, mathsEllipsis } from "./plan";
 import { dropRowsWhere, formulaNotes, narrationArithmetic, saysNothing } from "./equationCheck";
@@ -811,7 +812,7 @@ export async function writeCanvasBoard(args: {
   // THE LAB ENGINES on a board with a code figure, or one the planner put in 3-D (lib/canvas/labVisuals.ts,
   // only with CANVAS_LAB_VISUALS=on). Boards drawn by gpt-image-2 got theirs in illustrate() already.
   // A course lesson only when it is a maths course (its boards got their drawing in illustrate()).
-  const courseOk = !beat.course || beat.subject === "maths";
+  const courseOk = !beat.course || (beat.subject === "maths" && !mathsLikeCoursesOn());
   // Working with no drawing whose board before had one: that figure is offered to it (the drawing writer
   // draws it again beside the working when the working is about it — multiplying along a tree's paths).
   const before = index > 0 ? args.earlier[index - 1] : undefined;
@@ -831,7 +832,14 @@ export async function writeCanvasBoard(args: {
   }
   // ONE LIVING EQUATION for a maths board's working (components/canvas/LivingEquationView.tsx): the
   // board's own steps, shown changing in place. Not where a term is written over another (a condition over an arrow).
-  if (labVisualsOn() && mathsLesson && (!beat.course || beat.subject === "maths") && spec.stage.kind === "equation" && spec.stage.steps.length > 0 && !spec.stage.tokens.some((t) => t.on)) { spec.living = true; spec.stage = retimeLivingSteps(spec.stage, canvasSentences(beat.script)); }
+  // A maths COURSE with CANVAS_MATHS_LIKE_COURSES=on: the working as the step-by-step builder — each line under the last,
+  // the changed part lit and the operation beside it (components/canvas/StepBuilderView.tsx), on the same step timing.
+  const stepBuilder = mathsLikeCoursesOn() && isCourseMaths(beat);
+  if ((stepBuilder || (labVisualsOn() && mathsLesson && (!beat.course || beat.subject === "maths"))) && spec.stage.kind === "equation" && spec.stage.steps.length > 0 && !spec.stage.tokens.some((t) => t.on)) {
+    spec.living = true;
+    if (stepBuilder) spec.livingMode = "stack";
+    spec.stage = retimeLivingSteps(spec.stage, canvasSentences(beat.script));
+  }
   // THE FULL BOARD (lib/canvas/blocks.ts, CANVAS_BLOCKS=on): every sentence written out, in typed blocks — course
   // lessons, and every maths lecture, typed or from a PDF (owner, 2026-11-11: "a little more text, like it is now for maths").
   // Typed lessons in every other subject too (owner, 2026-11-12) — not computer science, which keeps its own boards.

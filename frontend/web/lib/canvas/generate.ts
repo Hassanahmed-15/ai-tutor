@@ -70,6 +70,7 @@ import { withBoardWriting, withCoursePicture, type CourseBoardContext } from "./
 import { mathsPicture, MathsPictureError, mathsPicturesOn, withMathsPicture } from "./mathsPicture";
 import { mathsBoardContext, withMathsBoardWriting, type MathsBoardContext } from "./mathsPicturePrompt";
 import { labVisualsOn } from "./labVisuals";
+import { isCourseMaths, MATHS_STEP_FIELDS, mathsLikeCoursesOn } from "./mathsCourse";
 import { withLabDrawing } from "./labDrawing";
 import { courseCodeDiagramsOff, offInCourses } from "./courseFigures";
 
@@ -231,6 +232,7 @@ function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanB
       : beat.interaction
         ? `"interaction": a "${beat.interaction}" interaction is REQUIRED on this board.`
         : `"interaction": null.`,
+    ...(mathsLikeCoursesOn() && isCourseMaths(beat) && beat.stage === "equation" ? [MATHS_STEP_FIELDS] : []),
     `"overview": ${beat.overview}.`,
     ...(beat.boardNotes?.length && beat.stage !== "exam" ? [`"notes": [] — the notes column is written for you from what Aria says, sentence by sentence; put everything else in the stage.`] : []),
     ...(CHANGE_OF_STATE.test(`${beat.title} ${beat.brief} ${beat.script}`) && (beat.stage === "flow" || beat.stage === "scene")
@@ -1357,7 +1359,8 @@ export async function illustrate(openai: OpenAI, userId: string, lectureId: stri
   // A MATHS COURSE lesson's board (owner, 2026-11-08: "for only maths in courses"): the same engines in
   // place of its gpt-image-2 picture, told the syllabus block the board teaches. Other course subjects keep
   // their pictures.
-  if (labVisualsOn() && beat.course && beat.subject === "maths" && course && (spec.stage.kind === "illustration" || (spec.stage.kind === "equation" && beat.pictureBeside))) {
+  // With CANVAS_MATHS_LIKE_COURSES=on a maths course draws like every course: its gpt-image-2 picture below (lib/canvas/mathsCourse.ts).
+  if (labVisualsOn() && !mathsLikeCoursesOn() && beat.course && beat.subject === "maths" && course && (spec.stage.kind === "illustration" || (spec.stage.kind === "equation" && beat.pictureBeside))) {
     const ctx: MathsBoardContext = { ...mathsBoardContext(course.lesson, beat), source: [course.syllabus, ...course.hints].filter(Boolean), mustShow: course.mustShow };
     const outcome: { nothing?: boolean } = {};
     const lab = await withLabDrawing(openai, withMathsBoardWriting(ctx, spec), beat, spec, log, { outcome }).catch((error) => {
