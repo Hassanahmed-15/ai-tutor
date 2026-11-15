@@ -15,6 +15,7 @@ import { CoursesDoor, LibraryDoor, MapDoor } from "@/components/pages/HomeDoors"
 import { setPendingLecture } from "@/lib/pendingLecture";
 import { peekPendingCurriculum, peekPendingTopic, takePendingCurriculum, takePendingTopic } from "@/lib/pendingTopic";
 import { PromptTiles } from "@/components/pages/PromptTiles";
+import { ScreenMarkCard } from "@/components/pages/ScreenMarkCard";
 import { findYouTubeLink } from "@/lib/youtube/videoUrl";
 import { YouTubeLauncher } from "@/components/pages/YouTubeLauncher";
 import { AriaMark } from "@/components/brand/AriaMark";
@@ -213,6 +214,9 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
             </div>
           </div>
         </form>
+
+        {/* Desktop app only: how to mark anything on the screen (closable). */}
+        {user && <div className="hud-materialize"><ScreenMarkCard /></div>}
 
         {/* Courses first and full width: the way in for most students. */}
         {user && <div className="hud-materialize"><CoursesDoor /></div>}

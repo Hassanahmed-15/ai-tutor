@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { BookOpen, MessageSquareText, Mic, Orbit, Play, Sparkles, X } from "lucide-react";
+import { BookOpen, MessageSquareText, Mic, MousePointerClick, Orbit, Play, Sparkles, X } from "lucide-react";
+import { markKeys, useDesktopApp } from "@/lib/desktopApp";
 
 /**
  * THE GUIDE: how Aria works, for someone who has never used her. Five steps, each an icon and one
@@ -23,6 +24,11 @@ export function guideSeen(): boolean {
 }
 
 export function GuideSheet({ onClose, onTry }: { onClose: () => void; onTry: (topic: string) => void }) {
+  // In the desktop app, one more step: marking the screen (components/pages/ScreenMarkCard.tsx).
+  const { desktop, mac } = useDesktopApp();
+  const steps = desktop
+    ? [...STEPS, { icon: <MousePointerClick size={18} strokeWidth={1.7} />, line: `Anywhere on your computer, press ${markKeys(mac).map((k) => k.split(" ").pop()).join("\u00a0+\u00a0")} and click or circle something: Aria explains and draws it. Say “Aria, …” to ask more.` }]
+    : STEPS;
   useEffect(() => {
     try { localStorage.setItem(GUIDE_SEEN_KEY, "1"); } catch { /* a blocked store just shows it again */ }
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -41,7 +47,7 @@ export function GuideSheet({ onClose, onTry }: { onClose: () => void; onTry: (to
           </button>
         </div>
         <ol className="flex flex-col gap-1 px-3">
-          {STEPS.map((step, i) => (
+          {steps.map((step, i) => (
             <li key={i} className="flex items-start gap-3.5 rounded-[var(--radius-lg)] px-3 py-3">
               <span aria-hidden="true" className="grid size-10 shrink-0 place-items-center rounded-full bg-[var(--accent-soft)] text-[var(--hud-cyan)]">{step.icon}</span>
               <span className="pt-1.5 text-[0.95rem] leading-snug text-[var(--hud-text)]">
