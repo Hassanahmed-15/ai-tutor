@@ -1,0 +1,93 @@
+{
+  "name": "aria-desktop",
+  "productName": "Aria",
+  "version": "1.1.0",
+  "description": "Aria, your AI tutor, as a desktop app",
+  "author": "Aria",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "env -u ELECTRON_RUN_AS_NODE electron .",
+    "icon": "env -u ELECTRON_RUN_AS_NODE electron build/make-icon.mjs",
+    "dist:mac": "env -u ELECTRON_RUN_AS_NODE electron-builder --mac",
+    "dist:win": "env -u ELECTRON_RUN_AS_NODE electron-builder --win",
+    "dist": "env -u ELECTRON_RUN_AS_NODE electron-builder --mac --win",
+    "test": "env -u ELECTRON_RUN_AS_NODE electron test/selftest.js",
+    "test:screen": "env -u ELECTRON_RUN_AS_NODE electron test/screen-selftest.js"
+  },
+  "devDependencies": {
+    "electron": "44.9.0",
+    "electron-builder": "26.0.12"
+  },
+  "build": {
+    "appId": "com.aria.tutor.desktop",
+    "productName": "Aria",
+    "copyright": "Aria",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "screen.js",
+      "overlay-preload.js",
+      "offline.html",
+      "build/icon.png"
+    ],
+    "mac": {
+      "category": "public.app-category.education",
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "Aria listens when you talk to her during a lesson.",
+        "NSCameraUsageDescription": "Aria can use the camera for the focus helper, only if you turn it on.",
+        "NSScreenCaptureUsageDescription": "Aria sees your screen only when you press Control-Option-A to mark something, so she can explain it."
+      }
+    },
+    "dmg": {
+      "title": "Install Aria",
+      "contents": [
+        {
+          "x": 140,
+          "y": 190,
+          "type": "file"
+        },
+        {
+          "x": 400,
+          "y": 190,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Aria",
+      "artifactName": "Aria-Setup-${version}.${ext}"
+    },
+    "afterPack": "build/after-pack.js"
+  }
+}

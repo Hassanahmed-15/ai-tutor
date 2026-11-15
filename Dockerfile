@@ -78,7 +78,19 @@ ENV NEXT_PUBLIC_REALTIME_TUTOR_ENABLED=$NEXT_PUBLIC_REALTIME_TUTOR_ENABLED
 WORKDIR /app/frontend/web
 RUN npm run build
 
-# ─── Stage 3: runtime ────────────────────────────────────────────────────────
+# ─── Stage 3: the screen-mark slide renderer's Python ────────────────────────
+# Screen marks from the desktop app (lib/screen/) draw a Manim slide. Manim's pycairo and ManimPango
+# compile against cairo and pango here; only the finished venv goes into the runtime image, not the
+# compilers. Same Debian and Python as the runtime stage, so the venv runs there unchanged.
+FROM node:22-bookworm-slim AS manim
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      python3 python3-venv python3-dev build-essential pkg-config libcairo2-dev libpango1.0-dev \
+    && rm -rf /var/lib/apt/lists/*
+COPY frontend/web/scripts/screen/requirements.txt /tmp/requirements-screen.txt
+RUN python3 -m venv /opt/manimenv \
+    && /opt/manimenv/bin/pip install --no-cache-dir -r /tmp/requirements-screen.txt
+
+# ─── Stage 4: runtime ────────────────────────────────────────────────────────
 FROM node:22-bookworm-slim AS runner
 WORKDIR /app
 
@@ -99,6 +111,9 @@ WORKDIR /app
 #                          their XML cannot reproduce themes, masters, SmartArt or native
 #                          charts — PowerPoint draws those itself. Absent, the app degrades to
 #                          that composed preview, so a broken install costs fidelity not uploads.
+#   libcairo2, libpango  — Manim, for the screen-mark slides (the venv comes from the manim stage)
+#   ffmpeg               — joins a screen-mark video's scenes with Aria's voice (lib/screen/video.ts)
+#   sudo                 — runs a slide's model-written code as the "slides" user (see below)
 RUN apt-get update && apt-get install -y --no-install-recommends \
       python3 python3-pip python3-venv \
       tesseract-ocr \
@@ -107,6 +122,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       fonts-crosextra-carlito fonts-crosextra-caladea \
       fonts-dejavu-core \
       libreoffice-impress \
+      libcairo2 libpango-1.0-0 libpangocairo-1.0-0 \
+      ffmpeg \
+      sudo \
       ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
@@ -129,6 +147,21 @@ ENV HOSTNAME=0.0.0.0
 # finds an RCE the run of the filesystem; this costs nothing to avoid.
 RUN groupadd --system --gid 1001 nodejs \
     && useradd --system --uid 1001 --gid nodejs nextjs
+
+# A screen-mark slide is Python an AI wrote from what a student marked, so it runs as its own user,
+# "slides" (scripts/screen/runner.py also sandboxes it). Another user's /proc/<pid>/environ is closed,
+# so a slide can never read the server's keys. The server may start exactly this one command as
+# "slides" and nothing else.
+RUN useradd --system --uid 1002 --gid nogroup --no-create-home --shell /usr/sbin/nologin slides \
+    && printf '%s\n' \
+      'Defaults:nextjs !use_pty, !syslog, !lecture' \
+      'nextjs ALL=(slides) NOPASSWD: /opt/manimenv/bin/python /app/frontend/web/scripts/screen/runner.py *' \
+      > /etc/sudoers.d/screen-slides \
+    && chmod 0440 /etc/sudoers.d/screen-slides \
+    && visudo -cf /etc/sudoers.d/screen-slides
+COPY --from=manim /opt/manimenv /opt/manimenv
+ENV SCREEN_MANIM_PYTHON=/opt/manimenv/bin/python
+ENV SCREEN_RENDER_AS=slides
 
 # Next's standalone output already contains the minimal node_modules it needs,
 # so nothing else is copied from the build stage.

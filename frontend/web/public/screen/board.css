@@ -1,0 +1,65 @@
+/* The tiny blackboard on the desktop overlay (from screen-lab/public/lab.css). */
+@font-face {
+  font-family: "Patrick Hand";
+  src: url("/fonts/PatrickHand-Regular.ttf") format("truetype");
+  font-display: block;
+}
+
+:root {
+  --app: #141414;
+  --panel: #1d1d1d;
+  --line: rgba(255, 255, 255, 0.12);
+  --text: #ececec;
+  --muted: #9a9a9a;
+  --chalk: #f4f4ee;
+  --yellow: #ffe45c;
+  --violet: #8b5cf6;
+  --hand: "Patrick Hand", "Comic Sans MS", cursive;
+  --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; }
+button { font: inherit; color: var(--text); cursor: pointer; }
+
+/* The tiny blackboard. */
+.board { position: absolute; width: 340px; background: #000; color: var(--chalk); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 14px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; cursor: default; z-index: 5; user-select: text; -webkit-user-select: text; }
+.board.show { animation: pop 0.14s ease-out; }
+@keyframes pop { from { opacity: 0; transform: scale(0.94) translateY(4px); } to { opacity: 1; transform: none; } }
+.b-head { display: flex; align-items: center; gap: 8px; padding: 8px 8px 4px 12px; cursor: grab; }
+.b-title { flex: 1; margin: 0; font: 22px/1.15 var(--hand); color: var(--yellow); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.b-btn { background: transparent; border: 0; color: var(--muted); padding: 2px 6px; border-radius: 6px; font-size: 15px; line-height: 1; }
+.b-btn:hover { background: #222; color: var(--chalk); }
+.b-text { font: 19px/1.3 var(--hand); padding: 2px 14px 8px; min-height: 52px; max-height: 150px; overflow-y: auto; white-space: pre-wrap; }
+.b-text.error { color: #ff9b9b; font: 13px/1.4 var(--ui); }
+.b-slide { position: relative; margin: 0 10px; aspect-ratio: 16 / 9; border-radius: 8px; border: 1px dashed rgba(255, 255, 255, 0.14); overflow: hidden; }
+.b-slide[hidden] { display: none; }
+.b-slide video { position: absolute; inset: 0; width: 100%; height: 100%; background: #000; }
+.b-slide video:not([src]) { visibility: hidden; }
+.b-slide-state { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 17px var(--hand); color: var(--muted); }
+.b-slide-state:empty { display: none; }
+.b-slide-tools { position: absolute; right: 4px; bottom: 4px; display: none; gap: 2px; }
+.b-slide.ready .b-slide-tools { display: flex; }
+.b-slide-tools .b-btn { background: rgba(0, 0, 0, 0.6); }
+.b-full { margin: 8px 10px 0; background: #111; border: 1px solid rgba(255, 228, 92, 0.5); color: var(--yellow); font: 17px var(--hand); border-radius: 8px; padding: 5px 10px; }
+.b-full:hover { background: #1c1c1c; }
+.b-full:disabled { opacity: 0.85; cursor: progress; }
+.b-full.ready { background: var(--yellow); color: #000; border-color: transparent; }
+.b-ask { display: flex; gap: 4px; padding: 8px 10px 2px; }
+.b-ask input { flex: 1; background: #111; border: 1px solid var(--line); border-radius: 8px; color: var(--chalk); padding: 5px 8px; font: 13px var(--ui); }
+.b-meta { color: #666; font-size: 11px; padding: 2px 12px 8px; font-variant-numeric: tabular-nums; min-height: 1em; }
+
+.orb { width: 14px; height: 14px; border-radius: 50%; flex: none; background: radial-gradient(circle at 35% 30%, #d8c8ff, var(--violet) 55%, #4c1d95); box-shadow: 0 0 10px rgba(139, 92, 246, 0.7); }
+.orb.thinking { animation: think 0.9s ease-in-out infinite; }
+.orb.talking { animation: talk 0.35s ease-in-out infinite alternate; }
+@keyframes think { 50% { transform: scale(0.7); opacity: 0.6; } }
+@keyframes talk { to { transform: scale(1.25); box-shadow: 0 0 16px rgba(139, 92, 246, 1); } }
+
+.big { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 20; }
+.big video { width: min(92vw, 1280px); max-height: 86vh; border-radius: 10px; background: #000; }
+.big video::cue { font: 22px/1.3 var(--ui); background: rgba(0, 0, 0, 0.75); color: #fff; }
+
+/* The footer holds timings for testing (?debug, ?mock); students never see it. */
+.b-meta { display: none; }
+body.debug .b-meta { display: block; }

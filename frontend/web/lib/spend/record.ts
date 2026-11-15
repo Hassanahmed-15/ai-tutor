@@ -101,6 +101,24 @@ export async function spendBetween(fromIso: string, toIso: string, userId?: stri
   return summarize(rows);
 }
 
+/** One account's priced spend under one tag since a moment (the screen-mark daily cap, lib/screen/limits.ts). */
+export async function spendForTagSince(tag: string, userId: string, fromIso: string): Promise<SpendSummary> {
+  const toIso = new Date().toISOString();
+  const c = await container();
+  if (!c) return summarize(state.recent.filter((r) => r.tag === tag && r.userId === userId && r.at >= fromIso));
+  const rows: Array<Pick<SpendEvent, "kind" | "model" | "usd">> = [];
+  for (const day of [...new Set([fromIso.slice(0, 10), toIso.slice(0, 10)])]) {
+    const { resources } = await c.items
+      .query<SpendEvent>(
+        { query: "SELECT c.kind, c.model, c.usd FROM c WHERE c.tag = @tag AND c.userId = @u AND c.at >= @from", parameters: [{ name: "@tag", value: tag }, { name: "@u", value: userId }, { name: "@from", value: fromIso }] },
+        { partitionKey: day },
+      )
+      .fetchAll();
+    rows.push(...resources);
+  }
+  return summarize(rows);
+}
+
 /** Every logged call on one UTC day (today by default), across the whole app. */
 export async function spendForDay(day = new Date().toISOString().slice(0, 10)): Promise<SpendSummary> {
   const c = await container();

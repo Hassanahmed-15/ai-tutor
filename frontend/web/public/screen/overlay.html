@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Aria: mark your screen</title>
+  <link rel="stylesheet" href="board.css">
+  <link rel="stylesheet" href="overlay.css">
+</head>
+<body class="overlay">
+  <canvas id="ink"></canvas>
+  <div id="hint" class="hint" hidden>Circle or underline anything · Esc to cancel</div>
+
+  <aside id="board" class="board" hidden>
+    <header class="b-head">
+      <span class="orb"></span>
+      <h2 class="b-title">Looking…</h2>
+      <button class="b-btn" data-act="close" title="Close (Esc)">×</button>
+    </header>
+    <div class="b-text"></div>
+    <div class="b-slide">
+      <video muted playsinline></video>
+      <div class="b-slide-state"></div>
+      <div class="b-slide-tools">
+        <button class="b-btn" data-act="replay" title="Play again">↻</button>
+        <button class="b-btn" data-act="bigger" title="Bigger">⤢</button>
+      </div>
+    </div>
+    <button class="b-full" data-act="video" hidden>Make a full video</button>
+    <form class="b-ask"><input name="q" placeholder="Ask about this…" autocomplete="off"><button class="b-btn" title="Ask">→</button></form>
+    <footer class="b-meta"></footer>
+  </aside>
+
+  <div id="big" class="big" hidden><video controls playsinline></video></div>
+  <script type="module" src="overlay.js"></script>
+</body>
+</html>

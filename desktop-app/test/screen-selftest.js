@@ -1,0 +1,102 @@
+// Runs the screen-mark overlay (screen.js) off screen with a stand-in picture of the screen: the mark,
+// the tiny board's words, the slide video, and a second mark replacing the first. Free: mock mode.
+// Run: ARIA_URL=http://localhost:3000 npm run test:screen   (a local Aria dev server must be running)
+process.env.ARIA_SCREEN_SELFTEST = "1";
+process.env.ARIA_SCREEN_MOCK = "1";
+const electron = require("electron");
+const { app, nativeImage } = electron;
+const path = require("node:path");
+const fs = require("node:fs");
+const os = require("node:os");
+
+const shots = path.join(os.homedir(), "aria-qa-images", "desktop-app");
+fs.mkdirSync(shots, { recursive: true });
+electron.shell.openExternal = async () => {};
+const results = [];
+const errors = [];
+const check = (name, ok, detail = "") => results.push(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? `  (${detail})` : ""}`);
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+app.on("web-contents-created", (_e, contents) => {
+  contents.on("console-message", (event) => {
+    if (event.level === "error") errors.push(`${event.message}`.slice(0, 240));
+  });
+});
+
+require("../main.js");
+const marks = require("../screen.js");
+
+/** A stand-in screen: a dark page with a formula on it, drawn in a hidden window. */
+async function standInScreen(width, height) {
+  const { BrowserWindow } = electron;
+  const w = new BrowserWindow({ show: false, width, height, webPreferences: { offscreen: true } });
+  await w.loadURL(`data:text/html,${encodeURIComponent('<body style="margin:0;background:#fff;font:64px Georgia;color:#111"><p style="position:absolute;left:120px;top:300px;margin:0">a² + b² = c²</p></body>')}`);
+  await wait(300);
+  const image = await w.webContents.capturePage();
+  w.destroy();
+  return image;
+}
+
+app.whenReady().then(async () => {
+  let overlay = null;
+  for (let i = 0; i < 40 && !(overlay = marks.overlayWindow()); i++) await wait(250);
+  try {
+    check("overlay window exists", Boolean(overlay));
+    const contents = overlay.webContents;
+    if (contents.isLoading()) await new Promise((r) => contents.once("did-finish-load", r));
+    const url = contents.getURL();
+    check("overlay page comes from the Aria website", url.includes("/screen/overlay.html"), url);
+    const js = (code) => contents.executeJavaScript(code);
+    check("overlay page is see-through", (await js("getComputedStyle(document.body).backgroundColor")) === "rgba(0, 0, 0, 0)");
+
+    const bounds = overlay.getBounds();
+    const picture = (await standInScreen(bounds.width, bounds.height)).toDataURL();
+    contents.send("mark:prepare");
+    await wait(300);
+    contents.send("mark:start", { image: picture, scale: 1 });
+    await wait(500);
+    check("mark mode shows its hint", await js(`!document.querySelector("#hint").hidden && document.body.classList.contains("marking")`));
+    const ring = Array.from({ length: 41 }, (_, i) => {
+      const a = (i / 40) * Math.PI * 2;
+      return [330 + 250 * Math.cos(a), 340 + 60 * Math.sin(a)];
+    });
+    check("a circle is taken as a mark", await js(`window.__testMark(${JSON.stringify(ring)})`));
+
+    let state = null;
+    for (let i = 0; i < 60; i++) {
+      state = await js("window.__testState()");
+      if (state.video) break;
+      await wait(500);
+    }
+    check("board opens beside the mark", Boolean(state.boardBox), JSON.stringify(state.boardBox && { x: Math.round(state.boardBox.x), y: Math.round(state.boardBox.y) }));
+    check("board names the idea", state.title === "Pythagoras' theorem", state.title);
+    check("Aria's words stream in", state.text.length > 60, state.text.slice(0, 60));
+    check("slide video arrives from the server", /^\/api\/screen\/media\/.+\/slide-1\.mp4$/.test(state.video ?? ""), state.video);
+    await wait(2500);
+    const playing = await js(`(() => { const v = document.querySelector(".b-slide video"); return { t: v.currentTime, ready: v.readyState, w: v.videoWidth }; })()`);
+    check("slide video plays", playing.t > 0.5 && playing.w > 0, JSON.stringify(playing));
+    const png = (await contents.capturePage()).toPNG();
+    fs.writeFileSync(path.join(shots, "screen-mark.png"), png);
+
+    // A second mark replaces the first board.
+    contents.send("mark:prepare");
+    await wait(300);
+    contents.send("mark:start", { image: picture, scale: 1 });
+    await wait(300);
+    check("a second mark opens a fresh board", await js(`window.__testMark(${JSON.stringify(ring)})`));
+    await wait(1200);
+    const second = await js("window.__testState()");
+    check("second board starts over", second.text.length < state.text.length, second.text.slice(0, 40));
+    // Esc closes the board.
+    await js(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }))`);
+    await wait(300);
+    check("Esc closes the board", (await js("window.__testState()")).boardBox === null);
+  } catch (err) {
+    check("self-test ran", false, err instanceof Error ? err.message : String(err));
+  }
+  results.push(`INFO  console errors: ${errors.length}`);
+  for (const e of [...new Set(errors)].slice(0, 10)) results.push(`      ${e}`);
+  console.log("\n" + results.join("\n"));
+  console.log(`\nscreenshot: ${path.join(shots, "screen-mark.png")}`);
+  app.exit(results.some((r) => r.startsWith("FAIL")) ? 1 : 0);
+});

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'" />
+    <title>Aria</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #0a0a14;
+        color: #ece8ff;
+        font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      main {
+        text-align: center;
+        padding: 24px;
+      }
+      .logo {
+        width: 72px;
+        height: 72px;
+      }
+      h1 {
+        font-size: 22px;
+        font-weight: 600;
+        margin: 20px 0 6px;
+      }
+      p {
+        margin: 0 0 24px;
+        color: #a79fc8;
+      }
+      button {
+        font: inherit;
+        font-weight: 600;
+        color: #fff;
+        background: #6c3fe6;
+        border: 0;
+        border-radius: 10px;
+        padding: 10px 28px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #7c52f0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#6C3FE6" />
+        <path d="M18 48L32 15L46 48" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="32" cy="40.5" r="4.3" fill="#fff" />
+      </svg>
+      <h1>Aria can't connect right now</h1>
+      <p>Check your internet connection. Aria will try again by itself.</p>
+      <button id="retry">Try again</button>
+    </main>
+    <script>
+      const target = new URLSearchParams(location.search).get("u");
+      const retry = () => {
+        if (target) location.href = target;
+      };
+      document.getElementById("retry").addEventListener("click", retry);
+      window.addEventListener("online", retry);
+      setTimeout(retry, 15000);
+    </script>
+  </body>
+</html>
