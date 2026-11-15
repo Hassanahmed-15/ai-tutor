@@ -15,7 +15,7 @@ import { CoursesDoor, LibraryDoor, MapDoor } from "@/components/pages/HomeDoors"
 import { setPendingLecture } from "@/lib/pendingLecture";
 import { peekPendingCurriculum, peekPendingTopic, takePendingCurriculum, takePendingTopic } from "@/lib/pendingTopic";
 import { PromptTiles } from "@/components/pages/PromptTiles";
-import { ScreenMarkCard } from "@/components/pages/ScreenMarkCard";
+import { ScreenMarkHelp } from "@/components/pages/ScreenMarkHelp";
 import { findYouTubeLink } from "@/lib/youtube/videoUrl";
 import { YouTubeLauncher } from "@/components/pages/YouTubeLauncher";
 import { AriaMark } from "@/components/brand/AriaMark";
@@ -144,6 +144,8 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           <span aria-hidden="true" className="aria-breathe absolute -right-1.5 -top-1.5 size-2.5 rounded-full bg-[var(--hud-cyan)]" />
         </span>
         <nav aria-label="Main" className="flex items-center gap-1 sm:gap-2">
+          {/* Desktop app only: how to mark anything on the screen, in a panel under this door. */}
+          {user && <ScreenMarkHelp />}
           <IconWord icon={<CircleHelp size={18} strokeWidth={1.7} />} word="Guide" onClick={() => setGuideOpen(true)} pressed={guideOpen} />
           <ThemeToggle />
           {user && (
@@ -214,9 +216,6 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
             </div>
           </div>
         </form>
-
-        {/* Desktop app only: how to mark anything on the screen (closable). */}
-        {user && <div className="hud-materialize"><ScreenMarkCard /></div>}
 
         {/* Courses first and full width: the way in for most students. */}
         {user && <div className="hud-materialize"><CoursesDoor /></div>}

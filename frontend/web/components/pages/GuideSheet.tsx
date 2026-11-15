@@ -24,7 +24,7 @@ export function guideSeen(): boolean {
 }
 
 export function GuideSheet({ onClose, onTry }: { onClose: () => void; onTry: (topic: string) => void }) {
-  // In the desktop app, one more step: marking the screen (components/pages/ScreenMarkCard.tsx).
+  // In the desktop app, one more step: marking the screen (components/pages/ScreenMarkHelp.tsx).
   const { desktop, mac } = useDesktopApp();
   const steps = desktop
     ? [...STEPS, { icon: <MousePointerClick size={18} strokeWidth={1.7} />, line: `Anywhere on your computer, press ${markKeys(mac).map((k) => k.split(" ").pop()).join("\u00a0+\u00a0")} and click or circle something: Aria explains and draws it. Say “Aria, …” to ask more.` }]
