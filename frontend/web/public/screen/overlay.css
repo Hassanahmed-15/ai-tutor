@@ -1,7 +1,11 @@
 /* The Mac overlay: see-through everywhere except the mark, the hint and the board. */
 html, body.overlay { background: transparent !important; }
 body.overlay { display: block; overflow: hidden; cursor: default; }
-body.overlay #ink { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; }
+body.overlay #ink { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; }
+/* While marking, the screen is shown frozen: the very picture Aria gets. Windows draws a playing
+   video washed out under a see-through window, and a frozen screen also keeps a moving page still. */
+#freeze { position: fixed; inset: 0; width: 100vw; height: 100vh; object-fit: fill; pointer-events: none; z-index: 0; user-select: none; -webkit-user-drag: none; }
+#freeze[hidden] { display: none; }
 body.overlay.marking { cursor: crosshair; }
 /* Mark mode shows a thin yellow frame round the screen, so it is clear the next drag is a mark. */
 body.overlay.marking::after { content: ""; position: fixed; inset: 0; border: 3px solid rgba(255, 228, 92, 0.75); pointer-events: none; }

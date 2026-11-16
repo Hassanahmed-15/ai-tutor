@@ -60,7 +60,10 @@ app.whenReady().then(async () => {
       const a = (i / 40) * Math.PI * 2;
       return [330 + 250 * Math.cos(a), 340 + 60 * Math.sin(a)];
     });
+    const frozen = await js(`(() => { const f = document.querySelector("#freeze"); return { shown: !f.hidden, w: f.getBoundingClientRect().width, full: innerWidth, loaded: f.complete && f.naturalWidth > 0 }; })()`);
+    check("the screen shows frozen while marking", frozen.shown && frozen.loaded && Math.abs(frozen.w - frozen.full) < 2, JSON.stringify(frozen));
     check("a circle is taken as a mark", await js(`window.__testMark(${JSON.stringify(ring)})`));
+    check("the live screen is back after the mark", await js(`document.querySelector("#freeze").hidden`));
 
     const manim = process.env.ARIA_SCREEN_DRAW === "manim";
     let state = null;

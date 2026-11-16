@@ -141,6 +141,8 @@ function fadeMarkSoon() {
 
 function setMarking(on) {
   marking = on;
+  // The frozen screen shows only while marking (see overlay.css #freeze).
+  if (!on) $("#freeze").hidden = true;
   document.body.classList.toggle("marking", on);
   $("#hint").textContent = HINT;
   $("#hint").hidden = !on;
@@ -167,6 +169,9 @@ aria.on("mark:start", async ({ image, scale: s }) => {
   frame = await loadImage(image);
   scale = s;
   interactive = true;
+  const freeze = $("#freeze");
+  freeze.src = image;
+  freeze.hidden = false;
   setMarking(true);
 });
 
