@@ -259,7 +259,7 @@ export function lintScene(scene: any, sentenceCount: number): string[] {
   return issues;
 }
 
-function parseJson(text: string): unknown {
+export function parseJson(text: string): unknown {
   const raw = String(text ?? "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
   try {
     return JSON.parse(raw);
@@ -280,10 +280,10 @@ function cerebrasClient() {
   return cerebras;
 }
 
-type Msg = ChatCompletionMessageParam;
+export type Msg = ChatCompletionMessageParam;
 
 /** One JSON reply: Qwen on Cerebras, or luna when Cerebras is missing or fails. */
-async function ask(messages: Msg[], signal: AbortSignal): Promise<{ text: string; model: string }> {
+export async function askJson(messages: Msg[], signal: AbortSignal): Promise<{ text: string; model: string }> {
   const fast = cerebrasClient();
   if (fast) {
     try {
@@ -323,7 +323,7 @@ export async function makeSketch(opts: { concept: string; said: string; crop: st
   ];
   const started = Date.now();
   let calls = 1;
-  let { text, model } = await ask(messages, signal);
+  let { text, model } = await askJson(messages, signal);
   let scene: unknown = null;
   let issues: string[] = [];
   try {
@@ -337,7 +337,7 @@ export async function makeSketch(opts: { concept: string; said: string; crop: st
   if (issues.length) {
     // One repair round, with the exact problems.
     calls++;
-    ({ text, model } = await ask([...messages, { role: "assistant", content: String(text).slice(0, 12000) }, { role: "user", content: `Fix these problems and return the whole corrected JSON object:\n- ${issues.join("\n- ")}` }], signal));
+    ({ text, model } = await askJson([...messages, { role: "assistant", content: String(text).slice(0, 12000) }, { role: "user", content: `Fix these problems and return the whole corrected JSON object:\n- ${issues.join("\n- ")}` }], signal));
     try {
       const fixed = parseJson(text);
       const left = lintScene(fixed, sentences.length);

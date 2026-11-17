@@ -91,12 +91,12 @@ button { font: inherit; color: var(--text); cursor: pointer; }
 .board:not(.sketching) .b-slide[hidden] + .b-cap { padding-top: 18px; }
 
 /* ---------- the row of follow-ups ---------- */
-.b-row { display: flex; gap: 8px; align-items: stretch; }
+.b-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; }
 .b-chip { height: 44px; padding: 0 16px; border-radius: 15px; border: 1px solid var(--line); background: var(--glass); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); font: 600 13.5px var(--ui); color: var(--text); white-space: nowrap; flex: none; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3); }
 .b-chip:hover { background: rgba(40, 34, 64, 0.92); border-color: rgba(167, 139, 250, 0.4); }
 .b-full:disabled { opacity: 0.85; cursor: progress; }
 .b-full.ready { background: var(--violet); border-color: transparent; color: #fff; }
-.b-ask { flex: 1; min-width: 150px; display: flex; align-items: center; gap: 6px; height: 44px; padding: 0 6px 0 14px; border-radius: 15px; border: 1px solid var(--line); background: var(--glass); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3); }
+.b-ask { flex: 1 1 210px; min-width: 0; display: flex; align-items: center; gap: 6px; height: 44px; padding: 0 6px 0 14px; border-radius: 15px; border: 1px solid var(--line); background: var(--glass); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3); }
 .b-ask:focus-within { border-color: rgba(167, 139, 250, 0.55); }
 .b-ask input { flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: var(--text); font: 500 13.5px var(--ui); }
 .b-ask input::placeholder { color: var(--faint); }
@@ -131,3 +131,30 @@ body.debug .b-meta { display: block; }
 .b-mic[data-state="waiting"] { color: #111; background: var(--yellow); animation: pulse 0.9s ease-in-out infinite alternate; }
 .b-mic[data-state="blocked"] { color: #f87171; }
 @keyframes pulse { to { box-shadow: 0 0 0 6px rgba(255, 228, 92, 0.25); } }
+/* "Try it" (play.js): the picture, its live numbers, and big friendly sliders, on the black sheet. */
+.pl { position: relative; color: #f4f2ff; font-family: Manrope, system-ui, sans-serif; }
+.pl-stage { padding: 6px 10px 0; }
+.pl-svg { display: block; width: 100%; height: auto; }
+.pl-read { display: flex; flex-wrap: wrap; gap: 8px; padding: 6px 20px 2px; min-height: 8px; }
+.pl-chip { display: inline-flex; gap: 6px; align-items: baseline; padding: 5px 11px; border-radius: 10px; background: rgba(255, 255, 255, 0.06); font: 600 13.5px Manrope, sans-serif; color: #fff; font-variant-numeric: tabular-nums; }
+.pl-chip b { font-weight: 600; color: #a7a3c2; }
+.pl-formula { flex-basis: 100%; font: 22px "Patrick Hand", cursive; color: #f4f4ee; padding: 2px 2px 0; }
+.pl-controls { display: grid; gap: 10px; padding: 12px 20px 14px; }
+.pl-slider { display: grid; grid-template-columns: minmax(90px, max-content) 1fr 70px; align-items: center; gap: 14px; font: 600 13.5px Manrope, sans-serif; color: #cfcbe6; }
+.pl-val { text-align: right; color: #fff; font-variant-numeric: tabular-nums; }
+.pl-slider input { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 8px; background: linear-gradient(90deg, rgba(167, 139, 250, 0.55), rgba(255, 255, 255, 0.12)); outline: none; cursor: pointer; }
+.pl-slider input::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 4px solid #8b5cf6; box-shadow: 0 4px 14px rgba(139, 92, 246, 0.6); cursor: grab; }
+.pl-slider input:active::-webkit-slider-thumb { cursor: grabbing; transform: scale(1.08); }
+/* the goal is met while dragging: the thumb glows green; once answered, the whole board says so */
+.pl.near .pl-slider input::-webkit-slider-thumb { border-color: #4ade80; box-shadow: 0 0 0 6px rgba(74, 222, 128, 0.2); }
+.pl.solved .pl-svg { animation: pl-yes 0.6s ease; }
+@keyframes pl-yes { 40% { filter: drop-shadow(0 0 14px rgba(74, 222, 128, 0.6)); } }
+
+/* ---------- TRY IT on the sheet (play.js) ---------- */
+.b-cap[hidden], .b-play[hidden] { display: none; }
+.b-play-ask { display: flex; gap: 10px; align-items: flex-start; padding: 18px 22px 2px; font: 600 16.5px/1.45 var(--ui); color: #fff; }
+.b-tag { flex: none; margin-top: 2px; font: 700 11px var(--ui); letter-spacing: 0.1em; text-transform: uppercase; color: #111; background: var(--yellow); border-radius: 999px; padding: 3px 9px; }
+.b-play-say { padding: 0 22px 18px; font: 600 15px/1.45 var(--ui); min-height: 18px; }
+.b-play-say.good { color: #9be59b; }
+.b-play-say.hint { color: #ffb36b; }
+.b-try { color: var(--yellow); }

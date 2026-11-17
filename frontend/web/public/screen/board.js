@@ -5,6 +5,7 @@
 // default) or a one-slide Manim video plays (/api/screen/slide, with ?draw=manim). The server keeps
 // nothing between calls, so each call carries the mark's picture and what Aria said.
 import { Sketch } from "./sketch.js";
+import { Play } from "./play.js";
 
 /** Reads a newline-delimited JSON response, one event at a time. */
 export async function readEvents(responsePromise, onEvent) {
@@ -196,6 +197,11 @@ export class Board {
       full: $(".b-full"),
       status: $(".b-status"),
       cap: $(".b-cap"),
+      play: $(".b-play"),
+      playAsk: $(".b-play-ask .q"),
+      playHost: $(".b-play-host"),
+      playSay: $(".b-play-say"),
+      tryBtn: $(".b-try"),
     };
     this.current = null; // the mark being explained: { abort, run, shot, box }
     this.voice = createVoice({
@@ -203,7 +209,7 @@ export class Board {
       enabled: () => this.opts.voiceOn(),
       onStart: (idx, ms) => {
         const me = this.current;
-        if (!me) return;
+        if (!me || me.playMode) return;
         me.spoken = idx;
         (me.msOf ??= {})[idx] = ms;
         me.sketch?.sentence(idx, ms);
@@ -225,7 +231,10 @@ export class Board {
         this.p.slideVideo.currentTime = 0;
         this.p.slideVideo.play().catch(() => {});
       } else if (act === "bigger") this.opts.onBigger?.(this.p.slideVideo.currentSrc || this.p.slideVideo.src);
-      else if (act === "video") {
+      else if (act === "try") {
+        const me = this.current;
+        if (me?.play) me.playMode ? this.showBoard(me) : this.showPlay(me, !me.playView);
+      } else if (act === "video") {
         const made = this.current?.video;
         if (made?.url) this.opts.onBigger?.(made.url, made.vtt);
         else if (this.current?.run && !made) this.makeVideo(this.current);
@@ -285,6 +294,82 @@ export class Board {
     cap.replaceChildren(...parts);
   }
 
+  // ── TRY IT ──────────────────────────────────────────────────────────────────────────────────
+
+  /** Asks for the challenge while she is still explaining; it shows once she has finished. */
+  async fetchPlay(me, scene) {
+    try {
+      await readEvents(
+        fetch("/api/screen/play", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ...this.markOf(me), scene }), signal: me.abort.signal }),
+        (ev) => {
+          if (this.current !== me || ev.t !== "done") return;
+          this.opts.onSpend?.();
+          if (!ev.play) return;
+          me.play = ev.play;
+          this.p.tryBtn.hidden = false;
+          this.maybeStartPlay(me);
+        },
+      );
+    } catch (err) {
+      if (err?.name !== "AbortError") console.warn(`[play] ${err?.message ?? err}`);
+    }
+  }
+
+  maybeStartPlay(me) {
+    if (this.current !== me || !me.play || !me.voiceDone || me.playStarted) return;
+    me.playStarted = true;
+    setTimeout(() => this.current === me && !me.playMode && this.showPlay(me, true), 900);
+  }
+
+  /** The sheet turns into the challenge; she says the task. */
+  showPlay(me, speakAsk) {
+    const p = this.p;
+    me.playMode = true;
+    if (!me.playView) {
+      p.playAsk.textContent = me.play.challenge?.ask ?? "";
+      p.playSay.textContent = "";
+      p.playSay.className = "b-play-say";
+      me.playView = new Play(p.playHost, me.play, {
+        onGoal: (text) => this.playSay(me, text, "good", true),
+        onMiss: (n, hint) => (n >= 2 ? this.playSay(me, hint, "hint", true) : this.playSay(me, "Not quite: try again.", "hint", false)),
+      });
+    }
+    p.slide.hidden = true;
+    p.cap.hidden = true;
+    p.play.hidden = false;
+    p.tryBtn.textContent = "◀ Board";
+    if (speakAsk) this.speakLine(me, me.play.challenge?.ask ?? "");
+    this.renderStatus();
+  }
+
+  /** Back to the drawing (the challenge keeps its place). */
+  showBoard(me) {
+    const p = this.p;
+    me.playMode = false;
+    p.play.hidden = true;
+    p.slide.hidden = false;
+    p.cap.hidden = false;
+    p.tryBtn.textContent = "✦ Try it";
+    this.renderStatus();
+  }
+
+  playSay(me, text, kind, speak) {
+    if (this.current !== me) return;
+    this.p.playSay.className = `b-play-say ${kind}`;
+    this.p.playSay.textContent = text;
+    if (speak) this.speakLine(me, text);
+    this.renderStatus();
+  }
+
+  /** One line in her voice (the challenge, a hint, praise). */
+  speakLine(me, text) {
+    if (!text || this.current !== me) return;
+    this.voice.stop();
+    this.setOrb("talking");
+    this.voice.feed(`${text} `);
+    this.voice.end(() => this.current === me && this.setOrb("idle"));
+  }
+
   /** The capsule's second line: what she is doing now. */
   renderStatus() {
     const s = this.p.status;
@@ -294,6 +379,7 @@ export class Board {
     const n = sentencesOf(this.p.text.textContent).length;
     const mic = this.p.mic?.dataset.state;
     if (this.p.text.classList.contains("error")) s.textContent = "Something went wrong";
+    else if (me?.playMode) s.textContent = me.playView?.solved ? "Solved! Ask more, or mark something else" : state === "talking" ? "Your turn…" : "Your turn · drag to answer";
     else if (state === "thinking") s.textContent = me?.title ? "Thinking about it…" : "Looking at what you marked…";
     else if (state === "talking") s.textContent = me?.spoken && n ? `Explaining · ${Math.min(me.spoken, n)} of ${n}` : "Explaining…";
     else if (mic === "waiting") s.textContent = "Yes? Ask your question";
@@ -394,6 +480,14 @@ export class Board {
     this.p.slide.hidden = state === "off";
     this.sketchView?.destroy();
     this.sketchView = null;
+    if (this.p.play) {
+      this.p.play.hidden = true;
+      this.p.playHost.replaceChildren();
+      this.p.playSay.textContent = "";
+      this.p.cap.hidden = false;
+      this.p.tryBtn.hidden = true;
+      this.p.tryBtn.textContent = "✦ Try it";
+    }
     if (this.p.sketch) this.p.sketch.hidden = true;
     this.p.slide.classList.remove("sketch");
     this.el.classList.remove("sketching");
@@ -476,6 +570,7 @@ export class Board {
               this.setOrb("idle");
               this.renderCap();
               me.sketch?.finish();
+              this.maybeStartPlay(me);
             });
             if (!this.opts.voiceOn()) this.setOrb("idle");
             const clear = !/^unclear$/i.test(ev.concept ?? "");
@@ -528,6 +623,8 @@ export class Board {
             me.sketch = view;
             p.slide.classList.add("ready");
             if (first) this.addMeta(`board in ${((performance.now() - t0) / 1000).toFixed(1)} s`);
+            // The Try-it challenge is written meanwhile, from what she said and this board.
+            if (first) this.fetchPlay(me, ev.scene);
             if (me.voiceDone) view.finish();
             else view.sentence(me.spoken ?? 1, 0);
             window.__sketchReport = view.report;

@@ -46,6 +46,12 @@
           <button class="b-btn" data-act="close" title="Close (Esc)"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></button>
         </div>
       </div>
+      <!-- TRY IT: after she explains, the sheet becomes a challenge to solve by dragging (play.js). -->
+      <div class="b-play" hidden>
+        <div class="b-play-ask"><span class="b-tag">Your turn</span><span class="q"></span></div>
+        <div class="b-play-host"></div>
+        <div class="b-play-say" aria-live="polite"></div>
+      </div>
       <div class="b-cap" aria-live="polite"></div>
       <div class="b-text"></div>
     </div>
@@ -54,6 +60,7 @@
       <button class="b-chip" data-ask="simpler">Simpler</button>
       <button class="b-chip" data-ask="example">Example</button>
       <button class="b-chip" data-ask="quiz">Quiz me</button>
+      <button class="b-chip b-try" data-act="try" hidden>✦ Try it</button>
       <button class="b-chip b-full" data-act="video" hidden>▶ Video</button>
       <form class="b-ask"><input name="q" placeholder="Ask about this…" autocomplete="off"><button class="b-send" title="Ask"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form>
     </div>

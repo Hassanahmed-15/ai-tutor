@@ -312,6 +312,23 @@ if (params.has("selftest")) {
   };
   // A spoken follow-up, as if speech-to-text had just returned this text.
   window.__testHeard = (text) => listener.heard(text);
+  // Solves the Try-it challenge the way a student would: slider positions, then let go.
+  window.__testSolvePlay = () => {
+    const play = board.current?.playView;
+    if (!play) return false;
+    play.judge(); // a wrong first answer
+    const ps = play.params;
+    const stops = (q) => Array.from({ length: Math.round((q.max - q.min) / (q.step ?? 1)) + 1 }, (_, i) => q.min + i * (q.step ?? 1));
+    for (const a of stops(ps[0])) for (const b of ps[1] ? stops(ps[1]) : [null]) {
+      play.set(ps[0].id, a);
+      if (ps[1]) play.set(ps[1].id, b);
+      if (play.met()) {
+        play.judge();
+        return play.solved;
+      }
+    }
+    return false;
+  };
   window.__testMarkBox = () => (mark ? bounds(mark.points) : null);
   // Plays a clip through the board's own voice player; how long it took shows whether it really played.
   window.__testVoice = async (url) => {
@@ -336,6 +353,8 @@ if (params.has("selftest")) {
     text: board.p.text.textContent,
     meta: board.p.meta.textContent,
     video: board.p.slideVideo.getAttribute("src"),
+    // Try it: shown, solved, the task and what she said back.
+    play: { shown: !board.p.play.hidden, ready: Boolean(board.current?.play), solved: Boolean(board.current?.playView?.solved), ask: board.p.playAsk.textContent, say: board.p.playSay.textContent },
     // The pencil board: how many of its strokes and words are on the board, and its layout check.
     sketch: board.sketchView
       ? {

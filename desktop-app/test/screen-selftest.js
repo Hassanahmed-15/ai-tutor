@@ -101,6 +101,22 @@ app.whenReady().then(async () => {
     const png = (await contents.capturePage()).toPNG();
     fs.writeFileSync(path.join(shots, "screen-mark.png"), png);
 
+    // Try it: once she has finished, the sheet becomes a challenge solved by dragging.
+    let play = null;
+    for (let i = 0; i < 80 && !manim; i++) {
+      play = (await js("window.__testState()")).play;
+      if (play.shown) break;
+      await wait(500);
+    }
+    if (!manim) {
+      check("Try it appears after she explains", play?.shown && play.ask.length > 10, play?.ask);
+      const solvedIt = await js("window.__testSolvePlay()");
+      await wait(600);
+      const after = (await js("window.__testState()")).play;
+      check("Try it judges the answer and praises it", solvedIt && after.solved && /twenty-five/.test(after.say), after.say);
+      fs.writeFileSync(path.join(shots, "screen-try-it.png"), (await contents.capturePage()).toPNG());
+    }
+
     // A spoken follow-up ("Aria, …"): asked about the same mark and drawn again.
     const drawnBefore = state.sketch?.drawn ?? 0;
     await js(`window.__testHeard("Hey Aria, why is c the longest side?")`);
