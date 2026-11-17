@@ -15,7 +15,18 @@
   <canvas id="ink"></canvas>
   <!-- The spotlight: the screen dims round the mark while Aria explains it. -->
   <div id="spot" aria-hidden="true"></div>
-  <div id="hint" class="hint" hidden>Circle or underline anything · Esc to cancel</div>
+  <!-- Mark mode's capsule: the three tools (keys 1 2 3), what to do, then Undo, Explain and cancel. -->
+  <div id="hint" class="hint" hidden>
+    <div class="tools" role="toolbar" aria-label="How to mark">
+      <button type="button" class="tool" data-tool="pencil" title="Pencil: circle or underline (1)"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4zM14 6l3 3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Pencil</span></button>
+      <button type="button" class="tool" data-tool="box" title="Box: drag a rectangle (2)"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2" stroke-dasharray="3.5 2.5" fill="none"/></svg><span>Box</span></button>
+      <button type="button" class="tool" data-tool="highlight" title="Highlight: drag over the words (3)"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3" y="9" width="18" height="7" rx="1.5" fill="currentColor" opacity="0.45"/><path d="M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Highlight</span></button>
+    </div>
+    <span class="hint-t">Circle or underline anything · Esc to cancel</span>
+    <button type="button" class="hint-btn hint-undo" data-hint="undo" title="Undo the last mark (Backspace)" hidden><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M9 14L4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button type="button" class="hint-btn hint-go" data-hint="explain" title="Explain what I marked (Enter)" hidden>Explain <kbd>↵</kbd></button>
+    <button type="button" class="hint-btn hint-x" data-hint="cancel" title="Cancel (Esc)"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></button>
+  </div>
 
   <!--
     THE ISLAND LOOK (2026-11-17, owner's pick of three): a capsule at the top of the screen says what

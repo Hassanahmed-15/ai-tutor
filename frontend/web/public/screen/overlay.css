@@ -11,7 +11,25 @@ body.overlay.marking { cursor: crosshair; }
 body.overlay.marking::after { content: ""; position: fixed; inset: 0; border: 3px solid rgba(255, 228, 92, 0.75); pointer-events: none; }
 /* The mark-mode hint: a black capsule at the top, where Aria's capsule appears afterwards. */
 .hint { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; height: 42px; background: #000; color: #fff; border-radius: 999px; padding: 0 18px 0 14px; font: 600 14px var(--ui); pointer-events: none; z-index: 10; box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 228, 92, 0.45); }
-.hint::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px rgba(255, 228, 92, 0.22); }
+.hint::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px rgba(255, 228, 92, 0.22); flex: none; }
+/* The tools and buttons show (and take clicks) only in mark mode; a notice outside it is text only. */
+.hint .tools, .hint .hint-btn { display: none; }
+body.marking .hint { pointer-events: auto; cursor: default; height: 46px; padding: 0 6px 0 14px; max-width: calc(100vw - 32px); }
+body.marking .hint .tools { display: flex; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); flex: none; }
+body.marking .hint .hint-btn:not([hidden]) { display: inline-flex; }
+.hint-t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.hint button { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 32px; border-radius: 999px; color: rgba(255, 255, 255, 0.72); font: 600 13px var(--ui); transition: background 0.15s, color 0.15s; }
+.hint button:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+.hint button:focus-visible { outline: 2px solid var(--yellow); outline-offset: 1px; }
+.hint .tool { padding: 0 12px 0 10px; }
+.hint .tool[aria-pressed="true"] { background: var(--yellow); color: #000; }
+.hint .hint-btn { width: 32px; flex: none; }
+.hint .hint-go { width: auto; padding: 0 12px 0 14px; background: var(--yellow); color: #000; }
+.hint .hint-go:hover { background: #fff1a0; color: #000; }
+.hint .hint-go kbd { font: 700 11px var(--ui); opacity: 0.6; }
+/* Narrow screens: the tools keep their icons, the words go. */
+@media (max-width: 760px) { .hint .tool span { display: none; } .hint .tool { padding: 0 9px; } }
+body.overlay.marking.tool-highlight { cursor: text; }
 /* The board scales with the screen: big enough to read across a room, never wider than 640 px. */
 body.overlay .board { position: fixed; width: clamp(460px, 40vw, 640px); }
 /* THE SPOTLIGHT: while Aria explains, the screen dims round the mark (overlay.js sets the ellipse). */

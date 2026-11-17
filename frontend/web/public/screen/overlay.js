@@ -4,7 +4,7 @@
 // student's drag on top of it is the mark, cut from that picture (mark.js) and explained on the tiny
 // blackboard (board.js). It is served by the Aria website, so it uses the app's own Aria sign-in.
 import { Board } from "./board.js";
-import { MIN_MARK_PX, bounds, boxPoints, drawStroke, pathLength, regionAt, shotFrom, showVideo, snipBox } from "./mark.js";
+import { MIN_MARK_PX, boxPoints, dragRect, drawDragBox, drawMarkOn, marksBounds, pathLength, regionAt, shotFrom, showVideo, snipBox } from "./mark.js";
 import { createListener } from "./listen.js";
 
 const params = new URLSearchParams(location.search);
@@ -13,14 +13,31 @@ document.body.classList.toggle("debug", params.has("debug") || MOCK);
 const aria = window.aria ?? { on() {}, prepared() {}, setInteractive() {}, markEnded() {} };
 const $ = (sel) => document.querySelector(sel);
 
-const HINT = "Click anything, or circle it · Esc to cancel";
+// THE TOOLS (owner, 2026-11-17): pencil, box or highlighter, picked in the capsule or with 1 2 3,
+// remembered. Marks add up until Explain (or Enter); a click with any tool marks the word under it.
+const TOOLS = ["pencil", "box", "highlight"];
+const TOOL_HINT = {
+  pencil: "Circle or underline anything",
+  box: "Drag a box round anything",
+  highlight: "Drag over the words to highlight",
+};
+let tool = "pencil";
+try {
+  const saved = localStorage.getItem("aria-screen-tool");
+  if (TOOLS.includes(saved)) tool = saved;
+} catch {
+  // Private storage: the pencil.
+}
+const hintText = () =>
+  marks.length ? `${marks.length === 1 ? "Add more marks" : `${marks.length} marks · add more`}, or Explain` : `${TOOL_HINT[tool]} · or click a word`;
 const inkCanvas = $("#ink");
 const ink = inkCanvas.getContext("2d");
 let frame = null; // the screen as it was when the hotkey was pressed
 let scale = 1; // screen pixels per page pixel
 let marking = false;
 let drawing = false;
-let mark = null;
+let mark = null; // the mark being drawn: { tool, points }
+let marks = []; // the marks made so far, explained together
 let interactive = false;
 
 const MARK_FADE_MS = 4000; // the mark fades like Clicky's; the board stays until it is closed
@@ -117,17 +134,20 @@ function sizeInk() {
 
 function drawMark() {
   ink.clearRect(0, 0, innerWidth, innerHeight);
-  if (!mark) return;
   ink.save();
   ink.globalAlpha = markAlpha;
-  drawStroke(ink, mark.points, 5);
+  for (const m of marks) drawMarkOn(ink, m, { penW: 5, fade: markAlpha });
+  if (mark?.tool === "box") drawDragBox(ink, dragRect(mark.points));
+  else if (mark) drawMarkOn(ink, mark, { penW: 5, fade: markAlpha });
   ink.restore();
 }
 
 function clearMark() {
   clearTimeout(fadeTimer);
   mark = null;
+  marks = [];
   markAlpha = 1;
+  showHint();
   drawMark();
 }
 
@@ -136,7 +156,7 @@ function fadeMarkSoon() {
   fadeTimer = setTimeout(() => {
     const start = performance.now();
     const step = (now) => {
-      if (!mark || drawing) return;
+      if (!marks.length || drawing) return;
       markAlpha = Math.max(0, 1 - (now - start) / 700);
       drawMark();
       if (markAlpha > 0) requestAnimationFrame(step);
@@ -151,9 +171,57 @@ function setMarking(on) {
   // The frozen screen shows only while marking (see overlay.css #freeze).
   if (!on) $("#freeze").hidden = true;
   document.body.classList.toggle("marking", on);
-  $("#hint").textContent = HINT;
+  showHint();
   $("#hint").hidden = !on;
 }
+
+/** The capsule: the tool lit, what to do, and Undo and Explain once there is a mark. */
+function showHint() {
+  const hint = $("#hint");
+  clearTimeout(hint.timer);
+  hint.querySelector(".hint-t").textContent = hintText();
+  for (const b of hint.querySelectorAll(".tool")) b.setAttribute("aria-pressed", String(b.dataset.tool === tool));
+  hint.querySelector(".hint-undo").hidden = !marks.length;
+  hint.querySelector(".hint-go").hidden = !marks.length;
+  document.body.classList.toggle("tool-highlight", tool === "highlight");
+}
+
+/** A short message in the capsule, then back to what to do. */
+function say(text, ms) {
+  const hint = $("#hint");
+  hint.querySelector(".hint-t").textContent = text;
+  clearTimeout(hint.timer);
+  hint.timer = setTimeout(() => {
+    hint.hidden = !marking;
+    showHint();
+  }, ms);
+}
+
+function pickTool(next) {
+  if (!TOOLS.includes(next)) return;
+  tool = next;
+  try {
+    localStorage.setItem("aria-screen-tool", next);
+  } catch {
+    // Private storage: the choice lasts until the overlay reloads.
+  }
+  showHint();
+}
+
+function undoMark() {
+  marks.pop();
+  drawMark();
+  showHint();
+}
+
+$("#hint").addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (!b || !marking) return;
+  if (b.dataset.tool) pickTool(b.dataset.tool);
+  else if (b.dataset.hint === "undo") undoMark();
+  else if (b.dataset.hint === "explain") finishMark();
+  else if (b.dataset.hint === "cancel") cancel();
+});
 
 function loadImage(src) {
   return new Promise((resolve, reject) => {
@@ -188,14 +256,8 @@ aria.on("mark:cancel", cancel);
 
 // A message from the Mac side (e.g. a missing permission), shown in the hint pill for a few seconds.
 aria.on("notice", (text) => {
-  const hint = $("#hint");
-  hint.textContent = text;
-  hint.hidden = false;
-  clearTimeout(hint.timer);
-  hint.timer = setTimeout(() => {
-    hint.hidden = !marking;
-    hint.textContent = HINT;
-  }, 7000);
+  $("#hint").hidden = false;
+  say(text, 7000);
 });
 
 function cancel() {
@@ -227,12 +289,14 @@ function spotlight(area) {
   spot.classList.add("on");
 }
 
+/** Explain: every mark made, in one close-up, explained together. */
 function finishMark() {
+  if (!marking || !marks.length) return false;
   setMarking(false);
   interactive = false;
   aria.markEnded();
-  const box = bounds(mark.points);
-  const shot = shotFrom(frame, ([x, y]) => [x * scale, y * scale], box, mark.points);
+  const box = marksBounds(marks);
+  const shot = shotFrom(frame, ([x, y]) => [x * scale, y * scale], box, marks);
   if (!shot) return clearMark();
   spotArea = box;
   spotlight(box);
@@ -244,11 +308,10 @@ function finishMark() {
 }
 
 window.addEventListener("pointerdown", (e) => {
-  if (!marking || e.button !== 0) return;
+  if (!marking || e.button !== 0 || e.target.closest?.("#hint")) return;
   e.preventDefault();
-  clearMark();
   drawing = true;
-  mark = { points: [[e.clientX, e.clientY]] };
+  mark = { tool, points: [[e.clientX, e.clientY]] };
   drawMark();
 });
 
@@ -268,32 +331,47 @@ window.addEventListener("pointerup", () => {
   endMark();
 });
 
-/** The pointer went up: a click, a snip or a drawn mark. */
+/**
+ * The pointer went up: a click, a box, a snip or a drawn mark, added to the marks. Returns false when
+ * a click found nothing there. Explain (or Enter) sends them.
+ */
 function endMark() {
-  const [x, y] = mark.points[0];
-  if (pathLength(mark.points) < MIN_MARK_PX) {
-    // A click marks what is under it: the word, line, formula or picture there, boxed.
+  const m = mark;
+  mark = null;
+  const [x, y] = m.points[0];
+  const rect = m.tool === "box" ? dragRect(m.points) : null;
+  if (m.tool === "box" ? !rect : pathLength(m.points) < MIN_MARK_PX) {
+    // A click marks what is under it: the word, line, formula or picture there, boxed or highlighted.
     const found = regionAt(frame, scale, x, y, innerWidth, innerHeight);
     if (!found) {
       // Empty space: stay in mark mode and say what to do.
-      clearMark();
-      const hint = $("#hint");
-      hint.textContent = "Nothing there: click on a word, formula or picture · Esc to cancel";
-      clearTimeout(hint.timer);
-      hint.timer = setTimeout(() => (hint.textContent = HINT), 2500);
-      return;
+      drawMark();
+      say("Nothing there: click on a word, formula or picture · Esc to cancel", 2500);
+      return false;
     }
-    mark.points = boxPoints(found);
+    if (m.tool === "highlight") marks.push({ tool: "highlight", rect: { left: found.left - 3, right: found.right + 3, top: found.top - 3, bottom: found.bottom + 3 } });
+    else marks.push({ tool: m.tool, points: boxPoints(found) });
+  } else if (rect) {
+    marks.push({ tool: "box", points: boxPoints(rect, 0, 6) });
+  } else if (m.tool === "pencil") {
+    // A quick corner-to-corner pencil drag is a snip of that box.
+    const snip = snipBox(m.points);
+    marks.push({ tool: "pencil", points: snip ? boxPoints(snip, 2) : m.points });
   } else {
-    // A quick corner-to-corner drag is a snip of that box.
-    const snip = snipBox(mark.points);
-    if (snip) mark.points = boxPoints(snip, 2);
+    marks.push(m);
   }
   drawMark();
-  return finishMark();
+  showHint();
+  return true;
 }
 
 window.addEventListener("keydown", (e) => {
+  if (marking && !drawing && !e.ctrlKey && !e.altKey && !e.metaKey && ["1", "2", "3"].includes(e.key)) return pickTool(TOOLS[Number(e.key) - 1]);
+  if (marking && e.key === "Enter") return finishMark();
+  if (marking && !drawing && (e.key === "Backspace" || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z"))) {
+    e.preventDefault();
+    return undoMark();
+  }
   if (e.key !== "Escape") return;
   if (marking) cancel();
   else if (!big.hidden) closeBig();
@@ -305,10 +383,19 @@ sizeInk();
 
 // Hooks for the desktop app's self-test (desktop-app/test/selftest.js), which runs the overlay off screen.
 if (params.has("selftest")) {
+  // One pencil mark, explained at once (the old one-mark flow); __testMarks: several { tool, points }, then Explain.
   window.__testMark = (points) => {
-    mark = { points };
-    drawMark();
-    return Boolean(endMark());
+    marks = [];
+    mark = { tool: "pencil", points };
+    return Boolean(endMark() && finishMark());
+  };
+  window.__testMarks = (list) => {
+    marks = [];
+    for (const m of list) {
+      mark = { tool: m.tool, points: m.points };
+      if (!endMark()) return false;
+    }
+    return Boolean(finishMark());
   };
   // A spoken follow-up, as if speech-to-text had just returned this text.
   window.__testHeard = (text) => listener.heard(text);
@@ -329,7 +416,7 @@ if (params.has("selftest")) {
     }
     return false;
   };
-  window.__testMarkBox = () => (mark ? bounds(mark.points) : null);
+  window.__testMarkBox = () => marksBounds(marks);
   // Plays a clip through the board's own voice player; how long it took shows whether it really played.
   window.__testVoice = async (url) => {
     const blob = await (await fetch(url)).blob();

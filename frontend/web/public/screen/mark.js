@@ -188,6 +188,99 @@ export function drawStroke(g, points, width = 4) {
   g.restore();
 }
 
+/**
+ * THE THREE TOOLS (owner, 2026-11-17): pencil (circle, underline, anything drawn), box (a rectangle
+ * dragged corner to corner) and highlight (a see-through highlighter band over words). A mark is
+ * { tool, points } (a pencil line, a box's outline or a highlighter stroke) or, for a clicked word
+ * highlighted, { tool: "highlight", rect }. A student may make several before pressing Explain.
+ */
+export const HIGHLIGHT_W = 22; // the highlighter's width in page pixels
+const HIGHLIGHT_INK = "rgba(255, 224, 64, 0.5)";
+
+/** A pencil-made mark (the selftest, older callers) or a list of marks, always as a list. */
+export function asMarks(marks) {
+  if (!Array.isArray(marks) || !marks.length) return [];
+  return typeof marks[0]?.[0] === "number" ? [{ tool: "pencil", points: marks }] : marks;
+}
+
+/** The box round one mark (a highlighter band counts its width). */
+export function markBounds(m) {
+  if (m.rect) return { ...m.rect };
+  const b = bounds(m.points);
+  if (m.tool !== "highlight") return b;
+  const h = HIGHLIGHT_W / 2;
+  return { left: b.left - h, right: b.right + h, top: b.top - h, bottom: b.bottom + h };
+}
+
+/** The box round every mark together. */
+export function marksBounds(marks) {
+  const all = asMarks(marks).map(markBounds);
+  if (!all.length) return null;
+  return {
+    left: Math.min(...all.map((b) => b.left)),
+    right: Math.max(...all.map((b) => b.right)),
+    top: Math.min(...all.map((b) => b.top)),
+    bottom: Math.max(...all.map((b) => b.bottom)),
+  };
+}
+
+/** The box being dragged, as a rectangle (null while the drag is still too small to be one). */
+export function dragRect(points) {
+  if (points.length < 2) return null;
+  const [x0, y0] = points[0];
+  const [x1, y1] = points[points.length - 1];
+  if (Math.abs(x1 - x0) < 8 && Math.abs(y1 - y0) < 8) return null;
+  return { left: Math.min(x0, x1), right: Math.max(x0, x1), top: Math.min(y0, y1), bottom: Math.max(y0, y1) };
+}
+
+/** The live box while it is dragged: a dashed yellow rectangle. */
+export function drawDragBox(g, rect) {
+  if (!rect) return;
+  g.save();
+  g.strokeStyle = "#FFE45C";
+  g.lineWidth = 3;
+  g.setLineDash([9, 6]);
+  g.shadowColor = "rgba(255, 228, 92, 0.6)";
+  g.shadowBlur = 6;
+  g.fillStyle = "rgba(255, 228, 92, 0.07)";
+  g.beginPath();
+  g.roundRect(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, 6);
+  g.fill();
+  g.stroke();
+  g.restore();
+}
+
+/**
+ * Draws one mark. `map` takes a page point to a point on `g`, `k` is canvas pixels per page pixel,
+ * `penW` the pencil's width in page pixels. The highlighter is see-through by itself, so it ignores
+ * a faded pencil (the close-up draws the pencil at half strength) but follows `fade` (the mark fading).
+ */
+export function drawMarkOn(g, m, { map = (p) => p, k = 1, penW = 5, fade = 1 } = {}) {
+  if (m.tool !== "highlight") {
+    drawStroke(g, m.points.map(map), Math.max(2, penW * k));
+    return;
+  }
+  g.save();
+  g.globalAlpha = fade;
+  g.fillStyle = g.strokeStyle = HIGHLIGHT_INK;
+  if (m.rect) {
+    const [x0, y0] = map([m.rect.left, m.rect.top]);
+    const [x1, y1] = map([m.rect.right, m.rect.bottom]);
+    g.beginPath();
+    g.roundRect(x0, y0, x1 - x0, y1 - y0, 4 * k);
+    g.fill();
+  } else if (m.points.length > 1) {
+    // One path stroked once, so where the band crosses itself it is not darker.
+    g.lineWidth = HIGHLIGHT_W * k;
+    g.lineCap = "butt";
+    g.lineJoin = "round";
+    g.beginPath();
+    m.points.map(map).forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));
+    g.stroke();
+  }
+  g.restore();
+}
+
 function cut(frame, x, y, w, h, maxSide) {
   const k = Math.min(1, maxSide / Math.max(w, h));
   const c = document.createElement("canvas");
@@ -201,9 +294,11 @@ function cut(frame, x, y, w, h, maxSide) {
 
 /**
  * The pictures for one mark. `frame` is the screen at full detail (a canvas or image), `toFrame` maps
- * a point on the page to a pixel of the frame. Returns { crop, context, area } or null (nothing there).
+ * a point on the page to a pixel of the frame. `marks` is the list of marks (or one pencil line's
+ * points); `box` is the box round them all. Returns { crop, context, area } or null (nothing there).
  */
-export function shotFrom(frame, toFrame, box, points) {
+export function shotFrom(frame, toFrame, box, marks) {
+  const list = asMarks(marks);
   const width = frame.naturalWidth ?? frame.width;
   const height = frame.naturalHeight ?? frame.height;
   const area = markedArea(box);
@@ -219,20 +314,17 @@ export function shotFrom(frame, toFrame, box, points) {
   const context = cut(frame, 0, 0, width, height, 1280);
   const k = context.width / width;
   const perPoint = toFrame([1, 0])[0] - toFrame([0, 0])[0];
-  // The mark on the close-up too, see-through, so Aria knows what was circled, underlined or crossed.
+  // The marks on the close-up too, see-through, so Aria knows what was circled, boxed or highlighted.
   const kc = crop.width / (x1 - x0);
   const g = crop.getContext("2d");
-  g.globalAlpha = 0.55;
-  drawStroke(
-    g,
-    points.map((p) => toFrame(p)).map(([x, y]) => [(x - x0) * kc, (y - y0) * kc]),
-    Math.max(2, 3 * kc * perPoint),
-  );
-  drawStroke(
-    context.getContext("2d"),
-    points.map((p) => toFrame(p).map((v) => v * k)),
-    Math.max(3, 4 * k * perPoint),
-  );
+  const gc = context.getContext("2d");
+  for (const m of list) {
+    g.save();
+    g.globalAlpha = 0.55;
+    drawMarkOn(g, m, { map: (p) => toFrame(p).map((v, i) => (v - (i ? y0 : x0)) * kc), k: kc * perPoint, penW: 3 });
+    g.restore();
+    drawMarkOn(gc, m, { map: (p) => toFrame(p).map((v) => v * k), k: Math.max(0.75, k * perPoint), penW: 4 });
+  }
   return { crop: crop.toDataURL("image/jpeg", 0.9), context: context.toDataURL("image/jpeg", 0.72), area };
 }
 

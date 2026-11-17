@@ -153,6 +153,25 @@ app.whenReady().then(async () => {
     await js(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }))`);
     await wait(300);
 
+    // THE TOOLS: a dragged box and a highlighter stroke wait in mark mode, then Explain sends both together.
+    contents.send("mark:prepare");
+    await wait(300);
+    contents.send("mark:start", { image: picture, scale: 1 });
+    await wait(400);
+    const tools = await js(`(() => { const b = [...document.querySelectorAll("#hint .tool")]; return b.length === 3 && b.every((x) => x.getBoundingClientRect().width > 0); })()`);
+    check("mark mode shows the pencil, box and highlight tools", tools);
+    const several = await js(`(() => {
+      const box = { tool: "box", points: [[150, 300], [260, 330], [400, 380]] };
+      const lit = { tool: "highlight", points: [[420, 340], [520, 342], [600, 340]] };
+      const ok = window.__testMarks([box, lit]);
+      return { ok, box: window.__testMarkBox(), marking: document.body.classList.contains("marking") };
+    })()`);
+    const spans = several.box && several.box.left <= 150 && several.box.right >= 600 && several.box.top <= 300 && several.box.bottom >= 380;
+    check("a box and a highlight are explained together", several.ok && spans && !several.marking, JSON.stringify(several));
+    await wait(1200);
+    await js(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }))`);
+    await wait(300);
+
     // A second mark replaces the first board.
     contents.send("mark:prepare");
     await wait(300);
