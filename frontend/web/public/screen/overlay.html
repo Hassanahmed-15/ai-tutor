@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Aria: mark your screen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="board.css">
   <link rel="stylesheet" href="overlay.css">
   <link rel="stylesheet" href="vendor/katex/katex.min.css">
@@ -11,27 +13,50 @@
 <body class="overlay">
   <img id="freeze" alt="" hidden>
   <canvas id="ink"></canvas>
+  <!-- The spotlight: the screen dims round the mark while Aria explains it. -->
+  <div id="spot" aria-hidden="true"></div>
   <div id="hint" class="hint" hidden>Circle or underline anything · Esc to cancel</div>
 
+  <!--
+    THE ISLAND LOOK (2026-11-17, owner's pick of three): a capsule at the top of the screen says what
+    Aria is doing; beside the mark a borderless black sheet holds the pencil board with her words as
+    subtitles under it; one row of follow-ups below. Class names are the ones board.js already uses.
+  -->
   <aside id="board" class="board" hidden>
-    <header class="b-head">
-      <span class="orb"></span>
-      <h2 class="b-title">Looking…</h2>
-      <button class="b-btn b-mic" data-act="mic" hidden><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
-      <button class="b-btn" data-act="close" title="Close (Esc)">×</button>
-    </header>
-    <div class="b-text"></div>
-    <div class="b-slide">
-      <video muted playsinline></video>
-      <div class="b-sketch" hidden></div>
-      <div class="b-slide-state"></div>
-      <div class="b-slide-tools">
-        <button class="b-btn" data-act="replay" title="Play again">↻</button>
-        <button class="b-btn" data-act="bigger" title="Bigger">⤢</button>
+    <div class="isle" role="status">
+      <span class="orb"><i></i></span>
+      <div class="isle-t">
+        <h2 class="b-title">Looking…</h2>
+        <span class="b-status">Looking at what you marked…</span>
       </div>
+      <span class="isle-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <button class="isle-btn b-mic" data-act="mic" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+      <button class="isle-btn isle-x" data-act="close" title="Close (Esc)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></button>
     </div>
-    <button class="b-full" data-act="video" hidden>Make a full video</button>
-    <form class="b-ask"><input name="q" placeholder="Ask about this…" autocomplete="off"><button class="b-btn" title="Ask">→</button></form>
+
+    <div class="sheet">
+      <div class="b-grip b-head" title="Drag to move"></div>
+      <div class="b-slide">
+        <video muted playsinline></video>
+        <div class="b-sketch" hidden></div>
+        <div class="b-slide-state"></div>
+        <div class="b-slide-tools">
+          <button class="b-btn" data-act="replay" title="Draw it again"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="b-btn" data-act="bigger" title="Bigger">⤢</button>
+          <button class="b-btn" data-act="close" title="Close (Esc)"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+      <div class="b-cap" aria-live="polite"></div>
+      <div class="b-text"></div>
+    </div>
+
+    <div class="b-row">
+      <button class="b-chip" data-ask="simpler">Simpler</button>
+      <button class="b-chip" data-ask="example">Example</button>
+      <button class="b-chip" data-ask="quiz">Quiz me</button>
+      <button class="b-chip b-full" data-act="video" hidden>▶ Video</button>
+      <form class="b-ask"><input name="q" placeholder="Ask about this…" autocomplete="off"><button class="b-send" title="Ask"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form>
+    </div>
     <footer class="b-meta"></footer>
   </aside>
 

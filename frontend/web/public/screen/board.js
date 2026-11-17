@@ -150,6 +150,27 @@ function createVoice({ mock, enabled, onStart = () => {} }) {
   };
 }
 
+/** Sentences, split as the voice splits them, so subtitles and her voice move together. */
+function sentencesOf(text) {
+  const out = [];
+  let buf = String(text ?? "");
+  for (;;) {
+    const m = /^([\s\S]*?[.!?])(?=\s)/.exec(buf);
+    if (!m) break;
+    if (m[1].trim()) out.push(m[1].trim());
+    buf = buf.slice(m[1].length);
+  }
+  if (buf.trim()) out.push(buf.trim());
+  return out;
+}
+
+/** The chips under the board: what is asked, and the title the capsule shows meanwhile. */
+const FOLLOW_UPS = {
+  simpler: { title: "Simpler", ask: "Explain that again more simply, in everyday words, with a tiny example." },
+  example: { title: "An example", ask: "Show me a worked example of this, step by step." },
+  quiz: { title: "Quiz me", ask: "Quiz me: ask me one short question to check I understood it. Do not give the answer yet." },
+};
+
 export class Board {
   /**
    * opts: mock, voiceOn(), slideOn(), stayOpen() (closing shows an idle board instead of hiding it),
@@ -173,6 +194,8 @@ export class Board {
       ask: $(".b-ask"),
       head: $(".b-head"),
       full: $(".b-full"),
+      status: $(".b-status"),
+      cap: $(".b-cap"),
     };
     this.current = null; // the mark being explained: { abort, run, shot, box }
     this.voice = createVoice({
@@ -184,10 +207,15 @@ export class Board {
         me.spoken = idx;
         (me.msOf ??= {})[idx] = ms;
         me.sketch?.sentence(idx, ms);
+        this.renderCap();
+        this.renderStatus();
       },
     });
 
     el.addEventListener("click", (e) => {
+      // One-tap follow-ups (the chips under the board).
+      const chip = e.target.closest("[data-ask]")?.dataset.ask;
+      if (chip && FOLLOW_UPS[chip]) return void this.ask(FOLLOW_UPS[chip].ask, FOLLOW_UPS[chip].title);
       const act = e.target.closest("[data-act]")?.dataset.act;
       if (act === "close") this.close();
       else if (act === "pop") this.opts.onPop?.();
@@ -222,14 +250,56 @@ export class Board {
   }
 
   /** A follow-up about the same mark (typed, or said as "Aria, …"): answered and drawn afresh. */
-  ask(text) {
+  ask(text, title) {
     const question = String(text ?? "").trim();
     const now = this.current;
     if (!question || !now?.run) return false;
     // What she has said about this mark so far, so the answer builds on it instead of repeating it.
     const before = [now.before, now.said].filter(Boolean).join(" ").slice(-1000);
-    this.explain(now.shot, { box: now.box, question, before });
+    this.explain(now.shot, { box: now.box, question, before, title });
     return true;
+  }
+
+  /** Her words as subtitles: the sentence she is saying, bright, and the next one faint. */
+  renderCap() {
+    const cap = this.p.cap;
+    if (!cap) return;
+    const me = this.current;
+    const all = sentencesOf(this.p.text.textContent);
+    if (!me || !all.length || this.p.text.classList.contains("error")) {
+      cap.replaceChildren();
+      return;
+    }
+    // Before her voice starts (or with it off) the newest sentence shows.
+    const at = me.voiceDone || !me.spoken ? all.length - 1 : Math.min(me.spoken, all.length) - 1;
+    const now = document.createElement("span");
+    now.className = "now";
+    now.textContent = all[at];
+    const parts = [now];
+    if (!me.voiceDone && all[at + 1]) {
+      const later = document.createElement("span");
+      later.className = "later";
+      later.textContent = ` ${all[at + 1]}`;
+      parts.push(later);
+    }
+    cap.replaceChildren(...parts);
+  }
+
+  /** The capsule's second line: what she is doing now. */
+  renderStatus() {
+    const s = this.p.status;
+    if (!s) return;
+    const me = this.current;
+    const state = this.p.orb.classList.contains("thinking") ? "thinking" : this.p.orb.classList.contains("talking") ? "talking" : "idle";
+    const n = sentencesOf(this.p.text.textContent).length;
+    const mic = this.p.mic?.dataset.state;
+    if (this.p.text.classList.contains("error")) s.textContent = "Something went wrong";
+    else if (state === "thinking") s.textContent = me?.title ? "Thinking about it…" : "Looking at what you marked…";
+    else if (state === "talking") s.textContent = me?.spoken && n ? `Explaining · ${Math.min(me.spoken, n)} of ${n}` : "Explaining…";
+    else if (mic === "waiting") s.textContent = "Yes? Ask your question";
+    else if (mic === "hearing") s.textContent = "Hearing you…";
+    else if (mic === "listening") s.textContent = "Say “Aria, …” to ask more";
+    else s.textContent = "Ask a follow-up below";
   }
 
   /** Stops her talking (the student said "Aria, stop" or just "Aria"). */
@@ -254,6 +324,7 @@ export class Board {
       off: "Microphone off (click to listen for “Aria, …”)",
     }[state] ?? "";
     this.p.ask.q.placeholder = state === "off" || state === "blocked" ? "Ask about this…" : state === "waiting" ? "Yes? I'm listening…" : "Ask, or say “Aria, …”";
+    this.renderStatus();
   }
 
   get isOpen() {
@@ -262,6 +333,9 @@ export class Board {
 
   setOrb(state) {
     this.p.orb.className = `orb ${state}`;
+    this.el.dataset.state = state;
+    this.renderStatus();
+    this.opts.onState?.(state);
   }
 
   /** Beside the mark: right of it, else left, else under or above it; always inside W x H. */
@@ -270,7 +344,10 @@ export class Board {
     // Room for the pencil board, which widens the board once she names the idea.
     const pencil = this.opts.slideOn() && this.opts.drawMode() === "pencil";
     const bw = Math.max(this.el.offsetWidth || 340, pencil ? 460 : 0);
-    const bh = Math.max(this.el.offsetHeight, pencil ? 560 : 420);
+    // The sheet is 4:3 plus its subtitles and the row of follow-ups under it.
+    const bh = Math.max(this.el.offsetHeight, pencil ? Math.round(bw * 0.75) + 150 : 420);
+    // Never under the capsule at the top of the screen.
+    const TOP = this.opts.stayOpen() ? 8 : 78;
     const gap = 18;
     let left = box.right + gap;
     let top = box.top - 10;
@@ -280,7 +357,7 @@ export class Board {
       top = box.bottom + gap + bh <= H - 8 ? box.bottom + gap : box.top - gap - bh;
     }
     this.el.style.left = `${Math.max(8, left)}px`;
-    this.el.style.top = `${Math.min(Math.max(8, top), Math.max(8, H - bh - 8))}px`;
+    this.el.style.top = `${Math.min(Math.max(TOP, top), Math.max(TOP, H - bh - 8))}px`;
   }
 
   show() {
@@ -326,6 +403,7 @@ export class Board {
   showError(message) {
     this.p.text.classList.add("error");
     this.p.text.textContent = message;
+    this.renderCap();
     this.setOrb("idle");
   }
 
@@ -340,23 +418,24 @@ export class Board {
   }
 
   /** shot: { crop, context }. Opens the board beside `box` (page pixels) when given. */
-  async explain(shot, { box, question, before, W, H } = {}) {
+  async explain(shot, { box, question, before, title, W, H } = {}) {
     this.current?.abort.abort();
     this.voice.stop();
-    const me = { abort: new AbortController(), run: null, shot, box, concept: "", said: "", before: before ?? "" };
+    const me = { abort: new AbortController(), run: null, shot, box, concept: "", said: "", before: before ?? "", title: title ?? question ?? "" };
     this.current = me;
     const p = this.p;
     const t0 = performance.now();
     let first = 0;
-    p.title.textContent = question ? question : "Looking…";
+    p.title.textContent = me.title || "Looking…";
     p.text.textContent = "";
+    p.cap?.replaceChildren();
     p.text.classList.remove("error");
     p.meta.textContent = "";
     p.ask.q.value = "";
     p.full.hidden = true;
     p.full.disabled = false;
     p.full.classList.remove("ready");
-    p.full.textContent = "Make a full video";
+    p.full.textContent = "▶ Video";
     this.setOrb("thinking");
     this.resetSlide(this.opts.slideOn() ? "waiting" : "off");
     this.show();
@@ -386,14 +465,16 @@ export class Board {
             p.text.append(ev.text);
             p.text.scrollTop = p.text.scrollHeight;
             this.voice.feed(ev.text);
+            this.renderCap();
           } else if (ev.t === "done") {
             me.concept = ev.concept ?? "";
             me.said = ev.said ?? "";
             this.addMeta(`words in ${(first / 1000).toFixed(1)} s`);
             this.voice.end(() => {
               if (this.current !== me) return;
-              this.setOrb("idle");
               me.voiceDone = true;
+              this.setOrb("idle");
+              this.renderCap();
               me.sketch?.finish();
             });
             if (!this.opts.voiceOn()) this.setOrb("idle");
@@ -500,7 +581,8 @@ export class Board {
     me.video = { url: null };
     b.disabled = true;
     const tick = setInterval(() => {
-      if (this.current === me && !me.video.url) b.textContent = `${label}… ${Math.round((performance.now() - t0) / 1000)} s`;
+      if (this.current === me && !me.video.url) b.textContent = `Video… ${Math.round((performance.now() - t0) / 1000)} s`;
+      b.title = label;
     }, 250);
     try {
       await readEvents(
@@ -513,7 +595,7 @@ export class Board {
           else if (ev.t === "done") {
             me.video = { url: ev.url, vtt: ev.vtt };
             const m = Math.floor(ev.seconds / 60);
-            b.textContent = `▶ Watch the full video (${m}:${String(Math.round(ev.seconds % 60)).padStart(2, "0")})`;
+            b.textContent = `▶ Watch (${m}:${String(Math.round(ev.seconds % 60)).padStart(2, "0")})`;
             b.classList.add("ready");
             b.disabled = false;
             this.addMeta(`video in ${Math.round((performance.now() - t0) / 1000)} s`);
@@ -525,7 +607,7 @@ export class Board {
       if (err?.name !== "AbortError" && this.current === me) {
         me.video = null;
         b.disabled = false;
-        b.textContent = "The video failed: try again";
+        b.textContent = "Video failed: retry";
         console.warn(`[video] ${err?.message ?? err}`);
       }
     } finally {

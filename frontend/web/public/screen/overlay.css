@@ -9,5 +9,11 @@ body.overlay #ink { position: fixed; inset: 0; width: 100vw; height: 100vh; poin
 body.overlay.marking { cursor: crosshair; }
 /* Mark mode shows a thin yellow frame round the screen, so it is clear the next drag is a mark. */
 body.overlay.marking::after { content: ""; position: fixed; inset: 0; border: 3px solid rgba(255, 228, 92, 0.75); pointer-events: none; }
-.hint { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); background: #000; color: var(--chalk); border: 1px solid rgba(255, 228, 92, 0.6); border-radius: 999px; padding: 6px 16px; font: 17px var(--hand); pointer-events: none; z-index: 10; }
-body.overlay .board { position: fixed; width: 400px; }
+/* The mark-mode hint: a black capsule at the top, where Aria's capsule appears afterwards. */
+.hint { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; height: 42px; background: #000; color: #fff; border-radius: 999px; padding: 0 18px 0 14px; font: 600 14px var(--ui); pointer-events: none; z-index: 10; box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 228, 92, 0.45); }
+.hint::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px rgba(255, 228, 92, 0.22); }
+/* The board scales with the screen: big enough to read across a room, never wider than 640 px. */
+body.overlay .board { position: fixed; width: clamp(460px, 40vw, 640px); }
+/* THE SPOTLIGHT: while Aria explains, the screen dims round the mark (overlay.js sets the ellipse). */
+#spot { position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity 0.6s ease; }
+#spot.on { opacity: 1; }

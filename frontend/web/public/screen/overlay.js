@@ -36,6 +36,13 @@ const board = new Board($("#board"), {
     closeBig();
     setInteractive(false);
     listener.stop();
+    spotlight(null);
+  },
+  // The spotlight follows her: on while she thinks and explains, lifted soon after she is done.
+  onState: (state) => {
+    clearTimeout(spotTimer);
+    if (state === "idle") spotTimer = setTimeout(() => spotlight(null), 2500);
+    else if (spotArea) spotlight(spotArea);
   },
   onBigger: openBig,
   onMic: () => {
@@ -159,6 +166,8 @@ function loadImage(src) {
 
 aria.on("mark:prepare", () => {
   board.close();
+  spotArea = null;
+  spotlight(null);
   clearMark();
   setMarking(false);
   // Two frames, so the cleared screen has really been drawn before the picture is taken.
@@ -198,6 +207,26 @@ function cancel() {
 }
 
 /** The drag is done: cut the pictures from the frozen screen and open the board beside the mark. */
+/**
+ * THE SPOTLIGHT: the whole screen dims except a soft ellipse round what was marked (owner's pick,
+ * 2026-11-17). `area` in page pixels, or null to lift it.
+ */
+const spot = $("#spot");
+let spotArea = null;
+let spotTimer = null;
+function spotlight(area) {
+  if (!area) {
+    spot.classList.remove("on");
+    return;
+  }
+  const cx = (area.left + area.right) / 2;
+  const cy = (area.top + area.bottom) / 2;
+  const rx = (area.right - area.left) / 2 + 46;
+  const ry = (area.bottom - area.top) / 2 + 36;
+  spot.style.background = `radial-gradient(ellipse ${Math.round(rx)}px ${Math.round(ry)}px at ${Math.round(cx)}px ${Math.round(cy)}px, rgba(6,5,12,0) 64%, rgba(6,5,12,0.66) 100%)`;
+  spot.classList.add("on");
+}
+
 function finishMark() {
   setMarking(false);
   interactive = false;
@@ -205,6 +234,8 @@ function finishMark() {
   const box = bounds(mark.points);
   const shot = shotFrom(frame, ([x, y]) => [x * scale, y * scale], box, mark.points);
   if (!shot) return clearMark();
+  spotArea = box;
+  spotlight(box);
   board.explain(shot, { box, W: innerWidth, H: innerHeight });
   if (micWanted()) listener.start();
   else board.setMic("off");

@@ -240,7 +240,7 @@ function watchPointer() {
     // the menu bar's height).
     const over = await overlay.webContents
       .executeJavaScript(
-        `(() => { const x = ${p.x} - window.screenX, y = ${p.y} - window.screenY; const big = document.querySelector("#big"); if (big && !big.hidden) return true; const board = document.querySelector("#board"); if (!board || board.hidden) return false; const r = board.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; })()`,
+        `(() => { const x = ${p.x} - window.screenX, y = ${p.y} - window.screenY; const big = document.querySelector("#big"); if (big && !big.hidden) return true; const board = document.querySelector("#board"); if (!board || board.hidden) return false; return [board, document.querySelector("#board .isle")].some((el) => { if (!el) return false; const r = el.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; }); })()`,
       )
       .catch(() => false);
     if (!marking && over !== overBoard && overlay && !overlay.isDestroyed()) pointerOnBoard(over);
