@@ -421,6 +421,14 @@ export function LessonPlayer({
   }, []);
   // Replay from a slide (the mind map's "Replay from this slide"): the lecture opens there.
   const [index, setIndex] = useState(() => Math.max(0, Math.min(startIndex, beats.length - 1)));
+  /*
+   * WHY THE BOARD CHANGED, EVERY TIME (QA 2026-11-25: boards were cut mid-sentence and nothing said why).
+   * Every path that moves `index` names itself here first; the effect below logs it with the move.
+   * `cut` is whether Aria's narration of the board being left was still playing when the move was asked.
+   */
+  const boardMoveRef = useRef<{ reason: string; cut: boolean } | null>(null);
+  /** May an AUTOMATIC move leave the current board now? (set below, once the narration refs exist) */
+  const autoMoveAllowedRef = useRef<(reason: string) => boolean>(() => true);
   const [appliedStartIndex, setAppliedStartIndex] = useState(startIndex);
   if (appliedStartIndex !== startIndex) {
     setAppliedStartIndex(startIndex);
@@ -481,11 +489,22 @@ export function LessonPlayer({
    * then yields as soon as the board has painted, whether or not anyone has pressed play.
    */
   const [cardDismissed, setCardDismissed] = useState(false);
+  /** Set when the STUDENT pressed Next before the next board existed: that wait is theirs, not automatic. */
+  const waitingByStudentRef = useRef(false);
   useEffect(() => {
     if (!waitingForNextBeat) return;
     queueMicrotask(() => {
       if (index < beats.length - 1) {
         setWaitingForNextBeat(false);
+        const byStudent = waitingByStudentRef.current;
+        waitingByStudentRef.current = false;
+        // The buffer filling is never a reason on its own to leave a board she is still narrating — and neither
+        // is a Next pressed EARLIER, before this board existed: if her narration of the current board is live
+        // again by the time the next one arrives (the student pressed Play, a sentence restarted), that old
+        // click is dropped. It cut a board mid-sentence 30 s after the last input, logged as "student-next"
+        // (re-test, 2026-11-25). A Next pressed now still moves at once (skipForward → goTo).
+        if (!autoMoveAllowedRef.current(byStudent ? "student-next (board arrived)" : "next-board-arrived")) return;
+        boardMoveRef.current = { reason: byStudent ? "student-next (board arrived)" : "next-board-arrived", cut: false };
         setIndex(index + 1);
         setStage("slide");
       } else if (!hasMoreBeats) {
@@ -525,6 +544,8 @@ export function LessonPlayer({
   const narrationLiveForRef = useRef<number | null>(null);
   /** The beat whose narration was cancelled before it finished — lost, so it must restart. */
   const narrationLostForRef = useRef<number | null>(null);
+  /** Beat whose narration has ended and whose move to the next slide is still owed. */
+  const pendingAdvanceRef = useRef<number | null>(null);
   /** Set by the stall backstop only: the next start overrides a channel refusal it has judged stale. */
   const forceNextStartRef = useRef(false);
   /** When the narration last reported anything (a sentence, a progress tick): the stall watchdog's clock. */
@@ -909,6 +930,34 @@ export function LessonPlayer({
   useEffect(() => {
     indexRef.current = index;
   }, [index]);
+  /*
+   * THE END OF HER NARRATION IS THE ONLY AUTOMATIC WAY OFF A BOARD (standard lecture; QA 2026-11-25:
+   * 38% of a lecture went unsaid). A buffer filling, a card's own timer or anything else automatic is
+   * refused while this board's narration is still playing (or frozen mid-board); the student's own
+   * Next / Previous / Continue are not automatic and always work.
+   */
+  useEffect(() => {
+    autoMoveAllowedRef.current = (reason: string) => {
+      if (!standardTransitionsEnabled || narrationLiveForRef.current !== indexRef.current) return true;
+      console.info("[advance] refused", { from: indexRef.current, reason, why: "Aria is still narrating this board" });
+      return false;
+    };
+  });
+  const prevBoardRef = useRef(index);
+  useEffect(() => {
+    const from = prevBoardRef.current;
+    if (from === index) return;
+    prevBoardRef.current = index;
+    const move = boardMoveRef.current;
+    boardMoveRef.current = null;
+    console.info("[advance]", { from, to: index, reason: move?.reason ?? (index === Math.max(0, Math.min(startIndex, beats.length - 1)) ? "start-index" : "unknown"), ...(move?.cut ? { cutMidNarration: true } : {}) });
+    // Keyed on the board only: the start index and the buffer are read as they are when it moves.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index]);
+  /** Names the move about to be made (see boardMoveRef). Read at event time, never during render. */
+  const markBoardMove = (reason: string) => {
+    boardMoveRef.current = { reason, cut: narrationLiveForRef.current === indexRef.current };
+  };
 
   /*
    * STRICT SOURCE BEYOND THE SCRIPT.
@@ -2428,6 +2477,18 @@ export function LessonPlayer({
     startRefusedForRef.current = null;
     narrationLostForRef.current = null;
     narrationLiveForRef.current = index;
+    /*
+     * A BOARD SPOKEN AGAIN IS NOT FINISHED (standard lecture). Its earlier end used to stay on record:
+     * a move still owed from that end fired a few seconds into the new narration, and the board's
+     * end-of-board card opened at once over Aria (QA 2026-11-25).
+     */
+    if (standardTransitionsEnabled) {
+      if (pendingAdvanceRef.current === index) pendingAdvanceRef.current = null;
+      window.setTimeout(() => {
+        setNarrationDoneIndex((done) => (done === index ? null : done));
+        setCanvasHoldIndex((held) => (held === index ? null : held));
+      }, 0);
+    }
 
     return () => {
       // Cancelled before it finished — this effect re-running for the SAME beat, not the lecture
@@ -2452,11 +2513,11 @@ export function LessonPlayer({
     boardNarrationRef.current?.setRate(rate);
   }, [rate, setTeacherRate]);
 
-  /** Beat whose narration has ended and whose move to the next slide is still owed. */
-  const pendingAdvanceRef = useRef<number | null>(null);
-  const advanceFromHeld = useCallback((heldIndex: number) => {
+  const advanceFromHeld = useCallback((heldIndex: number, reason = "narration-ended") => {
     if (pendingAdvanceRef.current !== heldIndex) return;
     pendingAdvanceRef.current = null;
+    // Only ever owed by a narration's own end (onEnd) or a finished card: never a cut.
+    boardMoveRef.current = { reason, cut: false };
     setIndex((i) => {
       if (i !== heldIndex) return i;
       const tail = playbackTailRef.current;
@@ -2477,7 +2538,7 @@ export function LessonPlayer({
   useEffect(() => {
     if (lesson.mode !== "teaching" || pendingAdvanceRef.current !== index || mcqRef.current) return;
     const held = index;
-    const t = window.setTimeout(() => advanceFromHeld(held), 400);
+    const t = window.setTimeout(() => advanceFromHeld(held, "owed-move-on-resume"), 400);
     return () => window.clearTimeout(t);
   }, [lesson.mode, index, advanceFromHeld]);
   // Any manual move (Next, Previous, a jump) settles the owed advance.
@@ -2749,7 +2810,8 @@ export function LessonPlayer({
     });
   }, [mcq, stopVoice, lesson]);
 
-  function advanceFromCheckpoint() {
+  function advanceFromCheckpoint(reason = "checkpoint-answered") {
+    markBoardMove(reason);
     // Cleared here as well as in goTo/restart: without it the flag stayed true for the rest of the
     // lecture once a single checkpoint was answered, which permanently early-returned the periodic
     // comprehension check below and pinned the header to "waiting on you".
@@ -3019,18 +3081,25 @@ export function LessonPlayer({
    * whatever path; the browser asks for the microphone once.
    */
   const micOpenedRef = useRef(false);
+  /*
+   * A PDF LECTURE STARTS WITH THE MIC OFF (QA 2026-11-25: it switched itself on, and an open mic
+   * beside the speakers hears Aria herself). The student turns it on from the dock; standard lecture
+   * only — a typed-topic lecture still opens it, and the accessibility tracks are untouched.
+   */
+  const pdfLecture = Boolean(sourceDocument) || Boolean(sourceScope);
+  const autoMicOpen = autoVoiceAssistant && !(standardTransitionsEnabled && pdfLecture);
   useEffect(() => {
-    if (!REALTIME_TUTOR_ENABLED || !autoVoiceAssistant || micOpenedRef.current || !lesson.playing || tutor.status !== "idle") return;
+    if (!REALTIME_TUTOR_ENABLED || !autoMicOpen || micOpenedRef.current || !lesson.playing || tutor.status !== "idle") return;
     micOpenedRef.current = true;
     tutor.setMicEnabled(true);
     void tutor.start();
-  }, [autoVoiceAssistant, lesson.playing, tutor]);
+  }, [autoMicOpen, lesson.playing, tutor]);
 
   function startLesson() {
     unlockAudio(); // must run inside this click handler — that's what satisfies the autoplay gate
     setVoiceBlocked(false);
     lesson.startTeaching();
-    if (REALTIME_TUTOR_ENABLED && autoVoiceAssistant && tutor.status === "idle") {
+    if (REALTIME_TUTOR_ENABLED && autoMicOpen && tutor.status === "idle") {
       // Hands-free: the mic opens from the Play button (the click the browser needs). Normal lectures
       // ask for it (components/pages/LearnPage.tsx, owner 2026-10-18); deaf mode and previews do not.
       tutor.setMicEnabled(true);
@@ -3113,7 +3182,14 @@ export function LessonPlayer({
     setStage("slide");
     lesson.startTeaching();
   }
-  function goTo(i: number) {
+  function goTo(i: number, reason = "student-jump") {
+    markBoardMove(reason);
+    // A jump settles a wait for the next board (standard lecture): left armed, going back to an earlier
+    // board while it waited sent the lecture straight on again, before a word of that board was said.
+    if (standardTransitionsEnabled) {
+      waitingByStudentRef.current = false;
+      setWaitingForNextBeat(false);
+    }
     stopVoice();
     // Leaving the beat must also abandon any question asked ON it. Without this, skipping
     // forward mid-question left the quiz card on screen (and the teacher still asking it)
@@ -3131,6 +3207,7 @@ export function LessonPlayer({
     lesson.startTeaching();
   }
   function restart() {
+    markBoardMove("restart");
     stopVoice();
     setWaitingOnCheckpoint(false);
     setCheckpointResult(null);
@@ -3159,13 +3236,14 @@ export function LessonPlayer({
     // The disengagement signal, and the only thing that subtracts XP.
     if (index < beats.length - 1) {
       emitAdhdEvent({ type: "beat-skipped" });
-      goTo(index + 1);
+      goTo(index + 1, "student-next");
       return;
     }
     // The planned next beat exists but has not reached the contiguous playback buffer yet. Stop
     // this beat once and wait at its completed frame; changing stage/index here used to restart the
     // same narration, while disabling Skip left the learner trapped on it.
     if (hasMoreBeats) {
+      waitingByStudentRef.current = true;
       stopVoice();
       setDrawProgress(1);
       setWaitingForNextBeat(true);
@@ -3341,6 +3419,13 @@ export function LessonPlayer({
    * quiz, or an answer she is drawing — is on the board.
    */
   const askPanelRef = useRef<HTMLDivElement>(null);
+  /*
+   * A BOARD'S OWN QUESTION CARD IS OPEN (standard lecture): Dot stays in her resting corner, clear of the
+   * card and of the board's tap answers, instead of flying over the board to point (QA 2026-11-25). The
+   * corner picture ("pip") is not used for it: it sits on the card's top edge, over its close button.
+   */
+  const canvasCardOpen = standardTransitionsEnabled && canvasLesson && Boolean(canvasTask)
+    && (canvasHoldIndex === index || (narrationDoneIndex === index && !answeredPredictions.includes(beat.id)));
   const questionOnBoard = quiz.phase !== "idle" || (isCheckpoint && Boolean(beat.checkpoint)) || Boolean(chat.explainBoard);
   const avatarMode: BoardAvatarMode = questionOnBoard ? "pip" : sideOpen && !chatInDock ? "beside-panel" : "board";
   const renderChatPanel = (variant: { compact?: boolean; inline?: boolean }) => (
@@ -3504,7 +3589,7 @@ export function LessonPlayer({
                       clock={stage === "board" ? timing.index + Math.min(0.999, timing.progress) : summaryUnlocked ? Infinity : -1}
                       asked={askedNotes}
                       onOpenChange={setNotesOpen}
-                      onReplay={(i) => { const at = beats.findIndex((b) => b.id === canvasPanels[i]?.key); if (at >= 0) goTo(at); }}
+                      onReplay={(i) => { const at = beats.findIndex((b) => b.id === canvasPanels[i]?.key); if (at >= 0) goTo(at, "notes-replay"); }}
                     />
                   );
                 })()}
@@ -3534,11 +3619,34 @@ export function LessonPlayer({
                   /* The question card's own flow (an X to skip, a congrats when right, the right
                      answer shown when wrong) is the standard lecture's; other profiles keep theirs. */
                   checkFlow={standardTransitionsEnabled}
+                  /* Standard lecture: a board left before she finished keeps its unsaid notes hidden, and the
+                     map lists every planned board in order (placeholders for those still being made). */
+                  keepUnsaidHidden={standardTransitionsEnabled}
+                  plannedCount={standardTransitionsEnabled ? displayBeatCount : undefined}
                   onOpenEarlier={(from) => {
                     lesson.pause("user");
                     setPeek(from);
                   }}
-                  onContinue={() => {
+                  onContinue={(how) => {
+                    /*
+                     * A CARD THAT MOVES ON BY ITSELF (the praise said, or its few seconds up) is not the
+                     * student asking to go on (standard lecture). It used to resume the lecture
+                     * "explicitly": a Pause pressed just after a right answer was undone seconds later and
+                     * the next board began (QA 2026-11-25). Now a pause, or a question being answered,
+                     * holds it — the move is owed and made when the student resumes — and it never
+                     * leaves a board Aria is still narrating.
+                     */
+                    if (how === "auto" && standardTransitionsEnabled) {
+                      if (lesson.modeRef.current !== "teaching") {
+                        console.info("[advance] held", { from: index, reason: "card-auto-continue", why: `lecture is ${lesson.modeRef.current}` });
+                        pendingAdvanceRef.current = index;
+                        return;
+                      }
+                      if (!autoMoveAllowedRef.current("card-auto-continue")) return;
+                      setCanvasHoldIndex(null);
+                      advanceFromCheckpoint("card-auto-continue");
+                      return;
+                    }
                     setCanvasHoldIndex(null);
                     bumpInteraction();
                     // Answered a maths/CS prediction card: on to the reveal; the board's own check card stays.
@@ -3554,7 +3662,7 @@ export function LessonPlayer({
                       lesson.requestResume({ explicit: true });
                       return;
                     }
-                    advanceFromCheckpoint();
+                    advanceFromCheckpoint("student-continue");
                     // A hold placed while the task was open (a question, the live tutor) must not
                     // keep the next board silent: Continue is the student saying "go on".
                     lesson.requestResume({ explicit: true });
@@ -3912,7 +4020,7 @@ export function LessonPlayer({
         <BoardDock
           playing={lesson.playing}
           onTogglePlay={() => (hasStarted ? togglePlay() : startLesson())}
-          onPrevious={index > 0 ? () => goTo(index - 1) : undefined}
+          onPrevious={index > 0 ? () => goTo(index - 1, "student-previous") : undefined}
           onNext={skipForward}
           onSummarize={onSummarize}
           summaryUnlocked={summaryUnlocked}
@@ -4010,7 +4118,7 @@ export function LessonPlayer({
         </header>}
 
         {showAvatar && !notesOpen && (
-          <BoardAvatar state={avatarState} mode={avatarMode} board={boardSurfaceRef} panel={askPanelRef} look={avatarLook} flies={avatarFlies} onUnavailable={() => setAvatarUnavailable(true)} />
+          <BoardAvatar state={avatarState} mode={avatarMode} board={boardSurfaceRef} panel={askPanelRef} look={avatarLook} flies={avatarFlies && !canvasCardOpen} onUnavailable={() => setAvatarUnavailable(true)} />
         )}
 
         {voiceBlocked && (

@@ -145,8 +145,10 @@ function planSource(raw: unknown): { source?: CanvasPlanBeat["source"] } {
   const range = Array.isArray(r.lines) ? r.lines.map(whole) : typeof r.lines === "string" ? (r.lines.match(/\d+/g) ?? []).slice(0, 2).map(whole) : [];
   const lines: [number, number] | undefined = listing && range.length === 2 && range[0] && range[1] >= range[0] ? [range[0], range[1]] : undefined;
   const blocks = blockIds(r.blocks).slice(0, 24);
-  if (!pages.length && !listing && !blocks.length) return {};
-  return { source: { pages, ...(listing ? { listing } : {}), ...(lines ? { lines } : {}), ...(blocks.length ? { blocks } : {}) } };
+  // The document's figure this board shows, as the planner was shown them ("F2"; lib/canvas/pdfFigures.ts).
+  const figure = typeof r.figure === "string" && /^\s*F\d{1,2}\s*$/i.test(r.figure) ? r.figure.trim().toUpperCase() : undefined;
+  if (!pages.length && !listing && !blocks.length && !figure) return {};
+  return { source: { pages, ...(listing ? { listing } : {}), ...(lines ? { lines } : {}), ...(blocks.length ? { blocks } : {}), ...(figure ? { figure } : {}) } };
 }
 
 /** Source block ids as the model wrote them ("p14-b8", "{p14-b8}"); checked against the document later. */

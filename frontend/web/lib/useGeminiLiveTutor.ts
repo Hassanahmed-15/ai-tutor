@@ -1992,6 +1992,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     endedRef.current = false;
     if (machineRef.current?.value.state !== "RECONNECTING") {
       machineRef.current?.dispatch({ type: "START", at: performance.now() });
+      // A FRESH planning session reads `startMuted` as it is NOW: the hook mounts before a PDF is uploaded, so the
+      // mic intent made at mount was always "on" (re-test, 2026-11-25: it heard Aria's own voice). A reconnect
+      // keeps the student's own choice, as before; the lecture's surfaces are unchanged.
+      if (optionsRef.current.voiceSurface === "planning") micIntentRef.current = new MicrophoneIntent(optionsRef.current.startMuted === true);
     }
     /*
      * Which connect attempt this is.

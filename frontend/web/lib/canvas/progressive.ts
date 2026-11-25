@@ -19,7 +19,7 @@ import { canvasBeatId, connectToEarlier } from "./connect";
 import { repairCues } from "./cueRepair";
 import { compactLadder, referenceCsLesson, withLearnerStatuses, canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
 import { codeSentenceBlocks, groundSourcePlan, strictBoardLines, ungroundedInPlan, videoBoardLines, videoParts } from "./sourceLessons";
-import { assignListings, documentBoardLines, documentListings, documentSections, extraBoardsForListings, faithfulCodeLines, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredPages, type DocumentListing } from "./documentContext";
+import { assignListings, documentBoardLines, documentListings, documentSections, extraBoardsForListings, faithfulCodeLines, inPageOrder, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredPages, type DocumentListing } from "./documentContext";
 import type { SuprnotesLessonInput } from "../suprnotes";
 import { policyForBoards } from "../teachingPolicy";
 import { applyConceptColours, planConceptColours, recapTour } from "./lessonPasses";
@@ -32,7 +32,7 @@ import { splitLongWorking } from "./splitWorking";
 import { examinerFor, type ExaminerSubject } from "./mathsCheck";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
 import { asCs, asMathsOrCs, courseLessonSubject, type LessonSubject } from "./lessonSubject";
-import { courseBoardContext } from "./coursePicturePrompt";
+import { courseBoardContext, documentBoardContext } from "./coursePicturePrompt";
 import { courseCodeDiagramsOff, offInCourses, readyFiguresOffForCourses } from "./courseFigures";
 import { classifySubject, type SubjectEvidence } from "./subjectClassifier";
 import { mentionLabels } from "./labelMentions";
@@ -42,6 +42,10 @@ import { earlierStructures, isOtherCsLesson, isTypedDsaTopic, lessonSoFar } from
 import { applyBoardImage, boardImagesOn, boardTakesImage, explainPictureScript, findBoardImage, foundImageBrief } from "./boardImages";
 import { matchDiagramsToBeats, readSourceDiagrams, sourceDiagramBrief } from "./sourceDiagrams";
 import { mergeRepeatedBoards } from "./repeatBoards";
+import { assignFigures, documentFigures, figureBoardLines, speakableFigureRefs } from "./pdfFigures";
+import { coverBoard } from "./boardCoverage";
+import { closingFallback, withClosing, writeClosing } from "./closingWords";
+import { alignToNarration } from "./narrationSync";
 import { isMathsTopic } from "./predictCard";
 import { domainIsCs, domainIsLab, type SubjectDomain } from "./subjectDomain";
 import { applySplits, SQUEEZE_PROMPT, squeezedInPlan } from "./squeeze";
@@ -316,6 +320,12 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         const subject = decided.subject;
         if (subject) plan = { ...plan, beats: plan.beats.map((b) => ({ ...b, subject })) };
         const planWords = [input.topic, ...plan.beats.map((b) => b.title)].join(" ");
+        // A PDF LESSON IN THE COURSE LOOK (owner, 2026-11-25): a reference or strict PDF that is not maths or CS
+        // gets the course board types — pictures only where something must be seen, Aria's notes written as she
+        // says them otherwise — and the marker. Maths and CS PDFs keep their own boards (code-drawn trees, working).
+        const pdfCourseLook = Boolean(reference || strictDoc) && courseCodeDiagramsOff() && process.env.CANVAS_PDF_COURSE_BOARDS !== "off"
+          && !asMathsOrCs(subject, () => isLabLookTopic(planWords));
+        if (reference || strictDoc) console.log(`[canvas] pdf boards: ${pdfCourseLook ? "course board types" : "own boards (maths/CS or off)"} — subject ${subject ?? "undecided"}`);
         // A CS sentence that packs several lines or steps is split into one per line or step, in the plan,
         // so each board is written once for the narration it plays with (lib/canvas/squeeze.ts).
         // A typed lesson's subject was asked when it was created (lib/canvas/subjectDomain.ts); others keep the keywords.
@@ -351,6 +361,21 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
           const merged = mergeRepeatedBoards(plan.beats);
           if (merged.log.length) { plan = { ...plan, beats: merged.beats }; console.log(`[canvas] repeated board(s) merged: ${merged.log.join(" | ")}`); }
         }
+        // A REFERENCE PDF'S BOARDS: in the document's order, and never two boards saying the same thing (tester,
+        // 2026-11-25: three frequency/amplitude boards; parts out of the PDF's order). A strict lesson is not merged:
+        // each of its sentences is tied to its passage. Its order is kept by page too.
+        if (reference || strictDoc) {
+          if (reference) {
+            const merged = mergeRepeatedBoards(plan.beats);
+            if (merged.log.length) { plan = { ...plan, beats: merged.beats }; console.log(`[canvas] repeated board(s) merged: ${merged.log.join(" | ")}`); }
+          }
+          if (input.sourceScope?.breadth.kind === "whole") {
+            const ordered = inPageOrder(plan.beats);
+            // A board that dived inside an earlier one keeps that only when the earlier one still comes first.
+            if (ordered.moved) ordered.beats.forEach((b, i) => { if (b.inside && !ordered.beats.slice(0, i).some((e) => e.id === b.inside!.beat)) b.inside = null; });
+            if (ordered.moved) { plan = { ...plan, beats: ordered.beats }; console.log(`[canvas] boards put in the document's page order: ${ordered.beats.map((b) => `${b.id}(p${b.source?.pages?.[0] ?? "?"})`).join(" ")}`); }
+          }
+        }
         // A maths or CS board says every step of its working; one longer than a board continues on the next.
         if (visualMode !== "strict" && asMathsOrCs(subject, () => (visualMode === "prompt" ? domainIsLab(domain, lessonTitles) : isLabLookTopic(planWords)))) {
           // A lesson's opening plan and closing quiz (lib/curriculum/lessonSpec.ts) are not working to continue.
@@ -360,6 +385,8 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         }
         // What each board shows is chosen by one focused call (lib/canvas/visualChoice.ts), not by the
         // long planning prompt, which reached for tables (owner, 2026-10-17: "fix the weak link").
+        // A PDF lesson draws no picture of its own (only its figures, as cropped), so it is never asked which boards
+        // need one: the ordinary visual choice for a reference PDF, none for a strict one.
         if (visualMode !== "strict" && process.env.CANVAS_VISUAL_CHOICE !== "off") {
           const chosen = await bounded(chooseVisuals((system, user, max) => jsonCall(openai, PLAN_MODEL, system, user, max), input.topic, plan.beats, { course: visualMode === "course" && courseCodeDiagramsOff() }), 30_000, "visual choice").catch((error: Error) => { console.warn(`[canvas] visual choice skipped: ${error.message}`); return null; });
           if (chosen) { plan = { ...plan, beats: chosen.beats }; costUsd += chosen.costUsd; console.log(`[canvas] visual choice: ${chosen.log}`); }
@@ -375,8 +402,32 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         // A maths lecture from a typed prompt or a PDF (never a course or a video) draws what no code figure
         // fits with gpt-image-2, white on black (owner, 2026-10-25; lib/canvas/mathsPicture.ts).
         // Every maths drawing, no code figures (owner, 2026-10-26: "remove code library from maths completely").
-        const mathsPictures = visualMode !== "course" && sourceMode !== "video" && mathsPicturesOn();
-        const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: visualMode === "course" && readyFiguresOffForCourses() ? undefined : findLibraryFigure, topic: input.topic, domain, mathsPictures });
+        // A REFERENCE PDF'S OWN FIGURES go up on the boards that teach them, as cropped from its pages
+        // (lib/canvas/pdfFigures.ts; owner, 2026-11-25). Never in strict mode: its PDF is beside the board.
+        if (reference) {
+          const figures = documentFigures(reference);
+          if (figures.length) {
+            // The planner's figure ids are never spoken: "Figure F2" becomes the figure's printed name.
+            const docText = (reference.contentBlocks ?? []).map((b) => `${b.heading ?? ""} ${b.text ?? ""}`).join(" ");
+            const spoken = (t: string) => speakableFigureRefs(t, figures, docText);
+            const shown = assignFigures(plan.beats.map((b) => ({ ...b, script: spoken(b.script), title: spoken(b.title), brief: spoken(b.brief) })), figures);
+            plan = { ...plan, beats: shown.beats };
+            console.log(`[canvas] document figures (${figures.length}): ${shown.log.length ? shown.log.join(" | ") : "none matched a board"}`);
+          }
+        }
+        // A PDF LESSON SHOWS ONLY ITS OWN FIGURES (owner, 2026-11-25): no generated picture, no maths picture, no
+        // library image — everything else is drawn natively. Its course look keeps the marker and the course text.
+        const pdfLessonPlan = Boolean(reference || strictDoc);
+        const mathsPictures = !pdfLessonPlan && visualMode !== "course" && sourceMode !== "video" && mathsPicturesOn();
+        const visualPolicy = applyLessonVisualPolicy(plan.beats, {
+          mode: visualMode,
+          findAsset: pdfLessonPlan || ((visualMode === "course" || pdfCourseLook) && readyFiguresOffForCourses()) ? undefined : findLibraryFigure,
+          topic: input.topic,
+          domain,
+          mathsPictures,
+          courseBoards: pdfCourseLook,
+          ...(pdfLessonPlan ? { aiPictures: false, noPictures: true } : {}),
+        });
         plan = { ...plan, beats: visualPolicy.beats };
         // Not for a course lesson drawn by gpt-image-2: there only a board that needs a picture gets one
         // (owner, 2026-10-24), and a lesson of written boards with one picture is not sent back for more.
@@ -555,7 +606,16 @@ export async function writeCanvasBoard(args: {
   // An examined board may need one rewrite: it gets a minute more (boards 2+ are written while earlier ones play).
   // A course lesson's picture (gpt-image-2, checked, perhaps drawn twice) gets the time it needs: boards
   // 2+ are written while earlier ones play (lib/canvas/coursePicture.ts).
-  const course = beat.stage === "illustration" || beat.pictureBeside ? courseBoardContext(args.document, args.topic, beat) : null;
+  // A board that shows the student's own PDF figure (lib/canvas/pdfFigures.ts) has nothing to draw.
+  const pdfFigureDoc = beat.pdfFigure && args.document && !args.strictSource ? args.document : null;
+  // A PDF lesson's course board (lib/canvas/coursePicturePrompt.ts documentBoardContext): its picture is drawn
+  // from the board's own passage of the student's document — in strict mode, only from what that passage says.
+  const strictPdf = args.strictSource?.mode === "strict" ? args.strictSource.doc : null;
+  // A PDF lesson (reference or strict, not a course's syllabus document): it shows only its own figures, as cropped —
+  // no picture is generated for any of its boards (owner, 2026-11-25), so no course picture is planned for one.
+  const pdfLesson = Boolean((args.document && (args.document.lessonPlan as { sourceType?: string } | undefined)?.sourceType !== "curriculum") || strictPdf);
+  const pdfCourse = () => (pdfLesson ? null : documentBoardContext(args.document ?? strictPdf, args.topic, beat, args.document ? documentBoardLines(args.document, beat) : strictPdf ? strictBoardLines(strictPdf, beat) : [], Boolean(strictPdf)));
+  const course = pdfFigureDoc || pdfLesson ? null : beat.stage === "illustration" || beat.pictureBeside ? courseBoardContext(args.document, args.topic, beat) ?? pdfCourse() : null;
   // A found image redrawn by the image model (lib/canvas/boardImages.ts) gets a picture's time, as a course picture does.
   const budget = BOARD_BUDGET_MS + (args.mathsCheck ? 60_000 : 0) + (course || (beat.mathsPicture && !beat.course) || beat.foundImage ? 150_000 : 0);
   const clock: Clock = { left: () => budget - (Date.now() - started) };
@@ -573,6 +633,7 @@ export async function writeCanvasBoard(args: {
   else if (args.code?.language && !/^python/i.test(args.code.language)) extra.push(`THE STUDENT ASKED FOR CODE IN ${args.code.language.toUpperCase() === "PSEUDOCODE" ? "pseudocode" : args.code.language}: write any code on this board in it ("language": "${args.code.language.toLowerCase()}"), with its own syntax — never Python.`);
   if (args.feedback?.length) extra.push(`CORRECT THESE — ${args.feedback.join(" ")}`);
   if (args.document) extra.push(...documentBoardLines(args.document, beat));
+  if (pdfFigureDoc && beat.pdfFigure) extra.push(...figureBoardLines(beat.pdfFigure));
   // The reference page's diagram this board redraws (lib/canvas/sourceDiagrams.ts).
   if (typed && beat.sourceDiagram) extra.push(sourceDiagramBrief(beat.sourceDiagram, beat.stage));
   // The library image this board shows rather than redraws (lib/canvas/boardImages.ts).
@@ -614,7 +675,7 @@ export async function writeCanvasBoard(args: {
     // `earlier`: the structures the earlier boards drew, so a typed CS board stays on the lesson's one example.
     else made = await generateSpec(openai, args.topic, plan, beat, clock, extra, false, { mathsCheck: args.mathsCheck, examiner: args.examiner, hurry: args.hurry, opening: args.opening, typed, domain, documentCode: Boolean(args.referenceCs), earlier: typed ? earlierStructures(args.earlier.slice(0, index)) : undefined, continueCode: typed && !args.referenceCs ? continuedCodeOf(beat, args.earlier[index - 1]) : undefined });
     dropEmptyRows(made.spec);
-    pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra), course, { maths: mathsFor(beat) });
+    pictured = await illustrate(openai, args.userId, sessionId, beat, made.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra), course, { maths: mathsFor(beat), pdfDoc: pdfFigureDoc, noImages: pdfLesson });
   } catch (error) {
     log.push(`${beat.id}: ${(error as Error).message}`);
     made = { spec: fallbackSpec(beat), costUsd: 0, attempts: -1 };
@@ -677,6 +738,20 @@ export async function writeCanvasBoard(args: {
       if (!verdict) { log.push(`${beat.id}: not looked at (no verdict)`); break; }
       // A checked library figure is not second-guessed on its own drawing (calibration: "elastic tissue"
       // pointed at the layer textbooks put elastic fibres in): only what lands on it, over it or beside it.
+      // THE STUDENT'S OWN PDF FIGURE IS NEVER REDRAWN (owner, 2026-11-25: "no redraw for pdf pictures, just crop
+      // precisely"): the look may only correct the board's writing — a false line is taken off — never the figure.
+      // A refused crop used to be replaced by a generated picture (hearing lecture, boards 4 and 8).
+      if (spec.stage.kind === "illustration" && spec.stage.fromDocument) {
+        verdict.problems = verdict.problems.filter((p) => p.where === "writing");
+        if (!verdict.problems.some((p) => p.serious)) { lookPassed = true; log.push(`${beat.id}: looked at — the document's own figure, kept as cropped`); break; }
+        const cleaned = removeNamedLines(spec, verdict.problems);
+        if (cleaned.removed.length) {
+          spec = cleaned.spec;
+          log.push(`${beat.id}: took off ${cleaned.removed.length} line(s) the look named as wrong beside the document's figure — ${cleaned.removed.join(" | ").slice(0, 300)}`);
+        }
+        lookPassed = false;
+        break;
+      }
       if (isLibraryFigure(spec)) {
         verdict.problems = verdict.problems.filter((p) => LAYOUT_FAULTS.has(p.kind));
         verdict.ok = !verdict.problems.some((p) => p.serious);
@@ -697,16 +772,24 @@ export async function writeCanvasBoard(args: {
           // pay for the picture again; a board with no picture is written again.
           const hasPicture = spec.stage.kind === "illustration" ? Boolean(spec.stage.coursePicture) : spec.stage.kind === "equation" && Boolean(spec.stage.picture);
           const pictureFault = serious.some((p) => p.where !== "writing");
-          if (round > 0) { settle("its one redraw was refused too"); break; }
+          // A STRICT PDF NEVER SHOWS A PICTURE THAT CONTRADICTS ITS PAGE (owner, 2026-11-25: strict pictures show
+          // the page's facts only): refused for its picture with no redraw left, the board is Aria's notes instead.
+          const writtenInstead = (why: string) => {
+            spec = { ...fallbackSpec(beat), course: true, ...(spec.interaction ? { interaction: spec.interaction } : {}), visualFallback: { from: "illustration", reason: "validation", message: "This board is written because its picture did not match the page." } };
+            picture = undefined;
+            log.push(`${beat.id}: written instead of its picture (${why}; strict lesson)`);
+          };
+          const strictPicture = Boolean(strictPdf) && hasPicture && pictureFault;
+          if (round > 0) { if (strictPicture) writtenInstead("its one redraw was refused too"); else settle("its one redraw was refused too"); break; }
           // A written board is Aria's notes: a false line is taken off, never redrawn as a sketch.
           if (beat.written) { settle("a written board keeps its true lines"); break; }
           if (hasPicture && !pictureFault) { settle("the fault is in its writing"); break; }
-          if (hasPicture && picture?.redrawn) { settle("its picture already had its one redraw"); break; }
-          if (args.hurry?.() || clock.left() < (hasPicture ? 130_000 : 80_000)) { settle("no time for a redraw"); break; }
+          if (hasPicture && picture?.redrawn) { if (strictPicture) writtenInstead("its picture already had its one redraw"); else settle("its picture already had its one redraw"); break; }
+          if (args.hurry?.() || clock.left() < (hasPicture ? 130_000 : 80_000)) { if (strictPicture) writtenInstead("no time for a redraw"); else settle("no time for a redraw"); break; }
           const again = await generateSpec(openai, args.topic, plan, beat, clock, [...extra, lookFeedback(verdict.problems)], false, opts);
           dropEmptyRows(again.spec);
           const redraw = hasPicture ? serious.filter((p) => p.where !== "writing").map((p) => p.detail) : undefined;
-          const pic = await illustrate(openai, args.userId, sessionId, beat, again.spec, log, clock, undefined, course, { redraw });
+          const pic = await illustrate(openai, args.userId, sessionId, beat, again.spec, log, clock, undefined, course, { redraw, pdfDoc: pdfFigureDoc, noImages: pdfLesson });
           lookCost += again.costUsd + pic.costUsd;
           if (again.attempts < 0) { settle("its redraw could not be written"); break; }
           spec = { ...pic.spec };
@@ -715,7 +798,7 @@ export async function writeCanvasBoard(args: {
         }
         if (round === 0 && !args.hurry?.() && clock.left() > 80_000) {
           const again = await generateSpec(openai, args.topic, plan, beat, clock, [...extra, lookFeedback(verdict.problems)], false, opts);
-          const pic = await illustrate(openai, args.userId, sessionId, beat, again.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra), course, { maths: mathsFor(beat) });
+          const pic = await illustrate(openai, args.userId, sessionId, beat, again.spec, log, clock, plainRebuild(openai, args.topic, plan, beat, clock, extra), course, { maths: mathsFor(beat), pdfDoc: pdfFigureDoc, noImages: pdfLesson });
           lookCost += again.costUsd + pic.costUsd;
           if (again.attempts >= 0) { spec = { ...pic.spec }; picture = pic.picture; continue; }
         }
@@ -751,13 +834,43 @@ export async function writeCanvasBoard(args: {
   // EVERY PART DRAWN IS NAMED (lib/canvas/labelMentions.ts): a diagram label the narration never says is
   // named on the sentence it appears on. Same number of sentences, so the board's timing is untouched.
   let mentionCost = 0;
-  if (made.attempts >= 0 && !beat.overview && process.env.CANVAS_LABEL_MENTIONS !== "off") {
+  // Not in a PDF lesson: its coverage step below names labels without splicing ("and this part here is the trough").
+  if (made.attempts >= 0 && !beat.overview && !pdfLesson && process.env.CANVAS_LABEL_MENTIONS !== "off") {
     const named = await bounded(mentionLabels((system, user, max) => jsonCall(client(), PLAN_MODEL, system, user, max), spec, beat.script), 20_000, "label mentions").catch(() => null);
     if (named?.mentioned) {
       beat.script = named.script;
       log.push(`${beat.id}: ${named.mentioned} diagram label(s) Aria never said are now named as they are drawn`);
     }
     mentionCost = named?.costUsd ?? 0;
+  }
+  // A PDF LESSON'S BOARD IS SAID IN FULL (lib/canvas/boardCoverage.ts; owner, 2026-11-25: 80 to 90 percent of
+  // the board said, strictly in sync): sentences rewritten to say what is on it, any note still unsaid taken
+  // off, and every item re-timed to the sentence that names it. Not a course lesson's document.
+  if (pdfLesson && made.attempts >= 0 && !beat.overview && process.env.CANVAS_PDF_COVERAGE !== "off") {
+    const covered = await bounded(coverBoard((system, user, max) => jsonCall(client(), PLAN_MODEL, system, user, max), spec, beat.script), 25_000, "board coverage").catch(() => null);
+    if (covered) {
+      mentionCost += covered.costUsd;
+      if (covered.script !== beat.script || covered.removed.length) {
+        beat.script = covered.script;
+        spec = covered.spec;
+        alignToNarration(spec, beat);
+      }
+      const pct = (c: { share: number; said: number; items: number }) => `${Math.round(c.share * 100)}% (${c.said}/${c.items})`;
+      log.push(`${beat.id}: board said aloud ${covered.after === covered.before ? pct(covered.before) : `${pct(covered.before)} → ${pct(covered.after)} — ${covered.rewritten} sentence(s) rewritten${covered.removed.length ? `, ${covered.removed.length} unsaid note(s) taken off` : ""}`}`);
+    }
+  }
+  // A PDF LECTURE ENDS WITH TWO CLOSING SENTENCES on its last board (lib/canvas/closingWords.ts; owner, 2026-11-25:
+  // it "ends very abruptly"). After the checks above, so grounding and coverage never touch them.
+  if (pdfLesson && index === plan.length - 1 && process.env.CANVAS_PDF_CLOSING !== "off") {
+    const closed = await bounded(writeClosing((system, user, max) => jsonCall(client(), PLAN_MODEL, system, user, max), {
+      topic: args.topic,
+      boards: plan.map((b) => ({ title: b.title, script: b.script })),
+      strict: Boolean(strictPdf),
+    }), 20_000, "closing words").catch(() => null);
+    const closing = closed?.closing ?? closingFallback(args.topic);
+    beat.script = withClosing(beat.script, closing);
+    mentionCost += closed?.costUsd ?? 0;
+    log.push(`${beat.id}: closing words added${closed && !closed.fallback ? "" : " (plain)"} — ${closing.join(" ").slice(0, 160)}`);
   }
   // THE "CHECK IT" CARD (lib/canvas/checkCard.ts): written and verified after the board, shown when
   // Aria finishes it. A card that cannot be verified is left off — it never fails or holds the board.

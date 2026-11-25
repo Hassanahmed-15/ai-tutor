@@ -199,6 +199,14 @@ function boundsOf(lines: OcrLine[], pad = 0): NormalisedBox {
  * lines, which drops a stray match elsewhere on the page.
  */
 export function locateBlocks(blocks: Array<{ text: string }>, lines: OcrLine[]): Array<NormalisedBox | undefined> {
+  return locateBlockLines(blocks, lines).map((found) => found?.box);
+}
+
+/**
+ * The same placement, keeping each block's own lines too, top to bottom (each line's box and words):
+ * a strict lesson's PDF panel highlights the lines Aria is reading from (lib/pdfSentenceFocus.ts).
+ */
+export function locateBlockLines(blocks: Array<{ text: string }>, lines: OcrLine[]): Array<{ box: NormalisedBox; lines: OcrLine[] } | undefined> {
   const blockTokens = blocks.map((block) => new Set(tokens(block.text)));
   const readable = lines.filter((line) => line.tokens.length >= 2);
   if (!readable.length) return blocks.map(() => undefined);
@@ -238,6 +246,6 @@ export function locateBlocks(blocks: Array<{ text: string }>, lines: OcrLine[]):
     // Too little of the paragraph was found to say where it is.
     const found = group.reduce((n, line) => n + line.tokens.filter((token) => blockTokens[index].has(token)).length, 0);
     if (found < Math.min(6, blockTokens[index].size * 0.4)) return undefined;
-    return boundsOf(group, 0.004);
+    return { box: boundsOf(group, 0.004), lines: [...group].sort((a, b) => a.y - b.y || a.x - b.x) };
   });
 }

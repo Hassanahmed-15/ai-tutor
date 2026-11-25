@@ -6,6 +6,7 @@ import type { Beat } from "@/lib/lessonContent";
 import { pdfTeachingState } from "@/lib/pdfTeachingState";
 import { loadDocumentPages } from "@/lib/documentPages";
 import { contentStems } from "@/lib/sourceGrounding";
+import { sentenceFocus } from "@/lib/pdfSentenceFocus";
 import { isSuprnotesLessonInput } from "@/lib/suprnotes";
 import type { PdfFidelity } from "@/lib/sourceScope";
 
@@ -96,6 +97,24 @@ export function PdfSourcePanel({
   }, [currentIndex, pointerBlockId]);
 
   /*
+   * EXACTLY WHAT IS BEING READ (owner, 2026-11-25): within the passage, only the printed lines the
+   * sentence says are highlighted, and a sentence that explains a figure boxes the drawing itself
+   * (lib/pdfSentenceFocus.ts). Null keeps the passage's own box, as before.
+   */
+  const partPages = useMemo(() => [...new Set(focus.highlights.map((h) => h.pageNumber))], [focus.highlights]);
+  // A sentence tied to no passage (the closing words Aria adds at the end) keeps the last mark of its part,
+  // rather than the panel jumping to whatever page its words happen to match (re-test, 2026-11-25).
+  const unpassaged = typeof activeSentenceIndex === "number" && (beats[currentIndex]?.sentenceBlockIds?.length ?? 0) > 0 && !namedBlockId;
+  const [lastExact, setLastExact] = useState<{ index: number; focus: ReturnType<typeof sentenceFocus> } | null>(null);
+  const computed = useMemo(
+    () => (isSuprnotesLessonInput(sourceDocument) && !unpassaged ? sentenceFocus(sourceDocument, pointerBlockId, activeSentence, partPages) : null),
+    [sourceDocument, pointerBlockId, activeSentence, partPages, unpassaged],
+  );
+  if (computed && (lastExact?.focus !== computed || lastExact.index !== currentIndex)) setLastExact({ index: currentIndex, focus: computed });
+  const exact = computed ?? (unpassaged && lastExact?.index === currentIndex ? lastExact.focus : null);
+  const exactKey = exact ? `${exact.kind}:${exact.pageNumber}:${exact.kind === "lines" ? exact.rects.map((r) => r.y.toFixed(3)).join(",") : exact.rect.y.toFixed(3)}` : "";
+
+  /*
    * REPORT THE POINTER'S POSITION for the PDF-to-board arrow. Re-measured on every scroll, resize
    * and pointer change (one measurement per frame), and reported as null once the passage has
    * scrolled out of the panel — an arrow must never point at something the student cannot see.
@@ -128,7 +147,7 @@ export function PdfSourcePanel({
       panel?.removeEventListener("scroll", measure);
       window.removeEventListener("resize", measure);
     };
-  }, [onPointerRect, pointerBlockId, zoom, pages.length, currentIndex, loading]);
+  }, [onPointerRect, pointerBlockId, zoom, pages.length, currentIndex, loading, exactKey]);
 
   const loadPages = useCallback(async () => {
     setLoading(true);
@@ -161,9 +180,23 @@ export function PdfSourcePanel({
 
   useEffect(() => {
     if (!followTeacher || focus.activePage === null) return;
-    const target = pageRefs.current.get(focus.activePage);
+    // The exact lines or figure being read, when there are some: the panel follows them, page included
+    // (a figure on the next page is scrolled to while it is explained).
+    const exactPage = exact?.pageNumber ?? null;
+    const exactRect = exact ? (exact.kind === "lines" ? exact.rects[0] : exact.rect) : null;
+    const page = exactPage ?? focus.activePage;
+    const target = pageRefs.current.get(page);
     const root = scrollRef.current;
     if (!target || !root) return;
+    if (exactRect) {
+      const pageTop = target.getBoundingClientRect().top - root.getBoundingClientRect().top + root.scrollTop;
+      const image = target.querySelector("img");
+      if (image) {
+        root.scrollTo({ top: Math.max(0, pageTop + image.offsetTop + exactRect.y * image.clientHeight - root.clientHeight / 3), behavior: "smooth" });
+        setCurrentPage(page);
+        return;
+      }
+    }
     /*
      * Scroll to the PASSAGE, not the page top. A page is taller than the panel, so aligning its top
      * showed the publisher header while the highlighted paragraph sat below the fold. The first
@@ -178,7 +211,8 @@ export function PdfSourcePanel({
     const passageTop = rect && image ? pageTop + image.offsetTop + rect.y * image.clientHeight - root.clientHeight / 3 : pageTop - 12;
     root.scrollTo({ top: Math.max(0, passageTop), behavior: "smooth" });
     setCurrentPage(focus.activePage);
-  }, [focus.activePage, focus.highlights, currentIndex, followTeacher, pages.length, zoom, pointerBlockId]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- `exactKey` stands for `exact`: it changes only when the marked lines or figure do.
+  }, [focus.activePage, focus.highlights, currentIndex, followTeacher, pages.length, zoom, pointerBlockId, exactKey]);
 
   useEffect(() => {
     const root = scrollRef.current;
@@ -252,6 +286,9 @@ export function PdfSourcePanel({
             {pages.map((page) => {
               const active = focus.activePage === page.pageNumber;
               const pageHighlights = focus.highlights.filter((highlight) => highlight.pageNumber === page.pageNumber);
+              const exactHere = exact && exact.pageNumber === page.pageNumber ? exact : null;
+              // The pointer sits on the figure's box, or on the first line being read.
+              const exactBox = exactHere ? (exactHere.kind === "figure" ? exactHere.rect : exactHere.rects[0]) : null;
               return (
                 <div key={page.pageNumber} ref={(node) => { if (node) pageRefs.current.set(page.pageNumber, node); else pageRefs.current.delete(page.pageNumber); }} data-source-page={page.pageNumber} className="scroll-mt-3">
                   <div className="mb-1.5 flex items-center justify-between text-[0.65rem] text-[var(--hud-text-dim)]"><span>{pageLabel} {page.pageNumber}</span>{active && <span className="font-semibold text-[var(--hud-cyan)]">Aria is teaching here</span>}</div>
@@ -260,7 +297,7 @@ export function PdfSourcePanel({
                     <img src={page.dataUrl} alt={`${pageLabel} ${page.pageNumber}`} className="block h-auto w-full" />
                     {/* One even dim around the passage. Each box used to cast its own 9999px shadow,
                         so four boxes greyed the page four times over — highlights included. */}
-                    {pageHighlights.some((highlight) => highlight.rect) && (
+                    {(pageHighlights.some((highlight) => highlight.rect) || exactHere) && (
                       <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
                         <defs>
                           <mask id={`source-dim-${page.pageNumber}`}>
@@ -268,13 +305,26 @@ export function PdfSourcePanel({
                             {pageHighlights.map((highlight) => highlight.rect && (
                               <rect key={highlight.blockId} x={highlight.rect.x} y={highlight.rect.y} width={highlight.rect.width} height={highlight.rect.height} fill="black" />
                             ))}
+                            {/* A figure being explained is never dimmed, even when it sits outside the passage. */}
+                            {exactHere?.kind === "figure" && <rect x={exactHere.rect.x} y={exactHere.rect.y} width={exactHere.rect.width} height={exactHere.rect.height} fill="black" />}
                           </mask>
                         </defs>
                         <rect width="1" height="1" fill="rgba(15,12,9,0.22)" mask={`url(#source-dim-${page.pageNumber})`} />
                       </svg>
                     )}
+                    {/* EXACTLY WHAT IS BEING READ: the printed lines, highlighted like a marker pen, or the
+                        figure being explained, in a solid box. The passage keeps its dashed outline. */}
+                    {exactHere?.kind === "lines" && exactHere.rects.map((r, i) => (
+                      <span key={`line-${i}-${r.y}`} data-source-line="" className="pointer-events-none absolute rounded-[2px] bg-[rgba(255,214,0,0.42)] mix-blend-multiply transition-all duration-200" style={{ left: `${r.x * 100}%`, top: `${r.y * 100}%`, width: `${r.width * 100}%`, height: `${r.height * 100}%` }} />
+                    ))}
+                    {exactHere && exactBox && (
+                      <span ref={pointerRef} data-pointer-exact={exactHere.kind} data-pointer-block={exactHere.blockId ?? undefined} className="pointer-events-none absolute" style={{ left: `${exactBox.x * 100}%`, top: `${exactBox.y * 100}%`, width: `${exactBox.width * 100}%`, height: `${exactBox.height * 100}%` }}>
+                        {exactHere.kind === "figure" && <span className="absolute inset-0 rounded-[4px] border-[3px] border-[var(--hud-cyan)] shadow-[0_0_0_3px_rgba(0,0,0,0.08)] transition-all duration-300" />}
+                        <span aria-hidden="true" className="absolute top-1/2 -translate-y-1/2 animate-pulse text-[1.35rem] leading-none text-[var(--hud-cyan)] drop-shadow" style={{ right: "calc(100% + 4px)" }}>▶</span>
+                      </span>
+                    )}
                     {pageHighlights.map((highlight) => highlight.rect ? (
-                      highlight.blockId === pointerBlockId ? (
+                      highlight.blockId === pointerBlockId && !exact ? (
                         <span key={highlight.blockId} ref={pointerRef} data-pointer-block={highlight.blockId} className="pointer-events-none absolute" style={{ left: `${highlight.rect.x * 100}%`, top: `${highlight.rect.y * 100}%`, width: `${highlight.rect.width * 100}%`, height: `${highlight.rect.height * 100}%` }}>
                           {/* What Aria is saying NOW: a solid marker and an arrow pointing at it. */}
                           <span className="absolute inset-0 rounded-[3px] border-[3px] border-[var(--hud-cyan)] bg-[var(--hud-cyan-glow)] transition-all duration-300" />

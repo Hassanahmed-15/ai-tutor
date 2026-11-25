@@ -50,6 +50,12 @@ export type SuprnotesContentBlock = {
    * so the board can show the book's own drawing (lib/ocrLayout.ts `figureRegionsFromCaptions`).
    */
   figureRegion?: { x: number; y: number; width: number; height: number };
+  /**
+   * The block's printed lines and where each sits on the page (0..1), in reading order: a strict
+   * lesson's PDF panel highlights exactly the lines Aria is reading from (lib/pdfSentenceFocus.ts),
+   * not the whole paragraph. From the text layer, or Tesseract's lines on a scanned page.
+   */
+  lines?: Array<{ text: string; bbox: { x: number; y: number; width: number; height: number } }>;
   /** Which uploaded file this block came from, when more than one was uploaded and merged
    *  together — see lib/mergeSourceDocuments.ts. Absent for a single-document upload, so every
    *  existing consumer that never reads this field is unaffected. */

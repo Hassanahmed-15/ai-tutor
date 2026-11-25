@@ -62,7 +62,15 @@ type Props = {
   /** Says a line in Aria's voice; `onEnd` runs once it has been said. */
   onSpeak: (text: string, onEnd?: () => void) => void;
   onTellAria: (note: string) => void;
-  onContinue: () => void;
+  /** `how` is "auto" when a card moved on by itself (its praise said, or its seconds up), not by a click. */
+  onContinue: (how?: "auto") => void;
+  /**
+   * A board left before Aria finished it keeps what she did not say hidden (standard lecture). Without
+   * it a cut board's remaining notes all appeared at once beside the next board (QA 2026-11-25).
+   */
+  keepUnsaidHidden?: boolean;
+  /** Every planned board (standard lecture): the map lists them all, in order, unready ones as placeholders. */
+  plannedCount?: number;
   /** The lecture is playing. Paused, the student may explore: picture hotspots appear. */
   playing?: boolean;
   /** The lecture's playback speed (lib/playbackPrefs.ts): the marker writes at the voice's pace. */
@@ -102,7 +110,7 @@ export type CanvasKnowledge = {
 const ARIA = ARIA_INK;
 const STUDENT = "#2563eb";
 
-export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, speed = 1, voiceHeard, onTaskResult, completed = false, taskDone = false, checkFlow = false, predictCard }: Props) {
+export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, speed = 1, voiceHeard, onTaskResult, completed = false, taskDone = false, checkFlow = false, predictCard, keepUnsaidHidden = false, plannedCount }: Props) {
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -170,6 +178,14 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const [furthest, setFurthest] = useState(shownIndex);
   if (shownIndex > furthest) setFurthest(shownIndex);
   const reachedIndex = completed ? Math.max(0, panels.length - 1) : Math.max(furthest, shownIndex);
+  // How far Aria got on each board that has been live (Infinity once she finished it), so a board left
+  // early shows only what she said (keepUnsaidHidden). Boards never live here (a replay from a later
+  // board) and a completed lecture show everything, as before.
+  const [saidThrough, setSaidThrough] = useState<Record<string, number>>({});
+  const liveKey = keepUnsaidHidden && currentIndex >= 0 ? panels[shownIndex]?.key : undefined;
+  const liveSaid = finished ? Infinity : sentence;
+  if (liveKey && liveSaid > (saidThrough[liveKey] ?? -Infinity)) setSaidThrough({ ...saidThrough, [liveKey]: liveSaid });
+  const leftThrough = (key: string) => (keepUnsaidHidden && !completed ? saidThrough[key] ?? Infinity : Infinity);
   // Cards whose close-up Aria has finished (lib/canvas/cardDives.ts): a sticker card shows a tick.
   const divedCards = useMemo(() => {
     const out: Record<string, Set<string>> = {};
@@ -243,6 +259,14 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const [tapPick, setTapPick] = useState<{ key: string; index: number; at: number } | null>(null);
   const [cardAnswered, setCardAnswered] = useState<Record<string, boolean>>({});
   const tapCard = taskOpen && checkFlow && interaction?.kind === "quiz" && interaction.mode === "tap" && current ? interaction : undefined;
+  // A card's camera stays on its own board (QA 2026-11-25): opening it brings a camera the student had
+  // moved (dragged, zoomed, the whole-lesson view) back to the board being asked about.
+  const [cardShownFor, setCardShownFor] = useState("");
+  const openCardKey = taskOpen && checkFlow ? cardKey : "";
+  if (openCardKey !== cardShownFor) {
+    setCardShownFor(openCardKey);
+    if (openCardKey) setMode("follow");
+  }
   const tapHidden = useMemo(() => (tapCard && current && !cardAnswered[cardKey] ? new Set(tapCard.options.map((o) => o.target).filter((t): t is string => Boolean(t))) : null), [tapCard, current, cardAnswered, cardKey]);
   // An "order the steps" card: the board's arrows would show the answer, so they are taken off until
   // the student has answered — then they draw back in.
@@ -356,7 +380,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     if (!current || !currentPlace) return overviewView;
     if (current.spec.overview && finished) return overviewView;
     // The recap's tour: while a sentence recalls an earlier board, the camera is back on it.
-    if (visitIndex >= 0 && visitIndex < shownIndex) return fitView(worldRects[visitIndex], aspect, 0.06);
+    if (visitIndex >= 0 && visitIndex < shownIndex && !taskOpen) return fitView(worldRects[visitIndex], aspect, 0.06);
     // Maths/CS: the director's shot (above) is the camera; the writer's own zoom cues are not used.
     const zoomTarget = cueState.zoom && !labLook && !blocksBoard ? currentLayout.targets[cueState.zoom] : undefined;
     // Zooming onto something that already fills most of the board only crops it.
@@ -648,7 +672,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           return (
             // Not .cv-chalk: its colour swaps are for the slate, and this layer is the white board itself.
             <g key={panel.key} transform={`translate(${at.x},${at.y}) scale(${at.scale})`}>
-              <MemoNatural layout={layouts[i]} spec={specs[i]} theme={themes[i]} shownThrough={live && !finished ? sentence : Infinity} live={live} reducedMotion={reducedMotion} />
+              <MemoNatural layout={layouts[i]} spec={specs[i]} theme={themes[i]} shownThrough={live ? (finished ? Infinity : sentence) : leftThrough(panel.key)} live={live} reducedMotion={reducedMotion} />
             </g>
           );
         })}
@@ -697,7 +721,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 doneIds={divedCards[panel.key]}
                 openId={openCard?.beat === panel.key ? openCard.id : undefined}
                 recap={live && finished}
-                shownThrough={live && !finished ? sentence : Infinity}
+                shownThrough={live ? (finished ? Infinity : sentence) : leftThrough(panel.key)}
                 sentenceProgress={live ? sentenceProgress : 0}
                 live={live}
                 vars={panel.spec.stage.kind === "molecule" ? { ...(vars[panel.key] ?? EMPTY), rotation: moleculeRotation } : vars[panel.key] ?? EMPTY}
@@ -727,7 +751,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 />
               )}
               {tapCard && tapHidden && panel.key === current?.key && (
-                <TapTargets layout={layouts[i]} targets={tapCard.options.map((o) => o.target ?? "")} onTap={(index) => setTapPick({ key: panel.key, index, at: Date.now() })} />
+                <TapTargets layout={layouts[i]} targets={tapCard.options.map((o) => o.target ?? "")} onTap={(index) => setTapPick({ key: cardKey, index, at: Date.now() })} />
               )}
               {/* RACK FOCUS: while the camera is with Aria, every other board steps back — under a veil
                   of the background colour, which looks the same as fading the board but is one
@@ -770,7 +794,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-amber-400 text-sm font-black text-black">{i + 1}</span>
                 <span className="block text-base font-bold leading-snug">{panel.spec.heading}</span>
                 <span className="mt-2 block text-xs font-semibold uppercase tracking-[0.14em] text-white/50">{panel.spec.stage.kind}</span>
-                {panel.spec.notes.length > 0 && <span className="mt-3 block text-sm leading-relaxed text-white/70">{panel.spec.notes.map((note) => note.text).join(" · ")}</span>}
+                {panel.spec.notes.length > 0 && <span className="mt-3 block text-sm leading-relaxed text-white/70">{panel.spec.notes.filter((note) => !keepUnsaidHidden || completed || (i === shownIndex && currentIndex >= 0 ? finished || note.s <= sentence : note.s <= leftThrough(panel.key))).map((note) => note.text).join(" · ")}</span>}
               </button>
             ))}
           </div>
@@ -848,7 +872,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           mode={interaction.mode ?? "choice"}
           steps={interaction.steps}
           loop={interaction.loop}
-          tapped={tapPick?.key === current.key ? tapPick : null}
+          tapped={tapPick?.key === cardKey ? tapPick : null}
           onHint={interaction.hint ? () => {
             if (interaction.hint!.target && onBoardNow(layouts[currentIndex], interaction.hint!.target)) setReactionPoint({ key: current.key, target: interaction.hint!.target, at: Date.now() });
             onSpeak(interaction.hint!.text);
@@ -889,7 +913,19 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           Tap the glowing parts of the picture to explore them
         </p>
       )}
-      <MiniMap
+      {plannedCount !== undefined ? (
+        <PlanMap
+          panels={panels}
+          plannedCount={plannedCount}
+          shownIndex={shownIndex}
+          reachedIndex={reachedIndex}
+          visitIndex={visitIndex}
+          onPick={(i) => {
+            setMode("free");
+            flyTo(fitView(worldRects[i], aspect, 0.035));
+          }}
+        />
+      ) : <MiniMap
         themes={themes}
         panels={panels}
         worldRects={worldRects}
@@ -900,7 +936,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           setMode("free");
           flyTo(fitView(worldRects[i], aspect, 0.035));
         }}
-      />
+      />}
       {taskOpen && interaction?.kind === "draw" && current && (
         <DrawCard
           prompt={interaction.prompt}
@@ -1228,7 +1264,16 @@ function TapTargets({ layout, targets, onTap }: { layout: PanelLayout; targets: 
         const c = part ? { x: part.cx, y: part.cy } : r ? { x: r.x + r.w / 2, y: r.y + r.h / 2 } : null;
         if (!c) return null;
         return (
-          <g key={id} role="button" aria-label={`Answer: part ${i + 1}`} style={{ cursor: "pointer" }} onPointerDown={(e) => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); onTap(i); }}>
+          <g key={id} role="button" aria-label={`Answer: part ${i + 1}`} style={{ cursor: "pointer" }} onPointerDown={(e) => e.stopPropagation()} onClick={(e) => {
+            e.stopPropagation();
+            // Only the student's own tap answers (QA 2026-11-25: a card "answered itself"): never a
+            // click a script dispatched.
+            if (!e.nativeEvent.isTrusted) {
+              console.info("[check-card] ignored an untrusted tap", { option: i });
+              return;
+            }
+            onTap(i);
+          }}>
             <circle cx={c.x} cy={c.y} r={30} fill="#fff" opacity={0.001} />
             <circle cx={c.x} cy={c.y} r={16} fill="none" stroke="#8b5cf6" strokeWidth={3.5} className="cv-hotspot" style={{ animationDelay: `${i * 160}ms` }} />
             <circle cx={c.x} cy={c.y} r={7} fill="#8b5cf6" stroke="#fff" strokeWidth={2.5} />
@@ -1339,13 +1384,15 @@ function QuestionCard({ question, options, mode = "choice", steps, loop, tapped,
   /** Speaks the response and returns the line to show; `done` is called when a right answer's praise ends. */
   onAnswer: (i: number, done: () => void) => string;
   onSkip: () => void;
-  onContinue: () => void;
+  onContinue: (how?: "auto") => void;
 }) {
   const [picked, setPicked] = useState<number | null>(null);
   const [line, setLine] = useState("");
   const finished = useRef(false);
   const asked = useRef(false);
   const timer = useRef<number | undefined>(undefined);
+  /** When the card opened: a tap from before it (or in its first instant, aimed at something else) is not an answer. */
+  const [openedAt] = useState(() => Date.now());
   // Asked once as the card opens (a re-render must not ask again).
   useEffect(() => {
     if (asked.current) return;
@@ -1356,24 +1403,33 @@ function QuestionCard({ question, options, mode = "choice", steps, loop, tapped,
     const pending = timer;
     return () => window.clearTimeout(pending.current);
   }, []);
-  const finish = useCallback(() => {
+  const finish = useCallback((how?: "auto") => {
     if (finished.current) return;
     finished.current = true;
     window.clearTimeout(timer.current);
-    onContinue();
+    onContinue(how);
   }, [onContinue]);
+  // The praise said, or its seconds up: the card moving on by itself, which a pause holds (the player).
+  const finishByItself = useCallback(() => finish("auto"), [finish]);
   const answered = picked !== null;
   const right = answered && options[picked].correct;
-  const answer = useCallback((i: number) => {
+  const answer = useCallback((i: number, via: string) => {
     if (picked !== null) return;
+    // Every answer says where it came from, so one nobody gave can be traced (QA 2026-11-25).
+    console.info("[check-card] answered", { option: i, text: options[i]?.text, correct: options[i]?.correct, via, afterMs: Date.now() - openedAt });
     setPicked(i);
-    setLine(onAnswer(i, finish));
-    if (options[i].correct) timer.current = window.setTimeout(finish, 5_000);
-  }, [picked, onAnswer, finish, options]);
-  // A tap on the board answers a tap card.
+    setLine(onAnswer(i, finishByItself));
+    if (options[i].correct) timer.current = window.setTimeout(finishByItself, 5_000);
+  }, [picked, onAnswer, finishByItself, options, openedAt]);
+  // A tap on the board answers a tap card — only one made while this card was open.
   useEffect(() => {
-    if (mode === "tap" && tapped) answer(tapped.index);
-  }, [mode, tapped, answer]);
+    if (mode !== "tap" || !tapped) return;
+    if (tapped.at < openedAt + 400) {
+      console.info("[check-card] ignored a tap from before the card opened", { option: tapped.index });
+      return;
+    }
+    answer(tapped.index, "board-tap");
+  }, [mode, tapped, answer, openedAt]);
   // An order card: the steps shuffled (never already in order), placed one tap at a time.
   const shuffled = useMemo(() => {
     const idx = (steps ?? []).map((_, i) => i);
@@ -1390,7 +1446,7 @@ function QuestionCard({ question, options, mode = "choice", steps, loop, tapped,
       const n = steps.length;
       // A loop is in order from any step; a chain only from its first.
       const inOrder = next.every((v, k) => v === (loop ? (next[0] + k) % n : k));
-      answer(inOrder ? options.findIndex((o) => o.correct) : options.findIndex((o) => !o.correct));
+      answer(inOrder ? options.findIndex((o) => o.correct) : options.findIndex((o) => !o.correct), "order");
     }
   };
   return (
@@ -1460,7 +1516,7 @@ function QuestionCard({ question, options, mode = "choice", steps, loop, tapped,
             <button
               key={i}
               disabled={answered}
-              onClick={() => answer(i)}
+              onClick={() => answer(i, "option-button")}
               className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3 py-2 text-left text-sm font-semibold transition ${
                 shownRight
                   ? "border-emerald-300/60 bg-emerald-400/15 text-emerald-50"
@@ -1484,10 +1540,56 @@ function QuestionCard({ question, options, mode = "choice", steps, loop, tapped,
         <button onClick={onReplay} className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/[0.04] px-3 py-1.5 text-xs font-bold text-white/85 hover:bg-white/[0.08]">↺ Show me where this was taught</button>
       )}
       {answered && !right && (
-        <button onClick={finish} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-violet-400 px-3 py-2 text-sm font-black text-black hover:bg-violet-300">
+        <button onClick={() => finish()} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-violet-400 px-3 py-2 text-sm font-black text-black hover:bg-violet-300">
           <Play size={14} /> Continue the lesson
         </button>
       )}
+    </div>
+  );
+}
+
+/**
+ * THE LESSON MAP IN PLAN ORDER (standard lecture, QA 2026-11-25). The spatial map below drew each board
+ * where the camera keeps it, so a board placed inside an earlier one (b5 inside b4's card, b9 inside b8's)
+ * was left out, and boards read in the world's layout rather than 1, 2, 3… Here every planned board is a
+ * numbered cell in order; one still being made is a dashed placeholder.
+ */
+function PlanMap({ panels, plannedCount, shownIndex, reachedIndex, visitIndex, onPick }: { panels: CanvasPanelInput[]; plannedCount: number; shownIndex: number; reachedIndex: number; visitIndex: number; onPick: (i: number) => void }) {
+  const total = Math.max(plannedCount, panels.length);
+  if (total < 2) return null;
+  const COLS = 5;
+  return (
+    <div className="absolute bottom-3 left-3 z-10 rounded-xl border border-white/10 bg-black/45 p-1.5 opacity-80 backdrop-blur transition-opacity hover:opacity-100" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
+      <ol aria-label="Lesson map" className="grid gap-1" style={{ gridTemplateColumns: `repeat(${Math.min(COLS, total)}, 1.5rem)` }}>
+        {Array.from({ length: total }, (_, i) => {
+          const panel = panels[i];
+          const ready = Boolean(panel);
+          const reached = ready && i <= reachedIndex;
+          const here = i === shownIndex;
+          return (
+            <li key={panel?.key ?? `planned-${i}`}>
+              <button
+                type="button"
+                disabled={!reached}
+                onClick={() => reached && onPick(i)}
+                aria-label={ready ? `Board ${i + 1}: ${panel.spec.heading}` : `Board ${i + 1}: still being prepared`}
+                title={ready ? `${i + 1}. ${panel.spec.heading}` : `${i + 1}. Still being prepared`}
+                data-map-board={i + 1}
+                data-map-state={!ready ? "planned" : here ? "current" : reached ? "reached" : "ready"}
+                className={`grid h-5 w-6 place-items-center rounded text-[0.62rem] font-extrabold tabular-nums transition ${
+                  !ready
+                    ? "border border-dashed border-white/20 text-white/30"
+                    : reached
+                      ? "bg-[#1f2a37] text-white/90 hover:bg-[#2c3a4b]"
+                      : "bg-white/[0.06] text-white/40"
+                } ${here ? "ring-2 ring-amber-400" : visitIndex === i ? "ring-2 ring-amber-300/70" : ""} disabled:cursor-default`}
+              >
+                {i + 1}
+              </button>
+            </li>
+          );
+        })}
+      </ol>
     </div>
   );
 }

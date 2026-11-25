@@ -9,6 +9,9 @@ export type PdfTextSpan = {
   height: number;
   fontSize: number;
   fontName?: string;
+  /** The span's text began or ended with a space before it was trimmed: a word set in its own span keeps its spaces. */
+  spaceBefore?: boolean;
+  spaceAfter?: boolean;
 };
 
 export type PdfFigureRegion = {
@@ -120,11 +123,15 @@ function lineFromSpans(spans: PdfTextSpan[]): TextLine {
   const ordered = [...spans].sort((a, b) => a.x - b.x);
   let text = "";
   let previousEnd = ordered[0]?.x ?? 0;
+  let spaceAfter = false;
   for (const span of ordered) {
     const gap = span.x - previousEnd;
-    if (text && gap > Math.max(1.5, span.fontSize * 0.18) && !text.endsWith(" ")) text += " ";
+    // A gap is a space; so is the space a span's own text ended or began with — a bold, coloured key word
+    // set in its own span touches its neighbours ("The " + "gold foil" read as "Thegold foil").
+    if (text && (gap > Math.max(1.5, span.fontSize * 0.18) || spaceAfter || span.spaceBefore) && !text.endsWith(" ")) text += " ";
     text += span.text;
     previousEnd = span.x + span.width;
+    spaceAfter = Boolean(span.spaceAfter);
   }
   const x = Math.min(...ordered.map((span) => span.x));
   const right = Math.max(...ordered.map((span) => span.x + span.width));
@@ -340,6 +347,12 @@ export function joinWrappedLabelGroups<L extends Pick<TextLine, "text" | "x" | "
   return labels.map((label) => ({ text: label.text, lines: label.lines }));
 }
 
+/** A page box to four decimals: a line's box travels in the lecture input, once per printed line. */
+function roundBox(box: { x: number; y: number; width: number; height: number }) {
+  const r = (n: number) => Math.round(n * 10_000) / 10_000;
+  return { x: r(box.x), y: r(box.y), width: r(box.width), height: r(box.height) };
+}
+
 function blockBBox(lines: TextLine[], pageWidth: number, pageHeight: number) {
   const left = Math.min(...lines.map((line) => line.x));
   const top = Math.min(...lines.map((line) => line.top));
@@ -357,12 +370,40 @@ function blockBBox(lines: TextLine[], pageWidth: number, pageHeight: number) {
  * Turns positioned PDF text into semantic blocks while preserving page and reading order.
  * Each block remains small enough to reach the lecture prompt without truncating a whole page.
  */
+/** A span's text as a running header or footer is compared: letters only, so "Page 2" and "Page 3" match. */
+function furnitureKey(text: string): string {
+  return text.toLowerCase().replace(/[^a-z]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+const inFurnitureBand = (top: number, height: number, pageHeight: number) => top < pageHeight * 0.1 || top + height > pageHeight * 0.9;
+
+/**
+ * RUNNING HEADERS AND FOOTERS (re-test, 2026-11-25): text printed in the top or bottom tenth of the page that
+ * repeats on another page — "Fact Sheet", "For Grades 6-8", "Explore the brain with us. Visit Dana.org". It
+ * named a lecture ("For Grades 6-8") and headed half its passages. Only text found on two or more pages counts,
+ * so a one-page document's title, or a slide's, is never dropped. The keys of such spans, for structurePdfPage.
+ */
+export function runningFurniture(pages: Array<{ spans: PdfTextSpan[]; pageHeight: number }>): Set<string> {
+  if (pages.length < 2) return new Set();
+  const seen = new Map<string, number>();
+  pages.forEach((page) => {
+    const keys = new Set(page.spans.filter((s) => inFurnitureBand(s.top, s.height, page.pageHeight)).map((s) => furnitureKey(s.text)).filter((k) => k.length >= 3));
+    for (const k of keys) seen.set(k, (seen.get(k) ?? 0) + 1);
+  });
+  return new Set([...seen].filter(([, n]) => n >= 2).map(([k]) => k));
+}
+
 export function structurePdfPage(
-  spans: PdfTextSpan[],
+  rawSpans: PdfTextSpan[],
   pageNumber: number,
   pageWidth: number,
-  pageHeight: number
+  pageHeight: number,
+  /** Running headers and footers of the document (runningFurniture): left out of the page's text. */
+  furniture?: Set<string>,
 ): SuprnotesContentBlock[] {
+  const spans = furniture?.size
+    ? rawSpans.filter((s) => !(inFurnitureBand(s.top, s.height, pageHeight) && furniture.has(furnitureKey(s.text))))
+    : rawSpans;
   // A page set in columns is read column by column, each line inside one column (pageGutters).
   const gutters = pageGutters(spans, pageWidth, pageHeight);
   const zoneOf = (span: PdfTextSpan) => gutters
@@ -493,10 +534,20 @@ export function structurePdfPage(
         role: inQuestions ? "questions" : pendingType,
       });
     }
+    // Each printed line of the passage with its own box: the strict PDF panel highlights the lines being
+    // read (lib/pdfSentenceFocus.ts). A figure's labels keep their labelRegions instead.
+    const last = blocks[blocks.length - 1];
+    if (last && last.id === id && last.role !== "figure-labels") {
+      last.lines = pending
+        .filter((line) => line.text.trim())
+        .map((line) => ({ text: line.text.replace(/\s+/g, " ").trim().slice(0, 300), bbox: roundBox(blockBBox([line], pageWidth, pageHeight)) }));
+    }
     pending = [];
   };
 
   let previousLine: TextLine | undefined;
+  // The heading line just read, while the next line may continue it (a two-line title).
+  let headingLine: TextLine | undefined;
   for (const line of lines) {
     const isHeading =
       line.text.length <= 150 &&
@@ -519,9 +570,16 @@ export function structurePdfPage(
     if (isHeading) {
       flush();
       inQuestions = false;
-      sectionHeading = line.text;
+      // A title set over two lines ("How does the" / "brain work?") is ONE heading: the lines run on
+      // directly, at the same size. Only the last line used to be kept ("brain work?").
+      const previous = headingLine;
+      const runsOn = previous && Math.abs(previous.fontSize - line.fontSize) <= line.fontSize * 0.08
+        && line.top - (previous.top + previous.height) < line.fontSize * 0.9 && Math.abs(line.x - previous.x) < line.fontSize * 6;
+      sectionHeading = runsOn ? `${sectionHeading} ${line.text}`.replace(/\s+/g, " ").slice(0, 150) : line.text;
+      headingLine = line;
       continue;
     }
+    headingLine = undefined;
 
     // A question box ends at the next heading, a box-sized gap, a jump back up the page (the
     // reading flow moved to the next column), the next labelled box, or a box's worth of lines.
@@ -1105,6 +1163,8 @@ export function buildPdfLessonPlan(blocks: SuprnotesContentBlock[], assets: Supr
 
 /** A block read off a scanned page by the vision transcription (lib/pdfOcr.ts `blocksFromTranscript`). */
 const TRANSCRIBED_BLOCK_ID = /^ocr-p\d+-/;
+/** A text-layer block, numbered by structurePdfPage in reading order: "p2-b7" → 7. */
+const TEXT_BLOCK_ID = /^p\d+-b(\d+)$/;
 
 export function applyGlobalSourceOrder(blocks: SuprnotesContentBlock[]): void {
   blocks
@@ -1119,6 +1179,15 @@ export function applyGlobalSourceOrder(blocks: SuprnotesContentBlock[]): void {
        * Because"). The transcriber already reads columns in order, so its order stands.
        */
       if (TRANSCRIBED_BLOCK_ID.test(a.id) && TRANSCRIBED_BLOCK_ID.test(b.id)) return (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0);
+      /*
+       * A text-layer page's blocks are numbered in READING order by structurePdfPage — column by column
+       * (pageGutters). Sorting them by height put a right column's first paragraph before the left column's
+       * opening: a two-column fact sheet was titled "Your tongue is the sensor for taste" and taught taste
+       * first (re-test, 2026-11-25). Their own order stands.
+       */
+      const sa = TEXT_BLOCK_ID.exec(a.id);
+      const sb = TEXT_BLOCK_ID.exec(b.id);
+      if (sa && sb) return Number(sa[1]) - Number(sb[1]);
       return (a.bbox?.y ?? 0) - (b.bbox?.y ?? 0);
     })
     .forEach((block, index) => {

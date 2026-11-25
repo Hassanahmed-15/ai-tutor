@@ -44,7 +44,7 @@ import { trackForProfile, isAdhdLearner } from "@/lib/adhd/gate";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { matchSpokenAnswer } from "@/lib/spokenAnswer";
 import { learnerContextForPrompt, learnerProfileView } from "@/lib/learnerProfileView";
-import { takePendingBrief } from "@/lib/pendingBrief";
+import { takePendingBrief, type CapturedDocument } from "@/lib/pendingBrief";
 import { savePendingCurriculum } from "@/lib/pendingTopic";
 import { NotesPdfButton } from "@/components/canvas/NotesPdfButton";
 import { PastPaperPractice } from "@/components/courses/PastPaperPractice";
@@ -458,6 +458,8 @@ type BuildCost =
     documentLabels: string[];
   } | null>(null);
   const sourceModeChosenRef = useRef(false);
+  /** Phone photos arrive with no box to type a question in, so the source-mode screen asks: all pages, or a question. */
+  const [pagesAsk, setPagesAsk] = useState<{ mode: "all" | "question"; text: string }>({ mode: "all", text: "" });
 
   /**
    * ARIA, OUT LOUD, FROM PLANNING UNTIL THE LECTURE IS READY.
@@ -493,6 +495,9 @@ type BuildCost =
     documentId: documentId ?? undefined,
     // Aria asks and waits here; a plain answer in the student's voice is a turn. See lib/voice/voiceGate.ts.
     gateProfile: "conversation",
+    // PLANNING A PDF LESSON STARTS WITH THE MIC OFF, as its lecture does (re-test, 2026-11-25: the open mic picked
+    // up Aria's own voice reading the questions). She still asks aloud; the mic button turns listening on.
+    startMuted: Boolean(documentId || sourceDocument),
     topic: topic || "this lesson",
     // Read when called, never captured: the outline is revised while the session is open, and a
     // captured value would leave her discussing the draft as it stood when she started speaking.
@@ -1198,8 +1203,14 @@ type BuildCost =
     const brief = takePendingBrief();
     // Nothing handed over (a reload, a bookmark, a stray link): the front page is where a lesson
     // starts, so go there rather than show a second copy of it.
-    if (!brief || (!brief.file && !brief.videoUrl && !brief.curriculum && !brief.topic?.trim())) {
+    if (!brief || (!brief.file && !brief.videoUrl && !brief.curriculum && !brief.captured && !brief.topic?.trim())) {
       go("landing");
+      return;
+    }
+
+    // Pages photographed with the phone, already read: straight to reference or strict, as after a PDF's pages.
+    if (brief.captured) {
+      ingestCaptured(brief.captured);
       return;
     }
 
@@ -1346,151 +1357,7 @@ type BuildCost =
         }),
       );
 
-      const failed = parsed.find((p) => !p.ok || (!p.data.sourceDocument && !p.data.fullText));
-      if (failed) {
-        throw new Error(failed.data.error || (failed.source.kind === "pptx"
-
-          ? "Couldn't read the presentation. Make sure it's a valid .pptx file."
-          : "Couldn't read the PDF. Make sure it's a valid .pdf file."));
-      }
-
-      const primary = parsed[activeSourceIndex] ?? parsed[0];
-      const docsToMerge = parsed
-        .filter((p) => isSuprnotesLessonInput(p.data.sourceDocument))
-        .map((p) => ({ label: p.source.file.name, doc: p.data.sourceDocument as SuprnotesLessonInput }));
-      const mergedSourceDocument = docsToMerge.length > 0 ? mergeSourceDocuments(docsToMerge) : null;
-
-      setUploadedFile({
-        name: sources.length > 1 ? `${sources.length} files` : primary.source.file.name,
-        slideCount: Array.isArray(primary.data.pagesUsed) ? primary.data.pagesUsed.length : primary.data.pageCount ?? primary.data.slideCount ?? 0,
-        kind: primary.source.kind,
-        assetCount: parsed.reduce((sum, p) => sum + (p.data.assetCount ?? 0), 0),
-      });
-      setSourceDocument(mergedSourceDocument);
-      // A deck without embedded pictures has no source document; its slide text is the source.
-      // Only meaningful for a single deck — multiple files always produce a mergeable sourceDocument.
-      if (!mergedSourceDocument && typeof primary.data.fullText === "string") setSlideContext(primary.data.fullText);
-      const parsedDocumentId = typeof primary.data.documentId === "string" ? primary.data.documentId : null;
-      setDocumentId(parsedDocumentId);
-      setFullDocumentText(parsed.map((p) => (typeof p.data.fullDocumentText === "string" ? p.data.fullDocumentText : "")).filter(Boolean).join("\n\n"));
-      // Which pages this lesson is about, when not all of them: the strict chat reads them first.
-      const used = Array.isArray(primary.data.pagesUsed) ? (primary.data.pagesUsed as unknown[]).filter((n): n is number => typeof n === "number") : [];
-      setFocusPages(parsed.length === 1 && used.length > 0 && used.length < (primary.data.pageCount ?? 0) ? used : []);
-
-      /**
-       * The question, from wherever the student actually asked it.
-       *
-       * THE BUG THIS FIXES. This read `pageSelection.prompt` alone — the small box on the
-       * page-chooser. Someone who typed their question on the LANDING page (the main way in, and
-       * the one that says "Teach me anything") sent no focus at all, so `focusPassages` returned
-       * null, retrieval was skipped entirely, and the whole-document contract produced a survey of
-       * the paper instead of an answer. The question was captured, used as the lecture's TITLE, and
-       * then thrown away for the one purpose that mattered.
-       *
-       * The page-chooser box wins when both exist: it is the more specific of the two, typed with
-       * the pages already in view. With more than one file, the ACTIVE tab's prompt wins — that
-       * is the file the student was looking at when they typed it.
-       */
-      const focus = primary.source.selection.prompt.trim() || topic.trim() || input.trim();
-      const transcriptText = parsed.map((p) => (typeof p.data.ocrTranscript === "string" ? p.data.ocrTranscript : "")).filter(Boolean).join("\n\n");
-      const drewRegion = parsed.some((p) => p.drewRegion);
-
-      /*
-       * The lecture's SUBJECT comes from what was read, when the words only point.
-       *
-       * "Explain me this" is what a student types after drawing a box, and it was being used as the
-       * topic — the build screen announced "Designing a live lesson on explain me this…" and the
-       * lecture was titled after a pronoun. With no prompt at all the fallback was the FILE'S title,
-       * which is how "select a region and press enter" produced a lecture on the whole document.
-       * Both are the same mistake: a pointing phrase, and an absence, are not subjects.
-       *
-       * The typed words are still the question — they go on as `focus` untouched.
-       */
-      /*
-       * A drawn region is called "Selected region", and nothing cleverer.
-       *
-       * Deriving a name from what was read sounds better than it is: the transcript of a table
-       * begins with its markup, so a lecture came out titled `egin{array}{l|l|l|}`. There is no
-       * good title hiding in a crop, and inventing one only produces confident nonsense on the
-       * screen the student stares at while they wait. What they selected is what it is about.
-       *
-       * Only when they typed nothing meaningful — the region IS the request. A real question they
-       * wrote is always a better title than this.
-       */
-      const pointing = !focus || isPointingPhrase(focus);
-      /*
-       * TRY THE TRANSCRIPT BEFORE FALLING BACK TO "Selected region".
-       *
-       * The region branch used to come first, so a dragged crop was ALWAYS titled "Selected
-       * region" — `subjectFromTranscript` was unreachable whenever `drewRegion` was true. On the
-       * build screen that is merely vague; in Lecture History it is actively broken, because every
-       * lecture built from a crop becomes an identical card and none of them says what it was
-       * about.
-       *
-       * The original reasoning for the literal — that a crop's transcript yields nonsense titles
-       * like `egin{array}{l|l|l|}` — was sound when written, but it is `subjectFromTranscript`'s
-       * own job to reject that, and it now does: markup, pipe-delimited rows, figure-only lines and
-       * heading-less data all fail its candidate test and return "". So the literal stays exactly
-       * where it belongs — as the fallback for when there genuinely is no name in the crop.
-       */
-      /*
-       * ...AND THE DOCUMENT'S OWN NAME BEFORE THE LITERAL.
-       *
-       * The fix above stopped one step short. `primary.data.title` — the PDF's metadata title, or
-       * its first heading, or the cleaned-up filename — sat BELOW the literal and was therefore
-       * still unreachable whenever a region was drawn, which is the common case: dragging a box and
-       * clicking "Get a lecture from this area" requires typing nothing at all. So every crop-built
-       * lecture was named "Selected region" regardless, and Lecture History filled with identical
-       * cards — the exact failure the comment above describes as actively broken.
-       *
-       * Naming the document and marking the crop keeps both facts: which file this came from, and
-       * that it was part of it rather than the whole thing. The bare literal remains for the case it
-       * was written for — a crop from a document with no usable title of its own.
-       */
-      const subject = lectureSubject({
-        sectionTitle: documentLectureTitle(documentSectionTitles(primary.data.sourceDocument), looksLikeTitle),
-        transcriptSubject: subjectFromTranscript(transcriptText),
-        pointing,
-        drewRegion,
-        focus,
-        topic,
-        input,
-        documentTitle: primary.data.title ?? "",
-      });
-      setUploadFocus(focus);
-      setOcrTranscript(transcriptText);
-      setSelectionPages(drewRegion ? [...new Set(parsed.flatMap((p) => p.regionPages))] : []);
-      const sourceLabels = sources.map((source) => source.file.name);
-      setPendingSources([]);
-      setParsingPages(false);
-      setUploadPhase("ready");
-
-      /**
-       * ONE EXPLICIT SOURCE CONTRACT, immediately after page selection.
-       *
-       * The old flow buried strict/reference among later scope and depth questions, and the
-       * progressive route then discarded the answer. Holding the fresh parse here makes the
-       * decision unavoidable and race-free: strict mode can go straight to generation without a
-       * diagnostic or outline, while reference mode hands the exact same fresh values into the
-       * existing adaptive planner.
-       */
-      autoPlannedRef.current = true;
-      sourceModeChosenRef.current = false;
-      setSourceModeStart({
-        subject,
-        documentLabels: sourceLabels,
-        fresh: {
-        sourceDocument: mergedSourceDocument ?? undefined,
-        slideContext: typeof primary.data.fullText === "string" ? primary.data.fullText : undefined,
-        focus,
-        transcript: transcriptText,
-        kind: primary.source.kind,
-        scopeSelected: drewRegion,
-        documentId: parsedDocumentId,
-        regionPages: parsed.flatMap((p) => p.regionPages),
-        },
-      });
-      setPhase("source-mode");
+      applyParsedDocuments(parsed, sources);
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Could not read that file.");
       setParsingPages(false);
@@ -1498,10 +1365,196 @@ type BuildCost =
     }
   }
 
-  function chooseSourceMode(fidelity: PdfFidelity) {
+  /**
+   * THE PHONE'S PAGES (the QR capture): read and assembled on the server into one document, in /api/parse-pdf's
+   * shape, so they take the very path a PDF's chosen pages take — one source, no question typed (the question box
+   * on the reference/strict screen still applies), named after the photos.
+   */
+  function ingestCaptured(captured: CapturedDocument) {
+    ensureSpendTag();
+    const name = typeof captured.fileName === "string" ? captured.fileName : "Phone photos.pdf";
+    const source: PendingSource = {
+      file: new File([], name, { type: "application/pdf" }),
+      kind: "pdf",
+      pages: [],
+      fidelity: "rendered",
+      unavailableReason: null,
+      selection: { pages: [], prompt: "" },
+      regions: {},
+      pageCount: typeof captured.pageCount === "number" ? captured.pageCount : undefined,
+    };
+    try {
+      applyParsedDocuments([{ source, data: captured, ok: true, drewRegion: false, regionPages: [] }], [source]);
+    } catch (error) {
+      setUploadError(error instanceof Error ? error.message : "Could not read the photographed pages.");
+      setUploadPhase("error");
+    }
+  }
+
+  /**
+   * EVERYTHING AFTER THE PAGES ARE READ: the parse results become the lesson's document and the student is asked
+   * reference or strict (the source-mode screen). Split out of parseSelectedPages so the phone capture
+   * (components/upload/PhoneCapturePanel.tsx) enters exactly the same path as a PDF upload. Throws on a failed read.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- the parse routes' JSON, read field by field below.
+  function applyParsedDocuments(parsed: Array<{ source: PendingSource; data: any; ok: boolean; drewRegion: boolean; regionPages: number[] }>, sources: PendingSource[]) {
+    const failed = parsed.find((p) => !p.ok || (!p.data.sourceDocument && !p.data.fullText));
+    if (failed) {
+      throw new Error(failed.data.error || (failed.source.kind === "pptx"
+
+        ? "Couldn't read the presentation. Make sure it's a valid .pptx file."
+        : "Couldn't read the PDF. Make sure it's a valid .pdf file."));
+    }
+
+    const primary = parsed[activeSourceIndex] ?? parsed[0];
+    const docsToMerge = parsed
+      .filter((p) => isSuprnotesLessonInput(p.data.sourceDocument))
+      .map((p) => ({ label: p.source.file.name, doc: p.data.sourceDocument as SuprnotesLessonInput }));
+    const mergedSourceDocument = docsToMerge.length > 0 ? mergeSourceDocuments(docsToMerge) : null;
+
+    setUploadedFile({
+      name: sources.length > 1 ? `${sources.length} files` : primary.source.file.name,
+      slideCount: Array.isArray(primary.data.pagesUsed) ? primary.data.pagesUsed.length : primary.data.pageCount ?? primary.data.slideCount ?? 0,
+      kind: primary.source.kind,
+      assetCount: parsed.reduce((sum, p) => sum + (p.data.assetCount ?? 0), 0),
+    });
+    setSourceDocument(mergedSourceDocument);
+    // A deck without embedded pictures has no source document; its slide text is the source.
+    // Only meaningful for a single deck — multiple files always produce a mergeable sourceDocument.
+    if (!mergedSourceDocument && typeof primary.data.fullText === "string") setSlideContext(primary.data.fullText);
+    const parsedDocumentId = typeof primary.data.documentId === "string" ? primary.data.documentId : null;
+    setDocumentId(parsedDocumentId);
+    setFullDocumentText(parsed.map((p) => (typeof p.data.fullDocumentText === "string" ? p.data.fullDocumentText : "")).filter(Boolean).join("\n\n"));
+    // Which pages this lesson is about, when not all of them: the strict chat reads them first.
+    const used = Array.isArray(primary.data.pagesUsed) ? (primary.data.pagesUsed as unknown[]).filter((n): n is number => typeof n === "number") : [];
+    setFocusPages(parsed.length === 1 && used.length > 0 && used.length < (primary.data.pageCount ?? 0) ? used : []);
+
+    /**
+     * The question, from wherever the student actually asked it.
+     *
+     * THE BUG THIS FIXES. This read `pageSelection.prompt` alone — the small box on the
+     * page-chooser. Someone who typed their question on the LANDING page (the main way in, and
+     * the one that says "Teach me anything") sent no focus at all, so `focusPassages` returned
+     * null, retrieval was skipped entirely, and the whole-document contract produced a survey of
+     * the paper instead of an answer. The question was captured, used as the lecture's TITLE, and
+     * then thrown away for the one purpose that mattered.
+     *
+     * The page-chooser box wins when both exist: it is the more specific of the two, typed with
+     * the pages already in view. With more than one file, the ACTIVE tab's prompt wins — that
+     * is the file the student was looking at when they typed it.
+     */
+    const focus = primary.source.selection.prompt.trim() || topic.trim() || input.trim();
+    const transcriptText = parsed.map((p) => (typeof p.data.ocrTranscript === "string" ? p.data.ocrTranscript : "")).filter(Boolean).join("\n\n");
+    const drewRegion = parsed.some((p) => p.drewRegion);
+
+    /*
+     * The lecture's SUBJECT comes from what was read, when the words only point.
+     *
+     * "Explain me this" is what a student types after drawing a box, and it was being used as the
+     * topic — the build screen announced "Designing a live lesson on explain me this…" and the
+     * lecture was titled after a pronoun. With no prompt at all the fallback was the FILE'S title,
+     * which is how "select a region and press enter" produced a lecture on the whole document.
+     * Both are the same mistake: a pointing phrase, and an absence, are not subjects.
+     *
+     * The typed words are still the question — they go on as `focus` untouched.
+     */
+    /*
+     * A drawn region is called "Selected region", and nothing cleverer.
+     *
+     * Deriving a name from what was read sounds better than it is: the transcript of a table
+     * begins with its markup, so a lecture came out titled `egin{array}{l|l|l|}`. There is no
+     * good title hiding in a crop, and inventing one only produces confident nonsense on the
+     * screen the student stares at while they wait. What they selected is what it is about.
+     *
+     * Only when they typed nothing meaningful — the region IS the request. A real question they
+     * wrote is always a better title than this.
+     */
+    const pointing = !focus || isPointingPhrase(focus);
+    /*
+     * TRY THE TRANSCRIPT BEFORE FALLING BACK TO "Selected region".
+     *
+     * The region branch used to come first, so a dragged crop was ALWAYS titled "Selected
+     * region" — `subjectFromTranscript` was unreachable whenever `drewRegion` was true. On the
+     * build screen that is merely vague; in Lecture History it is actively broken, because every
+     * lecture built from a crop becomes an identical card and none of them says what it was
+     * about.
+     *
+     * The original reasoning for the literal — that a crop's transcript yields nonsense titles
+     * like `egin{array}{l|l|l|}` — was sound when written, but it is `subjectFromTranscript`'s
+     * own job to reject that, and it now does: markup, pipe-delimited rows, figure-only lines and
+     * heading-less data all fail its candidate test and return "". So the literal stays exactly
+     * where it belongs — as the fallback for when there genuinely is no name in the crop.
+     */
+    /*
+     * ...AND THE DOCUMENT'S OWN NAME BEFORE THE LITERAL.
+     *
+     * The fix above stopped one step short. `primary.data.title` — the PDF's metadata title, or
+     * its first heading, or the cleaned-up filename — sat BELOW the literal and was therefore
+     * still unreachable whenever a region was drawn, which is the common case: dragging a box and
+     * clicking "Get a lecture from this area" requires typing nothing at all. So every crop-built
+     * lecture was named "Selected region" regardless, and Lecture History filled with identical
+     * cards — the exact failure the comment above describes as actively broken.
+     *
+     * Naming the document and marking the crop keeps both facts: which file this came from, and
+     * that it was part of it rather than the whole thing. The bare literal remains for the case it
+     * was written for — a crop from a document with no usable title of its own.
+     */
+    const subject = lectureSubject({
+      sectionTitle: documentLectureTitle(documentSectionTitles(primary.data.sourceDocument), looksLikeTitle),
+      transcriptSubject: subjectFromTranscript(transcriptText),
+      pointing,
+      drewRegion,
+      focus,
+      topic,
+      input,
+      documentTitle: primary.data.title ?? "",
+    });
+    setUploadFocus(focus);
+    setOcrTranscript(transcriptText);
+    setSelectionPages(drewRegion ? [...new Set(parsed.flatMap((p) => p.regionPages))] : []);
+    const sourceLabels = sources.map((source) => source.file.name);
+    setPendingSources([]);
+    setParsingPages(false);
+    setUploadPhase("ready");
+
+    /**
+     * ONE EXPLICIT SOURCE CONTRACT, immediately after page selection.
+     *
+     * The old flow buried strict/reference among later scope and depth questions, and the
+     * progressive route then discarded the answer. Holding the fresh parse here makes the
+     * decision unavoidable and race-free: strict mode can go straight to generation without a
+     * diagnostic or outline, while reference mode hands the exact same fresh values into the
+     * existing adaptive planner.
+     */
+    autoPlannedRef.current = true;
+    sourceModeChosenRef.current = false;
+    setSourceModeStart({
+      subject,
+      documentLabels: sourceLabels,
+      fresh: {
+      sourceDocument: mergedSourceDocument ?? undefined,
+      slideContext: typeof primary.data.fullText === "string" ? primary.data.fullText : undefined,
+      focus,
+      transcript: transcriptText,
+      kind: primary.source.kind,
+      scopeSelected: drewRegion,
+      documentId: parsedDocumentId,
+      regionPages: parsed.flatMap((p) => p.regionPages),
+      },
+    });
+    setPhase("source-mode");
+  }
+
+  /**
+   * `asked`: a question the student typed on this screen ("Ask a question about these pages", phone photos). It was
+   * asked as a question, so it is one — no guessing from its words whether it means the whole document.
+   */
+  function chooseSourceMode(fidelity: PdfFidelity, asked?: string) {
     if (!sourceModeStart) return;
+    const typed = asked?.trim() ?? "";
+    const start = typed ? { ...sourceModeStart, fresh: { ...sourceModeStart.fresh, focus: typed } } : sourceModeStart;
     // A specific question narrows the scope to its answer; only an open request covers the whole source.
-    const question = questionFromUpload(sourceModeStart);
+    const question = typed || questionFromUpload(start);
     const nextScope: SourceScope = {
       fidelity,
       breadth: question ? { kind: "section", focus: question } : { kind: "whole" },
@@ -1510,8 +1563,9 @@ type BuildCost =
     setSourceScope(nextScope);
     sourceScopeRef.current = nextScope;
     sourceModeChosenRef.current = true;
-    const next = sourceModeStart;
+    const next = start;
     setSourceModeStart(null);
+    if (typed) setUploadFocus(typed);
     if (fidelity === "strict") {
       // The selected source already contains the syllabus. No diagnostic, outline, scope or depth
       // questionnaire is allowed to stand between this choice and generation.
@@ -1536,21 +1590,10 @@ type BuildCost =
             .then((named) => (named && !/^teach|everything in these pages/i.test(named) ? named : next.subject));
         setTopic(subject);
         /*
-         * WHAT THEY ALREADY KNOW OF THESE PAGES FIRST (lib/intake.ts, owner 2026-10-20): the PDF's
-         * own sections as chips and up to three basic checks from its words, then the build. The
-         * lesson still teaches every page and only what the pages say; the answers decide where it
-         * goes from scratch and where it only recaps.
+         * NO PLANNING IN STRICT (owner, 2026-11-25): no intake card, no "what do you already know"
+         * checks, no planning voice — strict goes straight from this choice to the build. (The intake
+         * card asked here since 2026-10-20; its open questions also opened Aria's planning mic.)
          */
-        const doc = next.fresh.sourceDocument;
-        if (doc && !question) {
-          const seeded = emptyProfile(subject);
-          setLearnerProfile(seeded);
-          learnerProfileRef.current = seeded;
-          setDiagnosticRemark(null);
-          setPhase("outline");
-          void startIntake(subject, { doc, strict: true, then: () => void build(subject, undefined, next.fresh, []) });
-          return;
-        }
         void build(subject, undefined, next.fresh, []);
       })();
     } else {
@@ -4305,10 +4348,50 @@ type BuildCost =
   }
 
   if (phase === "source-mode" && sourceModeStart) {
+    const fromPhone = (sourceModeStart.fresh.sourceDocument as { source?: { adapter?: string } } | undefined)?.source?.adapter === "phone-capture";
+    const phonePageCount = Math.max(1, new Set(((sourceModeStart.fresh.sourceDocument as { contentBlocks?: Array<{ pageNumber?: number }> } | undefined)?.contentBlocks ?? []).map((b) => b.pageNumber)).size);
+    const askedText = fromPhone && pagesAsk.mode === "question" ? pagesAsk.text.trim() : "";
+    const waitingForQuestion = fromPhone && pagesAsk.mode === "question" && !askedText;
+    const choose = (fidelity: PdfFidelity) => {
+      if (waitingForQuestion) return;
+      setPagesAsk({ mode: "all", text: "" });
+      chooseSourceMode(fidelity, askedText || undefined);
+    };
     return (
       <main className="hud-canvas hud-grain relative grid min-h-screen place-items-center overflow-hidden px-5 py-8 text-[var(--hud-text)]">
         <section aria-labelledby="source-mode-title" className="relative z-10 w-full max-w-3xl rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-6 shadow-[var(--elev-2)] sm:p-9">
-          <p className="text-[0.8125rem] font-medium text-[var(--hud-text-dim)]">Source ready</p>
+          <p className="text-[0.8125rem] font-medium text-[var(--hud-text-dim)]">{fromPhone ? `Your ${phonePageCount} photographed page${phonePageCount === 1 ? " is" : "s are"} ready` : "Source ready"}</p>
+          {fromPhone && (
+            <fieldset className="mt-3 mb-7 border-b border-[var(--hud-line)] pb-6">
+              <legend className="font-display text-[1.35rem] leading-tight tracking-[-0.01em]">What should Aria teach?</legend>
+              <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                {([
+                  { mode: "all", label: `All ${phonePageCount === 1 ? "of this page" : `${phonePageCount} pages`}`, hint: "A lecture on everything the pages cover." },
+                  { mode: "question", label: "A question about them", hint: "Type what you want to know; the lecture answers it from the pages." },
+                ] as const).map((option) => (
+                  <label key={option.mode} className={`flex cursor-pointer gap-3 rounded-[var(--radius)] border p-3 transition ${pagesAsk.mode === option.mode ? "border-[var(--hud-cyan)] bg-[var(--hud-surface-2)]" : "border-[var(--hud-line)] hover:border-[var(--hud-line-strong)]"}`}>
+                    <input type="radio" name="pages-ask" className="mt-1 accent-[var(--hud-cyan)]" checked={pagesAsk.mode === option.mode} onChange={() => setPagesAsk((p) => ({ ...p, mode: option.mode }))} />
+                    <span>
+                      <span className="block text-[0.95rem] font-medium text-[var(--hud-text)]">{option.label}</span>
+                      <span className="mt-0.5 block text-[0.8rem] leading-snug text-[var(--hud-text-dim)]">{option.hint}</span>
+                    </span>
+                  </label>
+                ))}
+              </div>
+              {pagesAsk.mode === "question" && (
+                <textarea
+                  autoFocus
+                  rows={2}
+                  value={pagesAsk.text}
+                  onChange={(e) => setPagesAsk({ mode: "question", text: e.target.value })}
+                  placeholder="e.g. Why does the heart have four chambers?"
+                  aria-label="Your question about these pages"
+                  className="mt-3 w-full resize-none rounded-[var(--radius)] border border-[var(--hud-line)] bg-transparent px-3 py-2 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none"
+                />
+              )}
+              {waitingForQuestion && <p className="mt-1.5 text-[0.78rem] text-[var(--hud-text-faint)]">Type your question, then choose how Aria should use the pages.</p>}
+            </fieldset>
+          )}
           <h1 id="source-mode-title" className="mt-2 max-w-2xl font-display text-[1.75rem] leading-tight tracking-[-0.02em] sm:text-[2rem]">
             Do you want me to teach strictly from the selected source?
           </h1>
@@ -4319,18 +4402,20 @@ type BuildCost =
           <div className="mt-7 grid gap-3 sm:grid-cols-2">
             <button
               type="button"
-              onClick={() => chooseSourceMode("strict")}
-              className="group rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)]"
+              onClick={() => choose("strict")}
+              disabled={waitingForQuestion}
+              className="group rounded-[var(--radius-lg)] disabled:cursor-not-allowed disabled:opacity-50 border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)]"
             >
               <span className="text-[1.0625rem] font-medium text-[var(--hud-text)]">Yes — strict source</span>
               <span className="mt-2 block text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">
-                Cover every selected page in source order, built around what you already know. Clarify and illustrate it, but add nothing the pages do not say.
+                {askedText ? "Answer your question from these pages only." : "Cover every selected page in source order."} Clarify and illustrate it, but add nothing the pages do not say. Starts building straight away.
               </span>
             </button>
             <button
               type="button"
-              onClick={() => chooseSourceMode("reference")}
-              className="group rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)]"
+              onClick={() => choose("reference")}
+              disabled={waitingForQuestion}
+              className="group rounded-[var(--radius-lg)] disabled:cursor-not-allowed disabled:opacity-50 border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)]"
             >
               <span className="text-[1.0625rem] font-medium text-[var(--hud-text)]">Use it as a reference</span>
               <span className="mt-2 block text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">
@@ -6276,8 +6361,10 @@ function OutlineReviewState({
                     // misconception, not one name inside another ("photosynthesis requirements").
                     const norm = (t: string) => t.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
                     const wrong = map.filter((e) => e.status === "misconception").map((e) => e.concept).slice(0, 2);
+                    // Only what they met and are unsure of: a part they have never met ("None of these, it's all new
+                    // to me" marks every part missing) is new, not shaky (tester, 2026-11-25).
                     const shaky = map
-                      .filter((e) => e.status === "weak" || e.status === "missing")
+                      .filter((e) => e.status === "weak")
                       .map((e) => e.concept)
                       .filter((c) => norm(c) !== norm(topic) && c.split(/\s+/).length <= 5)
                       .filter((c) => !wrong.some((w) => norm(w).includes(norm(c)) || norm(c).includes(norm(w))))

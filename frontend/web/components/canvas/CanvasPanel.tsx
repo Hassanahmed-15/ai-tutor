@@ -107,8 +107,10 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
         {visible.map((mark) => (
           <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} chalk={chalk} cardLook={cards} cardNo={cardNumbers ? (cardNumbers.get(mark.id) ?? 0) : undefined} cardDone={doneIds?.has(mark.id)} cardOpen={openId === mark.id} pencil={pencil} />
         ))}
-        {/* Every picture board (owner, 2026-11-12: typed lessons as courses). */}
-        <PictureSpotlight layout={layout} focusId={focusId} live={live && !reducedMotion} />
+        {/* Every picture board (owner, 2026-11-12: typed lessons as courses) — except the student's own PDF figure:
+            its 42% dimming stayed over the crop after a check question and read as "a black box over the figure"
+            (re-test, 2026-11-25). Aria's pointer still goes to each part. */}
+        {!(spec.stage.kind === "illustration" && spec.stage.fromDocument) && <PictureSpotlight layout={layout} focusId={focusId} live={live && !reducedMotion} />}
       </g>
     </g>
     </InkDrawing.Provider>
@@ -860,7 +862,7 @@ function PictureCard({ mark, spec, chalk }: { mark: Extract<Mark, { type: "pictu
   return (
     // A course picture is already drawn: it is put up at once, not traced by the pencil (owner,
     // 2026-10-25: tracing its frame held the board in "a long pause" before anything was written).
-    <g className="cv-in cv-picture" data-no-marker={isCourseBoard(spec) ? "" : undefined}>
+    <g className="cv-in cv-picture" data-no-marker={isCourseBoard(spec) || (spec.stage.kind === "illustration" && spec.stage.fromDocument) ? "" : undefined}>
       {/* On a chalkboard a picture is a photo taped to the board: a white border and two strips of tape. */}
       {chalk && (
         <>

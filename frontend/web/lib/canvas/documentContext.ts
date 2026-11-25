@@ -444,9 +444,14 @@ export function documentPageMap(doc: SuprnotesLessonInput): PageSummary[] {
 export function documentSections(doc: SuprnotesLessonInput): string[] {
   // Parser headings are noisy: the same heading on every block under it, running page headers
   // ("6 1Plants"), bullet lines and symbol runs. One section per distinct, real heading.
+  const docTitle = String(doc.lesson?.title ?? "").replace(/\.pdf$/i, "").replace(/\s+/g, " ").trim().toLowerCase();
   const junk = (h: string) =>
     h.length < 4 || h.length > 80
     || /^(?:page \d+|figure\b|fig\.|table\b|contents|references|bibliography|index)/i.test(h)
+    // What kind of document it is, printed as a page header, is not a topic ("Fact Sheet" became a part to
+    // teach on a hearing fact sheet, tester 2026-11-25).
+    || /^(?:fact ?sheets?|info(?:rmation)? sheets?|work ?sheets?|hand ?outs?|revision (?:notes|sheets?|guides?)|study (?:notes|guides?)|lecture notes|class notes|notes|key facts|glossary|answers?|mark scheme|name:?|date:?)$/i.test(h)
+    || (docTitle !== "" && h.toLowerCase() === docTitle)
     || /^[•·*\-–—]/.test(h) || /^[a-z]/.test(h)
     || (/\d[A-Za-z]|[A-Za-z]\d/.test(h) && !/^\d+(?:\.\d+)*\.?\s/.test(h))
     || (h.match(/[A-Za-z]{3,}/g) ?? []).length < (/^[A-Z][a-z]{3,}/.test(h) ? 1 : 2)
@@ -494,6 +499,23 @@ export function termsNotInDocument(question: string, doc: SuprnotesLessonInput):
     .filter((w) => !text.includes(stem(w)))
     .filter((w) => !contentStems(w).some((s) => stems.has(s)))
     .filter((w) => !(hasCode && CODE_WORDS.test(w)));
+}
+
+/**
+ * A WHOLE-DOCUMENT LESSON KEEPS THE DOCUMENT'S ORDER (tester, 2026-11-25): its boards sorted by the first page
+ * each teaches, stably — boards of the same page keep the planner's order, a board naming no page stays with
+ * the board before it, and a refresher stays first. Returns the beats unchanged when they are in order.
+ */
+export function inPageOrder<T extends { source?: { pages: number[] }; refresher?: boolean }>(beats: T[]): { beats: T[]; moved: boolean } {
+  let last = 0;
+  const keyed = beats.map((beat, i) => {
+    const first = beat.source?.pages?.length ? Math.min(...beat.source.pages) : last;
+    last = first;
+    return { beat, i, key: beat.refresher ? -1 : first };
+  });
+  const sorted = [...keyed].sort((a, b) => a.key - b.key || a.i - b.i);
+  const moved = sorted.some((k, i) => k.i !== i);
+  return { beats: moved ? sorted.map((k) => k.beat) : beats, moved };
 }
 
 export function substantivePages(doc: SuprnotesLessonInput): number[] {

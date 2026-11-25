@@ -21,7 +21,15 @@ export type PendingBrief = {
   videoUrl?: string;
   /** A course lesson by address: the builder fetches its spec + syllabus pages from the server. */
   curriculum?: CurriculumLessonRequest;
+  /**
+   * Pages photographed with the phone (the QR capture), already read and assembled into one document — the same
+   * JSON /api/parse-pdf answers (app/api/capture/[id]/finish). The builder goes straight to reference/strict.
+   */
+  captured?: CapturedDocument;
 };
+
+/** The phone capture's assembled pages, in /api/parse-pdf's shape (plus the name shown for the "file"). */
+export type CapturedDocument = Record<string, unknown> & { sourceDocument: unknown; fileName?: string; pageCount?: number; documentId?: string | null };
 
 let pending: PendingBrief | null = null;
 

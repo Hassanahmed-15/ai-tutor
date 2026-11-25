@@ -112,6 +112,15 @@ export function getDocumentImages(documentId: string | null | undefined): Stored
   return entry;
 }
 
+/**
+ * Drops one document's images. The phone capture (lib/capture/read.ts) parses each photo on its own and keeps only
+ * the assembled document's images: left in, six one-page parses would push other students' documents out of a
+ * store that holds a few dozen.
+ */
+export function dropDocumentImages(documentId: string | null | undefined): void {
+  if (documentId) store.delete(documentId);
+}
+
 /** Test seam: drops everything. Never called by the app. */
 export function clearDocumentImages(): void {
   store.clear();

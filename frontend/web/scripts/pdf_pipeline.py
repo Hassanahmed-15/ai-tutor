@@ -34,6 +34,12 @@ def _load_cv():
     import numpy as np
     import pytesseract
 
+    # The same Tesseract the Node side uses (lib/ocrLayout.ts TESSERACT_BINARY): on Windows the installer
+    # does not put it on PATH, and without it every word-growth pass of the cropper is skipped silently.
+    binary = os.environ.get("TESSERACT_BINARY")
+    if binary:
+        pytesseract.pytesseract.tesseract_cmd = binary
+
     return cv2, np, pytesseract
 
 
@@ -125,7 +131,11 @@ def render_pdf(input_path: Path, output_dir: Path, dpi: int, vision_dpi: int = 0
                 continue
             for line in block.get("lines", []):
                 for span in line.get("spans", []):
-                    text = str(span.get("text", "")).strip()
+                    # Zero-width characters are not text. The space a span ends or starts with is kept as a
+                    # flag: a word printed in its own span (a bold, coloured key word) touches its neighbours,
+                    # and without it "The " + "gold foil" was read as "Thegold foil" (2026-11-25).
+                    raw = str(span.get("text", "")).replace("​", "").replace("﻿", "").replace("⁠", "")
+                    text = raw.strip()
                     bbox = span.get("bbox", [0, 0, 0, 0])
                     if not text or len(bbox) != 4:
                         continue
@@ -139,6 +149,8 @@ def render_pdf(input_path: Path, output_dir: Path, dpi: int, vision_dpi: int = 0
                             "height": max(1.0, y1 - y0),
                             "fontSize": max(1.0, float(span.get("size", y1 - y0))),
                             "fontName": str(span.get("font", "")),
+                            "spaceBefore": raw[:1].isspace(),
+                            "spaceAfter": raw[-1:].isspace(),
                         }
                     )
 
@@ -267,6 +279,31 @@ def ocr_edge_risks(image: np.ndarray) -> set[str]:
     return risks
 
 
+def clip_out_text(
+    box: tuple[int, int, int, int],
+    region: tuple[int, int, int, int],
+    text_boxes_px: list[tuple[int, int, int, int]],
+) -> tuple[int, int, int, int]:
+    """The crop with every prose box it overlaps — but the detected figure does not — cut back out: the edge on
+    that box's side moves just past it. Never inside the figure's own region."""
+    x0, y0, x1, y1 = box
+    rx0, ry0, rx1, ry1 = region
+    for tx0, ty0, tx1, ty1 in text_boxes_px:
+        if min(x1, tx1) <= max(x0, tx0) or min(y1, ty1) <= max(y0, ty0):
+            continue  # does not touch the crop
+        if min(rx1, tx1) > max(rx0, tx0) and min(ry1, ty1) > max(ry0, ty0):
+            continue  # overlaps the figure itself: its writing, kept
+        if ty1 <= ry0 + 2:
+            y0 = max(y0, min(ry0, ty1 + 2))
+        elif ty0 >= ry1 - 2:
+            y1 = min(y1, max(ry1, ty0 - 2))
+        elif tx1 <= rx0 + 2:
+            x0 = max(x0, min(rx0, tx1 + 2))
+        elif tx0 >= rx1 - 2:
+            x1 = min(x1, max(rx1, tx0 - 2))
+    return x0, y0, x1, y1
+
+
 def strip_hits_text(
     strip: tuple[int, int, int, int],
     text_boxes_px: list[tuple[int, int, int, int]],
@@ -327,17 +364,20 @@ def expand_box_until_clear(
 
     # OCR is intentionally bounded to two checks. Edge ink handles inexpensive iterative growth;
     # OCR then catches words whose glyphs do not physically touch the border.
+    # A word cut at the edge is grown toward — but, as above, never across the page's prose: with Tesseract
+    # installed this pass ran for the first time and could swallow the paragraph beside a figure (2026-11-25).
+    # The prose boxes no longer include a figure's own labels (lib/pdfFigureBox.ts), so those are still reached.
     for _ in range(2):
         crop = page[y0:y1, x0:x1]
         risks = ocr_edge_risks(crop)
         before = (x0, y0, x1, y1)
-        if "left" in risks and x0 > 0:
+        if "left" in risks and x0 > 0 and not strip_hits_text((max(0, x0 - step_x), y0, x0, y1), text_boxes_px):
             x0 = max(0, x0 - step_x)
-        if "right" in risks and x1 < page_width:
+        if "right" in risks and x1 < page_width and not strip_hits_text((x1, y0, min(page_width, x1 + step_x), y1), text_boxes_px):
             x1 = min(page_width, x1 + step_x)
-        if "top" in risks and y0 > 0:
+        if "top" in risks and y0 > 0 and not strip_hits_text((x0, max(0, y0 - step_y), x1, y0), text_boxes_px):
             y0 = max(0, y0 - step_y)
-        if "bottom" in risks and y1 < page_height:
+        if "bottom" in risks and y1 < page_height and not strip_hits_text((x0, y1, x1, min(page_height, y1 + step_y)), text_boxes_px):
             y1 = min(page_height, y1 + step_y)
         if before == (x0, y0, x1, y1):
             break
@@ -452,6 +492,16 @@ def crop_one_page(
         x1 = min(page_width, math.ceil((x + width) * page_width) + padding_x)
         y1 = min(page_height, math.ceil((y + height) * page_height) + padding_y)
         x0, y0, x1, y1 = expand_box_until_clear(page, (x0, y0, x1, y1), text_boxes_px)
+        # The padding above may reach into the paragraph beside the figure (a neuron figure's crop carried half
+        # a line of body text, re-test 2026-11-25): any prose box the crop overlaps but the figure itself does
+        # not is cut back out, edge by edge. The figure's own labels are not prose boxes (lib/pdfFigureBox.ts).
+        region_px = (
+            math.floor(x * page_width),
+            math.floor(y * page_height),
+            math.ceil((x + width) * page_width),
+            math.ceil((y + height) * page_height),
+        )
+        x0, y0, x1, y1 = clip_out_text((x0, y0, x1, y1), region_px, text_boxes_px)
         crop = page[y0:y1, x0:x1]
         crop, trim = trim_whitespace(crop)
         tx0, ty0, tx1, ty1 = trim
@@ -522,6 +572,88 @@ def crop_regions(page_path: Path | None, regions_path: Path, output_dir: Path) -
     write_json(output_dir / "crops.json", {"crops": crops})
 
 
+def _order_corners(points):
+    """Four corners as top-left, top-right, bottom-right, bottom-left."""
+    cv2, np, pytesseract = _load_cv()
+    pts = np.array(points, dtype="float32").reshape(4, 2)
+    s = pts.sum(axis=1)
+    d = np.diff(pts, axis=1).reshape(4)
+    return np.array([pts[np.argmin(s)], pts[np.argmin(d)], pts[np.argmax(s)], pts[np.argmax(d)]], dtype="float32")
+
+
+def _page_outline(image):
+    """The photographed page's four corners in `image` pixels, or None when no clear page edge is found.
+    The largest convex four-sided outline covering 25-98% of the photo (a page photographed on a desk)."""
+    cv2, np, pytesseract = _load_cv()
+    height, width = image.shape[:2]
+    scale = 1000.0 / max(height, width)
+    small = cv2.resize(image, (max(1, int(width * scale)), max(1, int(height * scale)))) if scale < 1 else image.copy()
+    scale = min(scale, 1.0)
+    gray = cv2.cvtColor(small, cv2.COLOR_BGR2GRAY)
+    gray = cv2.GaussianBlur(gray, (5, 5), 0)
+    edges = cv2.Canny(gray, 50, 150)
+    edges = cv2.dilate(edges, cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5)), iterations=1)
+    contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    area = small.shape[0] * small.shape[1]
+    for contour in sorted(contours, key=cv2.contourArea, reverse=True)[:8]:
+        peri = cv2.arcLength(contour, True)
+        approx = cv2.approxPolyDP(contour, 0.02 * peri, True)
+        share = cv2.contourArea(approx) / area
+        if len(approx) == 4 and cv2.isContourConvex(approx) and 0.25 <= share <= 0.98:
+            return approx.reshape(4, 2) / scale
+    return None
+
+
+def photo_page(input_path: Path, output_dir: Path) -> None:
+    """A photographed page, ready to be read like a scanned one (lib/capture/photo.ts): quality measured, the page
+    found and flattened, contrast lifted a little, and three copies written — page.jpg (<=2400 px, read and cropped),
+    vision.jpg (<=1600 px, the strict panel's page image) and thumb.jpg (<=420 px). Prints its metrics as JSON."""
+    cv2, np, pytesseract = _load_cv()
+    image = cv2.imread(str(input_path), cv2.IMREAD_COLOR)
+    if image is None:
+        raise RuntimeError(f"Could not read photo: {input_path}")
+    height, width = image.shape[:2]
+    # Quality on a 1000 px copy, so the numbers mean the same whatever the phone's resolution.
+    scale = 1000.0 / max(height, width)
+    probe = cv2.resize(image, (max(1, int(width * scale)), max(1, int(height * scale)))) if scale < 1 else image
+    gray = cv2.cvtColor(probe, cv2.COLOR_BGR2GRAY)
+    sharpness = float(cv2.Laplacian(gray, cv2.CV_64F).var())
+    brightness = float(gray.mean())
+    corners = _page_outline(image)
+    warped = False
+    if corners is not None:
+        tl, tr, br, bl = _order_corners(corners)
+        out_w = int(max(np.linalg.norm(br - bl), np.linalg.norm(tr - tl)))
+        out_h = int(max(np.linalg.norm(tr - br), np.linalg.norm(tl - bl)))
+        if out_w > 200 and out_h > 200:
+            matrix = cv2.getPerspectiveTransform(np.array([tl, tr, br, bl], dtype="float32"), np.array([[0, 0], [out_w - 1, 0], [out_w - 1, out_h - 1], [0, out_h - 1]], dtype="float32"))
+            image = cv2.warpPerspective(image, matrix, (out_w, out_h), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
+            warped = True
+    # A little contrast on the lightness channel only: print reads better, colours stay as photographed.
+    lab = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+    l_channel, a_channel, b_channel = cv2.split(lab)
+    l_channel = cv2.createCLAHE(clipLimit=1.6, tileGridSize=(8, 8)).apply(l_channel)
+    image = cv2.cvtColor(cv2.merge((l_channel, a_channel, b_channel)), cv2.COLOR_LAB2BGR)
+
+    def fit(img, longest):
+        h, w = img.shape[:2]
+        k = min(1.0, longest / max(h, w))
+        return cv2.resize(img, (max(1, int(w * k)), max(1, int(h * k))), interpolation=cv2.INTER_AREA) if k < 1 else img
+
+    page = fit(image, 2400)
+    cv2.imwrite(str(output_dir / "page.jpg"), page, [cv2.IMWRITE_JPEG_QUALITY, 90])
+    cv2.imwrite(str(output_dir / "vision.jpg"), fit(page, 1600), [cv2.IMWRITE_JPEG_QUALITY, 82])
+    cv2.imwrite(str(output_dir / "thumb.jpg"), fit(page, 420), [cv2.IMWRITE_JPEG_QUALITY, 78])
+    print(json.dumps({
+        "width": int(page.shape[1]),
+        "height": int(page.shape[0]),
+        "sharpness": round(sharpness, 1),
+        "brightness": round(brightness, 1),
+        "pageFound": corners is not None,
+        "warped": warped,
+    }))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -543,12 +675,20 @@ def main() -> None:
     crop.add_argument("--page", type=Path, default=None)
     crop.add_argument("--regions", required=True, type=Path)
     crop.add_argument("--output-dir", required=True, type=Path)
+    # A photographed page (the phone capture): flattened and written as page/vision/thumb JPEGs.
+    photo = subparsers.add_parser("photo")
+    photo.add_argument("--input", required=True, type=Path)
+    photo.add_argument("--output-dir", required=True, type=Path)
     args = parser.parse_args()
     if getattr(args, "output_dir", None) is not None:
         args.output_dir.mkdir(parents=True, exist_ok=True)
 
     if args.command == "thumbs":
         stream_thumbnails(args.input, int(clamp(args.dpi, 24, 600)))
+        return
+
+    if args.command == "photo":
+        photo_page(args.input, args.output_dir)
         return
 
     if args.command == "render":

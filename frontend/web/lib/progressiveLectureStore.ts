@@ -109,7 +109,9 @@ export async function createProgressiveLectureSession(
      * so the boards ahead keep up with the one playing. Only the count decides — the time buffer is out
      * of reach on purpose. A shorter lecture waits for all its boards.
      */
-    ...(canvas ? { boardEngine: "canvas" as const, starterBeatCount: CANVAS_OPENING_BOARDS, starterBufferMs: 24 * 3_600_000 } : {}),
+    // A PDF lecture starts on TWO ready boards (tester, 2026-11-25: board 1 was ready 2 min 19 s before Aria spoke):
+    // it draws no generated picture, so its boards are written in seconds, not the two minutes a picture took.
+    ...(canvas ? { boardEngine: "canvas" as const, starterBeatCount: input.sourceType === "pdf" ? Math.min(2, CANVAS_OPENING_BOARDS) : CANVAS_OPENING_BOARDS, starterBufferMs: 24 * 3_600_000 } : {}),
     lectureId: null,
     costUsd: 0,
     createdAt: now,
@@ -130,8 +132,26 @@ export async function progressiveSession(userId: string, sessionId: string): Pro
   return resource ?? null;
 }
 
+/*
+ * A LECTURE'S INPUT IS READ ONCE PER PROCESS. It is written when the lecture is created and never changed,
+ * yet the worker read it again for the plan and for every board — and a PDF lecture's input carries its
+ * figure crops: 5.8–6.2 MB, 13–18 s a read from the dev PC (2026-11-25), so every board waited that long
+ * before it started. Kept for 30 minutes, at most 8 lectures; a failed read is not kept.
+ */
+const INPUT_TTL_MS = 30 * 60_000;
+const inputCache = new Map<string, { at: number; input: Promise<ProgressiveLectureInput> }>();
+
 export async function progressiveInput(session: ProgressiveLectureSessionDoc): Promise<ProgressiveLectureInput> {
-  return downloadJsonBlob<ProgressiveLectureInput>(session.inputBlobName);
+  const key = session.inputBlobName;
+  const now = Date.now();
+  const hit = inputCache.get(key);
+  if (hit && now - hit.at < INPUT_TTL_MS) return hit.input;
+  for (const [k, v] of inputCache) if (now - v.at >= INPUT_TTL_MS) inputCache.delete(k);
+  while (inputCache.size >= 8) inputCache.delete(inputCache.keys().next().value!);
+  const input = downloadJsonBlob<ProgressiveLectureInput>(key);
+  inputCache.set(key, { at: now, input });
+  input.catch(() => inputCache.delete(key));
+  return input;
 }
 
 /**

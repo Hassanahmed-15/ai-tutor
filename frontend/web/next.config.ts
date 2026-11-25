@@ -1,3 +1,4 @@
+import os from "node:os";
 import path from "node:path";
 import type { NextConfig } from "next";
 
@@ -94,7 +95,35 @@ const nextConfig: NextConfig = {
     // The textbook diagram library (lib/figures/library.ts) is read from disk at request time.
     "/api/figures/asset/[id]": ["./data/figures/library/*"],
     "/api/canvas-lecture": ["./data/figures/library/index.json"],
+    // The phone capture straightens each photo with the same script and reads it with the PDF parser
+    // (lib/capture/photo.ts, lib/capture/read.ts): every route that can run either needs both files.
+    "/api/capture/[id]/photo": ["./scripts/pdf_pipeline.py", "../../node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs"],
+    "/api/capture/[id]/phone": ["./scripts/pdf_pipeline.py", "../../node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs"],
+    "/api/capture/[id]/finish": ["./scripts/pdf_pipeline.py", "../../node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs"],
   },
+  /*
+   * THE PHONE OPENS THE DEV SERVER BY THIS PC'S NETWORK ADDRESS (the QR capture, lib/capture/lanUrl.ts). Next blocks
+   * development assets for any origin not listed here, and the phone page then loads but never starts. Only in
+   * development; the live site is one origin.
+   */
+  ...(process.env.NODE_ENV !== "production" ? { allowedDevOrigins: devOrigins() } : {}),
 };
+
+/**
+ * Who may load the dev server's scripts: this PC's IPv4 addresses, CAPTURE_LAN_HOST, and every private-network
+ * address. The private ranges matter because the list is fixed when the server starts: the PC's Wi-Fi address
+ * changed while it ran (10.202.25.237 → 10.202.50.160), the phone page's scripts were then refused, and its camera
+ * button did nothing (2026-11-25). Development only.
+ */
+function devOrigins(): string[] {
+  const out = new Set<string>(["localhost", "127.0.0.1", "10.*.*.*", "192.168.*.*", ...Array.from({ length: 16 }, (_, i) => `172.${16 + i}.*.*`)]);
+  if (process.env.CAPTURE_LAN_HOST) out.add(process.env.CAPTURE_LAN_HOST);
+  // A tunnel (PUBLIC_BASE_URL = https://….trycloudflare.com): the phone opens the dev server by that name from any network.
+  try {
+    if (process.env.PUBLIC_BASE_URL) out.add(new URL(process.env.PUBLIC_BASE_URL).hostname);
+  } catch { /* not a URL: ignored */ }
+  for (const list of Object.values(os.networkInterfaces())) for (const a of list ?? []) if (a.family === "IPv4" && !a.internal) out.add(a.address);
+  return [...out];
+}
 
 export default nextConfig;

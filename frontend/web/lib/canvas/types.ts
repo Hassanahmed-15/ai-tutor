@@ -108,6 +108,11 @@ export type IllustrationStage = {
    * lib/canvas/mathsPicture.ts): put straight on the board — no paper, frame or tape — and not traced by the pencil.
    */
   onBoard?: boolean;
+  /**
+   * The picture is the student's own PDF figure, cropped from this page (lib/canvas/pdfFigurePicture.ts):
+   * put up as printed, never traced by the pen, and never second-guessed by the board's look for its drawing.
+   */
+  fromDocument?: { page: number; caption: string };
   /** An openly licensed image found for this board (lib/canvas/boardImages.ts), shown with its credit. */
   credit?: { title: string; creator: string; license: string; sourceUrl: string; provider: string; /** Redrawn by the image model from it, not the original. */ redrawn?: boolean };
 };
@@ -699,7 +704,12 @@ export type CanvasPlanBeat = {
    * for a code board, which of the document's listings it shows and which of its printed lines
    * (lib/canvas/documentContext.ts). Absent on a typed-prompt lesson.
    */
-  source?: { pages: number[]; listing?: number; lines?: [number, number]; blocks?: string[] };
+  source?: { pages: number[]; listing?: number; lines?: [number, number]; blocks?: string[]; /** The document's figure the board shows ("F2"), as the planner named it (lib/canvas/pdfFigures.ts). */ figure?: string };
+  /**
+   * A REFERENCE PDF's own figure, put up on this board as cropped from its page (lib/canvas/pdfFigures.ts,
+   * lib/canvas/pdfFigurePicture.ts; owner, 2026-11-25). Never in strict mode.
+   */
+  pdfFigure?: { id: string; assetId: string; pageNumber: number; caption: string; description: string };
   /**
    * Strict-mode PDF and video lessons (lib/canvas/sourceLessons.ts): for each sentence of the
    * script, the source block it is about — the PDF panel boxes that passage while it is spoken.

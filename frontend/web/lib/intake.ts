@@ -157,7 +157,10 @@ export function profileFromIntake(topic: string, readings: PartReading[], base: 
     claimedLevel: level,
     confidence: "high",
     masteredConcepts: known.slice(0, 8),
-    weakConcepts: [...shaky, ...fresh].slice(0, 8),
+    // Only what they met and are unsure of is "shaky": a part they marked NEW ("None of these, it's all new to
+    // me") is not — it showed as "Shaky on …" on the plan screen and told the planner "they recognise these but
+    // cannot use them" (re-test, 2026-11-25). New parts reach the planner as NEW through `parts` (partsPlanLine).
+    weakConcepts: shaky.slice(0, 8),
     teachingHypothesis: hypothesis || null,
     parts: readings,
     ownWords: ownWords.replace(/\s+/g, " ").trim().slice(0, 300) || null,

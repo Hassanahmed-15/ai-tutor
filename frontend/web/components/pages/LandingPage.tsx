@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, CircleHelp, Paperclip, X } from "lucide-react";
+import { ArrowUp, CircleHelp, Paperclip, Smartphone, X } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
-import { setPendingBrief } from "@/lib/pendingBrief";
+import { setPendingBrief, type CapturedDocument } from "@/lib/pendingBrief";
+import { PhoneCapturePanel } from "@/components/upload/PhoneCapturePanel";
 import { useAuth } from "@/components/auth/AuthGate";
 import { Leaderboard } from "@/components/adhd/Leaderboard";
 import { Thoughts } from "@/components/adhd/Thoughts";
@@ -39,6 +40,8 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   const [guideOpen, setGuideOpen] = useState(false);
   /** A link typed into the prompt box, handed to the YouTube launcher; `key` remounts it per hand-over. */
   const [videoHandOff, setVideoHandOff] = useState<{ url: string; key: number } | null>(null);
+  // The QR capture panel ("Phone" beside "File").
+  const [phoneOpen, setPhoneOpen] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const dragDepth = useRef(0);
   const { user, profile, openSettings } = useAuth();
@@ -48,6 +51,12 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   function startWithFile(chosen: File) {
     // The upload is the request: the next screen asks which pages and which part.
     setPendingBrief({ topic: "", file: chosen });
+    go("learn");
+  }
+  /** The phone's pages, read and assembled (components/upload/PhoneCapturePanel.tsx): the builder asks reference or strict. */
+  function startWithCaptured(captured: CapturedDocument) {
+    setPhoneOpen(false);
+    setPendingBrief({ topic: "", file: null, captured });
     go("learn");
   }
   function startWithVideo(url: string) {
@@ -202,6 +211,16 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
               >
                 <Paperclip aria-hidden="true" size={14} strokeWidth={1.8} /> File
               </button>
+              {/* Photograph pages with the phone (the QR capture): read as they are taken, then taught like a PDF. */}
+              {user && (
+                <button
+                  type="button"
+                  onClick={() => setPhoneOpen(true)}
+                  className="inline-flex h-8 items-center gap-1.5 rounded-full border border-[var(--hud-line)] px-2.5 text-[0.8125rem] text-[var(--hud-text-dim)] transition-colors hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)]"
+                >
+                  <Smartphone aria-hidden="true" size={14} strokeWidth={1.8} /> Phone
+                </button>
+              )}
               <YouTubeLauncher key={videoHandOff?.key ?? 0} initialUrl={videoHandOff?.url} onStart={startWithVideo} compact />
               <span className="flex-1" />
               <VoicePromptButton baseText={topic} onTranscript={setTopic} title="Say it instead" />
@@ -260,6 +279,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           </aside>
         </>
       )}
+      {phoneOpen && <PhoneCapturePanel onClose={() => setPhoneOpen(false)} onDocument={startWithCaptured} />}
     </main>
   );
 }

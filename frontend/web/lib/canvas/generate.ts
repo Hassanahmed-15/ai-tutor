@@ -9,6 +9,8 @@ import { SKETCH_GUIDE } from "./sketch";
 import { SEQUENCE_GUIDE, takeSequenceProblem } from "./sequence";
 import { GANTT_GUIDE, MAPPING_GUIDE, MEMORY_GUIDE, OS_SEQUENCE_HINT, STATES_GUIDE, takeOsProblem } from "./osDiagrams";
 import "server-only";
+import type { SuprnotesLessonInput } from "../suprnotes";
+import { pdfFigurePicture } from "./pdfFigurePicture";
 import { complexNumbersIn } from "../figures/components/argand";
 
 import { createHash, randomBytes } from "node:crypto";
@@ -1353,7 +1355,25 @@ function withoutPicture(beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string
 /** A course picture's own state, for the board's vision check (lib/canvas/progressive.ts). */
 export type CoursePictureState = { redrawn: boolean; remember?: () => Promise<void> };
 
-export async function illustrate(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock, rebuild?: () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null>, course?: CourseBoardContext | null, options: { redraw?: string[]; maths?: MathsBoardContext | null } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; picture?: CoursePictureState }> {
+export async function illustrate(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock, rebuild?: () => Promise<{ spec: CanvasBoardSpec; costUsd: number } | null>, course?: CourseBoardContext | null, options: { redraw?: string[]; maths?: MathsBoardContext | null; /** A reference PDF whose own figure this board shows (lib/canvas/pdfFigurePicture.ts). */ pdfDoc?: SuprnotesLessonInput | null; /** A PDF lesson: no image model is ever called for this board. */ noImages?: boolean } = {}): Promise<{ spec: CanvasBoardSpec; costUsd: number; picture?: CoursePictureState }> {
+  // THE STUDENT'S OWN FIGURE (owner, 2026-11-25): a reference PDF board that shows its document's figure puts
+  // up the crop as printed. Should that fail, the board is drawn as any other picture board below.
+  if (beat.pdfFigure && options.pdfDoc && spec.stage.kind === "illustration") {
+    const shown = await pdfFigurePicture(openai, userId, lectureId, beat, spec, options.pdfDoc, log).catch((error: Error) => {
+      log.push(`${beat.id}: the document's ${beat.pdfFigure!.id} could not be put up — ${error.message}`);
+      return null;
+    });
+    if (shown) return shown;
+  }
+  // A PDF LESSON GENERATES NO PICTURE (owner, 2026-11-25): only its own figures, as cropped. A picture board with
+  // no crop behind it (the visual policy already turned the planned ones native) is rebuilt as a drawn board.
+  if (options.noImages) {
+    if (spec.stage.kind !== "illustration") return { spec, costUsd: 0 };
+    log.push(`${beat.id}: no picture is generated in a PDF lesson — drawn instead`);
+    const rebuilt = rebuild ? await rebuild().catch(() => null) : null;
+    if (rebuilt && rebuilt.spec.stage.kind !== "illustration") return { spec: rebuilt.spec, costUsd: rebuilt.costUsd };
+    return { spec: fallbackSpec(plainBeat(beat)), costUsd: rebuilt?.costUsd ?? 0 };
+  }
   // THE LAB ENGINES FIRST (lib/canvas/labVisuals.ts, only with CANVAS_LAB_VISUALS=on): a maths board's
   // drawing is the pencil engine's checked scene or a 3-D template; gpt-image-2 only when neither could be made.
   // A MATHS COURSE lesson's board (owner, 2026-11-08: "for only maths in courses"): the same engines in

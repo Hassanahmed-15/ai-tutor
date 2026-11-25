@@ -300,6 +300,18 @@ export function applyLessonVisualPolicy(
      * pictures, no code figures (lib/canvas/mathsPicture.ts; owner, 2026-10-26). Off unless the caller asks.
      */
     mathsPictures?: boolean;
+    /**
+     * A PDF lesson (reference or strict) that is not maths or computer science gets the COURSE board types
+     * (owner, 2026-11-25: "same board types as added in courses"): the course rules below run for it too —
+     * pictures drawn by the image model only where something must be seen, everything else written.
+     */
+    courseBoards?: boolean;
+    /**
+     * A PDF lesson shows no generated picture at all (owner, 2026-11-25: "in pdf just the cropped images should
+     * appear, not gpt generated image"; cost): every picture board that is not the document's own figure is
+     * drawn natively instead (nativeStageFor), and no library image is used.
+     */
+    noPictures?: boolean;
   },
 ): { beats: CanvasPlanBeat[]; audit: VisualPolicyAudit } {
   const beats = input.map((beat) => ({ ...beat, requiredVisual: beat.requiredVisual ? { stages: [...beat.requiredVisual.stages], mustShow: [...beat.requiredVisual.mustShow] } : undefined }));
@@ -310,7 +322,7 @@ export function applyLessonVisualPolicy(
   // A board that redraws a reference page's diagram (lib/canvas/sourceDiagrams.ts), or a message sequence,
   // keeps its stage whatever the rules below decide: the TLS lecture's two handshake boards, matched to
   // Cloudflare's diagram, were turned into a "vector diagram" and then a flow chart (2026-10-24). Put back at the end.
-  const keptStages = new Map(beats.filter((beat) => beat.sourceDiagram || beat.stage === "sequence").map((beat) => [beat.id, beat.stage]));
+  const keptStages = new Map(beats.filter((beat) => beat.sourceDiagram || beat.pdfFigure || beat.stage === "sequence").map((beat) => [beat.id, beat.pdfFigure ? "illustration" as const : beat.stage]));
   const changes: string[] = [];
   // A DATA-STRUCTURE BOARD IS FOR DATA STRUCTURES. An essay lesson drew "topic sentence → evidence →
   // because" as a linked list, its words cut to six characters (prompt bench, 2026-10-18): a board that
@@ -1297,7 +1309,7 @@ export function applyLessonVisualPolicy(
   for (const beat of beats) {
     const kept = keptStages.get(beat.id);
     if (!kept || beat.stage === kept) continue;
-    changes.push(`${beat.id}: ${beat.stage} → ${kept} (kept: ${beat.sourceDiagram ? "redraws the page's diagram" : "a message sequence"})`);
+    changes.push(`${beat.id}: ${beat.stage} → ${kept} (kept: ${beat.pdfFigure ? "shows the document's own figure" : beat.sourceDiagram ? "redraws the page's diagram" : "a message sequence"})`);
     Object.assign(beat, { stage: kept, figure: undefined, figureAsset: undefined });
     if (beat.requiredVisual) beat.requiredVisual.stages = [kept];
   }
@@ -1396,7 +1408,7 @@ export function applyLessonVisualPolicy(
   // stays writing — working, tables, code listings, the exam board — and a working board that had a code
   // figure beside its lines gets a picture beside them instead. CANVAS_COURSE_CODE_DIAGRAMS=on restores
   // the code diagrams; then only the ready-made PICTURE figures and library diagrams are switched off.
-  if (options.mode === "course") {
+  if (options.mode === "course" || options.courseBoards) {
     const noCode = courseCodeDiagramsOff() && options.aiPictures !== false;
     // ONLY A BOARD THAT NEEDS A PICTURE GETS ONE (owner, 2026-10-24: "not every lecture gets a diagram, only
     // those which are necessary"). A drawing board keeps its picture when the planner says the student must
@@ -1407,6 +1419,8 @@ export function applyLessonVisualPolicy(
     const planned = new Map(input.map((b) => [b.id, b.stage]));
     for (const beat of beats) {
       beat.course = true;
+      // A board that shows the student's own PDF figure keeps it (lib/canvas/pdfFigures.ts): nothing is drawn.
+      if (beat.pdfFigure) continue;
       if (noCode) {
         const plannedStage = planned.get(beat.id);
         const drawing = beat.stage === "illustration" || CODE_DIAGRAM_STAGES.has(beat.stage);
@@ -1446,6 +1460,29 @@ export function applyLessonVisualPolicy(
       Object.assign(beat, { stage: "illustration", figure: undefined, figureAsset: undefined, visualType: "thing" });
       if (beat.requiredVisual) beat.requiredVisual.stages = ["illustration"];
     }
+  }
+
+  // A PDF LESSON GENERATES NO PICTURE (options.noPictures): a picture board that is not the document's own
+  // figure is drawn natively, as strict mode always did; a picture beside working, or a maths picture, is dropped.
+  if (options.noPictures) {
+    for (const beat of beats) {
+      if (beat.pdfFigure || examIds.has(beat.id)) continue;
+      if (beat.mathsPicture || beat.pictureBeside) Object.assign(beat, { mathsPicture: undefined, pictureBeside: undefined });
+      if (beat.stage !== "illustration") continue;
+      const replacement = nativeStageFor(beat);
+      const next: CanvasStage = replacement === "illustration" || replacement === "figure" ? "scene" : replacement;
+      changes.push(`${beat.id}: illustration → ${next} (a PDF lesson shows only its own figures)`);
+      Object.assign(beat, { stage: next, figure: undefined, figureAsset: undefined, plannedFigure: undefined });
+      if (beat.requiredVisual?.stages.includes("illustration")) beat.requiredVisual.stages = [next];
+    }
+  }
+
+  // THE STUDENT'S OWN FIGURE STAYS UP (lib/canvas/pdfFigures.ts): whatever a later rule decided, a board
+  // that shows a reference PDF's crop is an illustration board, with nothing else to draw.
+  for (const beat of beats) {
+    if (!beat.pdfFigure || beat.stage === "illustration") continue;
+    changes.push(`${beat.id}: ${beat.stage} → illustration (kept: shows the document's own figure)`);
+    Object.assign(beat, { stage: "illustration", figure: undefined, figureAsset: undefined, plannedFigure: undefined });
   }
 
   const meaningfulVisuals = beats.filter((beat) => meaningful(beat.stage, apparatus.has(beat.id))).length;

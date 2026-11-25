@@ -8,6 +8,7 @@ import { buildTeachingPolicy, policyForCanvasPlan, type TeachingPolicy } from ".
 import type { SuprnotesLessonInput } from "../suprnotes";
 import { termsNotInDocument, substantivePages, CANVAS_CODE_LINES, documentForCanvas, documentListings, extraBoardsForListings, listingIndex } from "./documentContext";
 import { strictPlanSection, videoParts, videoPlanSection } from "./sourceLessons";
+import { documentFigures, figureIndex } from "./pdfFigures";
 import { isVideoSource } from "../youtube/videoSource";
 import { packForPrompt } from "../webSources";
 import { isDataStructureTopic } from "./structure";
@@ -470,9 +471,10 @@ function curriculumPlanSection(doc: SuprnotesLessonInput): string {
  * listings it must not lose, and the whole document. The system prompt stays the typed prompt's.
  */
 function documentPlanSection(doc: SuprnotesLessonInput, listings: ReturnType<typeof documentListings>, question: boolean, ladder = false): string {
+  const figures = documentFigures(doc);
   const lines = [
     "THE STUDENT'S DOCUMENT — they uploaded it and asked you to teach FROM it, as a reference. It is printed in full at the end of this request, page by page.",
-    "- Teach what the document teaches, in its order, with its own examples, numbers, names and figures (redraw its diagrams on the board — a tree, a table, a process — with its own values). Say where it comes from when it helps (\"your notes put it like this…\", \"the example on page 4…\"). You may explain beyond the document to make an idea clear, but never contradict it and never swap its example for a different one.",
+    `- Teach what the document teaches, in its order, with its own examples, numbers, names and figures (${figures.length ? "SHOW the figures listed under THE DOCUMENT'S OWN FIGURES below; redraw any other diagram" : "redraw its diagrams"} on the board — a tree, a table, a process — with its own values). Say where it comes from when it helps ("your notes put it like this…", "the example on page 4…"). You may explain beyond the document to make an idea clear, but never contradict it and never swap its example for a different one.`,
     // Prompt bench, 2026-10-18: "In the document's example, inserting 30 into a tree rooted at 40" — the
     // PDF had no such example; and two questions the PDF does not cover were answered with no word saying so.
     // Trunking slides: Erlang C written without its denominator, Erlang B never shown (PDF bench, 2026-10-18).
@@ -483,8 +485,10 @@ function documentPlanSection(doc: SuprnotesLessonInput, listings: ReturnType<typ
       : "- No question was asked: the lesson covers the selected pages as a whole.",
     // The student's marks from planning decide how deep each part goes (owner, 2026-10-27).
     ...(ladder ? ["- THE STUDENT'S MARKS COME FIRST: how deep each part goes is the ladder's (above). A part they already KNOW is one recap sentence on the board of the part that builds on it — never boards of its own — and that board lists the known part's pages in \"source.pages\" too, so every page is still accounted for."] : []),
-    "- Every board also carries \"source\": {\"pages\": [the page numbers it teaches from], \"listing\": the LISTING number it shows or null, \"lines\": [first, last] printed line numbers of that listing shown on this board, or null}.",
+    `- Every board also carries "source": {"pages": [the page numbers it teaches from], "listing": the LISTING number it shows or null, "lines": [first, last] printed line numbers of that listing shown on this board, or null${figures.length ? `, "figure": the id of the document's figure it shows (below) or null` : ""}}.`,
   ];
+  // The document's own figures, cropped from its pages: a board that teaches one shows it (owner, 2026-11-25).
+  if (figures.length) lines.push("", figureIndex(figures));
   if (listings.length) {
     lines.push(
       "",

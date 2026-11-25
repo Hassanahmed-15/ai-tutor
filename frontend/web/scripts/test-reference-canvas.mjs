@@ -179,7 +179,8 @@ if (promptTopic) {
   log(`chose ${strict ? "STRICT" : "REFERENCE"}`);
 }
 
-if ((!strict && !isVideo) || promptTopic) {
+// A strict PDF asks its intake card too ("Which parts have you met before?", its parts' depth: lib/canvas/conceptLadder.ts strictLadderSection).
+if (!isVideo || promptTopic) {
   // The outline's go button: "Start" since the redesign ("Build lesson" before).
   const build = page.getByRole("button", { name: /^\s*(?:Build lesson|Start)\s*$/i }).first();
   // The intake card ("Which parts have you met before?", lib/intake.ts): answered on purpose, not by the first option.

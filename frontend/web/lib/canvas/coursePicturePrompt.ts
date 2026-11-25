@@ -397,6 +397,42 @@ export type CourseBoardContext = {
   curriculum: Curriculum;
 };
 
+/**
+ * A PDF LESSON'S PICTURE, DRAWN AS A COURSE BOARD'S IS (owner, 2026-11-25: "same board types as added in
+ * courses"). What the course picture reads as its syllabus block is the board's own passage of the
+ * student's document; in STRICT mode the picture may show only what that passage says. A board that
+ * shows the document's own figure has no picture drawn (lib/canvas/pdfFigures.ts). Only boards the
+ * visual policy made course boards (`beat.course`) of a PDF lesson that is not maths or CS.
+ */
+export function documentBoardContext(doc: SuprnotesLessonInput | null | undefined, topic: string, beat: CanvasPlanBeat, passage: string[], strict: boolean): CourseBoardContext | null {
+  if (!doc || !beat.course || beat.pdfFigure) return null;
+  if ((doc.lessonPlan as { sourceType?: string } | undefined)?.sourceType === "curriculum") return null;
+  const title = String(doc.lesson?.title ?? "").replace(/\.pdf$/i, "").trim() || topic;
+  return {
+    course: title.slice(0, 160),
+    lesson: topic.slice(0, 160),
+    board: beat.title,
+    brief: beat.brief,
+    family: familyOfCourse(`${doc.lesson?.subject ?? ""} ${topic}`),
+    objects: (beat.objects ?? []).slice(0, 12).map((o) => o.replace(/[-_]+/g, " ").trim()).filter(Boolean),
+    written: [],
+    sentences: splitSentences(beat.script),
+    syllabus: passage.join("\n").slice(0, 1600),
+    hints: strict
+      ? [
+          "Level: exactly as the student's document is written.",
+          "Use these terms: the document's own words for every part, label and value.",
+          "Do not teach: anything the passage above does not say. STRICTLY FROM THE STUDENT'S DOCUMENT: every label, part, value, arrow and caption comes from the passage's own words — draw nothing it does not say.",
+        ]
+      : [
+          "Level: as the student's document is written.",
+          "Use these terms: the document's own words for each part and value.",
+        ],
+    mustShow: [],
+    curriculum: curriculumOf(title),
+  };
+}
+
 const words = (t: string) => new Set((t.toLowerCase().match(/[a-z]{4,}/g) ?? []));
 
 /** The board's context, when the lesson is a course lesson (its document is a syllabus lesson). */
