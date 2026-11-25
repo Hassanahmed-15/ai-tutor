@@ -920,7 +920,8 @@ export async function POST(req: Request) {
               'Name the SUBJECT this student wants to learn, as a short lesson title of 2-6 words in Title Case. Return JSON only: {"subject": string}. ' +
               "Fix spelling mistakes and typos. Drop request phrasing entirely: \"explain me\", \"teach me\", \"I want to know\", \"in the pdf\", \"this particular example\", \"step by step\", \"for my exam\". " +
               "Keep the real subject words and any specific named thing (\"BST Deletion\", \"RSA Encryption\"); a language they name may stay (\"Deletion in C++\"). " +
-              "If the text only points at the document (\"explain this\", \"this particular eg\"), name what the document itself is about. Never invent a subject that is in neither.",
+              "If the text only points at the document (\"explain this\", \"this particular eg\"), name what the document itself is about. " +
+              "If it asks for everything in the pages, name what ALL the sections cover together (sections on mitosis, meiosis and DNA copying → \"Cell Division and DNA Replication\"), never just the first section. Never invent a subject that is in neither.",
           },
           {
             role: "user",

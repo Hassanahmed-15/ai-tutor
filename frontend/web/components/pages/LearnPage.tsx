@@ -1596,6 +1596,20 @@ type BuildCost =
          */
         void build(subject, undefined, next.fresh, []);
       })();
+    } else if ((next.fresh.sourceDocument as { source?: { adapter?: string } } | undefined)?.source?.adapter === "phone-capture") {
+      /*
+       * PHOTOGRAPHED PAGES ARE NAMED LIKE STRICT ONES (owner 2026-11-26: "it should be meaningful — either the lecture
+       * on the full pages or the specific question"). Their only title is whatever heading the first photo shows — a
+       * banner, a footer ("Please Donate") — so the lecture is named from the question asked, or from what all the
+       * pages cover. A PDF upload keeps its own naming here.
+       */
+      void (async () => {
+        const subject = question
+          ? await nameSubject(question, next.fresh.sourceDocument, next.fresh.documentId)
+          : await nameSubject("Teach me everything in these pages of this document", next.fresh.sourceDocument, next.fresh.documentId)
+            .then((named) => (named && !/^teach|everything in these pages/i.test(named) ? named : next.subject));
+        void startPlanning(subject, false, next.fresh);
+      })();
     } else {
       void startPlanning(next.subject, false, next.fresh);
     }
@@ -2084,10 +2098,16 @@ type BuildCost =
    * any failure, or after 4 s, the local keyword cleaner stands in: planning is never held up.
    */
   async function nameSubject(raw: string, source: unknown, docId: string | null | undefined): Promise<string> {
-    const doc = isSuprnotesLessonInput(source) ? source : null;
+    const full = isSuprnotesLessonInput(source) ? source : null;
+    /*
+     * TEXT ONLY. The namer reads the pages' words; the figures' data URLs made the request hundreds of KB, which
+     * from a slow connection outlasted the time limit — and the lecture took the first page's heading as its name
+     * ("Please Donate" for photographed notes, 2026-11-26).
+     */
+    const doc = full ? { ...full, assets: (full.assets ?? []).map((asset) => ({ ...asset, url: "" })) } : null;
     const local = topicKeywords(raw) || raw;
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 4000);
+    const timer = setTimeout(() => controller.abort(), 7000);
     try {
       const res = await fetch("/api/plan-lesson", {
         method: "POST",
@@ -2095,7 +2115,8 @@ type BuildCost =
         body: JSON.stringify({
           mode: "subject",
           text: raw,
-          ...(doc ? { sourceDocument: doc, documentTitle: doc.lesson?.title ?? "" } : {}),
+          // A photo's "title" is only its first line ("identical are independent and…"), which the namer then named.
+          ...(doc ? { sourceDocument: doc, documentTitle: (doc.source as { adapter?: string } | undefined)?.adapter === "phone-capture" ? "" : doc.lesson?.title ?? "" } : {}),
           ...(doc && docId ? { documentId: docId } : {}),
         }),
         signal: controller.signal,
