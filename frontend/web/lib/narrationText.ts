@@ -37,3 +37,20 @@ export function boardSpokenSentences(beat: { script?: string; draw?: { ops?: Arr
   ];
   return [...new Set(lines.flatMap(splitNarrationSentences))];
 }
+
+/**
+ * The words a board shows in **bold** — its key terms, which Aria stresses when she says them (lib/voiceDelivery.ts
+ * BoardVoice). From its typed blocks (and their steps); at most eight, longest first so "perfect square trinomial"
+ * wins over "square".
+ */
+export function boardKeyTerms(beat: { draw?: { ops?: Array<{ kind?: string; spec?: unknown }> } }): string[] {
+  const spec = beat.draw?.ops?.find((op) => op.kind === "canvasBoard")?.spec as { blocks?: Array<{ board_text?: string; items?: string[] }> } | undefined;
+  const text = (spec?.blocks ?? []).flatMap((b) => [b.board_text ?? "", ...(b.items ?? [])]).join(" ");
+  const terms = [...text.matchAll(/\*\*([^*]{3,60})\*\*/g)].map((m) => m[1].replace(/\$[^$]*\$/g, "").replace(/\s+/g, " ").trim()).filter((t) => /[a-z]{3,}/i.test(t));
+  return [...new Set(terms.map((t) => t.toLowerCase()))].sort((a, b) => b.length - a.length).slice(0, 8);
+}
+
+/** A board's sentences and key terms: what prepareNarration acts each clip for (lib/voiceDelivery.ts). */
+export function boardVoiceOf(beat: { script?: string; draw?: { ops?: Array<{ kind?: string; spec?: unknown }> } }): { sentences: string[]; keyTerms: string[] } {
+  return { sentences: splitNarrationSentences(beat.script ?? ""), keyTerms: boardKeyTerms(beat) };
+}

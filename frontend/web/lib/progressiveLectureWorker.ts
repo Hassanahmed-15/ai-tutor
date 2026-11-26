@@ -62,7 +62,7 @@ import { isMissingLine, writeMissingLines } from "./canvas/writeMissing";
 import { canvasSentences } from "./canvas/plan";
 import { curriculumDocumentOf, referenceCsLesson, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./canvas/lessonRequest";
 import { prepareNarration } from "./narrationAudio";
-import { boardSpokenSentences } from "./narrationText";
+import { boardSpokenSentences, boardVoiceOf } from "./narrationText";
 import { extractLectureKnowledge } from "./knowledge/extract";
 import { knowledgeForPlanning, NO_PLANNING_KNOWLEDGE } from "./knowledge/planning";
 import { loadLectureKnowledge, mergeLectureIntoGraph, saveLectureKnowledge } from "./knowledge/store";
@@ -467,7 +467,7 @@ async function generateCanvasBoard(
    * sometimes never answered. Bounded: an opening board the lesson waits on gets a short deadline; a
    * sentence not made by then is made live when it is reached, as before.
    */
-  const narration = beat ? await prepareNarration(boardSpokenSentences(beat), { concurrency: 3, deadlineMs: sequence < CANVAS_OPENING_BOARDS ? 20_000 : 60_000 }).catch(() => []) : [];
+  const narration = beat ? await prepareNarration(boardSpokenSentences(beat), { concurrency: 3, deadlineMs: sequence < CANVAS_OPENING_BOARDS ? 20_000 : 60_000, board: boardVoiceOf(beat) }).catch(() => []) : [];
   const narrationCost = narration.reduce((sum, clip) => sum + clip.costUsd, 0);
   if (narration.length) console.log(`[tts] session=${sessionId} board ${sequence}: narration ${narration.filter((c) => c.source === "made").length} made, ${narration.filter((c) => c.source === "stored").length} already stored, ${narration.filter((c) => c.source === "later").length} still being made, ${narration.filter((c) => c.source === "failed").length} failed, of ${narration.length}`);
   const latest = await progressiveBeat(sessionId, sequence);
@@ -560,7 +560,7 @@ async function recheckFirstBoard(userId: string, sessionId: string, topic: strin
     return record(verdict.costUsd + (again?.costUsd ?? 0));
   }
   // The corrected board's new sentences are made ahead too, so its voice is ready before it replaces the first.
-  const voiced = await prepareNarration(boardSpokenSentences(again.beat), { concurrency: 3, deadlineMs: 20_000 }).catch(() => []);
+  const voiced = await prepareNarration(boardSpokenSentences(again.beat), { concurrency: 3, deadlineMs: 20_000, board: boardVoiceOf(again.beat) }).catch(() => []);
   const voicedCost = voiced.reduce((sum, clip) => sum + clip.costUsd, 0);
   await upsertProgressiveBeat({ ...latest, beat: again.beat, revision: latest.revision + 1, costUsd: (latest.costUsd ?? 0) + verdict.costUsd + again.costUsd + voicedCost, updatedAt: new Date().toISOString() });
   console.log(`[canvas] session=${sessionId} first board replaced with the examiner's corrections`);

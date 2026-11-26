@@ -7,6 +7,7 @@ import { blobExists, blobStorageConfigured, downloadRawBlob, uploadRawBlob } fro
 import { narrationInput } from "@/lib/narrationText";
 import { trimNarrationTail } from "@/lib/narrationTail";
 import { GEMINI_TTS_MODEL, geminiVoiceOn, geminiVoiceTag, synthesizeGeminiVoice } from "@/lib/geminiVoice";
+import { actBoard, deliveryFor, type Delivery } from "@/lib/voiceDelivery";
 
 /**
  * ARIA'S NARRATION, MADE AHEAD AND KEPT (owner, 2026-11-07: "I want no delay … sometimes it does not
@@ -34,6 +35,12 @@ export function narrationVoiceReady(): boolean {
 const TEACHER_TONE =
   "You are a warm, friendly teacher talking to one student. Sound like a real person in a relaxed conversation: " +
   "natural rhythm at an easy, steady pace, gentle rises when you ask something. Keep moving: no long pauses. Never sound like an announcer or a narrator.";
+
+/** OpenAI's voice: the teacher's tone, and this line's acting when it has one. */
+function toneFor(input: string, delivery?: Delivery): string {
+  const style = (delivery ?? deliveryFor(input)).style;
+  return style ? `${TEACHER_TONE} Deliver this line ${style}.` : TEACHER_TONE;
+}
 
 /** Where a clip is stored: its model, voice and the hash of its exact text. */
 export function narrationBlobName(text: string): string {
@@ -89,11 +96,11 @@ const FIRST_BYTE_TIMEOUT_MS = 6_000;
 const SYNTHESIS_DEADLINE_MS = 45_000;
 
 /** One clip, made by OpenAI, with what it cost. Bounded by SYNTHESIS_DEADLINE_MS. */
-export function synthesizeNarration(text: string): Promise<Synthesis> {
+export function synthesizeNarration(text: string, delivery?: Delivery): Promise<Synthesis> {
   const input = narrationInput(text);
   let timer: ReturnType<typeof setTimeout> | undefined;
   const deadline = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error("synthesis deadline")), SYNTHESIS_DEADLINE_MS); });
-  const made = synthesize(input).then(async (clip) => ({ ...clip, buffer: await trimNarrationTail(clip.buffer, input) }));
+  const made = synthesize(input, delivery).then(async (clip) => ({ ...clip, buffer: await trimNarrationTail(clip.buffer, input) }));
   return Promise.race([made, deadline]).finally(() => clearTimeout(timer));
 }
 
@@ -103,14 +110,14 @@ export async function recordNarrationSpend(made: Synthesis): Promise<void> {
   recordSpend({ tag: scope.tag, userId: scope.userId, kind: "narration", model: TTS_MODEL, endpoint: made.estimated ? "speech-estimated" : "speech", usd: made.costUsd });
 }
 
-async function synthesize(input: string): Promise<Synthesis> {
+async function synthesize(input: string, delivery?: Delivery): Promise<Synthesis> {
   if (GEMINI_VOICE) {
-    const made = await synthesizeGeminiVoice(input);
+    const made = await synthesizeGeminiVoice(input, delivery ?? deliveryFor(input));
     return { buffer: made.audio, costUsd: made.costUsd, estimated: false };
   }
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      const measured = await synthesizeWithUsage(input);
+      const measured = await synthesizeWithUsage(input, delivery);
       const costUsd = costFor(TTS_MODEL, { prompt_tokens: measured.inputTokens, completion_tokens: measured.outputTokens });
       if (input.length > 10) usdPerChar = usdPerChar * 0.9 + (costUsd / input.length) * 0.1;
       return { buffer: measured.audio, costUsd, estimated: false };
@@ -126,7 +133,7 @@ async function synthesize(input: string): Promise<Synthesis> {
   const timer = setTimeout(() => controller.abort(new Error("fallback timed out")), FALLBACK_TIMEOUT_MS);
   try {
     const speech = await client.audio.speech.create(
-      { model: TTS_MODEL, voice: TTS_VOICE, input, instructions: TEACHER_TONE, response_format: "mp3" },
+      { model: TTS_MODEL, voice: TTS_VOICE, input, instructions: toneFor(input, delivery), response_format: "mp3" },
       { timeout: FALLBACK_TIMEOUT_MS, maxRetries: 0, signal: controller.signal },
     );
     // This call reported no usage, but it was billed: estimated at the measured rate, never left out.
@@ -147,7 +154,7 @@ async function synthesize(input: string): Promise<Synthesis> {
  *
  * Raw fetch, because the installed SDK (openai 4.104) predates `stream_format`.
  */
-async function synthesizeWithUsage(input: string): Promise<{ audio: Buffer; inputTokens: number; outputTokens: number }> {
+async function synthesizeWithUsage(input: string, delivery?: Delivery): Promise<{ audio: Buffer; inputTokens: number; outputTokens: number }> {
   // A hung upstream request held one sentence's clip, and with it the whole narration: no answer in
   // FIRST_BYTE_TIMEOUT_MS, or no finished clip in MEASURED_TIMEOUT_MS, and the call is dropped.
   const controller = new AbortController();
@@ -157,7 +164,7 @@ async function synthesizeWithUsage(input: string): Promise<{ audio: Buffer; inpu
     const res = await fetch("https://api.openai.com/v1/audio/speech", {
       method: "POST",
       headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: TTS_MODEL, voice: TTS_VOICE, input, instructions: TEACHER_TONE, response_format: "mp3", stream_format: "sse" }),
+      body: JSON.stringify({ model: TTS_MODEL, voice: TTS_VOICE, input, instructions: toneFor(input, delivery), response_format: "mp3", stream_format: "sse" }),
       signal: controller.signal,
     });
     clearTimeout(firstByte);
@@ -190,8 +197,10 @@ export type PreparedClip = { text: string; source: "stored" | "made" | "later" |
  */
 const making = new Map<string, Promise<PreparedClip>>();
 
-export async function prepareNarration(sentences: string[], opts: { concurrency?: number; deadlineMs?: number } = {}): Promise<PreparedClip[]> {
+export async function prepareNarration(sentences: string[], opts: { concurrency?: number; deadlineMs?: number; /** The board these are said on: each sentence acted for its place on it (lib/voiceDelivery.ts). */ board?: { sentences: string[]; keyTerms: string[] } } = {}): Promise<PreparedClip[]> {
   const unique = [...new Set(sentences.map(narrationInput).filter(Boolean))];
+  // The board's acting, worked out once: its shape and its capped peaks (lib/voiceDelivery.ts actBoard).
+  const acted = opts.board ? actBoard(opts.board.sentences, opts.board.keyTerms) : [];
   const results = new Map<string, PreparedClip>();
   if (!narrationVoiceReady() || !blobStorageConfigured()) {
     return unique.map((text) => ({ text, source: "failed" as const, ms: 0, costUsd: 0 }));
@@ -199,7 +208,8 @@ export async function prepareNarration(sentences: string[], opts: { concurrency?
   let next = 0;
   const makeOne = async (text: string, t0: number): Promise<PreparedClip> => {
     try {
-      const made = await synthesizeNarration(text);
+      const index = opts.board ? opts.board.sentences.findIndex((s) => narrationInput(s) === text) : -1;
+      const made = await synthesizeNarration(text, index >= 0 ? acted[index] : undefined);
       await recordNarrationSpend(made);
       const kept = await storeNarration(text, made.buffer);
       return { text, source: kept ? "made" : "failed", ms: Date.now() - t0, costUsd: made.costUsd ?? 0 };
