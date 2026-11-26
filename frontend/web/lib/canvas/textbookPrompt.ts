@@ -5,7 +5,8 @@ import { createHash } from "node:crypto";
  * verified diagram is remembered under, and what the image model is asked to draw.
  */
 
-const IMAGE_MODEL = process.env.ILLUSTRATION_IMAGE_MODEL ?? "gpt-image-1-mini";
+// The same model as lib/illustratedBoard.ts draws with (owner, 2026-11-26: gpt-image-2), so its stored diagrams match.
+const IMAGE_MODEL = process.env.ILLUSTRATION_IMAGE_MODEL ?? "gpt-image-2";
 
 export const TEXTBOOK_STYLE_VERSION = "textbook-v3";
 

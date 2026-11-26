@@ -80,7 +80,8 @@ type Props = {
   /** This lecture through the student's knowledge graph (GET /api/knowledge/lecture): marks the boards. */
   knowledge?: CanvasKnowledge | null;
   /** A Predict-it answer or a drawing check — evidence of what the student knows. First try only. */
-  onTaskResult?: (kind: "quiz" | "drawing", correct: boolean, options?: number) => void;
+  /** `answer`: for a question, what was asked and picked, and the board's key (its beat id) — a wrong one brings its fix-up board. */
+  onTaskResult?: (kind: "quiz" | "drawing", correct: boolean, options?: number, answer?: { beatId: string; question: string; chosen: string; options: Array<{ text: string; correct: boolean; feedback?: string }> }) => void;
   /** The student tapped "from <earlier lecture>" on a concept. */
   onOpenEarlier?: (from: EarlierBoard) => void;
   /** The lecture was watched to the end: every board is reachable in the whole-lesson view. */
@@ -855,7 +856,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
             const o = interaction.options[i];
             if (!reported.current.has(`quiz:${cardKey}`)) {
               reported.current.add(`quiz:${cardKey}`);
-              onTaskResult?.("quiz", o.correct, interaction.options.length);
+              onTaskResult?.("quiz", o.correct, interaction.options.length, { beatId: current.key, question: interaction.question, chosen: o.text, options: interaction.options.map((x) => ({ text: x.text, correct: x.correct, feedback: x.feedback })) });
             }
             if (o.correct) setCelebration(Date.now());
             onSpeak(o.feedback);
@@ -888,7 +889,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
             const o = interaction.options[i];
             if (!reported.current.has(`quiz:${cardKey}`)) {
               reported.current.add(`quiz:${cardKey}`);
-              onTaskResult?.("quiz", o.correct, interaction.options.length);
+              onTaskResult?.("quiz", o.correct, interaction.options.length, { beatId: current.key, question: interaction.question, chosen: o.text, options: interaction.options.map((x) => ({ text: x.text, correct: x.correct, feedback: x.feedback })) });
             }
             if (o.correct) {
               setCelebration(Date.now());

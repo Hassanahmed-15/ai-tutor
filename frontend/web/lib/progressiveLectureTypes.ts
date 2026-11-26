@@ -152,6 +152,8 @@ export type ProgressiveLectureSessionDoc = {
   plan: ProgressiveBeatPlan[];
   planRevision: number;
   adaptationNotes: string[];
+  /** What the replanner changed in this lecture (lib/canvas/replan.ts): its budgets, and a short log. */
+  adaptiveEdits?: { inserted: number; skipped: number; log: string[] };
   lastAdaptedAt: string | null;
   playhead: number;
   frozenThrough: number;

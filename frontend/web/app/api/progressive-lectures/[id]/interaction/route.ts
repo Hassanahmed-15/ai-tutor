@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { lessonCaller } from "@/lib/auth";
 import { dispatchDueBeats } from "@/lib/progressiveDispatch";
+import { replanLecture, replanOn } from "@/lib/progressiveReplan";
 import { prepareAdaptiveRevision, progressiveBeat, progressiveBeats, progressiveSession, recordLearnerInteraction } from "@/lib/progressiveLectureStore";
 import type { LearnerInteraction, LearnerInteractionKind } from "@/lib/progressiveLectureTypes";
 import { addExcerpts, applyCheckpoint, applyLectureProgress, LEARNER_SIGNALS, recordSignal, type LearnerSignal } from "@/lib/learnerModel";
@@ -42,7 +43,16 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     correct: typeof body.correct === "boolean" ? body.correct : undefined,
   };
   const previousPlayhead = session.playhead;
-  const next = await recordLearnerInteraction(session, interaction);
+  let next = await recordLearnerInteraction(session, interaction);
+  // THE REST OF THE LECTURE ADAPTS (lib/canvas/replan.ts): boards not yet written may be rewritten, added or
+  // skipped on the evidence. A canvas lecture, not strict (it would teach beyond the source), not a course
+  // (its boards follow the syllabus).
+  if (adaptive && next.boardEngine === "canvas" && next.sourceFidelity !== "strict" && !next.plan.some((p) => p.canvas?.course) && replanOn()) {
+    next = await replanLecture(next, interaction, firstMutable).catch((error) => {
+      console.warn(`[replan] ${id.slice(0, 8)} failed: ${(error as Error).message.slice(0, 160)}`);
+      return next;
+    });
+  }
 
   /*
    * WHAT THE LECTURE TEACHES ARIA ABOUT THE STUDENT, recorded here on the server as it happens.

@@ -91,6 +91,7 @@ import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { DeafSigningExtension } from "./sign-language/DeafSigningExtension";
 import { openingSentence, transitionSentence } from "@/lib/beatPresentation";
 import { equationRemainingMs, penRemainingMs } from "@/lib/canvas/penClock";
+import { isDetourBeat } from "@/lib/lectureDetours";
 import type { HeardSentence } from "./canvas/MarkerWriter";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
@@ -326,6 +327,7 @@ export function LessonPlayer({
   startIndex = 0,
   onBeatIndexChange,
   onLearnerInteraction,
+  onCheckAnswer,
   onSummarize,
   summaryUnlocked = false,
   selectionPages = [],
@@ -401,6 +403,8 @@ export function LessonPlayer({
   startIndex?: number;
   onBeatIndexChange?: (index: number) => void;
   onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void;
+  /** A board's "Check it" answer (lib/canvas/fixupBoard.ts): a wrong one brings a fix-up board after that board. */
+  onCheckAnswer?: (answer: { beatId: string; question: string; chosen: string; correct: boolean; options: Array<{ text: string; correct: boolean; feedback?: string }> }) => void;
   /** Opens the one-slide summary of the lecture; the caller owns it (components/LectureSummarySlide). */
   onSummarize?: () => void;
   /** True once the student has finished this lecture — the summary button is disabled until then. */
@@ -1487,18 +1491,22 @@ export function LessonPlayer({
     if (lines.length) tellAriaCanvas(`About this student's knowledge (for your answers; do not announce it): they ${lines.join("; ")}. Build on what they know; if a question shows a gap, explain the foundation first.`);
   }, [canvasKnowledge, canvasSessionId, tellAriaCanvas]);
   /** A Predict-it answer or a drawing check is evidence of what they know (POST /api/knowledge/evidence). */
-  const recordCanvasTask = useCallback((kind: "quiz" | "drawing", correct: boolean, options?: number) => {
+  const recordCanvasTask = useCallback((kind: "quiz" | "drawing", correct: boolean, options?: number, answer?: { beatId: string; question: string; chosen: string; options: Array<{ text: string; correct: boolean; feedback?: string }> }) => {
+    if (kind === "quiz" && answer) onCheckAnswer?.({ ...answer, correct });
     if (!canvasSessionId || canvasIndex < 0) return;
+    // A fix-up board is not in the lecture's plan; the others are numbered as the plan numbers them.
+    if (isDetourBeat({ id: canvasPanels[canvasIndex]?.key ?? "" })) return;
+    const sequence = canvasPanels.slice(0, canvasIndex + 1).filter((p) => !isDetourBeat({ id: p.key })).length - 1;
     void fetch("/api/knowledge/evidence", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session: canvasSessionId, sequence: canvasIndex, kind, correct, options }),
+      body: JSON.stringify({ session: canvasSessionId, sequence, kind, correct, options }),
     }).catch(() => {});
     if (correct || !canvasKnowledge) return;
     const board = canvasKnowledge.beats.find((b) => b.sequence === canvasIndex);
     const gap = (board?.concepts ?? []).map((k) => ({ concept: canvasKnowledge.concepts[k], gap: canvasKnowledge.concepts[k]?.gaps?.[0] })).find((x) => x.gap);
     if (gap?.gap) tellAriaCanvas(`The student missed that question. It builds on ${gap.gap.label}, which they have not shown they know — if they ask, explain ${gap.gap.label} briefly first, then ${gap.concept?.label ?? "this idea"}.`);
-  }, [canvasSessionId, canvasIndex, canvasKnowledge, tellAriaCanvas]);
+  }, [canvasSessionId, canvasIndex, canvasKnowledge, tellAriaCanvas, canvasPanels, onCheckAnswer]);
   /** "↩ from <lecture>": the board where they learned it, in a window; the lecture waits meanwhile. */
   const [peek, setPeek] = useState<PeekTarget | null>(null);
 

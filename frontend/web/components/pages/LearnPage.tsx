@@ -64,6 +64,7 @@ import { buildDocumentContext } from "@/lib/lessonChatContext";
 import { ARIA_LIVE_VOICE, useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
 import type { Beat } from "@/lib/lessonContent";
+import { MAX_FIXUPS, fixupPlacement, isDetourBeat, planIndexOf, withDetours, type Detour } from "@/lib/lectureDetours";
 import type { LectureMode } from "@/lib/db/cosmos";
 import {
   shouldIncludeCodeExamples,
@@ -216,6 +217,15 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     "ask" | "source-mode" | "outline" | "preview" | "building" | "teaching" | "finished" | "past-papers" | "test-offer" | "test-written" | "test-oral" | "test-results" | "error"
   >("ask");
   const [beats, setBeats] = useState<Beat[]>([]);
+  /*
+   * FIX-UP BOARDS (lib/canvas/fixupBoard.ts, lib/lectureDetours.ts): the plan's boards as the server sends them,
+   * the fix-up boards shown after the boards whose question was answered wrongly, and each fix-up being made
+   * (asked for when its board begins, so it is usually ready by the answer). `beats` is the two put together.
+   */
+  const plannedBeatsRef = useRef<Beat[]>([]);
+  const detoursRef = useRef<Array<Detour<Beat>>>([]);
+  const fixupsRef = useRef(new Map<string, Promise<Beat | null>>());
+  const [detourCount, setDetourCount] = useState(0);
   const [builtTopic, setBuiltTopic] = useState("");
 /**
  * What the post-generation badge is allowed to claim.
@@ -1087,18 +1097,19 @@ type BuildCost =
         elapsedMs: buildStartedAtRef.current ? Date.now() - buildStartedAtRef.current : 0,
       }));
       if (snapshot.beats.length > 0) {
-        setBeats((current) => {
-          const next = [...current];
-          snapshot.beats.forEach((beat, index) => {
-            // Progressive enrichment keeps the beat id and script stable and replaces only its
-            // provisional draw payload. Apply that replacement even to the active beat: narration
-            // continues from the same audio clock while the board upgrades to its sandbox version.
-            // Adaptive script rewrites cannot reach the active beat because the server freezes
-            // played/current plan positions before creating a new revision.
-            next[index] = beat;
-          });
-          return next;
+        // The PLAN's boards, by plan position (lib/lectureDetours.ts): fix-up boards are placed after their
+        // anchors on top of them, so a snapshot never overwrites one.
+        const planned = [...plannedBeatsRef.current];
+        snapshot.beats.forEach((beat, index) => {
+          // Progressive enrichment keeps the beat id and script stable and replaces only its
+          // provisional draw payload. Apply that replacement even to the active beat: narration
+          // continues from the same audio clock while the board upgrades to its sandbox version.
+          // Adaptive script rewrites cannot reach the active beat because the server freezes
+          // played/current plan positions before creating a new revision.
+          planned[index] = beat;
         });
+        plannedBeatsRef.current = planned;
+        setBeats(withDetours(planned, detoursRef.current));
       }
       if (snapshot.starterReady) setPhase((current) => current === "building" ? "teaching" : current);
       if (snapshot.complete) {
@@ -3431,6 +3442,10 @@ type BuildCost =
     setError(null);
     setBuildCost(null);
     setBeats([]);
+    plannedBeatsRef.current = [];
+    detoursRef.current = [];
+    fixupsRef.current = new Map();
+    setDetourCount(0);
     setBuiltTopic("");
     setBuildStatus("Choosing the teaching route");
     setBuildJobId(null);
@@ -4050,7 +4065,7 @@ type BuildCost =
     // The last PLANNED board watched is the end, even if the server has not yet marked the session
     // complete (it re-opens to "generating" after any question): returning here left the last
     // board's Continue doing nothing (audit 2026-10-15). Earlier boards still wait for the rest.
-    const lastPlanned = Math.max(beats.length, progressivePlannedBeatCount) - 1;
+    const lastPlanned = Math.max(beats.length, progressivePlannedBeatCount + detourCount) - 1;
     if (!progressiveComplete && lecturePlayheadRef.current < lastPlanned) return;
     // Watched to the end: the one-slide summary unlocks, here and on every screen after this.
     setLectureCompleted(true);
@@ -4088,10 +4103,57 @@ type BuildCost =
     if (index === lecturePlayheadRef.current) return;
     lecturePlayheadRef.current = index;
     if (!progressiveSessionId) return;
+    // A board with a "Check it" question: its fix-up board is asked for now, so it is ready by the answer.
+    prepareFixup(beats[index]);
     void fetch(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/interaction`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kind: "playhead", playhead: index }),
+      // The server numbers the plan's boards; a fix-up board in the list is not one of them (lib/lectureDetours.ts).
+      body: JSON.stringify({ kind: "playhead", playhead: planIndexOf(beats, index) }),
+    });
+  }
+
+  /** A board's "Check it" question, when it has one. */
+  function checkCardOf(beat: Beat | undefined): { question: string; options: Array<{ text: string; correct: boolean; feedback?: string }> } | null {
+    const ops = (beat?.draw?.ops ?? []) as Array<{ kind?: string; spec?: unknown }>;
+    const spec = ops.find((op) => op.kind === "canvasBoard") as { spec?: { interaction?: { kind?: string; check?: boolean; question?: string; options?: Array<{ text: string; correct: boolean; feedback?: string }> } } } | undefined;
+    const card = spec?.spec?.interaction;
+    return card?.kind === "quiz" && card.check && card.question && card.options?.some((o) => !o.correct) ? { question: card.question, options: card.options } : null;
+  }
+
+  /** Fix-up boards: the standard lecture, not a strict PDF lesson; at most MAX_FIXUPS shown a lecture (lib/lectureDetours.ts). */
+  function prepareFixup(beat: Beat | undefined) {
+    if (!beat || !progressiveSessionId || isDetourBeat(beat) || fixupsRef.current.has(beat.id) || sourceScopeRef.current?.fidelity === "strict") return;
+    if (detoursRef.current.length >= MAX_FIXUPS) return;
+    const card = checkCardOf(beat);
+    if (!card) return;
+    const job = fetch(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/fixup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ beatId: beat.id, question: card.question, options: card.options }),
+    }).then(async (res) => (res.ok ? ((await res.json().catch(() => null)) as { beat?: Beat } | null)?.beat ?? null : null)).catch(() => null);
+    fixupsRef.current.set(beat.id, job);
+  }
+
+  /**
+   * A "Check it" answer: evidence for the rest of the lecture (the replanner, lib/canvas/replan.ts), and after a
+   * wrong one its fix-up board — right after that board while the student is still on it, else after the board
+   * being played when it arrives.
+   */
+  function onCheckAnswer(answer: { beatId: string; question: string; chosen: string; correct: boolean; options: Array<{ text: string; correct: boolean; feedback?: string }> }) {
+    const right = answer.options.find((o) => o.correct)?.text ?? "";
+    captureLearnerInteraction({ kind: "checkpoint", correct: answer.correct, detail: `Q: ${answer.question} | chose: ${answer.chosen} | right: ${right}`.slice(0, 480) });
+    if (answer.correct || detoursRef.current.length >= MAX_FIXUPS || detoursRef.current.some((d) => d.for === answer.beatId)) return;
+    if (!fixupsRef.current.has(answer.beatId)) prepareFixup(plannedBeatsRef.current.find((b) => b.id === answer.beatId));
+    const job = fixupsRef.current.get(answer.beatId);
+    if (!job) return;
+    void job.then((fix) => {
+      if (!fix) return;
+      const after = fixupPlacement(plannedBeatsRef.current, detoursRef.current, lecturePlayheadRef.current, answer.beatId, fix.id);
+      if (!after) return;
+      detoursRef.current = [...detoursRef.current, { after, beat: fix, for: answer.beatId }];
+      setDetourCount(detoursRef.current.length);
+      setBeats(withDetours(plannedBeatsRef.current, detoursRef.current));
     });
   }
 
@@ -4101,7 +4163,7 @@ type BuildCost =
     void fetch(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/interaction`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...signal, playhead: lecturePlayheadRef.current }),
+      body: JSON.stringify({ ...signal, playhead: planIndexOf(beats, lecturePlayheadRef.current) }),
     }).then(async (response) => {
       const result = await response.json().catch(() => ({})) as { adapted?: boolean };
       if (!response.ok || result.adapted === false || !streamNeedsRestart) return;
@@ -4471,16 +4533,16 @@ type BuildCost =
     const playerScope: SourceScope = isVideoSource(sourceDocument) ? { ...sourceScope, fidelity: "reference" } : sourceScope;
     switch (selectedMode.page) {
       case "blind-demo":
-        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} autoStart hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
+        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} autoStart hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount ? progressivePlannedBeatCount + detourCount : undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={playerScope} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount ? progressivePlannedBeatCount + detourCount : undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={playerScope} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={playerScope} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount ? progressivePlannedBeatCount + detourCount : undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={playerScope} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onAskedNotes={setAskedNotes} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={playerScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onAskedNotes={setAskedNotes} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount ? progressivePlannedBeatCount + detourCount : undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={playerScope} captions={profile?.captions === true} />;
         break;
       case "demo":
       default:
@@ -4488,7 +4550,7 @@ type BuildCost =
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
         // The mic is on when the lecture opens (owner, 2026-10-18): the student talks to Aria without
         // finding a button first. It opens on Play — the click the browser needs to ask for it.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onAskedNotes={setAskedNotes} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} holdForNextBoard={clickableMindMap && csLecture} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onAskedNotes={setAskedNotes} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} holdForNextBoard={clickableMindMap && csLecture} totalBeatCount={progressivePlannedBeatCount ? progressivePlannedBeatCount + detourCount : undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onCheckAnswer={onCheckAnswer} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">

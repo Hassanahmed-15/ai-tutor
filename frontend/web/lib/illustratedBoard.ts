@@ -27,7 +27,8 @@ import { partNameKey } from "./canvas/labelPolicy";
 
 const PLAN_MODEL = process.env.ILLUSTRATION_PLAN_MODEL ?? "gpt-5.6-luna";
 const LOCATE_MODEL = process.env.ILLUSTRATION_LOCATE_MODEL ?? "gpt-5.6-luna";
-const IMAGE_MODEL = process.env.ILLUSTRATION_IMAGE_MODEL ?? "gpt-image-1-mini";
+// A typed lecture's pictures (owner, 2026-11-26: gpt-image-2, the model courses use; ILLUSTRATION_IMAGE_MODEL overrides).
+const IMAGE_MODEL = process.env.ILLUSTRATION_IMAGE_MODEL ?? "gpt-image-2";
 export const ILLUSTRATION_STYLE_VERSION = "clean-textbook-v2";
 export function illustrationImageModel(): string { return IMAGE_MODEL; }
 const STORE_W = 1200;

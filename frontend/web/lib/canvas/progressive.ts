@@ -1,6 +1,7 @@
 import { checkNumbers, numberIssuesText } from "./numberCheck";
 import { canvasBlocksOn, writeBoardBlocks } from "./blocksWriter";
 import { timeCodeSteps } from "./codeSync";
+import { choosePictures, pictureAgentOn } from "./pictureAgent";
 import { withoutBannedWords } from "../teaching/styleCheck";
 import { prepareNarration } from "../narrationAudio";
 import { splitNarrationSentences } from "../narrationText";
@@ -420,6 +421,8 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         // library image — everything else is drawn natively. Its course look keeps the marker and the course text.
         const pdfLessonPlan = Boolean(reference || strictDoc);
         const mathsPictures = !pdfLessonPlan && visualMode !== "course" && sourceMode !== "video" && mathsPicturesOn();
+        // Each board's own drawing before the rules below: the picture agent can send a board back to it.
+        const plannedStages = new Map(plan.beats.map((b) => [b.id, b.stage]));
         const visualPolicy = applyLessonVisualPolicy(plan.beats, {
           mode: visualMode,
           findAsset: pdfLessonPlan || ((visualMode === "course" || pdfCourseLook) && readyFiguresOffForCourses()) ? undefined : findLibraryFigure,
@@ -438,6 +441,15 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
           continue;
         }
         console.log(`[canvas] visual policy (${visualMode}): ${visualPolicy.audit.illustrations} generated picture(s), ${visualPolicy.audit.meaningfulVisuals}/${plan.beats.length} purpose-built visual board(s)${visualPolicy.audit.changes.length ? ` — ${visualPolicy.audit.changes.join(" | ")}` : ""}`);
+        // A TYPED LECTURE'S PICTURES ARE CHOSEN BY AN AGENT (lib/canvas/pictureAgent.ts; owner, 2026-11-26): it reads
+        // every board and gives a gpt-image-2 picture to the ones a real picture teaches best, at most four.
+        if (visualMode === "prompt" && pictureAgentOn()) {
+          const startedAgent = Date.now();
+          const pictures = await choosePictures(openai, input.topic, plan.beats, plannedStages);
+          costUsd += pictures.costUsd;
+          plan = { ...plan, beats: pictures.beats };
+          console.log(`[canvas] picture agent (${Math.round((Date.now() - startedAgent) / 1000)}s, $${pictures.costUsd.toFixed(4)}): ${pictures.log}`);
+        }
         // THE WORDING IS POLISHED (polishBoards below). A COURSE LESSON polishes only the boards it waits for
         // before it starts; each later board is polished when it is written, while earlier ones play
         // (owner, 2026-11-09: planning took 2¼ minutes of a 5-minute wait). The same checks run on every board.
@@ -563,6 +575,8 @@ export async function writeCanvasBoard(args: {
   code?: { include: boolean; language?: string };
   /** No headless look at the finished board: a board for a question, wanted in about a minute (lib/canvas/questionBoard.ts). */
   skipLook?: boolean;
+  /** Force (true) or forbid (false) the board's "Check it" card, whatever its place in the plan (a fix-up board's re-check). */
+  checkCard?: boolean;
 }): Promise<{ beat: Beat; costUsd: number; fallback: boolean; incomplete?: string[]; log: string[] }> {
   const { plan, index, sessionId } = args;
   // A CS reference PDF's boards are written as a typed CS lesson's, keeping the document's code (generateSpec documentCode).
@@ -877,7 +891,7 @@ export async function writeCanvasBoard(args: {
   // Aria finishes it. A card that cannot be verified is left off — it never fails or holds the board.
   // Only on about every third board, and never in a strict PDF lesson (lib/canvas/checkCardPlan.ts).
   let cardCost = 0;
-  const cardHere = checkCardBoards(plan, args.strictSource?.mode === "strict", args.practice).has(index);
+  const cardHere = args.checkCard ?? checkCardBoards(plan, args.strictSource?.mode === "strict", args.practice).has(index);
   // In a lesson full of sliders the question takes this board's slider's place (the slider stays if
   // no card can be verified).
   const taskYields = Boolean(spec.interaction && (spec.interaction.kind === "try" || spec.interaction.kind === "draw") && tasksGiveWay(plan));
