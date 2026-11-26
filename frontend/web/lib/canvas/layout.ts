@@ -58,7 +58,7 @@ export type Mark =
   | { type: "free-body"; id: string; body: SceneStage["items"][number]; bodyRect: Rect; forces: FreeBodyForce[]; s: number }
   | { type: "electrolytic-cell"; id: string; rect: Rect; parts: { power: SceneStage["items"][number]; electrolyte: SceneStage["items"][number]; anode: SceneStage["items"][number]; cathode: SceneStage["items"][number] }; s: number }
   | { type: "code"; id: string; rect: Rect; lines: string[]; language: string; size: number; lineH: number; gutter: number; steps: CodeStage["steps"]; reveal: "build" | "all"; groups: Array<{ from: number; to: number; label: string; s: number; x: number }>; edits: NonNullable<CodeStage["edits"]>; s: number; /** Lines shown at once when the listing scrolls. */ window?: number }
-  | { type: "state"; id: string; rect: Rect; steps: CodeStage["steps"]; s: number; /** Drawn beside the code as pencil memory boxes. */ pencil?: boolean }
+  | { type: "state"; id: string; rect: Rect; steps: CodeStage["steps"]; s: number; /** Drawn beside the code as pencil memory boxes. */ pencil?: boolean; /** Beside code: put up at once, not drawn by the marker (sync QA, 2026-11-26). */ quick?: boolean }
   | { type: "stack"; id: string; rect: Rect; view: StackView; boxes: Record<string, Rect>; s: number }
   | { type: "sketch"; id: string; rect: Rect; items: SketchPlaced[]; s: number }
   | { type: "trace"; id: string; rect: Rect; vars: string[]; rows: Array<{ s: number; values: string[] }>; size: number; s: number }
@@ -66,7 +66,7 @@ export type Mark =
   | { type: "molecule"; id: string; rect: Rect; molecule: MoleculeStage["molecules"][number]; s: number }
   | { type: "atom-map"; id: string; rect: Rect; stage: AtomMapStage; s: number }
   /** A data structure, one frame per step (lib/canvas/structure.ts): the renderer glides between them. */
-  | { type: "structure"; id: string; rect: Rect; kind: DsKind; directed: boolean; frames: DsFrame[]; layout: DsLayout; captions: Array<{ s: number; text: string }>; captionY: number; s: number }
+  | { type: "structure"; id: string; rect: Rect; kind: DsKind; directed: boolean; frames: DsFrame[]; layout: DsLayout; captions: Array<{ s: number; text: string }>; captionY: number; s: number; /** Beside code: put up at once, not drawn by the marker (sync QA, 2026-11-26). */ quick?: boolean }
   /** A message sequence (lib/canvas/sequence.ts): lifelines and time-ordered arrows, placed by code. */
   | { type: "sequence"; id: string; rect: Rect; geometry: SequenceGeometry; s: number }
   /** The operating-systems pictures (lib/canvas/osDiagrams.ts): a lifecycle, an address space, a CPU schedule. */
@@ -775,11 +775,11 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
     if ((stage.structure.kind === "list" || stage.structure.kind === "array" || stage.structure.kind === "queue") && most * 44 + (most - 1) * 28 + 40 > side.w) {
       const rowH = Math.min(170, fullArea.h * 0.4);
       const top = { ...fullArea, h: fullArea.h - rowH - 12 };
-      layoutStructureMark(stage.structure, stage.steps, { x: fullArea.x, y: fullArea.y + top.h + 12, w: fullArea.w, h: rowH }, marks, add, []);
+      layoutStructureMark(stage.structure, stage.steps, { x: fullArea.x, y: fullArea.y + top.h + 12, w: fullArea.w, h: rowH }, marks, add, [], true);
       if (names.length) {
         const rect = { x: fullArea.x + codeW + 18, y: top.y, w: fullArea.w - codeW - 18, h: Math.min(top.h, names.length * 46 + 40) };
         const s0 = stage.steps.find((p) => p.state)?.s ?? (stage.steps[0]?.s ?? 0);
-        marks.push({ type: "state", id: "state", rect, steps: stage.steps, s: s0, pencil: true });
+        marks.push({ type: "state", id: "state", rect, steps: stage.steps, s: s0, pencil: true, quick: true });
         add("state", rect, s0);
       }
       area = { ...top, w: codeW };
@@ -788,11 +788,11 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
     // The algorithm's bookkeeping (its stack, visited set) goes under the structure it describes: under
     // a sixteen-line listing it ran off the board (CS round, 2026-10-22).
     const stateH = names.length ? Math.min(side.h * 0.42, names.length * 46 + 40) : 0;
-    layoutStructureMark(stage.structure, stage.steps, { ...side, h: side.h - stateH - (stateH ? 12 : 0) }, marks, add, []);
+    layoutStructureMark(stage.structure, stage.steps, { ...side, h: side.h - stateH - (stateH ? 12 : 0) }, marks, add, [], true);
     if (stateH) {
       const rect = { x: side.x, y: side.y + side.h - stateH, w: side.w, h: stateH };
       const s0 = stage.steps.find((p) => p.state)?.s ?? (stage.steps[0]?.s ?? 0);
-      marks.push({ type: "state", id: "state", rect, steps: stage.steps, s: s0, pencil: true });
+      marks.push({ type: "state", id: "state", rect, steps: stage.steps, s: s0, pencil: true, quick: true });
       add("state", rect, s0);
     }
     area = { ...fullArea, w: codeW };
@@ -816,7 +816,7 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
       const rowsH = sideNames.length * 46 + 40;
       const rect = { x: fullArea.x + fullArea.w - colW, y: fullArea.y + Math.max(0, Math.round((fullArea.h - rowsH) * 0.3)), w: colW, h: Math.min(fullArea.h, rowsH) };
       const s0 = st.steps.find((q) => q.state)?.s ?? (st.steps[0]?.s ?? 0);
-      marks.push({ type: "state", id: "state", rect, steps: st.steps, s: s0, pencil: true });
+      marks.push({ type: "state", id: "state", rect, steps: st.steps, s: s0, pencil: true, quick: true });
       add("state", rect, s0);
       area = { ...area, w: area.w - colW - 22 };
       // The subgoal labels give way when they would squeeze the code below its natural size.
@@ -898,7 +898,7 @@ function layoutCode(stage: CodeStage, fullArea: Rect, marks: Mark[], add: Add) {
     const prect = { x, y: by, w: p.w, h: p.h };
     if (p.kind === "state") {
       const s0 = st.steps.find((q) => q.state)?.s ?? first;
-      marks.push({ type: "state", id: "state", rect: prect, steps: st.steps, s: s0, pencil: true });
+      marks.push({ type: "state", id: "state", rect: prect, steps: st.steps, s: s0, pencil: true, quick: true });
       add("state", prect, s0);
     } else if (p.kind === "trace" && st.trace) {
       marks.push({ type: "trace", id: "trace", rect: prect, vars: st.trace.vars, rows: st.trace.rows, size: 16, s: st.trace.rows[0]?.s ?? 0 });
@@ -1459,7 +1459,7 @@ function layoutStructureStage(st: StructureStage, area: Rect, marks: Mark[], add
   layoutStructureMark(st.structure, st.steps, area, marks, add, captions);
 }
 
-function layoutStructureMark(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>, area: Rect, marks: Mark[], add: Add, captions: Array<{ s: number; text: string }>) {
+function layoutStructureMark(start: DsStart, steps: Array<{ s: number; ops?: DsOp[] }>, area: Rect, marks: Mark[], add: Add, captions: Array<{ s: number; text: string }>, quick = false) {
   // Frames up to the first operation that could not be done: the board is checked before it is kept
   // (lib/canvas/generate.ts), so this only guards a board that slipped through.
   const { frames } = runStructure(start, steps);
@@ -1469,7 +1469,7 @@ function layoutStructureMark(start: DsStart, steps: Array<{ s: number; ops?: DsO
   const inner = { x: area.x, y: area.y + legendRoom, w: area.w, h: area.h - captionRoom - legendRoom };
   const layout = layoutStructure(start, frames, inner);
   const s = frames[0]?.s ?? 0;
-  marks.push({ type: "structure", id: "structure", rect: area, kind: start.kind, directed: start.kind === "list" || start.variant === "directed", frames, layout, captions, captionY: area.y + area.h - 12, s });
+  marks.push({ type: "structure", id: "structure", rect: area, kind: start.kind, directed: start.kind === "list" || start.variant === "directed", frames, layout, captions, captionY: area.y + area.h - 12, s, ...(quick ? { quick: true } : {}) });
   add("structure", area, s);
   // Each node is a target where it first appears, so the pen can point at it.
   const seen = new Set<string>();

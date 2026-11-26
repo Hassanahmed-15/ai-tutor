@@ -1,5 +1,6 @@
 import { checkNumbers, numberIssuesText } from "./numberCheck";
 import { canvasBlocksOn, writeBoardBlocks } from "./blocksWriter";
+import { timeCodeSteps } from "./codeSync";
 import { withoutBannedWords } from "../teaching/styleCheck";
 import { prepareNarration } from "../narrationAudio";
 import { splitNarrationSentences } from "../narrationText";
@@ -579,7 +580,7 @@ export async function writeCanvasBoard(args: {
   }
   // A COURSE BOARD'S VOICE IS MADE WHILE THE BOARD IS DRAWN: it needs only the words, and it used to wait for
   // the picture and then hold the board up. Clips are kept by their exact text, so a sentence changed later is simply made again.
-  const voice = beat.course ? prepareNarration(splitNarrationSentences(beat.script), { concurrency: 3, deadlineMs: index < CANVAS_OPENING_BOARDS ? 20_000 : 60_000 }).catch(() => []) : null;
+  const voice = beat.course ? prepareNarration(splitNarrationSentences(beat.script), { concurrency: 3, deadlineMs: index < CANVAS_OPENING_BOARDS ? 20_000 : 60_000, board: { sentences: splitNarrationSentences(beat.script), keyTerms: [] } }).catch(() => []) : null;
   const started = Date.now();
   // AN IMAGE SEARCHED FOR THIS BOARD (lib/canvas/boardImages.ts): typed CS lessons outside DSA, OS and
   // networking only. Redrawn when it is a diagram the board can draw, otherwise shown with its credit.
@@ -952,6 +953,12 @@ export async function writeCanvasBoard(args: {
     spec.living = true;
     if (stepBuilder) spec.livingMode = "stack";
     spec.stage = retimeLivingSteps(spec.stage, canvasSentences(beat.script));
+  }
+  // A code board's steps when she says them, on the final script: the trace, the variables, the line she names
+  // (lib/canvas/codeSync.ts timeCodeSteps; sync QA, 2026-11-26).
+  if (spec.stage.kind === "code") {
+    const timed = timeCodeSteps(spec, beat.script);
+    if (timed.moved) log.push(`${beat.id}: code steps — ${timed.moved} moved to when they are said`);
   }
   // THE FULL BOARD (lib/canvas/blocks.ts, CANVAS_BLOCKS=on): every sentence written out, in typed blocks — course
   // lessons, and every maths lecture, typed or from a PDF (owner, 2026-11-11: "a little more text, like it is now for maths").

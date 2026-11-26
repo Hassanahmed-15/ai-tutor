@@ -688,13 +688,17 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
       return <FitLines fit={fit} x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2 + fit.size * 0.35 - ((fit.lines.length - 1) * fit.size * 1.15) / 2} lead={1.15} textAnchor="middle" fontWeight={700} fill={mark.color} className={`cv-write${focus}`} />;
     }
     case "code":
-      return <CodeView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
+      return <CodeView mark={mark} shownThrough={codeClock(shownThrough, sentenceProgress)} focusId={focusId} />;
     case "trace":
-      return <TraceView mark={mark} shownThrough={shownThrough} />;
-    case "structure":
-      return <StructureView mark={mark} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} />;
+      return <TraceView mark={mark} shownThrough={codeClock(shownThrough, sentenceProgress)} />;
+    case "structure": {
+      const view = <StructureView mark={mark} shownThrough={codeClock(shownThrough, sentenceProgress)} focusId={focusId} reducedMotion={reducedMotion} />;
+      // Beside code it is put up at once (sync QA, 2026-11-26): drawn box by box, it held the pen ~8 s while Aria
+      // had already read the first lines aloud. Its changes still come in sentence by sentence.
+      return mark.quick ? <g data-no-marker="">{view}</g> : view;
+    }
     case "stack":
-      return <CallStackView mark={mark} shownThrough={shownThrough} />;
+      return <CallStackView mark={mark} shownThrough={codeClock(shownThrough, sentenceProgress)} />;
     case "sketch":
       return <SketchView mark={mark} shownThrough={shownThrough} />;
     case "sequence":
@@ -708,7 +712,7 @@ function renderMark({ mark, layout, spec, shownThrough, sentenceProgress, vars, 
     case "os-mapping":
       return <OsMappingView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
     case "state":
-      return <StateView mark={mark} shownThrough={shownThrough} />;
+      return mark.quick ? <g data-no-marker=""><StateView mark={mark} shownThrough={codeClock(shownThrough, sentenceProgress)} /></g> : <StateView mark={mark} shownThrough={codeClock(shownThrough, sentenceProgress)} />;
     case "output":
       return (
         <g className={`cv-in${focus}`}>
@@ -1460,6 +1464,15 @@ function AtomMapView({ mark }: { mark: Extract<Mark, { type: "atom-map" }> }) {
 
 /* ── code: a listing walked through, line by line ─────────────────────────────────────────── */
 
+/**
+ * The board's clock for a code walk: the sentence and how far through it she is, so a trace step placed where she
+ * says its value ("computes mid 2" — lib/canvas/codeSync.ts timeCodeSteps) appears at that word. Whole-sentence
+ * steps behave as before. A finished or past board keeps its own clock.
+ */
+function codeClock(shownThrough: number, progress: number): number {
+  return Number.isFinite(shownThrough) ? shownThrough + Math.min(0.999, Math.max(0, progress || 0)) : shownThrough;
+}
+
 const MONO_FONT = "ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace";
 const CODE_KEYWORDS = new Set(("and as break case catch class const continue def do elif else except false finally for from function if import in int is lambda let not null or pass print public range return static switch this throw true try var void while with yield None True False fn struct mut match").split(" "));
 
@@ -1522,9 +1535,13 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
           <rect x={rect.x} y={windowed ? rect.y + 12 : rect.y} width={rect.w - 6} height={windowed ? rect.h - 24 : rect.h} />
         </clipPath>
       </defs>
-      <rect x={rect.x} y={rect.y} width={rect.w} height={rect.h} rx={14} fill="#1e2030" />
-      <rect x={rect.x} y={rect.y} width={gutter} height={rect.h} rx={14} fill="#191a29" />
-      <rect x={rect.x + gutter - 14} y={rect.y} width={14} height={rect.h} fill="#191a29" />
+      {/* The card is the board's furniture, put up at once: written by the marker it came after Aria had read
+          lines aloud (sync QA, 2026-11-26). The code on it is still written line by line. */}
+      <g data-no-marker="">
+        <rect x={rect.x} y={rect.y} width={rect.w} height={rect.h} rx={14} fill="#1e2030" />
+        <rect x={rect.x} y={rect.y} width={gutter} height={rect.h} rx={14} fill="#191a29" />
+        <rect x={rect.x + gutter - 14} y={rect.y} width={14} height={rect.h} fill="#191a29" />
+      </g>
       {windowed && (
         <g>
           <rect x={rect.x + rect.w - 9} y={rect.y + 10} width={4} height={rect.h - 20} rx={2} fill="#2a2d42" />
@@ -1553,9 +1570,11 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
         const fixedNow = edit && shownThrough >= edit.s;
         return (
           <g key={i} className="cv-in" style={{ animationDelay: `${Math.max(0, i - before) * 60}ms` }}>
-            <text x={rect.x + gutter - 22} y={baseline(i)} textAnchor="end" fontSize={size * 0.78} fontFamily={MONO_FONT} fill={lit.has(i + 1) ? "#e6e9f0" : "#4b5068"}>
-              {i + 1}
-            </text>
+            <g data-no-marker="">
+              <text x={rect.x + gutter - 22} y={baseline(i)} textAnchor="end" fontSize={size * 0.78} fontFamily={MONO_FONT} fill={lit.has(i + 1) ? "#e6e9f0" : "#4b5068"}>
+                {i + 1}
+              </text>
+            </g>
             {/* The bug lifts away as its fix writes itself in (Shiki Magic Move's idea, for one line). */}
             {fixedNow && (
               <text key={`old-${edit.s}`} x={textX} y={baseline(i)} fontSize={size} fontFamily={MONO_FONT} xmlSpace="preserve" style={{ whiteSpace: "pre" }} fill="#f87171" textDecoration="line-through" className="cv-morph-out">

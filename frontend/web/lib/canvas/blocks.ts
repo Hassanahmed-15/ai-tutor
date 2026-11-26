@@ -136,10 +136,24 @@ export function validateBlocks(raw: unknown, section: string, script: string): {
       ...opt("caption", str(r.caption), Boolean(str(r.caption))),
     });
   });
-  // Every sentence is on the board: one no block covers is written where it belongs.
+  // Written as it is said (sync QA, 2026-11-26): a block in words she does not say, a "where" line she never
+  // explains, and a sentence with more pieces than anyone can write while she says it are all faults.
+  for (const b of blocks) {
+    if (checksWording(b) && saidShare(b.board_text, b.spoken_text) < SAID_SHARE) faults.push(`block ${b.id} writes words the teacher does not say in sentences ${b.s}–${b.e}: write only what those sentences say`);
+    const unsaid = (b.where ?? []).filter((line) => !saidIn(line, b.spoken_text));
+    if (unsaid.length) faults.push(`block ${b.id}: "where" lines no sentence explains (${unsaid.slice(0, 2).join(" / ")}): leave them out`);
+  }
+  const crowded = crowdedSentences(blocks);
+  if (crowded.length) faults.push(`too much written while one sentence is said (sentence ${crowded.join(", ")}): at most 3 pieces per sentence`);
+  fillGaps(blocks, sentences, section, faults);
+  return { blocks, faults };
+}
+
+/** Every sentence is on the board: one no block covers is written as a paragraph where it belongs. */
+function fillGaps(blocks: BoardBlock[], sentences: string[], section: string, faults?: string[]) {
   const covered = new Set(blocks.flatMap((b) => Array.from({ length: b.e - b.s + 1 }, (_, i) => b.s + i)));
   const missing = sentences.map((_, i) => i).filter((i) => !covered.has(i));
-  if (missing.length) faults.push(`sentences no block covers: ${missing.join(", ")}`);
+  if (missing.length) faults?.push(`sentences no block covers: ${missing.join(", ")}`);
   for (let i = 0; i < missing.length; ) {
     let j = i;
     while (missing[j + 1] === missing[j] + 1) j++;
@@ -147,7 +161,80 @@ export function validateBlocks(raw: unknown, section: string, script: string): {
     i = j + 1;
   }
   blocks.sort((a, b) => a.s - b.s);
-  return { blocks, faults };
+}
+
+/**
+ * WHAT IS WRITTEN IS WHAT IS SAID (owner, 2026-11-26, after a sync QA of maths, history and coding lectures: the
+ * board wrote a "where" glossary, term definitions and recap lists Aria never said — 6–7 pieces in one 7 s
+ * sentence — and only 54% of a history lecture's blocks were in her words). Run on the writer's final blocks:
+ * a "where" line or step she never says is taken off; a prose block mostly in other words is written as her own
+ * sentences instead (or dropped, when another block already writes them). Code, tables and formulas' own maths
+ * are kept: they are said in other words by nature. Every sentence stays on the board.
+ */
+export function spokenOnly(input: BoardBlock[], section: string, script: string): { blocks: BoardBlock[]; changed: number } {
+  const sentences = canvasSentences(script);
+  let changed = 0;
+  const kept: BoardBlock[] = [];
+  for (const b of input) {
+    if (b.where?.length) {
+      const where = b.where.filter((line) => saidIn(line, b.spoken_text));
+      if (where.length !== b.where.length) {
+        changed++;
+        if (where.length) b.where = where;
+        else delete b.where;
+      }
+    }
+    if (b.kind === "steps" && b.items?.length) {
+      const items = b.items.filter((item) => saidIn(item, b.spoken_text));
+      if (items.length !== b.items.length) {
+        changed++;
+        if (!items.length) { kept.push(paragraph(section, sentences, b.s, b.e, `${b.id}s`)); continue; }
+        b.items = items;
+        b.board_text = items.join(" ");
+      }
+    }
+    if (checksWording(b) && saidShare(b.board_text, b.spoken_text) < SAID_SHARE) {
+      changed++;
+      const others = input.some((o) => o !== b && checksWording(o) && o.s <= b.s && o.e >= b.e && saidShare(o.board_text, o.spoken_text) >= SAID_SHARE);
+      if (!others) kept.push(paragraph(section, sentences, b.s, b.e, `${b.id}s`));
+      continue;
+    }
+    kept.push(b);
+  }
+  fillGaps(kept, sentences, section);
+  return { blocks: kept, changed };
+}
+
+/** Below this share of its words said, a block is not in the teacher's words. */
+const SAID_SHARE = 0.6;
+/** Prose kinds whose words should be hers; code, tables, formulas and pictures are said in other words by nature. */
+const checksWording = (b: BoardBlock) => ["paragraph", "definition", "callout", "answer_reveal", "steps"].includes(b.kind);
+const stemOf = (w: string) => w.replace(/(?:ing|ed|es|s)$/, "");
+/** How much of a text's distinctive words are in what she says (0..1). */
+export function saidShare(text: string, spoken: string): number {
+  const want = [...new Set(distinctive(wordsOf(text)).map(stemOf))];
+  if (!want.length) return 1;
+  const got = new Set(wordsOf(spoken).map(stemOf));
+  return want.filter((w) => got.has(w)).length / want.length;
+}
+/**
+ * Is this piece said? At least half its distinctive words (and two, when it has two) are in what she says. Stricter
+ * than revealUnits' "two words to place it": "How did national competition affect rival states?" shares "national
+ * competition" with what she said and is still a question she never asked.
+ */
+const QUESTION_WORDS = new Set("how did does what why when which who".split(" "));
+export function saidIn(piece: string, spoken: string): boolean {
+  const want = [...new Set(distinctive(wordsOf(piece)).filter((w) => !QUESTION_WORDS.has(w)).map(stemOf))];
+  if (!want.length) return true;
+  const got = new Set(wordsOf(spoken).map(stemOf));
+  const hit = want.filter((w) => got.has(w)).length;
+  return hit >= Math.min(2, want.length) && hit >= Math.ceil(want.length * 0.5);
+}
+/** Sentences (1-based) during which more than four pieces would be written. */
+function crowdedSentences(blocks: BoardBlock[]): number[] {
+  const per = new Map<number, number>();
+  for (const b of blocks) for (const u of revealUnits(b)) per.set(Math.floor(u.at), (per.get(Math.floor(u.at)) ?? 0) + 1);
+  return [...per].filter(([, n]) => n > 4).map(([s]) => s + 1);
 }
 
 /** The smallest piece of a block that appears at once, and when: `at` is sentence number + fraction through it. */

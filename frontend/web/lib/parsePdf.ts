@@ -1,4 +1,12 @@
 import "server-only";
+
+/*
+ * ONE THREAD PER TESSERACT. Tesseract (OpenMP) takes every core it sees; on the 2-vCPU production container two
+ * photos read at once ran up to four Tesseracts (line boxes + the cropper's label pass for each) and the crop stage
+ * took 154–158 s, against 3.2 s for a page cropped alone (production log, 2026-11-25). Every Python/Tesseract this
+ * process starts inherits this. An explicit OMP_THREAD_LIMIT in the environment wins.
+ */
+process.env.OMP_THREAD_LIMIT ??= "1";
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import { createCostMeter } from "@/lib/costMeter";
@@ -1186,12 +1194,14 @@ export async function parsePdfForm(formData: FormData, options: {
        * (2026-11-25). A fixed 30 s limit was wrong the other way: on a slow upload the text itself took 53–93 s and
        * the limit dropped the figures for no time saved. Past the grace the page is taught without crops.
        */
-      const detection = detectFigures(client, dataUrl, textRegions);
+      let detectionDone = false;
+      const detection = detectFigures(client, dataUrl, textRegions).finally(() => { detectionDone = true; });
       const detected = options.photo && earlyTranscription
         ? await Promise.race([
             detection,
             earlyTranscription.then(() => new Promise<PdfDetectedFigure[]>((resolve) => setTimeout(() => {
-              console.warn(`[parse-pdf] page ${page.pageNumber}: figures still not found ${PHOTO_DETECT_GRACE_MS / 1000} s after the text — read without crops`);
+              // Only when it really ran out: the timer also fires after detection has won the race.
+              if (!detectionDone) console.warn(`[parse-pdf] page ${page.pageNumber}: figures still not found ${PHOTO_DETECT_GRACE_MS / 1000} s after the text — read without crops`);
               resolve([]);
             }, PHOTO_DETECT_GRACE_MS))),
           ])

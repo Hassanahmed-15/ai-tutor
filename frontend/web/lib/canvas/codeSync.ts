@@ -1,4 +1,5 @@
 import { canvasSentences } from "./plan";
+import { wordPositions } from "./blocks";
 import type { CanvasBoardSpec } from "./types";
 
 /**
@@ -128,4 +129,111 @@ export function fixLineReferences(spec: CanvasBoardSpec, script: string): { scri
     for (const step of st.steps) if (step.s === i && !step.lines.includes(named)) step.lines = [named];
   });
   return { script: fixed ? sentences.join(" ") : script, fixed };
+}
+
+/**
+ * EACH STEP OF A TRACE WHEN SHE SAYS IT (sync QA, 2026-11-26). The binary-search board put its whole trace —
+ * mid becomes 2, low becomes 3, mid becomes 3, found — on the sentence "Line 4 repeats the search while low is
+ * less than or equal to high", and the card shows only a sentence's LAST step: the variables jumped to the end
+ * state three sentences before "it starts with low 0 and high 4, computes mid 2, moves low to 3, then computes
+ * mid 3 and returns 3". So, on a code board:
+ *   - a step that changes a variable moves to where she says that name and value ("mid 2", "low to 3"), at that
+ *     word's place in the sentence (s = sentence + fraction; the card, variables and structure read the
+ *     sentence's progress), never earlier than it was written;
+ *   - a step that changes nothing follows the step before it; the steps are then put in the order she says them
+ *     and every step's variables rebuilt in that order, so nothing shows a value before she says it;
+ *   - the sentence that names "line N" lights line N.
+ * Pure. Returns how many steps moved or were relit.
+ */
+export function timeCodeSteps(spec: CanvasBoardSpec, script: string): { moved: number } {
+  const st = spec.stage;
+  if (st.kind !== "code" || st.steps.length < 2) return { moved: 0 };
+  const sentences = canvasSentences(script);
+  const words = sentences.map((sentence) => wordPositions(sentence));
+  type Step = (typeof st.steps)[number];
+  const valueOf = (step: Step | undefined, name: string) => step?.state?.find((v) => v.name === name)?.value;
+  // What each step changes, against the step before it as written.
+  const changes = st.steps.map((step, k) => (step.state ?? []).filter((v) => valueOf(st.steps[k - 1], v.name) !== v.value));
+  const say = (v: string) => {
+    const plain = v.toLowerCase().replace(/^["']|["']$/g, "");
+    const n = Number(plain);
+    return Number.isInteger(n) && n >= 0 && n < NUMBER_WORDS.length ? [plain, NUMBER_WORDS[n]] : [plain];
+  };
+  // Where she first says `name … value` (the value within four words of the name), at or after `from`.
+  const spoken = (change: { name: string; value: string }, from: number): number | null => {
+    const name = change.name.toLowerCase();
+    if (!/^[a-z_]\w*$/.test(name)) return null;
+    const values = say(change.value);
+    for (let j = Math.floor(from); j < words.length; j++) {
+      const w = words[j];
+      for (let i = 0; i < w.length; i++) {
+        if (w[i].word !== name) continue;
+        const hit = w.slice(i + 1, i + 5).find((x) => values.includes(x.word));
+        if (hit && j + hit.at >= from) return j + Math.min(0.95, hit.at);
+      }
+    }
+    return null;
+  };
+  let moved = 0;
+  const timed = st.steps.map((step, k) => ({ step, k, s: step.s }));
+  for (let k = 1; k < timed.length; k++) {
+    const own = changes[k];
+    // Said in its own sentence already: it stays.
+    const j = Math.floor(st.steps[k].s);
+    const saidHere = own.some((c) => {
+      const at = spoken(c, j);
+      return at !== null && Math.floor(at) === j;
+    });
+    if (own.length && !saidHere) {
+      const at = own.map((c) => spoken(c, Math.max(st.steps[k].s, timed[k - 1].s))).filter((x): x is number => x !== null).sort((a, b) => a - b)[0];
+      if (at !== undefined && at > timed[k].s) { timed[k].s = at; moved++; continue; }
+    }
+    // Nothing of its own said later: it keeps its sentence, or follows a step of its own sentence that moved on.
+    if (!own.length && st.steps[k].s === st.steps[k - 1].s && timed[k - 1].s > timed[k].s) { timed[k].s = timed[k - 1].s + 0.01; moved++; }
+  }
+  if (moved) {
+    timed.sort((a, b) => a.s - b.s || a.k - b.k);
+    // Variables rebuilt in the order she says them: each step holds what came before plus its own changes.
+    let state: Array<{ name: string; value: string }> = [];
+    st.steps = timed.map(({ step, k, s }) => {
+      if (step.state) {
+        const next = [...state];
+        for (const c of changes[k]) {
+          const i = next.findIndex((v) => v.name === c.name);
+          if (i >= 0) next[i] = c;
+          else next.push(c);
+        }
+        // Nothing it did not change itself: a value it carries that no step before it set is from later on.
+        state = next;
+        return { ...step, s, state: next };
+      }
+      return { ...step, s };
+    });
+  }
+  // The sentence that names one line lights it.
+  sentences.forEach((sentence, i) => {
+    const refs = [...sentence.matchAll(/\b[Ll]ine (\d+)\b/g)];
+    if (refs.length !== 1) return;
+    const named = Number(refs[0][1]);
+    if (named < 1 || named > st.lines.length) return;
+    const inSentence = st.steps.filter((step) => step.s >= i && step.s < i + 1);
+    if (!inSentence.length) {
+      // No step of its own (its step was the one that moved to when its value is said): one lights the line,
+      // holding the variables as they stand.
+      const before = st.steps.filter((step) => step.s < i).at(-1);
+      const at = st.steps.findIndex((step) => step.s >= i + 1);
+      const step = { s: i, lines: [named], ...(before?.state ? { state: before.state } : {}) };
+      if (at < 0) st.steps.push(step);
+      else st.steps.splice(at, 0, step);
+      moved++;
+      return;
+    }
+    if (inSentence.length === 1 && !inSentence[0].lines.includes(named)) {
+      // Not a step of the trace (it changes nothing): a trace step's lines are what ran, not what she names.
+      const before = st.steps[st.steps.indexOf(inSentence[0]) - 1];
+      const changesSomething = (inSentence[0].state ?? []).some((v) => valueOf(before, v.name) !== v.value);
+      if (!changesSomething) { inSentence[0].lines = [named]; moved++; }
+    }
+  });
+  return { moved };
 }

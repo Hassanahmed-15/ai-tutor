@@ -1,7 +1,7 @@
 import type OpenAI from "openai";
 import { jsonCall } from "./generate";
 import { canvasSentences } from "./plan";
-import { BLOCK_KINDS, CALLOUTS, plainBlocks, validateBlocks, type BoardBlock } from "./blocks";
+import { BLOCK_KINDS, CALLOUTS, plainBlocks, spokenOnly, validateBlocks, type BoardBlock } from "./blocks";
 
 /** The full board is on (course lessons only until the owner says otherwise). */
 export function canvasBlocksOn(): boolean {
@@ -12,10 +12,14 @@ const MODEL = process.env.CANVAS_BLOCKS_MODEL ?? "gpt-5.6-luna";
 
 const PROMPT = `You write what goes on a teacher's board as typed blocks. You are given the numbered sentences the teacher will say.
 
-THE BOARD IS THE WHOLE LESSON. Someone who reads only the board, with no sound, must learn the concept:
+THE BOARD IS WHAT THE TEACHER SAYS, WRITTEN AS SHE SAYS IT. Each piece appears at the moment she says it, so:
 - Cover EVERY sentence. Never cut, abbreviate or summarise. Length is fine.
+- Write ONLY what the sentences say, in their words (tidied for a board). Add nothing they do not say: no extra
+  definitions, no background, no recap or list of what was said before. A term is defined on the board only where
+  a sentence defines it.
 - Self-contained: never "this one", "as I said", "here", "pause and think". Name things explicitly.
-- Define every term the first time. Under a formula, a "where" line for every symbol.
+- Under a formula, a "where" line only for a symbol a sentence explains, in that sentence's words.
+- At most 3 pieces per sentence: a phrase, a step, a "where" line or a table row each count as one.
 - Teacher talk that teaches nothing ("Let's begin", "Pause and think") is covered by the block around it and not written.
 - Mark key terms with **bold**. Write inline maths as $...$ in KaTeX.
 - Use the language of the sentences.
@@ -48,7 +52,11 @@ export async function writeBoardBlocks(openai: OpenAI, beat: { id: string; title
       const second = validateBlocks(again.json, beat.id, beat.script);
       if (second.faults.length <= checked.faults.length) checked = second;
     }
-    if (checked.blocks.length) return { blocks: checked.blocks, costUsd, log: `${checked.blocks.length} blocks${checked.faults.length ? ` (kept with: ${checked.faults[0]})` : ""}` };
+    // What is still written but never said is taken off, or written as her own sentences (lib/canvas/blocks.ts).
+    if (checked.blocks.length) {
+      const synced = spokenOnly(checked.blocks, beat.id, beat.script);
+      return { blocks: synced.blocks, costUsd, log: `${synced.blocks.length} blocks${synced.changed ? `, ${synced.changed} brought in line with the speech` : ""}${checked.faults.length ? ` (kept with: ${checked.faults[0]})` : ""}` };
+    }
   } catch (error) {
     return { blocks: plainBlocks(beat.id, beat.script), costUsd, log: `plain text — ${(error as Error).message.slice(0, 100)}` };
   }
