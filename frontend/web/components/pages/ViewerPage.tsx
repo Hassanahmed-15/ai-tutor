@@ -40,7 +40,7 @@ export function ViewerPage({ onExit }: { onExit: () => void }) {
   }, []);
 
   return (
-    <main className="h-screen bg-[var(--hud-bg)]">
+    <main className="theme-glow h-screen">
       {openDoc ? (
         <DocumentViewer doc={openDoc} onBack={() => setOpenDoc(null)} />
       ) : (

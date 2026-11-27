@@ -351,7 +351,7 @@ export function AuthScreen({
 
   if (embedded) return form;
   return (
-    <main className="hud-canvas relative flex min-h-screen items-center justify-center px-6 py-12">
+    <main className="hud-canvas theme-glow relative flex min-h-screen items-center justify-center px-6 py-12">
       {form}
     </main>
   );

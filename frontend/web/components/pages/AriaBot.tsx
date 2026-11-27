@@ -14,7 +14,8 @@ import type { VisemeName } from "@/lib/avatar/visemes";
  * device setting or the account's `data-reduced-motion`), the whole sentence is there at once and
  * she does not follow the pointer. Clicking her says it again.
  */
-const GREETING = "Hey, I'm Aria — your personalized tutor.";
+// The owner's homepage design (UI_motivation, 2026-11-27).
+const GREETING = "Hi, I’m Aria! Your personalized learning tutor!";
 const TYPE_MS = 38;
 
 function prefersStill(): boolean {
@@ -25,7 +26,12 @@ function prefersStill(): boolean {
   );
 }
 
-export function AriaBot({ size = 196 }: { size?: number }) {
+/**
+ * `variant="stage"`: the home page's hero (the owner's design, 2026-11-27) — Aria large on a violet stage with a
+ * dashed orbit and stars, turning toward the pointer, her greeting in a bubble at the top right and the caption
+ * at the bottom. `"row"`: the small one beside its bubble, as before.
+ */
+export function AriaBot({ size = 196, variant = "row" }: { size?: number; variant?: "row" | "stage" }) {
   const [typed, setTyped] = useState(0);
   const [run, setRun] = useState(0);
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -93,6 +99,33 @@ export function AriaBot({ size = 196 }: { size?: number }) {
   useEffect(() => {
     mouth.current = talking && typed > 0 ? letterMouth(GREETING, typed - 1) : null;
   }, [typed, talking]);
+
+  if (variant === "stage") {
+    return (
+      <aside ref={sceneRef} className="aria-stage" aria-label="Aria">
+        <button type="button" onClick={() => setRun((n) => n + 1)} aria-label="Say hello again" className="absolute inset-0 z-[1] cursor-default focus-visible:outline-2 focus-visible:outline-offset-[-6px]">
+          <div ref={botRef} className="absolute inset-0" aria-hidden="true">
+            <DotAvatar state={talking ? "speaking" : "idle"} gaze={gaze} mouth={mouth} followPointer={!prefersStill()} className="h-full w-full" />
+          </div>
+        </button>
+        <div className="aria-stage-bubble">
+          {/* A paragraph here: the page's heading is "What shall we learn today?" beside the stage. */}
+          <p className="text-[1.0625rem] font-extrabold leading-snug">
+            <span className="sr-only">{GREETING}</span>
+            <span aria-hidden="true">
+              {GREETING.slice(0, typed)}
+              {talking && <span className="bot-caret">|</span>}
+              <span className="invisible">{GREETING.slice(typed)}</span>
+            </span>
+          </p>
+        </div>
+        <div className="aria-stage-caption">
+          <b>Taught live, out loud.</b>
+          <span>Pick a topic and Aria draws it on a board as she explains.</span>
+        </div>
+      </aside>
+    );
+  }
 
   return (
     <div ref={sceneRef} className="bot-scene flex flex-col items-center gap-3 sm:flex-row sm:gap-5">

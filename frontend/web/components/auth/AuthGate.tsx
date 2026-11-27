@@ -165,7 +165,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
      * student out.
      */
     return (
-      <main className="hud-canvas grid min-h-screen place-items-center" role="status" aria-live="polite">
+      <main className="hud-canvas theme-glow grid min-h-screen place-items-center" role="status" aria-live="polite">
         <div className="flex flex-col items-center gap-5">
           <div className="relative grid h-16 w-16 place-items-center">
             {/* A ring that sweeps rather than a spinner glyph — the mark stays still and legible

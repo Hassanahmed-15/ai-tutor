@@ -93,7 +93,7 @@ export function PastPaperPractice({ request, part, onDone }: { request: Request;
 
   if (stage === "loading") {
     return (
-      <main className="hud-canvas hud-grain flex min-h-screen items-center justify-center px-6" data-past-papers="loading">
+      <main className="hud-canvas hud-grain theme-glow flex min-h-screen items-center justify-center px-6" data-past-papers="loading">
         <p className="text-[var(--hud-text-dim)]">Finding exam questions on this lesson…</p>
       </main>
     );
@@ -101,7 +101,7 @@ export function PastPaperPractice({ request, part, onDone }: { request: Request;
 
   if (stage === "summary" || !q) {
     return (
-      <main className="hud-canvas hud-grain flex min-h-screen items-center justify-center px-6" data-past-papers="summary" style={EXACT}>
+      <main className="hud-canvas hud-grain theme-glow flex min-h-screen items-center justify-center px-6" data-past-papers="summary" style={EXACT}>
         <section className="mx-auto w-full max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--hud-text-dim)]">Past paper practice</p>
           {score.of > 0 && <h1 className="font-display mt-3 text-[2.6rem] leading-none tracking-[-0.03em] text-[var(--hud-text)]">{score.got} / {score.of} marks</h1>}
@@ -127,7 +127,7 @@ export function PastPaperPractice({ request, part, onDone }: { request: Request;
 
   const markedParts = q.parts.filter((p) => p.marks > 0);
   return (
-    <main className="hud-canvas hud-grain flex min-h-screen justify-center overflow-y-auto px-4 py-10 sm:px-6" data-past-papers="question" style={EXACT}>
+    <main className="hud-canvas hud-grain theme-glow flex min-h-screen justify-center overflow-y-auto px-4 py-10 sm:px-6" data-past-papers="question" style={EXACT}>
       <section className="mx-auto w-full max-w-3xl">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--hud-text-dim)]">Past paper practice · question {i + 1} of {qs.length}</p>

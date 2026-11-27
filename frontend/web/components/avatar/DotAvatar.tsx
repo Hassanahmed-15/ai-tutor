@@ -1,35 +1,68 @@
 "use client";
 
-import { useEffect, useId, useRef, type RefObject } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 import { mouthShape, visemeWeights } from "@/lib/adhd/mouth";
 import { DOT_REST, dotMuscles, easeMuscles, type DotMuscles } from "@/lib/avatar/dotFace";
 import type { VisemeWeights } from "@/lib/avatar/visemes";
 import type { AvatarState } from "@/lib/avatar/face";
 
 /**
- * DOT — the cartoon Aria: a glowing violet orb with a gold ring, capsule eyes and a drawn mouth.
- * Flat 2D on purpose (2D agents beat 3D ones in the meta-analyses; Castro-Alonso et al. 2021), and
- * drawn, so it costs nothing to load and runs on any phone.
+ * ARIA — a planet made of dots, with a ring of dots around her and a face (owner's design, 2026-11-27:
+ * UI_motivation/Aria homepage (light|dark).html). Replaces the flat violet orb with a gold ring, everywhere.
  *
- * HOW SHE TALKS. The same mouth bus as the photoreal head (lib/adhd/mouth.ts): the live viseme
- * weights from the lip track say WHICH sound, the voice says how loud. lib/avatar/dotFace.ts turns
- * both into seven mouth muscles (jaw, spread, round, seal, f/v, tongue, teeth); this draws them every
- * frame without React (one rAF loop writing SVG attributes).
+ * Drawn on a canvas: a sphere of points (a Fibonacci lattice) over a glowing violet body, a tilted ring of points
+ * that turns slowly, and the face on top. The colours are theme tokens (--aria-*), so she matches light and dark.
  *
- * WHAT ELSE MOVES, AND WHY ONLY THIS. A blink every few seconds, a breath while she is quiet, a small
- * nod when her voice lands on a stressed syllable, and her eyes on what she is pointing at (`gaze`).
- * Nothing drifts or bobs while she talks: motion that carries no meaning next to the lesson is a
- * distraction (seductive-details research), and the start of a motion is what pulls the eye.
+ * HOW SHE TALKS. Unchanged from the orb: the same mouth bus as the photoreal head (lib/adhd/mouth.ts) — the live
+ * viseme weights say WHICH sound, the voice how loud — turned into seven mouth muscles (lib/avatar/dotFace.ts),
+ * drawn every frame without React. A blink every few seconds, a breath while she is quiet, a small nod on a
+ * stressed syllable, and her eyes on what she points at (`gaze`), or on the pointer (`followPointer`, the home
+ * page). Thinking: eyes up and aside; listening: eyes a little wider, the glow brighter.
+ *
+ * Reduced motion: the planet stands still; only the face (blinks, mouth) moves.
  */
 export type DotGaze = { x: number; y: number } | null;
 /** A mouth from somewhere other than the voice bus (the home page greeting, typed letter by letter). */
 export type DotMouthInput = { weights: VisemeWeights; open: number } | null;
+
+type P3 = [number, number, number];
+const SPHERE_CACHE = new Map<number, P3[]>();
+const RING_CACHE = new Map<number, Array<[number, number, number, number]>>();
+/** Points evenly over a unit sphere (Fibonacci lattice). */
+function sphere(n: number): P3[] {
+  let s = SPHERE_CACHE.get(n);
+  if (!s) {
+    s = [];
+    for (let i = 0; i < n; i++) {
+      const y = 1 - (2 * (i + 0.5)) / n, r = Math.sqrt(1 - y * y), a = i * 2.39996;
+      s.push([Math.cos(a) * r, y, Math.sin(a) * r]);
+    }
+    SPHERE_CACHE.set(n, s);
+  }
+  return s;
+}
+/** A flat ring of points 1.45–1.95 radii out, each with a fixed brightness pick (seeded, so it never flickers). */
+function ring(n: number) {
+  let r = RING_CACHE.get(n);
+  if (!r) {
+    r = [];
+    let seed = 11;
+    const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+    for (let i = 0; i < n; i++) {
+      const a = rnd() * 6.283, d = 1.45 + rnd() * 0.5;
+      r.push([Math.cos(a) * d, (rnd() - 0.5) * 0.03, Math.sin(a) * d, rnd()]);
+    }
+    RING_CACHE.set(n, r);
+  }
+  return r;
+}
 
 export function DotAvatar({
   state,
   gaze,
   mouth,
   still = false,
+  followPointer = false,
   className = "",
 }: {
   state: AvatarState;
@@ -39,10 +72,11 @@ export function DotAvatar({
   mouth?: RefObject<DotMouthInput>;
   /** Parked beside something she points at: no breath bob, no nod travel. */
   still?: boolean;
+  /** The whole planet turns toward the pointer, as on the home page's stage. */
+  followPointer?: boolean;
   className?: string;
 }) {
-  const uid = useId().replace(/:/g, "");
-  const svgRef = useRef<SVGSVGElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef(state);
   const stillRef = useRef(still);
   useEffect(() => {
@@ -51,20 +85,25 @@ export function DotAvatar({
   }, [state, still]);
 
   useEffect(() => {
-    const svg = svgRef.current;
-    if (!svg) return;
-    const q = (k: string) => svg.querySelector(`[data-k="${k}"]`) as SVGElement;
-    const P = {
-      fig: q("fig"), eyes: q("eyes"), eyeL: q("eyeL"), eyeR: q("eyeR"), cheekL: q("cheekL"), cheekR: q("cheekR"),
-      mouth: q("mouth"), clip: q("clip"), teeth: q("teeth"), tongue: q("tongue"), lowerlip: q("lowerlip"), line: q("line"), fteeth: q("fteeth"), glow: q("glow"),
-    };
+    const cv = canvasRef.current;
+    const cx = cv?.getContext("2d");
+    if (!cv || !cx) return;
     const reduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     let raf = 0;
     let last = performance.now();
     let m: DotMuscles = { ...DOT_REST };
-    let nod = 0, nodV = 0, lift = 0, blink = -1, nextBlink = 2.5, clock = 0, breath = 0;
+    let nod = 0, nodV = 0, lift = 0, blink = -1, nextBlink = 2.5, clock = 0, breath = 0, spin = 0;
     let look = { x: 0, y: 0 }, idleLook = { x: 0, y: 0 }, nextLook = 1.5;
     let prevOpen = 0, lastBeat = -1;
+    // The pointer, for followPointer (smoothed below).
+    const pointer = { x: 0, y: 0 }, turn = { x: 0, y: 0 };
+    const onPointer = (e: PointerEvent) => {
+      const b = cv.getBoundingClientRect();
+      pointer.x = Math.max(-1, Math.min(1, (e.clientX - b.left - b.width / 2) / (window.innerWidth * 0.45)));
+      pointer.y = Math.max(-1, Math.min(1, (e.clientY - b.top - b.height / 2) / (window.innerHeight * 0.45)));
+    };
+    if (followPointer) window.addEventListener("pointermove", onPointer);
+    const css = (n: string, fallback: string) => getComputedStyle(cv).getPropertyValue(n).trim() || fallback;
 
     const loop = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000);
@@ -96,148 +135,159 @@ export function DotAvatar({
         if (bt >= 1) blink = -1;
         else lid = 1 - 0.92 * Math.sin(bt * Math.PI);
       }
-      // Thinking: eyes up and to the side; listening: a little wider.
       if (s === "thinking") lid *= 0.85;
       if (s === "listening") lid *= 1.06;
       lid *= 1 + 0.08 * lift;
 
-      // Eyes: on the target when pointing, else small glances (as people make), else at the student.
       const g = gaze?.current ?? null;
       if (!g && clock > nextLook) {
         idleLook = s === "thinking" ? { x: 0.5, y: -0.6 } : { x: (Math.random() * 2 - 1) * 0.5, y: (Math.random() * 2 - 1) * 0.3 };
         nextLook = clock + 1.2 + Math.random() * 2;
       }
-      const want = g ?? idleLook;
+      const want = followPointer && !g ? pointer : g ?? idleLook;
       const k = 1 - Math.pow(0.7, dt * 60);
       look = { x: look.x + (want.x - look.x) * k, y: look.y + (want.y - look.y) * k };
-
+      turn.x += ((followPointer ? pointer.x : look.x * 0.4) - turn.x) * 0.08;
+      turn.y += ((followPointer ? pointer.y : look.y * 0.4) - turn.y) * 0.08;
       breath = !talking && !stillRef.current && !reduced ? 0.5 + 0.5 * Math.sin(clock * 1.6) : breath * 0.9;
-      const sq = 1 - 0.03 * m.jaw + 0.012 * breath;
-      P.fig.setAttribute("transform", `translate(0 ${(nod * 0.55).toFixed(2)}) rotate(${(nod * 0.35).toFixed(2)} 120 222) translate(120 222) scale(${(1 + 0.02 * m.jaw).toFixed(3)} ${sq.toFixed(3)}) translate(-120 -222)`);
-      P.eyes.setAttribute("transform", `translate(${(look.x * 5).toFixed(2)} ${(look.y * 3.5).toFixed(2)})`);
-      P.eyeL.setAttribute("transform", `translate(88.5 141) scale(1 ${lid.toFixed(3)}) translate(-88.5 -141)`);
-      P.eyeR.setAttribute("transform", `translate(151.5 141) scale(1 ${lid.toFixed(3)}) translate(-151.5 -141)`);
-      const smile = talking ? 0.3 : 0.5;
-      const cheek = (0.36 + 0.25 * smile + 0.18 * m.spread).toFixed(2);
-      P.cheekL.setAttribute("opacity", cheek);
-      P.cheekR.setAttribute("opacity", cheek);
-      P.glow.setAttribute("opacity", (s === "speaking" ? 0.5 : s === "listening" ? 0.4 : 0.28).toFixed(2));
-      drawMouth(P, m, smile * (1 - m.round));
+      if (!reduced) spin += dt * 0.24;
+
+      // ── draw ──────────────────────────────────────────────────────────────
+      const d = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+      if (!w || !h) { raf = requestAnimationFrame(loop); return; }
+      if (cv.width !== Math.round(w * d) || cv.height !== Math.round(h * d)) { cv.width = Math.round(w * d); cv.height = Math.round(h * d); }
+      cx.setTransform(d, 0, 0, d, 0, 0);
+      cx.clearRect(0, 0, w, h);
+      // Fewer points when she is small: the look is the same, the cost is not.
+      const size = Math.min(w, h);
+      const N = size > 300 ? 3600 : size > 140 ? 1800 : 720;
+      const M = size > 300 ? 2400 : size > 140 ? 1200 : 600;
+      const S = sphere(N), R = ring(M);
+      const u = Math.min(w / 4.5, h / 3.4) * (1 + 0.012 * breath);
+      const X = w / 2, Y = h * 0.5 + nod * 0.55 * (u / 90);
+      const c1 = css("--aria-dot1", "#8d6df0"), c2 = css("--aria-dot2", "#ffffff"), body = css("--aria-body", "#2f1670"), hi = css("--aria-body-hi", "#8a62f2");
+      const ink = css("--aria-ink", "#120a22"), glow = css("--aria-glow", "rgba(139,108,255,.6)");
+      const yaw = spin + turn.x * 0.7, pit = turn.y * 0.35;
+      const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pit), sp = Math.sin(pit);
+      const rotS = (p: P3): P3 => { const x = p[0] * cy + p[2] * sy, z = -p[0] * sy + p[2] * cy, y = p[1]; return [x, y * cp - z * sp, y * sp + z * cp]; };
+      const tilt = -0.38 + turn.y * 0.35, roll = 0.22 + turn.x * 0.2, ct = Math.cos(tilt), st = Math.sin(tilt), cr = Math.cos(roll), sr = Math.sin(roll);
+      const rr = spin * 2.5, crr = Math.cos(rr), srr = Math.sin(rr);
+      const rotR = (p: [number, number, number, number]): P3 => {
+        let x = p[0] * crr + p[2] * srr, z = -p[0] * srr + p[2] * crr, y = p[1];
+        [y, z] = [y * ct - z * st, y * st + z * ct];
+        [x, y] = [x * cr - y * sr, x * sr + y * cr];
+        return [x, y, z];
+      };
+      const dot = (x: number, y: number, z: number, sz: number, col: string) => {
+        cx.globalAlpha = 0.3 + 0.7 * Math.max(0, Math.min(1, (z + 1.6) / 3.2));
+        cx.fillStyle = col;
+        cx.fillRect(X + x * u - sz / 2, Y - y * u - sz / 2, sz, sz);
+      };
+      const dotSize = Math.max(1, u * 0.012);
+      const rp = R.map(rotR);
+      rp.forEach((q, i) => { if (q[2] < 0) dot(q[0], q[1], q[2], dotSize, R[i][3] > 0.5 ? c2 : c1); });
+      // The body, glowing brighter while she listens or speaks.
+      cx.globalAlpha = 1;
+      cx.beginPath();
+      cx.arc(X, Y, u, 0, 6.283);
+      const grad = cx.createRadialGradient(X - u * 0.3, Y - u * 0.4, u * 0.1, X, Y, u);
+      grad.addColorStop(0, hi);
+      grad.addColorStop(1, body);
+      cx.fillStyle = grad;
+      cx.shadowColor = glow;
+      cx.shadowBlur = u * (s === "speaking" ? 0.7 : s === "listening" ? 0.62 : 0.5);
+      cx.fill();
+      cx.shadowBlur = 0;
+      S.forEach((p) => {
+        const q = rotS(p);
+        if (q[2] < -0.05) return;
+        const lit = (q[1] * 0.6 - q[0] * 0.3 + q[2] * 0.4 + 1) / 2;
+        dot(q[0], q[1], q[2], Math.max(1, u * (lit > 0.6 ? 0.014 : 0.01)), lit > 0.66 ? c2 : c1);
+      });
+      rp.forEach((q, i) => { if (q[2] >= 0) dot(q[0], q[1], q[2], Math.max(1.2, u * 0.014), q[1] > -0.2 && R[i][3] > 0.3 ? c2 : c1); });
+      cx.globalAlpha = 1;
+
+      // The face: eyes (with blinks and gaze), cheeks, mouth.
+      const fx = X + look.x * u * 0.3, fy = Y + look.y * u * 0.22, kk = 1 - Math.hypot(look.x, look.y) * 0.1;
+      cx.fillStyle = "rgba(255,130,185,.32)";
+      [-0.52, 0.52].forEach((e) => { cx.beginPath(); cx.ellipse(fx + e * u * kk, fy + u * 0.12, u * 0.11, u * 0.065, 0, 0, 6.283); cx.fill(); });
+      [-0.3, 0.3].forEach((ex) => {
+        const ex2 = fx + ex * u * kk;
+        cx.fillStyle = ink;
+        cx.beginPath();
+        cx.ellipse(ex2, fy - u * 0.16, u * 0.075 * kk, Math.max(0.6, u * 0.125 * lid), 0, 0, 6.283);
+        cx.fill();
+        if (lid > 0.4) {
+          cx.fillStyle = "#fff";
+          cx.beginPath();
+          cx.ellipse(ex2 + look.x * u * 0.025, fy - u * 0.16 - u * 0.05 * lid + look.y * u * 0.03, u * 0.022, u * 0.036 * lid, 0, 0, 6.283);
+          cx.fill();
+        }
+      });
+      drawMouth(cx, m, talking ? 0.3 : 0.5, fx, fy + u * 0.16, u / 72, ink);
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
-  }, [gaze, mouth]);
+    return () => {
+      cancelAnimationFrame(raf);
+      if (followPointer) window.removeEventListener("pointermove", onPointer);
+    };
+  }, [gaze, mouth, followPointer]);
 
-  return (
-    <svg ref={svgRef} viewBox="-12 -8 264 272" className={`overflow-visible ${className}`} role="img" aria-label="Aria">
-      <defs>
-        <radialGradient id={`${uid}g`} cx="38%" cy="30%" r="78%">
-          <stop offset="0" style={{ stopColor: "var(--dot-hi)" }} />
-          <stop offset=".32" style={{ stopColor: "var(--dot-mid)" }} />
-          <stop offset=".74" style={{ stopColor: "var(--dot-body)" }} />
-          <stop offset="1" style={{ stopColor: "var(--dot-edge)" }} />
-        </radialGradient>
-        <filter id={`${uid}b`} x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation="12" />
-        </filter>
-        <clipPath id={`${uid}mc`}>
-          <path data-k="clip" />
-        </clipPath>
-      </defs>
-      <g data-k="fig">
-        <circle data-k="glow" cx="120" cy="132" r="96" style={{ fill: "var(--dot-body)" }} opacity=".42" filter={`url(#${uid}b)`} />
-        <g transform="rotate(-11 120 184)">
-          <path d="M4 184 A116 24 0 0 1 236 184" fill="none" stroke="#F5C86B" strokeWidth="4" strokeLinecap="round" opacity=".5" />
-        </g>
-        <circle cx="120" cy="132" r="90" fill={`url(#${uid}g)`} />
-        <circle cx="120" cy="132" r="89" fill="none" style={{ stroke: "var(--dot-rim)" }} strokeWidth="2.5" opacity=".55" />
-        <path d="M56 96 A74 74 0 0 1 112 60" fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" opacity=".55" />
-        <ellipse data-k="cheekL" cx="63" cy="166" rx="12" ry="7" style={{ fill: "var(--dot-cheek)" }} opacity=".4" />
-        <ellipse data-k="cheekR" cx="177" cy="166" rx="12" ry="7" style={{ fill: "var(--dot-cheek)" }} opacity=".4" />
-        <g data-k="eyes">
-          <g data-k="eyeL">
-            <rect x="78" y="123" width="21" height="36" rx="10.5" style={{ fill: "var(--dot-eye)" }} />
-            <circle cx="85" cy="133" r="3.8" fill="#FFF" />
-            <circle cx="92" cy="145" r="1.7" fill="#FFF" opacity=".75" />
-          </g>
-          <g data-k="eyeR">
-            <rect x="141" y="123" width="21" height="36" rx="10.5" style={{ fill: "var(--dot-eye)" }} />
-            <circle cx="148" cy="133" r="3.8" fill="#FFF" />
-            <circle cx="155" cy="145" r="1.7" fill="#FFF" opacity=".75" />
-          </g>
-        </g>
-        <g transform="translate(120 170) scale(1.42) translate(-120 -170)">
-          <path data-k="mouth" style={{ fill: "var(--dot-mouth)", stroke: "var(--dot-mouth)" }} strokeWidth="2.4" strokeLinejoin="round" />
-          <g clipPath={`url(#${uid}mc)`}>
-            <rect data-k="teeth" x="100" y="150" width="40" height="6" rx="2" fill="#FFFFFF" />
-            <ellipse data-k="tongue" cx="120" cy="190" rx="9" ry="5" fill="#F28AB8" />
-          </g>
-          <path data-k="lowerlip" fill="none" style={{ stroke: "var(--dot-lip)" }} strokeWidth="2" strokeLinecap="round" opacity=".6" />
-          <path data-k="line" fill="none" style={{ stroke: "var(--dot-mouth)" }} strokeWidth="3.4" strokeLinecap="round" />
-          <rect data-k="fteeth" width="10" height="4.5" rx="1.6" fill="#FFFFFF" strokeWidth="1.2" style={{ display: "none", stroke: "var(--dot-mouth)" }} />
-        </g>
-        <g transform="rotate(-11 120 184)">
-          <path d="M4 184 A116 24 0 0 0 236 184" fill="none" stroke="#F5C86B" strokeWidth="4" strokeLinecap="round" />
-          <circle cx="216" cy="198" r="4.5" fill="#FFE7A8" />
-          <circle cx="50" cy="204" r="3.2" fill="#FFE7A8" />
-        </g>
-      </g>
-    </svg>
-  );
+  return <canvas ref={canvasRef} className={`block ${className}`} role="img" aria-label="Aria" />;
 }
 
-const f1 = (v: number) => v.toFixed(1);
-type Parts = Record<"mouth" | "clip" | "teeth" | "tongue" | "lowerlip" | "line" | "fteeth", SVGElement>;
-
-/** The mouth: one shape from the seven muscles (cubic lips, teeth and tongue clipped inside). */
-function drawMouth(P: Parts, m: DotMuscles, smile: number) {
-  const x = 120, my = 172;
-  const hw = 13 * (1 + 0.7 * m.spread - 0.58 * m.round) * (1 - 0.1 * m.seal) * (1 + 0.15 * smile);
-  const open = 30 * m.jaw + 6 * m.round * Math.min(1, m.jaw * 3);
-  const cy = my - 1.8 * smile + 1.2 * m.round;
+/**
+ * The mouth from the seven muscles, drawn at (x, y) at scale `k`: a smile line when closed (a tucked lip for f/v),
+ * an open shape with teeth and tongue when she opens it — the same geometry as the orb's.
+ */
+function drawMouth(cx: CanvasRenderingContext2D, m: DotMuscles, smile: number, x: number, y: number, k: number, ink: string) {
+  const hw = 13 * k * (1 + 0.7 * m.spread - 0.58 * m.round) * (1 - 0.1 * m.seal) * (1 + 0.15 * smile);
+  const open = (30 * m.jaw + 6 * m.round * Math.min(1, m.jaw * 3)) * k;
+  const cy = y - 1.8 * k * smile + 1.2 * k * m.round;
   const L = x - hw, R = x + hw;
-  if (open < 1.6 || m.fv > 0.5) {
-    const bulge = (3 + 4 * smile - 2 * m.seal - 1.5 * m.round) * (1 - 0.7 * Math.min(1, m.fv));
-    P.line.setAttribute("d", `M${f1(L)} ${f1(cy)} Q${x} ${f1(cy + bulge)} ${f1(R)} ${f1(cy)}`);
-    P.line.setAttribute("stroke-width", f1(3.4 + 1.8 * m.seal + 1.2 * m.fv + 1.5 * m.round));
-    P.line.style.display = "";
-    P.mouth.style.display = "none";
-    P.lowerlip.style.display = "none";
-    P.teeth.style.display = "none";
-    P.tongue.style.display = "none";
+  cx.lineCap = "round";
+  cx.lineJoin = "round";
+  if (open < 1.6 * k || m.fv > 0.5) {
+    const bulge = (3 + 4 * smile - 2 * m.seal - 1.5 * m.round) * (1 - 0.7 * Math.min(1, m.fv)) * k * 1.4;
+    cx.strokeStyle = ink;
+    cx.lineWidth = (3.4 + 1.8 * m.seal + 1.2 * m.fv + 1.5 * m.round) * k * 0.9;
+    cx.beginPath();
+    cx.moveTo(L, cy);
+    cx.quadraticCurveTo(x, cy + bulge * 2.2, R, cy);
+    cx.stroke();
     if (m.fv > 0.25) {
-      // f / v: the upper teeth rest on a tucked-in lower lip.
-      const tw = hw * 0.95, th = 4.6;
-      P.fteeth.setAttribute("x", f1(x - tw / 2));
-      P.fteeth.setAttribute("width", f1(tw));
-      P.fteeth.setAttribute("y", f1(cy + bulge * 0.5 - th - 0.6));
-      P.fteeth.setAttribute("height", f1(th));
-      P.fteeth.style.opacity = f1(Math.min(1, (m.fv - 0.25) * 3));
-      P.fteeth.style.display = "";
-    } else P.fteeth.style.display = "none";
+      cx.globalAlpha = Math.min(1, (m.fv - 0.25) * 3);
+      cx.fillStyle = "#fff";
+      cx.fillRect(x - hw * 0.48, cy + bulge * 0.5 - 4.6 * k - 0.6 * k, hw * 0.95, 4.6 * k);
+      cx.globalAlpha = 1;
+    }
     return;
   }
-  P.line.style.display = "none";
-  P.mouth.style.display = "";
-  P.lowerlip.style.display = "";
-  P.fteeth.style.display = "none";
-  P.mouth.setAttribute("stroke-width", f1(2.4 + 2.6 * m.round));
   const top = cy - open * 0.34, bot = cy + open * 0.66;
   const c1 = (0.1 + 0.42 * (1 - m.round)) * hw;
   const ty = cy - (cy - top) / 0.75, by = cy + (bot - cy) / 0.75;
-  const d = `M${f1(L)} ${f1(cy)} C${f1(L + c1)} ${f1(ty)} ${f1(R - c1)} ${f1(ty)} ${f1(R)} ${f1(cy)} C${f1(R - c1)} ${f1(by)} ${f1(L + c1)} ${f1(by)} ${f1(L)} ${f1(cy)} Z`;
-  P.mouth.setAttribute("d", d);
-  P.clip.setAttribute("d", d);
-  P.lowerlip.setAttribute("d", `M${f1(L + hw * 0.35)} ${f1(bot + 4 + 1.5 * m.round)} Q${x} ${f1(bot + 6.5 + 2 * m.round)} ${f1(R - hw * 0.35)} ${f1(bot + 4 + 1.5 * m.round)}`);
-  P.teeth.style.display = m.teeth > 0.25 || m.fv > 0.3 ? "" : "none";
-  P.teeth.setAttribute("x", f1(L));
-  P.teeth.setAttribute("width", f1(hw * 2));
-  P.teeth.setAttribute("y", f1(top - 1));
-  P.teeth.setAttribute("height", f1(Math.min(6, open * (0.25 + 0.2 * m.teeth))));
-  P.tongue.style.display = open > 9 || m.tongue > 0.3 ? "" : "none";
-  P.tongue.setAttribute("cx", String(x));
-  P.tongue.setAttribute("rx", f1(hw * (0.62 - 0.12 * m.tongue)));
-  P.tongue.setAttribute("ry", f1(Math.max(3, open * 0.28)));
-  P.tongue.setAttribute("cy", f1(bot - open * 0.12 - m.tongue * open * 0.5));
+  cx.beginPath();
+  cx.moveTo(L, cy);
+  cx.bezierCurveTo(L + c1, ty, R - c1, ty, R, cy);
+  cx.bezierCurveTo(R - c1, by, L + c1, by, L, cy);
+  cx.closePath();
+  cx.fillStyle = ink;
+  cx.fill();
+  cx.save();
+  cx.clip();
+  if (m.teeth > 0.25 || m.fv > 0.3) {
+    cx.fillStyle = "#fff";
+    cx.fillRect(L, top - k, hw * 2, Math.min(6 * k, open * (0.25 + 0.2 * m.teeth)));
+  }
+  if (open > 9 * k || m.tongue > 0.3) {
+    cx.fillStyle = "#ff8fb8";
+    cx.beginPath();
+    cx.ellipse(x, bot - open * 0.12 - m.tongue * open * 0.5, hw * (0.62 - 0.12 * m.tongue), Math.max(3 * k, open * 0.28), 0, 0, 6.283);
+    cx.fill();
+  }
+  cx.restore();
+  cx.strokeStyle = ink;
+  cx.lineWidth = (2.4 + 2.6 * m.round) * k;
+  cx.stroke();
 }

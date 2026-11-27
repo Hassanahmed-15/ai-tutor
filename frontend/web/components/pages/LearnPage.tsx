@@ -4286,7 +4286,7 @@ type BuildCost =
 
   if (phase === "finished") {
     return (
-      <main className="hud-canvas hud-grain relative flex min-h-screen items-center justify-center px-6">
+      <main className="hud-canvas hud-grain theme-glow relative flex min-h-screen items-center justify-center px-6">
         <section className="relative z-10 mx-auto flex max-w-3xl flex-col justify-center">
           <h1 className="hud-materialize font-display text-[3rem] leading-[0.94] tracking-[-0.035em] text-[var(--hud-text-dim)] sm:text-[4.4rem]">
             Finished.
@@ -4441,7 +4441,7 @@ type BuildCost =
       chooseSourceMode(fidelity, askedText || undefined);
     };
     return (
-      <main className="hud-canvas hud-grain relative grid min-h-screen place-items-center overflow-hidden px-5 py-8 text-[var(--hud-text)]">
+      <main className="hud-canvas hud-grain theme-glow relative grid min-h-screen place-items-center overflow-hidden px-5 py-8 text-[var(--hud-text)]">
         <section aria-labelledby="source-mode-title" className="relative z-10 w-full max-w-3xl rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-6 shadow-[var(--elev-2)] sm:p-9">
           <p className="text-[0.8125rem] font-medium text-[var(--hud-text-dim)]">{fromPhone ? `Your ${phonePageCount} photographed page${phonePageCount === 1 ? " is" : "s are"} ready` : "Source ready"}</p>
           {fromPhone && (
@@ -4641,7 +4641,7 @@ type BuildCost =
     const questionTyped = pageSelection.prompt.trim().length > 0 && !mustChoose && !overSelected
       && !pendingSources.some((s) => (s.pageCount ?? s.pages.length) > DOCUMENT_LIMITS.MAX_PAGES);
     return (
-      <main className="hud-canvas hud-grain relative flex h-screen flex-col overflow-hidden text-[var(--hud-text)]">
+      <main className="hud-canvas hud-grain theme-glow relative flex h-screen flex-col overflow-hidden text-[var(--hud-text)]">
         <header
           className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b px-5 py-3"
           style={{ borderColor: "var(--hud-line)" }}
@@ -4811,7 +4811,7 @@ type BuildCost =
   }
 
   return (
-    <main className="hud-canvas hud-grain relative min-h-screen overflow-x-hidden text-[var(--hud-text)]">
+    <main className="hud-canvas hud-grain theme-glow relative min-h-screen overflow-x-hidden text-[var(--hud-text)]">
       {phase === "building" ? (
         // The silent build screen, in place of LessonDesignMode: that one opened a Gemini Live
         // session so Aria could talk while the lecture generated — avatar, microphone, transcript
@@ -5001,7 +5001,7 @@ function EntryStatus({
   return (
     // THE APP'S OWN LOOK (owner, 2026-10-18: "same style as the app"): Dot reading over a page,
     // the display face and the build screen's quiet status line — not a bare spinner on black.
-    <section data-quiet-screen="entry-status" className="hud-canvas hud-grain relative z-10 grid min-h-screen w-full place-items-center p-6">
+    <section data-quiet-screen="entry-status" className="hud-canvas hud-grain theme-glow relative z-10 grid min-h-screen w-full place-items-center p-6">
       <div className="relative z-10 w-full max-w-lg text-center" role={failed ? "alert" : "status"} aria-live="polite">
         {!failed && <ReadingDot reading={uploadPhase === "reading" || Boolean(videoProgress)} />}
         <h1 className="font-display text-[2rem] leading-[1.15] tracking-[-0.02em] text-[var(--hud-text)] sm:text-[2.4rem]" style={{ textWrap: "balance" }}>{title}</h1>
@@ -5086,7 +5086,7 @@ function TestOfferScreen({
   const card =
     "group flex w-full items-center gap-4 rounded-[var(--radius-lg)] border px-5 py-4 text-left transition-colors disabled:cursor-not-allowed disabled:opacity-40";
   return (
-    <section className="hud-canvas hud-grain relative z-10 grid min-h-screen w-full place-items-center overflow-y-auto p-6 lg:p-10">
+    <section className="hud-canvas hud-grain theme-glow relative z-10 grid min-h-screen w-full place-items-center overflow-y-auto p-6 lg:p-10">
       <div className="relative z-10 w-full max-w-xl">
         <p className="inline-flex items-center gap-2 text-[0.8rem] font-medium text-[var(--hud-cyan-bright)]">
           <CheckCircle2 aria-hidden="true" size={16} strokeWidth={2} />
@@ -5591,7 +5591,7 @@ function LessonPreviewState({
   voice: VoiceState;
 }) {
   return (
-    <section className="relative z-10 min-h-screen w-full bg-[var(--hud-bg)]">
+    <section className="theme-glow relative z-10 min-h-screen w-full">
       <div className="mx-auto flex max-w-3xl items-center justify-between border-b border-[var(--hud-line)] px-6 py-4">
         <div className="min-w-0">
           <p className="text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">Ready to teach</p>
@@ -6322,7 +6322,7 @@ function OutlineReviewState({
   }
 
   return (
-    <section className="relative z-10 min-h-screen w-full bg-[var(--hud-bg)]">
+    <section className="theme-glow relative z-10 min-h-screen w-full">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 lg:px-8">
         <div className="flex min-w-0 items-center gap-2">
           <button onClick={onBack} aria-label="Back" title="Back" className="grid size-10 shrink-0 place-items-center rounded-full text-[var(--hud-text-dim)] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]">

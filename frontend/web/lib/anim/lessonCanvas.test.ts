@@ -482,7 +482,7 @@ test("the classroom mix puts the working on chalk and pictures on paper", () => 
   const out = recolour(spec, () => "#abcdef");
   assert.equal(out.stage.nodes[0].color, "#abcdef");
   assert.equal(spec.stage.nodes[0].color, "#15803d", "the lesson's own data is never changed");
-  assert.match(chalkCss(), /\.cv-chalk \[fill="#1f2937"\]\{fill:#f1eee4\}/);
+  assert.match(chalkCss(), /\.cv-chalk \[fill="#1f2937"\]\{fill:#f3efff\}/);
 });
 
 test("a code board explains like a tutor: subgoal labels, a variables panel, a bug that becomes its fix", () => {

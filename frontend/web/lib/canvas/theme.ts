@@ -31,14 +31,16 @@ export function panelTheme(choice: CanvasThemeChoice, stage: CanvasStage): Board
 
 /** The chalkboard's own colours. */
 export const CHALK = {
-  // Pure black (owner, 2026-10-21: "complete dark black board #000000, colourful and white text").
-  slate: "#000000",
-  card: "#141414",
-  chalk: "#f1eee4",
-  muted: "#b9c3be",
-  line: "rgba(241,238,228,0.22)",
-  frame: "#262626",
-  frameLight: "#3a3a3a",
+  // Was pure black (owner, 2026-10-21: "complete dark black board #000000, colourful and white text"); now the
+  // homepage design's violet-black (owner, 2026-11-27: the new colour theme "throughout, the boards too"). Still
+  // near-black, so every chalk-tinted stroke keeps its contrast; white and colourful writing as before.
+  slate: "#0d0b1a",
+  card: "#16132b",
+  chalk: "#f3efff",
+  muted: "#b8b2d6",
+  line: "rgba(243,239,255,0.22)",
+  frame: "#2b2552",
+  frameLight: "#3e3670",
 };
 
 function hexToHsl(hex: string): [number, number, number] | null {

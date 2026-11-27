@@ -194,7 +194,7 @@ export function OnboardingScreen({
   }
 
   return (
-    <main className="hud-canvas relative min-h-screen overflow-y-auto px-6 py-14">
+    <main className="hud-canvas theme-glow relative min-h-screen overflow-y-auto px-6 py-14">
       <div className={`relative z-10 mx-auto w-full ${step === "preferences" ? "max-w-2xl" : "max-w-lg"}`}>
         <div className="mb-10 flex items-center justify-between">
           <AriaLockup size={24} />

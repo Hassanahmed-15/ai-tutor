@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, CircleHelp, Paperclip, Smartphone, X } from "lucide-react";
+import { ArrowRight, ArrowUp, BookOpen, CircleHelp, GraduationCap, Paperclip, Smartphone, Waypoints, X } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
 import { setPendingBrief, type CapturedDocument } from "@/lib/pendingBrief";
 import { PhoneCapturePanel } from "@/components/upload/PhoneCapturePanel";
@@ -12,7 +12,6 @@ import { isAdhdLearner } from "@/lib/adhd/gate";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 import { LectureHistory, type ReplayPackage } from "@/components/lecture/LectureHistory";
 import { GuideSheet, guideSeen } from "@/components/pages/GuideSheet";
-import { CoursesDoor, LibraryDoor, MapDoor } from "@/components/pages/HomeDoors";
 import { setPendingLecture } from "@/lib/pendingLecture";
 import { peekPendingCurriculum, peekPendingTopic, takePendingCurriculum, takePendingTopic } from "@/lib/pendingTopic";
 import { PromptTiles } from "@/components/pages/PromptTiles";
@@ -21,6 +20,7 @@ import { findYouTubeLink } from "@/lib/youtube/videoUrl";
 import { YouTubeLauncher } from "@/components/pages/YouTubeLauncher";
 import { AriaMark } from "@/components/brand/AriaMark";
 import { AriaBot } from "@/components/pages/AriaBot";
+import { MiniAria } from "@/components/avatar/MiniAria";
 import { SpendPill } from "@/components/SpendPill";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
@@ -43,6 +43,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   // The QR capture panel ("Phone" beside "File").
   const [phoneOpen, setPhoneOpen] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+  const briefRef = useRef<HTMLTextAreaElement>(null);
   const dragDepth = useRef(0);
   const { user, profile, openSettings } = useAuth();
   const adhd = isAdhdLearner(profile);
@@ -114,7 +115,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
 
   return (
     <main
-      className="hud-canvas relative flex min-h-screen flex-col"
+      className="home-page relative flex flex-col"
       onDragEnter={(e) => { e.preventDefault(); dragDepth.current += 1; setDragging(true); }}
       onDragOver={(e) => e.preventDefault()}
       onDragLeave={() => { dragDepth.current -= 1; if (dragDepth.current <= 0) { dragDepth.current = 0; setDragging(false); } }}
@@ -146,16 +147,16 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
       />
 
       {/* z-20, one above the page below it, so the spend pill's breakdown opens over the content. */}
-      <header className="relative z-20 flex h-16 items-center justify-between px-5 sm:px-8">
+      <header className="home-header relative z-20 flex items-center justify-between">
         <span className="relative inline-flex items-center" aria-label="Aria">
-          <AriaMark size={28} label="Aria" />
-          {/* Her presence: a chalk dot that breathes while she waits. */}
-          <span aria-hidden="true" className="aria-breathe absolute -right-1.5 -top-1.5 size-2.5 rounded-full bg-[var(--hud-cyan)]" />
+          <AriaMark size={34} label="Aria" />
         </span>
-        <nav aria-label="Main" className="flex items-center gap-1 sm:gap-2">
+        <nav aria-label="Main" className="flex items-center gap-2.5">
           {/* Desktop app only: how to mark anything on the screen, in a panel under this door. */}
           {user && <ScreenMarkHelp />}
-          <IconWord icon={<CircleHelp size={18} strokeWidth={1.7} />} word="Guide" onClick={() => setGuideOpen(true)} pressed={guideOpen} />
+          <button type="button" onClick={() => setGuideOpen(true)} aria-pressed={guideOpen} aria-label="Guide" title="Guide" className="home-round">
+            <CircleHelp aria-hidden="true" size={17} strokeWidth={1.8} />
+          </button>
           <ThemeToggle />
           {user && (
             <>
@@ -166,7 +167,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
                 data-account-button
                 onClick={openSettings}
                 aria-label={`Account: ${user.username}`}
-                className="ml-1 grid size-9 place-items-center rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] text-[0.8125rem] font-medium uppercase text-[var(--hud-text)] transition-colors hover:border-[var(--hud-line-strong)]"
+                className="home-round text-[0.875rem] font-semibold uppercase"
               >
                 {(profile?.displayName ?? user.username).trim().charAt(0) || "A"}
               </button>
@@ -175,89 +176,93 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
         </nav>
       </header>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[640px] flex-1 flex-col gap-7 px-5 pb-20 pt-[3vh] sm:pt-[5vh]">
-        {/* Aria at the centre, saying hello: a little box robot with a speech bubble (AriaBot). */}
-        <div className="hud-materialize relative flex w-full justify-center">
-          <AriaBot size={196} />
+      {/* THE OWNER'S HOMEPAGE (UI_motivation, 2026-11-27): Aria on her stage at the left, the question and the
+          ask box at the right, with the chips and the Explore shelf under it. One column on a phone. */}
+      <div className="home-grid relative z-10">
+        <div className="hud-materialize min-h-0">
+          <AriaBot variant="stage" />
         </div>
 
-        {/* Above the doors: the Video panel opens out of this card over them, and their fade-in
-            animation makes them a stacking layer of their own. */}
-        <form className="hud-materialize relative z-20" onSubmit={(e) => { e.preventDefault(); start(); }}>
-          <div className="home-lift flex flex-col gap-2 rounded-[14px] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-3 shadow-[var(--elev-1)] focus-within:border-[var(--hud-line-strong)]">
-            <label htmlFor="brief" className="sr-only">What should Aria teach?</label>
-            <textarea
-              id="brief"
-              value={topic}
-              onChange={(e) => {
-                setTopic(e.target.value);
-                const el = e.currentTarget;
-                el.style.height = "auto";
-                el.style.height = `${Math.min(el.scrollHeight, 160)}px`;
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); start(); }
-              }}
-              rows={2}
-              placeholder="Ask anything…"
-              autoFocus
-              className="min-h-[3.25rem] w-full resize-none bg-transparent px-2 pt-1 text-[1.05rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
-            />
-            <div className="flex items-center gap-1.5">
-              <button
-                type="button"
-                onClick={() => fileRef.current?.click()}
-                className="inline-flex h-8 items-center gap-1.5 rounded-full border border-[var(--hud-line)] px-2.5 text-[0.8125rem] text-[var(--hud-text-dim)] transition-colors hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)]"
-              >
-                <Paperclip aria-hidden="true" size={14} strokeWidth={1.8} /> File
-              </button>
-              {/* Photograph pages with the phone (the QR capture): read as they are taken, then taught like a PDF. */}
-              {user && (
-                <button
-                  type="button"
-                  onClick={() => setPhoneOpen(true)}
-                  className="inline-flex h-8 items-center gap-1.5 rounded-full border border-[var(--hud-line)] px-2.5 text-[0.8125rem] text-[var(--hud-text-dim)] transition-colors hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)]"
-                >
-                  <Smartphone aria-hidden="true" size={14} strokeWidth={1.8} /> Phone
-                </button>
-              )}
-              <YouTubeLauncher key={videoHandOff?.key ?? 0} initialUrl={videoHandOff?.url} onStart={startWithVideo} compact />
-              <span className="flex-1" />
-              <VoicePromptButton baseText={topic} onTranscript={setTopic} title="Say it instead" />
-              <button
-                type="submit"
-                disabled={!canStart}
-                aria-label="Start"
-                className="hud-btn-primary grid size-9 shrink-0 place-items-center rounded-full disabled:cursor-not-allowed"
-              >
-                <ArrowUp aria-hidden="true" size={17} strokeWidth={2.2} />
-              </button>
+        <section className="home-right">
+          <div className="home-inner">
+            <h2 className="home-title">What shall we <em>learn</em> today?</h2>
+
+            {/* Above the shelf: the Video panel opens out of this box over it. */}
+            <div className={`home-askarea relative z-20 ${topic.trim() ? "is-typing" : ""}`}>
+              {/* Mini Aria peeks over the box while the student types, and thinks when they stop. */}
+              <div className="home-pal" aria-hidden="true">
+                <MiniAria text={topic} className="home-mini" />
+                <div className="home-thought"><i className="t2" /><i className="t1" /><div className="tb"><b /><b /><b /></div></div>
+              </div>
+              <form className="home-ask" onSubmit={(e) => { e.preventDefault(); start(); }}>
+                <label htmlFor="brief" className="sr-only">What should Aria teach?</label>
+                <textarea
+                  id="brief"
+                  ref={briefRef}
+                  value={topic}
+                  onChange={(e) => setTopic(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); start(); }
+                  }}
+                  placeholder="Ask anything…"
+                  autoFocus
+                  className="min-h-0 w-full flex-1 resize-none bg-transparent text-[1.0625rem] font-medium leading-relaxed text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none"
+                />
+                <div className="flex items-center gap-2">
+                  <button type="button" onClick={() => fileRef.current?.click()} className="home-pill">
+                    <Paperclip aria-hidden="true" size={14} strokeWidth={1.8} /> File
+                  </button>
+                  {/* Photograph pages with the phone (the QR capture): read as they are taken, then taught like a PDF. */}
+                  {user && (
+                    <button type="button" onClick={() => setPhoneOpen(true)} className="home-pill">
+                      <Smartphone aria-hidden="true" size={14} strokeWidth={1.8} /> Phone
+                    </button>
+                  )}
+                  <YouTubeLauncher key={videoHandOff?.key ?? 0} initialUrl={videoHandOff?.url} onStart={startWithVideo} compact />
+                  <span className="flex-1" />
+                  <VoicePromptButton baseText={topic} onTranscript={setTopic} title="Say it instead" />
+                  <button type="submit" disabled={!canStart} aria-label="Start" className="home-send">
+                    <ArrowUp aria-hidden="true" size={17} strokeWidth={2.2} />
+                  </button>
+                </div>
+              </form>
             </div>
+
+            {/* Picking a chip puts its words in the box, as the design does; Enter or the arrow starts it. */}
+            <PromptTiles
+              variant="chips"
+              onPick={(prompt) => {
+                setTopic(prompt);
+                briefRef.current?.focus();
+              }}
+            />
+
+            {user && (
+              <nav className="home-explore" aria-labelledby="home-explore">
+                <h3 id="home-explore">Explore</h3>
+                <div className="home-shelf">
+                  <a className="home-row" href="/courses" aria-label="Browse courses">
+                    <span className="home-ico" aria-hidden="true"><GraduationCap size={20} strokeWidth={1.8} /></span>
+                    <span className="home-rb"><b>Courses</b><span>IGCSE, O Level, A Level, AP</span></span>
+                    <span className="home-go" aria-hidden="true"><ArrowRight size={14} /></span>
+                  </a>
+                  <button type="button" className="home-row is-mint" onClick={() => setLibraryOpen(true)} aria-label="Open library">
+                    <span className="home-ico" aria-hidden="true"><BookOpen size={20} strokeWidth={1.8} /></span>
+                    <span className="home-rb"><b>Library</b><span>Every lecture you take</span></span>
+                    <span className="home-go" aria-hidden="true"><ArrowRight size={14} /></span>
+                  </button>
+                  <button type="button" className="home-row" onClick={() => go("knowledge")} aria-label="Open map">
+                    <span className="home-ico" aria-hidden="true"><Waypoints size={20} strokeWidth={1.8} /></span>
+                    <span className="home-rb"><b>Map</b><span>What to review next</span></span>
+                    <span className="home-go" aria-hidden="true"><ArrowRight size={14} /></span>
+                  </button>
+                </div>
+              </nav>
+            )}
+
+            {adhd && <div className="mt-6 flex flex-col gap-4"><Leaderboard /><Thoughts /></div>}
           </div>
-        </form>
-
-        {/* Courses first and full width: the way in for most students. */}
-        {user && <div className="hud-materialize"><CoursesDoor /></div>}
-
-        {/* The two doors, for anyone: the Library (your lectures) and the Map (what you know). */}
-        {user && (
-          <div className="hud-materialize grid gap-3 sm:grid-cols-2">
-            <LibraryDoor onOpenAll={() => setLibraryOpen(true)} onReplay={replayLecture} />
-            <MapDoor onOpen={() => go("knowledge")} />
-          </div>
-        )}
-
-        {user && (
-          <PromptTiles
-            onPick={(prompt) => {
-              setPendingBrief({ topic: prompt, file: null });
-              go("learn");
-            }}
-          />
-        )}
-
-        {adhd && <Leaderboard />}
-        {adhd && <Thoughts />}
+        </section>
       </div>
 
       {guideOpen && <GuideSheet onClose={() => setGuideOpen(false)} onTry={(t) => setTopic(t)} />}
@@ -281,20 +286,5 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
       )}
       {phoneOpen && <PhoneCapturePanel onClose={() => setPhoneOpen(false)} onDocument={startWithCaptured} />}
     </main>
-  );
-}
-
-/** An icon with its word under it — never an icon alone for a door that isn't universal. */
-function IconWord({ icon, word, onClick, pressed }: { icon: React.ReactNode; word: string; onClick: () => void; pressed?: boolean }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={pressed}
-      className={`flex h-12 w-14 flex-col items-center justify-center gap-0.5 rounded-[var(--radius)] transition-colors hover:bg-[var(--hud-surface-2)] ${pressed ? "text-[var(--hud-text)]" : "text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"}`}
-    >
-      <span aria-hidden="true">{icon}</span>
-      <span className="text-[0.625rem] font-medium tracking-[0.02em]">{word}</span>
-    </button>
   );
 }

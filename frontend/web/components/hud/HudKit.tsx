@@ -129,7 +129,7 @@ export function HudPage({
   hideNav?: boolean;
 }) {
   return (
-    <main className="hud-canvas hud-grain relative min-h-screen w-full overflow-x-hidden">
+    <main className="hud-canvas hud-grain theme-glow relative min-h-screen w-full overflow-x-hidden">
       <div className="relative z-10 flex min-h-screen flex-col">
         {!hideNav && <HudNav current={current} go={go} onStart={onStart} />}
         <div className="flex-1">{children}</div>

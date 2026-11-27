@@ -181,7 +181,7 @@ export function PhoneCapture({ id }: { id: string }) {
   const room = ordered.length < MAX;
 
   return (
-    <main className="hud-canvas min-h-screen px-4 pb-32 pt-5">
+    <main className="hud-canvas theme-glow min-h-screen px-4 pb-32 pt-5">
       <input id={INPUT_ID} ref={inputRef} type="file" accept="image/*" capture="environment" className="sr-only" tabIndex={-1} aria-hidden="true" onChange={takeFrom} />
       {/* No `capture`: the phone offers its gallery and files (several at once). */}
       <input id={GALLERY_ID} type="file" accept="image/*" multiple className="sr-only" tabIndex={-1} aria-hidden="true" onChange={takeFrom} />
@@ -256,7 +256,7 @@ export function PhoneCapture({ id }: { id: string }) {
 }
 
 function Screen({ children }: { children: React.ReactNode }) {
-  return <main className="hud-canvas grid min-h-screen place-items-center px-6"><div className="max-w-sm">{children}</div></main>;
+  return <main className="hud-canvas theme-glow grid min-h-screen place-items-center px-6"><div className="max-w-sm">{children}</div></main>;
 }
 
 function SmallButton({ children, onClick, label, disabled }: { children: React.ReactNode; onClick: () => void; label?: string; disabled?: boolean }) {

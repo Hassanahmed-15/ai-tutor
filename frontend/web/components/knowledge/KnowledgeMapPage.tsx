@@ -166,7 +166,7 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
   };
 
   return (
-    <main className="relative flex h-screen flex-col overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
+    <main className="theme-glow relative flex h-screen flex-col overflow-hidden text-[var(--hud-text)]">
 
       <header className="relative z-10 flex flex-wrap items-center justify-between gap-3 px-5 py-4">
         <div className="flex items-center gap-3">

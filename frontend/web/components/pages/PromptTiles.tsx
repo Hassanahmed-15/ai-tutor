@@ -11,7 +11,15 @@ import type { PromptTile } from "@/lib/promptTiles";
  * lesson exactly as if it had been typed. Renders nothing while loading, without a profile, or
  * when the request fails: the field above is always the way in, and this row only ever adds to it.
  */
-export function PromptTiles({ onPick, max = 3 }: { onPick: (prompt: string) => void; max?: number }) {
+/** The home page's chips before (or without) this student's own picks: the owner's design, 2026-11-27. */
+export const STARTER_CHIPS = ["What comes after Photosynthesis?", "Explain time complexity using Big O notation", "Implement a binary search tree"];
+
+/**
+ * `variant="chips"`: the home page's plain chips under the ask box. They never vanish — the starter chips stand
+ * in until this student's own picks arrive — and pressing one is handled by `onPick` (the home page puts the
+ * words in the box, as the design does).
+ */
+export function PromptTiles({ onPick, max = 3, variant = "tiles" }: { onPick: (prompt: string) => void; max?: number; variant?: "tiles" | "chips" }) {
   const [tiles, setTiles] = useState<PromptTile[]>([]);
 
   useEffect(() => {
@@ -23,6 +31,18 @@ export function PromptTiles({ onPick, max = 3 }: { onPick: (prompt: string) => v
     return () => controller.abort();
   }, []);
 
+  if (variant === "chips") {
+    const chips = tiles.length > 0 ? tiles.slice(0, max).map((t) => ({ key: t.id, prompt: t.prompt, reason: t.reason })) : STARTER_CHIPS.slice(0, max).map((prompt) => ({ key: prompt, prompt, reason: undefined }));
+    return (
+      <ul className="home-chips" aria-label="Suggested lessons">
+        {chips.map((c) => (
+          <li key={c.key} className="min-w-0 max-w-full">
+            <button type="button" className="home-chip" title={c.reason} onClick={() => onPick(c.prompt)}>{c.prompt}</button>
+          </li>
+        ))}
+      </ul>
+    );
+  }
   if (tiles.length === 0) return null;
   return (
     <ul className="hud-materialize flex flex-wrap gap-2" aria-label="Suggested lessons for you">

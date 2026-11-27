@@ -922,9 +922,9 @@ function FigureLabelView({ mark, chalk, shownThrough, focused }: { mark: Extract
   const d = mark.leader.map((p, i) => `${i ? "L" : "M"}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
   return (
     <g className="cv-in" opacity={earlier ? 0.62 : 1}>
-      <path d={d} fill="none" stroke={chalk ? "#000000" : "#ffffff"} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" opacity={0.45} />
+      <path d={d} fill="none" stroke={chalk ? CHALK.slate : "#ffffff"} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" opacity={0.45} />
       <path d={d} fill="none" stroke={ink} strokeWidth={focused ? 2.6 : 1.8} strokeLinecap="round" strokeLinejoin="round" className="cv-stroke" pathLength={1} />
-      <circle cx={end.x} cy={end.y} r={focused ? 5.5 : 4.2} fill={ink} stroke={chalk ? "#000000" : "#ffffff"} strokeWidth={1.5} />
+      <circle cx={end.x} cy={end.y} r={focused ? 5.5 : 4.2} fill={ink} stroke={chalk ? CHALK.slate : "#ffffff"} strokeWidth={1.5} />
       {mark.lines.map((line, i) => (
         <text key={i} x={mark.at.x} y={mark.at.y + i * mark.size * 1.25} textAnchor={mark.side === "left" ? "end" : "start"} fontSize={mark.size} fontWeight={focused ? 800 : 700} fill={ink}>
           {line}
@@ -2543,13 +2543,13 @@ export const CANVAS_CSS = `
 .cv-live .cv-write { animation: cv-write 900ms steps(24, end) both; }
 /* A free label's halo (TextDeconflict): board colour behind its letters, so a line passing behind stops short. */
 text[data-halo] { paint-order: stroke fill; stroke: ${PAPER}; stroke-width: 4.5px; stroke-linejoin: round; }
-.cv-chalk text[data-halo] { stroke: #000000; }
+.cv-chalk text[data-halo] { stroke: ${CHALK.slate}; }
 /* A plate in the board colour behind a short label, for spots no edge leaves free (a "same set!" inside a triangle). */
 rect[data-plate] { fill: ${PAPER}; }
-.cv-chalk rect[data-plate] { fill: #000000; }
+.cv-chalk rect[data-plate] { fill: ${CHALK.slate}; }
 /* A typeset equation note takes the board's ink: chalk recolours by fill attributes, which KaTeX has none of. */
-.cv-chalk [data-tex-note] .katex { color: #f1eee4; }
-.cv-chalk foreignObject[data-halo] [data-ink-content], .cv-chalk foreignObject[data-halo] .katex { text-shadow: 0 0 2px #000, 0 0 4px #000, 0 0 7px #000; }
+.cv-chalk [data-tex-note] .katex { color: ${CHALK.chalk}; }
+.cv-chalk foreignObject[data-halo] [data-ink-content], .cv-chalk foreignObject[data-halo] .katex { text-shadow: 0 0 2px ${CHALK.slate}, 0 0 4px ${CHALK.slate}, 0 0 7px ${CHALK.slate}; }
 .cv-live .cv-stroke { stroke-dasharray: 1; animation: cv-stroke 850ms cubic-bezier(.45,0,.25,1) both; }
 .cv-live .cv-slow { animation-duration: 1800ms; }
 .cv-live .cv-eq-new { animation: cv-eq-in 420ms ease-out 240ms both; }

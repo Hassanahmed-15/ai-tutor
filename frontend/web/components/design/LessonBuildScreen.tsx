@@ -74,7 +74,7 @@ export function LessonBuildScreen({
      */
     <div
       data-quiet-screen="lesson-build"
-      className="hud-canvas flex min-h-screen flex-col items-center justify-center px-5 py-10 text-[var(--hud-text)]"
+      className="hud-canvas theme-glow flex min-h-screen flex-col items-center justify-center px-5 py-10 text-[var(--hud-text)]"
     >
       {/*
        * THE BUILD, WITH ALMOST NOTHING TO READ. The lesson's parts as frames that fill in as each

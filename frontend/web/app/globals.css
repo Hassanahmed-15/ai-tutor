@@ -788,21 +788,42 @@ textarea {
      4.5:1 on page and surface; icons, input borders and focus clear 3:1. */
   /* Light matches the night: the same violet on a cool white (owner, 2026-11-08: "a light mode … matching
      the colours"); it was warm paper and vermilion before. */
-  --page: #F6F5FC;
+  /* The owner's homepage design (UI_motivation/Aria homepage (light).html, 2026-11-27): lavender paper, one
+     deep violet, a mint for the second kind of thing (the Library). */
+  --page: #F3F0FB;
   --surface: #FFFFFF;
-  --surface-2: #EEEBF8;
-  --border: #E0DCF0;
-  --border-strong: #C4BEE0;
+  --surface-2: #EEEAF8;
+  --border: #E1DCF0;
+  --border-strong: #C9C1E6;
   /* The outline of a text field: 3:1 on surface and page, so the field can be found. */
   --input-border: #8B85AD;
-  --text: #15132B;
-  --text-muted: #56536F;
-  --text-faint: #7F7B99;
-  --accent: #6C3FE6;
-  --accent-hover: #5A2FD3;
-  --accent-ink: #5226C2;
+  --text: #1A1530;
+  --text-muted: #6F6A85;
+  --text-faint: #807B97;
+  --accent: #5B3FD6;
+  --accent-hover: #4C31C2;
+  --accent-ink: #4A2FB8;
   --accent-on: #FFFFFF;
-  --accent-soft: #EEE7FF;
+  --accent-soft: #E8E2FA;
+  --mint: #2F9E8A;
+  --mint-soft: #E6F5F1;
+  /* A card over the page's glow: white, a little see-through (the design's --card). */
+  --card-glass: rgba(255, 255, 255, 0.8);
+  /* The page's light: a violet glow at the top right (and, at night, a second one at the bottom left). */
+  --page-glow: #C9B8FF;
+  --page-glow-2: transparent;
+  /* Aria, the planet of dots (components/avatar/DotAvatar.tsx). */
+  --aria-dot1: #4A2A8F;
+  --aria-dot2: #B9A2FF;
+  --aria-body: #3A1D70;
+  --aria-body-hi: #5A33A8;
+  --aria-ink: #120A22;
+  --aria-glow: rgba(91, 63, 214, 0.28);
+  /* Her stage on the home page. */
+  --aria-stage-1: #F8F5FF;
+  --aria-stage-2: #D8C9FF;
+  --aria-stage-glow: rgba(255, 255, 255, 0.95);
+  --aria-star: rgba(91, 63, 214, 0.4);
   --success: #2E6B45;
   --success-soft: #E4EFE6;
   --warning: #8A5A00;
@@ -872,9 +893,9 @@ textarea {
   --danger-dim: var(--danger-soft);
 
   /* ── SHAPE, SPACE, DEPTH, MOTION ─────────────────────────────────────────── */
-  --radius-sm: 6px;
-  --radius: 8px;
-  --radius-lg: 12px;
+  --radius-sm: 8px;
+  --radius: 10px;
+  --radius-lg: 18px; /* rounder, as the homepage design (2026-11-27) */
 
   --space-1: 4px;
   --space-2: 8px;
@@ -925,20 +946,36 @@ textarea {
   color-scheme: dark;
 
   /* ── THE NIGHT PALETTE: deep violet, one violet light. The board keeps its own chalk slate. ── */
-  --page: #0A0A14;
-  --surface: #13132A;
-  --surface-2: #1B1B38;
-  --border: #26264A;
-  --border-strong: #3A3A66;
+  /* The owner's design (UI_motivation/Aria homepage (dark).html, 2026-11-27): near-black, deep violet glows. */
+  --page: #090811;
+  --surface: #13112A;
+  --surface-2: #1B1838;
+  --border: #2B2552;
+  --border-strong: #3E3670;
   --input-border: #6B6A98;
-  --text: #F5F3FF;
-  --text-muted: #B3B0D4;
-  --text-faint: #777499;
-  --accent: #9F6BFF;
-  --accent-hover: #B089FF;
-  --accent-ink: #C9B6FF;
-  --accent-on: #0A0A14;
-  --accent-soft: #23203F;
+  --text: #F3EFFF;
+  --text-muted: #A59EC4;
+  --text-faint: #7A7398;
+  --accent: #8B6CFF;
+  --accent-hover: #9F86FF;
+  --accent-ink: #C2B2FF;
+  --accent-on: #FFFFFF;
+  --accent-soft: #241C4D;
+  --mint: #5FD1BB;
+  --mint-soft: #12302F;
+  --card-glass: rgba(20, 18, 42, 0.8);
+  --page-glow: #2A1B66;
+  --page-glow-2: #1B1142;
+  --aria-dot1: #8D6DF0;
+  --aria-dot2: #FFFFFF;
+  --aria-body: #2F1670;
+  --aria-body-hi: #8A62F2;
+  --aria-ink: #120A22;
+  --aria-glow: rgba(139, 108, 255, 0.6);
+  --aria-stage-1: #2B1D63;
+  --aria-stage-2: #0D0A20;
+  --aria-stage-glow: rgba(139, 108, 255, 0.45);
+  --aria-star: rgba(255, 255, 255, 0.6);
   /* The warm light: soft gold, for what is due and a day with a lesson. */
   --warm: #F5C86B;
   /* Dot, the orb avatar: violet at night, matching the accent. */
@@ -1426,4 +1463,155 @@ html[data-reduced-motion="1"] *::after {
 .entry-sweep > div { animation: entry-sweep 1.6s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
   .entry-bob, .entry-line, .entry-sweep > div { animation: none; }
+}
+
+/* ── THE HOMEPAGE (the owner's design, UI_motivation/Aria homepage (light|dark).html, 2026-11-27) ──
+   Aria on a violet stage at the left, the question and ask box at the right; one column under 900px.
+   Every colour is a theme token, so light and dark come from the token blocks above. */
+.home-page {
+  min-height: 100dvh;
+  color: var(--text);
+  background: radial-gradient(50% 45% at 85% 15%, var(--page-glow), transparent 70%), radial-gradient(45% 50% at 10% 90%, var(--page-glow-2), transparent 70%), var(--page);
+}
+.home-header { height: 66px; padding: 14px 32px; }
+.home-round {
+  display: grid; place-items: center; width: 38px; height: 38px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--card-glass); color: var(--text); transition: border-color .2s, color .2s;
+}
+.home-round:hover, .home-round[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.home-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px); width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 32px 24px;
+  height: calc(100dvh - 66px); min-height: 560px;
+}
+.home-right { display: flex; flex-direction: column; min-height: 0; overflow-y: auto; padding: 0 10px; scrollbar-width: none; }
+.home-inner { width: 100%; max-width: 580px; margin: auto; padding: 12px 0; }
+.home-title { margin: 0; font-size: clamp(32px, min(4.3vw, 6vh), 60px); line-height: 1.04; font-weight: 800; letter-spacing: -.035em; color: var(--text); font-family: var(--font-body), system-ui, sans-serif; }
+.home-title em { font-style: normal; color: var(--accent); }
+
+/* Aria's stage (components/pages/AriaBot.tsx, variant="stage"). */
+.aria-stage {
+  position: relative; height: 100%; min-height: 0; border-radius: 36px; overflow: hidden; isolation: isolate;
+  background: radial-gradient(circle at 50% 46%, var(--aria-stage-glow), transparent 62%), linear-gradient(160deg, var(--aria-stage-1), var(--aria-stage-2));
+  border: 1px solid var(--border); box-shadow: 0 40px 80px -40px var(--accent);
+}
+.aria-stage::before {
+  content: ""; position: absolute; left: 50%; top: 46%; width: 112%; aspect-ratio: 1; transform: translate(-50%, -50%);
+  border-radius: 50%; border: 1px dashed var(--border); opacity: .8; pointer-events: none;
+}
+.aria-stage::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(2px 2px at 12% 18%, var(--aria-star), transparent), radial-gradient(1.5px 1.5px at 82% 12%, var(--aria-star), transparent),
+    radial-gradient(2px 2px at 90% 58%, var(--aria-star), transparent), radial-gradient(1.5px 1.5px at 8% 66%, var(--aria-star), transparent),
+    radial-gradient(2px 2px at 26% 86%, var(--aria-star), transparent), radial-gradient(1.5px 1.5px at 70% 84%, var(--aria-star), transparent),
+    radial-gradient(1.5px 1.5px at 40% 8%, var(--aria-star), transparent);
+}
+.aria-stage-bubble {
+  position: absolute; z-index: 2; right: 7%; top: 9%; max-width: 250px; padding: 12px 18px; border-radius: 20px;
+  background: var(--surface); border: 1px solid var(--border); color: var(--text); box-shadow: 0 14px 30px -16px var(--accent); pointer-events: none;
+}
+.aria-stage-bubble::before {
+  content: ""; position: absolute; left: -7px; bottom: 20px; width: 13px; height: 13px; transform: rotate(45deg);
+  background: var(--surface); border-left: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.aria-stage-caption { position: absolute; z-index: 2; left: 32px; right: 32px; bottom: 26px; display: flex; flex-direction: column; gap: 2px; pointer-events: none; }
+.aria-stage-caption b { font-size: 17px; font-weight: 800; color: var(--text); }
+.aria-stage-caption span { font-size: 13.5px; color: var(--text-muted); }
+
+/* The ask box, with mini Aria peeking over its top edge while there is text. */
+.home-askarea { isolation: isolate; margin-top: clamp(74px, 10vh, 92px); }
+.home-ask {
+  position: relative; z-index: 1; display: flex; flex-direction: column; gap: 8px; height: 148px; padding: 14px 16px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 24px; box-shadow: 0 22px 44px -24px var(--accent);
+}
+.home-ask:focus-within { border-color: var(--accent); }
+.home-pill {
+  display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--text-muted); font-size: 13px; font-weight: 500; transition: border-color .2s, color .2s;
+}
+.home-pill:hover { border-color: var(--accent); color: var(--text); }
+/* The Video launcher's own compact button (components/pages/YouTubeLauncher.tsx), sized like File and Phone. */
+.home-ask button[aria-expanded] { height: 32px; padding: 0 14px; font-size: 13px; font-weight: 500; }
+.home-ask .flex.items-center { min-width: 0; }
+.home-send {
+  display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: var(--accent-on); transition: background .2s, opacity .2s;
+}
+.home-send:hover:not(:disabled) { background: var(--accent-hover); }
+.home-send:disabled { opacity: .45; cursor: not-allowed; }
+.home-pal { position: absolute; left: 0; right: 0; bottom: 100%; height: 0; pointer-events: none; }
+.home-mini {
+  position: absolute; z-index: 0; right: 26px; bottom: -20px; width: 64px; height: 64px; opacity: 0;
+  transform: translateY(46px) scale(.75); transform-origin: 50% 100%; transition: opacity .2s, transform .3s ease-in;
+}
+.home-thought {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 0; opacity: 0; transform: scale(.2);
+  transform-origin: calc(100% - 84px) -36px; transition: opacity .15s, transform .2s;
+}
+.home-thought i { position: absolute; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); }
+.home-thought .t2 { width: 4px; height: 4px; right: 78px; bottom: 30px; }
+.home-thought .t1 { width: 7px; height: 7px; right: 83px; bottom: 35px; }
+.home-thought .tb {
+  position: absolute; right: 88px; bottom: 43px; height: 28px; padding: 0 11px; display: flex; align-items: center; gap: 4px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 8px 18px -10px var(--accent);
+}
+.home-thought .tb b { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); animation: home-dot 1.2s infinite ease-in-out; }
+.home-thought .tb b:nth-child(2) { animation-delay: .15s; }
+.home-thought .tb b:nth-child(3) { animation-delay: .3s; }
+@keyframes home-dot { 0%, 60%, 100% { transform: translateY(0); opacity: .35; } 30% { transform: translateY(-4px); opacity: 1; } }
+.is-typing .home-mini { opacity: 1; transform: none; transition: opacity .25s, transform .55s cubic-bezier(.34, 1.5, .64, 1); }
+.is-typing .home-thought { opacity: 1; transform: none; transition: opacity .2s .55s, transform .4s cubic-bezier(.34, 1.7, .64, 1) .55s; }
+
+.home-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.home-chip {
+  max-width: 100%; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--border); background: transparent;
+  color: var(--text); font-size: 12.5px; font-weight: 500; text-align: left; transition: background .2s, border-color .2s;
+}
+.home-chip:hover { background: var(--accent-soft); border-color: var(--accent); }
+
+.home-explore { margin-top: clamp(18px, 3.5vh, 30px); }
+.home-explore h3 { margin: 0 0 10px 4px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); font-weight: 800; }
+.home-shelf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.home-row {
+  position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px; text-align: left;
+  border: 1px solid var(--border); border-radius: 20px; background: var(--card-glass); backdrop-filter: blur(8px); color: var(--text);
+  transition: transform .2s, border-color .2s;
+}
+.home-row:hover { transform: translateY(-3px); border-color: var(--accent); }
+.home-ico { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); }
+.home-row.is-mint .home-ico { background: var(--mint-soft); color: var(--mint); }
+.home-rb { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.home-rb b { font-size: 17px; font-weight: 800; }
+.home-rb span { margin-top: 2px; font-size: 12px; line-height: 1.35; color: var(--text-muted); }
+.home-go {
+  position: absolute; top: 12px; right: 12px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--text); transition: background .2s, border-color .2s, color .2s, transform .2s;
+}
+.home-row:hover .home-go { background: var(--accent); border-color: var(--accent); color: var(--accent-on); transform: translateX(2px); }
+
+@media (max-width: 900px) {
+  .home-header { padding: 14px 16px; }
+  .home-pill, .home-ask button[aria-expanded] { padding: 0 10px; }
+  .home-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; height: auto; min-height: 0; padding: 0 16px 24px; gap: 20px; }
+  .aria-stage { height: 340px; border-radius: 28px; }
+  .home-right { overflow: visible; padding: 0; }
+  .home-askarea { margin-top: 84px; }
+  .home-shelf { grid-template-columns: 1fr; }
+  .home-row { flex-direction: row; align-items: center; }
+  .home-go { position: static; margin-left: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-mini, .home-thought, .is-typing .home-mini, .is-typing .home-thought { transition: opacity .2s; }
+  .home-thought .tb b { animation: none; }
+}
+[data-reduced-motion="1"] .home-mini, [data-reduced-motion="1"] .home-thought { transition: opacity .2s; }
+[data-reduced-motion="1"] .home-thought .tb b { animation: none; }
+
+/* THE PAGE'S LIGHT, everywhere in the standard app (owner, 2026-11-27: "this colour theme consistent across all
+   pages"): the homepage's violet glow at the top right, and at night a second at the bottom left. Fixed to the
+   window, so a long page does not stretch it. Last in the file, so it wins over .hud-canvas's flat colour. The
+   accessibility players do not carry this class and keep their own grounds. */
+.theme-glow {
+  background: radial-gradient(50% 45% at 85% 15%, var(--page-glow), transparent 70%), radial-gradient(45% 50% at 10% 90%, var(--page-glow-2), transparent 70%), var(--page);
+  background-attachment: fixed;
 }
