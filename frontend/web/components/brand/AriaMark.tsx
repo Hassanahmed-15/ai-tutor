@@ -2,7 +2,7 @@
  * THE ARIA MARK — an A drawn as one rounded pen stroke, with a dot where the crossbar would be:
  * the tip of the marker on the board, and the voice that explains it.
  *
- * The tile follows the theme accent (red on light, violet on dark) and the stroke the colour that
+ * The tile follows the theme accent (deep violet on light, bright violet on dark) and the stroke the colour that
  * sits on it, so the mark never sinks into the page. Below 24px the stroke thickens and the dot
  * grows, so it still reads as an A with a dot. The tab icon is the same small mark:
  * `app/icon.svg` (by device setting) and `public/aria-icon-{light,dark}.svg`, chosen by

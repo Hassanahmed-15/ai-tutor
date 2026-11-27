@@ -8,7 +8,8 @@ import { useEffect } from "react";
  * this keeps the tab in step with the app's own choice (Settings → Appearance), which the device
  * cannot see. Renders nothing.
  */
-const ICONS = { light: "/aria-icon-light.svg", dark: "/aria-icon-dark.svg" } as const;
+// `?v=2`: the homepage theme (2026-11-27) recoloured them, and browsers keep a tab icon long after it changes.
+const ICONS = { light: "/aria-icon-light.svg?v=2", dark: "/aria-icon-dark.svg?v=2" } as const;
 
 export function ThemeFavicon() {
   useEffect(() => {
