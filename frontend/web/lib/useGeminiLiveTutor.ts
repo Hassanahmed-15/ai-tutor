@@ -468,6 +468,9 @@ const EXAM_MAX_SESSION_MS = 12 * 60_000;
 const SETTLE_MS = 500;
 /** A reply marked as coming that has made no sound for this long is not coming. */
 const NO_AUDIO_MS = 12_000;
+/** The cloned voice (`clonedVoice`): pieces being made at once, and how long a piece may take to start sounding. */
+const CLONE_IN_FLIGHT = 2;
+const CLONE_FIRST_AUDIO_MS = 8_000;
 /**
  * Google closes a session after about two minutes with nothing from the client. One silent 20 ms
  * frame this often kept an idle session open past 6.5 minutes, and she said nothing unprompted.
@@ -687,7 +690,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
    */
   const cloneOnRef = useRef(false);
   const cloneTextRef = useRef("");
-  const cloneQueueRef = useRef<Array<{ text: string; chunks: Uint8Array[]; done: boolean; failed: boolean; wake: (() => void) | null }>>([]);
+  const cloneQueueRef = useRef<Array<{ text: string; chunks: Uint8Array[]; started: boolean; done: boolean; failed: boolean; wake: (() => void) | null }>>([]);
   const clonePumpingRef = useRef(false);
   const cloneGenRef = useRef(0);
   const cloneAbortRef = useRef(new Set<AbortController>());
@@ -1299,29 +1302,34 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     }
   }, [playAudioChunk, scheduleSettle]);
 
-  /** Sentences of her transcript, handed to the cloned voice as each one completes (`final`: the turn is over). */
-  const feedClone = useCallback((text: string, final: boolean) => {
-    if (!cloneOnRef.current) return;
-    cloneTextRef.current += text;
-    const { sentences, rest } = takeSentences(cloneTextRef.current);
-    cloneTextRef.current = final ? "" : rest;
-    if (final && rest.trim()) sentences.push(rest.trim());
-    for (const sentence of sentences) {
-      const line = { text: sentence, chunks: [] as Uint8Array[], done: false, failed: false, wake: null as (() => void) | null };
-      cloneQueueRef.current.push(line);
+  /**
+   * The cloned voice's calls, at most CLONE_IN_FLIGHT at a time and in order, so the piece she says next is never
+   * slowed by the ones after it (on a slow connection four at once all stalled: live check, 2026-11-27). A piece
+   * whose first audio has not come within CLONE_FIRST_AUDIO_MS is a failure, so pumpClone falls back to Live's
+   * voice rather than leaving the student in silence.
+   */
+  const startCloneFetches = useCallback(function startNext() {
+    const queue = cloneQueueRef.current;
+    let inFlight = queue.filter((line) => line.started && !line.done).length;
+    for (const line of queue) {
+      if (inFlight >= CLONE_IN_FLIGHT) break;
+      if (line.started) continue;
+      line.started = true;
+      inFlight += 1;
       const controller = new AbortController();
       cloneAbortRef.current.add(controller);
-      const settle = () => {
-        line.done = true;
-        cloneAbortRef.current.delete(controller);
-        line.wake?.();
-      };
+      let timedOut = false;
+      const deadline = window.setTimeout(() => {
+        if (line.chunks.length) return;
+        timedOut = true;
+        controller.abort();
+      }, CLONE_FIRST_AUDIO_MS);
       void (async () => {
         try {
           const res = await fetch("/api/voice/say", {
             method: "POST",
             headers: { "Content-Type": "application/json", "x-aria-spend-kind": "planning" },
-            body: JSON.stringify({ text: sentence }),
+            body: JSON.stringify({ text: line.text }),
             signal: controller.signal,
           });
           if (!res.ok || !res.body) throw new Error(`voice/say ${res.status}`);
@@ -1348,17 +1356,37 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
             }
           }
         } catch (error) {
-          if (!controller.signal.aborted) {
+          // Aborted on purpose (a barge-in, a stop) is not a failure; aborted by the deadline is.
+          if (timedOut || !controller.signal.aborted) {
             line.failed = true;
-            console.warn("[voice] cloned voice failed:", error instanceof Error ? error.message : error);
+            console.warn("[voice] cloned voice failed:", timedOut ? `no audio in ${CLONE_FIRST_AUDIO_MS} ms` : error instanceof Error ? error.message : error);
           }
         } finally {
-          settle();
+          window.clearTimeout(deadline);
+          line.done = true;
+          cloneAbortRef.current.delete(controller);
+          line.wake?.();
+          startNext();
         }
       })();
     }
-    if (sentences.length) void pumpClone();
-  }, [pumpClone]);
+  }, []);
+
+  /** Sentences of her transcript, handed to the cloned voice as each one completes (`final`: the turn is over). */
+  const feedClone = useCallback((text: string, final: boolean) => {
+    if (!cloneOnRef.current) return;
+    cloneTextRef.current += text;
+    const { sentences, rest } = takeSentences(cloneTextRef.current);
+    cloneTextRef.current = final ? "" : rest;
+    if (final && rest.trim()) sentences.push(rest.trim());
+    for (const sentence of sentences) {
+      cloneQueueRef.current.push({ text: sentence, chunks: [], started: false, done: false, failed: false, wake: null });
+    }
+    if (sentences.length) {
+      startCloneFetches();
+      void pumpClone();
+    }
+  }, [pumpClone, startCloneFetches]);
 
   const beginStudentSpeech = useCallback(() => {
     if (studentSpeakingRef.current) return;
