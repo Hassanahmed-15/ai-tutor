@@ -414,7 +414,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     const beside = taskOpen ? cardSideView(toWorld({ x: 0, y: 0, w: PANEL_W, h: PANEL_H }, currentPlace), boxSize, CARD_COLUMN_PX) : null;
     if (beside) return beside;
     const room = taskOpen ? PANEL_W * 0.52 : 0;
-    return fitView(toWorld({ x: 0, y: 0, w: PANEL_W + room, h: PANEL_H }, currentPlace), aspect, 0.035);
+    // 6 %, not 3.5 %: the Follow Aria / Whole lesson / Lesson notes buttons sat over the board's edge (QA report 2026-11-27).
+    return fitView(toWorld({ x: 0, y: 0, w: PANEL_W + room, h: PANEL_H }, currentPlace), aspect, 0.06);
   }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, boxSize, taskOpen, visitIndex, shownIndex, worldRects, cardStyle, focusId, labLook, directorShot, blocksBoard]);
 
   const viewRef = useRef<View>(followView);

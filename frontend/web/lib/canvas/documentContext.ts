@@ -543,6 +543,37 @@ export function uncoveredPages(doc: SuprnotesLessonInput, beats: Array<Pick<Canv
 }
 
 /**
+ * THE TABLES AND WORKED EXAMPLES NO BOARD TEACHES (QA report 2026-11-27: a strict lecture "covering every page" never
+ * taught Table 1, and a photo's worked example — 12 V ÷ 4 Ω = 3 A — was dropped). A page counted as taught when any
+ * board named it, so a table or example on a page whose prose was taught was never checked. A key block is taught
+ * when a board names it in `source.blocks`, or when the lecture's scripts say most of what makes it that block: its
+ * numbers, or its words for a block without numbers.
+ */
+export function uncoveredKeyBlocks(doc: SuprnotesLessonInput, beats: Array<Pick<CanvasPlanBeat, "source" | "script">>): Array<{ id: string; label: string; page?: number }> {
+  const named = new Set(beats.flatMap((b) => b.source?.blocks ?? []));
+  const said = beats.map((b) => b.script).join(" ").toLowerCase();
+  const saidStems = new Set(contentStems(said));
+  const saidNumbers = new Set(said.match(/\d+(?:\.\d+)?/g) ?? []);
+  const out: Array<{ id: string; label: string; page?: number }> = [];
+  for (const block of doc.contentBlocks ?? []) {
+    const text = [block.heading, block.text, ...(block.items ?? []), ...(block.columns ?? []), ...(block.rows ?? []).flat()].filter(Boolean).join(" ");
+    const isTable = block.type === "table" || Boolean(block.rows?.length);
+    const isExample = /^\s*(?:worked\s+)?example\b/i.test(block.heading ?? "") || /^\s*(?:worked\s+)?example\b/i.test(block.text ?? "");
+    if (!isTable && !isExample) continue;
+    if (named.has(block.id) || !text.trim()) continue;
+    const numbers = [...new Set(text.match(/\d+(?:\.\d+)?/g) ?? [])].filter((n) => !/^(?:19|20)\d\d$/.test(n));
+    const stems = [...new Set(contentStems(text))];
+    const covered = numbers.length >= 2
+      ? numbers.filter((n) => saidNumbers.has(n)).length >= Math.ceil(numbers.length * 0.6)
+      : stems.length > 0 && stems.filter((s) => saidStems.has(s)).length >= Math.ceil(stems.length * 0.6);
+    if (covered) continue;
+    const title = (block.heading || block.text || "").replace(/\s+/g, " ").trim().slice(0, 60);
+    out.push({ id: block.id, label: `${isTable ? "the table" : "the worked example"} "${title}"`, page: block.pageNumber });
+  }
+  return out;
+}
+
+/**
  * The whole document as the planner reads it: every page in order, marked [page N], with its
  * headings, its prose, and every code listing whole. Over `budget` characters, prose is trimmed
  * evenly — every page keeps its start — and headings and listings are never cut.

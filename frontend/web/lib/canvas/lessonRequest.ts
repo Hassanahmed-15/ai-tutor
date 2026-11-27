@@ -142,7 +142,7 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   const pageBoards = strictDoc && !question && input.sourceScope?.breadth.kind === "whole" ? Math.max(0, Math.min(14, substantivePages(strictDoc).length) - boards) : 0;
   if (parts.length > 0 && isLadder(input.outline?.subtopics)) {
     // THE CONCEPT LADDER (owner, 2026-10-20): what the student does not know is built from scratch.
-    lines.push(...ladderCanvasSection(input.outline!.subtopics, compactLadder(input)));
+    lines.push(...ladderCanvasSection(input.outline!.subtopics, compactLadder(input), input.learnerProfile.depth === "concise"));
     if (doc && question) lines.push(`- These parts are what the answer to the student's question needs, and nothing more: stay on the question.`);
   } else if (parts.length > 0) {
     lines.push(

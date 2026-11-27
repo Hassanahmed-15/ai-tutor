@@ -194,6 +194,9 @@ export function wrap(text: string, size: number, maxW: number, maxLines = 2): st
   // One more line before anything is shortened: text is never cut where a line can still hold it
   // (owner, 2026-10-17: no half-cut text). Text the shorten pass already fitted rarely gets here.
   if (lines.length === maxLines + 1) return lines;
+  // A bracketed list or call ("A = [1, 3, 5, 7, 9, 11, 13]") cut short is wrong, not just short: the array read as
+  // ending at 11 (QA report 2026-11-27). Such text gets a second extra line before anything is shortened.
+  if (lines.length === maxLines + 2 && /[[(][^\])]*,[^\])]*[\])]/.test(text)) return lines;
   if (lines.length > maxLines) {
     // Never "…" (owner, 2026-10-17: no half-cut text). The cut is recorded so the board writer
     // rewrites the text to fit this exact room before the board ships (lib/canvas/generate.ts), and

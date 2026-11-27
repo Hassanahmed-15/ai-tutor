@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { currentUser } from "@/lib/auth";
+import { currentUser, lessonCaller } from "@/lib/auth";
 import { wakeLectureWorker } from "@/lib/progressiveLectureQueue";
 import { studentCardFor } from "@/lib/learnerBasicsStore";
 import { buildTeachingPolicy, policyForPlanner, policyForQuestions } from "@/lib/teachingPolicy";
@@ -722,6 +722,13 @@ function streamOutline(
   documentSections?: string[],
   /** The student's parts from the intake (lib/intake.ts): each subtopic gets its status, by code. */
   parts?: PartReading[],
+  /**
+   * "A quick overview" on the card: at most 4 parts, whatever was added after the model (the syllabus check, the
+   * safety nets), and the outline says `depth: "quick"`, so the lecture is concise too (app/api/progressive-lectures
+   * outlineDepth). The prompt alone asked for 4 and a binary-search overview still got 5 parts with B-trees and
+   * invariants (QA report 2026-11-27).
+   */
+  overview = false,
 ): Response {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
@@ -839,9 +846,10 @@ function streamOutline(
           send({ type: "error", error: "Could not plan an outline for that topic." });
         } else {
           const enriched = focused ? { outline, costUsd: 0 } : await ensureSafetyNets(client, outline);
+          const finalOutline = overview && outline.scope !== "question" ? { ...enriched.outline, depth: "quick" as const, subtopics: enriched.outline.subtopics.slice(0, 4) } : enriched.outline;
           send({
             type: "outline",
-            ...enriched.outline,
+            ...finalOutline,
             costUsd: costUsd(usage) + enriched.costUsd + coverageCost,
             // The material travels with the outline to the lecture, which teaches from it and cites it per slide.
             ...(pack ? { research: pack } : {}),
@@ -864,6 +872,10 @@ export async function POST(req: Request) {
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json({ error: "OPENAI_API_KEY not set." }, { status: 503 });
   }
+  // Signed in only, like the lecture it plans (QA report 2026-11-27: a signed-out student answered every planning
+  // question and saw a plan, and only the build then said "Authentication required"). The 401 makes the page ask
+  // them to sign in again at the first question (components/auth/AuthGate.tsx).
+  if (!(await lessonCaller())) return NextResponse.json({ error: "Please sign in again." }, { status: 401 });
   // The lecture worker starts while the lesson is planned with the student, not after (lib/progressiveLectureQueue.ts).
   void wakeLectureWorker().catch(() => undefined);
 
@@ -1479,7 +1491,7 @@ The parts, their order, their captions and how much each gets must follow these 
           checkCoverage: (pack) => syllabusAsked(pack) && pack.checklist.length > 0,
         }
       : undefined;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : referenceMarks ? Math.min(6, Math.max(2, referenceMarks)) : shape === "process" ? 3 : shape === "fact" ? 1 : 2, overview && research ? { ...research, checkCoverage: () => false } : research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined, !directQuestion || referencePdf ? sessionLearner?.parts : undefined);
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? codeBoards : referenceMarks ? Math.min(6, Math.max(2, referenceMarks)) : shape === "process" ? 3 : shape === "fact" ? 1 : 2, overview && research ? { ...research, checkCoverage: () => false } : research, wholePdf && !directQuestion ? documentSections(wholePdf) : undefined, !directQuestion || referencePdf ? sessionLearner?.parts : undefined, overview);
   }
 
   // mode === "revise"

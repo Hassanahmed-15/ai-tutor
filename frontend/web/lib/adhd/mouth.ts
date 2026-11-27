@@ -257,6 +257,27 @@ function ensureWorklet(ctx: AudioContext): Promise<boolean> {
   return ready;
 }
 
+/**
+ * The viseme model, downloaded ONCE per page (QA report 2026-11-27: /headaudio/model-en-mixed.bin was fetched about 7
+ * times in one session — every narration clip and live reply built a new listener that fetched it again). The
+ * vendor's loadModel fetches a URL and hands the bytes to the worklet (transferred, so they cannot be shared), so
+ * each listener is given a local blob: URL of the one download, which costs no network.
+ */
+let modelUrl: Promise<string> | null = null;
+function visemeModelUrl(): Promise<string> {
+  modelUrl ??= fetch("/headaudio/model-en-mixed.bin")
+    .then((res) => {
+      if (!res.ok) throw new Error(`viseme model ${res.status}`);
+      return res.blob();
+    })
+    .then((blob) => URL.createObjectURL(blob))
+    .catch((error) => {
+      modelUrl = null;
+      throw error;
+    });
+  return modelUrl;
+}
+
 /** Start listening for visemes on `source`; a token that stops owning the analyser is ignored when it resolves. */
 async function attachVisemes(ctx: AudioContext, source: AudioNode, token: MouthToken): Promise<void> {
   if (!(await ensureWorklet(ctx))) return;
@@ -266,7 +287,7 @@ async function attachVisemes(ctx: AudioContext, source: AudioNode, token: MouthT
     if (token !== owner) return;
     // Aria's voice sits around 220 Hz; the model's Mel spacing stretches to match (its default is 150).
     const node = new HeadAudio(ctx, { parameterData: { vadGateActiveDb: -46, vadGateInactiveDb: -56, speakerMeanHz: 220 } });
-    await node.loadModel("/headaudio/model-en-mixed.bin");
+    await node.loadModel(await visemeModelUrl());
     if (token !== owner) {
       node.stop?.();
       return;

@@ -250,7 +250,7 @@ export function PdfSourcePanel({
           as one surface. Page navigation lives here too — the footer it had cost the page a row. */}
       <div className="flex h-11 shrink-0 items-center gap-1 border-b border-[var(--hud-line)] px-2">
         <span className={`shrink-0 rounded-md px-1.5 py-0.5 text-[0.62rem] font-bold uppercase tracking-[0.12em] ${fidelity === "strict" ? "bg-[var(--accent-soft)] text-[var(--hud-cyan)]" : "bg-[var(--accent-soft)] text-[var(--hud-cyan)]"}`}>
-          {fidelity === "strict" ? "Strict" : "Reference"}
+          {fidelity === "strict" ? "Pages only" : "Beyond the pages"}
         </span>
         <p className="hidden min-w-0 truncate px-1 text-[0.7rem] tabular-nums text-[var(--hud-text-faint)] xl:block" aria-live="polite">
           {total > 0 ? `${completed}/${total} covered` : "Following the lesson"}

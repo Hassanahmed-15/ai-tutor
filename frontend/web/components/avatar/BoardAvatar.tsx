@@ -294,9 +294,9 @@ function DotAtBoard({
     // drawn or carded is under her, she rests at the nearest clear spot on the board, smaller if she
     // must; on a full board, in the frame's corner where she covers least (lib/canvas/renderFit.ts).
     // In the corner picture (a question is up) she stays where she is put.
-    let freeHome: { at: Pt; scale: number } | null = null;
+    let freeHome: { at: Pt; scale: number; covers?: boolean } | null = null;
     let homeCheckedAt = -1;
-    const restingSpot = (now: number): { at: Pt; scale: number } => {
+    const restingSpot = (now: number): { at: Pt; scale: number; covers?: boolean } => {
       const raw = homeCentre();
       const b = board.current;
       if (!b || modeRef.current === "pip") return { at: raw, scale: 1 };
@@ -428,6 +428,10 @@ function DotAtBoard({
       // moved resting spot was never drawn at all and her flights landed off by the difference.
       const dx = at.x - raw.x, dy = at.y - raw.y;
       flyer.style.transform = pos || Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5 || Math.abs(scale - 1) > 0.005 ? `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${scale.toFixed(3)})` : "";
+      // At rest over the writing (a full board has no clear spot): faded, so what is under her still reads
+      // (QA report 2026-11-27: she sat on a flow diagram and on the maths).
+      const fade = !pos && spot.covers ? "0.35" : "";
+      if (flyer.style.opacity !== fade) flyer.style.opacity = fade;
 
       // Eyes on what is named, wherever she is; the beam only once she stands beside it.
       gaze.current = target ? gazeAt(at, target) : null;
@@ -466,7 +470,7 @@ function DotAtBoard({
         <circle r={3.5} style={{ fill: "var(--dot-trail)" }} />
       </svg>
       <div ref={anchorRef} className={anchorClass} style={anchorStyle}>
-        <div ref={flyerRef} className={`${sizeClass} origin-center transition-[width,height] duration-500 ease-out will-change-transform`}>
+        <div ref={flyerRef} className={`${sizeClass} origin-center transition-[width,height,opacity] duration-500 ease-out will-change-transform`}>
           <DotAvatar state={state} gaze={gaze} still={parked} className="h-full w-full drop-shadow-[0_6px_18px_var(--dot-shadow)]" />
         </div>
       </div>

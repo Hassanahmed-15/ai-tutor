@@ -1,6 +1,7 @@
 import { layoutPanel } from "./layout";
 import { canvasSentences } from "./plan";
 import type { CanvasBoardSpec } from "./types";
+import { echoesNeighbour } from "./boardCoverage";
 
 /**
  * EVERY PART ARIA DRAWS, SHE NAMES (owner, 2026-10-23: "if Aria draws a diagram make sure it draws and
@@ -59,21 +60,19 @@ export function unsaidLabels(spec: CanvasBoardSpec, script: string): LabelMentio
   return [...bySentence.entries()].map(([s, labels]) => ({ s, labels: labels.slice(0, 4) })).sort((a, b) => a.s - b.s);
 }
 
-export const MENTION_PROMPT = `A teacher's sentences are spoken while a diagram is drawn. Some parts of the diagram are drawn on a sentence that never names them. Rewrite each sentence given so it ALSO names each of its listed labels, in the words a teacher would use while pointing at it ("…, and this part here is the <label>."). Keep everything the sentence already says — every fact, number, term and its meaning — and add nothing else: no new facts. One sentence each, natural and short. Return JSON only: {"sentences": [{"i": number, "text": string}]}.`;
+export const MENTION_PROMPT = `A teacher's sentences are spoken while a diagram is drawn. Some parts of the diagram are drawn on a sentence that never names them. Rewrite each sentence given so it ALSO names each of its listed labels, woven into the sentence's own grammar the way a teacher says it while pointing — never a tacked-on phrase ("this part here is the …", "which is labelled …", "on the diagram …"). A label that is a step or a fragment ("choose half", "then code") is said as what it does, in natural words that include its words ("so we choose the half that can still hold it"). Keep everything the sentence already says — every fact, number, term and its meaning — and add nothing else: no new facts. One sentence each, natural and short. Return JSON only: {"sentences": [{"i": number, "text": string}]}.`;
 
 const numbersOf = (t: string) => (t.match(/-?\d+(?:\.\d+)?/g) ?? []).sort().join(",");
 
-/** A plain clause naming the labels, when no good rewrite came back. */
-function plainMention(sentence: string, labels: string[]): string {
-  const base = sentence.replace(/[.!?]+\s*$/, "");
-  const names = labels.map((l) => `"${l}"`);
-  const list = names.length === 1 ? names[0] : `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
-  return `${base}; on the diagram this is labelled ${list}.`;
-}
+/**
+ * Template words read aloud as filler (QA report 2026-11-27: "…and this part here is the choose half", "…this part
+ * here is the then code"). A rewrite using them is refused.
+ */
+const FILLER = /\bthis part here\b|\b(?:is|are) labell?ed\b|\bon the diagram,? this\b/i;
 
 /**
  * The narration with every unsaid label named on its sentence: the model's rewrite when it keeps the
- * sentence's numbers, stays one sentence and names each label; else the plain clause.
+ * sentence's numbers, stays one sentence, names each label and reads as natural speech; else the sentence as it was.
  */
 export function applyMentions(script: string, needed: LabelMention[], rewrites: Array<{ i?: unknown; text?: unknown }>): { script: string; mentioned: number } {
   const sentences = canvasSentences(script);
@@ -84,8 +83,11 @@ export function applyMentions(script: string, needed: LabelMention[], rewrites: 
     const r = rewrites.find((x) => Number(x.i) === need.s);
     const text = typeof r?.text === "string" ? r.text.replace(/\s+/g, " ").trim() : "";
     const namesAll = need.labels.every((l) => { const w = words(l); return !w.length || w.some((x) => words(text).map(stem).includes(stem(x))); });
-    const good = text && /[.!?]$/.test(text) && canvasSentences(text).length === 1 && numbersOf(text) === numbersOf(original) && namesAll && text.length <= original.length + 160;
-    sentences[need.s] = good ? text : plainMention(original, need.labels);
+    const good = text && /[.!?]$/.test(text) && canvasSentences(text).length === 1 && numbersOf(text) === numbersOf(original) && namesAll && text.length <= original.length + 160 && !FILLER.test(text) && !echoesNeighbour(original, text, [sentences[need.s - 1], sentences[need.s + 1]]);
+    // No good rewrite: her own sentence stays as it was. A label left unsaid is better than a clause stuck on the
+    // end ("; on the diagram this is labelled …"), which was heard as filler.
+    if (!good) continue;
+    sentences[need.s] = text;
     mentioned += need.labels.length;
   }
   return { script: sentences.join(" "), mentioned };

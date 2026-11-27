@@ -7,7 +7,7 @@
  * the whole document as context (lib/canvas/documentContext.ts).
  *
  * Drives the real front page: attaches the PDF, asks the question in the page picker (or none), uses
- * all pages, picks "Use it as a reference", answers each planning question with its first option,
+ * all pages, picks "Explain beyond the pages", answers each planning question with its first option,
  * builds the outline it is shown — then WATCHES the lecture play, a screenshot every few seconds,
  * while the snapshot API reports the boards as they are written.
  *

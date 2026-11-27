@@ -50,6 +50,12 @@ export const COMPACT_LADDER_BOARDS: Record<PartStatus, { min: number; max: numbe
   known: { min: 0, max: 0 },
 };
 export const COMPACT_LADDER_MAX = 10;
+/** A quick overview's ladder: one board for each part the student does not know, none for a known one. */
+export const BRIEF_LADDER_BOARDS: Record<PartStatus, { min: number; max: number }> = {
+  new: { min: 1, max: 1 },
+  shaky: { min: 1, max: 1 },
+  known: { min: 0, max: 0 },
+};
 
 /** The fewest and most boards the ladder allows for these parts (the map board included). */
 export function ladderBoardBudget(parts: LadderPart[], compact = false): { min: number; max: number } {
@@ -81,10 +87,12 @@ export function ladderOutlineInstruction(parts: PartReading[]): string {
  * For the canvas planner: how the boards climb the ladder, part by part. Replaces the "one board per
  * part" outline block and the rules against hook boards.
  */
-export function ladderCanvasSection(parts: LadderPart[], compact = false): string[] {
-  const budget = ladderBoardBudget(parts, compact);
-  const table = compact ? COMPACT_LADDER_BOARDS : LADDER_BOARDS;
-  const map = wantsMap(parts);
+export function ladderCanvasSection(parts: LadderPart[], compact = false, brief = false): string[] {
+  // A QUICK OVERVIEW (`brief`): one board a part and no map board — the map was ~30 s of agenda with no teaching,
+  // and the overview grew to five boards (QA report 2026-11-27).
+  const table = brief ? BRIEF_LADDER_BOARDS : compact ? COMPACT_LADDER_BOARDS : LADDER_BOARDS;
+  const map = wantsMap(parts) && !brief;
+  const budget = brief ? { min: Math.max(1, parts.filter((p) => (p.status ?? "new") !== "known").length), max: Math.max(1, parts.filter((p) => (p.status ?? "new") !== "known").length) } : ladderBoardBudget(parts, compact);
   const lines = [
     "",
     `THE CONCEPT LADDER: this student told Aria, part by part, what they already know. Build what they do not know FROM SCRATCH, step by step, in a structured way: ${budget.min} to ${budget.max} boards in all, ids b1 onward, the parts in this order (teach exactly these parts, nothing beyond them):`,

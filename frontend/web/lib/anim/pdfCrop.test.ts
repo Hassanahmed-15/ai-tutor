@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { linesSaid, sentenceFocus } from "../pdfSentenceFocus";
 import { assignFigures, documentFigures, figureBoardLines, figureIndex, printedFigureName, speakableFigureRefs } from "../canvas/pdfFigures";
-import { applyCoverage, coverBoard, coverageRequests, splicedRewrite, spokenCoverage } from "../canvas/boardCoverage";
+import { applyCoverage, coverBoard, coverageRequests, echoesNeighbour, splicedRewrite, spokenCoverage } from "../canvas/boardCoverage";
 import { blockingTextRegions, withFigureLabels } from "../pdfFigureBox";
 import { documentSections, inPageOrder } from "../canvas/documentContext";
 import { applyGlobalSourceOrder, runningFurniture, structurePdfPage } from "../pdfLessonPipeline";
@@ -305,4 +305,16 @@ test("a part the student marked new is not 'shaky'", () => {
   const profile = profileFromIntake("Hearing", [{ label: "Ears", status: "new" }, { label: "Sound", status: "shaky" }, { label: "Brain", status: "known" }]);
   assert.deepEqual(profile.weakConcepts, ["Sound"]);
   assert.deepEqual(profile.masteredConcepts, ["Brain"]);
+});
+
+test("a coverage rewrite that says again what the sentence before it says is refused (QA report 2026-11-27)", () => {
+  const before = "For an ohmic conductor at constant temperature, current is proportional to voltage.";
+  const original = "The graph is a straight line through the origin.";
+  const echo = "For an ohmic conductor at constant temperature, the graph is a straight line through the origin.";
+  assert.equal(echoesNeighbour(original, echo, [before]), true);
+  assert.equal(echoesNeighbour(original, "The V–I graph is a straight line through the origin.", [before]), false);
+  const script = `${before} ${original}`;
+  const out = applyCoverage(script, [{ s: 1, items: ["V–I graph"] }], [{ i: 1, text: echo }]);
+  assert.equal(out.rewritten, 0);
+  assert.equal(out.script, script);
 });

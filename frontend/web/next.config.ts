@@ -59,6 +59,9 @@ const nextConfig: NextConfig = {
       { source: "/ort/ort-wasm-simd-threaded.wasm", headers: immutable },
       { source: "/ort/ort-wasm-simd-threaded.mjs", headers: immutable },
       { source: "/voice/silero_vad.onnx", headers: immutable },
+      // The mouth's viseme model (lib/adhd/mouth.ts): a day in the browser cache, so a new visit does not fetch it
+      // again either. Not immutable: the file name does not change when the model does.
+      { source: "/headaudio/model-en-mixed.bin", headers: [{ key: "Cache-Control", value: "public, max-age=86400" }] },
     ];
   },
   outputFileTracingIncludes: {
