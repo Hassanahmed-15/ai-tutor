@@ -33,6 +33,81 @@ export function geminiVoiceTag(): string {
   return `${geminiVoiceId()}-${DELIVERY_VERSION}`;
 }
 
+/**
+ * THE PLANNING CHAT IN THE CLONED VOICE (owner, 2026-11-27: "planning phase should also contain cloned voice").
+ * No Gemini Live model takes a cloned voice (every one closes with "Replicated voice is not supported for this
+ * model", probed on this account 2026-11-27), so Live still listens and thinks, and each sentence of its
+ * transcript is spoken here instead (lib/useGeminiLiveTutor.ts `clonedVoice`). On whenever the voice id and a
+ * key are set; PLANNING_VOICE=live turns it off.
+ */
+export function planningCloneOn(): boolean {
+  return process.env.PLANNING_VOICE !== "live" && Boolean(geminiVoiceId()) && Boolean(process.env.GEMINI_TTS_API_KEY ?? process.env.GEMINI_API_KEY);
+}
+
+/**
+ * One sentence in the cloned voice, STREAMED: raw 24 kHz 16-bit mono PCM, yielded as it arrives (always an even
+ * number of bytes, so no sample is split). The first audio comes ≈2.3 s after the call for a 7 s line, against
+ * ≈4.7 s for the whole clip (measured 2026-11-27). Returns what it cost once the stream is done.
+ */
+export async function* streamGeminiVoicePcm(text: string, signal?: AbortSignal, delivery: Delivery = deliveryFor(text)): AsyncGenerator<Uint8Array, number> {
+  const item: Record<string, unknown> = { type: "text", text: delivery.input };
+  if (delivery.style) item.annotations = [{ type: "speech_metadata", style: delivery.style }];
+  const res = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions?alt=sse", {
+    method: "POST",
+    headers: { "x-goog-api-key": process.env.GEMINI_TTS_API_KEY ?? process.env.GEMINI_API_KEY ?? "", "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: GEMINI_TTS_MODEL,
+      stream: true,
+      input: [{ type: "user_input", content: [item] }],
+      response_format: { type: "audio", mime_type: "audio/l16", sample_rate: SAMPLE_RATE },
+      generation_config: { speech_config: [{ voice: geminiVoiceId() }] },
+    }),
+    signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(CALL_TIMEOUT_MS)]) : AbortSignal.timeout(CALL_TIMEOUT_MS),
+  });
+  if (!res.ok || !res.body) throw new Error(`gemini voice ${res.status} ${(await res.text().catch(() => "")).slice(0, 160)}`);
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let pending = "";
+  let carry: Uint8Array | null = null;
+  let seconds = 0;
+  let usage: { total_input_tokens?: number; total_output_tokens?: number } | undefined;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    pending += decoder.decode(value, { stream: true });
+    const events = pending.split("\n\n");
+    pending = events.pop() ?? "";
+    for (const event of events) {
+      const line = event.split("\n").find((l) => l.startsWith("data: "));
+      if (!line || line === "data: [DONE]") continue;
+      let json: { delta?: { type?: string; data?: string }; interaction?: { usage?: typeof usage } };
+      try {
+        json = JSON.parse(line.slice(6));
+      } catch {
+        continue;
+      }
+      if (json.interaction?.usage) usage = json.interaction.usage;
+      if (json.delta?.type !== "audio" || !json.delta.data) continue;
+      let bytes: Uint8Array = Buffer.from(json.delta.data, "base64");
+      if (carry) {
+        const joined = new Uint8Array(carry.length + bytes.length);
+        joined.set(carry);
+        joined.set(bytes, carry.length);
+        bytes = joined;
+        carry = null;
+      }
+      if (bytes.length % 2) {
+        carry = bytes.slice(-1);
+        bytes = bytes.slice(0, -1);
+      }
+      if (!bytes.length) continue;
+      seconds += bytes.length / 2 / SAMPLE_RATE;
+      yield bytes;
+    }
+  }
+  return (usage?.total_output_tokens ?? seconds * 25) * USD_PER_AUDIO_TOKEN + (usage?.total_input_tokens ?? 0) * USD_PER_TEXT_TOKEN;
+}
+
 /** The audio somewhere in an Interactions answer (its shape has moved between API versions). */
 function audioOf(value: unknown): string | null {
   if (!value || typeof value !== "object") return null;

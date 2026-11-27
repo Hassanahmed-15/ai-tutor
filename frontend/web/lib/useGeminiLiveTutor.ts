@@ -303,6 +303,13 @@ export type UseGeminiLiveTutorOptions = {
   systemInstruction?: string;
   /** Overrides the prebuilt voice name. */
   voiceName?: string;
+  /**
+   * Speak in Aria's CLONED voice instead of Live's own (the planning chat; owner, 2026-11-27). No Live model takes
+   * a cloned voice, so Live still listens and thinks, its audio is never played, and each sentence of its
+   * transcript is spoken by /api/voice/say as soon as it is complete. Falls back to Live's voice when the server
+   * has no clone set up, or for the rest of the session once a sentence fails.
+   */
+  clonedVoice?: boolean;
   /** Identifies the UI surface in diagnostics; turn-taking remains identical on every surface. */
   voiceSurface?: VoiceSurface;
   /** Enables the richer internal diagnostics panel without changing voice policy. */
@@ -501,6 +508,49 @@ function getAudioContextConstructor() {
   return window.AudioContext || (window as AudioWindow).webkitAudioContext;
 }
 
+/** 16-bit little-endian PCM bytes (the cloned voice's stream) as Web Audio samples. */
+function pcmBytesToFloat32(bytes: Uint8Array) {
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  const output = new Float32Array(Math.floor(bytes.byteLength / 2));
+  for (let index = 0; index < output.length; index += 1) output[index] = Math.max(-1, Math.min(1, view.getInt16(index * 2, true) / 32768));
+  return output;
+}
+
+/**
+ * The finished pieces at the front of a transcript still arriving, and what is left over (the cloned voice speaks
+ * one piece per call, starting at the first). A piece is a sentence — it ends at . ! or ? followed by a space — or,
+ * in a long sentence, a clause: Live's transcript arrives at about speaking pace, so waiting for the full stop of a
+ * 12-second sentence left 9 s of silence after the one before it (measured 2026-11-27). A clause is cut at a
+ * comma, semicolon, colon or dash once it has `clauseChars` characters. A very short sentence ("Nice.") waits to be
+ * joined to the next: one call sounds better and costs one wait, not two.
+ * Pure, so it is unit-tested (lib/anim/clonedVoice.test.ts).
+ */
+export function takeSentences(buffer: string, minChars = 18, clauseChars = 55): { sentences: string[]; rest: string } {
+  const sentences: string[] = [];
+  let start = 0;
+  const end = /[.!?]+["')\]]*\s+|[,;:]\s+|\s*[—–]\s*/g;
+  let match: RegExpExecArray | null;
+  while ((match = end.exec(buffer))) {
+    const stop = match.index + match[0].length;
+    const piece = buffer.slice(start, stop).trim();
+    const sentenceEnd = /[.!?]/.test(match[0]);
+    if (piece.length < (sentenceEnd ? minChars : clauseChars)) continue;
+    sentences.push(piece);
+    start = stop;
+  }
+  return { sentences, rest: buffer.slice(start) };
+}
+
+/** Whether this server has the cloned voice set up (/api/voice/say). Asked once per page. */
+let clonedVoiceAvailable: Promise<boolean> | null = null;
+function clonedVoiceOn(): Promise<boolean> {
+  clonedVoiceAvailable ??= fetch("/api/voice/say", { cache: "no-store" })
+    .then((res) => (res.ok ? res.json() : { on: false }))
+    .then((json: { on?: boolean }) => json.on === true)
+    .catch(() => false);
+  return clonedVoiceAvailable;
+}
+
 function base64ToFloat32(base64: string) {
   const binary = atob(base64);
   const bytes = new Uint8Array(binary.length);
@@ -627,6 +677,37 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
    * genuinely different requests, and the UI now offers each by name.
    */
   const outputMutedRef = useRef(false);
+  /*
+   * THE CLONED VOICE (`clonedVoice`). `cloneOnRef`: on for this session (the server has it, nothing failed).
+   * `cloneTextRef`: her transcript not yet a whole sentence. `cloneQueueRef`: sentences being made, spoken in
+   * order by `pumpClone`. `cloneGenRef` moves on whenever playback is cut, so a sentence still arriving from an
+   * old reply is dropped. `cloneHeldTurnRef`: Live has finished its turn but the clone is still speaking it, so
+   * the turn is kept open (responseInFlightRef) until the last sentence is in. `liveTurnAudioRef`: Live's own
+   * audio for the reply, kept only to fall back on when the clone fails before saying anything of it.
+   */
+  const cloneOnRef = useRef(false);
+  const cloneTextRef = useRef("");
+  const cloneQueueRef = useRef<Array<{ text: string; chunks: Uint8Array[]; done: boolean; failed: boolean; wake: (() => void) | null }>>([]);
+  const clonePumpingRef = useRef(false);
+  const cloneGenRef = useRef(0);
+  const cloneAbortRef = useRef(new Set<AbortController>());
+  const cloneHeldTurnRef = useRef(false);
+  const cloneSpokeThisTurnRef = useRef(false);
+  const liveTurnAudioRef = useRef<string[]>([]);
+  const cloneBusy = () => cloneOnRef.current && (cloneQueueRef.current.length > 0 || clonePumpingRef.current || cloneTextRef.current.trim().length > 0);
+  /** Everything the clone was saying or about to say is dropped (a barge-in, a stop, a teardown). */
+  const resetClone = () => {
+    cloneGenRef.current += 1;
+    for (const controller of cloneAbortRef.current) controller.abort();
+    cloneAbortRef.current.clear();
+    for (const line of cloneQueueRef.current) line.wake?.();
+    cloneQueueRef.current = [];
+    cloneTextRef.current = "";
+    clonePumpingRef.current = false;
+    cloneHeldTurnRef.current = false;
+    cloneSpokeThisTurnRef.current = false;
+    liveTurnAudioRef.current = [];
+  };
   /** How many times this session has auto-reconnected. Reset by a successful connect. */
   const reconnectCountRef = useRef(0);
   const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -870,6 +951,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   }, []);
 
   const stopPlayback = useCallback(() => {
+    resetClone();
     playbackControllerRef.current?.invalidate();
     playbackTokenRef.current = null;
     endSpeechScript();
@@ -1013,7 +1095,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       noAudioTimerRef.current = setTimeout(() => {
         noAudioTimerRef.current = null;
         if (endedRef.current || playingSourcesRef.current.size > 0) return;
-        if (boardChainPendingRef.current) return arm();
+        // A reply the cloned voice is still making is not a silent one.
+        if (boardChainPendingRef.current || cloneBusy()) return arm();
         responseInFlightRef.current = false;
         turnCompleteRef.current = false;
         turnCompletedRef.current = true;
@@ -1039,7 +1122,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   }, [isHeldReply]);
 
   const playAudioChunk = useCallback(
-    (base64: string) => {
+    (audio: string | Float32Array<ArrayBuffer>) => {
       if (suppressCurrentTurnRef.current || contextOnlyTurnRef.current || muteRepliesUntilStudentRef.current || isHeldReply()) return;
       // Dropped rather than buffered: a queue flushed on unmute would replay a turn the
       // conversation has already moved past.
@@ -1068,7 +1151,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         gateRef.current?.responseStarted?.(performance.now());
         machineRef.current?.dispatch({ type: "TUTOR_AUDIO_START", at: performance.now(), generation: playbackToken.generation });
       }
-      const samples = base64ToFloat32(base64);
+      const samples = typeof audio === "string" ? base64ToFloat32(audio) : audio;
       playbackControllerRef.current!.noteAccepted(playbackToken, samples.length);
       const buffer = context.createBuffer(1, samples.length, OUTPUT_SAMPLE_RATE);
       buffer.copyToChannel(samples, 0);
@@ -1160,6 +1243,122 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     },
     [isHeldReply, scheduleSettle],
   );
+
+  /**
+   * The cloned voice's speaker: the queued sentences in order, each played chunk by chunk as it streams in
+   * (the next ones are already being made). A failure turns the clone off for the session; if nothing of this
+   * reply was heard yet, Live's own audio of it is played instead, so the student never meets silence.
+   */
+  const pumpClone = useCallback(async () => {
+    if (clonePumpingRef.current) return;
+    clonePumpingRef.current = true;
+    const generation = cloneGenRef.current;
+    const current = () => generation === cloneGenRef.current && !endedRef.current;
+    try {
+      while (current() && cloneQueueRef.current.length > 0) {
+        const line = cloneQueueRef.current[0];
+        let played = 0;
+        for (;;) {
+          if (!current()) return;
+          if (played < line.chunks.length) {
+            playAudioChunk(pcmBytesToFloat32(line.chunks[played]));
+            played += 1;
+            cloneSpokeThisTurnRef.current = true;
+            continue;
+          }
+          if (line.done) break;
+          await new Promise<void>((resolve) => { line.wake = resolve; });
+          line.wake = null;
+        }
+        if (!current()) return;
+        if (line.failed) {
+          cloneOnRef.current = false;
+          gateRef.current?.log.log("conn", "cloned-voice", performance.now(), `failed on "${line.text.slice(0, 60)}"; Live's voice from here`, "bad");
+          const fallback = cloneSpokeThisTurnRef.current ? [] : liveTurnAudioRef.current;
+          cloneQueueRef.current = [];
+          cloneTextRef.current = "";
+          liveTurnAudioRef.current = [];
+          for (const chunk of fallback) playAudioChunk(chunk);
+          break;
+        }
+        cloneQueueRef.current.shift();
+      }
+    } finally {
+      if (generation === cloneGenRef.current) {
+        clonePumpingRef.current = false;
+        // Live finished this turn while she was still saying it: the turn ends now, as it would have.
+        if (cloneHeldTurnRef.current && !cloneBusy()) {
+          cloneHeldTurnRef.current = false;
+          cloneSpokeThisTurnRef.current = false;
+          liveTurnAudioRef.current = [];
+          responseInFlightRef.current = false;
+          if (playingSourcesRef.current.size === 0) setSpeaking(false);
+          scheduleSettle();
+        }
+      }
+    }
+  }, [playAudioChunk, scheduleSettle]);
+
+  /** Sentences of her transcript, handed to the cloned voice as each one completes (`final`: the turn is over). */
+  const feedClone = useCallback((text: string, final: boolean) => {
+    if (!cloneOnRef.current) return;
+    cloneTextRef.current += text;
+    const { sentences, rest } = takeSentences(cloneTextRef.current);
+    cloneTextRef.current = final ? "" : rest;
+    if (final && rest.trim()) sentences.push(rest.trim());
+    for (const sentence of sentences) {
+      const line = { text: sentence, chunks: [] as Uint8Array[], done: false, failed: false, wake: null as (() => void) | null };
+      cloneQueueRef.current.push(line);
+      const controller = new AbortController();
+      cloneAbortRef.current.add(controller);
+      const settle = () => {
+        line.done = true;
+        cloneAbortRef.current.delete(controller);
+        line.wake?.();
+      };
+      void (async () => {
+        try {
+          const res = await fetch("/api/voice/say", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "x-aria-spend-kind": "planning" },
+            body: JSON.stringify({ text: sentence }),
+            signal: controller.signal,
+          });
+          if (!res.ok || !res.body) throw new Error(`voice/say ${res.status}`);
+          const reader = res.body.getReader();
+          let carry: Uint8Array | null = null;
+          for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            let bytes = value;
+            if (carry) {
+              const joined = new Uint8Array(carry.length + bytes.length);
+              joined.set(carry);
+              joined.set(bytes, carry.length);
+              bytes = joined;
+              carry = null;
+            }
+            if (bytes.length % 2) {
+              carry = bytes.slice(-1);
+              bytes = bytes.slice(0, -1);
+            }
+            if (bytes.length) {
+              line.chunks.push(bytes);
+              line.wake?.();
+            }
+          }
+        } catch (error) {
+          if (!controller.signal.aborted) {
+            line.failed = true;
+            console.warn("[voice] cloned voice failed:", error instanceof Error ? error.message : error);
+          }
+        } finally {
+          settle();
+        }
+      })();
+    }
+    if (sentences.length) void pumpClone();
+  }, [pumpClone]);
 
   const beginStudentSpeech = useCallback(() => {
     if (studentSpeakingRef.current) return;
@@ -1550,12 +1749,19 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         );
         if (!contextOnlyTurnRef.current && !suppressCurrentTurnRef.current && !isHeldReply() && !muteRepliesUntilStudentRef.current) {
           optionsRef.current.onTranscript?.("tutor", outputText, false);
+          // The words she will say, in her cloned voice (`clonedVoice`): the same words the chat shows.
+          if (!outputMutedRef.current) feedClone(outputText, false);
         }
       }
 
       for (const part of content?.modelTurn?.parts ?? []) {
         if (!part.inlineData?.data) continue;
         markTutorActive();
+        // In the cloned voice, Live's own audio is kept only as the fallback, never played (pumpClone).
+        if (cloneOnRef.current) {
+          liveTurnAudioRef.current.push(part.inlineData.data);
+          continue;
+        }
         try {
           playAudioChunk(part.inlineData.data);
         } catch (error) {
@@ -1576,13 +1782,18 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         void handleToolCalls(calls);
       }
 
+      // Her last words have no full stop after them yet: the turn's end makes them a sentence.
+      if (content?.turnComplete && !oldTurnComplete && cloneOnRef.current) feedClone("", true);
+      // While the cloned voice is still saying this reply, the reply is not over (pumpClone ends it).
+      const cloneSpeaking = cloneBusy();
+      if (cloneSpeaking && (content?.generationComplete || (content?.turnComplete && !oldTurnComplete))) cloneHeldTurnRef.current = true;
       if (content?.generationComplete) {
-        responseInFlightRef.current = false;
-        if (playingSourcesRef.current.size === 0) setSpeaking(false);
+        responseInFlightRef.current = cloneSpeaking;
+        if (playingSourcesRef.current.size === 0 && !cloneSpeaking) setSpeaking(false);
         scheduleSettle();
       }
       if (content?.turnComplete && !oldTurnComplete) {
-        responseInFlightRef.current = false;
+        responseInFlightRef.current = cloneSpeaking;
         turnCompleteRef.current = true;
         // A turn that finished without audio (suppressed, muted, empty) is over too.
         gateRef.current?.responseStarted?.(performance.now());
@@ -1603,7 +1814,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         if (muteNext) contextOnlyTurnRef.current = true;
       }
     },
-    [endSayWait, handleToolCalls, isHeldReply, markTutorActive, playAudioChunk, resetIdleTimer, scheduleSettle, stopPlayback, teardown],
+    [endSayWait, feedClone, handleToolCalls, isHeldReply, markTutorActive, playAudioChunk, resetIdleTimer, scheduleSettle, stopPlayback, teardown],
   );
 
   /**
@@ -2048,9 +2259,12 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         }).catch(() => null)
       : Promise.resolve(null);
 
+    // The cloned voice, when asked for and set up on the server: decided before the first reply can arrive.
+    const clonePromise = optionsRef.current.clonedVoice ? clonedVoiceOn() : Promise.resolve(false);
+
     let sessionData: { token: string; model: string; instructions: string };
     try {
-      sessionData = await tokenPromise;
+      [sessionData, cloneOnRef.current] = await Promise.all([tokenPromise, clonePromise]);
     } catch (error) {
       void micPromise.then((stream) => stream?.getTracks().forEach((track) => track.stop()));
       setErrorMessage(error instanceof Error ? error.message : "Could not start Gemini Live.");

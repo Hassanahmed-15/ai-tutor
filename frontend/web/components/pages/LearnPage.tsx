@@ -500,6 +500,9 @@ type BuildCost =
     voiceSurface: "planning",
     // The same Aria who teaches the lecture (lib/useGeminiLiveTutor.ts ARIA_LIVE_VOICE).
     voiceName: ARIA_LIVE_VOICE,
+    // Spoken in her CLONED voice, the lecture's own (owner, 2026-11-27): Live listens and thinks, the clone
+    // speaks each sentence (lib/useGeminiLiveTutor.ts clonedVoice). Zephyr only if the clone is not set up.
+    clonedVoice: true,
     // The uploaded pages, as images: shared the moment the parse produces them, even if she
     // connected first. A scanned PDF has no text for the instruction below to carry.
     documentId: documentId ?? undefined,
