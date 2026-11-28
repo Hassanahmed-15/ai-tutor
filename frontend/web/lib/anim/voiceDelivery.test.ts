@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { actBoard, deliveryFor, spokenWords } from "../voiceDelivery";
+import { actBoard, ALWAYS_EXCITED, deliveryFor, spokenWords } from "../voiceDelivery";
 
 // luna's real lines from a saved course lecture (Circulatory systems) — the words must never change.
 const LINES: Array<[string, string]> = [
@@ -25,13 +25,13 @@ test("each kind of moment gets its acting", () => {
   // Pauses are off by default (round 1: unnatural): the voice gets the sentence exactly.
   assert.equal(deliveryFor("The answer is one.").input, "The answer is one.");
   assert.equal(deliveryFor("We call this single circulation.").input, "We call this single circulation.");
-  assert.equal(deliveryFor("In your head, a fish has one or two heart passes?").style, "curious");
+  // acted5: the kind is still read, but every kind is spoken in the one excited delivery.
+  assert.equal(deliveryFor("In your head, a fish has one or two heart passes?").style, ALWAYS_EXCITED);
 });
 
-// acted4 (2026-11-26) adds lively/engaged/calm, upbeat, amazed, emphatic, playful, satisfied. NOT YET checked on the
-// cloned voice for added words (the transcription check needs the Gemini key) — listen before relying on them.
+// acted5 (2026-11-27): one style, checked on the cloned voice — six lines transcribed back, no word added.
 test("only styles checked never to add words are used (\"friendly\" added \"Okay, so\")", () => {
-  const allowed = new Set(["", "curious", "gentle", "warm", "warm, pleased", "playful", "emphatic", "engaged"]);
+  const allowed = new Set([ALWAYS_EXCITED]);
   for (const [line] of LINES) assert.ok(allowed.has(deliveryFor(line).style), `${line} → ${deliveryFor(line).style}`);
 });
 
@@ -58,11 +58,9 @@ test("acted4: every sentence of a board is acted, and its words never change", (
   });
 });
 
-test("acted4: the board has a shape — a lift at the start, a peak on the key idea, settling at the end", () => {
-  const acted = actBoard(BOARD, TERMS);
-  assert.match(acted[0].style, /^upbeat/);
-  assert.match(acted[1].style, /^emphatic/);
-  assert.match(acted.at(-1)!.style, /^warm, satisfied/);
+test("acted5: every sentence in the same excited delivery, so her pitch never swings (owner, 2026-11-27)", () => {
+  for (const d of actBoard(BOARD, TERMS)) assert.ok(d.style.startsWith(ALWAYS_EXCITED), d.style);
+  for (const [line] of LINES) assert.ok(deliveryFor(line).style.startsWith(ALWAYS_EXCITED), line);
 });
 
 test("acted4: the board's bold key term is stressed where she says it", () => {
@@ -72,10 +70,10 @@ test("acted4: the board's bold key term is stressed where she says it", () => {
   assert.doesNotMatch(acted[2].style, /stressing/);
 });
 
-test("acted4: at most two peaks a board, so the key idea still stands out", () => {
-  const many = Array.from({ length: 8 }, (_, i) => `The key idea number ${i + 1} is that this means something.`);
-  const peaks = actBoard(many).filter((d) => /^emphatic/.test(d.style)).length;
-  assert.equal(peaks, 2);
+test("at most two stressed terms a board, so a stressed word still stands out", () => {
+  const many = Array.from({ length: 8 }, (_, i) => `Step ${i + 1} uses the pivot again.`);
+  const stressed = actBoard(many, ["pivot"]).filter((d) => /stressing/.test(d.style)).length;
+  assert.equal(stressed, 2);
 });
 
 test("acted4: a style is still a couple of words, besides the term it stresses", () => {

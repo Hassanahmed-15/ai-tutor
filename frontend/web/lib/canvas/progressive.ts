@@ -22,6 +22,7 @@ import { canvasBeatId, connectToEarlier } from "./connect";
 import { repairCues } from "./cueRepair";
 import { compactLadder, referenceCsLesson, withLearnerStatuses, canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
 import { codeSentenceBlocks, groundSourcePlan, strictBoardLines, ungroundedInPlan, videoBoardLines, videoParts } from "./sourceLessons";
+import { dropEchoedSentences } from "./echoes";
 import { assignListings, documentBoardLines, documentListings, documentSections, extraBoardsForListings, faithfulCodeLines, inPageOrder, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredKeyBlocks, uncoveredPages, type DocumentListing } from "./documentContext";
 import type { SuprnotesLessonInput } from "../suprnotes";
 import { policyForBoards } from "../teachingPolicy";
@@ -494,6 +495,19 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
           const grounded = groundSourcePlan(source, plan.beats, sourceMode);
           plan = { ...plan, beats: grounded.beats };
           console.log(`[canvas] ${sourceMode} grounding: ${grounded.removed} sentence(s) dropped${grounded.log.length ? ` — ${grounded.log.slice(0, 6).join(" | ")}` : ""}`);
+        }
+        // No sentence said twice in a row (lib/canvas/echoes.ts): checked on the plan, before any board is drawn.
+        if (plan) {
+          let echoed = 0;
+          const beats = plan.beats.map((beat) => {
+            const out = dropEchoedSentences(beat);
+            echoed += out.dropped.length;
+            return out.beat;
+          });
+          if (echoed) {
+            plan = { ...plan, beats };
+            console.log(`[canvas] ${echoed} sentence(s) dropped that repeated the one before them`);
+          }
         }
         // CARD DIVES (lib/canvas/cardDives.ts): each board of cards becomes a tour and a close-up inside
         // every card. Off unless CANVAS_CARD_DIVES=1; never for a strict PDF or a video.

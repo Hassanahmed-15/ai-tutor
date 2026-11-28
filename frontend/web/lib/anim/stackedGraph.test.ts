@@ -36,3 +36,17 @@ test("stacked panels lay out top to bottom, x axis on the last only", () => {
   assert.ok(graphs[0].plot.y + graphs[0].plot.h < graphs[1].plot.y);
   assert.deepEqual(graphs.map((g) => g.stacked?.showX), [false, false, true]);
 });
+
+test("lines for several values of one parameter stay on one plot, so their slopes can be compared (PDF test 2026-11-28)", () => {
+  const ohm = {
+    kind: "graph" as const,
+    x: { label: "Voltage V / V", min: 0, max: 10 },
+    y: { label: "Current I / A", min: 0, max: 10 },
+    curves: [
+      { id: "r1", expr: "x", label: "R = 1 Ω", color: "#c2410c", s: 3 },
+      { id: "r2", expr: "x / 2", label: "R = 2 Ω", color: "#2563eb", s: 3 },
+      { id: "r5", expr: "x / 5", label: "R = 5 Ω", color: "#15803d", s: 3 },
+    ],
+  };
+  assert.equal(graphPanels(ohm as never), null);
+});

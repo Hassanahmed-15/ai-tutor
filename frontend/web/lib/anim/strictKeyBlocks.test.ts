@@ -25,3 +25,15 @@ test("a table or worked example no board teaches is named; one a board names or 
   const named = [...said, { script: "In series every bulb goes out.", source: { pages: [2], blocks: ["p2-b1"] } }];
   assert.deepEqual(uncoveredKeyBlocks(doc, named), []);
 });
+
+test("a photographed page's table and worked example are found in transcribed text too (PDF test 2026-11-28)", () => {
+  const photo = {
+    title: "Ohm's law (photo)",
+    contentBlocks: [
+      { id: "p1-b3", type: "paragraph", text: "For an ohmic conductor at constant temperature, the current is proportional to the voltage. Worked example 1 A lamp has a resistance of 4 Ω and 12 V across it. I = 12 ÷ 4 = 3 A.", pageNumber: 1 },
+      { id: "p2-b2", type: "paragraph", text: "Table 1: Series and parallel circuits compared\n| | Series | Parallel |\n| If one bulb breaks | all the bulbs go out | the others stay on |", pageNumber: 2 },
+    ],
+  } as unknown as SuprnotesLessonInput;
+  const prose = [{ script: "For an ohmic conductor at constant temperature, current is proportional to voltage.", source: { pages: [1, 2] } }];
+  assert.deepEqual(uncoveredKeyBlocks(photo, prose).map((m) => m.id), ["p1-b3", "p2-b2"]);
+});

@@ -2247,6 +2247,11 @@ function layoutGraph(stage: GraphStage, box: Rect, marks: Mark[], add: Add, vars
  */
 export function graphPanels(stage: GraphStage, vars: Record<string, number> = {}): GraphStage[] | null {
   if (stage.curves.length < 2) return null;
+  // ONE QUANTITY, SEVERAL VALUES OF A PARAMETER ("R = 1 Ω", "R = 2 Ω", "R = 5 Ω"): the lines are there to be compared
+  // on one axis — split, each with its own scale, all three looked equally steep and the board contradicted "the
+  // 1 Ω line is steepest" (PDF test 2026-11-28, twice). Only different quantities (x, v, a) get panels of their own.
+  const parameter = stage.curves.map((c) => (c.label ?? "").match(/^\s*([A-Za-zα-ωΑ-Ω][\w₀-₉']*)\s*=\s*[-−]?\d/)?.[1] ?? null);
+  if (parameter.every((p) => p !== null && p === parameter[0])) return null;
   const ranges = stage.curves.map((c) => {
     let lo = Infinity, hi = -Infinity;
     for (let i = 0; i <= 120; i++) {

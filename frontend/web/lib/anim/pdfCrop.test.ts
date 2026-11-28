@@ -7,7 +7,7 @@ import { blockingTextRegions, withFigureLabels } from "../pdfFigureBox";
 import { documentSections, inPageOrder } from "../canvas/documentContext";
 import { applyGlobalSourceOrder, runningFurniture, structurePdfPage } from "../pdfLessonPipeline";
 import { profileFromIntake } from "../intake";
-import { validClosing, withClosing, writeClosing } from "../canvas/closingWords";
+import { closingFallback, validClosing, withClosing, writeClosing } from "../canvas/closingWords";
 import { applyLessonVisualPolicy } from "../canvas/visualPolicy";
 import { validatePlan } from "../canvas/plan";
 import { validateCanvasSpec } from "../canvas/validate";
@@ -154,9 +154,13 @@ test("a non-maths, non-CS PDF in the course look gets the course board types", (
 
 test("the last board closes with two sentences, once, and a bad closing falls back to the plain one", async () => {
   const boards = [{ title: "Bypassing a node", script: "Node 5 has one child, 3. Its parent 2 bypasses it." }];
-  const good = await writeClosing(async () => ({ json: { closing: ["You can now delete a node in any of the three cases.", "Nicely done — a short check comes next when you're ready."] }, costUsd: 0.0002 }), { topic: "BST deletion", boards, strict: false });
+  const good = await writeClosing(async () => ({ json: { closing: ["You can now delete a node in any of the three cases.", "Every tree you meet from now on keeps its order the same way."] }, costUsd: 0.0002 }), { topic: "BST deletion", boards, strict: false });
   assert.equal(good.fallback, false);
   assert.equal(good.closing.length, 2);
+  // The stock ending every lecture used to share is refused (owner, 2026-11-27).
+  assert.equal(validClosing({ closing: ["You can now delete a node.", "Nicely done — a short check comes next when you're ready."] }, ""), null);
+  assert.equal(validClosing({ closing: ["You can now delete a node.", "You did well, and there is more to explore."] }, ""), null);
+  assert.doesNotMatch(bad_fallback_text(), /check|you did well/i);
   // A number the lesson never said, a question, or a list of three sentences is refused.
   assert.equal(validClosing({ closing: ["There are 7 cases.", "Well done."] }, "Node 5 has one child, 3."), null);
   assert.equal(validClosing({ closing: ["You learned deletion.", "Ready for a check?"] }, ""), null);
@@ -165,8 +169,12 @@ test("the last board closes with two sentences, once, and a bad closing falls ba
   assert.match(bad.closing[0], /end of BST deletion/);
   const once = withClosing("It works. It is fast.", good.closing);
   assert.equal(withClosing(once, good.closing), once, "a board written again is not closed twice");
-  assert.ok(once.endsWith("ready."));
+  assert.ok(once.endsWith("same way."));
 });
+
+function bad_fallback_text(): string {
+  return ["BST deletion", "Photosynthesis", "Ohm's law"].map((t) => closingFallback(t).join(" ")).join(" ");
+}
 
 // ---- whatever is on the board is said ---------------------------------------------------------------
 

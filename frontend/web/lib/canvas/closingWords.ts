@@ -11,15 +11,26 @@ import { canvasSentences } from "./plan";
  * Pure except `writeClosing`, which takes the model call as an argument.
  */
 
-export const CLOSING_PROMPT = `You write the last two sentences a warm teacher says to end a short lesson taught from the student's own document. Sentence 1 sums up, in plain words, what the student can now do or understand — only what the lesson's boards taught, nothing new. Sentence 2 closes kindly and briefly (for example, that they did well, and that a short check comes next if they want it). No greeting, no question, no new facts, no numbers, no list. Each sentence at most 22 words. Return JSON only: {"closing": [string, string]}.`;
+export const CLOSING_PROMPT = `You write the last two sentences a warm teacher says to end a short lesson taught from the student's own document. Sentence 1 sums up, in plain words, what the student can now do or understand — only what the lesson's boards taught, nothing new. Sentence 2 closes the lesson warmly in a way that fits THIS lesson — the one idea worth carrying away, where it shows up in everyday life, or what it lets them do next — in your own fresh words. Never mention a check, quiz, test or question coming next, and never use stock lines ("you did well", "great job", "that's all for today"). No greeting, no question, no new facts, no numbers, no list. Each sentence at most 22 words. Return JSON only: {"closing": [string, string]}.`;
 
-/** The closing used when no good one comes back: plain, warm, and true of any lesson. */
+/**
+ * Stock endings the closing may not use (owner, 2026-11-27: "it always says a short check will come … don't just
+ * stick to this ending line"): the old prompt's own example made every lecture end on it.
+ */
+const STOCK = /\b(?:check|quiz|test|questions? (?:comes?|is|are) (?:next|ready))\b|\byou did (?:well|great)\b|\bgreat job\b|\bthat'?s all for today\b/i;
+
+/** The closing used when no good one comes back: plain, warm, true of any lesson, and not the same every time. */
 export function closingFallback(topic: string): string[] {
   const subject = topic.replace(/\s+/g, " ").trim().replace(/[.!?]+$/, "");
-  return [
-    subject ? `That brings us to the end of ${subject.length > 70 ? "this lesson" : subject}.` : "That brings us to the end of this lesson.",
-    "You did well to work through it — when you're ready, a short check will show what stuck.",
+  const named = subject && subject.length <= 70 ? subject : "this lesson";
+  const endings = [
+    `Hold on to the main idea of ${named}, and you will spot it again in what you study next.`,
+    "Take a moment with the boards you found hardest; that is where the understanding grows.",
+    `Next time ${named} comes up, you will already know how the pieces fit together.`,
   ];
+  // Picked by the topic, so the same lesson always ends the same way and different lessons do not.
+  const pick = [...named].reduce((n, c) => (n * 31 + c.charCodeAt(0)) >>> 0, 7) % endings.length;
+  return [subject ? `That brings us to the end of ${named}.` : "That brings us to the end of this lesson.", endings[pick]];
 }
 
 /** Two good closing sentences, or null: each one sentence, short, no question, no number the lesson did not say. */
@@ -28,7 +39,7 @@ export function validClosing(raw: unknown, lessonText: string): string[] | null 
   if (!list || list.length < 2) return null;
   const said = new Set(lessonText.match(/\d+(?:\.\d+)?/g) ?? []);
   const out = list.slice(0, 2).map((s) => (typeof s === "string" ? s.replace(/\s+/g, " ").trim() : ""));
-  const ok = out.every((s) => s && /[.!]$/.test(s) && canvasSentences(s).length === 1 && s.split(" ").length <= 26 && (s.match(/\d+(?:\.\d+)?/g) ?? []).every((n) => said.has(n)));
+  const ok = out.every((s) => s && /[.!]$/.test(s) && canvasSentences(s).length === 1 && s.split(" ").length <= 26 && !STOCK.test(s) && (s.match(/\d+(?:\.\d+)?/g) ?? []).every((n) => said.has(n)));
   return ok ? out : null;
 }
 

@@ -1867,6 +1867,12 @@ export function LessonPlayer({
       if (isAdaptiveQuestion(question)) onLearnerInteraction?.({ kind: "question", detail: question });
     },
     onExplanationClosed: () => lesson.requestResume(),
+    // A typed "continue" resumes the lecture from where it froze (a lost narration restarts its board), as the
+    // spoken one does — it was answered as a question, and the lecture never came back (owner, 2026-11-28).
+    onResumeRequested: () => {
+      if (checkinRef.current) return;
+      resumeAfterQuestion(true);
+    },
     onVoiceBlocked: () => {
       blockedLiveOnlyRef.current = false;
       setVoiceBlocked(true);
@@ -3171,8 +3177,9 @@ export function LessonPlayer({
    * recovery effect (keyed on `quiz.phase`, which this same tick sets back to "idle") restarts it.
    * A frozen lecture is still continued mid-sentence by `requestResume()` as before.
    */
-  function resumeAfterQuestion() {
-    lesson.requestResume();
+  function resumeAfterQuestion(explicit = false) {
+    // `explicit`: the student asked to go on — that lifts the hold a typed question put on the lecture.
+    lesson.requestResume(explicit ? { explicit: true } : undefined);
     if (
       !voice.hasFrozenTeacher() &&
       narrationLiveForRef.current !== index &&

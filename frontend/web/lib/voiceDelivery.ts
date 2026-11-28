@@ -27,7 +27,16 @@ export type DeliveryKind = "praise" | "reveal" | "question" | "task" | "warning"
 export type BoardVoice = { index: number; count: number; keyTerms?: string[] };
 
 /** Bumped whenever these rules change, so clips acted under old rules are made again (lib/narrationAudio.ts). */
-export const DELIVERY_VERSION = "acted4";
+export const DELIVERY_VERSION = "acted5";
+
+/**
+ * acted5 (owner, 2026-11-27: "when the voice switches between high and low pitch it seems weird — always excited
+ * mode should be kept active"). One delivery for every sentence, so her pitch never swings from line to line: the
+ * mood words of acted4 (curious, gentle, calm at the end of a board, plain on a task) each moved the clone's pitch.
+ * Only the stress on the board's bold term is kept. Checked on the clone: "excited, upbeat" kept the words of all six
+ * test lines (transcribed back, 2026-11-27).
+ */
+export const ALWAYS_EXCITED = "excited, upbeat";
 
 /*
  * Round 1 (blind pairs, same cloned voice, luna's lines): "warm" on a story, "curious" on a question and
@@ -84,6 +93,14 @@ function stressed(text: string, terms: string[] | undefined): string | null {
 }
 
 export function deliveryFor(text: string, at?: BoardVoice): Delivery {
+  const acted = actedDelivery(text, at);
+  // Always the same mood (acted5): the kind is kept for what else reads it; the style is one for every line.
+  const term = acted.style.match(/stressing "([^"]+)"/)?.[1];
+  return { ...acted, style: term ? `${ALWAYS_EXCITED}, stressing "${term}"` : ALWAYS_EXCITED };
+}
+
+/** acted4's reading of a sentence — its kind, and the term it stresses. */
+function actedDelivery(text: string, at?: BoardVoice): Delivery {
   const t = text.trim();
   const placed = Boolean(at && at.index >= 0 && at.index < at.count);
   const first = placed && at!.index === 0;
@@ -123,17 +140,16 @@ const PEAKS_PER_BOARD = 2;
  * stress on their term, so the peak stays a peak. Pure; same board, same acting.
  */
 export function actBoard(sentences: string[], keyTerms: string[] = []): Delivery[] {
+  // acted5: every line in the one excited delivery; only the first PEAKS_PER_BOARD key lines keep their stress,
+  // so a stressed word still stands out.
   let peaks = 0;
   return sentences.map((sentence, index) => {
-    const at = { index, count: sentences.length, keyTerms };
-    const d = deliveryFor(sentence, at);
-    if (d.kind !== "key" && d.kind !== "definition") return d;
+    const d = deliveryFor(sentence, { index, count: sentences.length, keyTerms });
+    if (!/stressing "/.test(d.style)) return d;
     if (peaks < PEAKS_PER_BOARD) {
       peaks++;
       return d;
     }
-    const shape = index < sentences.length / 3 ? SHAPE.start : index >= (sentences.length * 2) / 3 ? SHAPE.end : SHAPE.middle;
-    const term = d.style.match(/stressing "([^"]+)"/)?.[1];
-    return { ...d, style: term ? `${shape}, stressing "${term}"` : shape, kind: d.kind === "key" ? "plain" : d.kind };
+    return { ...d, style: ALWAYS_EXCITED, kind: d.kind === "key" ? "plain" : d.kind };
   });
 }

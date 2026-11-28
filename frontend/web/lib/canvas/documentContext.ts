@@ -557,8 +557,11 @@ export function uncoveredKeyBlocks(doc: SuprnotesLessonInput, beats: Array<Pick<
   const out: Array<{ id: string; label: string; page?: number }> = [];
   for (const block of doc.contentBlocks ?? []) {
     const text = [block.heading, block.text, ...(block.items ?? []), ...(block.columns ?? []), ...(block.rows ?? []).flat()].filter(Boolean).join(" ");
-    const isTable = block.type === "table" || Boolean(block.rows?.length);
-    const isExample = /^\s*(?:worked\s+)?example\b/i.test(block.heading ?? "") || /^\s*(?:worked\s+)?example\b/i.test(block.text ?? "");
+    // A page read from a PHOTO (lib/parsePdf.ts photo mode) comes back as transcribed text: a table may be a paragraph
+    // of "a | b | c" rows or one that starts "Table 1", and "Worked example 1" may sit inside the paragraph before it
+    // (the PDF test of 2026-11-28: both were skipped and not caught).
+    const isTable = block.type === "table" || Boolean(block.rows?.length) || /^\s*table\s*\d/i.test(block.heading ?? "") || /^\s*table\s*\d/im.test(block.text ?? "") || (block.text ?? "").split("\n").filter((l) => (l.match(/\|/g) ?? []).length >= 2).length >= 2;
+    const isExample = /\b(?:worked\s+)?example\s*\d*\s*[:.]?/i.test(block.heading ?? "") || /\bworked\s+example\b|^\s*example\s*\d*\b/im.test(block.text ?? "");
     if (!isTable && !isExample) continue;
     if (named.has(block.id) || !text.trim()) continue;
     const numbers = [...new Set(text.match(/\d+(?:\.\d+)?/g) ?? [])].filter((n) => !/^(?:19|20)\d\d$/.test(n));

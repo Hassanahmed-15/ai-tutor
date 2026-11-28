@@ -118,7 +118,7 @@ if (pwFile === "--local-token") {
   const token = await new SignJWT({ email }).setProtectedHeader({ alg: "HS256" }).setSubject(process.env.LOCAL_USER_ID ?? email.split("@")[0]).setIssuedAt().setExpirationTime("3h").sign(new TextEncoder().encode(env.AUTH_SECRET));
   await ctx.addCookies([{ name: "aria_access", value: token, domain: new URL(BASE).hostname, path: "/" }]);
 } else {
-  const login = await ctx.request.post(`${BASE}/api/auth/login`, { data: { email, password: fs.readFileSync(pwFile, "utf8").trim() } });
+  const login = await ctx.request.post(`${BASE}/api/auth/login`, { data: { email, password: fs.readFileSync(pwFile, "utf8").trim() }, timeout: 180_000 });
   if (!login.ok()) throw new Error(`login failed: ${login.status()}`);
 }
 
@@ -149,6 +149,47 @@ if (promptTopic) {
   const anyway = page.getByRole("button", { name: /Continue anyway/ });
   if (await anyway.isVisible().catch(() => false)) await anyway.click();
   log(`video ${pdf}`);
+} else if (pdf.startsWith("phone:")) {
+  /*
+   * THE QR PHONE CAPTURE: "phone:<photo1>,<photo2>" — the desktop opens the Phone panel, an emulated iPhone opens
+   * its link, photographs each page (camera for the first, gallery for the rest) and sends; the desktop lands on the
+   * mode screen, which for phone pages first asks "What should Aria teach?" (all pages, or the question given).
+   */
+  const photos = pdf.slice("phone:".length).split(",").map((p) => p.trim()).filter(Boolean);
+  const created = page.waitForResponse((r) => r.url().endsWith("/api/capture") && r.request().method() === "POST", { timeout: 90_000 });
+  await page.getByRole("button", { name: /^\s*Phone\s*$/ }).click();
+  const cap = await (await created).json();
+  log(`QR capture opened (${photos.length} photo${photos.length === 1 ? "" : "s"})`);
+  await page.waitForTimeout(1500);
+  await page.screenshot({ path: path.join(outDir, "phone-1-qr.png") });
+  const { devices } = await import("playwright");
+  const phone = await browser.newContext({ ...devices["iPhone 13"], defaultBrowserType: undefined });
+  const pp = await phone.newPage();
+  await pp.goto(cap.url, { waitUntil: "domcontentloaded", timeout: 240_000 });
+  await pp.getByText("Add your pages").waitFor({ timeout: 120_000 });
+  for (const [i, photo] of photos.entries()) {
+    const plus = i === 0 ? pp.getByText("Take a photo", { exact: true }) : pp.locator('label[aria-label="Add photos from gallery or files"]');
+    const [chooser] = await Promise.all([pp.waitForEvent("filechooser", { timeout: 30_000 }), plus.tap()]);
+    await chooser.setFiles(photo);
+    log(`phone took ${path.basename(photo)}`);
+    await pp.waitForTimeout(2500);
+  }
+  for (let i = 0; i < 300; i++) {
+    if ((await pp.getByText(/On your computer · read|Looks blurry/).count()) >= photos.length) break;
+    await pp.waitForTimeout(1000);
+  }
+  await pp.screenshot({ path: path.join(outDir, "phone-2-read.png") });
+  await pp.getByRole("button", { name: /Done — teach me/ }).click();
+  log("phone sent the pages");
+  await page.getByRole("button", { name: /explain beyond the pages/i }).waitFor({ timeout: 300_000 });
+  if (question) {
+    await page.getByText("A question about them", { exact: true }).click();
+    await page.getByLabel("Your question about these pages").fill(question);
+  }
+  await page.screenshot({ path: path.join(outDir, "phone-3-mode.png") });
+  await phone.close();
+  await page.getByRole("button", { name: strict ? /stick to the pages/i : /explain beyond the pages/i }).first().click({ timeout: 60_000 });
+  log(`chose ${strict ? "STRICT" : "REFERENCE"} for the phone pages${question ? ` with "${question}"` : ""}`);
 } else {
   await page.locator('input[type="file"]').first().setInputFiles(pdf);
   const box = page.locator("#page-prompt");
@@ -166,7 +207,7 @@ if (promptTopic) {
   log(`attached ${path.basename(pdf)}${tickPages.length ? ` (pages ${tickPages.join(", ")})` : ""}${question ? ` and asked "${question}"` : " with no question"}`);
 
   const useAll = page.getByRole("button", { name: /use all pages|use \d+ pages?|ask · all pages/i }).first();
-  const choice = page.getByRole("button", { name: strict ? /strict source/i : /use it as a reference/i }).first();
+  const choice = page.getByRole("button", { name: strict ? /stick to the pages/i : /explain beyond the pages/i }).first();
   for (let i = 0; i < 120; i++) {
     if (await choice.isVisible().catch(() => false)) break;
     if (await useAll.isVisible().catch(() => false)) await useAll.click().catch(() => {});
@@ -240,6 +281,7 @@ let shot = 0;
 const started = Date.now();
 const timeline = [];
 let finishedAt = 0;
+const seenBoards = [];
 for (let i = 0; i < 720; i++) {
   await page.waitForTimeout(5000);
   const response = await page.request.get(`${BASE}/api/progressive-lectures/${encodeURIComponent(sessionId)}`, { timeout: 60_000 }).catch(() => null);
@@ -256,7 +298,13 @@ for (let i = 0; i < 720; i++) {
   // option, and skip a "try it" or "draw it" — a student who does nothing would stall the test.
   const goOn = page.getByRole("button", { name: /^(?:Continue the lesson|Skip and continue|Continue anyway)$/ }).first();
   const choose = page.getByRole("button", { name: /^Choose an answer$/ }).first();
-  if (await goOn.isVisible().catch(() => false)) {
+  // A "Quick question" card (put the steps in order, pick an answer) holds the lecture too: skipped, as with a task.
+  const closeQuestion = page.getByRole("button", { name: "Close question" }).first();
+  if (await closeQuestion.isVisible().catch(() => false)) {
+    await page.screenshot({ path: path.join(outDir, `question-${String(shot).padStart(3, "0")}.png`) }).catch(() => {});
+    await closeQuestion.click().catch(() => {});
+    log("skipped a quick question");
+  } else if (await goOn.isVisible().catch(() => false)) {
     await goOn.click().catch(() => {});
     log("continued past a task");
   } else if (await choose.isVisible().catch(() => false)) {
@@ -282,7 +330,11 @@ for (let i = 0; i < 720; i++) {
     if (state.faceButton) problems.push("the dock still has the Show/Hide Aria's face button");
     if (state.webglCanvases > 0) problems.push(`a WebGL canvas (Aria's face renders with one) is on the page at ${Math.round((Date.now() - started) / 1000)}s`);
   }
-  if (i % 2 === 0) await page.screenshot({ path: path.join(outDir, `play-${String(shot++).padStart(3, "0")}.png`) }).catch(() => {});
+  // Every 5 s, named by its part ("play-p3-041.png"): the last shot of each part is that board finished.
+  const heading = await page.evaluate(() => document.querySelector('[data-live="true"]')?.getAttribute("data-panel") ?? "").catch(() => "");
+  if (heading && !seenBoards.includes(heading)) seenBoards.push(heading);
+  const partNo = heading ? String(seenBoards.indexOf(heading) + 1) : state?.part?.match(/^Part (\d+)/)?.[1] ?? "0";
+  await page.screenshot({ path: path.join(outDir, `play-p${partNo}-${String(shot++).padStart(3, "0")}.png`) }).catch(() => {});
   const done = snapshot && (snapshot.complete || (snapshot.plannedBeatCount > 0 && (snapshot.contiguousReadyCount ?? 0) >= snapshot.plannedBeatCount));
   if (done && !finishedAt) finishedAt = Date.now();
   const watched = (Date.now() - started) / 1000;

@@ -761,7 +761,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                   While a task card is open the others go fully dark: a neighbour's big writing showed
                   around the board and under the card (audit 2026-10-17). A board drawn inside this
                   one keeps the usual veil, so it never blacks out part of the board being answered. */}
-              <rect x={-2} y={-2} width={PANEL_W + 4} height={PANEL_H + 4} rx={23} fill="#0b0f14" pointerEvents="none" style={{ opacity: rackFocus && !live && visitIndex !== i ? (taskOpen && panel.spec.inside?.beat !== current?.key ? 1 : 0.62) : 0, transition: "opacity 700ms ease" }} />
+              {/* 0.8, not 0.62: a board the live one sits inside is shown many times larger behind it, and at 0.62 its
+                  giant words still pulled the eye off the board being taught (PDF test 2026-11-28). */}
+              <rect x={-2} y={-2} width={PANEL_W + 4} height={PANEL_H + 4} rx={23} fill={CHALK.slate} pointerEvents="none" style={{ opacity: rackFocus && !live && visitIndex !== i ? (taskOpen && panel.spec.inside?.beat !== current?.key ? 1 : 0.8) : 0, transition: "opacity 700ms ease" }} />
               {visitIndex === i && <rect x={-14} y={-14} width={PANEL_W + 28} height={PANEL_H + 28} rx={32} fill="none" stroke="#f59e0b" strokeWidth={6} opacity={0.85} className="cv-live" />}
               {showOverviewBadges && !panel.spec.inside && (
                 <g transform="translate(-26,-26)">
