@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { Mark } from "@/lib/canvas/layout";
 import { revealUnits, shownCount } from "@/lib/canvas/blocks";
+import { leadFirstPieces } from "@/lib/canvas/textLead";
+import { followScrollTop, lineBands, type Band } from "@/lib/canvas/scrollSnap";
 import { BlockView } from "./BlockContent";
 import { isWebKit, WebKitHtml } from "./webkitHtml";
 
@@ -27,7 +29,8 @@ function debugOn(): boolean {
  * and keeping everything above it; nothing is cut.
  */
 export function BlocksView({ mark, shownThrough, sentenceProgress, live, reducedMotion, said }: { mark: BlocksMark; shownThrough: number; sentenceProgress: number; live: boolean; reducedMotion: boolean; said?: string }) {
-  const timed = useMemo(() => mark.blocks.map((block) => ({ block, units: revealUnits(block) })), [mark.blocks]);
+  // Text first (lib/canvas/textLead.ts): each sentence's first piece is written as the sentence is cued, before her voice.
+  const timed = useMemo(() => mark.blocks.map((block) => ({ block, units: leadFirstPieces(revealUnits(block)) })), [mark.blocks]);
   const clock = live && Number.isFinite(shownThrough) ? shownThrough + Math.min(0.999, Math.max(0, sentenceProgress)) : Infinity;
   const box = useRef<HTMLDivElement>(null);
   const followAfter = useRef(0);
@@ -38,17 +41,45 @@ export function BlocksView({ mark, shownThrough, sentenceProgress, live, reduced
   const shown = timed.map((t) => shownCount(t.units, clock));
   const total = shown.reduce((a, b) => a + b, 0);
 
-  // Follow her: the newest piece stays in the lower part of the board.
+  // The first piece of the sentence she is saying, counted among the pieces written so far (for follow, below).
+  const sentenceStart = useRef(-1);
+  const sentenceNow = Number.isFinite(clock) ? Math.floor(clock) : -1;
+  const startPiece = sentenceNow < 0 ? -1 : timed.flatMap((t, i) => t.units.slice(0, shown[i])).findIndex((u) => u.at >= sentenceNow);
+  useLayoutEffect(() => { sentenceStart.current = startPiece; }, [startPiece]);
+
+  // Follow her: the newest piece stays in the lower part of the board, the start of her sentence stays on it, and
+  // the column stops only where its top edge cuts no line in half (lib/canvas/scrollSnap.ts).
   const follow = useCallback(() => {
     const el = box.current;
     if (!el || Date.now() < followAfter.current) return;
     const units = el.querySelectorAll<HTMLElement>("[data-bk-unit]");
     const last = units[units.length - 1];
     if (!last) return;
-    const top = last.getBoundingClientRect().top - el.getBoundingClientRect().top;
-    const scale = el.getBoundingClientRect().height / Math.max(1, el.offsetHeight);
-    const under = top / (scale || 1) + last.offsetHeight - el.clientHeight * 0.82;
-    if (under > 4) el.scrollBy({ top: under, behavior: reducedMotion ? "auto" : "smooth" });
+    const frame = el.getBoundingClientRect();
+    const scale = frame.height / Math.max(1, el.offsetHeight) || 1;
+    // Screen pixels to the column's own scroll coordinates (the board may be zoomed by the camera).
+    const at = (y: number) => (y - frame.top) / scale + el.scrollTop;
+    const boxes: Band[] = [];
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const range = document.createRange();
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (!n.textContent?.trim()) continue;
+      range.selectNodeContents(n);
+      for (const r of range.getClientRects()) if (r.height > 0) boxes.push({ top: at(r.top), bottom: at(r.bottom) });
+    }
+    // A table row, a step, a typeset formula: one piece, never cut between its own lines.
+    for (const u of units) if (u.tagName !== "SPAN") { const r = u.getBoundingClientRect(); boxes.push({ top: at(r.top), bottom: at(r.bottom) }); }
+    const lastBox = last.getBoundingClientRect();
+    const first = sentenceStart.current >= 0 ? units[sentenceStart.current] : undefined;
+    const next = followScrollTop({
+      current: el.scrollTop,
+      newestBottom: at(lastBox.top) + last.offsetHeight,
+      view: el.clientHeight,
+      bands: lineBands(boxes),
+      keepTop: first ? at(first.getBoundingClientRect().top) : undefined,
+      max: el.scrollHeight - el.clientHeight,
+    });
+    if (next !== null) el.scrollTo({ top: next, behavior: reducedMotion ? "auto" : "smooth" });
   }, [reducedMotion]);
   useEffect(() => { follow(); }, [total, follow]);
 
@@ -91,6 +122,8 @@ export function BlocksView({ mark, shownThrough, sentenceProgress, live, reduced
       onPointerDown={(e) => { e.stopPropagation(); studentScrolled(); }}
     >
       {timed.map(({ block, units }, i) => (shown[i] > 0 ? <BlockView key={block.id} block={block} units={units} shown={shown[i]} said={said && Number.isFinite(clock) ? { name: said, sentence: Math.floor(clock) } : undefined} /> : null))}
+      {/* Room under the last line, so the column can stop where its top edge cuts no line (lib/canvas/scrollSnap.ts). */}
+      <div aria-hidden="true" style={{ height: 44 }} />
       {debug && <div className="bk-debug">sync: last {Math.round(debug.last)} ms · median {Math.round(debug.median)} ms · {debug.n} pieces</div>}
     </div>
   );

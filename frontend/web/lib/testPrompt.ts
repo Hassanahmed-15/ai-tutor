@@ -55,7 +55,8 @@ If CORRECT: name the specific idea they got right, in their own terms where you 
 If PARTIAL: begin with the accurate core idea, then name only the explicitly requested part that is missing. Do not describe optional elaboration as missing.
 If MISCONCEPTION: name the specific thing that is factually mistaken or contradicted, and say in one clause why it matters. If the answer was empty, evasive, or unrelated, say that plainly rather than inventing a misconception they did not express.
 
-Be concrete about THEIR answer. Never write a sentence that would fit equally well under any other question.`;
+Be concrete about THEIR answer. Never write a sentence that would fit equally well under any other question.
+Use plain words, no harder than the question's, and spell every word correctly — the subject's exact term, never a word that only sounds like it.`;
 
 export const REMEDIATION_SYSTEM_PROMPT = `You are Aria, writing a SHORT 1-3 beat follow-up mini-lesson that fixes ONE specific misunderstanding.
 Return JSON only: { "beats": Beat[] } using the exact same Beat/DrawScript schema as a normal lecture beat (id, title, teacherMove, stepLabel, slideKind, points, script, draw with DrawOp ops — checkpoint beats are not needed here).

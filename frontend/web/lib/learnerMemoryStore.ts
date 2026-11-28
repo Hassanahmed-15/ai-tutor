@@ -37,7 +37,12 @@ export async function updateLearnerMemory(
   userId: string,
   change: (memory: LearnerMemory) => LearnerMemory,
 ): Promise<LearnerMemory> {
-  for (let attempt = 0; attempt < 2; attempt += 1) {
+  // Several writers touch one student's memory while a lesson loads (planning, the lecture start, the portrait):
+  // one retry was not enough (2026-11-28: /api/learner-memory/persona 502 "conflicted twice"). Up to 5 tries, each
+  // after a short random pause so two writers do not collide again on the next try.
+  const TRIES = 5;
+  for (let attempt = 0; attempt < TRIES; attempt += 1) {
+    if (attempt > 0) await new Promise((r) => setTimeout(r, 60 + Math.random() * 140 * attempt));
     const { memory, etag } = await readDoc(userId);
     const next = change(memory);
     const doc: MemoryDoc = { ...next, id: docId(userId), userId, kind: "learner-memory" };
@@ -50,12 +55,12 @@ export async function updateLearnerMemory(
       return next;
     } catch (error) {
       const code = (error as { code?: number }).code;
-      // 412: someone else wrote since we read. 409: someone else created it first. Retry once.
-      if ((code === 412 || code === 409) && attempt === 0) continue;
+      // 412: someone else wrote since we read. 409: someone else created it first. Read again and retry.
+      if ((code === 412 || code === 409) && attempt < TRIES - 1) continue;
       throw error;
     }
   }
-  throw new Error("learner memory update conflicted twice");
+  throw new Error(`learner memory update conflicted ${TRIES} times`);
 }
 
 /** "Forget everything": the student's right to a clean slate. */

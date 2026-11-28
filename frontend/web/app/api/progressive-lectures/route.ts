@@ -17,6 +17,7 @@ import { sanitizeSourcePack } from "@/lib/webSources";
 import { isProgrammingTopic } from "@/lib/codeSpec";
 import { classifySubjectDomain } from "@/lib/canvas/subjectDomainClassifier";
 import { curriculumDocumentOf, referenceDocumentOf } from "@/lib/canvas/lessonRequest";
+import { cleanVoiceKey } from "@/lib/voices";
 import { documentSections } from "@/lib/canvas/documentContext";
 import { emphasisedParts, sanitizeTeachingChoices, teachingSettings } from "@/lib/teachingQuestions";
 
@@ -74,6 +75,8 @@ export async function POST(request: Request) {
     suprnotes: body.sourceDocument ?? body.suprnotes,
     transcript: text(body.transcript, 30_000),
     focus: text(body.focus, 1_000),
+    ...(body.practiceReview === true ? { practiceReview: true } : {}),
+    ...(cleanVoiceKey(body.voice) ? { voice: cleanVoiceKey(body.voice) } : {}),
     documentId: text(body.documentId, 200),
     sourceScope: sanitizeSourceScope(body.sourceScope),
     selection: parseSelection(body.selection),

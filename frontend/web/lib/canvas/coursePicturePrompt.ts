@@ -462,6 +462,30 @@ export function courseBoardContext(doc: SuprnotesLessonInput | null | undefined,
   };
 }
 
+/**
+ * A TYPED PROMPT TAUGHT LIKE A COURSE LESSON (lib/canvas/lessonRequest.ts promptTaughtLikeCourse; owner,
+ * 2026-11-20: "make it exactly like it is in the courses … according to the personalisation done in
+ * prompting"): the same picture context a course board gets, with no syllabus behind it. The board's own
+ * brief stands in for the syllabus block, the student's pitch for its level hints, and the curriculum is
+ * read from what the student typed (international when it names none). The family is left to the picture
+ * planner, which picks the board's discipline.
+ */
+export function promptBoardContext(topic: string, beat: CanvasPlanBeat): CourseBoardContext {
+  return {
+    course: topic.slice(0, 160),
+    lesson: topic.slice(0, 160),
+    board: beat.title,
+    brief: beat.brief,
+    objects: (beat.objects ?? []).slice(0, 12).map((o) => o.replace(/[-_]+/g, " ").trim()).filter(Boolean),
+    written: [],
+    sentences: splitSentences(beat.script),
+    syllabus: "",
+    hints: beat.audience ? [`Level: ${beat.audience}`.slice(0, 600)] : [],
+    mustShow: beat.requiredVisual?.mustShow ?? [],
+    curriculum: curriculumOf(topic),
+  };
+}
+
 /** The board's context with what is written on it: heading, notes on their sentences, lines of working. */
 export function withBoardWriting(ctx: CourseBoardContext, spec: CanvasBoardSpec): CourseBoardContext {
   const written = [`Heading: ${spec.heading}`, ...spec.notes.map((n) => `Note (sentence ${n.s}): ${n.text}`)];

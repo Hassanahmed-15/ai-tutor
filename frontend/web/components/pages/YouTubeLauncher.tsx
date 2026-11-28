@@ -175,7 +175,7 @@ export function YouTubeLauncher({
         }`}
       >
         <PlayGlyph size={compact ? 14 : 16} />
-        <span className={compact ? "" : "max-sm:sr-only"}>{compact ? "Video" : "Summarize a YouTube lecture"}</span>
+        <span className="max-sm:sr-only">{compact ? "Video" : "Summarize a YouTube lecture"}</span>
       </button>
       {tipOpen && !open && (
         <span

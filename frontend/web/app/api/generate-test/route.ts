@@ -5,6 +5,7 @@ import type { Beat } from "@/lib/lessonContent";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
 import { STRICT_TEST_RULES, groundTestQuestions } from "@/lib/strictSourceAnswers";
 import { createOpenAI } from "@/lib/openaiClient";
+import { testWordingIssues, testWordingRule, testWordingTarget } from "@/lib/testWording";
 
 /**
  * Generates a hard, genuine short-answer test bank from a finished lecture's final beats —
@@ -55,7 +56,9 @@ export async function POST(req: Request) {
     ? "LANGUAGE: the lecture was taught in the language of the beats' scripts (not English). Write every question, model answer and mark-scheme point in that same language, about that language's own grammar and writing — never English sentences to correct.\n\n"
     : "LANGUAGE: write the test in the language the beats' scripts are written in.\n\n";
   const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const userMsg = languageRule +
+  // THE TEST IS WORDED NO HARDER THAN THE LESSON (lib/testWording.ts; owner QA brief 2026-11-28, item 4j).
+  const wording = testWordingTarget(beats.map((b) => b.script ?? ""));
+  const userMsg = languageRule + `${testWordingRule(wording)}\n\n` +
     `Lecture topic: "${topic}"\nBeats taught (use these ids as beatId):\n${JSON.stringify(compactBeatsForTest(beats))}\n\n` +
     (strict ? `SOURCE — the student's own document, the text this lecture was taught from. Test only what SOURCE states:\n${source}\n\n` : "") +
     "Write the test now.";
@@ -87,6 +90,14 @@ export async function POST(req: Request) {
       }
       if (wrongSums.length) bank.questions = bank.questions.filter((q) => !wrongSums.some((w) => w.id === q.id));
       if (bank.questions.length === 0) throw new Error("No question had a correct model answer.");
+      // Worded harder than the lesson: written again once, naming the questions; after that the test ships.
+      const hardWords = testWordingIssues(bank.questions, wording);
+      if (hardWords.length && attempt < ATTEMPTS - 1) {
+        issue = `these questions are worded harder than the lesson (grade ${wording.grade}): ${hardWords.map((h) => `${h.id} ${h.why}`).join("; ")} — keep the same thinking, in the lesson's plain words`;
+        lastError = "The test was worded harder than the lesson.";
+        continue;
+      }
+      if (hardWords.length) console.info(`[generate-test] ${hardWords.length} question(s) still worded above grade ${wording.grade}: ${hardWords.map((h) => h.why).join("; ")}`);
 
       const usage = completion.usage;
       const costUsd = usage ? usage.prompt_tokens * (2.5 / 1_000_000) + usage.completion_tokens * (10.0 / 1_000_000) : 0;

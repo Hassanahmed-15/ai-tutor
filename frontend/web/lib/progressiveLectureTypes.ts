@@ -78,6 +78,10 @@ export type ProgressiveLectureStatus =
   | "failed";
 
 export type ProgressiveLectureInput = {
+  /** "Explain my mistakes" after a practice test (docs/practice-exam.md): one board per mistake (the compact ladder). */
+  practiceReview?: boolean;
+  /** The student's chosen voice (lib/voices.ts), kept on the session so every board is narrated in it. */
+  voice?: string;
   topic: string;
   mood: string;
   sourceType: LectureSourceType;
@@ -148,6 +152,8 @@ export type ProgressiveLectureSessionDoc = {
   inputBlobName: string;
   /** A typed lesson's asked subject (lib/canvas/subjectDomain.ts), kept for the player. */
   subjectDomain?: import("./canvas/subjectDomain").SubjectDomain;
+  /** The voice the student chose when the lecture started (lib/voices.ts); absent = Aria's. */
+  voice?: string;
   status: ProgressiveLectureStatus;
   plan: ProgressiveBeatPlan[];
   planRevision: number;

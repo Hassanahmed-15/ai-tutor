@@ -18,7 +18,7 @@ const GALLERY_ID = "capture-gallery-input";
 
 type SlotState = "uploading" | "reading" | "ready" | "failed" | "held" | "error";
 type Slot = { n: number; version: number; state: SlotState; problem: string | null; error: string | null; preview?: string };
-type Server = { status: "waiting" | "connected" | "sent" | "cancelled" | "expired"; order: number[]; slots: Array<{ n: number; version: number; state: SlotState; problem: string | null; error: string | null }> };
+type Server = { status: "waiting" | "connected" | "sent" | "cancelled" | "expired"; purpose?: "lesson" | "answers"; order: number[]; slots: Array<{ n: number; version: number; state: SlotState; problem: string | null; error: string | null }> };
 
 const MAX = 6;
 const PROBLEM: Record<string, string> = { blurry: "Looks blurry — retake?", dark: "Too dark to read", "no-page": "No page found" };
@@ -48,6 +48,9 @@ export function PhoneCapture({ id }: { id: string }) {
   const [slots, setSlots] = useState<Slot[]>([]);
   const [order, setOrder] = useState<number[]>([]);
   const [status, setStatus] = useState<Server["status"] | null>(null);
+  /** "answers" when the computer is marking a practice test (its words say submit, not teach). */
+  const [purpose, setPurpose] = useState<"lesson" | "answers">("lesson");
+  const answers = purpose === "answers";
   const [fatal, setFatal] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -84,6 +87,7 @@ export function PhoneCapture({ id }: { id: string }) {
       if (!stop && ok && data) {
         const s = data as Server;
         setStatus(s.status);
+        if (s.purpose) setPurpose(s.purpose);
         setSlots((prev) => prev.map((slot) => {
           const server = s.slots.find((x) => x.n === slot.n);
           if (!server || server.version !== slot.version || slot.state === "uploading") return slot;
@@ -175,7 +179,7 @@ export function PhoneCapture({ id }: { id: string }) {
   const busy = ordered.some((s) => s.state === "uploading");
 
   if (fatal) return <Screen><TriangleAlert className="mx-auto text-[var(--hud-warn)]" size={28} /><p className="mt-3 text-center text-[1rem] text-[var(--hud-text)]">{fatal}</p></Screen>;
-  if (status === "sent") return <Screen><Check className="mx-auto text-[var(--hud-cyan)]" size={32} /><p className="mt-3 text-center font-display text-[1.4rem] text-[var(--hud-text)]">Sent to Aria</p><p className="mt-1 text-center text-[0.9rem] text-[var(--hud-text-dim)]">Carry on on your computer.</p></Screen>;
+  if (status === "sent") return <Screen><Check className="mx-auto text-[var(--hud-cyan)]" size={32} /><p className="mt-3 text-center font-display text-[1.4rem] text-[var(--hud-text)]">{answers ? "Answers sent to Aria" : "Sent to Aria"}</p><p className="mt-1 text-center text-[0.9rem] text-[var(--hud-text-dim)]">{answers ? "Press Submit for marking on your computer." : "Carry on on your computer."}</p></Screen>;
   if (status === "cancelled" || status === "expired") return <Screen><p className="text-center text-[1rem] text-[var(--hud-text)]">This code {status === "expired" ? "has expired" : "was closed"}. Ask for a new one on your computer.</p></Screen>;
 
   const room = ordered.length < MAX;
@@ -185,8 +189,8 @@ export function PhoneCapture({ id }: { id: string }) {
       <input id={INPUT_ID} ref={inputRef} type="file" accept="image/*" capture="environment" className="sr-only" tabIndex={-1} aria-hidden="true" onChange={takeFrom} />
       {/* No `capture`: the phone offers its gallery and files (several at once). */}
       <input id={GALLERY_ID} type="file" accept="image/*" multiple className="sr-only" tabIndex={-1} aria-hidden="true" onChange={takeFrom} />
-      <h1 className="font-display text-[1.6rem] leading-tight text-[var(--hud-text)]">Add your pages</h1>
-      <p className="mt-1 text-[0.9rem] text-[var(--hud-text-dim)]">Take a photo with the camera, or choose photos already on your phone. Each one goes to your computer the moment you add it — up to 6 pages.</p>
+      <h1 className="font-display text-[1.6rem] leading-tight text-[var(--hud-text)]">{answers ? "Add your answer pages" : "Add your pages"}</h1>
+      <p className="mt-1 text-[0.9rem] text-[var(--hud-text-dim)]">{answers ? "Take a photo of each page of your working, or choose photos already on your phone. Each one goes to your computer the moment you add it — up to 6 pages." : "Take a photo with the camera, or choose photos already on your phone. Each one goes to your computer the moment you add it — up to 6 pages."}</p>
 
       {!token ? (
         <div className="mt-10 flex flex-col items-center gap-3 text-center text-[0.9rem] text-[var(--hud-text-dim)]">
@@ -248,7 +252,7 @@ export function PhoneCapture({ id }: { id: string }) {
           <span title="6 pages is the most" className="grid size-14 shrink-0 place-items-center rounded-full border border-[var(--hud-line)] text-[var(--hud-text-faint)]"><Camera size={18} /></span>
         ))}
         <button type="button" disabled={!usable || busy || sending} onClick={() => void send()} className="hud-btn-primary flex h-12 flex-1 items-center justify-center gap-2 rounded-full text-[1rem] disabled:opacity-50">
-          {sending ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />} {usable ? `Done — teach me ${usable} page${usable === 1 ? "" : "s"}` : "Add a page first"}
+          {sending ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />} {usable ? (answers ? `Submit my answers (${usable} page${usable === 1 ? "" : "s"})` : `Done — teach me ${usable} page${usable === 1 ? "" : "s"}`) : "Add a page first"}
         </button>
       </div>
     </main>

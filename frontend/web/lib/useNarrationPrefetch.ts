@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { splitNarrationSentences } from "./voice";
 import { recordTtsResponse } from "./costLedger";
+import { voiceField } from "./voiceChoice";
 
 /**
  * Warms the server-side TTS cache for what the student is about to hear.
@@ -73,7 +74,7 @@ async function drain(): Promise<void> {
       const ok = await fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-tts-priority": "warm" },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text, ...voiceField() }),
         signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(60_000) : undefined,
       })
         .then(async (r) => {

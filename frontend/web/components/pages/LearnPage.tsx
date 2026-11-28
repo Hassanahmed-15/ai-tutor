@@ -21,7 +21,7 @@ import { splitNarrationSentences } from "@/lib/voice";
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 import { DEPTH_OPTIONS, openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
 import { ALL_NEW, cardQuestions, GOAL_TAB, gradeCard, MEANING_TAB, markOf, matchSpokenParts, NOT_SURE, profileFromIntake, readParts, typedParts, type CardExtra, type CheckOutcome, type IntakePart, type PartMark } from "@/lib/intake";
-import { TEACH_TAB_PREFIX, teachingChoices, type TeachingChoice, type TeachingQuestion } from "@/lib/teachingQuestions";
+import { TEACH_TAB_PREFIX, teachingChoices, withPracticeQuestion, type TeachingChoice, type TeachingQuestion } from "@/lib/teachingQuestions";
 import { QuestionCard } from "@/components/planning/QuestionCard";
 
 /** The intake card's state (lib/intake.ts): the parts, which are ticked, each check's pick, the open tab. */
@@ -38,23 +38,27 @@ import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
 import { TestOralView } from "@/components/TestOralView";
 import { TestResultsView } from "@/components/TestResultsView";
+import { slideReview, type SlideReview } from "@/lib/testReview";
 import { type TrackMeta } from "@/components/hud/tracks";
 import { useAuth } from "@/components/auth/AuthGate";
 import { trackForProfile, isAdhdLearner } from "@/lib/adhd/gate";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { matchSpokenAnswer } from "@/lib/spokenAnswer";
 import { learnerContextForPrompt, learnerProfileView } from "@/lib/learnerProfileView";
-import { takePendingBrief, type CapturedDocument } from "@/lib/pendingBrief";
+import { takePendingBrief, type CapturedDocument, type PracticeReview } from "@/lib/pendingBrief";
+import { reviewFocus, reviewOutline } from "@/lib/practiceReview";
 import { savePendingCurriculum } from "@/lib/pendingTopic";
 import { NotesPdfButton } from "@/components/canvas/NotesPdfButton";
 import { PastPaperPractice } from "@/components/courses/PastPaperPractice";
+import { PracticeExam, practiceExamOn, type PracticePreset } from "@/components/practice/PracticeExam";
+import { boardTitles, courseSource, lectureSource, sheetPlan, type CourseSpecLike } from "@/lib/practice/source";
 import type { AskedNote } from "@/components/canvas/LessonNotesPanel";
 import type { CurriculumLessonRequest } from "@/lib/curriculum/lessonSpec";
 import type { DocumentPage, NormalisedRect, PageSelection } from "@/components/upload/PageSelector";
 import { PageStack } from "@/components/upload/PageStack";
 import { PageStackSkeleton } from "@/components/upload/PageStackSkeleton";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
-import { ArrowRight, CheckCircle2, ChevronDown, ChevronLeft, ChevronUp, ClipboardCheck, Layers, Loader2, Mic, MicOff, Play, Sparkles, X } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronDown, ChevronLeft, ChevronUp, ClipboardCheck, FileText, Layers, Loader2, Mic, MicOff, Play, Sparkles, X } from "lucide-react";
 import { isPointingPhrase, looksLikeTitle, subjectFromTranscript } from "@/lib/pdfFocus";
 import { DOCUMENT_LIMITS } from "@/lib/documentLimits";
 import { documentLectureTitle, lectureSubject } from "@/lib/lectureSubject";
@@ -75,6 +79,8 @@ import {
 import { takePendingLecture } from "@/lib/pendingLecture";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
+import { setVoiceChoice, voiceChoice, voiceField } from "@/lib/voiceChoice";
+import { TEACHER_QUESTION_ID, TEACHERS, teacherQuestion } from "@/lib/teachers";
 import { curriculumBoardEvidence } from "@/lib/curriculum/visualEvidence";
 import { addCost, recordJsonCost, resetCostLedger, setCost } from "@/lib/costLedger";
 import { LectureCostBadge } from "@/components/LectureCostBadge";
@@ -164,6 +170,10 @@ type OutlineStreamEvent =
 type CurriculumCheck = { version?: number; covered: number; total: number; missing: Array<{ n: number; text: string }>; outOfScope: string[]; accuracyIssues: string[]; passed: boolean; outcomes?: Array<{ n: number; covered: boolean; board: number; note: string; text: string }> };
 
 type LecturePayload = {
+  /** The student's chosen voice (lib/voices.ts). */
+  voice?: string;
+  /** A practice test's "Explain my mistakes" lecture: one board per mistake (lib/canvas/lessonRequest.ts compactLadder). */
+  practiceReview?: boolean;
   topic: string;
   mood: string;
   /** What Aria read up on before planning (lib/webSources.ts): taught from, and cited on each slide. */
@@ -210,11 +220,29 @@ function explainedFor(level: string): string {
   const student = /\bstudent\b/i.test(shown) ? "" : " student";
   return `Explained for ${/^[aeiou]/i.test(shown) ? "an" : "a"} ${shown}${student}`;
 }
+/** The teachers this server has (/api/voices), asked once per page. */
+let teachersAvailable: Promise<string[]> | null = null;
+function availableTeachers(): Promise<string[]> {
+  teachersAvailable ??= fetch("/api/voices", { cache: "no-store" })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((d) => (Array.isArray(d?.voices) ? (d.voices as Array<{ key: string }>).map((v) => v.key) : []))
+    .catch(() => []);
+  return teachersAvailable;
+}
+/** The planning card's questions with "Who would you like to learn with?" last (only with two or more teachers). */
+async function withTeacherQuestion(asked: TeachingQuestion[]): Promise<TeachingQuestion[]> {
+  // The Practice question is always on the card, for every subject (lib/teachingQuestions.ts withPracticeQuestion).
+  const questions = withPracticeQuestion(asked.filter((q) => q.id !== TEACHER_QUESTION_ID));
+  const keys = await Promise.race([availableTeachers(), new Promise<string[]>((r) => setTimeout(() => r([]), 3000))]);
+  if (keys.length < 2) return questions;
+  return [...questions, teacherQuestion(keys, voiceChoice()) as TeachingQuestion];
+}
+
 export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: () => void }) {
   const [topic, setTopic] = useState("");
   const [input, setInput] = useState("");
   const [phase, setPhase] = useState<
-    "ask" | "source-mode" | "outline" | "preview" | "building" | "teaching" | "finished" | "past-papers" | "test-offer" | "test-written" | "test-oral" | "test-results" | "error"
+    "ask" | "source-mode" | "outline" | "preview" | "building" | "teaching" | "finished" | "past-papers" | "test-offer" | "practice-sheet" | "test-written" | "test-oral" | "test-results" | "error"
   >("ask");
   const [beats, setBeats] = useState<Beat[]>([]);
   /*
@@ -287,6 +315,8 @@ type BuildCost =
   const [mindMapError, setMindMapError] = useState<string | null>(null);
   // Where the player starts when "teaching" mounts it: 0, or the slide picked in the mind map.
   const [replayStartIndex, setReplayStartIndex] = useState(0);
+  /** The board opened from the test results to review a slip (lib/testReview.ts); null for any other start. */
+  const [slideReviewState, setSlideReviewState] = useState<SlideReview | null>(null);
   // Slides (0-based) the student got a test question wrong on — kept after the results screen so the
   // mind map can ring them; cleared with the lecture.
   const [missedSlides, setMissedSlides] = useState<number[]>([]);
@@ -1247,6 +1277,18 @@ type BuildCost =
       if (brief.topic) setInput(brief.topic);
       return;
     }
+    // "Explain my mistakes" after a practice test: one board per mistake, straight to the build (no planning
+    // questions — the test already showed where the student stands). lib/practiceReview.ts, docs/practice-exam.md.
+    if (brief.review?.mistakes?.length) {
+      requestTextRef.current = reviewFocus(brief.review);
+      practiceReviewRef.current = true;
+      const outline = reviewOutline(brief.topic, brief.review);
+      // One tick later: in development React mounts this page twice and the unmount in between aborts any build
+      // already running (the cleanup effect below); the brief is already taken, so it would never restart.
+      // Course and video builds dodge this by awaiting a fetch first.
+      window.setTimeout(() => void build(outline.topic, outline as unknown as PlanOutline), 0);
+      return;
+    }
     if (brief.topic) void startPlanning(brief.topic);
     // Runs once on mount (see briefHandledRef above).
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1703,6 +1745,8 @@ type BuildCost =
    * When the lecture is finished it is checked against the spec (the effect on `progressiveComplete`).
    */
   const curriculumRef = useRef<CurriculumLessonRequest | null>(null);
+  /** The course lesson's spec (exam, outcomes, exam-style questions), for its practice sheet (lib/practice/source.ts). */
+  const courseSpecRef = useRef<CourseSpecLike | null>(null);
   const curriculumCheckedRef = useRef(false);
   // The lesson of a series being taught (lib/series/split.ts; CANVAS_LESSON_SERIES=on), or null.
   const [courseSeries, setCourseSeries] = useState<{ part: number; parts: number; titles: string[][]; outcomeRefs: number[]; completed: number[] } | null>(null);
@@ -1730,6 +1774,7 @@ type BuildCost =
     setOcrTranscript("");
     setSelectionPages([]);
     curriculumRef.current = null;
+    courseSpecRef.current = null;
     curriculumCheckedRef.current = false;
     setCurriculumCheck(null);
     try {
@@ -1740,6 +1785,7 @@ type BuildCost =
       // A lesson taught in several lessons says which one this is ("Respiration — Lesson 1 of 2").
       const title = series && series.parts > 1 ? `${data.spec.lessonTitle} — Lesson ${series.part} of ${series.parts}` : data.spec.lessonTitle;
       curriculumRef.current = data.request;
+      courseSpecRef.current = data.spec as CourseSpecLike;
       setCourseSeries(series);
       seriesDoneRef.current = false;
       if (series) void fetch("/api/curricula/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ request: data.request, part: series.part, status: "started" }) }).catch(() => undefined);
@@ -2102,6 +2148,8 @@ type BuildCost =
    * the first; generation still receives the second, so "in C++" or "code" is never lost.
    */
   const requestTextRef = useRef("");
+  /** True while building a practice test's mistakes lecture (the review brief): sent as `practiceReview`. */
+  const practiceReviewRef = useRef(false);
 
   /**
    * The SUBJECT of a request, not the request itself.
@@ -2699,10 +2747,11 @@ type BuildCost =
       updateIntake({ ...st, meaning: { question: q.question, options: q.options.slice(0, 5) }, ...(untouched ? { tab: MEANING_TAB } : {}) });
     });
     // How they want it taught: questions written for this topic (lib/teachingQuestions.ts), last on the card.
-    void planFetch({ mode: "teaching", topic: quick, request: raw }).then((data) => {
+    void planFetch({ mode: "teaching", topic: quick, request: raw }).then(async (data) => {
+      // The last question is always who teaches (lib/teachers.ts), when this server has more than one teacher.
+      const questions = await withTeacherQuestion(Array.isArray(data?.questions) ? (data!.questions as TeachingQuestion[]) : []);
       if (!live()) return;
       const st = intakeRef.current!;
-      const questions = Array.isArray(data?.questions) ? (data!.questions as TeachingQuestion[]) : [];
       // Waiting on their loading tab: the first of them opens — or, with none, the card is done.
       const waiting = st.tab === `${TEACH_TAB_PREFIX}loading`;
       updateIntake({ ...st, teaching: questions, loadingTeaching: false, ...(waiting && questions.length ? { tab: `${TEACH_TAB_PREFIX}${questions[0].id}` } : {}) });
@@ -2805,7 +2854,7 @@ type BuildCost =
     const scope = sourceScopeRef.current;
     const question = doc && !opts.strict && scope.fidelity === "reference" && scope.breadth.kind !== "whole" ? scope.breadth.focus.trim() : "";
     const teaching = question
-      ? planFetch({ mode: "teaching", topic: subject, request: question, document: true }).then((data) => (Array.isArray(data?.questions) ? (data!.questions as TeachingQuestion[]) : []))
+      ? planFetch({ mode: "teaching", topic: subject, request: question, document: true }).then((data) => withTeacherQuestion(Array.isArray(data?.questions) ? (data!.questions as TeachingQuestion[]) : []))
       : null;
     const early = intakePrefetchRef.current;
     intakePrefetchRef.current = null;
@@ -2905,7 +2954,11 @@ type BuildCost =
   }
   async function submitCard(st: IntakeState & { topic: string }, run: number) {
     // How they want it taught, for the outline and the lecture (lib/teachingQuestions.ts).
-    teachingChoicesRef.current = teachingChoices(st.teaching ?? [], st.teachingAnswers ?? {});
+    // Who teaches is the student's teacher from now on (lib/teachers.ts; also in Settings); it is not a planning answer.
+    const pickedTeacher = st.teachingAnswers?.[TEACHER_QUESTION_ID]?.[0];
+    const teacher = pickedTeacher ? TEACHERS.find((t) => t.name === pickedTeacher || t.key === pickedTeacher) : undefined;
+    if (teacher) setVoiceChoice(teacher.key);
+    teachingChoicesRef.current = teachingChoices((st.teaching ?? []).filter((q) => q.id !== TEACHER_QUESTION_ID), st.teachingAnswers ?? {});
     // A typed prompt's card: the goal they chose settles the lesson's brief (one short call), and the
     // plan is made for the subject's proper name (asked for when the card opened, at most 4 s).
     if (st.goal && st.goalAnswer) {
@@ -3431,6 +3484,41 @@ type BuildCost =
   ) {
     const trimmed = t.trim();
     if (!trimmed) return;
+    // A course lesson's spec belongs to that lesson only (its practice sheet); any other lecture starts without one.
+    if (fresh?.kind !== "curriculum") courseSpecRef.current = null;
+    /*
+     * A TYPED PROMPT TAUGHT AS A COURSE LESSON (owner 2026-11-28; lib/curriculum/promptLesson.ts): after the
+     * prompt's own planning, a topic lesson (two or more parts) becomes a course lesson document and is built
+     * exactly as a course lesson is. The server says { off } unless PROMPTS_AS_COURSES=on; on any failure the
+     * prompt lecture is built as before.
+     */
+    if (!fresh && !sourceDocument && !slideContext && !uploadedFile && !practiceReviewRef.current && (approvedOutline?.subtopics?.length ?? 0) >= 2) {
+      setError(null);
+      setBuildStatus("Planning your lesson the way a course teaches it");
+      setPhase("building");
+      const asCourse = await fetch("/api/prompt-lesson", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ topic: trimmed, request: requestTextRef.current, outline: { subtopics: approvedOutline!.subtopics }, ...(briefRef.current ? { brief: briefRef.current } : {}), ...(profile?.learner ? { learnerBasics: profile.learner } : {}) }),
+      }).then((r) => (r.ok ? r.json() : null)).catch(() => null) as { off?: boolean; spec?: CourseSpecLike & { lessonTitle: string }; document?: unknown; text?: string } | null;
+      if (asCourse?.spec && asCourse.document) {
+        courseSpecRef.current = asCourse.spec;
+        setSourceDocument(asCourse.document as never);
+        setFullDocumentText(asCourse.text ?? "");
+        setFocusPages([]);
+        setUploadedFile({ name: trimmed, kind: "curriculum" });
+        setUploadPhase("ready");
+        autoPlannedRef.current = true;
+        // As a course lesson starts (startCurriculumLesson): the whole lesson document, as reference.
+        const scope: SourceScope = { fidelity: "reference", breadth: { kind: "whole" }, documentLabels: [] };
+        setSourceScope(scope);
+        sourceScopeRef.current = scope;
+        await build(trimmed, undefined, { sourceDocument: asCourse.document as never, kind: "curriculum", documentId: null }, []);
+        // The spec came from this prompt: set again, since the build above cleared it before it knew.
+        courseSpecRef.current = asCourse.spec;
+        return;
+      }
+    }
     // What "Try again" repeats for a lecture that has no planning step (strict source, a video).
     lastBuildRef.current = { t, approvedOutline, fresh, documentPlanningNotes, noPlanning: sourceScopeRef.current?.fidelity === "strict" || fresh?.kind === "youtube" || fresh?.kind === "curriculum" };
     resetLectureSummary();
@@ -3587,6 +3675,8 @@ type BuildCost =
       : "";
 
     const payload: LecturePayload = {
+      // The voice chosen in Settings (lib/voiceChoice.ts): every board of this lecture is narrated in it.
+      ...voiceField(),
       topic: trimmed,
       mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}${documentPlanningLine}${learnerLine}`,
       // A course lesson is a structured lesson document to the lecture writer (lib/curriculum/lessonSpec.ts).
@@ -3609,6 +3699,7 @@ type BuildCost =
         : {}),
       // (Its research travels once, as webSources below.)
       ...(approvedOutline ? { outline: { ...approvedOutline, research: undefined, coverage: undefined } } : {}),
+      ...(practiceReviewRef.current ? { practiceReview: true } : {}),
       // The web material the outline was planned from: the lecture teaches from it and cites it per slide.
       ...(!doc && !slides && researchRef.current ? { webSources: researchRef.current } : {}),
       ...(teachingPreference !== "adaptive" ? { teachingPreference } : {}),
@@ -3912,6 +4003,7 @@ type BuildCost =
     setMindMapLoading(false);
     // A new lecture starts at its first slide, whatever slide the last one was replayed from.
     setReplayStartIndex(0);
+    setSlideReviewState(null);
     setMissedSlides([]);
   }
 
@@ -4095,6 +4187,50 @@ type BuildCost =
     setPhase(curriculumRef.current ? "past-papers" : "test-offer");
   }
 
+  /**
+   * PRACTICE SHEET (owner 2026-11-27): 6 exam-style questions on what this lecture or course lesson taught, answered on
+   * screen and on paper (phone scan), marked by Aria. The test is components/practice/PracticeExam with a ready plan.
+   */
+  const [practiceSheet, setPracticeSheet] = useState<PracticePreset | null>(null);
+  function openPracticeSheet() {
+    const spec = courseSpecRef.current;
+    const source = spec ? courseSource(spec, beats) : lectureSource(builtTopic || topic, beats);
+    if (!source) { setTestError("This lecture is too short to make a practice sheet from."); return; }
+    setPracticeSheet({ plan: sheetPlan(source, profile?.learner?.studyLevel?.label ?? ""), subtopics: boardTitles(beats) });
+    setPhase("practice-sheet");
+  }
+  /**
+   * "Explain my mistakes" from a sheet: a new lecture, one board per mistake. The last lesson's course, document and
+   * strict-source context is cleared first, and the build starts on the next render, so it sees the cleared state
+   * (build() reads it from its own render; started at once, a course lesson's mistakes would be taught as that course).
+   */
+  const [reviewToTeach, setReviewToTeach] = useState<{ topic: string; review: PracticeReview } | null>(null);
+  function startPracticeReview(t: string, review: PracticeReview) {
+    curriculumRef.current = null;
+    courseSpecRef.current = null;
+    setCourseSeries(null);
+    setSourceDocument(null);
+    setUploadedFile(null);
+    setDocumentId(null);
+    setFullDocumentText("");
+    setFocusPages([]);
+    setSlideContext("");
+    setSourceScope(emptySourceScope());
+    sourceScopeRef.current = emptySourceScope();
+    setPracticeSheet(null);
+    setReviewToTeach({ topic: t, review });
+  }
+  useEffect(() => {
+    if (!reviewToTeach) return;
+    const { topic: t, review } = reviewToTeach;
+    setReviewToTeach(null);
+    requestTextRef.current = reviewFocus(review);
+    practiceReviewRef.current = true;
+    const outline = reviewOutline(t, review);
+    void build(outline.topic, outline as unknown as PlanOutline);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reviewToTeach]);
+
   /** "Go deeper" from the end screen: a fresh, deeper lesson on the same subject. */
   function goDeeper() {
     const subject = builtTopic || topic;
@@ -4258,6 +4394,7 @@ type BuildCost =
   function replayLecture() {
     // Same beats, from the top. The player keys off its own index, so re-entering "teaching"
     // restarts it without regenerating anything.
+    setSlideReviewState(null);
     setReplayStartIndex(0);
     setPhase("teaching");
   }
@@ -4265,7 +4402,19 @@ type BuildCost =
   /** "Replay from this slide" in the mind map: the same beats, from the slide that taught that idea. */
   function replayLectureFrom(index: number) {
     setMindMapOpen(false);
+    setSlideReviewState(null);
     setReplayStartIndex(Math.max(0, Math.min(index, beats.length - 1)));
+    setPhase("teaching");
+  }
+
+  /** "Review slide N" (lib/testReview.ts): that board, fully drawn, with Aria re-explaining the slip. */
+  function reviewSlideFrom(index: number, questionId?: string) {
+    const question = testBank?.questions.find((q) => q.id === questionId);
+    const result = testResults?.find((r) => r.id === questionId);
+    const at = Math.max(0, Math.min(index, beats.length - 1));
+    setMindMapOpen(false);
+    setSlideReviewState(question && result ? slideReview(at, question, result) : null);
+    setReplayStartIndex(at);
     setPhase("teaching");
   }
 
@@ -4380,6 +4529,10 @@ type BuildCost =
     );
   }
 
+  if (phase === "practice-sheet" && practiceSheet) {
+    return <PracticeExam key={practiceSheet.plan.topic} topic={practiceSheet.plan.topic} preset={practiceSheet} go={go} onDone={() => setPhase("test-offer")} onReview={startPracticeReview} />;
+  }
+
   if (phase === "test-offer") {
     return (
       <>
@@ -4393,6 +4546,7 @@ type BuildCost =
         onOral={startOralTest}
         onSkip={endLecture}
         onGoDeeper={goDeeper}
+        onPracticeSheet={practiceExamOn() && beats.length ? openPracticeSheet : undefined}
         notesPdf={notesPdf}
         next={courseSeries && courseSeries.part < courseSeries.parts ? { label: `Next: Lesson ${courseSeries.part + 1} of ${courseSeries.parts}`, detail: courseSeries.titles[courseSeries.part]?.join(" · ") ?? "", onClick: startNextCourseLesson } : undefined}
       />
@@ -4428,7 +4582,7 @@ type BuildCost =
         answers={testAnswers}
         onBack={backToLectureFromTest}
         slideOf={clickableMindMap ? slideOfBeat : undefined}
-        onReviewSlide={clickableMindMap ? replayLectureFrom : undefined}
+        onReviewSlide={clickableMindMap ? reviewSlideFrom : undefined}
       />
     );
   }
@@ -4553,7 +4707,7 @@ type BuildCost =
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
         // The mic is on when the lecture opens (owner, 2026-10-18): the student talks to Aria without
         // finding a button first. It opens on Play — the click the browser needs to ask for it.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onAskedNotes={setAskedNotes} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} holdForNextBoard={clickableMindMap && csLecture} totalBeatCount={progressivePlannedBeatCount ? progressivePlannedBeatCount + detourCount : undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onCheckAnswer={onCheckAnswer} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onAskedNotes={setAskedNotes} onCheckpointGraded={recordCheckpointGrade} autoVoiceAssistant mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} review={slideReviewState} autoStart={!slideReviewState} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} holdForNextBoard={clickableMindMap && csLecture} totalBeatCount={progressivePlannedBeatCount ? progressivePlannedBeatCount + detourCount : undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onCheckAnswer={onCheckAnswer} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">
@@ -5065,6 +5219,7 @@ function TestOfferScreen({
   next,
   notesPdf,
   onGoDeeper,
+  onPracticeSheet,
 }: {
   mode: TrackMeta;
   topic: string;
@@ -5079,6 +5234,8 @@ function TestOfferScreen({
   /** The notes as a PDF, when this lecture has them. */
   notesPdf?: React.ReactNode;
   onGoDeeper?: () => void;
+  /** A practice sheet on this lecture (components/practice), when practice tests are on. */
+  onPracticeSheet?: () => void;
 }) {
   /*
    * What next, in the student's words: a finished lecture, then three plain choices — test
@@ -5143,6 +5300,21 @@ function TestOfferScreen({
             </span>
             <ArrowRight aria-hidden="true" size={18} className="shrink-0 text-[var(--hud-text-dim)] transition-transform group-hover:translate-x-0.5" />
           </button>
+
+          {onPracticeSheet && (
+            <button type="button" onClick={onPracticeSheet} disabled={loading} data-practice-sheet="" className={`${card} hover:bg-[var(--hud-surface)]`} style={{ borderColor: "var(--hud-line)" }}>
+              <span className="grid size-10 shrink-0 place-items-center rounded-full border" style={{ borderColor: "var(--hud-line-strong)", color: "var(--hud-text-dim)" }}>
+                <FileText aria-hidden="true" size={18} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[1rem] font-semibold text-[var(--hud-text)]">Practice sheet</span>
+                <span className="mt-0.5 block text-[0.85rem] leading-snug text-[var(--hud-text-dim)]">
+                  Six exam-style questions on this lesson, easy to hard. Do the long ones on paper, scan them with your phone, and Aria marks them.
+                </span>
+              </span>
+              <ArrowRight aria-hidden="true" size={18} className="shrink-0 text-[var(--hud-text-faint)] transition-transform group-hover:translate-x-0.5" />
+            </button>
+          )}
 
           {onGoDeeper && (
             <button
@@ -5742,6 +5914,8 @@ function OutlineReviewState({
   const [chatInput, setChatInput] = useState("");
   const [chatLog, setChatLog] = useState<OutlineChatMessage[]>([]);
   const [sending, setSending] = useState(false);
+  /** The outline is still streaming in: its parts show as they arrive, the rest as skeletons. */
+  const drafting = loading;
 
   /*
    * The live session used to live HERE, and that was the bug.
@@ -6521,6 +6695,14 @@ function OutlineReviewState({
                     <span className="mt-1 font-[family-name:var(--font-hud-mono)] text-[0.75rem] tabular-nums text-[var(--hud-text-faint)]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
+                    {/* WHILE THE PLAN IS STILL BEING WRITTEN, a part shows what has arrived and a skeleton for the rest
+                        (QA 2026-11-28: every part read "From scratch, step by step" before its title came). */}
+                    {drafting ? (
+                      <div className="min-w-0 flex-1" data-plan-skeleton={s.title.trim() ? undefined : ""}>
+                        {s.title.trim() ? <p className="text-[1.02rem] font-medium text-[var(--hud-text)]">{s.title}</p> : <span className="block h-[1.1rem] w-2/3 animate-pulse rounded bg-[var(--hud-surface-2)]" />}
+                        {s.caption.trim() ? <p className="mt-0.5 text-sm text-[var(--hud-text-dim)]">{s.caption}</p> : <span className="mt-2 block h-3 w-5/6 animate-pulse rounded bg-[var(--hud-surface-2)]" />}
+                      </div>
+                    ) : (
                     <div className="min-w-0 flex-1">
                       <input
                         value={s.title}
@@ -6542,6 +6724,7 @@ function OutlineReviewState({
                         </span>
                       )}
                     </div>
+                    )}
                     <div className="flex shrink-0 items-center gap-0.5 opacity-0 transition focus-within:opacity-100 group-focus-within:opacity-100 group-hover:opacity-100">
                       <button onClick={() => move(i, -1)} disabled={i === 0} className="grid size-7 place-items-center rounded-full text-[var(--hud-text-faint)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move up"><ChevronUp size={14} /></button>
                       <button onClick={() => move(i, 1)} disabled={i === outline.subtopics.length - 1} className="grid size-7 place-items-center rounded-full text-[var(--hud-text-faint)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move down"><ChevronDown size={14} /></button>
@@ -6549,6 +6732,15 @@ function OutlineReviewState({
                     </div>
                   </li>
                 ))}
+                {drafting && (
+                  <li aria-label="Aria is writing the next part" data-plan-skeleton="" className="flex items-start gap-4 rounded-[14px] border border-dashed border-[var(--hud-line)] px-4 py-3.5">
+                    <span className="mt-1 font-[family-name:var(--font-hud-mono)] text-[0.75rem] tabular-nums text-[var(--hud-text-faint)]">{String(outline.subtopics.length + 1).padStart(2, "0")}</span>
+                    <div className="min-w-0 flex-1">
+                      <span className="block h-[1.1rem] w-1/2 animate-pulse rounded bg-[var(--hud-surface-2)]" />
+                      <span className="mt-2 block h-3 w-3/4 animate-pulse rounded bg-[var(--hud-surface-2)]" />
+                    </div>
+                  </li>
+                )}
               </ol>
 
               <button

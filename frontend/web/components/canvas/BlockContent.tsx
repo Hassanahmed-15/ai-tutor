@@ -88,7 +88,8 @@ function CodeLine({ line }: { line: string }) {
 /** A block, its direction set by its own words: Urdu and Arabic run right to left, code never does. */
 export function BlockView(props: { block: BoardBlock; units: RevealUnit[]; shown: number; said?: { name: string; sentence: number } }) {
   const rtl = props.block.kind !== "code" && props.block.kind !== "formula" && /[\u0590-\u08FF]/.test(props.block.board_text);
-  return <div dir={rtl ? "rtl" : "ltr"}><BlockBody {...props} /></div>;
+  // Its ids let a open quick question cover a block that gives its answer away (LessonCanvas, lib/canvas/quizFlow.ts).
+  return <div dir={rtl ? "rtl" : "ltr"} data-bk-id={props.block.id} data-bk-section={props.block.section_id}><BlockBody {...props} /></div>;
 }
 
 function BlockBody({ block, units, shown, said }: { block: BoardBlock; units: RevealUnit[]; shown: number; said?: { name: string; sentence: number } }) {

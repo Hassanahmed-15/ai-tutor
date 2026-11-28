@@ -2,6 +2,7 @@ import { keepSearchedCells, narratedStructureMismatch, repairPositionalIds, stru
 import { missingStackProblem } from "./callStack";
 import { isLabLookTopic } from "./subjectLook";
 import { checkNumbers } from "./numberCheck";
+import { boardWorkingLines, workingLineIssues } from "./wordingChecks";
 import { asCodeLesson, asMathsOrCs, plannedSubject } from "./lessonSubject";
 import { domainIsCs, domainIsLab, type SubjectDomain } from "./subjectDomain";
 import { repairEquationOrder } from "./equationRepair";
@@ -885,6 +886,9 @@ export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPl
         // so the first attempt is rewritten shorter instead of shipping with words silently missing.
         ...(() => { takeLayoutDrops(); layoutPanel(spec); return takeLayoutDrops(); })().slice(0, 4).map((message) => ({ gate: "text-dropped", message: `${message} — write it shorter or with fewer items` })),
         ...figureDataIssues(spec, beat.script).map((message) => ({ gate: "figure-data", message })),
+        // EVERY LINE OF WORKING SAYS WHAT IT IS, in one currency and steady units (lib/canvas/wordingChecks.ts;
+        // owner QA brief, 2026-11-28: "50 − 40 = 10" with no label, "4 hours of pay" called "40 dollars per day"). A note.
+        ...workingLineIssues(boardWorkingLines(spec)).slice(0, 3).map((message) => ({ gate: "working-label", message })),
         // Every line of code lit by the sentence that explains it (lib/canvas/codeSync.ts).
         ...codeSyncIssues(spec, beat.script),
         // A figure whose fixed design contradicts the board (a time axis where Aria never mentions time).

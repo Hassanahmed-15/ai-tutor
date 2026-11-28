@@ -81,7 +81,8 @@ test("reading level is measured, so a script written above the student can be ca
 
 test("the canvas planner receives the card before the portrait, as rules", () => {
   const card = buildStudentCard(grade8, "Why did the Mughal Empire decline?")!;
-  const input = { topic: "Mughal Empire", mood: "", sourceType: "prompt", mode: "standard", studentCard: card, learnerPersona: "PORTRAIT", learnerProfile: { expertise: "beginner", depth: "balanced", goal: "school", codeExamples: false, preferredExamples: "visual", rationale: "", confirmedAt: "" } } as ProgressiveLectureInput;
+  // "intermediate": a beginner is now pitched at grade 6 at most (lib/teachingPolicy.ts novice, 2026-11-28).
+  const input = { topic: "Mughal Empire", mood: "", sourceType: "prompt", mode: "standard", studentCard: card, learnerPersona: "PORTRAIT", learnerProfile: { expertise: "intermediate", depth: "balanced", goal: "school", codeExamples: false, preferredExamples: "visual", rationale: "", confirmedAt: "" } } as ProgressiveLectureInput;
   const request = canvasPlanRequest(input);
   assert.ok(request.indexOf("READING LEVEL OF GRADE 8") > 0 && request.indexOf("READING LEVEL OF GRADE 8") < request.indexOf("PORTRAIT"));
 });

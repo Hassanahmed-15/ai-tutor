@@ -1,4 +1,5 @@
 import { layoutPanel } from "./layout";
+import { splicedRewrite } from "./boardCoverage";
 import { canvasSentences } from "./plan";
 import type { CanvasBoardSpec } from "./types";
 
@@ -59,7 +60,10 @@ export function unsaidLabels(spec: CanvasBoardSpec, script: string): LabelMentio
   return [...bySentence.entries()].map(([s, labels]) => ({ s, labels: labels.slice(0, 4) })).sort((a, b) => a.s - b.s);
 }
 
-export const MENTION_PROMPT = `A teacher's sentences are spoken while a diagram is drawn. Some parts of the diagram are drawn on a sentence that never names them. Rewrite each sentence given so it ALSO names each of its listed labels, in the words a teacher would use while pointing at it ("…, and this part here is the <label>."). Keep everything the sentence already says — every fact, number, term and its meaning — and add nothing else: no new facts. One sentence each, natural and short. Return JSON only: {"sentences": [{"i": number, "text": string}]}.`;
+// The example clause this prompt used to give ("…, and this part here is the <label>.") was copied word for word,
+// heading words and all: "—and this part here is the Causes?" (owner QA brief, 2026-11-28). The label is now woven
+// into what the sentence already says, as lib/canvas/boardCoverage.ts asks, and a spliced rewrite is refused.
+export const MENTION_PROMPT = `A teacher's sentences are spoken while a diagram is drawn. Some parts of the diagram are drawn on a sentence that never names them. Rewrite each sentence given so it ALSO names each of its listed labels AS PART OF WHAT IT ALREADY SAYS — woven into the sentence's own idea, the way a teacher naturally mentions a part while explaining, in ordinary small letters unless it is a name. Never tack a pointing clause on ("…, and this part here is…", "…; this is labelled…"), never turn the sentence into a question, never repeat a word or an idea the sentence already has. Keep everything the sentence already says — every fact, number, term and its meaning — and add nothing else: no new facts. One whole, natural sentence each, at most a few words longer. Return JSON only: {"sentences": [{"i": number, "text": string}]}.`;
 
 const numbersOf = (t: string) => (t.match(/-?\d+(?:\.\d+)?/g) ?? []).sort().join(",");
 
@@ -84,7 +88,9 @@ export function applyMentions(script: string, needed: LabelMention[], rewrites: 
     const r = rewrites.find((x) => Number(x.i) === need.s);
     const text = typeof r?.text === "string" ? r.text.replace(/\s+/g, " ").trim() : "";
     const namesAll = need.labels.every((l) => { const w = words(l); return !w.length || w.some((x) => words(text).map(stem).includes(stem(x))); });
-    const good = text && /[.!?]$/.test(text) && canvasSentences(text).length === 1 && numbersOf(text) === numbersOf(original) && namesAll && text.length <= original.length + 160;
+    // A spliced rewrite ("…, and this part here is the X") or one that turns a statement into a question reads as broken.
+    const good = text && /[.!?]$/.test(text) && canvasSentences(text).length === 1 && numbersOf(text) === numbersOf(original) && namesAll && text.length <= original.length + 160
+      && !splicedRewrite(original, text) && !(text.endsWith("?") && !original.endsWith("?"));
     sentences[need.s] = good ? text : plainMention(original, need.labels);
     mentioned += need.labels.length;
   }

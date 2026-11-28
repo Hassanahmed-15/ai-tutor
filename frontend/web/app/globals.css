@@ -1580,6 +1580,41 @@ html[data-reduced-motion="1"] *::after {
 .home-row:hover { transform: translateY(-3px); border-color: var(--accent); }
 .home-ico { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); }
 .home-row.is-mint .home-ico { background: var(--mint-soft); color: var(--mint); }
+.home-row.is-sky .home-ico { background: color-mix(in srgb, #38A9E0 16%, transparent); color: #2B8FC4; }
+.home-row.is-amber .home-ico { background: color-mix(in srgb, #E8A33D 18%, transparent); color: #C9861F; }
+.home-row[aria-pressed="true"] { border-color: var(--accent); }
+/* Four rooms on the shelf (Courses, Library, Practice questions, Games): two by two. */
+.home-shelf.is-four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.home-shelf.is-four .home-row { flex-direction: row; align-items: center; }
+.home-shelf.is-four .home-go { position: static; margin-left: auto; }
+/* The ask box's Lesson / Practice questions switch. */
+/* Two equal halves and one thumb that slides between them (translateX 0 → 100%). */
+.home-mode {
+  position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; flex: none; padding: 3px;
+  border: 1px solid var(--border); border-radius: 999px; background: var(--surface); isolation: isolate;
+}
+.home-mode-thumb {
+  position: absolute; z-index: 0; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px); border-radius: 999px;
+  background: var(--accent); box-shadow: 0 6px 14px -6px var(--accent);
+  transition: transform .32s cubic-bezier(.34, 1.36, .64, 1);
+}
+.home-mode[data-mode="practice"] .home-mode-thumb { transform: translateX(100%); }
+.home-mode button {
+  position: relative; z-index: 1; height: 28px; padding: 0 14px; border-radius: 999px; background: transparent;
+  font-size: 13px; font-weight: 600; color: var(--text-muted); white-space: nowrap; transition: color .25s;
+}
+.home-mode button:hover { color: var(--text); }
+.home-mode button[aria-pressed="true"] { color: var(--accent-on); }
+@media (prefers-reduced-motion: reduce) { .home-mode-thumb { transition: none; } }
+/* A phone: File, Phone and Video keep only their icons, so the row (with the switch) fits the box. */
+@media (max-width: 600px) {
+  .home-pill-label { display: none; }
+  .home-ask { padding: 12px 12px; }
+  .home-pill { padding: 0 8px; }
+  .home-ask button[aria-expanded] { padding: 0 8px; }
+  .home-mode button { padding: 0 8px; font-size: 12.5px; }
+  .home-ask > .flex.items-center { gap: 4px; }
+}
 .home-rb { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .home-rb b { font-size: 17px; font-weight: 800; }
 .home-rb span { margin-top: 2px; font-size: 12px; line-height: 1.35; color: var(--text-muted); }
@@ -1596,7 +1631,7 @@ html[data-reduced-motion="1"] *::after {
   .aria-stage { height: 340px; border-radius: 28px; }
   .home-right { overflow: visible; padding: 0; }
   .home-askarea { margin-top: 84px; }
-  .home-shelf { grid-template-columns: 1fr; }
+  .home-shelf, .home-shelf.is-four { grid-template-columns: 1fr; }
   .home-row { flex-direction: row; align-items: center; }
   .home-go { position: static; margin-left: auto; }
 }

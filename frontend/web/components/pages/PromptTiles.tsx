@@ -19,7 +19,7 @@ export const STARTER_CHIPS = ["What comes after Photosynthesis?", "Explain time 
  * in until this student's own picks arrive — and pressing one is handled by `onPick` (the home page puts the
  * words in the box, as the design does).
  */
-export function PromptTiles({ onPick, max = 3, variant = "tiles" }: { onPick: (prompt: string) => void; max?: number; variant?: "tiles" | "chips" }) {
+export function PromptTiles({ onPick, max = 3, variant = "tiles", center = false }: { onPick: (prompt: string) => void; max?: number; variant?: "tiles" | "chips"; center?: boolean }) {
   const [tiles, setTiles] = useState<PromptTile[]>([]);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export function PromptTiles({ onPick, max = 3, variant = "tiles" }: { onPick: (p
   }
   if (tiles.length === 0) return null;
   return (
-    <ul className="hud-materialize flex flex-wrap gap-2" aria-label="Suggested lessons for you">
+    <ul className={`hud-materialize flex flex-wrap gap-2 ${center ? "justify-center" : ""}`} aria-label="Suggested lessons for you">
       {tiles.slice(0, max).map((t) => (
         <li key={t.id} className="min-w-0 max-w-full">
           <button

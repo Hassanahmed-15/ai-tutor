@@ -19,7 +19,7 @@ import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
 import { canvasBeatId, connectToEarlier } from "./connect";
 import { repairCues } from "./cueRepair";
-import { compactLadder, referenceCsLesson, withLearnerStatuses, canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
+import { compactLadder, referenceCsLesson, withLearnerStatuses, canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, promptTaughtLikeCourse, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
 import { codeSentenceBlocks, groundSourcePlan, strictBoardLines, ungroundedInPlan, videoBoardLines, videoParts } from "./sourceLessons";
 import { assignListings, documentBoardLines, documentListings, documentSections, extraBoardsForListings, faithfulCodeLines, inPageOrder, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredPages, type DocumentListing } from "./documentContext";
 import type { SuprnotesLessonInput } from "../suprnotes";
@@ -34,7 +34,7 @@ import { splitLongWorking } from "./splitWorking";
 import { examinerFor, type ExaminerSubject } from "./mathsCheck";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
 import { asCs, asMathsOrCs, courseLessonSubject, type LessonSubject } from "./lessonSubject";
-import { courseBoardContext, documentBoardContext } from "./coursePicturePrompt";
+import { courseBoardContext, documentBoardContext, promptBoardContext } from "./coursePicturePrompt";
 import { courseCodeDiagramsOff, offInCourses, readyFiguresOffForCourses } from "./courseFigures";
 import { classifySubject, type SubjectEvidence } from "./subjectClassifier";
 import { mentionLabels } from "./labelMentions";
@@ -46,6 +46,8 @@ import { matchDiagramsToBeats, readSourceDiagrams, sourceDiagramBrief } from "./
 import { mergeRepeatedBoards } from "./repeatBoards";
 import { assignFigures, documentFigures, figureBoardLines, speakableFigureRefs } from "./pdfFigures";
 import { coverBoard } from "./boardCoverage";
+import { spokenBoardCheck, spokenBoardLog } from "./spokenBoardCheck";
+import { absoluteClaim, applySentenceRewrite, lessonReadability, mixedCurrency, overusedTerms, scriptIssues, type WordingTarget } from "./wordingChecks";
 import { closingFallback, withClosing, writeClosing } from "./closingWords";
 import { alignToNarration } from "./narrationSync";
 import { isMathsTopic } from "./predictCard";
@@ -71,6 +73,7 @@ import { writeCheckCard } from "./checkCard";
 import { checkCardBoards, tasksGiveWay } from "./checkCardPlan";
 import { DIVE_PROMPT, diveCandidate, parseDives, withDives } from "./cardDives";
 import { isLadder, ladderBoardBudget } from "./conceptLadder";
+import { teacherStyleLine } from "../teachers";
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -321,6 +324,9 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         const decided = early ?? (await subjectWork);
         const subject = decided.subject;
         if (subject) plan = { ...plan, beats: plan.beats.map((b) => ({ ...b, subject })) };
+        // A TYPED PROMPT TAUGHT LIKE A COURSE LESSON (lib/canvas/lessonRequest.ts promptTaughtLikeCourse): from
+        // here its boards are chosen, drawn and shown as a course lesson's; its plan stays its own.
+        const likeCourse = visualMode === "prompt" && promptTaughtLikeCourse(input, subject);
         const planWords = [input.topic, ...plan.beats.map((b) => b.title)].join(" ");
         // A PDF LESSON IN THE COURSE LOOK (owner, 2026-11-25): a reference or strict PDF that is not maths or CS
         // gets the course board types — pictures only where something must be seen, Aria's notes written as she
@@ -390,7 +396,7 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         // A PDF lesson draws no picture of its own (only its figures, as cropped), so it is never asked which boards
         // need one: the ordinary visual choice for a reference PDF, none for a strict one.
         if (visualMode !== "strict" && process.env.CANVAS_VISUAL_CHOICE !== "off") {
-          const chosen = await bounded(chooseVisuals((system, user, max) => jsonCall(openai, PLAN_MODEL, system, user, max), input.topic, plan.beats, { course: visualMode === "course" && courseCodeDiagramsOff() }), 30_000, "visual choice").catch((error: Error) => { console.warn(`[canvas] visual choice skipped: ${error.message}`); return null; });
+          const chosen = await bounded(chooseVisuals((system, user, max) => jsonCall(openai, PLAN_MODEL, system, user, max), input.topic, plan.beats, { course: (visualMode === "course" || likeCourse) && courseCodeDiagramsOff() }), 30_000, "visual choice").catch((error: Error) => { console.warn(`[canvas] visual choice skipped: ${error.message}`); return null; });
           if (chosen) { plan = { ...plan, beats: chosen.beats }; costUsd += chosen.costUsd; console.log(`[canvas] visual choice: ${chosen.log}`); }
         }
         // The reference pages' diagrams go to the boards they fit, which redraw them (once, on the first plan that gets here).
@@ -420,12 +426,14 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         // A PDF LESSON SHOWS ONLY ITS OWN FIGURES (owner, 2026-11-25): no generated picture, no maths picture, no
         // library image — everything else is drawn natively. Its course look keeps the marker and the course text.
         const pdfLessonPlan = Boolean(reference || strictDoc);
-        const mathsPictures = !pdfLessonPlan && visualMode !== "course" && sourceMode !== "video" && mathsPicturesOn();
+        const mathsPictures = !pdfLessonPlan && visualMode !== "course" && !likeCourse && sourceMode !== "video" && mathsPicturesOn();
+        // A typed prompt taught like a course (lessonRequest.ts promptTaughtLikeCourse) gets the course visual policy.
+        const policyMode: VisualPolicyMode = likeCourse ? "course" : visualMode;
         // Each board's own drawing before the rules below: the picture agent can send a board back to it.
         const plannedStages = new Map(plan.beats.map((b) => [b.id, b.stage]));
         const visualPolicy = applyLessonVisualPolicy(plan.beats, {
-          mode: visualMode,
-          findAsset: pdfLessonPlan || ((visualMode === "course" || pdfCourseLook) && readyFiguresOffForCourses()) ? undefined : findLibraryFigure,
+          mode: policyMode,
+          findAsset: pdfLessonPlan || ((policyMode === "course" || pdfCourseLook) && readyFiguresOffForCourses()) ? undefined : findLibraryFigure,
           topic: input.topic,
           domain,
           mathsPictures,
@@ -435,15 +443,16 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         plan = { ...plan, beats: visualPolicy.beats };
         // Not for a course lesson drawn by gpt-image-2: there only a board that needs a picture gets one
         // (owner, 2026-10-24), and a lesson of written boards with one picture is not sent back for more.
-        if ((visualMode === "prompt" || (visualMode === "course" && !courseCodeDiagramsOff())) && visualPolicy.audit.meaningfulVisuals < visualPolicy.audit.targetMeaningfulVisuals && attempt < maxAttempts) {
+        if (((visualMode === "prompt" && !(likeCourse && courseCodeDiagramsOff())) || (visualMode === "course" && !courseCodeDiagramsOff())) && visualPolicy.audit.meaningfulVisuals < visualPolicy.audit.targetMeaningfulVisuals && attempt < maxAttempts) {
           lastError = `only ${visualPolicy.audit.meaningfulVisuals} of ${plan.beats.length} boards used purpose-built visuals; use at least ${visualPolicy.audit.targetMeaningfulVisuals} appropriate stages such as illustration, flow, graph, equation, compare, molecule, atom-map or code instead of generic scenes`;
           console.log(`[canvas] plan sent back: ${lastError}`);
           continue;
         }
-        console.log(`[canvas] visual policy (${visualMode}): ${visualPolicy.audit.illustrations} generated picture(s), ${visualPolicy.audit.meaningfulVisuals}/${plan.beats.length} purpose-built visual board(s)${visualPolicy.audit.changes.length ? ` — ${visualPolicy.audit.changes.join(" | ")}` : ""}`);
+        console.log(`[canvas] visual policy (${likeCourse ? "prompt taught like a course" : visualMode}): ${visualPolicy.audit.illustrations} generated picture(s), ${visualPolicy.audit.meaningfulVisuals}/${plan.beats.length} purpose-built visual board(s)${visualPolicy.audit.changes.length ? ` — ${visualPolicy.audit.changes.join(" | ")}` : ""}`);
         // A TYPED LECTURE'S PICTURES ARE CHOSEN BY AN AGENT (lib/canvas/pictureAgent.ts; owner, 2026-11-26): it reads
         // every board and gives a gpt-image-2 picture to the ones a real picture teaches best, at most four.
-        if (visualMode === "prompt" && pictureAgentOn()) {
+        // A prompt taught like a course already has the course picture policy: no second picture pass on top of it.
+        if (visualMode === "prompt" && !likeCourse && pictureAgentOn()) {
           const startedAgent = Date.now();
           const pictures = await choosePictures(openai, input.topic, plan.beats, plannedStages);
           costUsd += pictures.costUsd;
@@ -458,7 +467,8 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         // means easy wording"): its sentences are rewritten to grade 7 at most — everyday words, each
         // syllabus term kept and explained — whatever the student's level; the ideas stay at their level.
         // Course lessons came out at grade 10–11 (13.8–17.6 words a sentence, 3–5 unexplained terms).
-        const pitch = curriculum ? Math.min(policy?.readingGrade ?? COURSE_READING_GRADE, COURSE_READING_GRADE) : policy?.readingGrade;
+        // A typed prompt taught like a course gets the same easy words, never above the student's own pitch.
+        const pitch = curriculum || likeCourse ? Math.min(policy?.readingGrade ?? COURSE_READING_GRADE, COURSE_READING_GRADE) : policy?.readingGrade;
         if (policy) {
           // Each board is written later, from its plan beat alone: it carries the policy's board brief.
           const audience = policyForBoards(policy);
@@ -467,7 +477,8 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         const factCheck = !sourceMode && !referenceDocumentOf(input);
         const polishNow = curriculum ? plan.beats.slice(0, CANVAS_OPENING_BOARDS) : plan.beats;
         const startedPolish = Date.now();
-        costUsd += await polishBoards(openai, input.topic, plan.beats, polishNow, { grade: pitch, course: curriculum, factCheck, typed: visualMode === "prompt" });
+        // A student new to the whole topic gets short sentences as well as easy words (lib/teachingPolicy.ts novice).
+        costUsd += await polishBoards(openai, input.topic, plan.beats, polishNow, { grade: pitch, course: curriculum, factCheck, typed: visualMode === "prompt", teacher: teacherStyleLine(input.voice), sentenceWords: policy?.language.sentenceWords, shortSentences: Boolean(policy?.novice || policy?.language.plainEnglish), facts: input.webSources?.points.map((p) => p.text) });
         console.log(`[timing] kind=plan-polish session=- ms=${Date.now() - startedPolish} boards=${polishNow.length}/${plan.beats.length}`);
         if (curriculum) for (const beat of plan.beats.slice(CANVAS_OPENING_BOARDS)) beat.polishLater = { grade: pitch, factCheck };
         // STRICT: every sentence checked against its passages before any board is drawn, and each
@@ -630,7 +641,11 @@ export async function writeCanvasBoard(args: {
   // no picture is generated for any of its boards (owner, 2026-11-25), so no course picture is planned for one.
   const pdfLesson = Boolean((args.document && (args.document.lessonPlan as { sourceType?: string } | undefined)?.sourceType !== "curriculum") || strictPdf);
   const pdfCourse = () => (pdfLesson ? null : documentBoardContext(args.document ?? strictPdf, args.topic, beat, args.document ? documentBoardLines(args.document, beat) : strictPdf ? strictBoardLines(strictPdf, beat) : [], Boolean(strictPdf)));
-  const course = pdfFigureDoc || pdfLesson ? null : beat.stage === "illustration" || beat.pictureBeside ? courseBoardContext(args.document, args.topic, beat) ?? pdfCourse() : null;
+  // A typed prompt taught like a course (no document behind it) gets the same picture context, its brief in place of a
+  // syllabus block (lib/canvas/coursePicturePrompt.ts promptBoardContext).
+  const course = pdfFigureDoc || pdfLesson ? null : beat.stage === "illustration" || beat.pictureBeside
+    ? courseBoardContext(args.document, args.topic, beat) ?? pdfCourse() ?? (beat.course && !args.document && !args.strictSource ? promptBoardContext(args.topic, beat) : null)
+    : null;
   // A found image redrawn by the image model (lib/canvas/boardImages.ts) gets a picture's time, as a course picture does.
   const budget = BOARD_BUDGET_MS + (args.mathsCheck ? 60_000 : 0) + (course || (beat.mathsPicture && !beat.course) || beat.foundImage ? 150_000 : 0);
   const clock: Clock = { left: () => budget - (Date.now() - started) };
@@ -992,6 +1007,13 @@ export async function writeCanvasBoard(args: {
   const pen = repairCues(spec, beat, onBoard);
   if (pen.moved || pen.dropped) log.push(`${beat.id}: pen cues — ${pen.moved} moved to what the sentence names, ${pen.dropped} dropped`);
   spec.cues = pen.cues;
+  // WHAT IS WRITTEN IS SAID (lib/canvas/spokenBoardCheck.ts; owner QA brief 2026-11-28: keep it at 90% or more). Logged only.
+  if (!beat.overview && spec.stage.kind !== "exam") {
+    try {
+      const said = spokenBoardLog(beat.id, spokenBoardCheck(spec, beat.script));
+      if (said) { log.push(`[board-speech] ${said}`); console.log(`[board-speech] ${sessionId.slice(0, 8)} ${said}`); }
+    } catch { /* a measurement never fails a board */ }
+  }
 
   log.unshift(`${beat.id}: ${spec.stage.kind} in ${Math.round((Date.now() - started) / 1000)}s, ${made.attempts < 0 ? "FALLBACK board" : `${made.attempts} attempt(s)`}`);
   const written = canvasBeat(canvasBeatId(sessionId, beat.id), beat, index, spec);
@@ -1024,30 +1046,56 @@ export async function writeCanvasBoard(args: {
 }
 
 /**
- * Rewrites the scripts written above the student's reading level, keeping every fact, the order and
- * EXACTLY the number of sentences (each sentence is timed to its board's drawing). A rewrite that
- * changes the count, or is no easier, is not used. Best effort: on any failure the plan stands.
+ * Rewrites the scripts that read badly for this student — above their reading grade, sentences too long, a term said
+ * again and again, a sentence that is not a natural sentence, another currency than the lesson's, a unit changing inside
+ * a calculation (lib/canvas/wordingChecks.ts) — keeping every fact and the order. It answers with one entry per sentence
+ * (each sentence is timed to its board's drawing); a sentence too long may become two short ones, and the board's notes
+ * follow it (applySentenceRewrite). A rewrite that does not line up, or reads harder, or fixes nothing is not used.
+ * Best effort: on any failure the plan stands.
+ *
+ * `sentenceWords` is the most words a sentence may have; a longer sentence alone sends a board back only when
+ * `shortSentences` is set (a student new to the whole topic, owner QA brief 2026-11-28), else only one far over it.
+ * `lesson` is the whole lesson, for the terms it repeats and its currency; `topic` its subject.
  */
-export async function pitchScripts(openai: ReturnType<typeof client>, beats: CanvasPlanBeat[], grade: number): Promise<{ costUsd: number }> {
+export async function pitchScripts(openai: ReturnType<typeof client>, beats: CanvasPlanBeat[], grade: number, teacher = "", options: { sentenceWords?: number; shortSentences?: boolean; lesson?: CanvasPlanBeat[]; topic?: string } = {}): Promise<{ costUsd: number }> {
   const rules = gradeRules(grade);
+  const sentenceWords = Math.min(options.sentenceWords ?? rules.sentenceWords, rules.sentenceWords);
+  const target: WordingTarget = { grade, sentenceWords: options.shortSentences ? sentenceWords : sentenceWords + 8 };
+  const lesson = options.lesson ?? beats;
+  // A board's faults, with its script as it is or as a rewrite would make it (the lesson's counts follow).
+  const issuesOf = (b: CanvasPlanBeat, script = b.script) => {
+    const at = lesson.indexOf(b);
+    const scripts = lesson.map((x) => (x === b ? script : x.script));
+    if (at < 0) scripts.push(script);
+    return scriptIssues(script, target, { heading: b.title, lessonText: scripts.join(" "), overused: overusedTerms(scripts, [...lesson.map((x) => x.title), ...(at < 0 ? [b.title] : [])], { topic: options.topic }), boardIndex: at < 0 ? scripts.length - 1 : at, currency: mixedCurrency(scripts) });
+  };
   let costUsd = 0;
   // Two passes at most: a first rewrite often lands a grade short, and the second sees its own score.
   for (let pass = 1; pass <= 2; pass++) {
     // One grade over is already too hard (a teacher, 2026-10-23: "overcomplicated"); it was two.
-    const tooHard = beats.filter((b) => readingGrade(b.script) > grade + 1);
+    const tooHard = beats.map((b) => ({ b, issues: issuesOf(b) })).filter((x) => x.issues.length);
     if (tooHard.length === 0) break;
-    const system = `You rewrite a teacher's spoken narration so a student reading at GRADE ${grade} follows every word. For each script: keep every fact and idea, the same order, and EXACTLY the same number of sentences — each sentence is timed to a drawing. Aim for grade ${Math.max(2, grade - 1)}: sentences of at most ${rules.sentenceWords} words, mostly short everyday words of one or two syllables ("main government", not "central authority"; "fights inside", not "internal conflicts"). Make it sound like a friendly tutor talking to the student ("you"), not a textbook: no "whereas", "hence", "thus". A technical term the lesson needs stays, followed by a few plain words saying what it means. Never add new content. SIMPLER NEVER MEANS WRONG: a plainer sentence must stay exactly as true as the original — never turn "vaccine antigens come from a harmless or killed form of the germ" into "antigens cause no disease", or "Newton's laws describe objects at rest and in motion" into "motion includes staying still". Return JSON only: {"scripts": {"<id>": "<rewritten script>"}}.`;
-    const user = tooHard.map((b) => `${b.id} (${canvasSentences(b.script).length} sentences, reads at grade ${readingGrade(b.script)}):\n${b.script}`).join("\n\n");
+    const system = `You rewrite a teacher's spoken narration so a student reading at GRADE ${grade} follows every word. Each script comes as numbered sentences, with what to fix in it. For each script return an array with EXACTLY ONE ENTRY PER NUMBERED SENTENCE, in the same order — each sentence is timed to a drawing. An entry is that sentence rewritten; a sentence that is too long or holds two ideas may become TWO short sentences in its one entry, never more. Keep every fact and idea and the same order. Aim for grade ${Math.max(2, grade - 1)}: sentences of at most ${sentenceWords} words, one idea each, mostly short everyday words of one or two syllables ("main government", not "central authority"; "fights inside", not "internal conflicts"). Make it sound like a friendly tutor talking to the student ("you"), not a textbook: no "whereas", "hence", "thus". Say a thing in plain words first, then its technical term, which the lesson keeps; once a term is named, use the plain words for it most of the time instead of repeating the term. Every sentence is a whole, natural spoken sentence — never a fragment, never a heading or a label pasted in, no capital letter on an ordinary word. Keep the lesson's one currency and every unit: a rate keeps its unit through a calculation, and where a unit changes, say the step that changes it — never invent a new number. Never add new content. SIMPLER NEVER MEANS WRONG: a plainer sentence must stay exactly as true as the original — never turn "vaccine antigens come from a harmless or killed form of the germ" into "antigens cause no disease", or "Newton's laws describe objects at rest and in motion" into "motion includes staying still". Return JSON only: {"scripts": {"<id>": ["<sentence 1>", "<sentence 2>", ...]}}.`;
+    // The chosen teacher's way of talking survives the rewrite (lib/teachers.ts).
+    const systemFor = teacher ? `${system}\n\nKEEP THE TEACHER'S PERSONALITY while simplifying: ${teacher}` : system;
+    const user = tooHard.map(({ b, issues }) => `${b.id} (${canvasSentences(b.script).length} sentences, reads at grade ${readingGrade(b.script)}). Fix: ${issues.join("; ")}\n${canvasSentences(b.script).map((x, i) => `${i + 1}. ${x}`).join("\n")}`).join("\n\n");
     try {
-      const { json, costUsd: c } = await bounded(jsonCall(openai, PITCH_MODEL, system, user, 5000), 45_000, "pitch");
+      const { json, costUsd: c } = await bounded(jsonCall(openai, PITCH_MODEL, systemFor, user, 6000), 45_000, "pitch");
       costUsd += c;
       const out = (json && typeof json === "object" ? (json as Record<string, unknown>).scripts : null) as Record<string, unknown> | null;
-      for (const b of tooHard) {
-        const next = typeof out?.[b.id] === "string" ? mathsEllipsis((out[b.id] as string).replace(/\s+/g, " ").trim()) : "";
-        if (!next || canvasSentences(next).length !== canvasSentences(b.script).length) continue;
-        if (readingGrade(next) >= readingGrade(b.script)) continue;
-        console.log(`[pitch] ${b.id} pass ${pass}: grade ${readingGrade(b.script)} -> ${readingGrade(next)} (target ${grade})`);
-        b.script = next;
+      for (const { b, issues } of tooHard) {
+        const raw = out?.[b.id];
+        // The old answer shape (one string, the same sentence count) is still taken.
+        const entries = Array.isArray(raw) ? raw.map((e) => (typeof e === "string" ? mathsEllipsis(e) : e)) : typeof raw === "string" ? canvasSentences(mathsEllipsis(raw.replace(/\s+/g, " ").trim())) : null;
+        const next = entries ? applySentenceRewrite(b, entries) : null;
+        if (!next) continue;
+        const before = readingGrade(b.script);
+        const after = readingGrade(next.script);
+        const left = issuesOf(b, next.script).length;
+        // Easier to read, or as easy with fewer faults: never harder.
+        if (after > before || (after === before && left >= issues.length)) continue;
+        console.log(`[pitch] ${b.id} pass ${pass}: grade ${before} -> ${after} (target ${grade}), ${canvasSentences(b.script).length} -> ${canvasSentences(next.script).length} sentences, faults ${issues.length} -> ${left}`);
+        Object.assign(b, next);
       }
     } catch (error) {
       console.warn(`[pitch] could not rewrite for grade ${grade}: ${(error as Error).message}`);
@@ -1061,12 +1109,14 @@ export async function pitchScripts(openai: ReturnType<typeof client>, beats: Can
  * The wording of `boards` made right: pitched to the student's reading grade, Aria's banned filler words taken
  * out of a course lesson, every sentence fact-checked. `all` is the whole lesson, for finding each board's syllabus block.
  */
-async function polishBoards(openai: ReturnType<typeof client>, topic: string, all: CanvasPlanBeat[], boards: CanvasPlanBeat[], options: { grade?: number; course?: SuprnotesLessonInput | null; factCheck: boolean; typed?: boolean }): Promise<number> {
+async function polishBoards(openai: ReturnType<typeof client>, topic: string, all: CanvasPlanBeat[], boards: CanvasPlanBeat[], options: { grade?: number; course?: SuprnotesLessonInput | null; factCheck: boolean; typed?: boolean; teacher?: string; /** The policy's longest sentence, and whether a longer one alone needs a rewrite (a student new to the topic). */ sentenceWords?: number; shortSentences?: boolean; /** The research the lesson was taught from, for the fact-check. */ facts?: string[] }): Promise<number> {
   let costUsd = 0;
   const { grade, course } = options;
   if (grade !== undefined) {
-    const scriptsBefore = new Map(boards.map((beat) => [beat, beat.script]));
-    const fixed = await pitchScripts(openai, boards.filter((beat) => beat.stage !== "exam"), grade);
+    // A rewrite may split sentences, so what points at them by number goes back with the script.
+    const scriptsBefore = new Map(boards.map((beat) => [beat, { script: beat.script, boardNotes: beat.boardNotes, teachingCycle: beat.teachingCycle, sentenceBlocks: beat.sentenceBlocks }]));
+    const restore = (beat: CanvasPlanBeat) => Object.assign(beat, scriptsBefore.get(beat)!);
+    const fixed = await pitchScripts(openai, boards.filter((beat) => beat.stage !== "exam"), grade, options.teacher, { sentenceWords: options.sentenceWords, shortSentences: options.shortSentences, lesson: all.filter((beat) => beat.stage !== "exam"), topic });
     costUsd += fixed.costUsd;
     // A simpler rewrite must not break a number: a script whose calculations got worse goes back.
     // Nor drop the syllabus (owner, 2026-10-25: "does it still check all the outcomes?"): a board
@@ -1075,17 +1125,23 @@ async function polishBoards(openai: ReturnType<typeof client>, topic: string, al
     const terms = blocks.length ? requiredTermsOf(blocks[0].teachingHints) : [];
     const lessonBeats = all.filter((beat) => !beat.refresher);
     for (const beat of boards) {
-      const before = scriptsBefore.get(beat)!;
+      const before = scriptsBefore.get(beat)!.script;
       if (beat.script === before) continue;
       if (checkNumbers(beat.script).length > checkNumbers(before).length) {
-        beat.script = before;
+        restore(beat);
         continue;
       }
       const lost = syllabusLost(before, beat.script, blocks[lessonBeats.indexOf(beat)], terms);
       if (lost.length) {
         console.log(`[pitch] ${beat.id}: simpler script kept out — it dropped ${lost.map((x) => `"${x.slice(0, 60)}"`).join(", ")}`);
-        beat.script = before;
+        restore(beat);
       }
+    }
+    // The lesson's wording numbers, for the QA log (lib/canvas/wordingChecks.ts): what the student will hear.
+    if (boards.length > 1) {
+      const taught = all.filter((beat) => beat.stage !== "exam");
+      const r = lessonReadability(taught.map((b) => b.script), taught.map((b) => b.title), options.sentenceWords ?? gradeRules(grade).sentenceWords, topic);
+      console.log(`[wording] grade ${r.grade} (target ${grade}), longest sentence ${r.maxSentenceWords} words, ${r.longSentences} over ${options.sentenceWords ?? gradeRules(grade).sentenceWords}, terms said most: ${r.overused.slice(0, 3).map((t) => `${t.term}×${t.count}`).join(", ") || "none over"}, ${r.currency ? `currency mixed (${r.currency.main} + ${r.currency.others.join(", ")})` : "one currency"}, ${r.fragments} fragment(s), ${r.unitClashes} unit clash(es)`);
     }
   }
   // WORDS ARIA NEVER SAYS ("basically", "obviously", "just do…"; lib/teaching/styleCheck.ts), taken out
@@ -1101,7 +1157,7 @@ async function polishBoards(openai: ReturnType<typeof client>, topic: string, al
   // CHECK THE FACTS (prompt bench, 2026-10-18: "motion includes stillness", "antigens cause no
   // disease" reached students). One call reads every sentence; a wrong one is corrected in place.
   // Not on a PDF lesson: there the document is the authority, not a model's general knowledge.
-  if (options.factCheck) costUsd += (await factCheckScripts(openai, topic, boards)).costUsd;
+  if (options.factCheck) costUsd += (await factCheckScripts(openai, topic, boards, options.facts)).costUsd;
   return costUsd;
 }
 
@@ -1115,13 +1171,25 @@ const COURSE_READING_GRADE = 7;
  * making the same point (each sentence is timed to a drawing, so the count never changes). Best
  * effort: on any failure the plan stands.
  */
-async function factCheckScripts(openai: ReturnType<typeof client>, topic: string, beats: CanvasPlanBeat[]): Promise<{ costUsd: number }> {
+async function factCheckScripts(openai: ReturnType<typeof client>, topic: string, beats: CanvasPlanBeat[], facts: string[] = []): Promise<{ costUsd: number }> {
   const sentences = beats.flatMap((b) => canvasSentences(b.script).map((text, i) => ({ key: `${b.id}.${i}`, text })));
   if (!sentences.length) return { costUsd: 0 };
-  const system = `You are a careful subject teacher checking a lesson's narration for factual errors before students hear it. Lesson: "${topic}". Flag ONLY a sentence that is false, or misleading enough that a student would learn something wrong (a wrong definition, a wrong cause, an example that shows a different law, a number or unit that is wrong). Never flag simplification, style, missing detail or a debatable emphasis. For each flagged sentence give ONE corrected sentence that makes the same teaching point, as plainly worded as the original and about as long. Return JSON only: {"fixes": {"<key>": "<corrected sentence>"}} — an empty object when every sentence is right.`;
-  const user = sentences.map((s) => `${s.key}: ${s.text}`).join("\n");
+  // The planner's board notes are written beside the sentences: a note can carry the same wrong claim ("Pay none").
+  const notes = beats.flatMap((b) => (b.boardNotes ?? []).map((n, k) => ({ key: `${b.id}.n${k}`, s: n.s, text: n.text })));
+  // ALL OR NOTHING (owner QA brief, 2026-11-28: a history board said two groups "paid none" in taxes; they paid far
+  // less and were exempt from most direct taxes). Code marks every sentence and note that leans on a word with no
+  // exceptions; the checker keeps it only when the facts support it without exception.
+  const flag = (text: string) => { const w = absoluteClaim(text); return w ? ` [ABSOLUTE: "${w}"]` : ""; };
+  const lessonWords = new Set((beats.map((b) => b.script).join(" ").toLowerCase().match(/[a-z]{5,}/g) ?? []));
+  const relevant = facts.filter((f) => (f.toLowerCase().match(/[a-z]{5,}/g) ?? []).filter((w) => lessonWords.has(w)).length >= 2).slice(0, 40);
+  const system = `You are a careful subject teacher checking a lesson's narration for factual errors before students hear it. Lesson: "${topic}". Flag ONLY a sentence that is false, or misleading enough that a student would learn something wrong (a wrong definition, a wrong cause, an example that shows a different law, a number or unit that is wrong). Never flag simplification, style, missing detail or a debatable emphasis. A line marked [ABSOLUTE] makes an all-or-nothing claim (none, never, always, no one…): keep it when it is true without exception; when the facts below or the subject's established record show exceptions or degrees, it is wrong — correct it to the size the evidence supports ("far less", "most", "rarely", "exempt from most"). Where FACTS FROM THE LESSON'S SOURCES are given, a sentence that contradicts them is wrong. Board notes (keys with "n") are short phrases written beside a sentence: correct a wrong note as an equally short phrase. For each flagged sentence give ONE corrected sentence that makes the same teaching point, as plainly worded as the original and about as long. Return JSON only: {"fixes": {"<key>": "<corrected sentence or note>"}} — an empty object when every line is right.`;
+  const user = [
+    relevant.length ? `FACTS FROM THE LESSON'S SOURCES:\n${relevant.map((f) => `- ${f}`).join("\n")}` : "",
+    `NARRATION:\n${sentences.map((x) => `${x.key}: ${x.text}${flag(x.text)}`).join("\n")}`,
+    notes.length ? `BOARD NOTES (beside sentence s):\n${notes.map((n) => `${n.key} (s ${n.s}): ${n.text}${flag(n.text)}`).join("\n")}` : "",
+  ].filter(Boolean).join("\n\n");
   try {
-    const { json, costUsd } = await bounded(jsonCall(openai, PITCH_MODEL, system, user, 3000), 40_000, "fact-check");
+    const { json, costUsd } = await bounded(jsonCall(openai, PITCH_MODEL, system, user, 3500), 40_000, "fact-check");
     const fixes = (json && typeof json === "object" ? (json as Record<string, unknown>).fixes : null) as Record<string, unknown> | null;
     for (const b of beats) {
       const said = canvasSentences(b.script);
@@ -1134,6 +1202,12 @@ async function factCheckScripts(openai: ReturnType<typeof client>, topic: string
         changed = true;
       });
       if (changed) b.script = said.join(" ");
+      b.boardNotes?.forEach((n, k) => {
+        const next = fixes?.[`${b.id}.n${k}`];
+        if (typeof next !== "string" || !next.trim() || next.length > Math.max(48, n.text.length + 16)) return;
+        console.log(`[fact-check] ${b.id} note "${n.text}" -> "${next.trim()}"`);
+        n.text = next.trim();
+      });
     }
     return { costUsd };
   } catch (error) {

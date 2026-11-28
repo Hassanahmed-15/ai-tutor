@@ -30,6 +30,7 @@ import {
   type LocalTranscriber,
 } from "./voice/localTranscriber";
 import { reportClientSpend } from "./spendTag";
+import { voiceField } from "./voiceChoice";
 
 const LIVE_MODEL_FOR_SPEND = "gemini-live";
 
@@ -1329,7 +1330,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           const res = await fetch("/api/voice/say", {
             method: "POST",
             headers: { "Content-Type": "application/json", "x-aria-spend-kind": "planning" },
-            body: JSON.stringify({ text: line.text }),
+            body: JSON.stringify({ text: line.text, ...voiceField() }),
             signal: controller.signal,
           });
           if (!res.ok || !res.body) throw new Error(`voice/say ${res.status}`);

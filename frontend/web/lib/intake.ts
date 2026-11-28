@@ -237,7 +237,7 @@ function list(items: string[]): string {
  */
 export const ALL_NEW = "None of these, it's all new to me";
 export const NOT_SURE = "Not sure";
-export type IntakeCardQuestion = { id: string; header: string; question: string; multi?: boolean; options: Array<{ label: string; description?: string }> };
+export type IntakeCardQuestion = { id: string; header: string; question: string; multi?: boolean; noOther?: boolean; options: Array<{ label: string; description?: string }> };
 
 export function intakeCard(parts: IntakePart[], known: string[]): IntakeCardQuestion[] {
   const marks = markOf(known);
@@ -273,7 +273,8 @@ export function cardQuestions(state: { parts: IntakePart[]; known: string[]; mea
   if (state.goal?.options.length) out.push({ id: GOAL_TAB, header: "Your goal", question: state.goal.question, options: state.goal.options.map((label) => ({ label })) });
   // 5. how they want it taught (lib/teachingQuestions.ts): questions written for this topic, last. While
   // they are written a loading tab holds their place, so the card is not finished before they arrive.
-  for (const q of state.teaching ?? []) out.push({ id: `${TEACH_TAB_PREFIX}${q.id}`, header: q.header, question: q.question, ...(q.multi ? { multi: true } : {}), options: q.options.map((o) => ({ label: o.label, ...(o.description ? { description: o.description } : {}) })) });
+  // The teacher question (lib/teachers.ts) is a pick of the teachers there are: no "Other" box.
+  for (const q of state.teaching ?? []) out.push({ id: `${TEACH_TAB_PREFIX}${q.id}`, header: q.header, question: q.question, ...(q.multi ? { multi: true } : {}), ...(q.id === "teacher" ? { noOther: true } : {}), options: q.options.map((o) => ({ label: o.label, ...(o.description ? { description: o.description } : {}) })) });
   if (!state.teaching?.length && state.loadingTeaching) out.push({ id: `${TEACH_TAB_PREFIX}loading`, header: "How to teach", question: "How should Aria teach this?", options: [], loading: true });
   return out;
 }

@@ -11,8 +11,9 @@
  * For every board sentence it reads, on the page's own clock:
  *   - when her voice starts and ends that sentence (the audio element's playing/ended);
  *   - when the pen starts and finishes the ink that sentence put on the board (MarkerWriter's QA log);
- * and counts a sentence IN SYNC when the pen starts no earlier than her voice (≤ 0.15 s) and finishes
- * no later than the sentence (≤ 0.3 s after its last word). It also reports the pen's fastest stroke.
+ * and counts a sentence IN SYNC when the pen starts FIRST — 0.05–0.45 s before her voice (owner, 2026-11-28:
+ * text first, voice right after; lib/canvas/textLead.ts) — and finishes before her next sentence. It also
+ * reports the pen's fastest stroke. (scripts/qa/.probe/text-voice-sync.mts measures every board type.)
  *
  *   node --import tsx scripts/qa/sync-check.mts <sessionId> [<sessionId> …] [--speeds=0.5,1,2] [--boards=2] [--cold=1800]
  *   QA_USER=<userId> to play another local account's lecture (read-only).
@@ -204,9 +205,11 @@ function analyse(row: Row, beats: Array<{ id: string; script: string }>, sync: A
     const late = (last - next) / 1000;
     row.early.push(early);
     row.late.push((last - s.end) / 1000);
-    const ok = early <= 0.15 && late <= 0.05;
+    // Text first: the pen starts 0.05–0.45 s before her voice (never after it).
+    const firstOk = early >= 0.05 && early <= 0.45;
+    const ok = firstOk && late <= 0.05;
     if (ok) row.inSync++;
-    else row.worst.push(`board ${s.beat + 1} s${s.board}: pen ${early > 0.15 ? `${early.toFixed(1)} s BEFORE her voice` : ""}${early > 0.15 && late > 0.05 ? ", " : ""}${late > 0.05 ? `still writing ${late.toFixed(1)} s into her NEXT sentence` : ""} — "${s.text.slice(0, 50)}"`);
+    else row.worst.push(`board ${s.beat + 1} s${s.board}: pen ${!firstOk ? (early < 0.05 ? `${(-early).toFixed(2)} s AFTER her voice` : `${early.toFixed(1)} s before her voice`) : ""}${!firstOk && late > 0.05 ? ", " : ""}${late > 0.05 ? `still writing ${late.toFixed(1)} s into her NEXT sentence` : ""} — "${s.text.slice(0, 50)}"`);
   }
 }
 

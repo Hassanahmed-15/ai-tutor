@@ -85,6 +85,16 @@ export function LivingEquationView({ mark, shownThrough, sentenceProgress = 0, r
   }, [target, current, reducedMotion]);
   const line = useRef<HTMLDivElement>(null);
   const shown = useRef<number>(-2);
+  // Everything a step's animation puts on the page for a moment: removed when it ends, by a timer if its end never
+  // comes, and before the next step at the latest.
+  const ghostsLeft = useRef(new Set<Element>());
+  const clearGhosts = () => { for (const g of ghostsLeft.current) g.remove(); ghostsLeft.current.clear(); };
+  const keepGhost = (g: Element, ms: number) => {
+    ghostsLeft.current.add(g);
+    const done = () => { g.remove(); ghostsLeft.current.delete(g); };
+    window.setTimeout(done, ms);
+    return done;
+  };
   const named = useRef(new Set<string>());
   const seen = useRef(new Set<string>());
   const [size, setSize] = useState(Math.min(52, Math.max(26, mark.rect.w / 12)));
@@ -97,6 +107,16 @@ export function LivingEquationView({ mark, shownThrough, sentenceProgress = 0, r
   useLayoutEffect(() => {
     const box = line.current;
     if (!box || current === shown.current) return;
+    // NO TERM LEFT BEHIND (QA 2026-11-28: loose "7x" labels floated round "2 = 2"): what the last step's animation
+    // left — a leaving term, a copy flying from the drawing — goes before the next step is drawn.
+    clearGhosts();
+    // Leaving terms are animated inside the line itself, in its own units: on the page they were drawn at the page's
+    // size and font, not the board's, and stayed put while the camera moved the board.
+    // The board area itself, which does not move when the line is rebuilt narrower or wider (the line does).
+    const host = (box.closest("[data-living]") as HTMLElement | null) ?? box;
+    const hostBox = host.getBoundingClientRect();
+    const scale = hostBox.width / Math.max(1, host.offsetWidth) || 1;
+    const lineFont = getComputedStyle(box.parentElement ?? box);
     const before = shown.current;
     shown.current = current;
     const animate = !reducedMotion && before >= -1 && current === before + 1;
@@ -109,7 +129,7 @@ export function LivingEquationView({ mark, shownThrough, sentenceProgress = 0, r
     const ghosts = leaving.map((el) => {
       const r = el.getBoundingClientRect();
       const g = el.cloneNode(true) as HTMLElement;
-      Object.assign(g.style, { position: "fixed", left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px`, margin: "0", zIndex: "40", pointerEvents: "none" });
+      Object.assign(g.style, { position: "absolute", left: `${(r.left - hostBox.left) / scale - host.clientLeft}px`, top: `${(r.top - hostBox.top) / scale - host.clientTop}px`, width: `${r.width / scale}px`, height: `${r.height / scale}px`, margin: "0", zIndex: "2", pointerEvents: "none", fontSize: lineFont.fontSize, fontFamily: lineFont.fontFamily, lineHeight: lineFont.lineHeight });
       const t = tokens.get(el.dataset.id!);
       return { g, r, text: t?.text.replace(/\s+/g, "") ?? "", key: (t?.tex ?? t?.text ?? "").replace(/\s+/g, ""), used: false };
     });
@@ -167,7 +187,7 @@ export function LivingEquationView({ mark, shownThrough, sentenceProgress = 0, r
 
     const parts = labPartsFor(mark.drawing);
     const born: HTMLElement[] = [];
-    const slide = (el: HTMLElement, was: DOMRect) => { const r = el.getBoundingClientRect(); el.animate([{ transform: `translate(${was.left - r.left}px, ${was.top - r.top}px)` }, { transform: "none" }], { duration: 750, easing: "cubic-bezier(.6,0,.2,1)" }); };
+    const slide = (el: HTMLElement, was: DOMRect) => { const r = el.getBoundingClientRect(); el.animate([{ transform: `translate(${(was.left - r.left) / scale}px, ${(was.top - r.top) / scale}px)` }, { transform: "none" }], { duration: 750, easing: "cubic-bezier(.6,0,.2,1)" }); };
     const norm = (id: string) => (tokens.get(id)?.tex ?? tokens.get(id)?.text ?? "").replace(/\s+/g, "");
     for (const el of [...box.children] as HTMLElement[]) {
       const was = old.get(el.dataset.id!);
@@ -181,16 +201,24 @@ export function LivingEquationView({ mark, shownThrough, sentenceProgress = 0, r
     }
     for (let i = ghosts.length - 1; i >= 0; i--) if (ghosts[i].used) ghosts.splice(i, 1);
     // Leaving terms: equal pairs cancel (they meet and vanish); a lone term the new ones replace opens into them; the rest fade.
+    // A term and its opposite ("7x" and "−7x") cancel first, then two equal terms; each pair meets at its own middle,
+    // not at one point across the "=" for every pair.
     const pairs = new Set<number>();
-    ghosts.forEach((a, i) => { if (pairs.has(i) || SIGN.test(a.text)) return; const j = ghosts.findIndex((b, k) => k !== i && !pairs.has(k) && b.text === a.text); if (j >= 0) { pairs.add(i); pairs.add(j); } });
+    const partner = new Map<number, number>();
+    const unsigned = (t: string) => t.replace(/^[−-]/, "");
+    for (const opposite of [true, false]) ghosts.forEach((a, i) => {
+      if (pairs.has(i) || SIGN.test(a.text)) return;
+      const j = ghosts.findIndex((b, k) => k !== i && !pairs.has(k) && (opposite ? unsigned(b.text) === unsigned(a.text) && b.text !== a.text : b.text === a.text));
+      if (j >= 0) { pairs.add(i); pairs.add(j); partner.set(i, j); partner.set(j, i); }
+    });
     const source = ghosts.length === 1 || (ghosts.filter((g, i) => !pairs.has(i) && !SIGN.test(g.text)).length === 1) ? ghosts.find((g, i) => !pairs.has(i) && !SIGN.test(g.text)) : undefined;
-    const pairList = [...pairs].map((i) => ghosts[i]);
-    const meetX = pairList.length ? pairList.reduce((x, g) => x + g.r.left + g.r.width / 2, 0) / pairList.length : 0;
+    const meetOf = (i: number) => { const a = ghosts[i], b = ghosts[partner.get(i) ?? i]; return (a.r.left + a.r.width / 2 + b.r.left + b.r.width / 2) / 2; };
     ghosts.forEach((g, i) => {
-      document.body.append(g.g);
-      const done = () => g.g.remove();
+      const meetX = pairs.has(i) ? meetOf(i) : 0;
+      host.append(g.g);
+      const done = keepGhost(g.g, 1300);
       if (pairs.has(i)) {
-        g.g.animate([{ transform: "none", color: g.g.style.color }, { transform: "translateY(-0.5em)", color: "#ff5a5a", offset: 0.3 }, { transform: `translate(${meetX - g.r.left - g.r.width / 2}px, -0.5em) scale(.2)`, opacity: 0 }], { duration: 1100, easing: "ease-in", fill: "forwards" }).onfinish = done;
+        g.g.animate([{ transform: "none", color: g.g.style.color }, { transform: "translateY(-0.5em)", color: "#ff5a5a", offset: 0.3 }, { transform: `translate(${(meetX - g.r.left - g.r.width / 2) / scale}px, -0.5em) scale(.2)`, opacity: 0 }], { duration: 1100, easing: "ease-in", fill: "forwards" }).onfinish = done;
       } else g.g.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-0.6em) scale(.9)" }], { duration: 500, fill: "forwards" }).onfinish = done;
     });
     (async () => {
@@ -217,6 +245,7 @@ export function LivingEquationView({ mark, shownThrough, sentenceProgress = 0, r
             if (copy.getAttribute("fill") && copy.getAttribute("fill") !== "none") { copy.style.fill = GOLD; copy.style.fillOpacity = "0.25"; }
             svg.append(copy);
             document.body.append(svg);
+            keepGhost(svg, 1300);
             const k = Math.max(0.12, Math.min(0.7, r.height / Math.max(nr.height, 1)));
             svg.style.transformOrigin = `${nr.left - or.left + nr.width / 2}px ${nr.top - or.top + nr.height / 2}px`;
             svg.animate([{ transform: "none", opacity: 1 }, { transform: `translate(${r.left + r.width / 2 - (nr.left + nr.width / 2)}px, ${r.top + r.height / 2 - (nr.top + nr.height / 2)}px) scale(${k})`, opacity: 0 }], { duration: 1050, easing: "cubic-bezier(.5,0,.2,1)", fill: "forwards" }).onfinish = () => svg.remove();
@@ -227,7 +256,7 @@ export function LivingEquationView({ mark, shownThrough, sentenceProgress = 0, r
           await sleep(250);
         } else if (source) {
           // Opens out of the term it replaces (a bracket expanding into its terms).
-          el.animate([{ transform: `translate(${source.r.left + source.r.width / 2 - r.left - r.width / 2}px, ${source.r.top - r.top}px) scale(.35)`, opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 800, easing: "cubic-bezier(.6,0,.2,1)" });
+          el.animate([{ transform: `translate(${(source.r.left + source.r.width / 2 - r.left - r.width / 2) / scale}px, ${(source.r.top - r.top) / scale}px) scale(.35)`, opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 800, easing: "cubic-bezier(.6,0,.2,1)" });
         } else {
           el.animate([{ opacity: 0, transform: "translateY(0.4em)" }, { opacity: 1, transform: "none" }], { duration: 450, delay: 80 });
           await sleep(90);
@@ -243,12 +272,12 @@ export function LivingEquationView({ mark, shownThrough, sentenceProgress = 0, r
   const saysNothing = (c: string[]) => { const txt = c.map((id) => (tokens.get(id)!.tex ?? tokens.get(id)!.text).replace(/\s+/g, "")).join(""); const [l, r, ...more] = txt.split("="); return !more.length && r !== undefined && l === r; };
   const history = Array.from({ length: Math.max(0, current) }, (_, k) => termsAt(k)).filter((c) => c.length && !saysNothing(c)).map((c) => c.map((id) => tokens.get(id)!)).slice(-3);
   const last = current === steps.length - 1;
-  useEffect(() => () => { shown.current = -2; }, []);
+  useEffect(() => () => { shown.current = -2; clearGhosts(); }, []);
 
   const [webkit, setWebkit] = useState(false);
   useLayoutEffect(() => { setWebkit(isWebKit()); }, []);
   const body = (
-      <div style={{ width: mark.rect.w, height: mark.rect.h, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18, color: "#f4f4ee" }} data-living="" data-step={current}>
+      <div style={{ position: "relative", width: mark.rect.w, height: mark.rect.h, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18, color: "#f4f4ee" }} data-living="" data-step={current}>
         <style>{LIVING_CSS}</style>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, minHeight: 90, justifyContent: "flex-end" }}>
           {history.map((row, i) => (

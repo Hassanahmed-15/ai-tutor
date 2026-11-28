@@ -1,5 +1,7 @@
 import "server-only";
 import { deliveryFor, DELIVERY_VERSION, type Delivery } from "@/lib/voiceDelivery";
+import { chosenVoiceId, chosenVoiceKey } from "@/lib/voices";
+import { teacherOf } from "@/lib/teachers";
 
 /**
  * ARIA'S OWN VOICE: a cloned voice on Gemini 3.8 Flash TTS (owner, 2026-11-12: "just the voice and the
@@ -24,8 +26,9 @@ export function geminiVoiceOn(): boolean {
   return process.env.NARRATION_VOICE === "gemini" && Boolean(process.env.GEMINI_TTS_API_KEY) && Boolean(process.env.GEMINI_TTS_VOICE);
 }
 
+/** The voice of this request or task (lib/voices.ts): Aria's unless the student chose another. */
 export function geminiVoiceId(): string {
-  return process.env.GEMINI_TTS_VOICE ?? "";
+  return chosenVoiceId();
 }
 
 /** The voice part of a stored clip's path: the voice and the acting rules it was made under. */
@@ -51,7 +54,9 @@ export function planningCloneOn(): boolean {
  */
 export async function* streamGeminiVoicePcm(text: string, signal?: AbortSignal, delivery: Delivery = deliveryFor(text)): AsyncGenerator<Uint8Array, number> {
   const item: Record<string, unknown> = { type: "text", text: delivery.input };
-  if (delivery.style) item.annotations = [{ type: "speech_metadata", style: delivery.style }];
+  // A plain sentence is said in the chosen teacher's way (lib/teachers.ts); questions and warnings keep their own.
+  const style = delivery.style || teacherOf(chosenVoiceKey()).delivery;
+  if (style) item.annotations = [{ type: "speech_metadata", style }];
   const res = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions?alt=sse", {
     method: "POST",
     headers: { "x-goog-api-key": process.env.GEMINI_TTS_API_KEY ?? process.env.GEMINI_API_KEY ?? "", "Content-Type": "application/json" },
@@ -147,7 +152,9 @@ export async function pcmToMp3(pcm: Buffer, sampleRate = SAMPLE_RATE): Promise<B
 /** One sentence in the cloned voice, acted as Aria (lib/voiceDelivery.ts), as MP3, with what it cost. Two tries, each bounded. */
 export async function synthesizeGeminiVoice(text: string, delivery: Delivery = deliveryFor(text)): Promise<{ audio: Buffer; costUsd: number }> {
   const item: Record<string, unknown> = { type: "text", text: delivery.input };
-  if (delivery.style) item.annotations = [{ type: "speech_metadata", style: delivery.style }];
+  // A plain sentence is said in the chosen teacher's way (lib/teachers.ts); questions and warnings keep their own.
+  const style = delivery.style || teacherOf(chosenVoiceKey()).delivery;
+  if (style) item.annotations = [{ type: "speech_metadata", style }];
   let lastError: Error = new Error("no attempt");
   for (let attempt = 1; attempt <= 2; attempt++) {
     const controller = new AbortController();

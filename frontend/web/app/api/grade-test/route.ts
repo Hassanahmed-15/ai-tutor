@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { GRADE_ANSWER_RUBRIC_INSTRUCTION, GRADE_FEEDBACK_INSTRUCTION, MARK_SCHEME_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
 import { sanitizeGradeResults } from "@/lib/testSanitize";
 import { createOpenAI } from "@/lib/openaiClient";
+import { proofread } from "@/lib/text/proofread";
 
 /**
  * Batch grades a written test submission in one model call — every question/answer/rubric
@@ -50,7 +51,30 @@ export async function POST(req: Request) {
     });
     const results = sanitizeGradeResults(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), questions.map((q) => q.id), questions, Object.fromEntries(pairs.map((p) => [p.id, p.studentAnswer])));
     const usage = completion.usage;
-    const costUsd = usage ? usage.prompt_tokens * (2.5 / 1_000_000) + usage.completion_tokens * (10.0 / 1_000_000) : 0;
+    let costUsd = usage ? usage.prompt_tokens * (2.5 / 1_000_000) + usage.completion_tokens * (10.0 / 1_000_000) : 0;
+    // SPELLING AND WRONG WORDS (lib/text/proofread.ts; owner QA brief 2026-11-28): the feedback the student reads is
+    // proofread once, at most 8 s; a correction is taken only when it is a proofreading change.
+    const texts: Record<string, string> = {};
+    for (const r of results) {
+      if (r.feedback) texts[`${r.id}::feedback`] = r.feedback;
+      if (r.misconception) texts[`${r.id}::misconception`] = r.misconception;
+    }
+    const checked = await Promise.race([
+      proofread(async (system, user) => {
+        const res = await client.chat.completions.create({ model: MODEL, messages: [{ role: "system", content: system }, { role: "user", content: user }], response_format: { type: "json_object" } });
+        const u = res.usage;
+        if (u) costUsd += u.prompt_tokens * (2.5 / 1_000_000) + u.completion_tokens * (10.0 / 1_000_000);
+        return JSON.parse(res.choices[0]?.message?.content ?? "{}");
+      }, texts),
+      new Promise<null>((resolve) => setTimeout(() => resolve(null), 8_000)),
+    ]);
+    if (checked?.changed.length) {
+      for (const c of checked.changed) console.info(`[grade-test] proofread: "${c.from}" -> "${c.to}"`);
+      for (const r of results) {
+        r.feedback = checked.texts[`${r.id}::feedback`] ?? r.feedback;
+        if (r.misconception) r.misconception = checked.texts[`${r.id}::misconception`] ?? r.misconception;
+      }
+    }
     return NextResponse.json({ results, costUsd });
   } catch (err) {
     return NextResponse.json({ error: err instanceof Error ? err.message : "Grading failed" }, { status: 502 });

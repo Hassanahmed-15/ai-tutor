@@ -1,3 +1,4 @@
+import { withVoice } from "./voices";
 import "server-only";
 
 import OpenAI from "openai";
@@ -127,15 +128,27 @@ export async function processProgressiveLectureTask(task: ProgressiveLectureTask
     console.log(`[timing] kind=queue-wait session=${task.sessionId} ms=${queuedFor} type=${task.type} ${seq}`);
   }
   try {
+    // Every board's voice is made in the voice the student chose when the lecture started (lib/voices.ts).
+    const voice = await sessionVoice(task.userId, task.sessionId);
     // Every paid call this task makes is filed under the lecture (lib/spend, the cost badge).
-    await withSpendScope({ tag: task.sessionId, kind: "generation", userId: task.userId }, async () => {
+    await withVoice(voice, () => withSpendScope({ tag: task.sessionId, kind: "generation", userId: task.userId }, async () => {
       if (task.type === "plan") await planLecture(task.userId, task.sessionId);
       else if (task.type === "generate-beat") await generateBeat(task.userId, task.sessionId, task.sequence, task.revision, queuedFor ?? undefined);
       else await enrichBeat(task.userId, task.sessionId, task.sequence, task.revision, queuedFor ?? undefined);
-    });
+    }));
   } finally {
     logTiming(task.type, task.sessionId, startedAt, seq);
   }
+}
+
+/** A lecture's chosen voice, read once per lecture per process (it never changes after the lecture starts). */
+const voices = new Map<string, string | null>();
+async function sessionVoice(userId: string, sessionId: string): Promise<string | null> {
+  if (voices.has(sessionId)) return voices.get(sessionId) ?? null;
+  const voice = (await progressiveSession(userId, sessionId).catch(() => null))?.voice ?? null;
+  if (voices.size > 500) voices.clear();
+  voices.set(sessionId, voice);
+  return voice;
 }
 
 async function planLecture(userId: string, sessionId: string): Promise<void> {
@@ -722,7 +735,7 @@ async function generateOneBeat(
   // THE TEACHING POLICY (lib/teachingPolicy.ts): the student card and this lesson's evidence as one
   // set of decisions. It owns pacing and how much worked-example guidance to give, so the planning
   // profile below keeps only what they know, and the beat brief is pitched by the same guidance.
-  const policy = input.studentCard ? buildTeachingPolicy(input.studentCard, { learner, depth }) : null;
+  const policy = input.studentCard ? buildTeachingPolicy(input.studentCard, { learner, depth, beginner: input.learnerProfile?.expertise === "beginner" }) : null;
   const briefOptions = { strict, guidance: policy?.guidance };
   const learnerSection = learner && depth
     ? strict

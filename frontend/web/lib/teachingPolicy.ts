@@ -48,12 +48,17 @@ export type TeachingPolicy = {
   visuals: { lead: "pictures" | "balanced"; labelWords: number; keyNotes: boolean };
   practice: "often" | "sometimes" | "light";
   goal: LearningGoal | null;
+  /**
+   * EVERYTHING IN THIS LESSON IS NEW TO THEM: the intake's parts all came back new ("None of these, it's all
+   * new to me"). Their sentences are pitched at NOVICE_READING_GRADE at most, whatever their school grade.
+   */
+  novice: boolean;
   /** Why — "Grade 8", "you like pictures" — for the planning screen's one line. */
   because: string[];
 };
 
 /** What this lesson has shown, when there was a planning conversation. */
-export type LessonEvidence = { learner?: LearnerProfile | null; depth?: DepthLevel | null };
+export type LessonEvidence = { learner?: LearnerProfile | null; depth?: DepthLevel | null; /** The lesson's level was set to beginner (learnerProfile.expertise). */ beginner?: boolean };
 
 const GOAL_FOR_OBJECTIVE: Partial<Record<LearningObjective, LearningGoal>> = { exam: "exams", curiosity: "curious", fundamentals: "understand" };
 
@@ -63,6 +68,16 @@ function bandFor(grade: number): ReadingBand {
 
 const GUIDANCE_ORDER: Guidance[] = ["worked", "faded", "independent"];
 const shift = (g: Guidance, by: number): Guidance => GUIDANCE_ORDER[Math.max(0, Math.min(2, GUIDANCE_ORDER.indexOf(g) + by))];
+
+/** The reading grade and sentence length a student new to every part of the topic is written for. */
+export const NOVICE_READING_GRADE = 6;
+export const NOVICE_SENTENCE_WORDS = 15;
+
+/** Every part the intake asked about came back new ("None of these, it's all new to me"). */
+export function isNovice(learner: LearnerProfile | null | undefined): boolean {
+  const parts = learner?.parts ?? [];
+  return parts.length > 0 && parts.every((p) => p.status === "new");
+}
 
 export function buildTeachingPolicy(card: StudentCard, evidence: LessonEvidence = {}): TeachingPolicy {
   const prefs = card.preferences;
@@ -74,7 +89,10 @@ export function buildTeachingPolicy(card: StudentCard, evidence: LessonEvidence 
   const plainEnglish = prefs?.english === "learning";
   // Plain English is short, common-word, active sentences (Abedi & Lord 2001) — two grades down, so
   // it bites even where a model already writes below the grade; simpler language stacks on it.
-  const readingGrade = Math.max(2, conceptGrade - (plainEnglish ? 2 : 0) - (support.simplerLanguage ? 1 : 0));
+  // A student meeting the whole topic for the first time reads it at grade 6 at most (owner QA brief, 2026-11-28:
+  // "all new to me" lessons read at grade 8.6–10.5). Only the sentences: the ideas stay at their level.
+  const novice = isNovice(evidence.learner) || evidence.beginner === true;
+  const readingGrade = Math.min(novice ? NOVICE_READING_GRADE : 99, Math.max(2, conceptGrade - (plainEnglish ? 2 : 0) - (support.simplerLanguage ? 1 : 0)));
   const band = bandFor(conceptGrade);
   const young = band === "early" || band === "primary";
   const rules = gradeRules(readingGrade);
@@ -125,9 +143,10 @@ export function buildTeachingPolicy(card: StudentCard, evidence: LessonEvidence 
     card,
     band,
     readingGrade,
+    novice,
     conceptGrade,
     language: {
-      sentenceWords: plainEnglish ? Math.min(14, rules.sentenceWords) : rules.sentenceWords,
+      sentenceWords: Math.min(plainEnglish ? 14 : 99, novice ? NOVICE_SENTENCE_WORDS : 99, rules.sentenceWords),
       newTermsPerBoard: rules.newTerms,
       plainEnglish,
       assume: gradeRules(conceptGrade).assume,
@@ -182,9 +201,13 @@ const SAMPLE: Partial<Record<ReadingBand, string>> = {
   middle: 'Plants make their own food in their leaves. Chlorophyll, the green colouring, catches sunlight. The plant uses that energy to turn water and carbon dioxide into sugar.',
 };
 
+/** How to word a lesson for a student to whom every part is new. General: no topic, word or example. */
+export const NOVICE_WORDS_LINE = "EVERY PART OF THIS TOPIC IS NEW TO THEM: one idea per sentence; everyday words first. Say what a thing is or does in plain words BEFORE its technical name, then give the name (\"… This is called <term>.\"). Once a term is named, mostly use the plain words for it — the term itself only where it matters, never sentence after sentence. Do first, name later: they meet and work the simplest real case before any list of kinds, types or categories and before any formal definition; those come afterwards, in plain words. Every sentence is a whole, natural spoken sentence: never a fragment, a heading or label dropped into a sentence, or a formal phrase where an everyday one says the same.";
+
 function wordsLine(p: TeachingPolicy): string {
   const l = p.language;
   const lines = [`WRITE FOR A READING LEVEL OF GRADE ${p.readingGrade}: sentences of at most ${l.sentenceWords} words; at most ${l.newTermsPerBoard} new technical term${l.newTermsPerBoard === 1 ? "" : "s"} per board, each explained in plain words the first time it appears.`];
+  if (p.novice) lines.push(NOVICE_WORDS_LINE);
   if (l.plainEnglish) lines.push("English is not their strongest language: short active sentences, everyday words, no idioms or phrasal verbs, the same name for a thing every time, and a key word's meaning said right after it.");
   if (p.readingGrade < p.conceptGrade) lines.push(`Only the sentences are simpler — the ideas stay at their level (${p.card.level ?? `grade ${p.conceptGrade}`}).`);
   const sample = SAMPLE[bandFor(p.readingGrade)];
@@ -281,8 +304,11 @@ export function policyForPlanner(p: TeachingPolicy, source?: PolicySource): stri
       ? `${c.topicSubject} is not one of their school subjects: plan it as new ground, pitched for their level.`
       : "Pitch the plan for their level.";
   const steps = p.pacing.ideasPerBoard === 1 ? " Plan small steps: one idea per part." : "";
+  // Do first, name later (owner QA brief, 2026-11-28: a beginner's maths lesson named its categories and
+  // gave formal definitions before the student had solved anything).
+  const novice = p.novice ? " Every part is new to them: order the parts so they DO the simplest case first; a part that names kinds, types or categories, or gives a formal definition, comes after they have done it." : "";
   const goal = p.goal === "exams" ? " They are preparing for exams: cover what their exam asks." : p.goal === "homework" ? " They want homework help: plan the method, then an example like theirs." : p.goal === "curious" ? " They are learning for curiosity: plan the surprising, interesting parts too." : "";
-  return `\nWHO THE LESSON IS FOR: ${who}. ${scope}${steps}${goal} ${depthLine(p, source)}`;
+  return `\nWHO THE LESSON IS FOR: ${who}. ${scope}${steps}${novice}${goal} ${depthLine(p, source)}`;
 }
 
 /** The canvas planner writes every script AND picks each board's stage, so it gets the boards too. */

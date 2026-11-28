@@ -41,7 +41,11 @@ export default function PlayerPreview() {
       .then((snap) => setSession({ beats: (snap.beats ?? []).filter(Boolean), title: snap.topic ?? "Lecture", start }));
   }, []);
   // `&voice=1` plays it hands-free, as a real lecture does (the mic on from the start).
-  if (session) return <LessonPlayer key="session" beats={session.beats} title={session.title} startIndex={session.start} autoVoiceAssistant={typeof window !== "undefined" && new URLSearchParams(window.location.search).get("voice") === "1"} onExit={() => undefined} />;
+  // `&review=<what to fix>` opens the start board as "Review slide N" does (lib/testReview.ts); `&autostart=1`
+  // starts it as a freshly built lesson does.
+  const query = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+  const reviewNote = query?.get("review");
+  if (session) return <LessonPlayer key="session" beats={session.beats} title={session.title} startIndex={session.start} review={reviewNote ? { index: session.start, note: reviewNote, say: `Let's look at this board again. ${reviewNote}.` } : null} autoStart={query?.get("autostart") === "1"} summaryUnlocked={Boolean(reviewNote)} autoVoiceAssistant={query?.get("voice") === "1"} onExit={() => undefined} />;
   const lecture = sandbox ? sandboxBoardLecture() : pending ? pendingBoardLecture() : preview ? PREVIEW_LECTURES[preview] : null;
   return <LessonPlayer key={sandbox ? "sandbox" : pending ? "pending" : preview ?? "demo"} beats={lecture?.beats} title={lecture?.title} autoVoiceAssistant={false} onExit={() => undefined} />;
 }

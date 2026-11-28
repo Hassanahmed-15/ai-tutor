@@ -26,7 +26,23 @@ export type PendingBrief = {
    * JSON /api/parse-pdf answers (app/api/capture/[id]/finish). The builder goes straight to reference/strict.
    */
   captured?: CapturedDocument;
+  /**
+   * "Explain my mistakes" after a practice test (components/practice, docs/practice-exam.md): a lecture with one
+   * board per mistake, built straight from these (lib/practiceReview.ts), with no planning questions.
+   */
+  review?: PracticeReview;
 };
+
+export type PracticeMistake = {
+  n: number;
+  stem: string;
+  studentAnswer: string;
+  feedback: string;
+  firstError?: { step: string; what: string; why: string };
+  correctWorking: string[];
+  subtopic: string;
+};
+export type PracticeReview = { title: string; mistakes: PracticeMistake[] };
 
 /** The phone capture's assembled pages, in /api/parse-pdf's shape (plus the name shown for the "file"). */
 export type CapturedDocument = Record<string, unknown> & { sourceDocument: unknown; fileName?: string; pageCount?: number; documentId?: string | null };

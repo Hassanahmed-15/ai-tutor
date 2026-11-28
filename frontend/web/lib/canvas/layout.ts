@@ -10,6 +10,8 @@
  */
 
 import type { BoardBlock } from "./blocks";
+import { inSolvingOrder } from "./stepOrder";
+import { withoutDrawnTables } from "./boardDedupe";
 import { stackView, type StackView } from "./callStack";
 import { layoutStructure, runStructure, type DsFrame, type DsLayout } from "./structure";
 import { evalExpr } from "./expr";
@@ -296,7 +298,9 @@ function sketchWritingToNotes(spec: CanvasBoardSpec): CanvasBoardSpec {
 const labKeyOf = (spec: CanvasBoardSpec) => `${spec.heading}|${spec.lab?.kind === "pencil" ? String((spec.lab.scene as { id?: unknown }).id ?? "") : spec.lab?.kind ?? ""}`;
 
 export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
-  const sketched = sketchWritingToNotes(given);
+  // Saved boards too: working in solving order, the answer under the lines that reach it (lib/canvas/stepOrder.ts).
+  const ordered = given.stage.kind === "equation" && inSolvingOrder(given.stage) !== given.stage ? { ...given, stage: inSolvingOrder(given.stage) } : given;
+  const sketched = sketchWritingToNotes(ordered);
   // A course board has its own look (above); a written course board (Aria's notes, no picture) is its
   // lines as numbered notes, in two columns.
   const course = isCourseBoard(given);
@@ -667,7 +671,8 @@ export function layoutPanel(given: CanvasBoardSpec): PanelLayout {
     const rect = textOnly ? BLOCKS_WHOLE_BOARD : BLOCKS_COLUMN;
     // The pencil lines from a note to a picture's part have no note to start from here.
     for (let i = marks.length - 1; i >= 0; i--) if (marks[i].type === "partLink") marks.splice(i, 1);
-    marks.push({ type: "blocks", id: "blocks", rect, blocks: spec.blocks!, s: 0 });
+    // A table the drawing already shows is not written again in the column (lib/canvas/boardDedupe.ts).
+    marks.push({ type: "blocks", id: "blocks", rect, blocks: withoutDrawnTables(spec.blocks!, spec.stage), s: 0 });
     add("blocks", rect, 0);
   }
   return { marks, targets, stage };
@@ -1976,6 +1981,23 @@ function wrapRow(row: string[], width: (id: string) => number, isBreak: (id: str
   return [row.slice(0, best), row.slice(best)];
 }
 
+/** How close a wrapped line's continuation sits under it, as a share of the gap between two lines of working. */
+const CONTINUATION_GAP = 0.8;
+
+/**
+ * Where a wrapped line's continuation starts: under the first line's "=" when it starts with a relation ("= 40
+ * dollars/day"), under what follows that "=" when it starts with an operator ("+ 6"), kept on the board; undefined
+ * when the first line has no "=" or is not placed yet. Exported for its test (lib/anim/equationWrap.test.ts).
+ */
+export function continuationX(line: string[], firstLine: string[], place: Record<string, Pt>, width: (id: string) => number, textOf: (id: string) => string, gap: number, total: number, box: Rect): number | undefined {
+  const rel = firstLine.find((id) => /^[=≈<>≤≥→⇌]$/.test(textOf(id)));
+  if (!rel || !place[rel] || !line.length) return undefined;
+  const lead = textOf(line[0]);
+  const x = /^[=≈<>≤≥→⇌]$/.test(lead) ? place[rel].x : /^[+−×÷-]$/.test(lead) ? place[rel].x + width(rel) + gap : undefined;
+  if (x === undefined) return undefined;
+  return Math.max(box.x + 10, Math.min(x, box.x + box.w - 20 - total));
+}
+
 function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add, course = false) {
   // 48 terms: a worked calculation of four lines needs more than 16, and the rows shrink to fit
   // (a circuits board lost its "= 6 V" to the old limit of 16; 2026-10-18).
@@ -2032,7 +2054,16 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
     return /^[=→⇌]$/.test(text) ? 2 : /^[+−-]$/.test(text) ? 1 : 0;
   };
   // A course line never splits inside brackets, and a comma or closing bracket never starts a line.
+  // A LINE'S LEFT SIDE STAYS WHOLE (QA 2026-11-28: "Opportunity cost of | leisure = 4 hours × 10 dollars/hour" read as
+  // its own equation): a line never breaks inside its left side; and a left side in words (a label) also keeps its
+  // "=" and what follows, so what a line is about is never parted from it — a later "=" is where it may go on
+  // (wrapRow keeps a fallback). Maths on the left may still go "… / = …".
+  const firstRelation = (row: string[]) => row.findIndex((id) => /^[=≈<>≤≥→⇌]$/.test(textOf(id)));
   const canBreakIn = (row: string[]) => (k: number): boolean => {
+    const rel = firstRelation(row);
+    const worded = rel > 0 && row.slice(0, rel).some((id) => /[A-Za-z]{3,}/.test(textOf(id)));
+    if (rel > 0 && k < rel) return false;
+    if (worded && k <= rel + 1) return false;
     if (!course) return true;
     if (/^[,;)\]}]/.test(textOf(row[k]))) return false;
     let depth = 0;
@@ -2145,13 +2176,16 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
         const step = steps[k];
         if (!writes[k]) continue;
         const place: Record<string, Pt> = {};
-        for (const line of lines[k]) {
+        lines[k].forEach((line, n) => {
           const total = line.reduce((w, id) => w + sized.find((t) => t.id === id)!.w, 0) + pGapEm * Math.max(0, line.length - 1);
           // A course board's working is written down the board from one left margin, as a teacher writes it.
-          let x = course ? box.x + 18 : center - total / 2;
+          // A line's continuation starts under its "=" (lib/canvas/layout.ts continuationX): it reads as the same line.
+          let x = n > 0 ? continuationX(line, lines[k][0], place, (id) => sized.find((t) => t.id === id)!.w, textOf, pGapEm, total, box) ?? (course ? box.x + 18 : center - total / 2) : course ? box.x + 18 : center - total / 2;
+          // The continuation of one line sits closer to it than the next line does.
+          if (n > 0) y -= pGap * (1 - CONTINUATION_GAP);
           for (const id of line) { place[id] = { x, y }; x += sized.find((m) => m.id === id)!.w + pGapEm; }
           y += pGap;
-        }
+        });
         for (const id of step.order.filter((o) => hosted.has(o))) {
           const host = place[hosted.get(id)!];
           const t = sized.find((m) => m.id === id)!;
@@ -2173,7 +2207,7 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
     const lines = lined[k];
     lines.forEach((line, n) => {
       const total = line.reduce((w, id) => w + measured.find((t) => t.id === id)!.w, 0) + gap * Math.max(0, line.length - 1);
-      let x = course ? box.x + 18 : center - total / 2;
+      let x = (n > 0 ? continuationX(line, lines[0], place, (id) => measured.find((t) => t.id === id)!.w, textOf, gap, total, box) : undefined) ?? (course ? box.x + 18 : center - total / 2);
       // Centred on the base line however many lines the step has; the caption goes under the last
       // (a three-line step had its caption written over its third line; maths benchmark round 4).
       const y = baseY + (n - (lines.length - 1) / 2) * lineGap;

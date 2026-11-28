@@ -29,9 +29,11 @@ function prefersStill(): boolean {
 /**
  * `variant="stage"`: the home page's hero (the owner's design, 2026-11-27) — Aria large on a violet stage with a
  * dashed orbit and stars, turning toward the pointer, her greeting in a bubble at the top right and the caption
- * at the bottom. `"row"`: the small one beside its bubble, as before.
+ * at the bottom. `"row"`: the small one beside its bubble, as before. `greeting` replaces the hello; `plain` sets it
+ * as a headline beside her instead of a speech bubble (row only).
  */
-export function AriaBot({ size = 196, variant = "row" }: { size?: number; variant?: "row" | "stage" }) {
+export function AriaBot({ size = 196, variant = "row", greeting = GREETING, plain = false }: { size?: number; variant?: "row" | "stage"; greeting?: string; plain?: boolean }) {
+  const GREETING_TEXT = greeting;
   const [typed, setTyped] = useState(0);
   const [run, setRun] = useState(0);
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -42,7 +44,7 @@ export function AriaBot({ size = 196, variant = "row" }: { size?: number; varian
   // The greeting types out once per visit, and again on each click.
   useEffect(() => {
     if (prefersStill()) {
-      setTyped(GREETING.length);
+      setTyped(GREETING_TEXT.length);
       return;
     }
     setTyped(0);
@@ -50,9 +52,9 @@ export function AriaBot({ size = 196, variant = "row" }: { size?: number; varian
     const start = window.setTimeout(() => {
       const timer = window.setInterval(() => {
         // Less motion asked for after she appeared (the account's setting loads late): finish now.
-        i = prefersStill() ? GREETING.length : i + 1;
+        i = prefersStill() ? GREETING_TEXT.length : i + 1;
         setTyped(i);
-        if (i >= GREETING.length) window.clearInterval(timer);
+        if (i >= GREETING_TEXT.length) window.clearInterval(timer);
       }, TYPE_MS);
       cleanup = () => window.clearInterval(timer);
     }, 450);
@@ -61,7 +63,7 @@ export function AriaBot({ size = 196, variant = "row" }: { size?: number; varian
       window.clearTimeout(start);
       cleanup();
     };
-  }, [run]);
+  }, [run, GREETING_TEXT]);
 
   // Her eyes follow the pointer: CSS variables on the scene, throttled to one write per frame, no
   // re-render. Touch has no hovering pointer to follow, so it is left out.
@@ -94,11 +96,11 @@ export function AriaBot({ size = 196, variant = "row" }: { size?: number; varian
     };
   }, []);
 
-  const talking = typed < GREETING.length;
+  const talking = typed < GREETING_TEXT.length;
   // The letter just typed sets her mouth: the greeting is "said" as it appears.
   useEffect(() => {
-    mouth.current = talking && typed > 0 ? letterMouth(GREETING, typed - 1) : null;
-  }, [typed, talking]);
+    mouth.current = talking && typed > 0 ? letterMouth(GREETING_TEXT, typed - 1) : null;
+  }, [typed, talking, GREETING_TEXT]);
 
   if (variant === "stage") {
     return (
@@ -111,11 +113,11 @@ export function AriaBot({ size = 196, variant = "row" }: { size?: number; varian
         <div className="aria-stage-bubble">
           {/* A paragraph here: the page's heading is "What shall we learn today?" beside the stage. */}
           <p className="text-[1.0625rem] font-extrabold leading-snug">
-            <span className="sr-only">{GREETING}</span>
+            <span className="sr-only">{GREETING_TEXT}</span>
             <span aria-hidden="true">
-              {GREETING.slice(0, typed)}
+              {GREETING_TEXT.slice(0, typed)}
               {talking && <span className="bot-caret">|</span>}
-              <span className="invisible">{GREETING.slice(typed)}</span>
+              <span className="invisible">{GREETING_TEXT.slice(typed)}</span>
             </span>
           </p>
         </div>
@@ -141,15 +143,15 @@ export function AriaBot({ size = 196, variant = "row" }: { size?: number; varian
       </button>
 
       {/* The speech bubble. Its tail points at her: left on a wide screen, down on a narrow one. */}
-      <div className="bot-bubble relative max-w-[17rem] rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3 shadow-[var(--elev-1)]">
-        <span aria-hidden="true" className="bot-bubble-tail" />
-        <h1 className="text-[1.0625rem] font-medium leading-snug text-[var(--hud-text)] sm:text-[1.1875rem]">
-          <span className="sr-only">{GREETING}</span>
+      <div className={plain ? "relative text-center sm:text-left" : "bot-bubble relative max-w-[17rem] rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3 shadow-[var(--elev-1)]"}>
+        {!plain && <span aria-hidden="true" className="bot-bubble-tail" />}
+        <h1 className={plain ? "font-display text-[1.75rem] font-semibold leading-tight tracking-[-0.01em] text-[var(--hud-text)] sm:text-[2.5rem]" : "text-[1.0625rem] font-medium leading-snug text-[var(--hud-text)] sm:text-[1.1875rem]"}>
+          <span className="sr-only">{GREETING_TEXT}</span>
           <span aria-hidden="true">
-            {GREETING.slice(0, typed)}
+            {GREETING_TEXT.slice(0, typed)}
             {talking && <span className="bot-caret">|</span>}
             {/* Kept in the layout from the start, so the bubble never grows as the words arrive. */}
-            <span className="invisible">{GREETING.slice(typed)}</span>
+            <span className="invisible">{GREETING_TEXT.slice(typed)}</span>
           </span>
         </h1>
       </div>

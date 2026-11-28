@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prepareNarration } from "@/lib/narrationAudio";
+import { withVoice } from "@/lib/voices";
 import { splitNarrationSentences } from "@/lib/narrationText";
 
 /**
@@ -9,12 +10,12 @@ import { splitNarrationSentences } from "@/lib/narrationText";
  */
 export async function POST(req: Request) {
   if (process.env.NODE_ENV === "production") return NextResponse.json({ error: "not found" }, { status: 404 });
-  const body = (await req.json().catch(() => ({}))) as { text?: unknown; sentences?: unknown };
+  const body = (await req.json().catch(() => ({}))) as { text?: unknown; sentences?: unknown; voice?: unknown };
   const sentences = Array.isArray(body.sentences)
     ? body.sentences.filter((s): s is string => typeof s === "string" && s.trim().length > 0)
     : typeof body.text === "string" ? splitNarrationSentences(body.text) : [];
   if (!sentences.length) return NextResponse.json({ error: "text or sentences is required" }, { status: 400 });
   const started = Date.now();
-  const clips = await prepareNarration(sentences.slice(0, 200), { concurrency: 3, deadlineMs: 120_000 });
+  const clips = await withVoice(typeof body.voice === "string" ? body.voice : req.headers.get("x-aria-voice"), () => prepareNarration(sentences.slice(0, 200), { concurrency: 3, deadlineMs: 120_000 }));
   return NextResponse.json({ clips, ms: Date.now() - started, costUsd: clips.reduce((sum, clip) => sum + clip.costUsd, 0) });
 }

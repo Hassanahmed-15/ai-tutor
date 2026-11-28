@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, BookOpen, GraduationCap, Loader2, Waypoints } from "lucide-react";
+import React, { useEffect, useMemo, useState } from "react";
+import { ArrowRight, BookOpen, ClipboardCheck, Gamepad2, GraduationCap, Loader2, Waypoints } from "lucide-react";
 import { fetchReplay, SOURCE_ICONS, useLectureHistory, type ReplayPackage } from "@/components/lecture/LectureHistory";
 
 /**
@@ -14,25 +14,35 @@ import { fetchReplay, SOURCE_ICONS, useLectureHistory, type ReplayPackage } from
 type MapNode = { key: string; label?: string; subject: string; mastery?: number; status?: string; due?: boolean };
 
 const TEAL = "#2BB6A8";
+const SKY = "#38A9E0";
+
+/** One frame for all four front-page cards (Courses, Library, Practice, Games), so the row reads as one set. */
+// The size is set on the card, not the rows: globals.css gives buttons `font: inherit`, which beats a utility class on them.
+const DOOR = "home-lift flex min-w-0 flex-col gap-4 rounded-[20px] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5 text-[0.875rem] shadow-[var(--elev-1)]";
+const ROW = "flex min-h-11 items-center gap-2.5 rounded-[12px] border border-transparent bg-[var(--hud-surface-2)] px-3 py-2 text-[0.875rem] transition-colors hover:border-[var(--hud-line-strong)]";
+
+function DoorTitle({ id, title, color, icon }: { id: string; title: string; color: string; icon: React.ReactNode }) {
+  return (
+    <span className="flex min-w-0 items-center gap-3">
+      <span aria-hidden="true" className="grid size-10 shrink-0 place-items-center rounded-[12px]" style={{ background: `color-mix(in srgb, ${color} 20%, transparent)`, color }}>{icon}</span>
+      <span id={id} className="truncate font-display text-[1.25rem] leading-tight text-[var(--hud-text)]">{title}</span>
+    </span>
+  );
+}
 
 export function LibraryDoor({ onOpenAll, onReplay }: { onOpenAll: () => void; onReplay: (lecture: ReplayPackage) => void }) {
   const { items, total, loading } = useLectureHistory();
   const [openingId, setOpeningId] = useState<string | null>(null);
   const recent = items.filter((i) => i.status !== "failed").slice(0, 3);
   return (
-    <section aria-labelledby="door-library" className="home-lift flex min-w-0 flex-col rounded-[16px] border p-5 shadow-[var(--elev-1)]" style={{ borderColor: `${TEAL}59`, background: `linear-gradient(160deg, color-mix(in srgb, ${TEAL} 13%, var(--hud-surface)) 0%, var(--hud-surface) 60%)` }}>
-      <button type="button" onClick={onOpenAll} className="flex items-center gap-3 text-left">
-        <span aria-hidden="true" className="grid size-11 shrink-0 place-items-center rounded-[12px]" style={{ background: `${TEAL}33`, color: TEAL }}>
-          <BookOpen size={22} strokeWidth={1.9} />
-        </span>
-        <span className="min-w-0 flex-1">
-          <span id="door-library" className="block font-display text-[1.4rem] leading-tight text-[var(--hud-text)]">Library</span>
-          <span className="block text-[0.8rem] text-[var(--hud-text-dim)]">{total > 0 ? `${total} lecture${total === 1 ? "" : "s"} · pick up where you left off` : "Every lecture you take is kept here"}</span>
-        </span>
+    <section aria-labelledby="door-library" className={DOOR}>
+      <button type="button" onClick={onOpenAll} className="flex items-center justify-between gap-3 text-left">
+        <DoorTitle id="door-library" title="Library" color={TEAL} icon={<BookOpen size={20} strokeWidth={1.9} />} />
+        <span className="shrink-0 text-[0.8125rem] text-[var(--hud-text-dim)]">{total > 0 ? `${total} lecture${total === 1 ? "" : "s"}` : ""}</span>
       </button>
-      <p className="mt-4 text-[0.7rem] font-medium uppercase tracking-[0.08em] text-[var(--hud-text-faint)]">Recent</p>
-      <ul className="mt-1.5 flex flex-col gap-1.5">
-        {loading && [0, 1, 2].map((i) => <li key={i} className="h-9 animate-pulse rounded-[10px] bg-[var(--hud-surface-2)]" />)}
+      <p className="text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">{total > 0 ? "Pick up where you left off." : "Every lecture you take is kept here."}</p>
+      <ul className="flex flex-col gap-2">
+        {loading && [0, 1, 2].map((i) => <li key={i} className="h-11 animate-pulse rounded-[12px] bg-[var(--hud-surface-2)]" />)}
         {!loading && recent.length === 0 && <li className="py-2 text-[0.8125rem] text-[var(--hud-text-faint)]">Your lessons will appear here.</li>}
         {recent.map((item) => {
           const Icon = SOURCE_ICONS[item.sourceType];
@@ -46,17 +56,17 @@ export function LibraryDoor({ onOpenAll, onReplay }: { onOpenAll: () => void; on
                   setOpeningId(item.id);
                   try { onReplay(await fetchReplay(item.id)); } catch { setOpeningId(null); }
                 }}
-                className="flex w-full items-center gap-2.5 rounded-[10px] border border-[var(--hud-line)] bg-[var(--hud-surface-2)] px-3 py-2 text-left transition-colors hover:border-[var(--hud-line-strong)] disabled:opacity-60"
+                className={`${ROW} w-full text-left disabled:opacity-60`}
               >
                 <span aria-hidden="true" className="shrink-0" style={{ color: TEAL }}>{opening ? <Loader2 size={14} className="animate-spin" /> : <Icon size={14} strokeWidth={1.8} />}</span>
-                <span className="min-w-0 flex-1 truncate text-[0.875rem] text-[var(--hud-text)]">{item.topic}</span>
-                <span aria-hidden="true" className="shrink-0 text-[0.72rem] text-[var(--hud-text-faint)]">Replay</span>
+                <span className="min-w-0 flex-1 truncate text-[var(--hud-text)]">{item.topic}</span>
+                <span aria-hidden="true" className="shrink-0 text-[0.75rem] text-[var(--hud-text-faint)]">Replay</span>
               </button>
             </li>
           );
         })}
       </ul>
-      <button type="button" onClick={onOpenAll} className="mt-4 inline-flex items-center gap-1.5 self-start rounded-full border px-3.5 py-1.5 text-[0.8125rem] font-medium transition-opacity hover:opacity-80" style={{ borderColor: `${TEAL}88`, color: TEAL, fontSize: "0.8125rem", lineHeight: 1.25 }}>
+      <button type="button" onClick={onOpenAll} className="mt-auto inline-flex items-center gap-1.5 self-start text-[0.8125rem] font-medium transition-opacity hover:opacity-80" style={{ color: TEAL }}>
         Open library <ArrowRight aria-hidden="true" size={14} />
       </button>
     </section>
@@ -171,6 +181,96 @@ export function CoursesDoor() {
           </a>
         ))}
       </div>
+    </section>
+  );
+}
+
+/** THE COURSES CARD — the four-card row's first card (front page option A, 2026-11-25): each level one tap away. */
+export function CoursesCard() {
+  return (
+    <section aria-labelledby="door-courses-card" className={DOOR}>
+      <a href="/courses" className="flex items-center justify-between gap-3">
+        <DoorTitle id="door-courses-card" title="Courses" color="var(--accent-ink)" icon={<GraduationCap size={21} strokeWidth={1.9} />} />
+        <ArrowRight aria-hidden="true" size={17} className="shrink-0 text-[var(--hud-text-dim)]" />
+      </a>
+      <p className="text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">Every syllabus lesson, with exam practice.</p>
+      <div className="grid grid-cols-2 gap-2">
+        {COURSE_LEVELS.map((l) => (
+          <a key={l.label} href={l.href} title={l.detail} className={`${ROW} text-[var(--hud-text)]`}>{l.label}</a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+type DoorItem = { name: string; what: string; tag: string; onClick?: () => void; href?: string };
+
+function DoorRows({ items, tagColor }: { items: DoorItem[]; tagColor: string }) {
+  return (
+    <ul className="flex flex-col gap-2">
+      {items.map((it) => {
+        const inner = (
+          <>
+            <span className="flex min-w-0 flex-1 flex-col leading-tight">
+              <span className="truncate font-medium text-[var(--hud-text)]">{it.name}</span>
+              <span className="truncate text-[0.75rem] text-[var(--hud-text-faint)]">{it.what}</span>
+            </span>
+            <span className="shrink-0 text-[0.75rem]" style={{ color: it.onClick || it.href ? tagColor : "var(--hud-text-faint)" }}>{it.tag}</span>
+          </>
+        );
+        return (
+          <li key={it.name}>
+            {it.href ? <a href={it.href} className={ROW}>{inner}</a>
+              : it.onClick ? <button type="button" onClick={it.onClick} className={`${ROW} w-full text-left`}>{inner}</button>
+              : <span aria-disabled="true" className={`${ROW} cursor-default opacity-60 hover:border-transparent`}>{inner}</span>}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+/**
+ * THE PRACTICE CARD: exam-style questions on any topic (the composer's Practice mode, /api/practice/topic), past
+ * papers inside course lessons, and a timed mock (not built yet, so shown as "Soon").
+ */
+export function PracticeDoor({ young, onTopic }: { young: boolean; onTopic: () => void }) {
+  const items: DoorItem[] = young
+    ? [
+        { name: "Quick questions", what: "on any topic", tag: "Type it above", onClick: onTopic },
+        { name: "Daily ten", what: "10 questions a day", tag: "Soon" },
+        { name: "Try again", what: "ones you missed", tag: "Soon" },
+      ]
+    : [
+        { name: "By topic", what: "type any topic above", tag: "Start", onClick: onTopic },
+        { name: "Past papers", what: "inside course lessons", tag: "Courses", href: "/courses" },
+        { name: "Timed mock", what: "a full paper", tag: "Soon" },
+      ];
+  return (
+    <section aria-labelledby="door-practice" className={DOOR}>
+      <button type="button" onClick={onTopic} className="flex items-center justify-between gap-3 text-left">
+        <DoorTitle id="door-practice" title="Practice" color={SKY} icon={<ClipboardCheck size={20} strokeWidth={1.9} />} />
+        <span className="shrink-0 text-[0.8125rem] text-[var(--hud-text-dim)]">Marked by Aria</span>
+      </button>
+      <p className="text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">{young ? "Short questions on what you learned." : "Exam-style questions, marked against the mark scheme."}</p>
+      <DoorRows items={items} tagColor={SKY} />
+    </section>
+  );
+}
+
+/** THE GAMES CARD: practice games built from the student's lessons. None is built yet, so all say "Soon". */
+export function GamesDoor({ young }: { young: boolean }) {
+  // The only game for now (owner 2026-11-27): Math Quest, the owner's own pixel-art maths platformer.
+  void young;
+  const items: DoorItem[] = [{ name: "Math Quest", what: "pixel-art maths adventure", tag: "Play", href: "/games/math-quest" }];
+  return (
+    <section aria-labelledby="door-games" className={DOOR}>
+      <a href="/games/math-quest" className="flex items-center justify-between gap-3">
+        <DoorTitle id="door-games" title="Games" color="var(--warm)" icon={<Gamepad2 size={21} strokeWidth={1.9} />} />
+        <span className="shrink-0 text-[0.8125rem] text-[var(--hud-text-dim)]">1 game</span>
+      </a>
+      <p className="text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">Four worlds of maths: answer to cross bridges, free captives and beat each boss.</p>
+      <DoorRows items={items} tagColor="var(--warm)" />
     </section>
   );
 }

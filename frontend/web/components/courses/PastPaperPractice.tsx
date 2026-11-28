@@ -19,7 +19,8 @@ const EXACT: React.CSSProperties = { fontVariantLigatures: "none", fontFeatureSe
 
 type Marked = { awarded: number; max: number; answer?: string; feedback: string; parts: Array<{ label: string; awarded: number; max: number; earned: string[]; missed: string[] }>; scheme: Array<{ label: string; answer: string; guidance?: string; marks?: number }> };
 
-export function PastPaperPractice({ request, part, onDone }: { request: Request; part: number; onDone: () => void }) {
+/** `request` for a course lesson; `topic` for a typed topic (the front page's Practice mode), which has no real papers. */
+export function PastPaperPractice({ request, topic, part, onDone }: { request?: Request; topic?: string; part: number; onDone: () => void }) {
   const [stage, setStage] = useState<"loading" | "question" | "summary">("loading");
   const [qs, setQs] = useState<Q[]>([]);
   const [pointers, setPointers] = useState<Pointer[]>([]);
@@ -43,8 +44,9 @@ export function PastPaperPractice({ request, part, onDone }: { request: Request;
   useEffect(() => {
     let gone = false;
     (async () => {
-      const qsParams = new URLSearchParams({ ...request, part: String(part) });
-      const res = await fetch(`/api/curricula/past-papers?${qsParams}`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+      const res = request
+        ? await fetch(`/api/curricula/past-papers?${new URLSearchParams({ ...request, part: String(part) })}`).then((r) => (r.ok ? r.json() : null)).catch(() => null)
+        : null;
       if (gone) return;
       const ptrs: Pointer[] = res?.pointers ?? [];
       setPointers(ptrs);
@@ -52,7 +54,9 @@ export function PastPaperPractice({ request, part, onDone }: { request: Request;
       if (res?.full && res.questions?.length) {
         list = (res.questions as Omit<RealQ, "kind">[]).map((q) => ({ ...q, kind: "real" as const }));
       } else {
-        const st = await fetch("/api/curricula/past-papers/exam-style", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ...request, part }) })
+        const st = await (request
+          ? fetch("/api/curricula/past-papers/exam-style", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ...request, part }) })
+          : fetch("/api/practice/topic", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ topic, round: part }) }))
           .then((r) => (r.ok ? r.json() : null)).catch(() => null);
         if (gone) return;
         if (st?.available) list = (st.questions as Array<Omit<StyleQ, "kind" | "setId" | "label">>).map((q, k) => ({ ...q, kind: "style" as const, setId: st.setId, label: `Exam-style question ${k + 1}` }));
@@ -94,7 +98,7 @@ export function PastPaperPractice({ request, part, onDone }: { request: Request;
   if (stage === "loading") {
     return (
       <main className="hud-canvas hud-grain theme-glow flex min-h-screen items-center justify-center px-6" data-past-papers="loading">
-        <p className="text-[var(--hud-text-dim)]">Finding exam questions on this lesson…</p>
+        <p className="text-[var(--hud-text-dim)]">{topic ? `Writing exam-style questions on ${topic}…` : "Finding exam questions on this lesson…"}</p>
       </main>
     );
   }
@@ -103,7 +107,7 @@ export function PastPaperPractice({ request, part, onDone }: { request: Request;
     return (
       <main className="hud-canvas hud-grain theme-glow flex min-h-screen items-center justify-center px-6" data-past-papers="summary" style={EXACT}>
         <section className="mx-auto w-full max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--hud-text-dim)]">Past paper practice</p>
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--hud-text-dim)]">{topic ? "Practice questions" : "Past paper practice"}</p>
           {score.of > 0 && <h1 className="font-display mt-3 text-[2.6rem] leading-none tracking-[-0.03em] text-[var(--hud-text)]">{score.got} / {score.of} marks</h1>}
           {pointers.length > 0 && (
             <div className="mt-8">
@@ -130,7 +134,7 @@ export function PastPaperPractice({ request, part, onDone }: { request: Request;
     <main className="hud-canvas hud-grain theme-glow flex min-h-screen justify-center overflow-y-auto px-4 py-10 sm:px-6" data-past-papers="question" style={EXACT}>
       <section className="mx-auto w-full max-w-3xl">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--hud-text-dim)]">Past paper practice · question {i + 1} of {qs.length}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--hud-text-dim)]">{topic ? "Practice questions" : "Past paper practice"} · question {i + 1} of {qs.length}</p>
           <p className="text-xs font-semibold text-[var(--hud-text-dim)]">{q.marks} mark{q.marks === 1 ? "" : "s"}</p>
         </div>
         <h2 className="mt-2 text-lg font-bold text-[var(--hud-text)]" data-past-paper-label="">{q.label}</h2>

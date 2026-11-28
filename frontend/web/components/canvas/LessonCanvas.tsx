@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Compass, Crosshair, Eraser, Loader2, PenLine, Play, Sparkles, Volume2, VolumeX, X } from "lucide-react";
+import { Compass, Crosshair, Eraser, LayoutGrid, Loader2, PenLine, Play, Sparkles, Volume2, VolumeX, X } from "lucide-react";
 import { directFocus, directInk, fitView, flightMs, unionRects, viewAt, type Shot, type View } from "@/lib/canvas/camera";
 import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
@@ -9,6 +9,7 @@ import { isLabLookTopic } from "@/lib/canvas/subjectLook";
 import { MarkerWriter, type HeardSentence } from "./MarkerWriter";
 import { isCourseBoard } from "@/lib/canvas/lessonSubject";
 import { TextDeconflict } from "./TextDeconflict";
+import { TextStartWatch } from "./TextStartWatch";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type QuizInteraction, type TryItInteraction } from "@/lib/canvas/types";
 import { activeCues, targetVisible } from "@/lib/canvas/cues";
 import { setPointTarget } from "@/lib/avatar/pointTarget";
@@ -18,10 +19,12 @@ import { useReducedMotion } from "@/lib/anim/useReducedMotion";
 import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint, NaturalLayer } from "./CanvasPanel";
 import { quadPoints } from "@/lib/canvas/ink";
 import { cardSideView } from "@/lib/canvas/renderFit";
+import { clearOfPill, MAP_PILL, writingArea } from "@/lib/canvas/mapCorner";
 import { playScratch, playTick, playWhoosh, setSoundEnabled, soundEnabled } from "./sound";
 import { Confetti } from "./Confetti";
 import { preferredCardStyle, type CardStyle } from "@/lib/canvas/cardStyle";
 import { CHECK_PRAISE } from "@/lib/narrationText";
+import { tapHotspots, veiledBlocks } from "@/lib/canvas/quizFlow";
 
 /**
  * THE LESSON CANVAS — every board of the lecture on one world, taught by a camera and a pen.
@@ -259,6 +262,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   // until they have answered (owner, 2026-10-18: "tap the board").
   const [tapPick, setTapPick] = useState<{ key: string; index: number; at: number } | null>(null);
   const [cardAnswered, setCardAnswered] = useState<Record<string, boolean>>({});
+  /** A tap on a tap card's board that missed every target: when, so the card can say what to tap. */
+  const [tapMiss, setTapMiss] = useState(0);
   const tapCard = taskOpen && checkFlow && interaction?.kind === "quiz" && interaction.mode === "tap" && current ? interaction : undefined;
   // A card's camera stays on its own board (QA 2026-11-25): opening it brings a camera the student had
   // moved (dragged, zoomed, the whole-lesson view) back to the board being asked about.
@@ -272,6 +277,15 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   // An "order the steps" card: the board's arrows would show the answer, so they are taken off until
   // the student has answered — then they draw back in.
   const orderOpen = Boolean(taskOpen && checkFlow && interaction?.kind === "quiz" && interaction.mode === "order" && current && !cardAnswered[cardKey]);
+  const veilCss = useMemo(() => {
+    if (!(taskOpen && interaction?.kind === "quiz" && current && !cardAnswered[cardKey])) return "";
+    const ids = veiledBlocks(current.spec.blocks, interaction.options.find((o) => o.correct)?.text ?? "");
+    const esc = (v: string) => (typeof CSS !== "undefined" && CSS.escape ? CSS.escape(v) : v.replace(/["\\]/g, ""));
+    const section = current.spec.blocks?.[0]?.section_id ?? "";
+    const sel = [...ids].map((id) => `[data-bk-section="${esc(section)}"][data-bk-id="${esc(id)}"]`);
+    if (!sel.length) return "";
+    return `${sel.join(",")}{position:relative;filter:blur(7px);opacity:.5;transition:filter .3s,opacity .3s;user-select:none;pointer-events:none}`;
+  }, [taskOpen, interaction, current, cardAnswered, cardKey]);
 
   /* ── the pen: which cue is live ───────────────────────────────────────────────────────── */
 
@@ -377,6 +391,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     if (qa.__qaMarker) qa.__director = { ...director, boardKey, place: currentPlace, directing: directingRef.current };
   }, [director, boardKey, currentPlace]);
 
+  // The lesson map's pill in the corner (CornerMap, below) is kept off the board's writing (lib/canvas/mapCorner.ts).
+  const mapShown = plannedCount !== undefined ? Math.max(plannedCount, panels.length) >= 2 : panels.filter((p) => !p.spec.inside).length >= 2;
+  const clearMap = useCallback((v: View): View => (mapShown && currentPlace ? clearOfPill(v, toWorld(writingArea({ x: 0, y: 0, w: PANEL_W, h: PANEL_H }), currentPlace), boxSize) : v), [mapShown, currentPlace, boxSize]);
   const followView = useMemo((): View => {
     if (!current || !currentPlace) return overviewView;
     if (current.spec.overview && finished) return overviewView;
@@ -406,7 +423,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       const h = PANEL_H * 0.9;
       const x = Math.max(0, Math.min(PANEL_W - w, PANEL_W / 2 + (t.x + t.w / 2 - PANEL_W / 2) * 0.35 - w / 2));
       const y = Math.max(0, Math.min(PANEL_H - h, PANEL_H / 2 + (t.y + t.h / 2 - PANEL_H / 2) * 0.35 - h / 2));
-      return fitView(toWorld({ x, y, w, h }, currentPlace), aspect, 0.03);
+      return clearMap(fitView(toWorld({ x, y, w, h }, currentPlace), aspect, 0.03));
     }
     // A task card sits to the right of the board: the camera slides the board left to make room —
     // the board as large as the space left of the card's column allows. A fixed half-board of room
@@ -414,8 +431,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     const beside = taskOpen ? cardSideView(toWorld({ x: 0, y: 0, w: PANEL_W, h: PANEL_H }, currentPlace), boxSize, CARD_COLUMN_PX) : null;
     if (beside) return beside;
     const room = taskOpen ? PANEL_W * 0.52 : 0;
-    return fitView(toWorld({ x: 0, y: 0, w: PANEL_W + room, h: PANEL_H }, currentPlace), aspect, 0.035);
-  }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, boxSize, taskOpen, visitIndex, shownIndex, worldRects, cardStyle, focusId, labLook, directorShot, blocksBoard]);
+    return clearMap(fitView(toWorld({ x: 0, y: 0, w: PANEL_W + room, h: PANEL_H }, currentPlace), aspect, 0.035));
+  }, [current, currentPlace, currentLayout, cueState.zoom, finished, overviewView, aspect, boxSize, taskOpen, visitIndex, shownIndex, worldRects, cardStyle, focusId, labLook, directorShot, blocksBoard, clearMap]);
 
   const viewRef = useRef<View>(followView);
   useEffect(() => {
@@ -734,6 +751,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               {live && (labLook || isCourseBoard(panel.spec)) && <MarkerWriter key={panel.key} onRegion={onInkRegion} finished={finished} speed={speed} playing={playing || finished} sentence={sentence} heard={voiceHeard} />}
               {/* No writing on writing, on every board (owner, 2026-10-21: the most important fix). */}
               {live && <TextDeconflict key={`tx-${panel.key}`} />}
+              {/* Text first, her voice right after: when each sentence's writing really starts (lib/canvas/textLead.ts). */}
+              {live && <TextStartWatch key={`ts-${panel.key}`} panelKey={panel.key} sentence={sentence} marks={layouts[i].marks} pen={labLook || isCourseBoard(panel.spec)} />}
               <Corrections layout={layouts[i]} check={corrections[panel.key]} />
               <Strokes strokes={strokes[panel.key] ?? []} live={live && drawing ? liveStroke : null} />
               {live && penCue && <Pen cue={penCue} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
@@ -752,7 +771,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 />
               )}
               {tapCard && tapHidden && panel.key === current?.key && (
-                <TapTargets layout={layouts[i]} targets={tapCard.options.map((o) => o.target ?? "")} onTap={(index) => setTapPick({ key: cardKey, index, at: Date.now() })} />
+                <TapTargets layout={layouts[i]} targets={tapCard.options.map((o) => o.target ?? "")} onTap={(index) => setTapPick({ key: cardKey, index, at: Date.now() })} onMiss={() => setTapMiss(Date.now())} />
               )}
               {/* RACK FOCUS: while the camera is with Aria, every other board steps back — under a veil
                   of the background colour, which looks the same as fading the board but is one
@@ -865,6 +884,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           onContinue={onContinue}
         />
       )}
+      {/* The board must not hold the answer while it is asked (QA 2026-11-28): a "Check yourself" box, its
+          answer and any line that says the right option are covered until the student has answered. */}
+      {veilCss && <style data-veil="">{veilCss}</style>}
       {taskOpen && interaction?.kind === "quiz" && current && checkFlow && (
         <QuestionCard
           key={cardKey}
@@ -874,6 +896,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           steps={interaction.steps}
           loop={interaction.loop}
           tapped={tapPick?.key === cardKey ? tapPick : null}
+          missAt={tapMiss}
+          covered={Boolean(veilCss)}
           onHint={interaction.hint ? () => {
             if (interaction.hint!.target && onBoardNow(layouts[currentIndex], interaction.hint!.target)) setReactionPoint({ key: current.key, target: interaction.hint!.target, at: Date.now() });
             onSpeak(interaction.hint!.text);
@@ -914,7 +938,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           Tap the glowing parts of the picture to explore them
         </p>
       )}
-      {plannedCount !== undefined ? (
+      {mapShown && <CornerMap label={`${shownIndex + 1} / ${Math.max(plannedCount ?? 0, panels.length)}`}>{plannedCount !== undefined ? (
         <PlanMap
           panels={panels}
           plannedCount={plannedCount}
@@ -937,7 +961,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           setMode("free");
           flyTo(fitView(worldRects[i], aspect, 0.035));
         }}
-      />}
+      />}</CornerMap>}
       {taskOpen && interaction?.kind === "draw" && current && (
         <DrawCard
           prompt={interaction.prompt}
@@ -1255,29 +1279,76 @@ function quizLayout(layout: PanelLayout, hidden: Set<string>, noArrows = false, 
   return out;
 }
 
-/** The parts a tap card asks about, as glowing rings the student taps to answer. */
-function TapTargets({ layout, targets, onTap }: { layout: PanelLayout; targets: string[]; onTap: (index: number) => void }) {
+/** A finger's width on screen (QA 2026-11-28: the targets were 41 px dots, and nothing else answered). */
+const TAP_MIN_PX = 64;
+
+/**
+ * The parts a tap card asks about, each a numbered, highlighted area the size of the part (at least a
+ * finger's width on screen, lib/canvas/quizFlow.ts tapHotspots). A tap anywhere else on the board says
+ * "Tap one of the highlighted parts" instead of doing nothing.
+ */
+function TapTargets({ layout, targets, onTap, onMiss }: { layout: PanelLayout; targets: string[]; onTap: (index: number) => void; onMiss?: () => void }) {
+  const ref = useRef<SVGGElement>(null);
+  // Board units per screen pixel, measured from the live transform (the camera zooms the board).
+  const [perPx, setPerPx] = useState(1.5);
+  useEffect(() => {
+    const measure = () => {
+      const m = ref.current?.getScreenCTM();
+      if (m && m.a > 0) setPerPx((prev) => (Math.abs(prev - 1 / m.a) > 0.05 ? 1 / m.a : prev));
+    };
+    measure();
+    const t = window.setInterval(measure, 400);
+    return () => window.clearInterval(t);
+  }, []);
+  const parts = targets.map((id) => {
+    const part = layout.marks.find((m) => m.type === "part" && m.id === id) as Extract<Mark, { type: "part" }> | undefined;
+    const r = layout.targets[id];
+    return { center: part ? { x: part.cx, y: part.cy } : r ? { x: r.x + r.w / 2, y: r.y + r.h / 2 } : null, region: r ?? null };
+  });
+  const boxes = tapHotspots(parts, TAP_MIN_PX * perPx, { x: 0, y: 0, w: PANEL_W, h: PANEL_H });
+  const down = useRef<{ x: number; y: number } | null>(null);
+  const trusted = (e: React.MouseEvent, i: number) => {
+    // Only the student's own tap answers (QA 2026-11-25: a card "answered itself"): never a click a script dispatched.
+    if (!e.nativeEvent.isTrusted) {
+      console.info("[check-card] ignored an untrusted tap", { option: i });
+      return false;
+    }
+    return true;
+  };
+  const badge = Math.max(13, 14 * perPx);
   return (
-    <g>
+    // data-no-marker: the marker (MarkerWriter) must not take these for unwritten ink — it hid two of three
+    // targets behind its reveal clip, so a tap on them fell through to "missed".
+    <g ref={ref} data-no-marker="">
+      {/* Under the targets: a tap on the board that is not one of them (a drag of the camera is not a tap). */}
+      <rect
+        x={0} y={0} width={PANEL_W} height={PANEL_H} fill="#fff" opacity={0.001}
+        onPointerDown={(e) => { down.current = { x: e.clientX, y: e.clientY }; }}
+        onClick={(e) => {
+          const from = down.current;
+          down.current = null;
+          if (!e.nativeEvent.isTrusted || (from && Math.hypot(e.clientX - from.x, e.clientY - from.y) > 8)) return;
+          onMiss?.();
+        }}
+      />
       {targets.map((id, i) => {
-        const part = layout.marks.find((m) => m.type === "part" && m.id === id) as Extract<Mark, { type: "part" }> | undefined;
-        const r = layout.targets[id];
-        const c = part ? { x: part.cx, y: part.cy } : r ? { x: r.x + r.w / 2, y: r.y + r.h / 2 } : null;
-        if (!c) return null;
+        const box = boxes[i];
+        if (!box) return null;
+        const cx = box.x + box.w / 2;
+        const cy = box.y + box.h / 2;
         return (
-          <g key={id} role="button" aria-label={`Answer: part ${i + 1}`} style={{ cursor: "pointer" }} onPointerDown={(e) => e.stopPropagation()} onClick={(e) => {
+          <g key={id} role="button" aria-label={`Answer: part ${i + 1}`} data-tap-target={i + 1} style={{ cursor: "pointer" }} onPointerDown={(e) => e.stopPropagation()} onClick={(e) => {
             e.stopPropagation();
-            // Only the student's own tap answers (QA 2026-11-25: a card "answered itself"): never a
-            // click a script dispatched.
-            if (!e.nativeEvent.isTrusted) {
-              console.info("[check-card] ignored an untrusted tap", { option: i });
-              return;
-            }
-            onTap(i);
+            if (trusted(e, i)) onTap(i);
           }}>
-            <circle cx={c.x} cy={c.y} r={30} fill="#fff" opacity={0.001} />
-            <circle cx={c.x} cy={c.y} r={16} fill="none" stroke="#8b5cf6" strokeWidth={3.5} className="cv-hotspot" style={{ animationDelay: `${i * 160}ms` }} />
-            <circle cx={c.x} cy={c.y} r={7} fill="#8b5cf6" stroke="#fff" strokeWidth={2.5} />
+            {/* Highlighted for as long as the question is open; a soft pulse round it draws the eye. */}
+            <rect x={box.x} y={box.y} width={box.w} height={box.h} rx={Math.min(box.w, box.h) * 0.22} fill="#8b5cf6" fillOpacity={0.14} stroke="#a78bfa" strokeWidth={2.5 * perPx} strokeDasharray={`${7 * perPx} ${5 * perPx}`} />
+            <rect x={box.x} y={box.y} width={box.w} height={box.h} rx={Math.min(box.w, box.h) * 0.22} fill="none" stroke="#c4b5fd" strokeWidth={2 * perPx} className="cv-hotspot" pointerEvents="none" style={{ animationDelay: `${i * 160}ms`, animationDuration: "2200ms" }} />
+            <circle cx={cx} cy={cy} r={5 * perPx} fill="#8b5cf6" stroke="#fff" strokeWidth={2 * perPx} />
+            <g transform={`translate(${box.x + badge * 0.2} ${box.y + badge * 0.2})`} pointerEvents="none">
+              <circle cx={badge / 2} cy={badge / 2} r={badge / 2 + 2 * perPx} fill="#8b5cf6" stroke="#fff" strokeWidth={1.5 * perPx} />
+              <text x={badge / 2} y={badge / 2} textAnchor="middle" dominantBaseline="central" fontSize={badge * 0.95} fontWeight={800} fill="#fff" style={{ fontFamily: "system-ui, sans-serif" }}>{i + 1}</text>
+            </g>
           </g>
         );
       })}
@@ -1289,7 +1360,7 @@ function Hotspots({ layout, spec, onTap }: { layout: PanelLayout; spec: CanvasBo
   if (spec.stage.kind !== "illustration") return null;
   const parts = spec.stage.parts.filter((p) => p.say);
   return (
-    <g>
+    <g data-no-marker="">
       {parts.map((p, i) => {
         const mark = layout.marks.find((m) => m.type === "part" && m.id === p.id) as Extract<Mark, { type: "part" }> | undefined;
         if (!mark) return null;
@@ -1371,8 +1442,12 @@ const PRAISE = CHECK_PRAISE;
  * - A wrong answer: struck through, with why it is wrong; the right option is then shown, without
  *   an explanation of its own, and the student continues.
  */
-function QuestionCard({ question, options, mode = "choice", steps, loop, tapped, onHint, onReplay, onAsk, onAnswer, onSkip, onContinue }: {
+function QuestionCard({ question, options, mode = "choice", steps, loop, tapped, missAt = 0, covered = false, onHint, onReplay, onAsk, onAnswer, onSkip, onContinue }: {
   question: string;
+  /** Tap cards: when a tap on the board missed every target. */
+  missAt?: number;
+  /** Part of the board is covered while the question is open (it gave the answer away). */
+  covered?: boolean;
   options: Array<{ text: string; correct: boolean; feedback: string }>;
   mode?: "choice" | "tap" | "order";
   steps?: Array<{ id: string; text: string }>;
@@ -1450,10 +1525,35 @@ function QuestionCard({ question, options, mode = "choice", steps, loop, tapped,
       answer(inOrder ? options.findIndex((o) => o.correct) : options.findIndex((o) => !o.correct), "order");
     }
   };
+  // A tap that missed: said for a few seconds (QA 2026-11-28: a wrong tap did nothing, silently).
+  const missed = mode === "tap" && !answered && missAt > openedAt;
+  const [missShown, setMissShown] = useState(0);
+  if (missed && missShown !== missAt) setMissShown(missAt);
+  const [missGone, setMissGone] = useState(0);
+  useEffect(() => {
+    if (!missShown) return;
+    const t = window.setTimeout(() => setMissGone(missShown), 2800);
+    return () => window.clearTimeout(t);
+  }, [missShown]);
+  const showMiss = missed && missGone !== missShown;
+  // EVERY OPTION IN SIGHT (QA 2026-11-28: 2 of 4 visible without scrolling). The card is compact and as
+  // tall as the board allows; when it still has to scroll, it says so.
+  const box = useRef<HTMLDivElement>(null);
+  const [more, setMore] = useState(false);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const check = () => setMore(el.scrollHeight - el.scrollTop - el.clientHeight > 6);
+    const first = requestAnimationFrame(check);
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(check) : null;
+    ro?.observe(el);
+    el.addEventListener("scroll", check, { passive: true });
+    return () => { cancelAnimationFrame(first); ro?.disconnect(); el.removeEventListener("scroll", check); };
+  }, [answered, line, sequence.length]);
   return (
     // Anchored near the top and kept clear of the bottom-right corner, where Aria stands: an answered
     // card is tall, and centred it ran under her.
-    <div data-card="" className="absolute right-4 top-[9%] z-20 max-h-[calc(100%-9%-9.5rem)] w-[min(320px,calc(100%-2rem))] overflow-y-auto rounded-2xl border border-violet-300/25 bg-[#100e16]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
+    <div ref={box} data-card="" className="absolute right-4 top-[4%] z-20 w-[min(340px,calc(100%-2rem))] overflow-y-auto rounded-2xl border border-violet-300/25 bg-[#100e16]/92 p-3.5 text-white shadow-2xl backdrop-blur" style={{ maxHeight: "max(calc(100% - 4% - 8.5rem), min(calc(100% - 4% - 1rem), 27rem))" }} onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
       <div className="flex items-start justify-between gap-2">
         <p className="flex items-center gap-1.5 text-[0.68rem] font-black uppercase tracking-[0.18em] text-violet-300/90">
           <Sparkles size={12} /> Quick question
@@ -1473,7 +1573,13 @@ function QuestionCard({ question, options, mode = "choice", steps, loop, tapped,
       </div>
       <p className="mt-1.5 text-sm font-semibold leading-snug text-white/90">{question}</p>
       {mode === "tap" && !answered && (
-        <p className="mt-2 flex items-center gap-1.5 rounded-lg bg-violet-400/15 px-2.5 py-2 text-xs font-bold text-violet-100">👆 Tap your answer on the board</p>
+        <p className="mt-2 flex items-center gap-1.5 rounded-lg bg-violet-400/15 px-2.5 py-2 text-xs font-bold text-violet-100">👆 Tap your answer on the board: one of the numbered parts{options.length > 1 ? ` (1–${options.length})` : ""}</p>
+      )}
+      {showMiss && (
+        <p role="status" className="mt-2 rounded-lg bg-amber-300/15 px-2.5 py-2 text-xs font-bold text-amber-100">Tap one of the highlighted parts</p>
+      )}
+      {covered && !answered && (
+        <p className="mt-2 text-[0.7rem] font-semibold text-white/50">Part of the board is covered until you answer.</p>
       )}
       {mode === "order" && steps && (
         <div className="mt-3 space-y-2">
@@ -1502,12 +1608,12 @@ function QuestionCard({ question, options, mode = "choice", steps, loop, tapped,
         </div>
       )}
       {!answered && (onHint || onReplay) && (
-        <div className="mt-3 flex gap-2">
+        <div className="mt-2.5 flex gap-2">
           {onHint && <button onClick={onHint} className="flex-1 rounded-xl border border-amber-300/40 bg-amber-300/10 px-2.5 py-1.5 text-xs font-bold text-amber-100 hover:bg-amber-300/20">💡 Hint</button>}
           {onReplay && <button onClick={onReplay} className="flex-1 rounded-xl border border-white/15 bg-white/[0.04] px-2.5 py-1.5 text-xs font-bold text-white/80 hover:bg-white/[0.08]">↺ Show me again</button>}
         </div>
       )}
-      <div className="mt-3 space-y-2">
+      <div className="mt-2.5 space-y-1.5">
         {(mode === "choice" || (mode === "tap" && answered)) && options.map((o, i) => {
           const chosen = picked === i;
           const shownRight = answered && o.correct;
@@ -1518,7 +1624,7 @@ function QuestionCard({ question, options, mode = "choice", steps, loop, tapped,
               key={i}
               disabled={answered}
               onClick={() => answer(i, "option-button")}
-              className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3 py-2 text-left text-sm font-semibold transition ${
+              className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3 py-1.5 text-left text-[0.84rem] font-semibold leading-snug transition ${
                 shownRight
                   ? "border-emerald-300/60 bg-emerald-400/15 text-emerald-50"
                   : chosen
@@ -1545,6 +1651,57 @@ function QuestionCard({ question, options, mode = "choice", steps, loop, tapped,
           <Play size={14} /> Continue the lesson
         </button>
       )}
+      {more && (
+        <button
+          type="button"
+          data-card-more=""
+          onClick={() => box.current?.scrollBy({ top: box.current.clientHeight * 0.7, behavior: "smooth" })}
+          className="sticky -bottom-3.5 -mx-3.5 -mb-3.5 mt-2 flex w-[calc(100%+1.75rem)] items-center justify-center gap-1 bg-gradient-to-t from-[#100e16] via-[#100e16]/95 to-transparent pb-2 pt-5 text-[0.7rem] font-bold text-violet-200"
+        >
+          ↓ More below — scroll
+        </button>
+      )}
+    </div>
+  );
+}
+
+/**
+ * THE LESSON MAP, FOLDED INTO THE CORNER (QA 2026-11-28: the open grid covered words and a "Check yourself" answer
+ * on many boards). It is a small "3 / 16" pill — the camera keeps the board's writing clear of it
+ * (lib/canvas/mapCorner.ts) — that opens into the map on hover, focus or a tap, and folds away again when the
+ * pointer leaves, a board is picked, or it sits untouched for a few seconds.
+ */
+function CornerMap({ label, children }: { label: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  const fold = useRef(0);
+  const later = (ms: number) => { window.clearTimeout(fold.current); fold.current = window.setTimeout(() => setOpen(false), ms); };
+  useEffect(() => () => window.clearTimeout(fold.current), []);
+  const show = () => { setOpen(true); later(6000); };
+  return (
+    <div
+      className="absolute bottom-3 left-3 z-10"
+      data-lesson-map={open ? "open" : "folded"}
+      onPointerDown={(e) => e.stopPropagation()}
+      onWheel={(e) => e.stopPropagation()}
+      onPointerEnter={(e) => { if (e.pointerType === "mouse") show(); }}
+      onPointerMove={() => { if (open) later(6000); }}
+      onPointerLeave={(e) => { if (e.pointerType === "mouse") later(450); }}
+      onFocus={show}
+      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) later(300); }}
+      onClickCapture={() => { if (open) later(250); }}
+    >
+      {open ? children : (
+        <button
+          type="button"
+          onClick={show}
+          aria-label={`Lesson map: board ${label}`}
+          aria-expanded={false}
+          className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[0.68rem] font-extrabold tabular-nums text-white/75 opacity-80 backdrop-blur transition-opacity hover:opacity-100"
+          style={{ height: MAP_PILL.h, maxWidth: MAP_PILL.w }}
+        >
+          <LayoutGrid size={12} aria-hidden="true" /> {label}
+        </button>
+      )}
     </div>
   );
 }
@@ -1560,7 +1717,7 @@ function PlanMap({ panels, plannedCount, shownIndex, reachedIndex, visitIndex, o
   if (total < 2) return null;
   const COLS = 5;
   return (
-    <div className="absolute bottom-3 left-3 z-10 rounded-xl border border-white/10 bg-black/45 p-1.5 opacity-80 backdrop-blur transition-opacity hover:opacity-100" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
+    <div className="rounded-xl border border-white/10 bg-black/45 p-1.5 opacity-90 backdrop-blur transition-opacity hover:opacity-100">
       <ol aria-label="Lesson map" className="grid gap-1" style={{ gridTemplateColumns: `repeat(${Math.min(COLS, total)}, 1.5rem)` }}>
         {Array.from({ length: total }, (_, i) => {
           const panel = panels[i];
@@ -1604,7 +1761,7 @@ function MiniMap({ panels, themes, worldRects, shownIndex, reachedIndex, visitIn
   const H = Math.max(60, Math.min(120, (W * all.h) / all.w));
   const k = Math.min((W - 12) / all.w, (H - 12) / all.h);
   return (
-    <div className="absolute bottom-3 left-3 z-10 rounded-xl border border-white/10 bg-black/45 p-1 opacity-80 backdrop-blur transition-opacity hover:opacity-100" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
+    <div className="rounded-xl border border-white/10 bg-black/45 p-1 opacity-90 backdrop-blur transition-opacity hover:opacity-100">
       <svg width={W} height={H} aria-label="Lesson map">
         {top.map(({ p, i }) => {
           const r = worldRects[i];

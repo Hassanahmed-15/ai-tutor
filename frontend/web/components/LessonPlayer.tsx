@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { asksForPrediction } from "@/lib/canvas/predict";
+import { inCheckBlock, isThinkPrompt, THINK_MS } from "@/lib/canvas/quizFlow";
+import type { SlideReview } from "@/lib/testReview";
 import { predictCardFor } from "@/lib/canvas/predictCard";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
@@ -91,6 +93,7 @@ import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { DeafSigningExtension } from "./sign-language/DeafSigningExtension";
 import { openingSentence, transitionSentence } from "@/lib/beatPresentation";
 import { equationRemainingMs, penRemainingMs } from "@/lib/canvas/penClock";
+import { boardExpectsText, clearTextStart, leadFromNow, logSentenceCue, logSentenceVoice, textFirstEnabled, textStartOf, voiceWaitMs } from "@/lib/canvas/textLead";
 import { isDetourBeat } from "@/lib/lectureDetours";
 import type { HeardSentence } from "./canvas/MarkerWriter";
 
@@ -291,8 +294,8 @@ const EQUATION_WAIT_MAX_MS = 4500;
 /** The most her voice waits for the pen between two sentences (owner, 2026-11-09: "the voice is gone for seconds"). */
 const PEN_BREATH_MS = 500;
 
-/** Thinking time Aria leaves after a prediction question on a board with no task card to answer it. */
-const THINK_PAUSE_MS = 4_000;
+/** Thinking time Aria leaves after a prediction question on a board with no task card to answer it (QA 2026-11-28: at least 4–5 s). */
+const THINK_PAUSE_MS = THINK_MS;
 /** "Predict the products…", "Will it be tetrahedral or…?": a sentence that asks the student to commit. */
 
 export function LessonPlayer({
@@ -334,8 +337,20 @@ export function LessonPlayer({
   focusPages,
   sourceScope,
   captions = false,
+  review = null,
+  autoStart = false,
 }: {
   onExit?: () => void;
+  /**
+   * "Review slide N" from the test results (lib/testReview.ts): that board opens fully drawn and Aria says
+   * a short re-explanation of the slip; Play replays the board, as before.
+   */
+  review?: SlideReview | null;
+  /**
+   * Start teaching as soon as the player opens (QA 2026-11-28: a finished build sat on a Play button). Only
+   * when the page has had a tap (the browser lets the voice play then); otherwise a big Start button.
+   */
+  autoStart?: boolean;
   /**
    * The student asked for captions (onboarding's accessibility screen, or settings): what Aria says
    * is written across the bottom of the board in every lesson — not only in the Deaf track.
@@ -1387,6 +1402,10 @@ export function LessonPlayer({
   const canvasPanels = useMemo(() => canvasPanelsOf(beats), [beats]);
   const canvasLesson = canvasPanels.length > 0;
   const canvasIndex = canvasLesson ? canvasPanels.findIndex((p) => p.key === beat.id) : -1;
+  // The narration's text-first wait reads it: only a beat on the canvas has writing to wait for.
+  const onCanvasRef = useRef(false);
+  const [textFirstOn] = useState(textFirstEnabled);
+  useEffect(() => { onCanvasRef.current = canvasIndex >= 0; }, [canvasIndex]);
   // The full board's sections for the lesson notes (CANVAS_BLOCKS=on): empty unless this lecture has blocks.
   // A board that keeps its whole width for its working still appears, in its script's own words.
   const notesSections = useMemo<NotesSection[]>(() => {
@@ -1429,12 +1448,25 @@ export function LessonPlayer({
    */
   const [predictHold, setPredictHold] = useState<{ index: number; boardSentence: number; card?: boolean } | null>(null);
   const predictDoneRef = useRef(new Set<string>());
+  /** Questions already given thinking time (`beat:sentence`), and the one being thought about now (the "Think…" chip). */
+  const thinkDoneRef = useRef(new Set<string>());
+  const thinkReleaseRef = useRef(false);
+  const [thinkHold, setThinkHold] = useState<{ index: number; at: number; ms: number } | null>(null);
+  // Leaving the board (or the wait being cut by a jump) leaves no "Think…" behind.
+  const [thinkBoard, setThinkBoard] = useState(index);
+  if (thinkBoard !== index) {
+    setThinkBoard(index);
+    setThinkHold(null);
+  }
   /** Boards whose prediction was answered mid-script (state, for rendering; the ref is for the voice callbacks). */
   const [answeredPredictions, setAnsweredPredictions] = useState<string[]>([]);
   const speakCanvasLine = useCallback((text: string, onEnd?: () => void) => {
     // At the lecture's speed and in Aria's voice, like the lecture itself. `onEnd`: the check card's
     // congrats moves the lecture on once it has been said.
-    voiceRef.current?.speakAsTeacher(text, { onStart: () => {}, onEnd: () => onEnd?.(), onBlocked: () => onEnd?.(), rate: rateRef.current, voiceFallback: "silent" }, "utterance");
+    // Text first (lib/canvas/textLead.ts): the card shows its line as this is called (a question card's
+    // question, an answer's feedback); her voice follows it by the lead, never before.
+    const textLeadWait = leadFromNow(rateRef.current);
+    voiceRef.current?.speakAsTeacher(text, { onStart: () => {}, onEnd: () => onEnd?.(), onBlocked: () => onEnd?.(), rate: rateRef.current, voiceFallback: "silent", textLeadWait }, "utterance");
   }, []);
   const tellAriaCanvas = useCallback((note: string) => {
     tutorRef.current.addContext?.(note);
@@ -2264,6 +2296,10 @@ export function LessonPlayer({
       setDrawProgress(0);
       setHeard(null);
     }, 0);
+    // …and its writing is drawn, and waited for, anew (lib/canvas/textLead.ts).
+    for (let k = 0; k < 64; k++) clearTextStart(beat.id, k);
+    /** When the board was cued for the sentence about to be said (text first: before her voice). */
+    let cuedAt = 0;
     /*
      * The voice numbers sentences over `narrationText`, bridge included; the board's
      * `data-teach-sentence` tags number the SCRIPT. Every cue and progress value is translated into
@@ -2305,24 +2341,60 @@ export function LessonPlayer({
             lesson.holdForStudent();
             return true;
           }
-          if (!previousAskedPrediction || sentenceIndex <= bridge || predictDoneRef.current.has(beat.id)) return false;
-          predictDoneRef.current.add(beat.id);
-          if (canvasMidBoardTaskRef.current) {
+          if (!previousAskedPrediction || sentenceIndex <= bridge) return false;
+          if (canvasMidBoardTaskRef.current && !predictDoneRef.current.has(beat.id)) {
+            // Only a board held here for its own task counts as "asked at its prediction": marking every
+            // board that merely asked a question made the end-of-board check card never open (QA
+            // 2026-11-28: "A few" chosen, the cards written, none shown — every full board says
+            // "Pause and think: …?").
+            predictDoneRef.current.add(beat.id);
             setPredictHold({ index, boardSentence: Math.max(0, sentenceIndex - bridge - 1) });
             setCanvasHoldIndex(index);
             lesson.holdForStudent();
             return true;
           }
           // Resumed only if nothing else stopped the lecture in those seconds (their own pause, a question).
-          // Only a real invitation to predict earns thinking time; a rhetorical "What does this mean?"
-          // on every board would slow every lecture.
-          if (!/\bpredict\b|what do you think|\bguess\b|\bbefore I tell you\b/i.test(lastQuestionRef.current)) return false;
+          // Only a real invitation to think earns thinking time ("Predict…", "Pause and think: …?", a
+          // "Check yourself" box — lib/canvas/quizFlow.ts); a rhetorical "What does this mean?" on every
+          // board would slow every lecture. Each such question once per board.
+          const thinkKey = `${beat.id}:${sentenceIndex}`;
+          const boardSentence = sentenceIndex - bridge - 1;
+          const canvasBlocks = canvasIndex >= 0 ? canvasPanels[canvasIndex]?.spec.blocks : undefined;
+          if (thinkDoneRef.current.has(thinkKey) || !(isThinkPrompt(lastQuestionRef.current) || inCheckBlock(canvasBlocks, boardSentence))) return false;
+          thinkDoneRef.current.add(thinkKey);
           // A wait on the narration's own clock, not a pause: a pause had to be resumed by someone, and
-          // the player's own resume logic undid it at once (2026-10-18 test).
+          // the player's own resume logic undid it at once (2026-10-18 test). The board shows "Think… tap
+          // to reveal" meanwhile; a tap ends the wait at once (holdReleased).
+          thinkReleaseRef.current = false;
+          setThinkHold({ index, at: Date.now(), ms: THINK_PAUSE_MS });
           tracePlayback("think-pause", { beat: index, ms: THINK_PAUSE_MS });
           return THINK_PAUSE_MS;
         },
-        // The moment a board sentence is audible: the marker writes it now, fitted into its spoken time.
+        /*
+         * TEXT FIRST, VOICE RIGHT AFTER (owner, 2026-11-28). The board is cued before each sentence's clip
+         * plays; the clip waits until that sentence's writing is visibly drawing (TextStartWatch on the live
+         * board) plus the lead (TEXT_LEAD_MS, scaled by speed, ≥100 ms). A bridge sentence has no board.
+         */
+        textLeadWait: !textFirstEnabled() ? undefined : (sentenceIndex) => {
+          const boardSentence = sentenceIndex - bridge;
+          if (boardSentence < 0) return 0;
+          const seen = textStartOf(beat.id, boardSentence);
+          return voiceWaitMs({
+            now: performance.now(),
+            cuedAt,
+            // Writing already there before its cue (a board shown in full) counts from the cue.
+            textStart: seen === null ? null : Math.max(seen, cuedAt),
+            expectsText: onCanvasRef.current ? boardExpectsText(beat.id, boardSentence) : false,
+            speed: rateRef.current,
+          });
+        },
+        onSentenceVoiced: (sentenceIndex) => {
+          if (sentenceIndex < bridge) return;
+          tracePlayback("voiced", { beat: index, board: sentenceIndex - bridge });
+          logSentenceVoice(beat.id, sentenceIndex - bridge, performance.now(), rateRef.current);
+        },
+        // Text first, as the board is cued for a sentence (just before her voice): the marker writes it now,
+        // fitted into its spoken time.
         onSentenceHeard: (sentenceIndex, spokenMs) => {
           if (sentenceIndex < bridge) return;
           tracePlayback("heard", { beat: index, board: sentenceIndex - bridge, ms: Math.round(spokenMs) });
@@ -2336,12 +2408,17 @@ export function LessonPlayer({
           setVoiceWaiting(waiting);
           if (waiting) tracePlayback("voice-waiting", { beat: index });
         },
+        // A tap on "Think… tap to reveal" ends the thinking time at once.
+        holdReleased: () => thinkReleaseRef.current,
         onSentenceStart: (sentenceIndex, sentence, total) => {
           lastNarrationSignalRef.current = Date.now();
+          setThinkHold(null);
           previousAskedPrediction = sentenceIndex >= bridge && asksForPrediction(sentence);
           if (previousAskedPrediction) lastQuestionRef.current = sentence;
           tutorRef.current.noteNarration?.(sentence);
           tracePlayback("sentence", { beat: index, narration: sentenceIndex, bridge, board: Math.max(0, sentenceIndex - bridge), total, text: sentence.slice(0, 50) });
+          cuedAt = performance.now();
+          if (sentenceIndex >= bridge) logSentenceCue(beat.id, sentenceIndex - bridge, cuedAt);
           narrationCue = sentenceIndex;
           if (bridged && !isCheckpoint && sentenceIndex >= bridge && !transitionBoardShownRef.current) {
             transitionBoardShownRef.current = true;
@@ -2716,7 +2793,7 @@ export function LessonPlayer({
    */
   const stallGuardRef = useRef({ waiting: true, onBoard: false });
   stallGuardRef.current = {
-    waiting: canvasHoldIndex !== null || predictHold !== null || narrationDoneIndex === index || pendingAdvanceRef.current === index
+    waiting: canvasHoldIndex !== null || predictHold !== null || thinkHold !== null || narrationDoneIndex === index || pendingAdvanceRef.current === index
       || mcqRef.current !== null || waitingOnCheckpoint || quiz.phase !== "idle" || focusPause !== null || currentAnimationPending,
     onBoard: stage === "board",
   };
@@ -3113,6 +3190,57 @@ export function LessonPlayer({
       tutor.setMicEnabled(true);
       void tutor.start();
     }
+  }
+  /*
+   * THE LESSON STARTS ITSELF once it opens (QA 2026-11-28: the build finished and the lesson sat on a Play
+   * button). Once, on opening — never a resume after a hold (student-controls rule): a later pause is the
+   * student's. The browser lets the voice play only after a tap on the page; with none yet (a lesson opened
+   * straight from a link), a big Start button asks for that one tap.
+   */
+  const autoStartedRef = useRef(false);
+  const [startTapNeeded, setStartTapNeeded] = useState(false);
+  useEffect(() => {
+    if (!autoStart || review || autoStartedRef.current || lesson.mode !== "idle") return;
+    autoStartedRef.current = true;
+    const activated = typeof navigator !== "undefined" && (navigator as Navigator & { userActivation?: { hasBeenActive: boolean } }).userActivation?.hasBeenActive;
+    if (activated === false) {
+      queueMicrotask(() => setStartTapNeeded(true));
+      return;
+    }
+    const t = window.setTimeout(() => {
+      if (lesson.modeRef.current === "idle") startLesson();
+    }, 400);
+    return () => window.clearTimeout(t);
+    // Once, when the player opens.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoStart]);
+  if (startTapNeeded && lesson.mode !== "idle") setStartTapNeeded(false);
+  /*
+   * "REVIEW SLIDE N" (lib/testReview.ts): the board opens fully drawn and Aria re-explains the slip over it.
+   * Play (the student's) replays the board from its start; moving off it ends the review.
+   */
+  const [reviewShown, setReviewShown] = useState(() => {
+    const on = Boolean(review) && review!.index === Math.max(0, Math.min(startIndex, beats.length - 1));
+    // Nothing automatic starts the board under her re-explanation (a voice session ending elsewhere
+    // resumes "the lecture"): only the student's Play does (student-controls rule).
+    if (on) lesson.holdForStudent();
+    return on;
+  });
+  if (reviewShown && (lesson.playing || index !== review?.index)) setReviewShown(false);
+  const reviewSaidRef = useRef(false);
+  useEffect(() => {
+    if (!reviewShown || !review || reviewSaidRef.current) return;
+    const t = window.setTimeout(() => {
+      if (reviewSaidRef.current) return;
+      reviewSaidRef.current = true;
+      speakCanvasLine(review.say);
+    }, 700);
+    return () => window.clearTimeout(t);
+  }, [reviewShown, review, speakCanvasLine]);
+  function playReviewedBoard() {
+    voiceRef.current?.stopUtterance();
+    setReviewShown(false);
+    startLesson();
   }
   function togglePlay() {
     if (lesson.playing) {
@@ -3611,14 +3739,18 @@ export function LessonPlayer({
                   /* The cue is this board's own: until her voice reaches this board the cue still holds the
                      LAST board's sentence, and the new board showed (and the marker queued) every mark up to
                      it for a moment (sync check, 2026-10-23). */
-                  sentence={predictHold?.index === index ? predictHold.boardSentence : stage === "board" ? (sentenceCue.beat === index ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).index : 0) : summaryUnlocked && !lesson.playing ? Number.MAX_SAFE_INTEGER : -1}
+                  /* Text first (lib/canvas/textLead.ts): before this board's first cue only its heading shows — its
+                     first sentence's writing is drawn when that sentence is cued, just before her voice. */
+                  sentence={reviewShown ? Number.MAX_SAFE_INTEGER : predictHold?.index === index ? predictHold.boardSentence : stage === "board" ? (sentenceCue.beat === index ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).index : textFirstOn ? -1 : 0) : summaryUnlocked && !lesson.playing ? Number.MAX_SAFE_INTEGER : -1}
                   taskDone={answeredPredictions.includes(beat.id)}
                   sentenceProgress={sentenceCue.beat === index ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).progress : 0}
                   completed={summaryUnlocked}
                   finished={narrationDoneIndex === index}
                   waitingForStudent={canvasHoldIndex === index}
                   predictCard={predictHold?.index === index && predictHold.card ? canvasPredict?.card : undefined}
-                  playing={lesson.playing}
+                  /* A reviewed board is drawn out, not frozen at its first frame (paused boards hold their
+                     entrance animations, which left "Review slide N" blank). */
+                  playing={lesson.playing || reviewShown || (summaryUnlocked && stage !== "board")}
                   topic={title}
                   onSpeak={speakCanvasLine}
                   onTellAria={tellAriaCanvas}
@@ -3676,6 +3808,23 @@ export function LessonPlayer({
                     lesson.requestResume({ explicit: true });
                   }}
                 />
+                {reviewShown && review && (
+                  <div data-review-banner="" className="absolute bottom-24 left-1/2 z-30 flex w-[min(640px,calc(100%-2rem))] -translate-x-1/2 items-center gap-3 rounded-2xl border border-rose-300/35 bg-[#1a0e14]/92 px-4 py-3 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()}>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-rose-200/80">Reviewing slide {review.index + 1}</p>
+                      <p className="mt-0.5 text-sm font-semibold leading-snug text-rose-50">To fix: {review.note}</p>
+                    </div>
+                    <button type="button" onClick={playReviewedBoard} className="flex shrink-0 items-center gap-1.5 rounded-full bg-violet-400 px-4 py-2 text-sm font-black text-black hover:bg-violet-300">
+                      <Play size={14} /> Play this board again
+                    </button>
+                  </div>
+                )}
+                {startTapNeeded && lesson.mode === "idle" && (
+                  <button type="button" data-start-lesson="" onClick={() => { setStartTapNeeded(false); startLesson(); }} className="absolute left-1/2 top-1/2 z-30 flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full bg-violet-400 px-9 py-4 text-xl font-black text-black shadow-2xl hover:bg-violet-300">
+                    <Play size={22} fill="currentColor" /> Start lesson
+                  </button>
+                )}
+                {thinkHold?.index === index && lesson.playing && <ThinkChip key={thinkHold.at} ms={thinkHold.ms / rate} onReveal={() => { thinkReleaseRef.current = true; setThinkHold(null); }} />}
                 {peek && <BoardPeek target={peek} onClose={() => setPeek(null)} />}
               </div>
               {/* Where this slide's material came from (lib/webSources.ts): typed-topic lessons taught from web research. */}
@@ -5378,6 +5527,38 @@ function canvasPanelsOf(beats: Beat[]): CanvasPanelInput[] {
     const spec: CanvasBoardSpec = interaction && interaction.kind !== "draw" && (interaction.kind !== "quiz" || interaction.check) ? { ...rest, interaction } : rest;
     return [{ key: b.id, spec }];
   }));
+}
+
+/**
+ * THINKING TIME, SHOWN (QA 2026-11-28: "Check yourself" boxes answered themselves 0.05 s after asking).
+ * After a "Pause and think" question Aria waits before the answer; this says so, counts the seconds
+ * down, and a tap reveals the answer at once.
+ */
+function ThinkChip({ ms, onReveal }: { ms: number; onReveal: () => void }) {
+  const [left, setLeft] = useState(Math.ceil(ms / 1000));
+  useEffect(() => {
+    const started = Date.now();
+    const t = window.setInterval(() => setLeft(Math.max(0, Math.ceil((ms - (Date.now() - started)) / 1000))), 250);
+    return () => window.clearInterval(t);
+  }, [ms]);
+  return (
+    <button
+      type="button"
+      data-think-chip=""
+      onClick={onReveal}
+      onPointerDown={(e) => e.stopPropagation()}
+      className="absolute bottom-20 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3 rounded-full border border-amber-300/50 bg-[#1a1408]/90 px-5 py-2.5 text-sm font-bold text-amber-100 shadow-2xl backdrop-blur transition hover:bg-[#2a200c]"
+      aria-label="Think about the question, then tap to reveal the answer"
+    >
+      <span aria-hidden="true" className="text-lg">🤔</span>
+      <span>Think… <span className="font-semibold text-amber-200/80">(tap to reveal)</span></span>
+      <span className="relative h-1.5 w-16 overflow-hidden rounded-full bg-amber-200/15" aria-hidden="true">
+        <span className="absolute inset-y-0 left-0 rounded-full bg-amber-300" style={{ width: "100%", animation: `think-drain ${ms}ms linear forwards` }} />
+      </span>
+      <span className="w-4 tabular-nums text-amber-200/70">{left}</span>
+      <style>{`@keyframes think-drain { from { width: 100%; } to { width: 0%; } }`}</style>
+    </button>
+  );
 }
 
 /** Reports "the board has painted" two frames after mounting — what BoardStage does for its boards. */

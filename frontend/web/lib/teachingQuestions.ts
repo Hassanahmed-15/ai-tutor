@@ -40,7 +40,8 @@ Pick from these kinds, only where they matter for this topic:
 Rules:
 - WORD EVERY QUESTION AND OPTION IN THIS TOPIC'S OWN TERMS — never a generic "What style of teaching do you prefer?". For Dijkstra: "Should we trace Dijkstra on a real map of roads, or on an abstract graph?", "Do you want the code beside the trace — in which language?"; for photosynthesis: "Should we follow one leaf through the day, or the chemistry step by step?".
 - A topic that can be taught with code (programming, algorithms, data structures, systems) ALWAYS gets the "code" question; any other topic never does.
-- At least one question is specific to this topic ("focus", "other", or "code"); at most two of "depth", "style" and "practice".
+- At least one question is specific to this topic ("focus", "other", or "code"); at most two of "depth" and "style".
+- ALWAYS include exactly one "practice" question, worded for this topic, with the values "none", "some" and "lots".
 - Options are short (at most 6 words) with an optional one-line description; 2 to 5 options each; "focus" may be multi-select ("multi": true), every other kind is single-choice. Headers are 1 to 2 words ("Code", "Depth", "Focus", "Examples", "Practice", "Assume", or a short word for "other").
 Return JSON only:
 {"questions": [{"id": "short-id", "kind": one of the kinds, "header": string, "question": string, "multi": boolean, "options": [{"label": string, "description": string, "value": string}]}]}`;
@@ -71,6 +72,55 @@ export function sanitizeTeachingQuestions(raw: unknown): TeachingQuestion[] {
     if (out.length >= 4) break;
   }
   return out;
+}
+
+/** A practice option's value from what it says, when the model wrote its own ("a-few", "often"…). */
+export function practiceValue(option: { label: string; description?: string; value?: string }): "none" | "some" | "lots" {
+  const v = (option.value ?? "").toLowerCase();
+  if (v === "none" || v === "some" || v === "lots") return v;
+  const text = `${v} ${option.label} ${option.description ?? ""}`.toLowerCase();
+  if (/\b(?:none|no|skip|without|zero|just teach)\b/.test(text)) return "none";
+  if (/\b(?:lots|many|often|every|plenty|frequent|after each|after most|loads)\b/.test(text)) return "lots";
+  return "some";
+}
+
+/** The Practice question asked when the model wrote none (QA 2026-11-28: a History lesson had no Practice tab). */
+export const PRACTICE_QUESTION: TeachingQuestion = {
+  id: "practice",
+  kind: "practice",
+  header: "Practice",
+  question: "How many quick questions would you like during the lesson?",
+  options: [
+    { label: "None", description: "Just teach me", value: "none" },
+    { label: "A few", description: "Brief checks after key ideas", value: "some" },
+    { label: "Lots", description: "A quick question after most boards", value: "lots" },
+  ],
+};
+
+/**
+ * THE PRACTICE QUESTION IS ALWAYS ASKED, for every subject: the answer sets how many quick questions the
+ * lesson has (lib/canvas/checkCardPlan.ts practiceSpacing), so it cannot be left to the model. A model's own
+ * practice question is kept (its wording is the topic's) with its option values made none/some/lots. At
+ * most four questions: a missing practice question takes the place of the last "other"/"prior"/"style" one.
+ */
+export function withPracticeQuestion(questions: TeachingQuestion[]): TeachingQuestion[] {
+  const own = questions.find((q) => q.kind === "practice");
+  if (own) {
+    const options = own.options.map((o) => ({ ...o, value: practiceValue(o) }));
+    // A practice question that cannot say "none" or "lots" still gives the student the choice.
+    const values = new Set(options.map((o) => o.value));
+    const fixed = values.size >= 2 ? { ...own, options } : { ...PRACTICE_QUESTION, id: own.id };
+    return questions.map((q) => (q === own ? fixed : q));
+  }
+  const out = [...questions];
+  if (out.length >= 4) {
+    for (const kind of ["other", "prior", "style", "depth"] as TeachingKind[]) {
+      const at = out.map((q) => q.kind).lastIndexOf(kind);
+      if (at >= 0) { out.splice(at, 1); break; }
+    }
+  }
+  const id = out.some((q) => q.id === PRACTICE_QUESTION.id) ? "practice-checks" : PRACTICE_QUESTION.id;
+  return [...out, { ...PRACTICE_QUESTION, id }];
 }
 
 /** The chosen labels as choices: each answer with the values its options carry (typed answers have none). */
@@ -112,7 +162,8 @@ export function teachingSettings(choices: TeachingChoice[]): TeachingSettings {
     // "document": a reference PDF's own code, in its own language (no language is asked of a PDF's question).
     if (c.kind === "code" && v) s.code = v === "none" ? { include: false } : v === "document" ? { include: true } : { include: true, language: v };
     if (c.kind === "style" && v) s.examples = v === "practical" ? "real-world" : v === "visual" ? "visual" : v === "conceptual" ? "worked" : "mixed";
-    if (c.kind === "practice" && (v === "none" || v === "some" || v === "lots")) s.practice = v;
+    // Any practice answer counts, a typed one too ("just a couple"): read by its words when its value is not one of the three.
+    if (c.kind === "practice") s.practice = practiceValue({ label: c.answer, value: v });
     if (c.kind === "prior" && (v === "beginner" || v === "intermediate" || v === "advanced")) s.expertise = v;
     if (c.kind === "focus") s.focus = (c.values.length ? c.values : c.answer.split(/,\s*/)).slice(0, 5);
   }

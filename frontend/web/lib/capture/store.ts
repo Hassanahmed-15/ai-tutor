@@ -26,7 +26,9 @@ const blobName = (name: string) => `capture/${name}`;
  * and a status read every second from each device (2026-11-25). `.capture-cache` on disk answers in milliseconds.
  */
 function storeInBlob(): boolean {
-  const wanted = process.env.CAPTURE_STORE ?? (process.env.NODE_ENV === "production" ? "blob" : "disk");
+  // With PUBLIC_BASE_URL set on a local computer the QR opens the LIVE site (lib/capture/lanUrl.ts): the phone's photos
+  // land on the live server, so this computer must read the same blob container, not its own disk.
+  const wanted = process.env.CAPTURE_STORE ?? (process.env.NODE_ENV === "production" || process.env.PUBLIC_BASE_URL?.trim() ? "blob" : "disk");
   return wanted === "blob" && blobStorageConfigured();
 }
 

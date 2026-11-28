@@ -40,6 +40,7 @@ import { LearnerProfileFields, type LearnerFieldsValue } from "./LearnerProfileF
 import { levelBand } from "@/lib/education";
 import { emptyPreferences, preferenceSummary, type LearningPreferences } from "@/lib/learningPreferences";
 import { LearningPreferencesFlow } from "./LearningPreferencesFlow";
+import { VoicePicker } from "./VoicePicker";
 
 /**
  * Profile and settings.
@@ -388,6 +389,9 @@ export function SettingsScreen({
                     );
                   })}
                 </div>
+
+                {/* Aria's voice, chosen like Appearance: at once, on this device (components/auth/VoicePicker.tsx). */}
+                <VoicePicker labelClass={groupLabelClass} choiceStyle={choice} />
 
                 <p id="set-depth-label" className={`${groupLabelClass} mt-7`}>How much should Aria teach?</p>
                 <div role="group" aria-labelledby="set-depth-label" className="grid gap-2 sm:grid-cols-2">

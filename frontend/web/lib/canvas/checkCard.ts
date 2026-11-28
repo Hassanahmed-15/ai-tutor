@@ -7,6 +7,7 @@ import { checkCardIssues, OPTION_MAX } from "./quizLint";
 import type { CanvasBoardSpec, CanvasPlanBeat, QuizInteraction } from "./types";
 import { validateInteraction } from "./validate";
 import { boardElements, codeBoardText, lineReferenceIssues, orderCard, tapParts } from "./cardKinds";
+import { checkExplanations } from "./explanationCheck";
 
 /**
  * THE "CHECK IT" CARD — written after its board, verified independently, never able to fail a board.
@@ -49,6 +50,26 @@ const TAP_PROMPT = `You write ONE "tap the board" check question for the end of 
 const VERIFY_PROMPT = `You are checking a multiple-choice question for a school lesson before a student sees it. You are given the lesson narration and the question with lettered options. Using ONLY the narration and standard knowledge at this level, answer it yourself. Return JSON only: {"answer": "A" | "B" | "C" | "D", "otherDefensible": [letters of any other option a careful student could defend as correct], "ambiguous": boolean, "answerable": boolean (the narration teaches what is needed), "problem": string (empty when the question is sound)}.`;
 
 export type CheckCardResult = { card: QuizInteraction | null; costUsd: number; log: string };
+
+/**
+ * WHAT ARIA SAYS FOR EACH OPTION IS CHECKED BEFORE IT IS SPOKEN (lib/canvas/explanationCheck.ts; owner QA brief
+ * 2026-11-28, item 4f): against the narration, the question and the right answer, with misspelt or wrong words
+ * caught too. A wrong line is corrected; one that cannot be is a problem the card is rewritten for. Run beside the
+ * independent verify call, so it adds no wait. A check that could not run leaves the card as written.
+ */
+async function feedbackChecked(openai: OpenAI, narration: string, card: QuizInteraction): Promise<{ card: QuizInteraction; costUsd: number; problem: string | null }> {
+  const right = card.options.find((o) => o.correct);
+  const items = card.options.map((o, i) => ({ key: `f${i + 1}`, text: o.feedback ?? "", context: `said when the student picks ${o.correct ? "the RIGHT" : "the wrong"} option "${o.text}"` }));
+  const result = await bounded(checkExplanations((system, user, max) => jsonCall(openai, CARD_MODEL, system, user, max), `Narration:\n${narration}\n\nQuestion: ${card.question}\nThe right answer: "${right?.text ?? ""}"`, items), 20_000, "feedback check").catch(() => null);
+  if (!result?.checked) return { card, costUsd: result?.costUsd ?? 0, problem: null };
+  if (result.failed.length) {
+    const f = result.failed[0];
+    const option = card.options[Number(f.key.slice(1)) - 1];
+    return { card, costUsd: result.costUsd, problem: `the feedback for the option "${option?.text ?? f.key}" is wrong (${f.why}): every feedback line must be true and agree with the narration` };
+  }
+  for (const f of result.fixed) console.log(`[check card] feedback corrected: "${f.from}" -> "${f.to}"${f.why ? ` (${f.why})` : ""}`);
+  return { card: result.fixed.length ? { ...card, options: card.options.map((o, i) => ({ ...o, feedback: result.items[i].text || o.feedback })) } : card, costUsd: result.costUsd, problem: null };
+}
 
 /** The lesson's common mistakes, when the course plan lists them ("Watch for: …"). */
 function mistakesOf(hints: string[] = []): string {
@@ -101,13 +122,14 @@ async function writeTapCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title" |
     // The same independent check as every card: the verifier must pick the same part.
     const letters = "ABCD";
     const asked = `Narration:\n${narration}\n\nQuestion: ${card.question}\n${card.options.map((o, k) => `${letters[k]}. ${o.text}`).join("\n")}`;
-    const verified = await bounded(jsonCall(openai, CARD_MODEL, VERIFY_PROMPT, asked, 800), 20_000, `verify tap ${beat.title}`);
-    costUsd += verified.costUsd;
+    const [verified, feedback] = await Promise.all([bounded(jsonCall(openai, CARD_MODEL, VERIFY_PROMPT, asked, 800), 20_000, `verify tap ${beat.title}`), feedbackChecked(openai, narration, card)]);
+    costUsd += verified.costUsd + feedback.costUsd;
     const v = verified.json as { answer?: string; otherDefensible?: unknown[]; ambiguous?: boolean };
     const chosen = letters.indexOf(String(v.answer ?? "").trim().toUpperCase().charAt(0));
     if (card.options[chosen] !== right || (Array.isArray(v.otherDefensible) && v.otherDefensible.length) || v.ambiguous) { issues = ["an independent check did not pick the same single part — make the question point to exactly one part"]; continue; }
+    if (feedback.problem) { issues = [feedback.problem]; continue; }
     const hint = card.hint && card.hint.target === right.target ? { text: card.hint.text } : card.hint;
-    return { card: { ...card, ...(hint ? { hint } : {}), replay: replayFor(spec, sentences, raw.evidence), check: true }, costUsd, log: `tap card verified (attempt ${attempt})` };
+    return { card: { ...feedback.card, ...(hint ? { hint } : {}), replay: replayFor(spec, sentences, raw.evidence), check: true }, costUsd, log: `tap card verified (attempt ${attempt})` };
   }
   return { card: null, costUsd, log: `no tap card — ${issues.join("; ").slice(0, 200)}` };
 }
@@ -153,8 +175,8 @@ async function writeChoiceCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title
       const order = card.options.map((_, i) => i).sort((a, b) => ((a * 7 + 3) % card.options.length) - ((b * 7 + 3) % card.options.length));
       const letters = "ABCD";
       const asked = `Narration:\n${narration}\n\nQuestion: ${card.question}\n${order.map((i, k) => `${letters[k]}. ${card.options[i].text}`).join("\n")}`;
-      const verified = await bounded(jsonCall(openai, CARD_MODEL, VERIFY_PROMPT, asked, 800), 20_000, `verify card ${beat.title}`);
-      costUsd += verified.costUsd;
+      const [verified, feedback] = await Promise.all([bounded(jsonCall(openai, CARD_MODEL, VERIFY_PROMPT, asked, 800), 20_000, `verify card ${beat.title}`), feedbackChecked(openai, narration, card)]);
+      costUsd += verified.costUsd + feedback.costUsd;
       const v = verified.json as { answer?: string; otherDefensible?: unknown[]; ambiguous?: boolean; answerable?: boolean; problem?: string };
       const chosen = order[letters.indexOf(String(v.answer ?? "").trim().toUpperCase().charAt(0))];
       const others = Array.isArray(v.otherDefensible) ? v.otherDefensible.filter((x) => typeof x === "string" && x.trim()) : [];
@@ -162,6 +184,7 @@ async function writeChoiceCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title
       if (chosen !== right) issues = [`an independent check chose "${chosen !== undefined ? card.options[chosen]?.text : "none"}" — the right answer must follow clearly from the narration${v.problem ? ` (${v.problem})` : ""}`];
       else if (others.length) issues = [`another option can also be defended as correct (${others.join(", ")}) — make every wrong option clearly wrong${v.problem ? `: ${v.problem}` : ""}`];
       else if (v.ambiguous || v.answerable === false) issues = [`the question is ${v.ambiguous ? "ambiguous" : "not answerable from the narration"}${v.problem ? `: ${v.problem}` : ""}`];
+      else if (feedback.problem) issues = [feedback.problem];
       else {
         // The hint may point the pen only at something on this board, and never give the answer away.
         const hintRaw = (raw.hint && typeof raw.hint === "object" ? raw.hint : {}) as { text?: unknown; target?: unknown };
@@ -169,7 +192,7 @@ async function writeChoiceCard(openai: OpenAI, beat: Pick<CanvasPlanBeat, "title
         const hintText = typeof hintRaw.text === "string" && hintRaw.text.trim() && !hintRaw.text.toLowerCase().includes(rightText) ? hintRaw.text.trim().slice(0, 200) : "";
         const hintTarget = typeof hintRaw.target === "string" && boardElements(spec).some((e) => e.id === hintRaw.target) ? hintRaw.target : undefined;
         const replay = replayFor(spec, sentences, raw.evidence);
-        return { card: { ...card, ...(hintText ? { hint: { text: hintText, ...(hintTarget ? { target: hintTarget } : {}) } } : {}), ...(replay ? { replay } : {}), check: true }, costUsd, log: `check card verified (attempt ${attempt})` };
+        return { card: { ...feedback.card, ...(hintText ? { hint: { text: hintText, ...(hintTarget ? { target: hintTarget } : {}) } } : {}), ...(replay ? { replay } : {}), check: true }, costUsd, log: `check card verified (attempt ${attempt})` };
       }
     } catch (error) {
       costUsd += (error as { costUsd?: number }).costUsd ?? 0;

@@ -23,7 +23,7 @@ import { Check, ChevronLeft, CornerDownLeft, Mic, MicOff } from "lucide-react";
  */
 export type CardOption = { label: string; description?: string };
 /** `loading`: the question is on the card while its options are still being written. */
-export type CardQuestion = { id: string; header: string; question: string; multi?: boolean; options: CardOption[]; loading?: boolean };
+export type CardQuestion = { id: string; header: string; question: string; multi?: boolean; options: CardOption[]; loading?: boolean; /** A fixed choice with no typed answer (the teacher). */ noOther?: boolean };
 
 export function QuestionCard({
   questions,
@@ -189,6 +189,7 @@ export function QuestionCard({
                 })}
                 <li>
                   {(() => {
+                    if (open.noOther) return null;
                     const typed = typedOf(open);
                     const editing = typing === open.id;
                     const on = Boolean(typed) && !editing;

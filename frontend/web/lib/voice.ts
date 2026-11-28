@@ -18,6 +18,8 @@ import { CLIP_FETCH_CONCURRENCY, SENTENCE_GAP_MS, sentenceAlignedProgress, sente
 import { recordTtsResponse } from "./costLedger";
 import { ensureRunning, registerAudioContext, resumeAllAudio } from "./voice/audioOutput";
 import { splitNarrationSentences } from "./narrationText";
+import { voiceField } from "./voiceChoice";
+import { textLeadMs } from "./canvas/textLead";
 
 // The sentences are split in one place for the player and the worker that makes them ahead (lib/narrationText.ts).
 export { splitNarrationSentences };
@@ -93,6 +95,8 @@ function untilOnline(ms: number): Promise<void> {
 
 /** The longest a sentence waits for the board's pen at 1x (ms; twice as long at 0.5x): it never stops a lecture. */
 const WAIT_BEFORE_MAX_MS = 12_000;
+/** Text first: the longest a clip waits for its sentence's writing at 1x (the player's own rule caps it sooner). */
+const TEXT_WAIT_CAP_MS = 5_000;
 
 export interface NarrationCallbacks {
   onStart: () => void;
@@ -109,6 +113,8 @@ export interface NarrationCallbacks {
    * (thinking time) — counted on the narration's own clock, so it stands still while paused.
    */
   holdBefore?: (index: number, sentence: string) => boolean | number;
+  /** While a numbered holdBefore wait runs: true ends it early (the student tapped "reveal"). */
+  holdReleased?: () => boolean;
   /**
    * Fired the moment sentence `index` becomes AUDIBLE (index 0 included — `onSentenceStart(0)` is sent
    * before any audio exists), with how long it takes to say at the current speed (ms). The marker
@@ -123,6 +129,16 @@ export interface NarrationCallbacks {
    * so it is asked until done rather than once. Counted on the narration's clock: stands still paused.
    */
   waitBefore?: (index: number) => number;
+  /**
+   * TEXT FIRST, VOICE RIGHT AFTER (owner, 2026-11-28; lib/canvas/textLead.ts). When given, every sentence's
+   * board cue — `onSentenceHeard` and `onSentenceStart`, sentence 0 included (no early cue at the start) —
+   * is sent once its clip is in hand and BEFORE a word of it plays; the clip then waits until this answers
+   * 0 (asked again and again, on the narration's clock, at most TEXT_WAIT_MAX_MS at 1x plus a moment): the
+   * writing has started drawing and the lead has passed. Without it, the old order: cue as the voice starts.
+   */
+  textLeadWait?: (index: number) => number;
+  /** Text-first narration: her voice for sentence `index` has just started (after its writing). */
+  onSentenceVoiced?: (index: number) => void;
   /** Fired from the active audio/timeline clock. `progress` is 0..1 for the current beat. */
   onProgress?: (progress: number, currentTimeMs: number, durationMs: number) => void;
   /**
@@ -407,7 +423,9 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
   };
   activeNarrationCancelers.add(cancel);
   callbacks.onProgress?.(0, 0, 1);
-  if (initialSentences.length > 0) {
+  // Text first: sentence 0 is cued with the others, when its clip is ready, just before it plays.
+  const textFirst = typeof callbacks.textLeadWait === "function";
+  if (initialSentences.length > 0 && !textFirst) {
     callbacks.onSentenceStart?.(0, initialSentences[0], initialSentences.length);
   }
 
@@ -478,10 +496,12 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       cursor += 1;
 
       // Fire the visual cue immediately — this is what the board animations follow.
-      if (sentenceIndex > 0) callbacks.onSentenceStart?.(sentenceIndex, sentence, sentences.length);
+      if (sentenceIndex > 0 || textFirst) callbacks.onSentenceStart?.(sentenceIndex, sentence, sentences.length);
 
-      // Best-effort speech, layered on. Its events do NOT gate progression.
-      if (hasSpeech) {
+      // Best-effort speech, layered on. Its events do NOT gate progression. Text first: a lead after the cue.
+      const speak = () => {
+      if (cancelled || !hasSpeech) return;
+      {
         const u = new SpeechSynthesisUtterance(sentence);
         u.rate = 0.93 * rate;
         u.pitch = 1.08; // brighter and more classroom-teacher than the old narrator register
@@ -499,6 +519,9 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
           /* speech is optional — ignore engine failures, the timeline drives everything */
         }
       }
+      };
+      if (textFirst) cueTimers.push(setTimeout(speak, textLeadMs(rate)));
+      else speak();
 
       // Advance on an estimated speaking duration so paced visuals feel right whether or
       // not audio actually plays. ~85ms/char ≈ a clear narration rate (~12 chars/sec),
@@ -609,7 +632,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
           const res = await fetch("/api/tts", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text }),
+            body: JSON.stringify({ text, ...voiceField() }),
             signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(singleTry ? 7_000 : 10_000) : undefined,
           });
           recordTtsResponse(res);
@@ -734,12 +757,12 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     let elapsedBeforeMs = 0;
 
     /** A delay that stands still while narration is paused, and ends at once on cancel. */
-    const sleep = (ms: number) =>
+    const sleep = (ms: number, until?: () => boolean) =>
       new Promise<void>((resolve) => {
         let remaining = ms;
         let last = performance.now();
         const tick = () => {
-          if (cancelled) return resolve();
+          if (cancelled || until?.()) return resolve();
           const now = performance.now();
           if (!paused) remaining -= now - last;
           last = now;
@@ -790,6 +813,34 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
 
     callbacks.onStart();
 
+    /*
+     * TEXT FIRST: a sentence's board cue, sent once (a clip said again is not cued again). With the old
+     * order it goes out as her voice starts; text first, before her voice, which then waits for the writing.
+     */
+    let cuedThrough = -1;
+    const cueBoard = (i: number, spokenMs: number) => {
+      if (textFirst && i <= cuedThrough) return;
+      cuedThrough = Math.max(cuedThrough, i);
+      callbacks.onSentenceHeard?.(i, spokenMs);
+      if (i > 0 || textFirst) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
+    };
+    /** The clip's length once the element knows it (a local blob: a moment), for the pen's budget. */
+    const clipMs = async (i: number): Promise<number> => {
+      const el = audio!;
+      if (!(Number.isFinite(el.duration) && el.duration > 0)) {
+        await new Promise<void>((resolve) => {
+          const done = () => {
+            el.removeEventListener("loadedmetadata", done);
+            window.clearTimeout(timer);
+            resolve();
+          };
+          const timer = window.setTimeout(done, 400);
+          el.addEventListener("loadedmetadata", done);
+        });
+      }
+      return Number.isFinite(el.duration) && el.duration > 0 ? (el.duration * 1000) / (el.playbackRate || rate) : estimatedSentenceMs(i);
+    };
+
     for (let i = 0; i < sentences.length; i += 1) {
       if (cancelled) return;
       const blob = i === 0 && firstClip ? firstClip : await clipFor(i);
@@ -799,8 +850,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       // voice only ("silent") its clip is asked for until it comes, so this is reached only when the server
       // answers that there is nothing to say (a 4xx: an empty sentence), never because the voice failed.
       if (!blob) {
-        callbacks.onSentenceHeard?.(i, estimatedSentenceMs(i));
-        if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
+        cueBoard(i, estimatedSentenceMs(i));
         callbacks.onProgress?.(sentenceAlignedProgress(weights, i, 0), elapsedBeforeMs, estimatedTotalMs);
         await sleep(estimatedSentenceMs(i));
         elapsedBeforeMs += estimatedSentenceMs(i);
@@ -821,7 +871,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       // The player may hold here, before a word of this sentence is heard (a prediction's reveal).
       const hold = i > 0 && !paused ? callbacks.holdBefore?.(i, sentences[i]) : false;
       if (hold === true) pause();
-      else if (typeof hold === "number" && hold > 0) await sleep(hold);
+      else if (typeof hold === "number" && hold > 0) await sleep(hold, callbacks.holdReleased);
       if (cancelled) return;
       if (paused) await sleep(1);
       if (cancelled) return;
@@ -841,6 +891,24 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       // through the pause.
       if (paused) await sleep(1);
       if (cancelled) return;
+      /*
+       * TEXT FIRST, VOICE RIGHT AFTER (owner, 2026-11-28). The clip is in hand: the board is cued now, and
+       * the voice waits until its writing has started and the lead has passed (lib/canvas/textLead.ts).
+       */
+      if (textFirst && i > cuedThrough) {
+        cueBoard(i, await clipMs(i));
+        if (cancelled) return;
+        const cap = (TEXT_WAIT_CAP_MS / Math.max(0.5, rate));
+        let waited = 0;
+        for (let w = callbacks.textLeadWait!(i); w > 0 && waited < cap && !cancelled; w = callbacks.textLeadWait!(i)) {
+          const step = Math.min(w, 40);
+          await sleep(step);
+          waited += step;
+        }
+        if (cancelled) return;
+        if (paused) await sleep(1);
+        if (cancelled) return;
+      }
 
       /*
        * PLAYED, OR WAITED FOR — NEVER SKIPPED BY A PAUSE. A pause while play() is pending rejects it
@@ -904,8 +972,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         if (cancelled) return;
       }
       if (!played) {
-        callbacks.onSentenceHeard?.(i, estimatedSentenceMs(i));
-        if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
+        cueBoard(i, estimatedSentenceMs(i));
         await sleep(estimatedSentenceMs(i));
         elapsedBeforeMs += estimatedSentenceMs(i);
         continue;
@@ -936,8 +1003,9 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       // THE SYNC POINT: the teacher has just started saying sentence i, so the board moves now.
       // Sentence 0's cue was sent before any audio existed, so the board is ready as speech begins;
       // the pen waits for this moment for every sentence, the first included.
-      callbacks.onSentenceHeard?.(i, Number.isFinite(audio.duration) && audio.duration > 0 ? (audio.duration * 1000) / (audio.playbackRate || rate) : estimatedSentenceMs(i));
-      if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
+      // Text first, the board was cued before this clip played (above); it is told her voice has begun.
+      cueBoard(i, Number.isFinite(audio.duration) && audio.duration > 0 ? (audio.duration * 1000) / (audio.playbackRate || rate) : estimatedSentenceMs(i));
+      if (textFirst) callbacks.onSentenceVoiced?.(i);
 
       const clipIndex = i;
       const loop = () => {

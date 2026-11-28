@@ -15,7 +15,9 @@ export async function POST(request: Request) {
   const auth = await lessonCaller();
   if (!auth) return NextResponse.json({ error: "Sign in to use your phone." }, { status: 401 });
   const spendTag = request.headers.get("x-aria-spend")?.slice(0, 80) || null;
-  const { session, token } = await createSession(auth.userId, spendTag);
+  // A practice test's answers (components/practice/ExamPaper.tsx) say so, and the phone's words follow.
+  const body = (await request.json().catch(() => ({}))) as { purpose?: unknown };
+  const { session, token } = await createSession(auth.userId, spendTag, body.purpose === "answers" ? "answers" : "lesson");
   const { base, lan } = captureBaseUrl(request.url);
   const url = `${base}/capture/${session.id}#t=${token}`;
   const qrSvg = await QRCode.toString(url, { type: "svg", errorCorrectionLevel: "M", margin: 1, width: 240 });

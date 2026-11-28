@@ -1,7 +1,7 @@
 import "server-only";
 import { randomBytes, randomUUID } from "node:crypto";
 import { getJson, putJson, removeFiles } from "./store";
-import { CAPTURE_TTL_MS, MAX_PHOTOS, hashToken, isExpired, tokenMatches, type CaptureSession, type SlotRecord } from "./rules";
+import { CAPTURE_TTL_MS, MAX_PHOTOS, hashToken, isExpired, tokenMatches, type CaptureSession, type SlotRecord, type CapturePurpose } from "./rules";
 
 /**
  * A PHONE CAPTURE SESSION (the QR code's other end). Every file is under `<id>/`:
@@ -27,10 +27,10 @@ export const names = {
 
 const ID = /^[0-9a-f-]{36}$/;
 
-export async function createSession(userId: string, spendTag: string | null): Promise<{ session: CaptureSession; token: string }> {
+export async function createSession(userId: string, spendTag: string | null, purpose: CapturePurpose = "lesson"): Promise<{ session: CaptureSession; token: string }> {
   const token = randomBytes(16).toString("base64url");
   const now = Date.now();
-  const session: CaptureSession = { id: randomUUID(), userId, spendTag, tokenHash: hashToken(token), createdAt: now, expiresAt: now + CAPTURE_TTL_MS };
+  const session: CaptureSession = { id: randomUUID(), userId, spendTag, tokenHash: hashToken(token), createdAt: now, expiresAt: now + CAPTURE_TTL_MS, ...(purpose === "answers" ? { purpose } : {}) };
   await putJson(names.session(session.id), session, { immutable: true });
   return { session, token };
 }
@@ -103,6 +103,7 @@ export async function captureStatus(id: string, session: CaptureSession) {
   const status = cancelled ? "cancelled" : isExpired(session) && !sent ? "expired" : sent ? "sent" : connected ? "connected" : "waiting";
   return {
     status,
+    purpose: session.purpose ?? "lesson",
     expiresAt: session.expiresAt,
     order,
     slots: slots.filter((s) => s.state !== "deleted").map((s) => ({ n: s.n, version: s.version, state: s.state, problem: s.problem ?? null, error: s.error ?? null })),

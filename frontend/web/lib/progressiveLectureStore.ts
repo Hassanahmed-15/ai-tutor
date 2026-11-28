@@ -78,6 +78,7 @@ export async function createProgressiveLectureSession(
     learnerProfile: input.learnerProfile,
     inputBlobName,
     ...(input.subjectDomain ? { subjectDomain: input.subjectDomain } : {}),
+    ...(input.voice ? { voice: input.voice } : {}),
     status: "planning",
     plan: [],
     planRevision: 1,

@@ -26,6 +26,7 @@ import { cardNumbersOf } from "@/lib/canvas/cardOrder";
 import { IconGlyph } from "./icons";
 import { figureAssetHref } from "@/lib/figures/assetHref";
 import { fitText } from "@/lib/canvas/renderFit";
+import { stickyFit } from "@/lib/canvas/stickyFit";
 
 /**
  * ONE PANEL OF THE LESSON CANVAS, drawn from its layout (lib/canvas/layout.ts).
@@ -275,10 +276,8 @@ function StickyCard({ mark, no, focused, done, open }: CardProps) {
   const tilt = ((hashOf(mark.id) % 5) - 2) * 0.9;
   const cx = x + w / 2;
   const fold = 16;
-  const fit = mark.label ? fitText(mark.label, w - 24, mark.size, 12) : null;
-  const extra = fit ? (fit.lines.length - 1) * fit.size * 1.15 : 0;
-  const detailSize = mark.detailSize ?? 15;
-  const top = y + (mark.detail?.length ? 30 : h / 2 + 6 - extra / 2);
+  // Title and detail fitted together to the paper as drawn: smaller before any word runs off it (lib/canvas/stickyFit.ts).
+  const note = useMemo(() => stickyFit(mark.label, mark.detail, mark.rect, mark.size, mark.detailSize ?? 15), [mark.label, mark.detail, mark.rect, mark.size, mark.detailSize]);
   // Motion (CANVAS_CSS .cv-sticky-*): stuck on with a slap, lifted and straightened while Aria is on
   // it (the others dim), its tick pops when its close-up is done.
   return (
@@ -290,9 +289,9 @@ function StickyCard({ mark, no, focused, done, open }: CardProps) {
         <path d={`M ${x + w} ${y + h - fold} l ${-fold} ${fold} v ${-fold} z`} fill="#000000" opacity={0.1} />
         <rect x={cx - 26} y={y - 9} width={52} height={18} rx={3} fill="#ffffff" opacity={0.6} transform={`rotate(${-tilt * 2} ${cx} ${y})`} />
         {open ? null : <>
-          {fit && <FitLines fit={fit} x={cx} y={top} lead={1.15} textAnchor="middle" fontWeight={800} fill={INK} />}
-          {mark.detail?.map((line, i) => (
-            <text key={i} x={cx} y={top + extra + 24 + i * detailSize * 1.27} textAnchor="middle" fontSize={detailSize} fontWeight={600} fill={INK} opacity={0.75}>{line}</text>
+          {note.label && <FitLines fit={note.label} x={cx} y={note.labelY} lead={note.labelLead} textAnchor="middle" fontWeight={800} fill={INK} />}
+          {note.detail.map((line, i) => (
+            <text key={i} x={cx} y={note.detailY + i * note.detailSize * note.detailLead} textAnchor="middle" fontSize={note.detailSize} fontWeight={600} fill={INK} opacity={0.75}>{line}</text>
           ))}
           <g className={done ? "cv-pop" : undefined}><CardMark cx={x + 2} cy={y + 2} no={no} done={done} color={shade(mark.color, 0.1)} r={11} /></g>
         </>}
@@ -480,12 +479,12 @@ function MarkView(props: MarkProps) {
   if (carry && targetRect) {
     return (
       <Carry id={mark.id} from={carry} to={targetRect} reducedMotion={reducedMotion}>
-        <g data-kind={mark.type}>{body}</g>
+        <g data-kind={mark.type} data-s={mark.s}>{body}</g>
       </Carry>
     );
   }
   return (
-    <g data-mark={mark.id} data-kind={mark.type}>
+    <g data-mark={mark.id} data-kind={mark.type} data-s={mark.s}>
       {body}
     </g>
   );
@@ -2482,7 +2481,7 @@ export const CANVAS_CSS = `
    Black, white and greys are untouched by it. */
 /* The full board's writing (BlocksView) and the lesson notes (LessonNotesPanel): one look, two sets of colours.
    On the board colours are chalk, and light mode turns them over with the rest of the board. */
-.bk-board { --bk-ink: #f1eee4; --bk-key: var(--cv-key, #ffd76a); --bk-dim: #b9c3be; --bk-line: rgba(241,238,228,.28); --bk-soft: rgba(241,238,228,.07); color: var(--bk-ink); font-size: 21px; line-height: 1.36; overflow-y: auto; overflow-x: hidden; padding: 16px 10px 26px 2px; touch-action: pan-y; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16px); mask-image: linear-gradient(to bottom, transparent 0, #000 16px); scrollbar-width: thin; scrollbar-color: var(--bk-line) transparent; }
+.bk-board { --bk-ink: #f1eee4; --bk-key: var(--cv-key, #ffd76a); --bk-dim: #b9c3be; --bk-line: rgba(241,238,228,.28); --bk-soft: rgba(241,238,228,.07); color: var(--bk-ink); font-size: 21px; line-height: 1.36; overflow-y: auto; overflow-x: hidden; padding: 16px 10px 26px 2px; touch-action: pan-y; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6px); mask-image: linear-gradient(to bottom, transparent 0, #000 6px); scrollbar-width: thin; scrollbar-color: var(--bk-line) transparent; }
 .bk-board.bk-wide { font-size: 25px; padding-right: 26px; }
 .bk-panel { --bk-ink: var(--hud-text); --bk-key: var(--accent-ink); --bk-dim: var(--hud-text-dim); --bk-line: var(--hud-line-strong); --bk-soft: var(--hud-surface-2); color: var(--bk-ink); font-size: 15.5px; line-height: 1.55; }
 .bk-off { visibility: hidden; }

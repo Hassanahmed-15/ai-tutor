@@ -4,6 +4,7 @@ import { SUBSCRIPT, SUPERSCRIPT } from "./mathChars";
 import { checkNumbers, toExpr } from "./numberCheck";
 import { evalExpr } from "./expr";
 import type { EquationStage, EquationToken } from "./types";
+import { rowLetters } from "./stepOrder";
 
 /*
  * A ROW OF WORKING IS WRITTEN WHOLE. Four lectures of eleven showed broken maths (prompt bench,
@@ -875,7 +876,9 @@ export function givensFirst(stage: EquationStage): number {
     const given = /^(∠[A-Z]{3}|[A-Za-z][₀-₉]?)\s*=\s*[-−]?\d+(?:\.\d+)?\s*°?$/.exec(rowOf(stage.steps[j].order));
     if (!given) continue;
     const name = given[1];
-    const i = stage.steps.findIndex((st, k) => k < j && st.s === stage.steps[j].s && rowOf(st.order).includes(name));
+    // Not an answer above its own working: "x = 3" stays under "2x + 3 = 9", an equation in x alone (lib/canvas/stepOrder.ts).
+    const solving = (row: string) => { const letters = rowLetters(row); return Boolean(letters && letters.size === 1 && letters.has(name)); };
+    const i = stage.steps.findIndex((st, k) => k < j && st.s === stage.steps[j].s && rowOf(st.order).includes(name) && !solving(rowOf(st.order)));
     if (i < 0) continue;
     const [step] = stage.steps.splice(j, 1);
     stage.steps.splice(i, 0, step);

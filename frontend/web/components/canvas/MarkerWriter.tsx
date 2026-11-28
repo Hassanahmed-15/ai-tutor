@@ -489,6 +489,17 @@ export function MarkerWriter({ onRegion, finished = false, speed = 1, playing = 
       sceneryNow = [];
       for (const el of els) hold(el);
       const jobs = queue.slice(before);
+      /*
+       * TEXT FIRST (owner, 2026-11-28; lib/canvas/textLead.ts): with her voice, a sentence's first piece of
+       * writing is put down before its shapes — the word, then the circle round it — so her voice, which
+       * follows the writing by a moment, never waits seconds for a node's outline or an arrow to be traced.
+       */
+      const firstWriting = heardRef.current !== undefined ? jobs.findIndex((j) => j.el.matches(WRITABLE)) : -1;
+      if (firstWriting > 0) {
+        const [w] = jobs.splice(firstWriting, 1);
+        jobs.unshift(w);
+        queue.splice(before, jobs.length, ...jobs);
+      }
       const sceneryHere = sceneryNow;
       // Scenery with nothing to draw beside it: in at once.
       if (!jobs.length) {

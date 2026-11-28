@@ -17,12 +17,13 @@ import { asksToCompare, mathsNoRepeatRule } from "./repeatBoards";
 import { isMathsTopic } from "./predictCard";
 import { isCsTopic, isLabLookTopic } from "./subjectLook";
 import { asCodeLesson, asMaths, asMathsOrCs, courseLessonSubject, type LessonSubject } from "./lessonSubject";
-import { domainIsCs, domainIsLab } from "./subjectDomain";
+import { domainIsCs, domainIsLab, domainIsMaths } from "./subjectDomain";
 import { labVisualsOn, view3dPlanSection } from "./labVisuals";
 import { MATHS_STEP_BY_STEP, mathsLikeCoursesOn } from "./mathsCourse";
 import { teachingLine } from "../teachingQuestions";
 import { teachingOrdersOn } from "../teaching/courseOrders";
 import { CS_TEACHING as CS_TEACHING_ORDERED, MATHS_TEACHING, TEACHING_EXAMPLES, TEACHING_RULES } from "../teaching/lessonTypes";
+import { teacherStyleLine } from "../teachers";
 
 /**
  * WHICH LECTURES ARE TAUGHT ON THE LESSON CANVAS, and what its planner is told about them.
@@ -81,6 +82,22 @@ export function curriculumDocumentOf(input: ProgressiveLectureInput): SuprnotesL
   return doc && typeof doc === "object" && plan?.sourceType === "curriculum" && Array.isArray(doc.contentBlocks) && doc.contentBlocks.length > 0 ? doc : null;
 }
 
+/**
+ * A TYPED PROMPT TAUGHT EXACTLY LIKE A COURSE LESSON (owner, 2026-11-20: "I like the courses diagrams and
+ * the way it appears … make it exactly like it is in the courses … according to the personalisation done
+ * in prompting"; every subject but maths and CS; typed prompts only). Its planner gets the course's easy
+ * words and pictures-only-where-needed rules on top of its own; its boards are chosen, drawn (gpt-image-2
+ * from the board's context) and shown (fonts, pencil, written notes) as a course lesson's are. Its outline,
+ * board count, intake and question-card choices stay the prompt's own. CANVAS_PROMPTS_LIKE_COURSES=on.
+ */
+export function promptTaughtLikeCourse(input: ProgressiveLectureInput, subject?: LessonSubject, env: Record<string, string | undefined> = process.env): boolean {
+  if (env.CANVAS_PROMPTS_LIKE_COURSES !== "on") return false;
+  if (input.sourceType !== "prompt" || referenceDocumentOf(input) || strictDocumentOf(input) || videoDocumentOf(input) || curriculumDocumentOf(input)) return false;
+  if (subject) return subject !== "maths" && subject !== "cs";
+  const words = [input.topic, input.focus ?? "", ...(input.outline?.subtopics ?? []).map((s) => s.title)].join(" ");
+  return !domainIsCs(input.subjectDomain, words) && !domainIsMaths(input.subjectDomain, words) && !isLabLookTopic(words);
+}
+
 /** The course lesson's planned boards, as outline parts (title + what it teaches). */
 function curriculumParts(doc: SuprnotesLessonInput): Array<{ title: string; caption?: string }> {
   const beats = ((doc.lessonPlan as { beats?: Array<{ title?: string; objective?: string }> } | undefined)?.beats ?? []);
@@ -121,6 +138,9 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   const video = videoDocumentOf(input);
   const persona = input.learnerPersona?.trim();
   if (persona && !strictDoc && !video) lines.push("", persona.slice(0, 2000));
+  // THE TEACHER the student chose (lib/teachers.ts): how every script is spoken — the words, not what is taught.
+  const teacher = teacherStyleLine(input.voice);
+  if (teacher) lines.push("", teacher);
 
   const course = curriculumDocumentOf(input);
   const parts = course && !input.outline ? curriculumParts(course) : input.outline?.subtopics.filter((s) => s.title.trim()) ?? [];
@@ -262,6 +282,8 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   // A TYPED LESSON IN ANY OTHER SUBJECT is taught as a course lesson is (owner, 2026-11-12: "make the courses change I
   // did to the subjects to prompting, except CS and maths"): theory first, every idea built up, never an overview.
   if (typedPrompt && !typedCs && !asMaths(subject, () => isMathsTopic(lessonText)) && teachingOrdersOn()) lines.push("", ...TYPED_TEACHING_ORDER, ...TEACHING_RULES, "", ...TEACHING_EXAMPLES);
+  // …and, taught like a course lesson (promptTaughtLikeCourse), with the course's easy words and its pictures only where needed.
+  if (typedPrompt && !typedCs && promptTaughtLikeCourse(input, subject)) lines.push("", ...COURSE_EASY_WORDS, ...(courseCodeDiagramsOff() ? ["", ...COURSE_PICTURES_WHERE_NEEDED] : []));
   // A typed maths lesson: every board moves the argument on, and "compare both" gets its own board (lib/canvas/repeatBoards.ts).
   if (typedPrompt && !typedCs && asMaths(subject, () => isMathsTopic(lessonText))) lines.push("", mathsNoRepeatRule(asksToCompare((input.teachingChoices ?? []).map((c) => c.answer))));
   // COMPUTER SCIENCE is taught as a CS teacher teaches it (owner's manager, a CS teacher, 2026-10-22:
@@ -516,7 +538,7 @@ export function documentExtraBoards(input: ProgressiveLectureInput): number {
 /** The lecture's Teaching Policy, or null for a student without a profile. */
 export function canvasPolicy(input: ProgressiveLectureInput): TeachingPolicy | null {
   if (!input.studentCard) return null;
-  return buildTeachingPolicy(input.studentCard, { learner: input.learner, depth: input.learner ? resolveDepth(input.learner) : null });
+  return buildTeachingPolicy(input.studentCard, { learner: input.learner, depth: input.learner ? resolveDepth(input.learner) : null, beginner: input.learnerProfile?.expertise === "beginner" });
 }
 
 /**
@@ -557,6 +579,8 @@ export function referenceCsLesson(input: ProgressiveLectureInput): boolean {
  * and a question asked of a reference PDF, which stays an answer however much of it is new.
  */
 export function compactLadder(input: ProgressiveLectureInput): boolean {
+  // A practice test's mistakes lecture: each mistake (a "shaky" part) gets exactly one board.
+  if (input.practiceReview) return true;
   return typedCsLesson(input) || referenceCsLesson(input) || Boolean(referenceDocumentOf(input) && input.outline?.scope === "question");
 }
 

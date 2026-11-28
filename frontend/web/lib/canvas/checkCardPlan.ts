@@ -28,13 +28,24 @@ export function tasksGiveWay(plan: CanvasPlanBeat[]): boolean {
   return plan.filter((beat) => teaches(beat) && (beat.interaction === "try" || beat.interaction === "draw")).length >= 2;
 }
 
+/**
+ * HOW MANY QUESTIONS THE STUDENT ASKED FOR (QA brief, 2026-11-28: "A few" gave a lesson no question at all).
+ * None = no card; "A few"/"some" = one about every 3 boards, however long the lesson; "Lots" = one about
+ * every 2 boards. Not asked: the old default, every third board and at most three.
+ */
+export function practiceSpacing(practice: "none" | "some" | "lots" | undefined, teachingBoards: number): { every: number; most: number } {
+  if (practice === "none") return { every: Infinity, most: 0 };
+  if (practice === "lots") return { every: 2, most: Math.max(1, Math.floor(teachingBoards / 2)) };
+  if (practice === "some") return { every: CHECK_CARD_EVERY, most: Math.max(1, Math.floor(teachingBoards / CHECK_CARD_EVERY)) };
+  return { every: CHECK_CARD_EVERY, most: CHECK_CARDS_MAX };
+}
+
 export function checkCardBoards(plan: CanvasPlanBeat[], strict: boolean, practice?: "none" | "some" | "lots"): Set<number> {
   const picked = new Set<number>();
   // The student said how much checking they want on the question card (lib/teachingQuestions.ts).
   if (strict || practice === "none") return picked;
-  const every = practice === "lots" ? 2 : CHECK_CARD_EVERY;
-  const most = practice === "lots" ? CHECK_CARDS_MAX + 2 : CHECK_CARDS_MAX;
   const teaching = plan.map((beat, index) => ({ beat, index })).filter(({ beat }) => teaches(beat));
+  const { every, most } = practiceSpacing(practice, teaching.length);
   if (teaching.length < every) return picked;
   // A lesson with two or more hands-on tasks still gets its questions: a slider on every board left a
   // water-cycle lesson, and a course lesson, with no question at all (2026-10-18 test). There the card
@@ -59,9 +70,13 @@ const isCheckCard = (spec: CanvasBoardSpec) => spec.interaction?.kind === "quiz"
 
 /**
  * The same spacing over boards already written — a lecture made while every board had a card shows
- * at most three, at least two boards apart. A lecture made under checkCardBoards is left as it is.
+ * at most three, at least two boards apart. A lecture made under checkCardBoards is left as it is: its
+ * cards were placed for the student's own Practice answer (one every 2 boards for "Lots"), and spacing
+ * them again threw half of them away (QA 2026-11-28). Such a lecture never has cards on two boards in a row.
  */
 export function spaceCheckCards<P extends { spec: CanvasBoardSpec }>(panels: P[]): P[] {
+  const adjacent = panels.some((p, i) => i > 0 && isCheckCard(p.spec) && isCheckCard(panels[i - 1].spec));
+  if (!adjacent) return panels;
   let kept = 0;
   let since = 0;
   // As checkCardBoards: in a lesson of many hands-on tasks, a task does not restart the count.

@@ -3,6 +3,7 @@
 import { Check, CircleDot, X } from "lucide-react";
 import { HudEyebrow } from "@/components/hud/HudKit";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
+import { SpokenFeedback, feedbackScript } from "@/components/SpokenFeedback";
 
 /**
  * The scorecard shown after a test finishes grading.
@@ -26,8 +27,8 @@ export function TestResultsView({
   onBack: () => void;
   /** The slide (0-based) a question's beat is, or -1. With `onReviewSlide`, a wrong answer links back to it. */
   slideOf?: (beatId: string) => number;
-  /** Replays the lecture from that slide. Without it the scorecard is exactly as before. */
-  onReviewSlide?: (index: number) => void;
+  /** Opens that slide to review the question's slip (lib/testReview.ts). Without it the scorecard is exactly as before. */
+  onReviewSlide?: (index: number, questionId: string) => void;
 }) {
   const score = results.filter((r) => r.correct).length;
   const earned = results.reduce((sum, r) => sum + r.pointsEarned, 0);
@@ -78,10 +79,12 @@ export function TestResultsView({
                   {result.misconception ? "Partly right · contains an error" : `Accurate core answer · ${result.missingKeyPoints.length > 1 ? `${result.missingKeyPoints.length} requested parts are missing` : "a requested part is missing"}`}
                 </p>
               )}
+              {/* Aria can say a wrong answer's feedback: each sentence written first, her voice right after. */}
+              {result.status !== "correct" && <SpokenFeedback id={q.id} text={feedbackScript(result, q.rubric.modelAnswer)} />}
               {slide >= 0 && (
                 <button
                   type="button"
-                  onClick={() => onReviewSlide?.(slide)}
+                  onClick={() => onReviewSlide?.(slide, q.id)}
                   data-review-slide={slide + 1}
                   className="hud-btn-ghost mt-3 rounded-full px-4 py-1.5 text-xs font-bold"
                 >

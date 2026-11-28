@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth";
 import { GEMINI_TTS_MODEL, planningCloneOn, streamGeminiVoicePcm } from "@/lib/geminiVoice";
+import { withVoice } from "@/lib/voices";
 import { spendScopeNow } from "@/lib/openaiClient";
 import { recordSpend } from "@/lib/spend/record";
 
@@ -33,7 +34,8 @@ export async function POST(req: Request) {
   // rather than a 200 with an empty body.
   let first: IteratorResult<Uint8Array, number>;
   try {
-    first = await audio.next();
+    // The generator makes its request on the first chunk: that chunk runs in the student's chosen voice (lib/voices.ts).
+    first = await withVoice(typeof body.voice === "string" ? body.voice : req.headers.get("x-aria-voice"), () => audio.next());
   } catch (error) {
     console.warn(`[voice/say] ${(error as Error).message}`);
     return NextResponse.json({ error: "the cloned voice did not answer" }, { status: 502 });

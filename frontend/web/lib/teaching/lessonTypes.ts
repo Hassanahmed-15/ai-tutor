@@ -35,7 +35,8 @@ const ORDERS: Record<Exclude<LessonType, "quick_answer">, { beginner: OrderBoard
   concept: {
     beginner: [
       {
-        title: (t) => `Why ${t} matters`,
+        // A title that is already a question ("What Is Overfitting?", "Why Overfitting Happens") would read "Why Why … matters" (2026-11-28).
+        title: (t) => (/^(why|what|how|when|where|which|who)\b|\?\s*$/i.test(t.trim()) ? `Why it matters: ${t.trim().replace(/\?\s*$/, "")}` : `Why ${t} matters`),
         does: [
           "WHY IT MATTERS: open with one real situation from the student's life or the world where this idea matters, and the question it answers.",
           "A SIMPLE PICTURE: an honest everyday comparison that works the same way. When no comparison is honest, describe the real thing plainly instead: what it looks like, what it does. Never a comparison that teaches something false.",

@@ -20,7 +20,14 @@ export type CaptureSession = {
   tokenHash: string;
   createdAt: number;
   expiresAt: number;
+  /**
+   * What the pages are for (2026-11-27): "lesson" (taught like a PDF, the default) or "answers" (a practice test's
+   * paper answers, marked by Aria). Only the phone's wording changes. Absent on sessions made before it existed.
+   */
+  purpose?: CapturePurpose;
 };
+
+export type CapturePurpose = "lesson" | "answers";
 
 export type SlotRecord = {
   n: number;

@@ -17,7 +17,7 @@ type Created = { id: string; url: string; qrSvg: string; lan: boolean; expiresAt
 
 const PROBLEM: Record<string, string> = { blurry: "blurry", dark: "too dark", "no-page": "no page found" };
 
-export function PhoneCapturePanel({ onClose, onDocument }: { onClose: () => void; onDocument: (doc: CapturedDocument) => void }) {
+export function PhoneCapturePanel({ onClose, onDocument, purpose = "lesson" }: { onClose: () => void; onDocument: (doc: CapturedDocument) => void; /** "answers": a practice test's paper answers (the phone says "Submit my answers"). */ purpose?: "lesson" | "answers" }) {
   const [created, setCreated] = useState<Created | null>(null);
   const [status, setStatus] = useState<Status | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -31,14 +31,14 @@ export function PhoneCapturePanel({ onClose, onDocument }: { onClose: () => void
     setCreated(null);
     try {
       ensureSpendTag();
-      const res = await fetch("/api/capture", { method: "POST" });
+      const res = await fetch("/api/capture", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ purpose }) });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Could not start the phone capture.");
       setCreated(data as Created);
     } catch (e) {
       setError((e as Error).message);
     }
-  }, []);
+  }, [purpose]);
 
   // Exactly one capture per panel: development runs effects twice, and a second session made the panel watch a
   // code the phone never scanned.
@@ -111,7 +111,7 @@ export function PhoneCapturePanel({ onClose, onDocument }: { onClose: () => void
         <div className="flex items-start justify-between gap-3">
           <div>
             <h2 className="flex items-center gap-2 font-display text-[1.35rem] text-[var(--hud-text)]"><Smartphone size={20} /> Use your phone</h2>
-            <p className="mt-1 text-[0.85rem] text-[var(--hud-text-dim)]">Scan the code with your phone&apos;s camera, then take or choose up to 6 pages. Aria reads each one as it arrives.</p>
+            <p className="mt-1 text-[0.85rem] text-[var(--hud-text-dim)]">{purpose === "answers" ? "Scan the code with your phone\u2019s camera, then photograph each page of your working (up to 6). They appear here as they arrive." : <>Scan the code with your phone&apos;s camera, then take or choose up to 6 pages. Aria reads each one as it arrives.</>}</p>
           </div>
           <button type="button" onClick={close} aria-label="Close" className="grid size-8 place-items-center rounded-full text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]"><X size={18} /></button>
         </div>

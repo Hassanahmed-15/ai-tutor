@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { narrationVoiceReady, recordNarrationSpend, storeNarration, storedNarration, synthesizeNarration, TTS_MODEL, TTS_VOICE, type Synthesis } from "@/lib/narrationAudio";
+import { withVoice } from "@/lib/voices";
+import { narrationVoiceReady, recordNarrationSpend, storeNarration, storedNarration, synthesizeNarration, TTS_MODEL, ttsVoice, type Synthesis } from "@/lib/narrationAudio";
 import { narrationInput } from "@/lib/narrationText";
 import { createTtsQueue } from "@/lib/ttsQueue";
 import { ttsOutageLeftMs } from "@/lib/ttsOutage";
@@ -43,13 +44,18 @@ function remember(key: string, buffer: Buffer) {
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
+  // The student's chosen voice (lib/voices.ts): every clip below is made and found in it.
+  return withVoice(typeof body.voice === "string" ? body.voice : req.headers.get("x-aria-voice"), () => speak(req, body));
+}
+
+async function speak(req: Request, body: Record<string, unknown>) {
   const input = typeof body.text === "string" ? narrationInput(body.text) : "";
   if (!input) {
     return NextResponse.json({ error: "text is required" }, { status: 400 });
   }
   // THE TEST PAGE'S SIMULATED OUTAGE (app/tts-lab, dev only): the voice fails as a broken one would.
   if (ttsOutageLeftMs() > 0) return NextResponse.json({ error: "simulated voice outage" }, { status: 503 });
-  const cacheKey = `${TTS_MODEL}:${TTS_VOICE}:${input}`;
+  const cacheKey = `${TTS_MODEL}:${ttsVoice()}:${input}`;
   // THE TEST PAGE'S LIVE MEASURE (app/tts-lab, dev only): made now, bypassing memory and storage, kept nowhere.
   if (process.env.NODE_ENV !== "production" && req.headers.get("x-tts-fresh") === "1" && narrationVoiceReady()) {
     const made = await synthesizeNarration(input).catch((error: Error) => error);

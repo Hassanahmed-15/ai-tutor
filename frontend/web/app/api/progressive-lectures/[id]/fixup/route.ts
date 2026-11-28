@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { lessonCaller } from "@/lib/auth";
 import { progressiveSession } from "@/lib/progressiveLectureStore";
 import { writeFixupBoard } from "@/lib/canvas/fixupBoard";
+import { readingGrade } from "@/lib/studentCard";
 import type { Beat } from "@/lib/lessonContent";
 
 export const runtime = "nodejs";
@@ -43,7 +44,9 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   let job = making.get(key);
   if (!job) {
     const lessonContext = session.plan.map((p, i) => `${i + 1}. ${p.title}`).join("\n");
-    job = writeFixupBoard({ userId: auth.userId, sessionId: id, topic: session.topic, board: { title: planned.title, script: planned.script }, question, options, lessonContext, subjectDomain: session.subjectDomain })
+    // The lecture's own reading level, measured on its narration: the fix-up board is worded no harder.
+    const lessonGrade = readingGrade(session.plan.map((p) => p.canvas?.script ?? "").join(" "));
+    job = writeFixupBoard({ userId: auth.userId, sessionId: id, topic: session.topic, board: { title: planned.title, script: planned.script }, question, options, lessonContext, subjectDomain: session.subjectDomain, ...(lessonGrade > 0 ? { readingGrade: lessonGrade } : {}) })
       .then((made) => {
         if (made) console.log(`[fixup] ${id.slice(0, 8)} after ${planId}: "${made.beat.title}" $${made.costUsd.toFixed(4)}`);
         return made?.beat ?? null;

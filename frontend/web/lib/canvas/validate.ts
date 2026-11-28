@@ -7,6 +7,7 @@
  * what its stage needs to draw anything returns null, and the caller retries or falls back.
  */
 
+import { inSolvingOrder } from "./stepOrder";
 import { bracketDivisions, dropBrokenClauses, dropFalseIdentities, dropFalseWorking, dropGoalRow, dropWordClauses, dropWordSteps, dropWrongArithmetic, givensFirst, trimRowJoins, repairEquationRows, dropRepeatedRows, revealWhenSaid, splitFalseChains, splitSideCalculations, writeSpokenEquations } from "./equationRepair";
 import { takeFigureCutItems, takeFigureCuts } from "../figures/cuts";
 import { orderNotesAsSaid, tidyNotes } from "./equationCheck";
@@ -608,6 +609,8 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       // Each row written when Aria says it, the answer below its working.
       revealWhenSaid(stage, script);
     }
+    // Within one sentence: the start first, an answer under the working that reaches it (lib/canvas/stepOrder.ts).
+    stage.steps = inSolvingOrder(stage).steps;
     // The figure the working is about, checked exactly as a figure board's (registered components only).
     if (r.figure && typeof r.figure === "object") {
       const raw = obj(r.figure);

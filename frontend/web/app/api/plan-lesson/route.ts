@@ -38,6 +38,7 @@ import { learnerInstruction } from "@/lib/learnerProfile";
 import { CS_LESSON_LENGTH, isCsMechanismQuestion } from "@/lib/canvas/csLessons";
 import { classifySubjectDomain } from "@/lib/canvas/subjectDomainClassifier";
 import { sanitizeTeachingChoices, sanitizeTeachingQuestions, teachingLine, teachingSettings, TEACHING_QUESTIONS_PROMPT } from "@/lib/teachingQuestions";
+import { uniquePartTitles } from "@/lib/outlineTitles";
 import { PROMPT_OUTLINE_RULES, QUESTION_SHAPE_PROMPT, capQuestionOutline, directQuestionInstruction, parseQuestionShape, type QuestionShape, isBroadTopicQuestion, isDirectQuestion, isTopicRequest, outlineLearnerInstruction, topicLessonInstruction } from "@/lib/planPrompt";
 import { nounTitle, polishBeatPlan } from "@/lib/beatPresentation";
 import { costFor } from "@/lib/modelPricing";
@@ -825,6 +826,8 @@ function streamOutline(
         coverageCost += pointsCost;
         // The outline the student reviews shows the same titles the lecture will use.
         if (nounTitles) rawOutline.subtopics = rawOutline.subtopics.map((subtopic) => ({ ...subtopic, title: nounTitle(subtopic.title) }));
+        // No two parts share a title (lib/outlineTitles.ts; QA 2026-11-28: two parts both "Opportunity Cost").
+        rawOutline = { ...rawOutline, subtopics: uniquePartTitles(rawOutline.subtopics) };
         // Every subtopic carries where the student stands on it (lib/canvas/conceptLadder.ts), so the
         // lesson is built on the concept ladder; a syllabus or a document keeps everything it needs, and a
         // question (only a reference PDF's gets parts) keeps the subtopics its answer was already held to.

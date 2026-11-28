@@ -10,6 +10,8 @@ import { BuildTimeline } from "@/components/design/BuildTimeline";
 import type { ProgressiveLectureSnapshot } from "@/lib/progressiveLectureTypes";
 import type { Beat } from "@/lib/lessonContent";
 import type { SourceScope } from "@/lib/sourceScope";
+import { TestResultsView } from "@/components/TestResultsView";
+import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
 
 /**
  * `/playback-lab` — the real LessonPlayer on a lecture supplied by a test.
@@ -28,6 +30,8 @@ declare global {
     __BOARD_STILL__?: { code: string; assetIds?: string[]; sentenceTotal: number; model?: string; costUsd?: number };
     /** Measured beat timings to render the build screen's timeline with (scripts/measure-lecture-latency.mjs). */
     __BUILD_TIMELINE__?: { beats: NonNullable<ProgressiveLectureSnapshot["beatStatus"]>; createdAt?: string };
+    /** A graded test to show on its results page (scripts/qa/.probe/test-feedback-voice.mts: the spoken feedback). */
+    __TEST_RESULTS__?: { bank: TestBank; results: TestGradeResult[]; answers?: Record<string, string> };
   }
 }
 
@@ -35,18 +39,21 @@ export default function PlaybackLab() {
   const [lecture, setLecture] = useState<Window["__PLAYBACK_BEATS__"]>(undefined);
   const [still, setStill] = useState<Window["__BOARD_STILL__"]>(undefined);
   const [timeline, setTimeline] = useState<Window["__BUILD_TIMELINE__"]>(undefined);
+  const [testResults, setTestResults] = useState<Window["__TEST_RESULTS__"]>(undefined);
 
   useEffect(() => {
     const read = () => {
       if (window.__PLAYBACK_BEATS__) setLecture(window.__PLAYBACK_BEATS__);
       if (window.__BOARD_STILL__) setStill(window.__BOARD_STILL__);
       if (window.__BUILD_TIMELINE__) setTimeline(window.__BUILD_TIMELINE__);
+      if (window.__TEST_RESULTS__) setTestResults(window.__TEST_RESULTS__);
     };
     read();
     const t = window.setInterval(read, 200);
     return () => window.clearInterval(t);
   }, []);
 
+  if (testResults) return <TestResultsView bank={testResults.bank} results={testResults.results} answers={testResults.answers} onBack={() => {}} />;
   if (timeline) {
     return (
       <main data-timeline className="mx-auto max-w-xl bg-[#0b0a14] p-6">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ArrowUp, BookOpen, CircleHelp, GraduationCap, Paperclip, Smartphone, Waypoints, X } from "lucide-react";
+import { ArrowRight, ArrowUp, BookOpen, CircleHelp, ClipboardCheck, Gamepad2, GraduationCap, Paperclip, Smartphone, Waypoints, X } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
 import { setPendingBrief, type CapturedDocument } from "@/lib/pendingBrief";
 import { PhoneCapturePanel } from "@/components/upload/PhoneCapturePanel";
@@ -23,6 +23,9 @@ import { AriaBot } from "@/components/pages/AriaBot";
 import { MiniAria } from "@/components/avatar/MiniAria";
 import { SpendPill } from "@/components/SpendPill";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { PastPaperPractice } from "@/components/courses/PastPaperPractice";
+import { PracticeExam, practiceExamOn, type PracticePreset } from "@/components/practice/PracticeExam";
+import { PracticePicker } from "@/components/practice/PracticePicker";
 
 /**
  * THE FRONT PAGE, with as little to read as a page can have: Aria herself saying hello, one place
@@ -42,12 +45,22 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   const [videoHandOff, setVideoHandOff] = useState<{ url: string; key: number } | null>(null);
   // The QR capture panel ("Phone" beside "File").
   const [phoneOpen, setPhoneOpen] = useState(false);
+  /** Lesson: the box starts a lecture. Practice: it writes an exam-style test on what was typed (components/practice). */
+  const [mode, setMode] = useState<"lesson" | "practice">("lesson");
+  const [practiceTopic, setPracticeTopic] = useState<string | null>(null);
+  /** A practice sheet on a saved lecture, picked in Practice mode (components/practice/PracticePicker.tsx). */
+  const [practiceSheet, setPracticeSheet] = useState<PracticePreset | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const briefRef = useRef<HTMLTextAreaElement>(null);
   const dragDepth = useRef(0);
   const { user, profile, openSettings } = useAuth();
   const adhd = isAdhdLearner(profile);
   const canStart = topic.trim().length > 0;
+  const practising = mode === "practice";
+  function practiseInBox() {
+    setMode("practice");
+    briefRef.current?.focus();
+  }
 
   function startWithFile(chosen: File) {
     // The upload is the request: the next screen asks which pages and which part.
@@ -72,6 +85,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
       setVideoHandOff({ url: video.link.url, key: Date.now() });
       return;
     }
+    if (practising) { setPracticeTopic(topic.trim()); return; }
     setPendingBrief({ topic: topic.trim(), file: null });
     go("learn");
   }
@@ -112,6 +126,13 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [libraryOpen]);
+
+  // A practice test or sheet takes the whole screen; its Back comes home here (docs/practice-exam.md).
+  if (practiceSheet) return <PracticeExam key={practiceSheet.plan.topic} topic={practiceSheet.plan.topic} preset={practiceSheet} go={go} onDone={() => setPracticeSheet(null)} />;
+  if (practiceTopic) {
+    if (practiceExamOn()) return <PracticeExam key={practiceTopic} topic={practiceTopic} go={go} onDone={() => setPracticeTopic(null)} />;
+    return <PastPaperPractice key={practiceTopic} topic={practiceTopic} part={1} onDone={() => setPracticeTopic(null)} />;
+  }
 
   return (
     <main
@@ -154,6 +175,11 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
         <nav aria-label="Main" className="flex items-center gap-2.5">
           {/* Desktop app only: how to mark anything on the screen, in a panel under this door. */}
           {user && <ScreenMarkHelp />}
+          {user && (
+            <button type="button" onClick={() => go("knowledge")} aria-label="Map: what to review next" title="Map" className="home-round">
+              <Waypoints aria-hidden="true" size={17} strokeWidth={1.8} />
+            </button>
+          )}
           <button type="button" onClick={() => setGuideOpen(true)} aria-pressed={guideOpen} aria-label="Guide" title="Guide" className="home-round">
             <CircleHelp aria-hidden="true" size={17} strokeWidth={1.8} />
           </button>
@@ -195,7 +221,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
                 <div className="home-thought"><i className="t2" /><i className="t1" /><div className="tb"><b /><b /><b /></div></div>
               </div>
               <form className="home-ask" onSubmit={(e) => { e.preventDefault(); start(); }}>
-                <label htmlFor="brief" className="sr-only">What should Aria teach?</label>
+                <label htmlFor="brief" className="sr-only">{practising ? "Topic to practise" : "What should Aria teach?"}</label>
                 <textarea
                   id="brief"
                   ref={briefRef}
@@ -204,24 +230,38 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); start(); }
                   }}
-                  placeholder="Ask anything…"
+                  placeholder={practising ? "Name a topic for exam-style questions, e.g. Moles" : "Ask anything…"}
                   autoFocus
                   className="min-h-0 w-full flex-1 resize-none bg-transparent text-[1.0625rem] font-medium leading-relaxed text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none"
                 />
                 <div className="flex items-center gap-2">
-                  <button type="button" onClick={() => fileRef.current?.click()} className="home-pill">
-                    <Paperclip aria-hidden="true" size={14} strokeWidth={1.8} /> File
-                  </button>
-                  {/* Photograph pages with the phone (the QR capture): read as they are taken, then taught like a PDF. */}
+                  {/* Lesson or Practice questions: what the box does with what is typed. */}
                   {user && (
-                    <button type="button" onClick={() => setPhoneOpen(true)} className="home-pill">
-                      <Smartphone aria-hidden="true" size={14} strokeWidth={1.8} /> Phone
-                    </button>
+                    // A sliding switch (owner 2026-11-27): the violet thumb glides under the chosen side.
+                    <div role="group" aria-label="Mode" className="home-mode" data-mode={mode}>
+                      <span className="home-mode-thumb" aria-hidden="true" />
+                      {(["lesson", "practice"] as const).map((m) => (
+                        <button key={m} type="button" aria-pressed={mode === m} onClick={() => setMode(m)} aria-label={m === "lesson" ? "Lesson" : "Practice questions"}>{m === "lesson" ? "Lesson" : "Practice"}</button>
+                      ))}
+                    </div>
                   )}
-                  <YouTubeLauncher key={videoHandOff?.key ?? 0} initialUrl={videoHandOff?.url} onStart={startWithVideo} compact />
+                  {!practising && (
+                    <>
+                      <button type="button" onClick={() => fileRef.current?.click()} className="home-pill" aria-label="File">
+                        <Paperclip aria-hidden="true" size={14} strokeWidth={1.8} /> <span className="home-pill-label">File</span>
+                      </button>
+                      {/* Photograph pages with the phone (the QR capture): read as they are taken, then taught like a PDF. */}
+                      {user && (
+                        <button type="button" onClick={() => setPhoneOpen(true)} className="home-pill" aria-label="Phone">
+                          <Smartphone aria-hidden="true" size={14} strokeWidth={1.8} /> <span className="home-pill-label">Phone</span>
+                        </button>
+                      )}
+                      <YouTubeLauncher key={videoHandOff?.key ?? 0} initialUrl={videoHandOff?.url} onStart={startWithVideo} compact />
+                    </>
+                  )}
                   <span className="flex-1" />
                   <VoicePromptButton baseText={topic} onTranscript={setTopic} title="Say it instead" />
-                  <button type="submit" disabled={!canStart} aria-label="Start" className="home-send">
+                  <button type="submit" disabled={!canStart} aria-label={practising ? "Get questions" : "Start"} className="home-send">
                     <ArrowUp aria-hidden="true" size={17} strokeWidth={2.2} />
                   </button>
                 </div>
@@ -237,10 +277,13 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
               }}
             />
 
+            {/* Practice mode: a saved lecture to practise, or any topic (typed, suggested or random). */}
+            {user && practising && practiceExamOn() && <div className="mt-5"><PracticePicker onSheet={setPracticeSheet} onTopic={setPracticeTopic} columns={1} /></div>}
+
             {user && (
               <nav className="home-explore" aria-labelledby="home-explore">
                 <h3 id="home-explore">Explore</h3>
-                <div className="home-shelf">
+                <div className="home-shelf is-four">
                   <a className="home-row" href="/courses" aria-label="Browse courses">
                     <span className="home-ico" aria-hidden="true"><GraduationCap size={20} strokeWidth={1.8} /></span>
                     <span className="home-rb"><b>Courses</b><span>IGCSE, O Level, A Level, AP</span></span>
@@ -251,11 +294,17 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
                     <span className="home-rb"><b>Library</b><span>Every lecture you take</span></span>
                     <span className="home-go" aria-hidden="true"><ArrowRight size={14} /></span>
                   </button>
-                  <button type="button" className="home-row" onClick={() => go("knowledge")} aria-label="Open map">
-                    <span className="home-ico" aria-hidden="true"><Waypoints size={20} strokeWidth={1.8} /></span>
-                    <span className="home-rb"><b>Map</b><span>What to review next</span></span>
+                  {/* Owner 2026-11-27: Practice questions and Games here instead of Map (Map is in the header). */}
+                  <button type="button" className="home-row is-sky" onClick={practiseInBox} aria-label="Practice questions" aria-pressed={practising}>
+                    <span className="home-ico" aria-hidden="true"><ClipboardCheck size={20} strokeWidth={1.8} /></span>
+                    <span className="home-rb"><b>Practice questions</b><span>Exam-style tests, marked by Aria</span></span>
                     <span className="home-go" aria-hidden="true"><ArrowRight size={14} /></span>
                   </button>
+                  <a className="home-row is-amber" href="/games/math-quest" aria-label="Games: Math Quest">
+                    <span className="home-ico" aria-hidden="true"><Gamepad2 size={20} strokeWidth={1.8} /></span>
+                    <span className="home-rb"><b>Games</b><span>Math Quest: a maths adventure</span></span>
+                    <span className="home-go" aria-hidden="true"><ArrowRight size={14} /></span>
+                  </a>
                 </div>
               </nav>
             )}

@@ -23,7 +23,10 @@ import { actBoard, deliveryFor, type Delivery } from "@/lib/voiceDelivery";
 // ARIA'S OWN CLONED VOICE when NARRATION_VOICE=gemini (lib/geminiVoice.ts); otherwise OpenAI's Shimmer.
 // The model and voice are part of every stored clip's path, so switching never plays an old clip in the wrong voice.
 const GEMINI_VOICE = geminiVoiceOn();
-export const TTS_VOICE = GEMINI_VOICE ? geminiVoiceTag() : (process.env.OPENAI_TTS_VOICE ?? "shimmer");
+/** The voice part of a clip's path, for THIS request's voice (lib/voices.ts): Aria's is unchanged since 2026-11-12. */
+export function ttsVoice(): string {
+  return GEMINI_VOICE ? geminiVoiceTag() : (process.env.OPENAI_TTS_VOICE ?? "shimmer");
+}
 // The dated model and Shimmer, picked by the owner from samples (2026-11-09: "change the voice to a human").
 export const TTS_MODEL = GEMINI_VOICE ? GEMINI_TTS_MODEL : (process.env.OPENAI_TTS_MODEL ?? "gpt-4o-mini-tts-2025-12-15");
 
@@ -44,9 +47,9 @@ function toneFor(input: string, delivery?: Delivery): string {
 
 /** Where a clip is stored: its model, voice and the hash of its exact text. */
 export function narrationBlobName(text: string): string {
-  const hash = createHash("sha256").update(`${TTS_MODEL}:${TTS_VOICE}:${narrationInput(text)}`).digest("hex");
+  const hash = createHash("sha256").update(`${TTS_MODEL}:${ttsVoice()}:${narrationInput(text)}`).digest("hex");
   const segment = (s: string) => s.replace(/[^a-zA-Z0-9_-]/g, "-");
-  return `narration/${segment(TTS_MODEL)}/${segment(TTS_VOICE)}/${hash}.mp3`;
+  return `narration/${segment(TTS_MODEL)}/${segment(ttsVoice())}/${hash}.mp3`;
 }
 
 /** A stored clip, or null when there is none (or storage is not configured or not reachable). */
@@ -133,7 +136,7 @@ async function synthesize(input: string, delivery?: Delivery): Promise<Synthesis
   const timer = setTimeout(() => controller.abort(new Error("fallback timed out")), FALLBACK_TIMEOUT_MS);
   try {
     const speech = await client.audio.speech.create(
-      { model: TTS_MODEL, voice: TTS_VOICE, input, instructions: toneFor(input, delivery), response_format: "mp3" },
+      { model: TTS_MODEL, voice: ttsVoice(), input, instructions: toneFor(input, delivery), response_format: "mp3" },
       { timeout: FALLBACK_TIMEOUT_MS, maxRetries: 0, signal: controller.signal },
     );
     // This call reported no usage, but it was billed: estimated at the measured rate, never left out.
@@ -164,7 +167,7 @@ async function synthesizeWithUsage(input: string, delivery?: Delivery): Promise<
     const res = await fetch("https://api.openai.com/v1/audio/speech", {
       method: "POST",
       headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: TTS_MODEL, voice: TTS_VOICE, input, instructions: toneFor(input, delivery), response_format: "mp3", stream_format: "sse" }),
+      body: JSON.stringify({ model: TTS_MODEL, voice: ttsVoice(), input, instructions: toneFor(input, delivery), response_format: "mp3", stream_format: "sse" }),
       signal: controller.signal,
     });
     clearTimeout(firstByte);
@@ -223,10 +226,11 @@ export async function prepareNarration(sentences: string[], opts: { concurrency?
       const text = unique[next++];
       const t0 = Date.now();
       // Being made already (the board's voice starts while the board is drawn): the same clip is never paid for twice.
-      const already = making.get(text);
+      const makingKey = `${ttsVoice()}|${text}`;
+      const already = making.get(makingKey);
       if (already) { const clip = await already; results.set(text, { ...clip, source: clip.source === "made" ? "stored" : clip.source, costUsd: 0 }); continue; }
-      const start = (async () => (await narrationExists(text) ? { text, source: "stored" as const, ms: Date.now() - t0, costUsd: 0 } : makeOne(text, t0)))().finally(() => making.delete(text));
-      making.set(text, start);
+      const start = (async () => (await narrationExists(text) ? { text, source: "stored" as const, ms: Date.now() - t0, costUsd: 0 } : makeOne(text, t0)))().finally(() => making.delete(makingKey));
+      making.set(makingKey, start);
       results.set(text, await start);
     }
   };

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { captureVoice, isSpeechSupported, type VoiceCaptureHandle } from "@/lib/speech";
 import type { VoiceDirector } from "@/lib/useVoiceDirector";
+import { leadFromNow } from "@/lib/canvas/textLead";
 
 /**
  * The teacher's mid-lecture question — asked in the TEACHER's voice, never the chatbot's.
@@ -139,7 +140,8 @@ export function useTeacherQuiz({
       // talking to the chatbot instead) just hand control back without speaking it.
       const spoke = voice.speakAsTeacher(
         spoken,
-        { onStart: () => {}, onEnd: done, onBlocked: done, rate, voiceFallback },
+        // Text first: the verdict is on screen now; her voice follows it (lib/canvas/textLead.ts).
+        { onStart: () => {}, onEnd: done, onBlocked: done, rate, voiceFallback, textLeadWait: leadFromNow(rate) },
         "utterance",
       );
       if (!spoke) done();
@@ -246,6 +248,8 @@ export function useTeacherQuiz({
           onBlocked: startListening, // audio blocked — still take the answer
           rate,
           voiceFallback,
+          // Text first: the card shows the question in this same update; her voice follows it.
+          textLeadWait: leadFromNow(rate),
         },
         "utterance",
       );

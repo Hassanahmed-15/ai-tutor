@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { groupSlides } from "@/lib/anim/slideGroups";
+import { planningWaitLine } from "@/lib/planningWait";
 import { Play, Square } from "lucide-react";
 import {
   LESSON_DESIGN_STAGES,
@@ -56,6 +58,7 @@ export function LessonBuildScreen({
   progress,
   ready,
   beatStatus,
+  buildStartedAt,
   onStop,
   onStart,
 }: LessonBuildScreenProps) {
@@ -64,6 +67,21 @@ export function LessonBuildScreen({
 
   const slides = beatStatus ?? [];
   const readyCount = slides.filter((s) => s.state === "ready").length;
+  /*
+   * THE REAL CLOCK WHILE IT PLANS (QA 2026-11-28: "Analyzing your material" for ~2.5 min, nothing moving).
+   * The plan is one long model call with nothing inside it to report, so the wait is shown as it is: time
+   * so far and the usual range (lib/planningWait.ts), and a plain word when it runs long.
+   */
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    if (ready) return;
+    const t = window.setInterval(() => setNow(Date.now()), 1000);
+    return () => window.clearInterval(t);
+  }, [ready]);
+  const startedAt = buildStartedAt ? Date.parse(buildStartedAt) : NaN;
+  const elapsed = Number.isFinite(startedAt) ? now - startedAt : progress.elapsedMs ?? NaN;
+  const opening = Math.min(3, slides.length);
+  const waitLine = ready ? "" : planningWaitLine(elapsed, slides.length ? slides.slice(0, opening).filter((s) => s.state === "ready").length : 0, slides.length ? opening : 0);
 
   return (
     /*
@@ -89,6 +107,7 @@ export function LessonBuildScreen({
           {/* No time estimate (owner, 2026-10-18: "remove that"): what Aria is doing, not a countdown. */}
           {ready ? "Ready" : (LESSON_DESIGN_STAGES[currentStage]?.label ?? progress.status)}
         </p>
+        {waitLine && <p data-plan-wait="" className="mt-1.5 text-[0.75rem] tabular-nums text-[var(--hud-text-faint)]">{waitLine}</p>}
 
         <div className="mt-8 h-[3px] w-full max-w-md overflow-hidden rounded-full bg-[var(--hud-surface-2)]" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(percent * 100)}>
           <div className="h-full rounded-full bg-[var(--hud-cyan)] transition-[width] duration-700 ease-out" style={{ width: `${Math.max(2, percent * 100)}%` }} />
