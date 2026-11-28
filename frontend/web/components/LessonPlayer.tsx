@@ -114,6 +114,8 @@ const CHECKIN_RECONNECT_GAP_MS = 250;
  * forever on a session that genuinely cannot stay open.
  */
 const MAX_CHECKIN_RECONNECTS = 3;
+/** How long the last board stays up, whole, after her narration of it ends, before "Lecture complete" (QA report 2026-11-27). */
+const LAST_BOARD_LINGER_MS = 4_000;
 // Sustained attention drift must persist this long before the lesson reacts, so a brief glance
 // away never stops the lecture; the board then freezes for a beat before offering Resume.
 const DRIFT_HOLD_MS = 2000;
@@ -1897,6 +1899,12 @@ export function LessonPlayer({
       if (isAdaptiveQuestion(question)) onLearnerInteraction?.({ kind: "question", detail: question });
     },
     onExplanationClosed: () => lesson.requestResume(),
+    // A typed "continue" resumes the lecture from where it froze (a lost narration restarts its board), as the
+    // spoken one does — it was answered as a question, and the lecture never came back (owner, 2026-11-28).
+    onResumeRequested: () => {
+      if (checkinRef.current) return;
+      resumeAfterQuestion(true);
+    },
     onVoiceBlocked: () => {
       blockedLiveOnlyRef.current = false;
       setVoiceBlocked(true);
@@ -2404,6 +2412,8 @@ export function LessonPlayer({
         // rather than another voice or none). The wait is reported every 2 s, so the stall watchdog never
         // mistakes it for a stall and restarts the part.
         onVoiceWaiting: (waiting) => {
+          // Only the narration that is playing this board may say it is waiting (a stopped one kept the banner up).
+          if (waiting && narrationLiveForRef.current !== index) return;
           lastNarrationSignalRef.current = Date.now();
           setVoiceWaiting(waiting);
           if (waiting) tracePlayback("voice-waiting", { beat: index });
@@ -2615,7 +2625,11 @@ export function LessonPlayer({
       if (tail.hasMoreBeats && i < tail.plannedTotal - 1) setWaitingForNextBeat(true);
       // The parent's own state changes on completion; a state updater must not set another
       // component's state (React: "Cannot update a component while rendering a different one").
-      else queueMicrotask(() => tail.onComplete?.());
+      // THE LAST BOARD STAYS UP A MOMENT, WHOLE (QA report 2026-11-27: the code board jumped to "Lecture complete"
+      // drawn to line 8 of 18 — the board completes when her narration ends, and the end came in the same instant).
+      else window.setTimeout(() => {
+        if (indexRef.current === heldIndex) tail.onComplete?.();
+      }, LAST_BOARD_LINGER_MS);
       return i;
     });
   }, []);
@@ -3291,8 +3305,9 @@ export function LessonPlayer({
    * recovery effect (keyed on `quiz.phase`, which this same tick sets back to "idle") restarts it.
    * A frozen lecture is still continued mid-sentence by `requestResume()` as before.
    */
-  function resumeAfterQuestion() {
-    lesson.requestResume();
+  function resumeAfterQuestion(explicit = false) {
+    // `explicit`: the student asked to go on — that lifts the hold a typed question put on the lecture.
+    lesson.requestResume(explicit ? { explicit: true } : undefined);
     if (
       !voice.hasFrozenTeacher() &&
       narrationLiveForRef.current !== index &&
@@ -3400,6 +3415,12 @@ export function LessonPlayer({
   const pdfWorkspace = Boolean(documentId && sourceDocument && sourceScope) && sourceScope?.fidelity === "strict";
   // Where the spoken passage sits on the PDF, for the arrow that joins it to the board.
   const [pointerRect, setPointerRect] = useState<DOMRect | null>(null);
+  /**
+   * The page pane folded away, so the board has the whole width (QA report 2026-11-27: beside the pages the board
+   * was about a third of the window, its text about 6 px). The student's choice; "Show the page" brings it back.
+   */
+  const [pagesFolded, setPagesFolded] = useState(false);
+  const pagesShown = pdfWorkspace && !pagesFolded;
   const workspaceRef = useRef<HTMLDivElement | null>(null);
   // In the source workspace the ask input lives in the bottom bar; accessibility tracks keep their panels.
   const chatInDock = pdfWorkspace && !deafMode && !adhd;
@@ -3649,10 +3670,13 @@ export function LessonPlayer({
            * the full height of the screen. There is no header above and no chat row below — the
            * bottom bar carries leave, transport, the ask input and status in one line.
            */
-          ? "relative m-2 grid min-h-0 flex-1 grid-cols-1 grid-rows-[minmax(0,1fr)_minmax(0,1fr)_auto] overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] lg:m-3 lg:grid-cols-[minmax(22rem,1fr)_minmax(0,1.15fr)] lg:grid-rows-[minmax(0,1fr)_auto]"
+          // The board gets the larger share: stacked, two thirds of the height; side by side, about 60 % of the width.
+          ? pagesShown
+            ? "relative m-2 grid min-h-0 flex-1 grid-cols-1 grid-rows-[minmax(0,0.75fr)_minmax(0,1.5fr)_auto] overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] lg:m-3 lg:grid-cols-[minmax(20rem,0.85fr)_minmax(0,1.3fr)] lg:grid-rows-[minmax(0,1fr)_auto]"
+            : "relative m-2 grid min-h-0 flex-1 grid-cols-1 grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] lg:m-3"
           : `flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid ${sideOpen ? "xl:grid-cols-[minmax(0,1fr)_340px]" : "xl:grid-cols-[minmax(0,1fr)]"}`}
         >
-          {pdfWorkspace && sourceScope && (
+          {pagesShown && sourceScope && (
             <PdfSourcePanel
               documentId={documentId}
               sourceDocument={sourceDocument}
@@ -3665,7 +3689,7 @@ export function LessonPlayer({
               onPointerRect={setPointerRect}
             />
           )}
-          {pdfWorkspace && (
+          {pagesShown && (
             <SourceToBoardArrow pointer={pointerRect} workspace={workspaceRef.current} board={boardSurfaceRef.current} />
           )}
           {/*
@@ -3685,12 +3709,20 @@ export function LessonPlayer({
                   Part {index + 1} of {displayBeatCount}
                 </span>
                 <span className="min-w-0 truncate font-semibold text-[var(--hud-text)]">{beat.title}</span>
-                {beatSourcePages.length > 0 && (
+                {pagesShown && beatSourcePages.length > 0 && (
                   <span className="ml-auto hidden shrink-0 items-center gap-1 text-[var(--hud-cyan)] sm:flex">
                     <span aria-hidden="true">←</span>
                     highlighted on {beatSourcePages.length > 1 ? `pages ${beatSourcePages[0]}–${beatSourcePages[beatSourcePages.length - 1]}` : `page ${beatSourcePages[0]}`}
                   </span>
                 )}
+                <button
+                  type="button"
+                  onClick={() => setPagesFolded((folded) => !folded)}
+                  aria-pressed={pagesFolded}
+                  className={`${pagesShown && beatSourcePages.length > 0 ? "" : "ml-auto"} shrink-0 rounded-full border border-[var(--hud-line)] px-2.5 py-0.5 font-semibold text-[var(--hud-text-dim)] transition-colors hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)]`}
+                >
+                  {pagesFolded ? "Show the page" : "Bigger board"}
+                </button>
               </div>
             )}
             {/* Notes ABOVE the drawing: what Aria is saying is read first, right under the part strip, and
@@ -3712,7 +3744,9 @@ export function LessonPlayer({
                 maxAttempts={MAX_ATTEMPTS}
                 onRevealAnswer={revealCheckpointAnswer}
               />
-            ) : canvasLesson ? (
+            ) : canvasLesson && canvasIndex >= 0 ? (
+              /* A part whose canvas board is not there (yet) gets its own board below, never the PREVIOUS board kept
+                 up under its label (QA report 2026-11-27: "Part 5 of 5" over part 4's board, then "Lecture complete"). */
               <div className="flex h-full flex-col">
               <div className="relative min-h-0 flex-1">
                 <PaintSignal key={beat.id} onPainted={handleBoardPainted} />

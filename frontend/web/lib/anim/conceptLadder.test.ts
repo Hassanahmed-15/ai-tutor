@@ -110,3 +110,11 @@ test("a part named by the topic's own word claims one subtopic, not every one th
   assert.equal(kept.find((s) => s.title === "Reducing Overfitting")?.status, "new");
   assert.ok(!kept.some((s) => s.title === "Cross-Validation" && s.status === "known"), "an extra never borrows a known status");
 });
+
+test("a quick overview has no map board and one board a part it teaches (QA report 2026-11-27)", () => {
+  const brief = ladderCanvasSection(parts, false, true).join("\n");
+  assert.doesNotMatch(brief, /THE MAP/);
+  const taught = parts.filter((p) => p.status !== "known").length;
+  assert.match(brief, new RegExp(`${taught} to ${taught} boards in all`));
+  assert.match(ladderCanvasSection(parts).join("\n"), /THE MAP/, "a full lesson keeps its map");
+});

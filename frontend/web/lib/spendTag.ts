@@ -59,6 +59,20 @@ export function reportClientSpend(model: string, usd: number): void {
   void fetch("/api/spend", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model, usd, kind: "voice" satisfies SpendKind }) }).catch(() => {});
 }
 
+/**
+ * Fired when the app's own API answers 401 (not signed in), so the sign-in gate can re-check the session and ask the
+ * student to sign in again over the page (components/auth/AuthGate.tsx). Sign-in routes themselves are left out.
+ */
+export const AUTH_EXPIRED_EVENT = "aria:auth-expired";
+
+function watchForSignOut<T extends Response>(path: string, response: Promise<T>): Promise<T> {
+  if (path.startsWith("/api/auth/")) return response;
+  return response.then((res) => {
+    if (res.status === 401) window.dispatchEvent(new Event(AUTH_EXPIRED_EVENT));
+    return res;
+  });
+}
+
 /** Label every same-origin API request with the lesson and the part of the app. Installed once. */
 function install() {
   const w = window as unknown as { __ariaSpendFetch?: boolean };
@@ -74,7 +88,7 @@ function install() {
         const tag = tags[tags.length - 1];
         if (tag && !headers.has("x-aria-spend")) headers.set("x-aria-spend", tag);
         if (!headers.has("x-aria-spend-kind")) headers.set("x-aria-spend-kind", spendKindForPath(path));
-        return original(input, { ...init, headers });
+        return watchForSignOut(path, original(input, { ...init, headers }));
       }
     } catch {
       // Never let labelling stop a request.

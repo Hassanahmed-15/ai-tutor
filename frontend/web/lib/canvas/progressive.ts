@@ -1,6 +1,7 @@
 import { checkNumbers, numberIssuesText } from "./numberCheck";
 import { canvasBlocksOn, writeBoardBlocks } from "./blocksWriter";
 import { timeCodeSteps } from "./codeSync";
+import { pythonListingFault } from "./codeCheck";
 import { choosePictures, pictureAgentOn } from "./pictureAgent";
 import { withoutBannedWords } from "../teaching/styleCheck";
 import { prepareNarration } from "../narrationAudio";
@@ -21,7 +22,8 @@ import { canvasBeatId, connectToEarlier } from "./connect";
 import { repairCues } from "./cueRepair";
 import { compactLadder, referenceCsLesson, withLearnerStatuses, canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, promptTaughtLikeCourse, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
 import { codeSentenceBlocks, groundSourcePlan, strictBoardLines, ungroundedInPlan, videoBoardLines, videoParts } from "./sourceLessons";
-import { assignListings, documentBoardLines, documentListings, documentSections, extraBoardsForListings, faithfulCodeLines, inPageOrder, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredPages, type DocumentListing } from "./documentContext";
+import { dropEchoedSentences } from "./echoes";
+import { assignListings, documentBoardLines, documentListings, documentSections, extraBoardsForListings, faithfulCodeLines, inPageOrder, listingGaps, listingsAsked, listingsLeftOut, listingText, overlongCodeBoards, splitListing, substantivePages, uncoveredKeyBlocks, uncoveredPages, type DocumentListing } from "./documentContext";
 import type { SuprnotesLessonInput } from "../suprnotes";
 import { policyForBoards } from "../teachingPolicy";
 import { applyConceptColours, planConceptColours, recapTour } from "./lessonPasses";
@@ -288,6 +290,14 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
         continue;
       }
       if (missing.length) console.warn(`[canvas] ${strictDoc ? "strict" : "reference"} plan still leaves out page(s) ${missing.join(", ")}`);
+      // Strict, whole selection: every table and worked example is taught, not only every page (lib/canvas/documentContext.ts).
+      const keyMissing = plan && covering && strictDoc ? uncoveredKeyBlocks(strictDoc, plan.beats) : [];
+      if (keyMissing.length && attempt < maxAttempts) {
+        lastError = `${keyMissing.map((k) => `${k.label}${k.page ? ` on page ${k.page}` : ""} (block ${k.id})`).join("; ")} ${keyMissing.length === 1 ? "is" : "are"} taught by no board — this lecture covers EVERYTHING on the selected pages: keep the boards you have, and teach each of these on the board its page's part belongs to (a worked example step by step with its own numbers; a table row by row), naming its block id in that board's "source.blocks"`;
+        console.log(`[canvas] plan sent back: ${lastError}`);
+        continue;
+      }
+      if (keyMissing.length) console.warn(`[canvas] strict plan still leaves out ${keyMissing.map((k) => k.label).join("; ")}`);
       if (plan) {
         // WORKED NUMBERS ARE CHECKED BY CODE (lib/canvas/numberCheck.ts): a script that says
         // "−(8π)²(0.060) = −121" goes back with the right value named (it is −37.9).
@@ -496,6 +506,19 @@ export async function planCanvasLecture(asked: ProgressiveLectureInput, knowledg
           const grounded = groundSourcePlan(source, plan.beats, sourceMode);
           plan = { ...plan, beats: grounded.beats };
           console.log(`[canvas] ${sourceMode} grounding: ${grounded.removed} sentence(s) dropped${grounded.log.length ? ` — ${grounded.log.slice(0, 6).join(" | ")}` : ""}`);
+        }
+        // No sentence said twice in a row (lib/canvas/echoes.ts): checked on the plan, before any board is drawn.
+        if (plan) {
+          let echoed = 0;
+          const beats = plan.beats.map((beat) => {
+            const out = dropEchoedSentences(beat);
+            echoed += out.dropped.length;
+            return out.beat;
+          });
+          if (echoed) {
+            plan = { ...plan, beats };
+            console.log(`[canvas] ${echoed} sentence(s) dropped that repeated the one before them`);
+          }
         }
         // CARD DIVES (lib/canvas/cardDives.ts): each board of cards becomes a tour and a close-up inside
         // every card. Off unless CANVAS_CARD_DIVES=1; never for a strict PDF or a video.
@@ -1042,7 +1065,11 @@ export async function writeCanvasBoard(args: {
   }
   // `incomplete`: its animation could not be made right (the code shipped without its structure, or the backup) —
   // the faults each attempt was sent back for, which a rewrite is given (lib/progressiveLectureWorker.ts).
-  return { beat: written, costUsd: made.costUsd + pictured.costUsd + cardCost + mentionCost + lookCost + labCost, fallback: made.attempts < 0 || Boolean(spec.visualFallback), ...(made.incomplete?.length || made.attempts < 0 ? { incomplete: made.incomplete ?? [] } : {}), log };
+  // A Python listing Python itself cannot parse is one of those faults (lib/canvas/codeCheck.ts).
+  const codeFault = spec.stage.kind === "code" ? await pythonListingFault(spec.stage.lines).catch(() => null) : null;
+  if (codeFault) log.push(`${beat.id}: ${codeFault}`);
+  const incomplete = [...(made.incomplete ?? []), ...(codeFault ? [codeFault] : [])];
+  return { beat: written, costUsd: made.costUsd + pictured.costUsd + cardCost + mentionCost + lookCost + labCost, fallback: made.attempts < 0 || Boolean(spec.visualFallback), ...(incomplete.length || made.attempts < 0 ? { incomplete } : {}), log };
 }
 
 /**

@@ -240,8 +240,35 @@ export function locateBlockLines(blocks: Array<{ text: string }>, lines: OcrLine
     });
   }
 
-  return assigned.map((own, index) => {
-    const group = largestGroup(own, lineHeight);
+  const groups = assigned.map((own) => largestGroup(own, lineHeight));
+  /*
+   * A PARAGRAPH'S LAST SHORT LINE (QA report 2026-11-27: a worked example's box ended at "= 3" with the wrapped "A."
+   * left outside; "1/R2 + 1/R3" missed below a formula). A line of fewer than two words was never read at all, and a
+   * short tail rarely reaches half its words in the paragraph. A line directly under a paragraph's last line, inside
+   * its left and right edges, joins it when its words all belong to the paragraph or it has none (a symbol, "A.").
+   */
+  const taken = new Set(groups.flat());
+  groups.forEach((group, index) => {
+    if (!group.length) return;
+    for (let added = 0; added < 3; added++) {
+      const left = Math.min(...group.map((l) => l.x));
+      const right = Math.max(...group.map((l) => l.x + l.width));
+      const bottom = group.reduce((low, l) => (l.y + l.height > low.y + low.height ? l : low), group[0]);
+      const tail = lines.find((line) => !taken.has(line)
+        && line.y >= bottom.y + bottom.height * 0.5
+        && line.y - (bottom.y + bottom.height) <= lineHeight * 1.2
+        && line.x >= left - lineHeight && line.x + line.width <= right + lineHeight
+        && line.tokens.length <= 6
+        && line.tokens.every((token) => blockTokens[index].has(token))
+        // A line with no words at all joins only when it is short: a lone heading number is not a tail.
+        && (line.tokens.length > 0 || line.width <= (right - left) * 0.4));
+      if (!tail) break;
+      group.push(tail);
+      taken.add(tail);
+    }
+  });
+
+  return groups.map((group, index) => {
     if (!group.length) return undefined;
     // Too little of the paragraph was found to say where it is.
     const found = group.reduce((n, line) => n + line.tokens.filter((token) => blockTokens[index].has(token)).length, 0);

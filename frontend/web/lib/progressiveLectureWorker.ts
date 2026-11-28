@@ -976,7 +976,7 @@ async function generateOneBeat(
    * the gates: it tells the student the document goes no further and where a fuller answer is.
    */
   if (source.thinAnswer && beat.script) {
-    beat = { ...beat, script: `${beat.script.trim()} That is all your document says about this. For a fuller explanation, choose "Use it as a reference" when you upload it.` };
+    beat = { ...beat, script: `${beat.script.trim()} That is all your document says about this. For a fuller explanation, choose "Explain beyond the pages" when you upload it.` };
   }
   if (video && beat.transitionIn && repeatsOpening(beat.transitionIn, beat.script)) {
     console.log(`[opening] session=${session.id} seq=${planned.sequence} dropped a title-card line that repeated the first sentence: "${beat.transitionIn.slice(0, 80)}"`);

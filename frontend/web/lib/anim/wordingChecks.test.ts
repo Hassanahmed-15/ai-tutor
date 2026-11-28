@@ -243,9 +243,10 @@ test("a spliced label mention is refused for the plain clause; the prompt no lon
   const script = "Many things led to unrest. Prices rose fast.";
   const out = applyMentions(script, [{ s: 0, labels: ["Causes"] }], [{ i: 0, text: "Many things led to unrest, and this part here is the Causes?" }]);
   assert.doesNotMatch(out.script, /this part here/);
-  assert.match(out.script, /on the diagram this is labelled "Causes"\./);
+  // Merged with Minahil's c78fec33: a refused rewrite leaves her own sentence as it was (no "; on the diagram …" clause).
+  assert.match(out.script, /^Many things led to unrest\. Prices rose fast\.$/);
   assert.doesNotMatch(MENTION_PROMPT, /\("…, and this part here is the <label>\."\)/);
-  assert.match(MENTION_PROMPT, /Never tack a pointing clause on/);
+  assert.match(MENTION_PROMPT, /never a tacked-on phrase/);
 });
 
 /* ── a student new to the whole topic ───────────────────────────────────────────────────── */

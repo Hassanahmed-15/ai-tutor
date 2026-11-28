@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { codeTokens, commentMarker } from "@/lib/canvas/codeTokens";
 import { BlocksView } from "./BlocksView";
 import { isWebKit, WebKitHtml } from "./webkitHtml";
 import katex from "katex";
@@ -1473,25 +1474,6 @@ function codeClock(shownThrough: number, progress: number): number {
 }
 
 const MONO_FONT = "ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace";
-const CODE_KEYWORDS = new Set(("and as break case catch class const continue def do elif else except false finally for from function if import in int is lambda let not null or pass print public range return static switch this throw true try var void while with yield None True False fn struct mut match").split(" "));
-
-/** Light syntax colouring: enough to read structure (keywords, strings, numbers, calls, comments). */
-function codeTokens(line: string): Array<{ text: string; color: string; italic?: boolean }> {
-  const out: Array<{ text: string; color: string; italic?: boolean }> = [];
-  const re = /(#.*$|\/\/.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(\b\d+(?:\.\d+)?\b)|([A-Za-z_][A-Za-z0-9_]*)(?=\s*\()|([A-Za-z_][A-Za-z0-9_]*)|(\s+)|([^\sA-Za-z0-9_"'#]+)/g;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(line))) {
-    if (m[1]) out.push({ text: m[1], color: "#7f8aa8", italic: true });
-    else if (m[2]) out.push({ text: m[2], color: "#c3e88d" });
-    else if (m[3]) out.push({ text: m[3], color: "#f78c6c" });
-    else if (m[4]) out.push({ text: m[4], color: CODE_KEYWORDS.has(m[4]) ? "#c792ea" : "#82aaff" });
-    else if (m[5]) out.push({ text: m[5], color: CODE_KEYWORDS.has(m[5]) ? "#c792ea" : "#e6e9f0" });
-    else if (m[6]) out.push({ text: m[6], color: "#e6e9f0" });
-    else out.push({ text: m[7], color: "#89ddff" });
-  }
-  return out;
-}
-
 const GROUP_COLOURS = ["#0f766e", "#7c3aed", "#c2410c", "#2563eb"];
 
 function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type: "code" }>; shownThrough: number; focusId?: string }) {
@@ -1511,6 +1493,7 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
   // was still introducing it (owner, 2026-10-22: "it writes everything on the board before it even speaks").
   const shown = mark.reveal === "all" || shownThrough === Infinity ? mark.lines.length : !step ? 0 : upTo(reached);
   const before = mark.reveal === "all" ? mark.lines.length : upTo(reached.slice(0, -1));
+  const comments = commentMarker(mark.lines);
   const textOf = (i: number) => {
     const edit = mark.edits.find((e) => e.line === i + 1);
     return edit && shownThrough < edit.s ? edit.from : mark.lines[i];
@@ -1581,7 +1564,7 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
               </text>
             )}
             <text key={fixedNow ? `new-${edit.s}` : "line"} x={textX} y={baseline(i)} fontSize={size} fontFamily={MONO_FONT} xmlSpace="preserve" style={{ whiteSpace: "pre" }} className={`${fixedNow ? "cv-write" : ""}${focusId === `line-${i + 1}` ? " cv-focus" : ""}`}>
-              {codeTokens(textOf(i)).map((t, k) => (
+              {codeTokens(textOf(i), comments).map((t, k) => (
                 <tspan key={k} fill={t.color} fontStyle={t.italic ? "italic" : undefined}>
                   {t.text}
                 </tspan>
@@ -2481,7 +2464,7 @@ export const CANVAS_CSS = `
    Black, white and greys are untouched by it. */
 /* The full board's writing (BlocksView) and the lesson notes (LessonNotesPanel): one look, two sets of colours.
    On the board colours are chalk, and light mode turns them over with the rest of the board. */
-.bk-board { --bk-ink: #f1eee4; --bk-key: var(--cv-key, #ffd76a); --bk-dim: #b9c3be; --bk-line: rgba(241,238,228,.28); --bk-soft: rgba(241,238,228,.07); color: var(--bk-ink); font-size: 21px; line-height: 1.36; overflow-y: auto; overflow-x: hidden; padding: 16px 10px 26px 2px; touch-action: pan-y; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6px); mask-image: linear-gradient(to bottom, transparent 0, #000 6px); scrollbar-width: thin; scrollbar-color: var(--bk-line) transparent; }
+.bk-board { --bk-ink: #f3efff; --bk-key: var(--cv-key, #ffd76a); --bk-dim: #b8b2d6; --bk-line: rgba(243,239,255,.28); --bk-soft: rgba(243,239,255,.07); position: relative; color: var(--bk-ink); font-size: 21px; line-height: 1.36; overflow-y: auto; overflow-x: hidden; padding: 16px 10px 26px 2px; touch-action: pan-y; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6px); mask-image: linear-gradient(to bottom, transparent 0, #000 6px); scrollbar-width: thin; scrollbar-color: var(--bk-line) transparent; }
 .bk-board.bk-wide { font-size: 25px; padding-right: 26px; }
 .bk-panel { --bk-ink: var(--hud-text); --bk-key: var(--accent-ink); --bk-dim: var(--hud-text-dim); --bk-line: var(--hud-line-strong); --bk-soft: var(--hud-surface-2); color: var(--bk-ink); font-size: 15.5px; line-height: 1.55; }
 .bk-off { visibility: hidden; }

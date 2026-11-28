@@ -85,7 +85,7 @@ export function cardSideView(board: Rect, box: { w: number; h: number }, columnP
  * nearest clear spot on the board at her full size, then at a smaller size; and when the board is
  * full, the corner of the board's frame where she covers least (never the middle of the words).
  */
-export function restSpot(raw: Pt, size: number, bounds: Rect, busy: Rect[], smaller = 0.62, step = 24): { at: Pt; scale: number } {
+export function restSpot(raw: Pt, size: number, bounds: Rect, busy: Rect[], smaller = 0.62, step = 24): { at: Pt; scale: number; covers?: boolean } {
   const overlap = (q: Pt, half: number) =>
     busy.reduce((s, r) => s + Math.max(0, Math.min(q.x + half, r.x + r.w) - Math.max(q.x - half, r.x)) * Math.max(0, Math.min(q.y + half, r.y + r.h) - Math.max(q.y - half, r.y)), 0);
   const inside = (q: Pt, half: number) => q.x - half >= bounds.x && q.y - half >= bounds.y && q.x + half <= bounds.x + bounds.w && q.y + half <= bounds.y + bounds.h;
@@ -112,5 +112,7 @@ export function restSpot(raw: Pt, size: number, bounds: Rect, busy: Rect[], smal
     { x: bounds.x + bounds.w - half, y: bounds.y + bounds.h - half }, { x: bounds.x + half, y: bounds.y + bounds.h - half },
     { x: bounds.x + bounds.w - half, y: bounds.y + half }, { x: bounds.x + half, y: bounds.y + half },
   ];
-  return { at: corners.reduce((a, b) => (overlap(b, half) < overlap(a, half) ? b : a), corners[0]), scale };
+  const at = corners.reduce((a, b) => (overlap(b, half) < overlap(a, half) ? b : a), corners[0]);
+  // Still over the writing (a full board): the caller fades her so the board reads through (QA report 2026-11-27).
+  return { at, scale, covers: overlap(at, half) > 0 };
 }

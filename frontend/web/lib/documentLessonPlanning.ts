@@ -174,15 +174,15 @@ export function fallbackDepthQuestion(): DocumentPlanningQuestion {
 export function fallbackFidelityQuestion(): DocumentPlanningQuestion {
   return {
     kind: "fidelity",
-    question: "How should Aria use what you uploaded?",
+    question: "How closely should Aria follow what you uploaded?",
     options: [
       {
-        label: "Strictly from this",
+        label: "Stick to the pages",
         instruction: "Teach only what the uploaded material contains — no outside facts or examples.",
         fidelity: "strict",
       },
       {
-        label: "Use as reference",
+        label: "Explain beyond the pages",
         instruction: "Use the uploaded material as the foundation, and expand with outside knowledge and examples where it helps.",
         fidelity: "reference",
       },

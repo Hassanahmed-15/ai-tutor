@@ -52,7 +52,8 @@ export function BlocksView({ mark, shownThrough, sentenceProgress, live, reduced
   const follow = useCallback(() => {
     const el = box.current;
     if (!el || Date.now() < followAfter.current) return;
-    const units = el.querySelectorAll<HTMLElement>("[data-bk-unit]");
+    // Her writing only, never the unseen copy that measures the board (below).
+    const units = [...el.querySelectorAll<HTMLElement>("[data-bk-unit]")].filter((u) => !u.closest("[data-bk-measure]"));
     const last = units[units.length - 1];
     if (!last) return;
     const frame = el.getBoundingClientRect();
@@ -113,14 +114,35 @@ export function BlocksView({ mark, shownThrough, sentenceProgress, live, reduced
 
   const [webkit, setWebkit] = useState(false);
   useLayoutEffect(() => { setWebkit(isWebKit()); }, []);
+  /*
+   * THE WHOLE BOARD FITS WHEN IT NEARLY DOES (QA report 2026-11-27: a course board's first part ran past the board and
+   * needed a scrollbar). Its full text is laid out once, unseen, and the writing is set smaller — down to 78 % — until
+   * it all fits; only a board longer than that scrolls, following her as before.
+   */
+  const measure = useRef<HTMLDivElement>(null);
+  const [fit, setFit] = useState(1);
+  const baseSize = mark.rect.w > 600 ? 25 : 21;
+  useLayoutEffect(() => {
+    const el = measure.current;
+    if (!el) return;
+    const room = mark.rect.h - 46; // the board's top and bottom padding
+    const need = el.offsetHeight;
+    setFit(need > room && need > 0 ? Math.max(0.78, room / need) : 1);
+  }, [mark.blocks, mark.rect.w, mark.rect.h]);
   const writing = (
     <div
       ref={box}
       className={`bk-board ${mark.rect.w > 600 ? "bk-wide" : ""}`}
-      style={{ width: mark.rect.w, height: mark.rect.h }}
+      style={{ width: mark.rect.w, height: mark.rect.h, ...(fit < 1 ? { fontSize: `${(baseSize * fit).toFixed(1)}px` } : {}) }}
       onWheel={(e) => { e.stopPropagation(); studentScrolled(); }}
       onPointerDown={(e) => { e.stopPropagation(); studentScrolled(); }}
     >
+      {/* The unseen copy, at the board's own size, inside a box of no height so it never adds to the scroll. */}
+      <div aria-hidden="true" data-bk-measure="" data-no-marker="" style={{ position: "absolute", left: 0, top: 0, width: "100%", height: 0, overflow: "hidden", visibility: "hidden", pointerEvents: "none" }}>
+        <div ref={measure} style={{ fontSize: `${baseSize}px` }}>
+          {timed.map(({ block, units }) => <BlockView key={block.id} block={block} units={units} shown={units.length} />)}
+        </div>
+      </div>
       {timed.map(({ block, units }, i) => (shown[i] > 0 ? <BlockView key={block.id} block={block} units={units} shown={shown[i]} said={said && Number.isFinite(clock) ? { name: said, sentence: Math.floor(clock) } : undefined} /> : null))}
       {/* Room under the last line, so the column can stop where its top edge cuts no line (lib/canvas/scrollSnap.ts). */}
       <div aria-hidden="true" style={{ height: 44 }} />

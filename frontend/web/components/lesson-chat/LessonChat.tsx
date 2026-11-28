@@ -21,6 +21,7 @@ import { MathText } from "@/components/MathText";
 import { speakableMath } from "@/lib/mathText";
 import type { SourceScope } from "@/lib/sourceScope";
 import type { BeatSourceGrounding } from "@/lib/sourceGrounding";
+import { isResumeIntent } from "@/lib/voice/lectureIntent";
 
 /**
  * The shared lesson chat + "Is this clear?" gate. Used by every player so they all behave
@@ -114,6 +115,12 @@ export function useLessonChat(opts: {
   getBeatSource?: () => BeatSourceGrounding | null;
   /** Pause the player's own narration when a question starts. */
   pausePlayer: () => void;
+  /**
+   * The student typed "continue" (or "go on", "carry on", "let's keep going"): the lecture is resumed where it was
+   * frozen instead of the words being answered as a question (owner, 2026-11-28: after chatting, "continue" made her
+   * explain the board again from its start — measured three times, the lecture itself never resumed).
+   */
+  onResumeRequested?: () => void;
   /**
    * A question an EARLIER slide already taught is answered on that slide (lib/revisit.ts): the
    * player shows it again and returns what Aria says over it, or null to answer as usual. Optional —
@@ -286,6 +293,14 @@ export function useLessonChat(opts: {
       const open = pendingVisualRef.current;
       if (open && (isAffirmative(trimmed) || isNegative(trimmed))) {
         answerVisualOfferRef.current(isAffirmative(trimmed));
+        return;
+      }
+
+      // "Continue": back to the lecture, from exactly where it stopped — never answered as a question.
+      if (opts.onResumeRequested && isResumeIntent(trimmed)) {
+        stopNarration();
+        setChat((c) => [...c, { role: "you", text: trimmed }, { role: "aria", text: "Carrying on from where we stopped." }]);
+        opts.onResumeRequested();
         return;
       }
 

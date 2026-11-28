@@ -5,6 +5,7 @@ import { texEm, textWidth, type Mark, type Rect, type SketchPlaced } from "@/lib
 import { SKETCH_TEX_MACROS } from "@/lib/canvas/sketch";
 import type { SketchColor, SketchItem, SketchShape } from "@/lib/canvas/types";
 import { evalExpr } from "@/lib/canvas/expr";
+import { commentMarker } from "@/lib/canvas/codeTokens";
 import { isWebKit } from "./webkitHtml";
 
 /**
@@ -327,12 +328,15 @@ function Table({ p, shownThrough }: { p: SketchPlaced; shownThrough: number }) {
 /* ── code ──────────────────────────────────────────────────────────────────────────────────── */
 
 const KEYWORDS = /^(def|return|if|elif|else|for|while|in|and|or|not|True|False|None|function|const|let|var|int|float|void|public|class|import|from|print|break|continue|INPUT|OUTPUT|IF|THEN|ELSE|ENDIF|WHILE|ENDWHILE|FOR|TO|NEXT|DECLARE|PROCEDURE|FUNCTION|RETURNS|RETURN|REPEAT|UNTIL)$/;
-function codeHtml(line: string): string {
+function codeHtml(line: string, comments: "hash" | "slash" | "both" = "both"): string {
+  // The comment marker follows the listing's language (lib/canvas/codeTokens.ts): in Python `//` is floor division.
+  const parts = comments === "hash" ? /(#.*$|"[^"]*"|'[^']*'|\b\d+(?:\.\d+)?\b|\b[A-Za-z_]\w*\b)/ : comments === "slash" ? /(\/\/.*$|"[^"]*"|'[^']*'|\b\d+(?:\.\d+)?\b|\b[A-Za-z_]\w*\b)/ : /(#.*$|\/\/.*$|"[^"]*"|'[^']*'|\b\d+(?:\.\d+)?\b|\b[A-Za-z_]\w*\b)/;
+  const comment = comments === "hash" ? /^#/ : comments === "slash" ? /^\/\// : /^(#|\/\/)/;
   return line
-    .split(/(#.*$|\/\/.*$|"[^"]*"|'[^']*'|\b\d+(?:\.\d+)?\b|\b[A-Za-z_]\w*\b)/)
+    .split(parts)
     .map((tok) => {
       if (!tok) return "";
-      if (/^(#|\/\/)/.test(tok)) return `<span style="color:${INK.muted}">${esc(tok)}</span>`;
+      if (comment.test(tok)) return `<span style="color:${INK.muted}">${esc(tok)}</span>`;
       if (/^["']/.test(tok)) return `<span style="color:${INK.green}">${esc(tok)}</span>`;
       if (/^\d/.test(tok)) return `<span style="color:${INK.orange}">${esc(tok)}</span>`;
       if (KEYWORDS.test(tok)) return `<span style="color:${INK.pink}">${esc(tok)}</span>`;
@@ -370,7 +374,7 @@ function Code({ p, shownThrough }: { p: SketchPlaced; shownThrough: number }) {
       {item.lines.map((l, i) => (
         <g key={i}>
           <text x={rect.x + 24} y={rect.y + 13 + i * lineH + lineH * 0.72} fontFamily={MONO} fontSize={size * 0.8} fill={INK.muted} textAnchor="end" opacity={0.6} data-no-marker="">{i + 1}</text>
-          <Writing x={rect.x + 40} y={rect.y + 13 + i * lineH + (lineH - size * 1.3) / 2} w={rect.w - 50} h={lineH} html={codeHtml(l).replace(/^( +)/, (m) => "&nbsp;".repeat(m.length))} size={size} weight={500} font={MONO} />
+          <Writing x={rect.x + 40} y={rect.y + 13 + i * lineH + (lineH - size * 1.3) / 2} w={rect.w - 50} h={lineH} html={codeHtml(l, commentMarker(item.lines)).replace(/^( +)/, (m) => "&nbsp;".repeat(m.length))} size={size} weight={500} font={MONO} />
         </g>
       ))}
       {live && (

@@ -1,9 +1,11 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { WelcomePage } from "./WelcomePage";
 import { OnboardingScreen } from "./OnboardingScreen";
 import { SettingsScreen } from "./SettingsScreen";
+import { AuthScreen } from "./AuthScreen";
+import { AUTH_EXPIRED_EVENT } from "@/lib/spendTag";
 import { AriaMark } from "@/components/brand/AriaMark";
 import type { AccessibilityProfile, LearnerBasics } from "@/lib/db/cosmos";
 
@@ -93,6 +95,15 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   const [profile, setProfile] = useState<LearnerProfile>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [noticeDismissed, setNoticeDismissed] = useState(false);
+  /*
+   * THE SESSION ENDED WHILE THE APP WAS OPEN (QA report 2026-11-27, critical: the avatar and Settings still showed
+   * the student signed in while every lesson call answered 401, so they answered all the planning questions and
+   * then met "Authentication required" with no way to sign in). /api/auth/me was read once, at load. Now any 401
+   * from the app's own API (lib/spendTag.ts) and coming back to the tab re-check it; when the account is really
+   * gone, a sign-in dialog opens OVER the page — the plan, the answers and the lecture stay where they are.
+   */
+  const [expired, setExpired] = useState(false);
+  const lastCheckRef = useRef(0);
 
   const refresh = useCallback(async () => {
     /*
@@ -138,6 +149,38 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     void refresh();
   }, [refresh]);
+
+  const recheck = useCallback(async () => {
+    // At most one check every 20 s: a page that makes several calls at once sees several 401s.
+    if (Date.now() - lastCheckRef.current < 20_000) return;
+    lastCheckRef.current = Date.now();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8_000);
+    try {
+      const res = await fetch("/api/auth/me", { cache: "no-store", signal: controller.signal });
+      if (!res.ok) return;
+      const data = await res.json().catch(() => null);
+      // Only a clear "nobody is signed in" from a healthy endpoint counts; a failed check changes nothing.
+      if (data?.databaseConfigured && !data.user) setExpired(true);
+    } catch {
+      // Unreachable is not signed out.
+    } finally {
+      clearTimeout(timeout);
+    }
+  }, []);
+  useEffect(() => {
+    if (state !== "ready") return;
+    const onExpired = () => void recheck();
+    const onVisible = () => {
+      if (document.visibilityState === "visible" && Date.now() - lastCheckRef.current > 5 * 60_000) void recheck();
+    };
+    window.addEventListener(AUTH_EXPIRED_EVENT, onExpired);
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      window.removeEventListener(AUTH_EXPIRED_EVENT, onExpired);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [state, recheck]);
 
   /*
    * The account's accessibility choices, applied wherever the student signs in. "Reduce motion" is
@@ -209,6 +252,29 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
           onClose={() => setSettingsOpen(false)}
           onSaved={refresh}
         />
+      )}
+
+      {/* Signed out while the page was open: sign in again here, and carry on from exactly where you were. */}
+      {expired && state === "ready" && (
+        <div className="fixed inset-0 z-[120] flex items-start justify-center overflow-y-auto bg-[var(--scrim)] px-4 backdrop-blur-sm">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Sign in again"
+            className="relative my-10 w-full max-w-[26rem] rounded-[18px] border border-[var(--hud-line)] bg-[var(--hud-bg)] px-6 pb-8 pt-8 shadow-[var(--elev-2)] sm:px-8"
+          >
+            <AuthScreen
+              embedded
+              initialMode="login"
+              note="You were signed out. Sign in again and Aria carries on from here — nothing you chose is lost."
+              onAuthenticated={() => {
+                setExpired(false);
+                lastCheckRef.current = Date.now();
+                void refresh();
+              }}
+            />
+          </div>
+        </div>
       )}
 
       {/* Says the quiet part. The app still works — this is a notice, not a gate — but "we cannot

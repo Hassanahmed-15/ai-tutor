@@ -48,11 +48,14 @@ test("a diagram part Aria never names is named on the sentence it appears on", a
   const spec = flow([], ["Heart", "Pulmonary artery", "Lungs"]);
   const needed = unsaidLabels(spec, script);
   assert.deepEqual(needed, [{ s: 1, labels: ["Pulmonary artery"] }], "heart and lungs are said; the pulmonary artery is not");
-  // A good rewrite is used; one that drops a number, or names nothing, gets the plain clause instead.
+  // A good rewrite is used; one that names nothing, or reads as template filler, leaves her sentence as it was.
   const good = applyMentions(script, needed, [{ i: 1, text: "It travels along the pulmonary artery and picks up oxygen in the lungs." }]);
   assert.match(good.script, /pulmonary artery and picks up oxygen/);
   const bad = applyMentions(script, needed, [{ i: 1, text: "It picks up oxygen." }]);
-  assert.match(bad.script, /in the lungs; on the diagram this is labelled "Pulmonary artery"\./);
+  assert.equal(bad.script, script);
+  assert.equal(bad.mentioned, 0);
+  const filler = applyMentions(script, needed, [{ i: 1, text: "It picks up oxygen in the lungs, and this part here is the pulmonary artery." }]);
+  assert.equal(filler.script, script, "template filler is refused (QA report 2026-11-27)");
   assert.equal(bad.script.split(/(?<=[.!?])\s+/).length, 3, "the narration keeps its sentence count");
   // One call per board; nothing to do, no call.
   let calls = 0;

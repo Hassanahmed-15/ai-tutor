@@ -121,3 +121,18 @@ test("a part that opens mid-sentence is named by its first sentence opening", as
   ] as never, []) as { beats: Array<{ title: string }> };
   assert.equal(plan.beats[0].title, "Use the tab key to provide the indentation in python");
 });
+
+test("a paragraph's short last line is inside its box (QA report 2026-11-27: the box ended at \"= 3\", the wrapped \"A.\" left out)", () => {
+  const example = "Worked example: a lamp has a resistance of 4 ohms and a voltage of 12 volts across it, so the current through it is 12 divided by 4 which is 3 A.";
+  const lines = [
+    line(0.30, 0.1, 0.8, "worked example a lamp has a resistance of ohms and"),
+    line(0.316, 0.1, 0.8, "voltage of 12 volts across it so the current through"),
+    line(0.332, 0.1, 0.8, "it is 12 divided by which is"),
+    line(0.348, 0.1, 0.05, "A"), // "A." as the OCR reads it: no word of two letters or more
+    line(0.40, 0.1, 0.06, "3.2"),
+  ];
+  const [box] = locateBlocks([{ text: example }], lines);
+  assert.ok(box, "the example is found");
+  assert.ok(box.y + box.height >= 0.348 + 0.012 - 0.001, "its box reaches the last short line");
+  assert.ok(box.y + box.height < 0.40, "a heading number further down is not pulled in");
+});

@@ -948,6 +948,8 @@ type BuildCost =
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "choosing" | "ready" | "error">("idle");
   /** The name of the file being read, shown while it is read (the parsed file's name arrives only after). */
   const [readingName, setReadingName] = useState<string | null>(null);
+  /** A course lesson is being opened, not a file: the reading screen says so (QA report 2026-11-27: "Reading your file…"). */
+  const [readingCourse, setReadingCourse] = useState(false);
   /**
    * Page-selection state. Only ever populated for PDFs/decks; every other upload path skips it
    * entirely. An ARRAY, not a single value, so more than one file can be chosen and previewed
@@ -1757,6 +1759,7 @@ type BuildCost =
   async function ingestCurriculum(request: CurriculumLessonRequest) {
     ensureSpendTag();
     setUploadPhase("reading");
+    setReadingCourse(true);
     setUploadError(null);
     // Reference, not strict: the syllabus says WHAT to teach; the lesson explains it in full.
     const scope: SourceScope = { fidelity: "reference", breadth: { kind: "whole" }, documentLabels: [] };
@@ -1839,6 +1842,7 @@ type BuildCost =
   async function ingestFiles(files: File[]) {
     if (!files.length) return;
     setUploadPhase("reading");
+    setReadingCourse(false);
     setReadingName(files.length > 1 ? `${files.length} files` : files[0]?.name ?? null);
     setUploadError(null);
     const initialScope = emptySourceScope();
@@ -4629,14 +4633,14 @@ type BuildCost =
                   className="mt-3 w-full resize-none rounded-[var(--radius)] border border-[var(--hud-line)] bg-transparent px-3 py-2 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none"
                 />
               )}
-              {waitingForQuestion && <p className="mt-1.5 text-[0.78rem] text-[var(--hud-text-faint)]">Type your question, then choose how Aria should use the pages.</p>}
+              {waitingForQuestion && <p className="mt-1.5 text-[0.78rem] text-[var(--hud-text-faint)]">Type your question, then choose how closely Aria should follow the pages.</p>}
             </fieldset>
           )}
           <h1 id="source-mode-title" className="mt-2 max-w-2xl font-display text-[1.75rem] leading-tight tracking-[-0.02em] sm:text-[2rem]">
-            Do you want me to teach strictly from the selected source?
+            How closely should Aria follow these pages?
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--hud-text-dim)]">
-            This choice controls what Aria may teach and whether the normal adaptive planning conversation appears.
+            Stick to the pages and she teaches only what they say. Explain beyond them and she also adds background and examples, after a few quick questions.
           </p>
 
           <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -4646,9 +4650,9 @@ type BuildCost =
               disabled={waitingForQuestion}
               className="group rounded-[var(--radius-lg)] disabled:cursor-not-allowed disabled:opacity-50 border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)]"
             >
-              <span className="text-[1.0625rem] font-medium text-[var(--hud-text)]">Yes — strict source</span>
+              <span className="text-[1.0625rem] font-medium text-[var(--hud-text)]">Stick to the pages</span>
               <span className="mt-2 block text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">
-                {askedText ? "Answer your question from these pages only." : "Cover every selected page in source order."} Clarify and illustrate it, but add nothing the pages do not say. Starts building straight away.
+                {askedText ? "Answer your question from these pages only." : "Cover every selected page in source order."} Nothing the pages do not say is added. Starts building straight away.
               </span>
             </button>
             <button
@@ -4657,9 +4661,9 @@ type BuildCost =
               disabled={waitingForQuestion}
               className="group rounded-[var(--radius-lg)] disabled:cursor-not-allowed disabled:opacity-50 border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)]"
             >
-              <span className="text-[1.0625rem] font-medium text-[var(--hud-text)]">Use it as a reference</span>
+              <span className="text-[1.0625rem] font-medium text-[var(--hud-text)]">Explain beyond the pages</span>
               <span className="mt-2 block text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">
-                Keep the selected pages central, then use the normal adaptive plan and add outside examples or context when useful.
+                The pages lead; Aria adds background, examples and explanations they leave out, and asks a few quick questions first.
               </span>
             </button>
           </div>
@@ -4982,6 +4986,7 @@ type BuildCost =
           buildStartedAt={buildBeats?.startedAt}
           onStop={leaveToHome}
           onStart={startBuiltLesson}
+          source={uploadedFile?.kind === "curriculum" ? "course" : uploadedFile?.kind === "youtube" ? "video" : uploadedFile || documentId ? "document" : "topic"}
         />
       ) : phase === "outline" ? (
         <OutlineReviewState
@@ -5048,14 +5053,17 @@ type BuildCost =
           uploadPhase={uploadPhase}
           uploadError={uploadError}
           fileName={uploadedFile?.name ?? readingName}
+          course={readingCourse}
           videoProgress={videoProgress}
           topic={topic}
           onHome={leaveToHome}
           onRetry={topic ? () => {
             // A strict-source or video lecture has no planning conversation: it is built again as it
             // was, never sent into the planning questions (which only reference mode and typed topics have).
+            // A planned lecture is built again from the plan the student approved: "Try again" used to restart the
+            // planning questions, re-written in other words (QA report 2026-11-27). Only a build with no plan yet re-plans.
             const last = lastBuildRef.current;
-            if (last?.noPlanning) void build(last.t, last.approvedOutline, last.fresh, last.documentPlanningNotes);
+            if (last && (last.noPlanning || last.approvedOutline)) void build(last.t, last.approvedOutline, last.fresh, last.documentPlanningNotes);
             else void startPlanning(topic);
           } : undefined}
         />
@@ -5136,7 +5144,10 @@ function EntryStatus({
   topic,
   onHome,
   onRetry,
+  course = false,
 }: {
+  /** A course lesson is being opened: no file, no pages. */
+  course?: boolean;
   phase: string;
   error: string | null;
   uploadPhase: "idle" | "reading" | "choosing" | "ready" | "error";
@@ -5152,9 +5163,10 @@ function EntryStatus({
   const title = failed
     ? phase === "error" ? "That lesson could not be built" : "That could not be read"
     : videoProgress ? videoProgress.label
+    : uploadPhase === "reading" && course ? "Opening your course lesson…"
     : uploadPhase === "reading" ? `Reading ${fileName ?? "your file"}…` : topic ? `Getting "${topic}" ready…` : "Getting your lesson ready…";
   // What Aria is doing, in the build screen's small caps line (components/design/LessonBuildScreen.tsx).
-  const doing = videoProgress ? null : uploadPhase === "reading" ? "Aria is reading every page" : "Aria is getting ready";
+  const doing = videoProgress ? null : uploadPhase === "reading" && course ? "Aria is reading the syllabus" : uploadPhase === "reading" ? "Aria is reading every page" : "Aria is getting ready";
   return (
     // THE APP'S OWN LOOK (owner, 2026-10-18: "same style as the app"): Dot reading over a page,
     // the display face and the build screen's quiet status line — not a bare spinner on black.
@@ -5170,7 +5182,12 @@ function EntryStatus({
             <div className="h-full w-1/3 rounded-full bg-[var(--hud-cyan)]" />
           </div>
         )}
-        {failed && <p data-entry-error className="mt-3 text-sm text-[var(--hud-danger)]">{failed}</p>}
+        {failed && (
+          <p data-entry-error className="mt-3 text-sm text-[var(--hud-danger)]">
+            {/* A session that ended: say what to do, in words (the sign-in dialog opens over this screen). */}
+            {/authenticat|sign in|unauthori[sz]ed|401/i.test(failed) ? "You were signed out. Sign in again, then press Try again — your plan is kept." : failed}
+          </p>
+        )}
         {!failed && videoProgress && (
           <>
             <div
@@ -5720,7 +5737,7 @@ function StudentProfileCard({
                 {sourceScope.breadth.kind === "whole" ? "Whole source" : sourceScope.breadth.focus}
               </span>
               <span className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.68rem] text-[var(--hud-text-dim)]">
-                {sourceScope.fidelity === "strict" ? "Strictly from source" : "Source as reference"}
+                {sourceScope.fidelity === "strict" ? "Sticking to the pages" : "Explaining beyond the pages"}
               </span>
               {sourceScope.documentLabels.map((label) => (
                 <span key={label} className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.68rem] text-[var(--hud-text-dim)]">

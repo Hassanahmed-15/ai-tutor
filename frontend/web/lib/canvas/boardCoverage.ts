@@ -96,6 +96,27 @@ export function splicedRewrite(original: string, text: string): boolean {
 
 const numbersOf = (t: string) => (t.match(/-?\d+(?:\.\d+)?/g) ?? []).sort().join(",");
 
+/**
+ * A rewrite that says again what the sentence next to it says: it shares a run of `n` words with a neighbour that
+ * the original did not (QA report 2026-11-27: "For an ohmic conductor at constant temperature" said twice in a row
+ * after a rewrite borrowed the sentence before it). Pure; also used by lib/canvas/labelMentions.ts.
+ */
+export function echoesNeighbour(original: string, text: string, neighbours: Array<string | undefined>, n = 5): boolean {
+  const runs = (t: string) => {
+    const w = t.toLowerCase().match(/[a-z0-9]+/g) ?? [];
+    const out = new Set<string>();
+    for (let i = 0; i + n <= w.length; i++) out.add(w.slice(i, i + n).join(" "));
+    return out;
+  };
+  const had = runs(original);
+  const now = [...runs(text)].filter((r) => !had.has(r));
+  return neighbours.some((other) => {
+    if (!other) return false;
+    const theirs = runs(other);
+    return now.some((r) => theirs.has(r));
+  });
+}
+
 /** The unsaid items grouped by the sentence they appear on (at most four a sentence). */
 export function coverageRequests(unsaid: BoardItem[], sentenceCount: number): Array<{ s: number; items: string[] }> {
   const by = new Map<number, string[]>();
@@ -118,6 +139,7 @@ export function applyCoverage(script: string, asked: Array<{ s: number; items: s
     const r = rewrites.find((x) => Number(x.i) === need.s);
     const text = typeof r?.text === "string" ? r.text.replace(/\s+/g, " ").trim() : "";
     if (!text || !/[.!?]$/.test(text) || canvasSentences(text).length !== 1 || numbersOf(text) !== numbersOf(original) || text.length > original.length + 60 || splicedRewrite(original, text)) continue;
+    if (echoesNeighbour(original, text, [sentences[need.s - 1], sentences[need.s + 1]])) continue;
     const said = new Set(stems(text));
     if (!need.items.every((item) => isSaid({ text: item }, said))) continue;
     sentences[need.s] = text;

@@ -1,5 +1,5 @@
 import "server-only";
-import { deliveryFor, DELIVERY_VERSION, type Delivery } from "@/lib/voiceDelivery";
+import { ALWAYS_EXCITED, deliveryFor, DELIVERY_VERSION, type Delivery } from "@/lib/voiceDelivery";
 import { chosenVoiceId, chosenVoiceKey } from "@/lib/voices";
 import { teacherOf } from "@/lib/teachers";
 
@@ -21,6 +21,18 @@ const USD_PER_AUDIO_TOKEN = Number(process.env.GEMINI_TTS_USD_PER_AUDIO_TOKEN ??
 const USD_PER_TEXT_TOKEN = 0.5e-6;
 const SAMPLE_RATE = 24_000;
 const CALL_TIMEOUT_MS = 30_000;
+
+/**
+ * The delivery for the chosen teacher (lib/teachers.ts). Aria keeps the one "always excited" delivery (acted5,
+ * owner 2026-11-27); Zara and Kai say every line in their own way instead ("cheerful", "calm and firm"), keeping
+ * the stress on a board's key term.
+ */
+export function teacherStyle(style: string | undefined, key = chosenVoiceKey()): string | undefined {
+  const own = teacherOf(key).delivery;
+  if (!own) return style;
+  if (!style) return own;
+  return style.includes(ALWAYS_EXCITED) ? style.replace(ALWAYS_EXCITED, own) : style;
+}
 
 export function geminiVoiceOn(): boolean {
   return process.env.NARRATION_VOICE === "gemini" && Boolean(process.env.GEMINI_TTS_API_KEY) && Boolean(process.env.GEMINI_TTS_VOICE);
@@ -55,7 +67,7 @@ export function planningCloneOn(): boolean {
 export async function* streamGeminiVoicePcm(text: string, signal?: AbortSignal, delivery: Delivery = deliveryFor(text)): AsyncGenerator<Uint8Array, number> {
   const item: Record<string, unknown> = { type: "text", text: delivery.input };
   // A plain sentence is said in the chosen teacher's way (lib/teachers.ts); questions and warnings keep their own.
-  const style = delivery.style || teacherOf(chosenVoiceKey()).delivery;
+  const style = teacherStyle(delivery.style);
   if (style) item.annotations = [{ type: "speech_metadata", style }];
   const res = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions?alt=sse", {
     method: "POST",
@@ -153,7 +165,7 @@ export async function pcmToMp3(pcm: Buffer, sampleRate = SAMPLE_RATE): Promise<B
 export async function synthesizeGeminiVoice(text: string, delivery: Delivery = deliveryFor(text)): Promise<{ audio: Buffer; costUsd: number }> {
   const item: Record<string, unknown> = { type: "text", text: delivery.input };
   // A plain sentence is said in the chosen teacher's way (lib/teachers.ts); questions and warnings keep their own.
-  const style = delivery.style || teacherOf(chosenVoiceKey()).delivery;
+  const style = teacherStyle(delivery.style);
   if (style) item.annotations = [{ type: "speech_metadata", style }];
   let lastError: Error = new Error("no attempt");
   for (let attempt = 1; attempt <= 2; attempt++) {

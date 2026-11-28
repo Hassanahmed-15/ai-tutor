@@ -629,11 +629,13 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         }
         const asked = performance.now();
         try {
+          // 25 s, not 10: a long sentence in the cloned voice takes several seconds to make, behind the board's other
+          // sentences, and a request given up at 10 s started again at the back (QA report 2026-11-27: 15 s waits).
           const res = await fetch("/api/tts", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text, ...voiceField() }),
-            signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(singleTry ? 7_000 : 10_000) : undefined,
+            signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(singleTry ? 7_000 : 25_000) : undefined,
           });
           recordTtsResponse(res);
           if (res.ok) {
@@ -786,8 +788,15 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
      */
     const waitForVoice = (i: number): (() => void) => {
       callbacks.onVoiceWaiting?.(true, i);
-      const heartbeat = window.setInterval(() => callbacks.onVoiceWaiting?.(true, i), 2_000);
       let done = false;
+      // A narration that was stopped (the student moved on, the part restarted) says nothing more: its wait went on
+      // being reported for up to 10 s and raised "waiting for Aria's voice" over another board (QA report 2026-11-27).
+      const heartbeat = window.setInterval(() => {
+        if (!cancelled) return callbacks.onVoiceWaiting?.(true, i);
+        window.clearInterval(heartbeat);
+        if (!done) callbacks.onVoiceWaiting?.(false, i);
+        done = true;
+      }, 2_000);
       return () => {
         if (done) return;
         done = true;
@@ -799,7 +808,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       let ready = false;
       let stopWaiting: (() => void) | null = null;
       const slow = window.setTimeout(() => {
-        if (ready) return;
+        if (ready || cancelled) return;
         traceNarration("clip-waiting", { sentence: i, text: sentences[i].slice(0, 40) });
         if (keepVoice) stopWaiting = waitForVoice(i);
       }, 1_500);
